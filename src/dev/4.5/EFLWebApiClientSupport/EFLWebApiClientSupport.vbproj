@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8936E28-392E-439D-A036-005722122CF5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ActiveDevelop.EntitiesFormsLib.WebApiClient</RootNamespace>
+    <AssemblyName>ActiveDevelop.EntitiesFormsLib.WebApiClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <ProjectTypeGuids>{14182A97-F7F0-4C62-8B27-98AA8AE2109A};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug</OutputPath>
+    <DocumentationFile>ActiveDevelop.EntitiesFormsLib.WebApiClient.xml</DocumentationFile>
+    <NoWarn>42016,41999,42020,42021,42022</NoWarn>
+    <WarningsAsErrors>42017,42018,42019,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DocumentationFile>ActiveDevelop.EntitiesFormsLib.WebApiClient.xml</DocumentationFile>
+    <NoWarn>42016,41999,42020,42021,42022</NoWarn>
+    <WarningsAsErrors>42017,42018,42019,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="JSonFormatter\CustomJSonMediaTypeFormatter.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="WebApiAccess\HttpClientFactory.vb" />
+    <Compile Include="WebApiAccess\WebApiAccess.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Test\EFL_CodedUITestContainer\packages\Newtonsoft.Json.6.0.1\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\Test\EFL_CodedUITestContainer\packages\Microsoft.Net.Http.2.2.18\lib\portable-net40+sl4+win8+wp71\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\Test\EFL_CodedUITestContainer\packages\Microsoft.Net.Http.2.2.18\lib\portable-net40+sl4+win8+wp71\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\Test\EFL_CodedUITestContainer\packages\Microsoft.AspNet.WebApi.Client.5.1.1\lib\portable-wp8+netcore45+net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\Test\EFL_CodedUITestContainer\packages\Microsoft.Net.Http.2.2.18\lib\portable-net40+sl4+win8+wp71\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.VisualBasic.targets" />
+  <Import Project="..\Test\EFL_CodedUITestContainer\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\Test\EFL_CodedUITestContainer\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\Test\EFL_CodedUITestContainer\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\Test\EFL_CodedUITestContainer\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

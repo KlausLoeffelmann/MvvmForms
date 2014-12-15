@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Entity Forms Lib&#xD;&#xA;Schnittstellenübersicht">
+    <Position X="0.5" Y="0.5" Height="0.969" Width="2.627" />
+  </Comment>
+  <Class Name="ActiveDevelop.EntitiesFormsLib.NullableValueBase(Of NullableType, ControlType)">
+    <Position X="10.75" Y="1.75" Width="3.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>Ky3WhDA0ZCsNixQ+PmGxcNAbkV7FVpUIvMQ5+gigHfM=</HashCode>
+      <FileName>Controls\NullableControls\NullableValueBase.vb</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ActiveDevelop.EntitiesFormsLib.PermissionManageableControlInfo">
+    <Position X="7.25" Y="11" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAABAAEAAAAAAQAAAQAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\IPermissionManageableElements.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActiveDevelop.EntitiesFormsLib.HasPermissionManageableUIElementsAttribute">
+    <Position X="4" Y="11" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\IPermissionManageableElements.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ActiveDevelop.EntitiesFormsLib.PermissionManageableUIElementParams">
+    <Position X="7.25" Y="14" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAQAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\IPermissionManageableElements.vb</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="ActiveDevelop.EntitiesFormsLib.IAssignableFormToBusinessClassManager">
+    <Position X="3.5" Y="2" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\IAssignableFormToBusinessClassManager.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ActiveDevelop.EntitiesFormsLib.INullableValueControl">
+    <Position X="3" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgIAABAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\INullableValueControl.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ActiveDevelop.EntitiesFormsLib.INullableValueDataBinding">
+    <Position X="1.25" Y="7.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAEAI=</HashCode>
+      <FileName>Controls\Interfaces\INullableValueDataBinding.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ActiveDevelop.EntitiesFormsLib.INullableValueEditor">
+    <Position X="6.5" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAABgAAUAgAAAAAAIAAAAAAAAgAAAA=</HashCode>
+      <FileName>Controls\Interfaces\INullableValueEditor.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ActiveDevelop.EntitiesFormsLib.INullableValueRelationBinding">
+    <Position X="6.5" Y="8" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAgAAAAAAABAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\INullableValueRelationBinding.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ActiveDevelop.EntitiesFormsLib.IRecognizableComponent">
+    <Position X="1" Y="11" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\IPermissionManageableElements.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ActiveDevelop.EntitiesFormsLib.IPermissionManageableComponent">
+    <Position X="1" Y="13" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAgAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\IPermissionManageableElements.vb</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ElementType" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="ActiveDevelop.EntitiesFormsLib.IPermissionManageableUIContentElement">
+    <Position X="2.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\IPermissionManageableElements.vb</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ContentPresentPermission" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="ActiveDevelop.EntitiesFormsLib.IPermissionManageableUIControlElement">
+    <Position X="0.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\IPermissionManageableElements.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ActiveDevelop.EntitiesFormsLib.IGroupable">
+    <Position X="4" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Controls\Interfaces\IAssignableFormToBusinessClassManager.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ActiveDevelop.EntitiesFormsLib.IIsDirtyChangedAware">
+    <Position X="0.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\IIsDirtyChangedAware.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ActiveDevelop.EntitiesFormsLib.PermissionManageableUIElementType">
+    <Position X="4.25" Y="13.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQEAgAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Controls\Interfaces\IPermissionManageableElements.vb</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions">
+    <Position X="5.25" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAgAAAAAAAAAAAAAAQAAAAIAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Controls\Interfaces\IPermissionManageableElements.vb</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

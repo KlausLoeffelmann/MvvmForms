@@ -1,0 +1,1028 @@
+<?xml version="1.0"?>
+<UITest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="" Id="85f66000-a4c7-4eac-a0b7-708992632859" AssemblyVersion="10.0.40219.1" Version="1.0" xmlns="http://schemas.microsoft.com/VisualStudio/TeamTest/UITest/2010">
+  <Configuration>
+    <Group Name="IE">
+      <Setting Name="Version" Value="9.0.8112.16421" WarningLevel="1" />
+      <Setting Name="InformationBar" WarningLevel="1" />
+      <Setting Name="AutoCompletePassword" WarningLevel="1" />
+      <Setting Name="AutoCompleteForm" Value="no" WarningLevel="1" />
+      <Setting Name="DefaultBrowser" Value="IEXPLORE.EXE" WarningLevel="1" />
+      <Setting Name="PopupBlocker" Value="yes" WarningLevel="1" />
+      <Setting Name="TabbedBrowsing" WarningLevel="2" />
+      <Setting Name="InternetZoneSecurity" Value="66816" WarningLevel="2" />
+      <Setting Name="IntranetZoneSecurity" Value="69632" WarningLevel="2" />
+      <Setting Name="TrustedZoneSecurity" Value="70912" WarningLevel="2" />
+      <Setting Name="RestrictedZoneSecurity" Value="73728" WarningLevel="2" />
+      <Setting Name="PhishingFilter" WarningLevel="1" />
+      <Setting Name="EnhancedSecurityConfiguration" WarningLevel="1" />
+    </Group>
+    <Group Name="OS">
+      <Setting Name="Name" Value="Microsoft Windows 7 Enterprise " WarningLevel="2" />
+      <Setting Name="Version" Value="Microsoft Windows NT 6.1.7601 Service Pack 1" WarningLevel="2" />
+      <Setting Name="IsUserAdmin" Value="True" WarningLevel="2" />
+      <Setting Name="Is64BitOperatingSystem" Value="True" WarningLevel="2" />
+      <Setting Name="IsTerminalServerSession" Value="False" WarningLevel="2" />
+      <Setting Name="OSLanguage" Value="1031" WarningLevel="1" />
+      <Setting Name="UserLocale" Value="1031" WarningLevel="1" />
+      <Setting Name="DragFullWindows" Value="True" WarningLevel="2" />
+      <Setting Name="ScreenResolutionWidth" Value="1920" WarningLevel="2" />
+      <Setting Name="ScreenResolutionHeight" Value="1080" WarningLevel="2" />
+      <Setting Name="SystemDPIX" Value="96" WarningLevel="2" />
+      <Setting Name="SystemDPIY" Value="96" WarningLevel="2" />
+      <Setting Name="Aero" Value="1" WarningLevel="1" />
+      <Setting Name="UACEnabled" Value="1" WarningLevel="2" />
+      <Setting Name="UACPromptEnabled" Value="5" WarningLevel="1" />
+      <Setting Name="WindowsAccessibilityAPIVersion" Value="3.0" WarningLevel="1" />
+    </Group>
+    <Group Name="TechnologyManagers">
+      <Setting Name="Web" WarningLevel="1" />
+      <Setting Name="UIA" WarningLevel="1" />
+    </Group>
+  </Configuration>
+  <InitializeActions />
+  <ExecuteActions>
+    <AssertAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIResultTextBoxWindow.UIResultTextBoxEdit">
+      <ParameterName />
+      <PropertyName>Text</PropertyName>
+      <ExpectedValue>SelectedValueChanged to 1
+SelectedValueChanged to 2
+SelectedValueChanged to 3
+SelectedValueChanged to 4
+IsDirtyChanged
+ValueChanged to 4
+SelectedValueChanged to 6
+SelectedValueChanged to 58
+SelectedValueChanged to 107
+SelectedValueChanged to 123
+SelectedValueChanged to 131
+SelectedValueChanged to 152
+SelectedValueChanged to 212
+ValueChanged to 212
+</ExpectedValue>
+      <Type>String</Type>
+      <PropertyCondition>AreEqual</PropertyCondition>
+    </AssertAction>
+    <TestStepMarkerAction MarkerInformation="CheckForCorrectEventOrder">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Assertion</MarkerRegionType>
+    </TestStepMarkerAction>
+    <AssertAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow12.UIItemEdit">
+      <ParameterName />
+      <PropertyName>Text</PropertyName>
+      <ExpectedValue>41</ExpectedValue>
+      <Type>String</Type>
+      <PropertyCondition>AreEqual</PropertyCondition>
+    </AssertAction>
+    <AssertAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow.NullableNumValueInput">
+      <ParameterName />
+      <PropertyName>Text</PropertyName>
+      <ExpectedValue>56,21249171</ExpectedValue>
+      <Type>String</Type>
+      <PropertyCondition>AreEqual</PropertyCondition>
+    </AssertAction>
+    <AssertAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow13.UIItemEdit">
+      <ParameterName />
+      <PropertyName>Text</PropertyName>
+      <ExpectedValue>01.07.2012</ExpectedValue>
+      <Type>String</Type>
+      <PropertyCondition>AreEqual</PropertyCondition>
+    </AssertAction>
+    <TestStepMarkerAction MarkerInformation="CheckFormattedResults">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Assertion</MarkerRegionType>
+    </TestStepMarkerAction>
+    <AssertAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIResultTextBoxWindow.UIResultTextBoxEdit">
+      <ParameterName />
+      <PropertyName>Text</PropertyName>
+      <ExpectedValue>SelectedValueChanged to 1
+SelectedValueChanged to 2
+SelectedValueChanged to 3
+SelectedValueChanged to 4
+IsDirtyChanged
+ValueChanged to 4
+SelectedValueChanged to 6
+SelectedValueChanged to 58
+SelectedValueChanged to 107
+SelectedValueChanged to 123
+SelectedValueChanged to 131
+SelectedValueChanged to 152
+SelectedValueChanged to 212
+ValueChanged to 212
+SelectedValueChanged to * - - - *
+ValueChanged to * - - - *
+</ExpectedValue>
+      <Type>String</Type>
+      <PropertyCondition>AreEqual</PropertyCondition>
+    </AssertAction>
+    <TestStepMarkerAction MarkerInformation="CheckForNulledCorrectEventOrder">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Assertion</MarkerRegionType>
+    </TestStepMarkerAction>
+    <SetValueAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.NullableRelationalPopupContainer.NullableRelationalPopup">
+      <ParameterName />
+      <Value Encoded="false">l</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <TestStepMarkerAction MarkerInformation="EnterFirstCharInNullableRelationPopup">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <SendKeysAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow.NullableNumValueInput">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <SendKeysAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIPropsWindow3.UIPropsButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <SetValueAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow13.UIItemEdit">
+      <ParameterName />
+      <Value Encoded="false">1,7,2012</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <TestStepMarkerAction MarkerInformation="EnterTestDataForNullableDateBox">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <SendKeysAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow11.UIItemEdit">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <SendKeysAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIPropsWindow1.UIPropsButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <SetValueAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow12.UIItemEdit">
+      <ParameterName />
+      <Value Encoded="false">1+2*3*(6+6)/(10-8)+((12-10)*2)</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <TestStepMarkerAction MarkerInformation="EnterTestDataForNullableIntBox">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <SendKeysAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow1.UIItemEdit">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <SendKeysAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIPropsWindow.UIPropsButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <SetValueAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow11.UIItemEdit">
+      <ParameterName />
+      <Value Encoded="false">In dieser TextBox gibt der Anwender einen noch längeren Text ein, da an dieser Stelle getestet werden soll, wie sich Text verhält, der über mehrere Zeilen bei einer MultiLine-TextBox zu sehen ist.</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <TestStepMarkerAction MarkerInformation="EnterTestDataForNullableMultilineTextBox">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <SendKeysAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow12.UIItemEdit">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <SendKeysAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIPropsWindow2.UIPropsButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <SetValueAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow.NullableNumValueInput">
+      <ParameterName />
+      <Value Encoded="false">1,23+2,33*3,3421*(6,6+6,34)/(10,8-8,8)+((12,5-10,2)*2)</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <TestStepMarkerAction MarkerInformation="EnterTestDataForNullableNumBox">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <MouseAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow1.UIItemEdit">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="48" Y="5" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <SetValueAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow2.UIItemEdit">
+      <ParameterName />
+      <Value Encoded="false">In dieser TextBox gibt der Anwender einen vergleichsweise langen Namen ein</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <TestStepMarkerAction MarkerInformation="EnterTestDataForNullableTextBox">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <SendKeysAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIItemWindow13.UIItemEdit">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <SendKeysAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIPropsWindow4.UIPropsButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">{Tab}</Text>
+    </SendKeysAction>
+    <TestStepMarkerAction MarkerInformation="FinishTestdateInput">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <MouseAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIMainMenuStripMenuBar.UITestMenuItem.UIShowbasictestUIMenuItem">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="47" Y="12" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <TestStepMarkerAction MarkerInformation="LaunchBasicTestForm">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <MouseAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIMainButtonWindow.UIMainButtonClient">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="5" Y="7" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <MouseAction UIObjectName="UIMap.UIItemWindow.UIItemWindow1.UIDesktopClient">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="8" Y="257" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <TestStepMarkerAction MarkerInformation="NullRelationalPopupInput">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <MouseAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UISubTest1NotdefinedWindow.UISubTest1PopupTestsButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="68" Y="14" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <TestStepMarkerAction MarkerInformation="PrepareNullableRelationPopup">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <MouseAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.UIEntityFormsLibTestCoTitleBar">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="286" Y="8" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <SetValueAction UIObjectName="UIMap.UIEntityFormsLibTestCoWindow.NullableRelationalPopupContainer.NullableRelationalPopup">
+      <ParameterName />
+      <Value Encoded="false">0004: Picard, Gabby</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <TestStepMarkerAction MarkerInformation="SelectValuesInRelationalPopup">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+  </ExecuteActions>
+  <CleanupActions />
+  <OnErrorActions />
+  <Maps>
+    <UIMap Id="UIMap">
+      <TopLevelWindows>
+        <TopLevelWindow ControlType="Window" Id="UIEntityFormsLibTestCoWindow" FriendlyName="EntityFormsLib TestContainer" SpecialControlType="None" SessionId="22022476">
+          <TechnologyName>MSAA</TechnologyName>
+          <WindowTitles>
+            <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+          </WindowTitles>
+          <SearchConfigurations>
+            <SearchConfiguration>VisibleOnly</SearchConfiguration>
+          </SearchConfigurations>
+          <AndCondition Id="SearchCondition">
+            <PropertyCondition Name="Name">EntityFormsLib TestContainer</PropertyCondition>
+            <PropertyCondition Name="ClassName" Operator="Contains">WindowsForms10.Window</PropertyCondition>
+            <PropertyCondition Name="ControlType">Window</PropertyCondition>
+          </AndCondition>
+          <SupportLevel>0</SupportLevel>
+          <Descendants>
+            <UIObject ControlType="MenuBar" Id="UIMainMenuStripMenuBar" FriendlyName="MainMenuStrip" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="Name">MenuStrip1</PropertyCondition>
+                <PropertyCondition Name="ControlType">MenuBar</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="MenuItem" Id="UITestMenuItem" FriendlyName="Test" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>Expand</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="Name">Test</PropertyCondition>
+                    <PropertyCondition Name="ControlType">MenuItem</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants>
+                    <UIObject ControlType="MenuItem" Id="UIShowbasictestUIMenuItem" FriendlyName="Show basic test UI" SpecialControlType="None">
+                      <TechnologyName>MSAA</TechnologyName>
+                      <WindowTitles>
+                        <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                      </WindowTitles>
+                      <SearchConfigurations>
+                        <SearchConfiguration>Expand</SearchConfiguration>
+                      </SearchConfigurations>
+                      <AndCondition Id="SearchCondition">
+                        <PropertyCondition Name="Name">Show basic test UI</PropertyCondition>
+                        <PropertyCondition Name="ControlType">MenuItem</PropertyCondition>
+                      </AndCondition>
+                      <SupportLevel>0</SupportLevel>
+                      <Descendants />
+                    </UIObject>
+                  </Descendants>
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIItemWindow" FriendlyName="* - - -*" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="Name">* - - -*</PropertyCondition>
+                <PropertyCondition Name="ClassName" Operator="Contains">WindowsForms10.EDIT</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+                <PropertyCondition Name="Instance">3</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Edit" Id="NullableNumValueInput" FriendlyName="" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIItemWindow1" FriendlyName="* - - -*" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="Name">* - - -*</PropertyCondition>
+                <PropertyCondition Name="ClassName" Operator="Contains">WindowsForms10.EDIT</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+                <PropertyCondition Name="Instance">2</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Edit" Id="UIItemEdit" FriendlyName="" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIItemWindow2" FriendlyName="* - - -*" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="Name">* - - -*</PropertyCondition>
+                <PropertyCondition Name="ClassName" Operator="Contains">WindowsForms10.EDIT</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+                <PropertyCondition Name="Instance">2</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Edit" Id="UIItemEdit" FriendlyName="" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIPropsWindow" FriendlyName="Prop's" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlName">SetNullableTextValuePropertiesButton</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Button" Id="UIPropsButton" FriendlyName="Prop's" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="Name">Prop's</PropertyCondition>
+                    <PropertyCondition Name="ControlType">Button</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIItemWindow11" FriendlyName="* - - -*" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="Name">* - - -*</PropertyCondition>
+                <PropertyCondition Name="ClassName" Operator="Contains">WindowsForms10.EDIT</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Edit" Id="UIItemEdit" FriendlyName="" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIPropsWindow1" FriendlyName="Prop's" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlName">SetNullableMultilineTextValuePropertiesButton</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Button" Id="UIPropsButton" FriendlyName="Prop's" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="Name">Prop's</PropertyCondition>
+                    <PropertyCondition Name="ControlType">Button</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIItemWindow12" FriendlyName="* - - -*" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="Name">* - - -*</PropertyCondition>
+                <PropertyCondition Name="ClassName" Operator="Contains">WindowsForms10.EDIT</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+                <PropertyCondition Name="Instance">5</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Edit" Id="UIItemEdit" FriendlyName="" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIPropsWindow2" FriendlyName="Prop's" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlName">SetNullableIntValuePropertiesButton</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Button" Id="UIPropsButton" FriendlyName="Prop's" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="Name">Prop's</PropertyCondition>
+                    <PropertyCondition Name="ControlType">Button</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIPropsWindow3" FriendlyName="Prop's" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlName">SetNullableNumValuePropertiesButton</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Button" Id="UIPropsButton" FriendlyName="Prop's" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="Name">Prop's</PropertyCondition>
+                    <PropertyCondition Name="ControlType">Button</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIItemWindow13" FriendlyName="* - - -*" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="Name">* - - -*</PropertyCondition>
+                <PropertyCondition Name="ClassName" Operator="Contains">WindowsForms10.EDIT</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+                <PropertyCondition Name="Instance">4</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Edit" Id="UIItemEdit" FriendlyName="" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIPropsWindow4" FriendlyName="Prop's" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlName">SetNullableDateValuePropertiesButton</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Button" Id="UIPropsButton" FriendlyName="Prop's" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="Name">Prop's</PropertyCondition>
+                    <PropertyCondition Name="ControlType">Button</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UISubTest1NotdefinedWindow" FriendlyName="SubTest 1: - Not defined -" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlName">SubTest01Button</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Button" Id="UISubTest1NotdefinedButton" FriendlyName="SubTest 1: - Not defined -" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="Name">SubTest 1: - Not defined -</PropertyCondition>
+                    <PropertyCondition Name="ControlType">Button</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+                <UIObject ControlType="Button" Id="UISubTest1PopupTestsButton" FriendlyName="SubTest 1: Popup Tests" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="Name">SubTest 1: Popup Tests</PropertyCondition>
+                    <PropertyCondition Name="ControlType">Button</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIItem9721249171Window" FriendlyName="97,21249171" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlName">SingleResult1</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>100</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Text" Id="UIItem9721249171Text" FriendlyName="97,21249171" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="Name">97,21249171</PropertyCondition>
+                    <PropertyCondition Name="ControlType">Text</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>100</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="NullableRelationalPopupContainer" FriendlyName="" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ClassName" Operator="Contains">WindowsForms10.EDIT</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Edit" Id="NullableRelationalPopup" FriendlyName="" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIResultTextBoxWindow" FriendlyName="ResultTextBox" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlName">ResultTextBox</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>100</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Edit" Id="UIResultTextBoxEdit" FriendlyName="ResultTextBox" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="ControlType">Edit</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>100</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="Window" Id="UIMainButtonWindow" FriendlyName="mainButton" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlName">mainButton</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Client" Id="UIMainButtonClient" FriendlyName="mainButton" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+                  </WindowTitles>
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="ControlType">Client</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+            <UIObject ControlType="TitleBar" Id="UIEntityFormsLibTestCoTitleBar" FriendlyName="EntityFormsLib TestContainer" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles>
+                <WindowTitle>EntityFormsLib TestContainer</WindowTitle>
+              </WindowTitles>
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ControlType">TitleBar</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants />
+            </UIObject>
+          </Descendants>
+        </TopLevelWindow>
+        <TopLevelWindow ControlType="Window" Id="UIItemWindow" FriendlyName="" SpecialControlType="None" SessionId="65552">
+          <TechnologyName>MSAA</TechnologyName>
+          <WindowTitles />
+          <SearchConfigurations>
+            <SearchConfiguration>VisibleOnly</SearchConfiguration>
+          </SearchConfigurations>
+          <AndCondition Id="SearchCondition">
+            <PropertyCondition Name="AccessibleName">Desktop</PropertyCondition>
+            <PropertyCondition Name="ClassName">#32769</PropertyCondition>
+            <PropertyCondition Name="ControlType">Window</PropertyCondition>
+          </AndCondition>
+          <SupportLevel>0</SupportLevel>
+          <Descendants>
+            <UIObject ControlType="Window" Id="UIItemWindow1" FriendlyName="" SpecialControlType="None">
+              <TechnologyName>MSAA</TechnologyName>
+              <WindowTitles />
+              <SearchConfigurations>
+                <SearchConfiguration>VisibleOnly</SearchConfiguration>
+              </SearchConfigurations>
+              <AndCondition Id="SearchCondition">
+                <PropertyCondition Name="ClassName" Operator="Contains">WindowsForms10.Window</PropertyCondition>
+                <PropertyCondition Name="ControlType">Window</PropertyCondition>
+              </AndCondition>
+              <SupportLevel>0</SupportLevel>
+              <Descendants>
+                <UIObject ControlType="Client" Id="UIDesktopClient" FriendlyName="Desktop" SpecialControlType="None">
+                  <TechnologyName>MSAA</TechnologyName>
+                  <WindowTitles />
+                  <SearchConfigurations>
+                    <SearchConfiguration>VisibleOnly</SearchConfiguration>
+                  </SearchConfigurations>
+                  <AndCondition Id="SearchCondition">
+                    <PropertyCondition Name="ControlType">Client</PropertyCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+              </Descendants>
+            </UIObject>
+          </Descendants>
+        </TopLevelWindow>
+      </TopLevelWindows>
+    </UIMap>
+  </Maps>
+  <ValueMap>
+    <ParameterList />
+  </ValueMap>
+</UITest>
