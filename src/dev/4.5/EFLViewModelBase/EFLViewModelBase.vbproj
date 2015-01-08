@@ -73,6 +73,10 @@
     <Compile Include="EventArgs\HandleMessageDialogEventArgs.vb" />
     <Compile Include="EventArgs\RequestViewEventArgs.vb" />
     <Compile Include="Exceptions\CopyPropertiesException.vb" />
+    <Compile Include="MvvmMessageBoxClasses\MvvmMessageBoxDefaultButton.vb" />
+    <Compile Include="MvvmMessageBoxClasses\MvvmMessageBoxEventButtons.vb" />
+    <Compile Include="MvvmMessageBoxClasses\MvvmMessageBoxIcon.vb" />
+    <Compile Include="MvvmMessageBoxClasses\MvvmMessageBoxReturnValue.vb" />
     <Compile Include="MvvmViewModelClasses\IMvvmModelNotifyBindingProcess.vb" />
     <Compile Include="MvvmViewModelClasses\IMvvmViewModel.vb" />
     <Compile Include="MvvmViewModelClasses\IMvvmViewModelForModalDialog.vb" />

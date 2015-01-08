@@ -1,6 +1,5 @@
 ﻿Imports System.ComponentModel
 
-
 Public Class RequestMessageDialogEventArgs
     Inherits EventArgs
 
@@ -26,30 +25,3 @@ Public Class RequestMessageDialogEventArgs
 
 End Class
 
-Public Enum MvvmMessageBoxDefaultButton
-    Button1
-    Button2
-    Button3
-End Enum
-
-Public Enum MvvMessageBoxEventButtons
-    OK
-    OKCancel
-    YesNo
-    YesNoCancel
-End Enum
-
-Public Enum MvvmMessageBoxIcon
-    None
-    [Error]
-    Information
-    Warning
-    [Stop]
-End Enum
-
-Public Enum MvvmMessageBoxReturnValue
-    OK
-    Cancel
-    Yes
-    No
-End Enum
