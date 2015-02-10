@@ -30,4 +30,10 @@ Public Enum ColumnType
     ''' </summary>
     ''' <remarks></remarks>
     Hyperlink
+
+    ''' <summary>
+    ''' Spaltentyp fuer die Verwendung eines Bildes
+    ''' </summary>
+    ''' <remarks></remarks>
+    Image
 End Enum

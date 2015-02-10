@@ -140,6 +140,22 @@ Public Class MvvmDataGridColumn
             Case EntitiesFormsLib.ColumnType.Hyperlink
                 Dim textcolumn = New DataGridHyperlinkColumn()
                 _wpfColumn = textcolumn
+            Case EntitiesFormsLib.ColumnType.Image
+                Dim column = New MvvmDataGridImageColumn()
+
+                column.CellTemplate = New DataTemplate()
+
+                Dim imageElement = New FrameworkElementFactory(GetType(Controls.Image))
+                imageElement.SetValue(Controls.Image.SourceProperty, Me.Content)
+                imageElement.SetValue(Controls.Image.UseLayoutRoundingProperty, True)
+                imageElement.SetValue(Controls.Image.StretchProperty, Stretch.None)
+
+                column.CellTemplate.VisualTree = imageElement
+
+                If Me.ColumnTemplateExtender IsNot Nothing Then
+                    Me.ColumnTemplateExtender.InitilizeColumn(column)
+                End If
+                _wpfColumn = column
         End Select
 
         Dim dataGridBoundColumn = TryCast(Me.WpfColumn, DataGridBoundColumn)
@@ -243,6 +259,13 @@ Public Class MvvmDataGridColumn
 
                                                       'TODO: SelectedValuePath noch implementieren...
 
+                                                  End If
+
+                                                  Dim imageColumn = TryCast(wpfColumn, MvvmDataGridImageColumn)
+                                                  If imageColumn IsNot Nothing Then
+                                                      'Hiermit wird die ComboBox gemapped
+                                                      Dim imageElement = DirectCast(imageColumn.CellTemplate.VisualTree, FrameworkElementFactory)
+                                                      imageElement.SetBinding(Controls.Image.SourceProperty, wpfBinding)
                                                   End If
 
                                               End Sub)
@@ -613,6 +636,10 @@ Public Class MvvmDataGridColumn
         End Get
         Set(ByVal value As Visibility)
             If Not Object.Equals(_visibility, value) Then
+                If Me.WpfColumn IsNot Nothing Then
+                    Me.WpfColumn.Visibility = value
+                End If
+
                 _visibility = value
                 OnVisibilityChanged(EventArgs.Empty)
             End If

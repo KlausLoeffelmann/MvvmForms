@@ -43,6 +43,8 @@ Public Class MvvmDataGrid
         AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ColumnDisplayIndexChanged, AddressOf InnerDataGridView_ColumnDisplayIndexChanged
         AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.Sorted, AddressOf InnerDataGridView_Sorted
         AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.LayoutUpdated, AddressOf InnerDataGridView_LayoutUpdated
+        AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.KeyDown, AddressOf InnerDataGridView_KeyDown
+        AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ItemsDeleted, AddressOf InnerDataGridView_ItemsDeleted
     End Sub
 
     Protected Overrides Sub OnLoad(e As System.EventArgs)
@@ -157,6 +159,31 @@ Public Class MvvmDataGrid
             End If
         End Set
     End Property
+
+    ''' <summary>
+    ''' Anzeigeeinstellung der Linien im DataGrid
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>Durch den MvvmManager bindbare View-Property</remarks>
+    Public Property GridLinesVisibility As DataGridGridLinesVisibility
+        Get
+            Return Me.WpfDataGridViewWrapper.InnerDataGridView.GridLinesVisibility
+        End Get
+        Set(ByVal value As DataGridGridLinesVisibility)
+            If Not Object.Equals(Me.WpfDataGridViewWrapper.InnerDataGridView.GridLinesVisibility, value) Then
+                Me.WpfDataGridViewWrapper.InnerDataGridView.GridLinesVisibility = value
+                OnGridLinesVisibilityChanged(EventArgs.Empty)
+            End If
+        End Set
+    End Property
+
+    Public Event GridLinesVisibilityChanged As EventHandler
+
+    Protected Overridable Sub OnGridLinesVisibilityChanged(e As EventArgs)
+        RaiseEvent GridLinesVisibilityChanged(Me, e)
+    End Sub
+
 
     Private _canUserDeleteRows As Boolean
     ''' <summary>
@@ -300,6 +327,18 @@ Public Class MvvmDataGrid
     ''' <remarks></remarks>
     Public Event ItemDoubleClick(ByVal sender As Object, ByVal e As ItemDoubleClickEventArgs)
 
+    ''' <summary>
+    ''' Wird geworfen wenn eine Taske auf der Tastatur gedrueckt wurde
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Public Event InnerKeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
+
+    Protected Overridable Sub OnDataGridKeyDown(item As Object, e As KeyEventArgs)
+        RaiseEvent InnerKeyDown(item, e)
+    End Sub
+
     Protected Overridable Sub OnItemDoubleClick(item As Object)
         RaiseEvent ItemDoubleClick(Me, New ItemDoubleClickEventArgs(item))
     End Sub
@@ -375,6 +414,18 @@ Public Class MvvmDataGrid
             End If
         End Set
     End Property
+
+    ''' <summary>
+    ''' Wird geworfen wenn Items mittels interner Loeschfunktion vom DataGrid geloescht wurden
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Public Event ItemsDeleted(ByVal sender As Object, ByVal e As ItemsDeletedEventArgs)
+
+    Protected Overridable Sub OnItemsDeleted(e As ItemsDeletedEventArgs)
+        RaiseEvent ItemsDeleted(Me, e)
+    End Sub
 
     Public Event SelectedItemChanged As EventHandler
 
@@ -700,6 +751,26 @@ Public Class MvvmDataGrid
         Dim row = DirectCast(sender, DataGridRow)
 
         OnItemDoubleClick(row.Item)
+    End Sub
+
+    ''' <summary>
+    ''' Ruft das InnerKeyDown-Event auf
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub InnerDataGridView_KeyDown(sender As Object, e As KeyEventArgs)
+        OnDataGridKeyDown(sender, e)
+    End Sub
+
+    ''' <summary>
+    ''' Ruft das ItemsDeleted-Event auf
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub InnerDataGridView_ItemsDeleted(sender As Object, e As ItemsDeletedEventArgs)
+        OnItemsDeleted(e)
     End Sub
 
 End Class

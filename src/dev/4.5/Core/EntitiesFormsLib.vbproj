@@ -519,10 +519,11 @@
     <Compile Include="MvvmControls\MvvmDataGrid\Column\ColumnType.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Column\IMvvmColumnTemplateExtender.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Column\MvvmDataGridColumn.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\Column\MvvmDataGridComboBoxColumn.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\Column\CustomMvvmDataGridColumn.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\DataGridSettings.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Designer\MvvmDataGridDesigner.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\ItemDoubleClickEventArgs.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\ItemsDeletedEventArgs.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\ColumnBindingsUITypeEditor.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Common\GridColumnCollection.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Common\MvvmDataGridColumnsCodeDomSerializer.vb" />
