@@ -509,8 +509,7 @@ Public Class NullableValueRelationPopup
         Debug.Print(Me.ControlTypeAndNameString & " : OnPopupOpened")
 #End If
 
-        'HACK: Dieses Handling benötigen wir, da eine aufgeklappte 
-        'Instanz des Popups "verloren" gehen kamm.
+        'HACK: Dieses Handling benötigen wir, da eine aufgeklappte Instanz des Popups "verloren" gehen kamm.
         Dim tmpValueOld = Me.BindableDataGridView.RestoreValue
         If tmpValueOld IsNot Nothing Then
             Me.BindableDataGridView.Value = tmpValueOld
@@ -1020,7 +1019,7 @@ Public Class NullableValueRelationPopup
             'Wenn TextChange durch SetAccessor von Value gesetzt wurde,
             'ebenfalls Sonderbehandlung. Dann darf das Menü nicht aufklappen.
             If myChangedByValueSetAccessor Then
-                'Todo: Das könnte an dieser Stelle schon redundant sein:
+                'HACK: Das könnte an dieser Stelle schon redundant sein:
                 myTextDiff = Me.Text
                 Return
             End If
@@ -1104,7 +1103,6 @@ Public Class NullableValueRelationPopup
 
     Protected Overrides Sub OnLeave(ByVal e As System.EventArgs)
 
-        'TODO: !!! Sicher, dass hier die Basisklasse nicht aufgerufen werden muss?
         If Me.PopupControl Is Nothing Then
             Return
         End If

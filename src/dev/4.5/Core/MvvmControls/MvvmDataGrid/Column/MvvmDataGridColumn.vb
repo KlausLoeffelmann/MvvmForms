@@ -256,9 +256,7 @@ Public Class MvvmDataGridColumn
                                                       Dim cboElement = DirectCast(cboColumn.CellTemplate.VisualTree, FrameworkElementFactory)
                                                       cboElement.SetBinding(Controls.ComboBox.SelectedItemProperty, wpfBinding)
 
-
-                                                      'TODO: SelectedValuePath noch implementieren...
-
+                                                      'TODO: SelectedValuePath fehlt.
                                                   End If
 
                                                   Dim imageColumn = TryCast(wpfColumn, MvvmDataGridImageColumn)

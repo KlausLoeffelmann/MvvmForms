@@ -32,7 +32,6 @@ Public Class TimeCollectionViewModel
         Dim timeCollectItem = Me.SelectedItem
 
         'Wir klonen das Objekt, da wir nicht möchten, dass es sich direkt in der Liste ändert.
-        'TODO: Reinstate!!!
         Dim clone = timeCollectItem.DeepClone(Of TimeCollectItem)()
 
         'Eine neue ViewModel-Instanz, für das Detail-editieren...

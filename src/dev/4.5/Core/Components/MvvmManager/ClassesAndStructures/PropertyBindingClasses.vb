@@ -55,10 +55,6 @@ Public Class PropertyBindingItem
     Friend Property UpdatingViewmodelInProgress As Boolean
     Friend Property UpdatingControlInProgress As Boolean
 
-    'TODO: implement.
-    <Xml.Serialization.XmlIgnore>
-    Friend Property PreviousViewmodelPropertyValue As Object
-
     <Xml.Serialization.XmlIgnore>
     Friend Property ControlPropertyChangedEventHandlerTarget As Action(Of BindingPropertyChangedEventArgs)
 
@@ -92,7 +88,7 @@ Public Class PropertyBindingItem
         'wenn der eigentliche SourceTrigger ausgelöst wird.
         If BindingSetting.UpdateSourceTrigger <> UpdateSourceTriggerSettings.PropertyChangedImmediately Then
             IsDirty = True
-            'TODO: Hier muss der Timer neu gesetzt werden für die verzögerte Auslösung von PropertyChanged.
+            'TODO: Hier müsste der Timer neu gesetzt werden für die verzögerte Auslösung von PropertyChanged.
         Else
             'Wenn Propertychange direkt gebunden ist, dann Ereignis weiterleiten.
             If ControlPropertyChangedEventHandlerTarget IsNot Nothing Then
@@ -105,16 +101,6 @@ Public Class PropertyBindingItem
         End If
 
     End Sub
-
-    'Friend Sub ControlLostFocusEventHandler(sender As Object, e As EventArgs)
-    '    If ControlLostFocusEventHandlerTarget IsNot Nothing Then
-    '        Dim eArgs As New BindingPropertyChangedEventArgs
-    '        eArgs.Converter = ConverterInstance
-    '        eArgs.OriginalSource = sender
-    '        eArgs.EventProperty = ControlProperty.PropertyName
-    '        ControlLostFocusEventHandlerTarget.Invoke(eArgs)
-    '    End If
-    'End Sub
 
     Public Function Clone() As PropertyBindingItem
         Dim copy = DirectCast(MyBase.MemberwiseClone, PropertyBindingItem)

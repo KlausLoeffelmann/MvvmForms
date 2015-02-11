@@ -257,11 +257,6 @@ skipWarning:
                                     .ConverterType = typeItem}
                 Dim addIt = Not typeItem.IsInterface AndAlso Not typeItem.IsAbstract
                 If addIt Then
-                    ' noch ist alles ok
-                    ' eigentlich sollte noch die Friend-Converter von MS ausgeschlossen werden
-                    ' HACK: eigentlich müsste hier auf Friend usw gepürft werden. 
-                    ' das aber regression zu testen, erspare ich mir hier
-                    ' also machen wir es ganz einfach
                     addIt = Not typeItem.FullName.StartsWith("MS.Internal.")
                 End If
 

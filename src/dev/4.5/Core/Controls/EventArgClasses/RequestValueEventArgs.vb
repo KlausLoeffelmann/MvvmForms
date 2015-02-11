@@ -2,7 +2,6 @@
     Inherits EventArgs
 
     Sub New(ByVal value As Object)
-        ' TODO: Complete member initialization 
         value = value
     End Sub
 

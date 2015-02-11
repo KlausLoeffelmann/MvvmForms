@@ -13,7 +13,6 @@ Public Class ItemDoubleClickEventArgs
     Property Item As Object
 
     Sub New(item As Object)
-        ' TODO: Complete member initialization 
         Me.Item = item
     End Sub
 

@@ -43,7 +43,7 @@ Public Class TooltipEx
     Public Event TooltipClosed(ByVal sender As Object, ByVal e As EventArgs)
     Public Event TooltipClosing(ByVal sender As Object, ByVal e As TooltipClosingEventArgs)
 
-    'TODO: Requestreason einbauen, falls notwendig für die Unterscheidung.
+    'TODO: Requestreason einbauen, falls notwendig, für die Unterscheidung.
     Public Event TooltipCloseRequested(ByVal sender As Object, ByVal E As PopupCloseRequestedEventArgs)
 
     <DllImport("user32")>

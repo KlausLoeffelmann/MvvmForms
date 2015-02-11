@@ -45,7 +45,7 @@ Public Class GridPanelLayout
 
             Dim gi = usedGridPanel.GetGridInfo(c)
             If myGrid(gi.Row, gi.Column).PositionOccupied Then
-                'TODO: Sollen wir hier irgendwas machen?
+                'TODO: Müssen wir hier irgendwas machen?
             End If
 
             myGrid(gi.Row, gi.Column).PositionOccupied = True

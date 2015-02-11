@@ -149,8 +149,6 @@ Public Class MvvmPropertyBindingAssignmentTest
 
         'Disposing in alle Richtungen testen:
         bm.Dispose()
-
-        'TODO: Figure out an Test Case after possible Error with OneWayToSource @ G**/Jan which may resolved by now and not been caused by the Binding engine.
     End Sub
 
     <TestMethod()>

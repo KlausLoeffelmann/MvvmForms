@@ -46,4 +46,12 @@ Public Class MainForm
     Private Sub ToolStripMenuItem4_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem4.Click
         Me.Font = New Font(Me.Font.FontFamily, 16)
     End Sub
+
+    Private Sub NullableNumValue1_IsDirtyChanged(sender As Object, e As ActiveDevelop.EntitiesFormsLib.IsDirtyChangedEventArgs) Handles NullableNumValue1.IsDirtyChanged
+
+    End Sub
+
+    Private Sub NullableIntValue1_Click(sender As Object, e As EventArgs) Handles NullableIntValue1.Click
+
+    End Sub
 End Class

@@ -61,7 +61,7 @@
     <Import Include="System.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\CallerMemberNameAttribute.vb" />
+    <Compile Include="Attributes\Templating\Templating.vb" />
     <Compile Include="Attributes\ModelPropertyAttributes.vb" />
     <Compile Include="Attributes\MvvmContextGuidAttribute.vb" />
     <Compile Include="Attributes\MvvmSystemElementAttribute.vb" />

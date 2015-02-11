@@ -110,25 +110,4 @@ Public Module FormToBusinessClassManagerExtender
             End If
         End If
     End Function
-
-    'TODO: Macht das Sinn? - Besprechen!
-    <Extension()>
-    Public Function Edit(Of BusinessClassType As New)(ByVal ContainerControl As IFormToBusinessClassManagerHost,
-                                                      ByVal Entity As BusinessClassType,
-                                                      ByVal ValidationErrorHandler As ValidationErrorHandlerDelegate(Of BusinessClassType),
-                                                      ByVal SaveChangesHandler As SaveChangesHandlerDelegate(Of BusinessClassType)) As BusinessClassType
-
-    End Function
-
-    'TODO: Macht das Sinn? - Besprechen!
-    <Extension()>
-    Public Function EditVisually(Of BusinessClassType As _
-         {New, EntityObject}, FormType As _
-         {System.Windows.Forms.Form, 
-             IFormToBusinessClassManagerHost})(ByVal obj As BusinessClassType,
-                                           ByVal form As FormType) _
-                                                  As BusinessClassType
-        Return form.Edit(obj)
-    End Function
-
 End Module
