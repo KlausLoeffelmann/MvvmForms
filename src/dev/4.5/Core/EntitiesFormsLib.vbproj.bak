@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{048EFA6C-B9FB-441E-9432-1F72B332856C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ActiveDevelop.EntitiesFormsLib</RootNamespace>
+    <AssemblyName>ActiveDevelop.EntitiesFormsLib</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>On</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>ActiveDevelop.EntitiesFormsLib.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>ActiveDevelop.EntitiesFormsLib.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>ActiveDevelop.EntitiesFormsLib.xml</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <CodeAnalysisLogFile>bin\Debug\EntitiesFormsLib.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>ActiveDevelop.EntitiesFormsLib.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <CodeAnalysisLogFile>bin\Release\EntitiesFormsLib.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWork|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>ActiveDevelop.EntitiesFormsLib.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\GAP.EntitiesFormsLib.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWork|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>ActiveDevelop.EntitiesFormsLib.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\EntitiesFormsLib.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuxilliaryTypes\AttributeControlledComparableBase.vb" />
+    <Compile Include="AuxilliaryTypes\BooleanEx.vb" />
+    <Compile Include="AuxilliaryTypes\ExtenderProviderPropertyStore.vb" />
+    <Compile Include="AuxilliaryTypes\ExtenderProviderPropertyStoreCollectionChangedEventArgs.vb" />
+    <Compile Include="AuxilliaryTypes\HistoricalBoolean.vb" />
+    <Compile Include="AuxilliaryTypes\ObjectAnalyzer.vb" />
+    <Compile Include="AuxilliaryTypes\ObservableBindingList.vb" />
+    <Compile Include="AuxilliaryTypes\Recyclable.vb" />
+    <Compile Include="AuxilliaryTypes\ReflectionHelper.vb" />
+    <Compile Include="AuxilliaryTypes\StackedValue.vb" />
+    <Compile Include="AuxilliaryTypes\ValidationChangeState.vb" />
+    <Compile Include="AuxilliaryTypes\ValidationInfoBase.vb" />
+    <Compile Include="BaseForms\AnimationFormBase.Designer.vb">
+      <DependentUpon>AnimationFormBase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForms\AnimationFormBase.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\BindingManager\BindEventArgs.vb" />
+    <Compile Include="Components\BindingManager\BindingChangedEventHandler.vb" />
+    <Compile Include="Components\BindingManager\BindingManager.vb" />
+    <Compile Include="Components\BindingManager\BindingPropertyChangedEventArgs.vb" />
+    <Compile Include="Components\BindingManager\ObjectEventAssignmentsClasses.vb" />
+    <Compile Include="Components\IsDirtyManager\DirtyStateManager.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\IsDirtyManager\IsDirtyChangedEventArgs.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\BoundSourceItemProxy.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\BindingProperty.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\CodeSerializing\MvvmBindingItemsCodeDomSerializer.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\CodeSerializing\PropertyBindingsCodeDomeSerializer.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\CommandBindingClasses.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\EventBindingClasses.vb" />
+    <Compile Include="AuxilliaryTypes\ChangeAwareLinkedList.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\INotifyEditState.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\IWinFormsMvvmView.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\MvvmBindingItem.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\MvvmValidatableValue.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\ViewToViewmodelAssignments.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\VisibilityAwareItemCollection.vb" />
+    <Compile Include="Components\MvvmManager\DefaultConverters\BooleanToBooleanExConverter.vb" />
+    <Compile Include="Components\MvvmManager\DefaultConverters\ShortToIntConverter.vb" />
+    <Compile Include="Components\MvvmManager\DefaultConverters\StringValueToStringConverter.vb" />
+    <Compile Include="Components\MvvmManager\DefaultConverters\TypeBaseConverter.vb" />
+    <Compile Include="Components\MvvmManager\Designer\ControlTreeNode.vb" />
+    <Compile Include="Components\MvvmManager\Designer\Extender.vb" />
+    <Compile Include="Components\MvvmManager\Designer\MvvmManagerDesigner.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\PropertyBindingClasses.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\BindingMode.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\CommandBase.vb" />
+    <Compile Include="Components\MvvmManager\ClassesAndStructures\SourceObjectChangedEventArgs.vb" />
+    <Compile Include="Components\MvvmManager\UI\ControlBindingGrid.Designer.vb">
+      <DependentUpon>ControlBindingGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MvvmManager\UI\ControlBindingGrid.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\MvvmManager\Controls\BindingModePopup.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\MvvmManager\Controls\BindingModePopupView.Designer.vb">
+      <DependentUpon>BindingModePopupView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MvvmManager\Controls\BindingModePopupView.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\MvvmManager\DefaultConverters\ObjectToStringConverter.vb" />
+    <Compile Include="Components\MvvmManager\Designer\EventBindingsUITypeEditor.vb" />
+    <Compile Include="Components\MvvmManager\Designer\PropertyBindingsUITypeEditor.vb" />
+    <Compile Include="Components\MvvmManager\UI\DataSourceTypeUIForm.Designer.vb">
+      <DependentUpon>DataSourceTypeUIForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MvvmManager\UI\DataSourceTypeUIForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\MvvmManager\UI\frmManageBindings.Designer.vb">
+      <DependentUpon>frmManageBindings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MvvmManager\UI\frmManageBindings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\MvvmManager\UI\frmMvvmEventAssignment.Designer.vb">
+      <DependentUpon>frmMvvmEventAssignment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MvvmManager\UI\frmMvvmEventAssignment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\MvvmManager\DemoData.vb" />
+    <Compile Include="Components\MvvmManager\UI\frmMvvmPropertyAssignment.Designer.vb">
+      <DependentUpon>frmMvvmPropertyAssignment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MvvmManager\UI\frmMvvmPropertyAssignment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\MvvmManager\MvvmManager.Designer.vb">
+      <DependentUpon>MvvmManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MvvmManager\MvvmManager.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\FormToBusinessClassManager\BusinessClassAttribute.vb" />
+    <Compile Include="Components\FormToBusinessClassManager\Designer\DataSourceType.vb" />
+    <Compile Include="Components\FormToBusinessClassManager\Designer\FormToBusinessClassManagerDesigner.vb" />
+    <Compile Include="Components\FormToBusinessClassManager\Designer\frmEntityObjectSelector.Designer.vb">
+      <DependentUpon>frmEntityObjectSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\FormToBusinessClassManager\Designer\frmEntityObjectSelector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\FormToBusinessClassManager\FormToBusinessClassManager.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\FormToBusinessClassManager\FormToBusinessClassManagerExtender.vb" />
+    <Compile Include="Components\FormToBusinessClassManager\IFormToBusinessClassManager.vb" />
+    <Compile Include="Components\FormToBusinessClassManager\IsFormDirtyChangedEventArgs.vb" />
+    <Compile Include="Components\FormToBusinessClassManager\ValueForControlReceivingEventArgs.vb" />
+    <Compile Include="AuxilliaryTypes\ValidationIssues.vb" />
+    <Compile Include="Components\MvvmManager\MvvmViewController.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ContainerAndPanels\BusinessClassUserControl\BusinessClassUserControlBase.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContainerAndPanels\BusinessClassUserControl\NullableValueContainerBase.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContainerAndPanels\BusinessClassUserControl\UIDefPropertyAttribute.vb" />
+    <Compile Include="ContainerAndPanels\GridPanel\GridPanelInfo.vb" />
+    <Compile Include="ContainerAndPanels\GridPanel\GridPanelLayout.vb" />
+    <Compile Include="Controls\BaseAndHelperControls\DeferralTextBox.vb" />
+    <Compile Include="Controls\BaseAndHelperControls\WritableTextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DecoratingControls\RangeClockGauge\GraphicsFigureClasses.vb" />
+    <Compile Include="Controls\DecoratingControls\RangeClockGauge\PolarCoordinate.vb" />
+    <Compile Include="Controls\DecoratingControls\RangeClockGauge\RangeClockGauge.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DecoratingControls\ShapedButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\EventArgClasses\PressedStateChangedEventArgs.vb" />
+    <Compile Include="Controls\EventArgClasses\RequestFocusEventArgs.vb" />
+    <Compile Include="Controls\Interfaces\IAssignableFormToBusinessClassManager.vb" />
+    <Compile Include="Controls\Interfaces\IIsDirtyChangedAware.vb" />
+    <Compile Include="Controls\Interfaces\IKeyFieldProvider.vb" />
+    <Compile Include="Controls\Interfaces\IPermissionManageableElements.vb" />
+    <Compile Include="Controls\Interfaces\IUpdatableInfoControl.vb" />
+    <Compile Include="Controls\Interfaces\IValidatable.vb" />
+    <Compile Include="Controls\NullableControls\NullableDataGridView.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NullableControls\NullableDefaultPropertyManager.vb" />
+    <Compile Include="Controls\NullableControls\NullableMaskTextValue.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NullableControls\NullableRelationPopup\DataGridViewPopupContent.Designer.vb">
+      <DependentUpon>DataGridViewPopupContent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NullableControls\NullableRelationPopup\DataGridViewPopupContent.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EventArgClasses\RequestValueEventArgs.vb" />
+    <Compile Include="Controls\EventArgClasses\UnassignableValueActionEventArgs.vb" />
+    <Compile Include="Controls\EventArgClasses\ValueChangedEventArgs.vb" />
+    <Compile Include="Controls\NullableControls\NullableValueLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NullableControls\NullableValuePrimalDatePicker\CalendarPopupContent.Designer.vb">
+      <DependentUpon>CalendarPopupContent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NullableControls\NullableValuePrimalDatePicker\CalendarPopupContent.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BaseAndHelperControls\NullableValuePrimalUpDownControl.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Interfaces\INullableValueControl.vb" />
+    <Compile Include="Controls\NullableControls\NullableIntValue.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NullableControls\NullableMultilineTextValue.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\EventArgClasses\ValidateValueEventArgs.vb" />
+    <Compile Include="Controls\CombinedValueInfoLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\EventArgClasses\PopupClosingEventArgs.vb" />
+    <Compile Include="Controls\EventArgClasses\PopupCloseRequestedEventArgs.vb" />
+    <Compile Include="Controls\StandardControls\ColoredTextPanel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\ColoredTextPanelPartial\ColorElement.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\ColoredTextPanelPartial\LineElement.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\ColoredTextPanelPartial\ViewPanel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\ColoredTextPanelPartial\ViewPanelCaret.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\ColoredTextPanelPartial\WriterStructure.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\TextBoxPopup\SimplePopupContent.Designer.vb">
+      <DependentUpon>SimplePopupContent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StandardControls\TextBoxPopup\SimplePopupContent.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EventArgClasses\WndProcDelegateCallEventArg.vb" />
+    <Compile Include="Controls\EventArgClasses\TooltipClosingEventArgs.vb" />
+    <Compile Include="Controls\DecoratingControls\TransparentControlBase.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TooltipEx\TooltipEx.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\TooltipEx\TooltipExContentBase.Designer.vb">
+      <DependentUpon>TooltipExContentBase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TooltipEx\TooltipExContentBase.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EventArgsClasses\AfterFormValidatedEventArgs.vb" />
+    <Compile Include="EventArgsClasses\ValidationFailedEventArgs.vb" />
+    <Compile Include="Controls\BaseAndHelperControls\INullableValuePrimalControl.vb" />
+    <Compile Include="Controls\NullableControls\NullableRelationPopup\BindableDataGridView.vb">
+      <SubType>component</SubType>
+    </Compile>
+    <Compile Include="Controls\EventArgClasses\SetColumnSchemaEventArgs.vb" />
+    <Compile Include="Controls\NullableControls\NullableValuePrimalDatePicker\NullableValuePrimalDatePicker.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NullableControls\NullableValueRelationPopup.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\BaseAndHelperControls\NullableValuePrimalTextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\BaseAndHelperControls\UpDownComboBase.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\BaseAndHelperControls\UpDownComboControls.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EventArgsClasses\FocusSelectionBehaviours.vb" />
+    <Compile Include="Controls\Interfaces\INullableValueDataBinding.vb" />
+    <Compile Include="Controls\Interfaces\INullableValueRelationBinding.vb" />
+    <Compile Include="Controls\Interfaces\IRequestAdditionalSnapBaselineOffset.vb" />
+    <Compile Include="Controls\NullableControls\NullableCheckBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NullableControls\NullableDateValue.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NullableControls\NullableNumValue.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EventArgsClasses\ButtonActionEventArgs.vb" />
+    <Compile Include="Controls\NullableControls\NullableTextValue.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EventArgsClasses\ValueChangingEventArgs.vb" />
+    <Compile Include="EventArgsClasses\RequestValidationFailedReactionEventArgs.vb" />
+    <Compile Include="Controls\StandardControls\AutoReportView.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\MonthCalendarEx.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\TextBoxButtonBase.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\TextBoxComboButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\TextBoxPopup\ResizablePopup.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\TextBoxPopup\TextBoxPopup.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StandardControls\TextBoxSpinButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TestClass.vb" />
+    <Compile Include="Designers\NullableValueBaseDesigner.vb" />
+    <Compile Include="EventArgsClasses\GetEditedValueEventArgs.vb" />
+    <Compile Include="Exceptions\ContainsUIMessageException.vb" />
+    <Compile Include="Exceptions\MissingDatafieldNameException.vb" />
+    <Compile Include="Exceptions\MissingObjectContextException.vb" />
+    <Compile Include="Exceptions\MissingViewAttributeException.vb" />
+    <Compile Include="Exceptions\ValueAssigningException.vb" />
+    <Compile Include="ExtenderMethods\ExtendedTypeReflector.vb" />
+    <Compile Include="ExtenderMethods\GroupFunctionalityExtender.vb" />
+    <Compile Include="ExtenderMethods\ListOfPointCollectionInitializerExtender.vb" />
+    <Compile Include="ExtenderMethods\NullableValueExtender.vb" />
+    <Compile Include="FormatterAndValidatorEngines\NullableDateValueFormatterEngine.vb" />
+    <Compile Include="FormatterAndValidatorEngines\NumValueFormatterEngine\ADFormularParser.vb" />
+    <Compile Include="FormatterAndValidatorEngines\NumValueFormatterEngine\ADFormularParser_Math.vb" />
+    <Compile Include="FormatterAndValidatorEngines\NumValueFormatterEngine\ADFunction.vb" />
+    <Compile Include="FormatterAndValidatorEngines\NumValueFormatterEngine\AuxilliaryClasses.vb" />
+    <Compile Include="FormatterAndValidatorEngines\NumValueFormatterEngine\NullableNumValueFormatterEngine.vb">
+    </Compile>
+    <Compile Include="FormatterAndValidatorEngines\NullableValueFormatterEngineBase.vb" />
+    <Compile Include="Controls\Interfaces\INullableValueEditor.vb" />
+    <Compile Include="Controls\NullableControls\NullableValueBase.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AuxilliaryTypes\StringValue.vb" />
+    <Compile Include="FormatterAndValidatorEngines\INullableValueFormatterEngine.vb" />
+    <Compile Include="FormatterAndValidatorEngines\NullableStringValueFormatterEngine.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\ExtDataGrid.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\Column\ColumnType.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\Column\IMvvmColumnTemplateExtender.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\Column\MvvmDataGridColumn.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\Column\MvvmDataGridComboBoxColumn.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\DataGridSettings.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\Designer\MvvmDataGridDesigner.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\ItemDoubleClickEventArgs.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\ColumnBindingsUITypeEditor.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\Common\GridColumnCollection.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\Common\MvvmDataGridColumnsCodeDomSerializer.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\MvvmDataGrid.Designer.vb">
+      <DependentUpon>MvvmDataGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MvvmControls\MvvmDataGrid\MvvmDataGrid.vb">
+      <SubType>usercontrol</SubType>
+    </Compile>
+    <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\ColumnsEditor.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\MvvmDataGridCustomColumnTemplateTypeUIEditor.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\MvvmDataGridDataSourceTypeUIEditor.vb">
+      <SubType>form</SubType>
+    </Compile>
+    <Compile Include="MvvmControls\MvvmDataGrid\WPFDataGridViewWrapper.xaml.vb">
+      <DependentUpon>WPFDataGridViewWrapper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MvvmControls\MvvmViewSelectorContainer.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="NullableValueControlCollection.vb" />
+    <Compile Include="ContainerAndPanels\GridPanel\GridPanel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Printing\BindingInformationForPrinting.vb" />
+    <Compile Include="Printing\PrintReportForm.Designer.vb">
+      <DependentUpon>PrintReportForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\PrintReportForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Printing\PropertyBindingsForPrinting.vb" />
+    <Compile Include="Tracing\TracingExtender.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BaseForms\AnimationFormBase.resx">
+      <DependentUpon>AnimationFormBase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\MvvmManager\Controls\BindingModePopupView.resx">
+      <DependentUpon>BindingModePopupView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\MvvmManager\UI\ControlBindingGrid.resx">
+      <DependentUpon>ControlBindingGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\MvvmManager\UI\DataSourceTypeUIForm.resx">
+      <DependentUpon>DataSourceTypeUIForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\MvvmManager\UI\frmManageBindings.resx">
+      <DependentUpon>frmManageBindings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\MvvmManager\UI\frmMvvmEventAssignment.resx">
+      <DependentUpon>frmMvvmEventAssignment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\MvvmManager\UI\frmMvvmPropertyAssignment.resx">
+      <DependentUpon>frmMvvmPropertyAssignment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\FormToBusinessClassManager\Designer\frmEntityObjectSelector.resx">
+      <DependentUpon>frmEntityObjectSelector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NullableControls\NullableRelationPopup\DataGridViewPopupContent.resx">
+      <DependentUpon>DataGridViewPopupContent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NullableControls\NullableValuePrimalDatePicker\CalendarPopupContent.resx">
+      <DependentUpon>CalendarPopupContent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StandardControls\TextBoxPopup\SimplePopupContent.resx">
+      <DependentUpon>SimplePopupContent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TooltipEx\TooltipExContentBase.resx">
+      <DependentUpon>TooltipExContentBase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MvvmControls\MvvmDataGrid\MvvmDataGrid.resx">
+      <DependentUpon>MvvmDataGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Printing\BindingInformationPrintReport.rdlc" />
+    <EmbeddedResource Include="Printing\PrintReportForm.resx">
+      <DependentUpon>PrintReportForm.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controls\Interfaces\InterfaceDiagram.cd" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\DataSources\BindingInformationForPrinting.datasource" />
+    <None Include="My Project\DataSources\PropertyBindingItem.datasource" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.VisualBasic.PowerPacks.10.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Visual Basic PowerPacks 10.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\MvvmManager\Assets\Collapsed.bmp" />
+    <Content Include="Components\MvvmManager\Assets\Collapse_small.bmp" />
+    <Content Include="Components\MvvmManager\Assets\Expand_small.bmp" />
+    <Content Include="Resources\70_row_add_16.png" />
+    <Content Include="Resources\92_cancel_16.png" />
+    <Content Include="Resources\92_cancel_16_sel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MvvmControls\MvvmDataGrid\WPFDataGridViewWrapper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EFLViewModelBase\EFLViewModelBase.vbproj">
+      <Project>{16e0a6a1-bce3-4d4c-bb6a-367066f09afa}</Project>
+      <Name>EFLViewModelBase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
