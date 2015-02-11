@@ -1,4 +1,6 @@
-﻿<AttributeUsage(AttributeTargets.Property)>
+﻿Imports System.Xml.Serialization
+
+<AttributeUsage(AttributeTargets.Property)>
 Public Class ModelPropertyIgnoreAttribute
     Inherits Attribute
 

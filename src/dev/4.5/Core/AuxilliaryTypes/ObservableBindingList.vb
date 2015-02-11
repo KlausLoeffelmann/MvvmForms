@@ -130,7 +130,6 @@ Public Class ObservableBindingList(Of T As New)
             tInstance.BeginAdding(Me)
         End If
 
-        'TODO: Was passiert bei nothing? Eventuell abfangen.
         Me.Add(DirectCast(e.NewObject, T))
         Return e.NewObject
     End Function
@@ -232,20 +231,10 @@ Public Class ObservableBindingList(Of T As New)
             If disposing Then
                 RemoveHandler Me.CollectionChanged, AddressOf InnerCollectionChanged
             End If
-            ' TODO: dispose managed state (managed objects).
         End If
 
-        ' TODO: free unmanaged resources (unmanaged objects) and override Finalize() below.
-        ' TODO: set large fields to null.
         Me.disposedValue = True
     End Sub
-
-    ' TODO: override Finalize() only if Dispose(ByVal disposing As Boolean) above has code to free unmanaged resources.
-    'Protected Overrides Sub Finalize()
-    '    ' Do not change this code.  Put cleanup code in Dispose(ByVal disposing As Boolean) above.
-    '    Dispose(False)
-    '    MyBase.Finalize()
-    'End Sub
 
     ' This code added by Visual Basic to correctly implement the disposable pattern.
     Public Sub Dispose() Implements IDisposable.Dispose

@@ -86,8 +86,8 @@ Partial Public Class ColoredTextPanel
                     mySize = New Size(1, myFont.Height)
                 End If
                 RaiseEvent FontChanged(Me, New ViewPanelCaretFontChangedArgs(oldFont, myFont))
-                'TODO Redraw(myPos, oldSize)
-                'TODO Redraw(myPos, mySize)
+                'TODO: Redraw(myPos, oldSize)
+                'TODO: Redraw(myPos, mySize)
             End Set
         End Property
 
@@ -124,7 +124,7 @@ Partial Public Class ColoredTextPanel
             Set(ByVal value As Boolean)
                 myVisible = value
                 RaiseEvent VisibiltyChanged(Me, New EventArgs())
-                'TODO Redraw(myPos, mySize)
+                'TODO: Redraw(myPos, mySize)
             End Set
         End Property
 
@@ -133,7 +133,7 @@ Partial Public Class ColoredTextPanel
                 myBIsActive = Not myBIsActive
             End SyncLock
             RaiseEvent ActivityChanged(Me, New EventArgs)
-            'TODO Redraw(myPos, mySize)
+            'TODO: Redraw(myPos, mySize)
             'Console.WriteLine("Timed-Redraw of {0}", myPos.ToString)
         End Sub
 

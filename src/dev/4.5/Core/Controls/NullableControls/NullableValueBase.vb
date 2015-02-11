@@ -28,10 +28,10 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Private myGroupName As String = NullableControlManager.GetInstance.GetDefaultGroupName(Me, "Default")
     Private myBackColorBrush As SolidBrush
     Private myValueValidationState As ValueValidationStateStore(Of NullableType)
-    Dim myBorderstyleHasBeenSetForInstance As Boolean
-    Dim myEmulatedIsFocusedForUnitTesting As Boolean
-    Dim mySurpressQueryIsDirty As Boolean
-    Dim myForceValueChangeCauseToUser As Boolean
+    Private myBorderstyleHasBeenSetForInstance As Boolean
+    Private myEmulatedIsFocusedForUnitTesting As Boolean
+    Private mySurpressQueryIsDirty As Boolean
+    Private myForceValueChangeCauseToUser As Boolean
 
     'Wird benötigt, wenn wir den kompletten Zyklus
     'LostFocus --> GotFocus einmalig emulierend durchlaufen müssen,
@@ -47,6 +47,12 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Public Event ValueValidated(ByVal sender As Object, ByVal e As NullableValueValidationEventArgs(Of NullableType?))
     Public Event ReadOnlyChanged(sender As Object, e As EventArgs)
     Public Event ValueValidationStateChanged(sender As Object, e As EventArgs)
+    Public Event NullValueColorChanged(sender As Object, e As EventArgs)
+    Public Event IsValueNullChanged(sender As Object, e As EventArgs)
+    Public Event ExceptionBalloonDurationChanged(sender As Object, e As EventArgs)
+    Public Event MaxLengthChanged(sender As Object, e As EventArgs)
+    Public Event ReverseTextOverflowBehaviourChanged(sender As Object, e As EventArgs)
+    Public Event TextAlignChanged(sender As Object, e As EventArgs)
 
     Private myFormatString As String                            ' Der Format-String, der den String für das Anzeigen des Wertes nach Verlassen des Feldes vorgibt.
     Private myNullValueString As String                         ' Die Zeichenfolge, die beim Verlieren des Fokus angezeigt wird, wenn eine Null-Eingabe erfolgte.
@@ -63,6 +69,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Private myBeepOnFailedValidation As Boolean                 ' Bestimmt, dass ein Warnton bei einer fehlgeschlagenen Validierung erfolgen soll.
     Private myFocusColor As Color                               ' Bestimmt die Farbe, die im Bedarfsfall vorselektiert werden soll, wenn das Steuerelement den Fokus erhält.
     Private myErrorColor As Color                               ' Bestimmt die Farbe, die beim genehmigter Fehlvalidierung dem betroffenen Steuerelement zugewiesen werden soll.
+    Private myNullValueColor As Color?                          ' Bestimmt die Farbe, die im Bedarfsfall ForeColor zugewiesen werden soll, wenn Value Null ist und das Steuerelement NICHT den Focus hat. Standardmäßig ForeColor.
     Private myOriginalBackcolor As Color                        ' Zwischenspeicher für die Farbe beim Wechsel der Farben durch das Fokussieren.
     Private myOnFocusColor As Boolean                           ' Bestimmt, *ob* das Steuerelement mit FocusColor eingefärbt werden soll, wenn das Steuerelement den Fokus erhält.
     Private myFocusSelectionBehaviour As FocusSelectionBehaviours  ' Bestimmt die Verhaltensweise des Vorselektierens des Steuerelementtextes, wenn es den Fokus erhält. 
@@ -74,15 +81,17 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Private myIsFocused As Boolean
     Private myDoesLostFocusPrecedeValidate As Boolean           ' Ermöglicht es Validating herauszufinden, 
 
-    Protected Const CONTROLDEFAULTWIDTH As Integer = 120
-    Protected Const DEFAULT_NULL_VALUE_STRING = "* - - -*"
-    Protected Const DEFAULT_DATE_FORMAT_STRING = "dd.MM.yyyy"
-    Protected Const DEFAULT_FOCUS_SELECTION_BEHAVIOUR As FocusSelectionBehaviours = FocusSelectionBehaviours.PreSelectInput
-    Protected Const DEFAULT_ON_FOCUS_COLOR As Boolean = True
     Protected ReadOnly DEFAULT_FOCUS_COLOR As Color = Color.Yellow
     Protected ReadOnly DEFAULT_ERROR_COLOR As Color = Color.Red
+
+    Protected Const CONTROLDEFAULTWIDTH As Integer = 120
+    Protected Const DEFAULT_NULL_VALUE_STRING = "* - - -*"
+    Protected Const DEFAULT_DATE_FORMAT_STRING_DE = "dd.MM.yyyy"
+    Protected Const DEFAULT_FOCUS_SELECTION_BEHAVIOUR As FocusSelectionBehaviours = FocusSelectionBehaviours.PreSelectInput
+    Protected Const DEFAULT_ON_FOCUS_COLOR As Boolean = True
     Protected Const DEFAULT_BEEP_ON_FAILED_VALIDATION As Boolean = False
 
+    'Shapepoints für den Balloon.
     Private myShapePointTypes As Byte() = {CByte(PathPointType.Start),
                                            CByte(PathPointType.Line),
                                            CByte(PathPointType.Line),
@@ -91,6 +100,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
                                            CByte(PathPointType.Line),
                                            CByte(PathPointType.Line),
                                            CByte(PathPointType.Line Or PathPointType.CloseSubpath)}
+    Private myExceptionBalloonDuration As Integer
 
     Public Sub New()
         MyBase.New()
@@ -110,6 +120,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         End If
 
         myNullValueString = GetDefaultNullValueString()
+
         myBeepOnFailedValidation = NullableControlManager.GetInstance.GetDefaultBeepOnFailedValidation(Me, DEFAULT_BEEP_ON_FAILED_VALIDATION)
         myOnFocusColor = NullableControlManager.GetInstance.GetDefaultOnFocusColor(Me, DEFAULT_ON_FOCUS_COLOR)
         myFocusColor = NullableControlManager.GetInstance.GetDefaultFocusColor(Me, DEFAULT_FOCUS_COLOR)
@@ -132,18 +143,19 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         'Verhalten geändert: Hier wurde aus ungeklärten Gründen schon direkt beim Ändern der TextBox das ValueChanging-Ereignis getriggert.
         'Dieser Workflow ist falsch. Wir haben das Verhalten dahin gehend geändert, dass nun die Text-Eigenschaft geändert wird,
         'die das TextChanged von Control auslöst. Dadurch kann das bisherige Verhalten emuliert werden.
-        AddHandler DirectCast(myValueControl, ITextBoxBasedControl).TextBoxPart.TextChanged, Sub(sender As Object, e As EventArgs)
-                                                                                                 Me.Text = DirectCast(myValueControl, ITextBoxBasedControl).TextBoxPart.Text
-                                                                                                 'If mySuppresValueChangedOnTextPartTextChange Then
-                                                                                                 '    mySuppresValueChangedOnTextPartTextChange = False
-                                                                                                 '    Return
-                                                                                                 'End If
-                                                                                                 'If Not myValueChangedByPropertySetter Then
-                                                                                                 '    OnValueChanged(ValueChangedEventArgs.PredefinedWithUser)
-                                                                                                 'Else
-                                                                                                 '    myValueChangedByPropertySetter = False
-                                                                                                 'End If
-                                                                                             End Sub
+        AddHandler DirectCast(myValueControl, ITextBoxBasedControl).TextBoxPart.TextChanged,
+            Sub(sender As Object, e As EventArgs)
+                Me.Text = DirectCast(myValueControl, ITextBoxBasedControl).TextBoxPart.Text
+                'If mySuppresValueChangedOnTextPartTextChange Then
+                '    mySuppresValueChangedOnTextPartTextChange = False
+                '    Return
+                'End If
+                'If Not myValueChangedByPropertySetter Then
+                '    OnValueChanged(ValueChangedEventArgs.PredefinedWithUser)
+                'Else
+                '    myValueChangedByPropertySetter = False
+                'End If
+        End Sub
         InitializeValue()
 
     End Sub
@@ -208,7 +220,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Public ReadOnly Property PreferredHeight As Integer
         Get
             Dim fontHeight As Integer = MyBase.Font.Height
-            If (Me.Borderstyle <> Borderstyle.None) Then
+            If (Me.Borderstyle <> BorderStyle.None) Then
                 Return (fontHeight + ((SystemInformation.BorderSize.Height * 4) + 3))
             End If
             Return (fontHeight + 3)
@@ -239,10 +251,10 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
             tmpParams.Style = (tmpParams.Style And -8388609)
             If Not Application.RenderWithVisualStyles Then
                 Select Case Me.Borderstyle
-                    Case Borderstyle.FixedSingle
+                    Case BorderStyle.FixedSingle
                         tmpParams.Style = (tmpParams.Style Or &H800000)
                         Return tmpParams
-                    Case Borderstyle.Fixed3D
+                    Case BorderStyle.Fixed3D
                         tmpParams.ExStyle = (tmpParams.ExStyle Or &H200)
                         Return tmpParams
                 End Select
@@ -287,7 +299,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         Dim width As Integer = tmpRec.Width
         Dim borderStyle As BorderStyle = Me.Borderstyle
         If Application.RenderWithVisualStyles Then
-            Dim offset As Integer = If((Me.Borderstyle = borderStyle.None), 0, 2)
+            Dim offset As Integer = If((Me.Borderstyle = BorderStyle.None), 0, 2)
             tmpRec.Inflate(-offset, -offset)
         Else
             Dim offset As Integer = 0
@@ -324,7 +336,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
 
         Dim bounds As Rectangle = myValueControl.Bounds
         If Application.RenderWithVisualStyles Then
-            If (Me.Borderstyle = Borderstyle.None) Then
+            If (Me.Borderstyle = BorderStyle.None) Then
                 GoTo SkipToEnd
             End If
             Dim clientRectangle As Rectangle = MyBase.ClientRectangle
@@ -409,6 +421,10 @@ SkipToEnd:
             myValueControl.TextBoxPart.BackColor = FocusColor
         End If
 
+        If myNullValueColor.HasValue Then
+            Me.TextBoxPart.ForeColor = ForeColor
+        End If
+
         If FocusSelectionBehaviour = FocusSelectionBehaviours.PreSelectInput Then
             myValueControl.TextBoxPart.SelectAll()
         ElseIf FocusSelectionBehaviour = FocusSelectionBehaviours.PlaceCaretAtEnd Then
@@ -436,33 +452,6 @@ SkipToEnd:
         myValueControl.Value = myEditedValue
     End Sub
 
-    Protected Overrides Sub OnLostFocus(ByVal e As System.EventArgs)
-        'MyBase.OnLeave(e)
-        'If Me.DesignMode Then
-        '    Return
-        'End If
-
-        'myIsFocused = False
-        'If OnFocusColor Then
-        '    If myOriginalBackcolor = Color.Transparent Then
-        '        myValueControl.TextBoxPart.BackColor = Color.White
-        '    Else
-        '        myValueControl.TextBoxPart.BackColor = myOriginalBackcolor
-        '    End If
-        'End If
-
-        'If Me.AutoValidateOnLeaving Then
-        '    Dim ce As New CancelEventArgs
-        '    myEditedValue = myValueControl.Value.ToString
-        '    ValidateInternal(ce)
-        '    If ce.Cancel Then
-        '        Me.Focus()
-        '        Return
-        '    End If
-        '    OnValidated(EventArgs.Empty)
-        'End If
-    End Sub
-
     Protected Overrides Sub OnLeave(ByVal e As System.EventArgs)
         MyBase.OnLeave(e)
         If Me.DesignMode Then
@@ -476,6 +465,10 @@ SkipToEnd:
             Else
                 myValueControl.TextBoxPart.BackColor = myOriginalBackcolor
             End If
+        End If
+
+        If myNullValueColor.HasValue Then
+            Me.TextBoxPart.ForeColor = NullValueColor
         End If
 
         If Me.AutoValidateOnLeaving Then
@@ -1068,9 +1061,7 @@ SkipToEnd:
     ''' <remarks>Überschreiben Sie diese Methode in abgeleiteten Klassen, um den Zeitpunkt 
     ''' zu bestimmen, zu dem die Value-Eigenschaft geändert wurde.</remarks>
     Protected Overridable Sub OnValueChanged(ByVal e As ValueChangedEventArgs)
-        '#If DEBUG Then
-        '        'Debug.Print(Me.ControlTypeAndNameString & " : OnValueChanged (" & e.ToString & ")")
-        '#End If
+        HandleNullValueColorChanged()
         RaiseEvent ValueChanged(Me, e)
     End Sub
 
@@ -1098,6 +1089,20 @@ SkipToEnd:
                 myValueControl.Value = FormatterEngine.ConvertToDisplay
             End If
         End If
+    End Sub
+
+    ''' <summary>
+    ''' Ermittelt, ob die Value-Eigenschaft gegenwärtig Null ist.
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property IsValueNull As Boolean
+        Get
+            Return Not Me.Value.HasValue
+        End Get
+    End Property
+
+    Protected Overridable Sub OnIsValueNullChanged(e As EventArgs)
+        RaiseEvent IsValueNullChanged(Me, e)
     End Sub
 
     ''' <summary>
@@ -1232,6 +1237,61 @@ SkipToEnd:
         Return Not (Me.NullValueString = GetDefaultNullValueString())
     End Function
 
+    ''' <summary>
+    ''' Bestimmt oder ermittelt die Farbe, mit der der Inhalt des Steuerelementes angezeigt werden soll, wenn es den Wert 'null' widerspiegelt.
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Bestimmt oder ermittelt die Farbe, mit der der Inhalt des Steuerelementes angezeigt werden soll, wenn es den Wert 'null' widerspiegelt."),
+     Category("Verhalten"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True)>
+    Public Property NullValueColor As Color
+        Get
+            If Not myNullValueColor.HasValue Then
+                Return ForeColor
+            Else
+                Return myNullValueColor.Value
+            End If
+        End Get
+        Set(value As Color)
+            If Not Object.Equals(value, NullValueColor) Then
+                If value.Equals(ForeColor) Then
+                    myNullValueColor = Nothing
+                Else
+                    myNullValueColor = value
+                End If
+                'RaiseEvent
+                OnNullValueColorChanged(EventArgs.Empty)
+                HandleNullValueColorChanged()
+            End If
+        End Set
+    End Property
+
+    Protected Overridable Sub OnNullValueColorChanged(e As EventArgs)
+        RaiseEvent NullValueColorChanged(Me, e)
+    End Sub
+
+    Private Function ShouldSerializeNullValueColor() As Boolean
+        Return myNullValueColor.HasValue
+    End Function
+
+    Private Sub ResetNullValueColor()
+        myNullValueColor = Nothing
+    End Sub
+
+    Private Sub HandleNullValueColorChanged()
+        If Not Me.Focus Then
+            If Not Me.Value.HasValue Then
+                Me.TextBoxPart.ForeColor = Me.NullValueColor
+            Else
+                Me.TextBoxPart.ForeColor = Me.ForeColor
+            End If
+        End If
+    End Sub
+
 #End Region
 
 #Region "IsDirty-Handling"
@@ -1251,6 +1311,11 @@ SkipToEnd:
         If Not IsLoading.Value Then
             HandleIsDirty()
         End If
+    End Sub
+
+    Protected Overrides Sub OnForeColorChanged(e As EventArgs)
+        MyBase.OnForeColorChanged(e)
+        Me.TextBoxPart.ForeColor = Me.ForeColor
     End Sub
 
     Protected Overridable Sub TagDirtyState()
@@ -1475,7 +1540,7 @@ SkipToEnd:
     End Sub
 #End Region
 
-#Region "Properties"
+#Region "Other Properties"
 
     ''' <summary>
     ''' Definiert, ob Daten im Steuerelement nur dargestellt (true) oder auch verändert werden können.
@@ -1516,7 +1581,7 @@ SkipToEnd:
      Category("Verhalten"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(Char.MinValue)>
-    Property ObfuscationChar As Char?
+    Overridable Property ObfuscationChar As Char?
 
     ''' <summary>
     ''' Bestimmt oder ermittelt, ob es sich bei einem Eingabefeld um ein Key-Feld handelt oder nicht.
@@ -1529,7 +1594,7 @@ SkipToEnd:
      Category("Verhalten"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
-    Property IsKeyField As Boolean Implements IKeyFieldProvider.IsKeyField
+    Overridable Property IsKeyField As Boolean Implements IKeyFieldProvider.IsKeyField
 
     ''' <summary>
     ''' Bestimmt die Dauer in Millisekunden, die ein Baloontip im Falle einer Fehlermeldung angezeigt wird.
@@ -1543,6 +1608,20 @@ SkipToEnd:
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(5000)>
     Public Property ExceptionBalloonDuration As Integer Implements INullableValueControl.ExceptionBalloonDuration
+        Get
+            Return myExceptionBalloonDuration
+        End Get
+        Set(value As Integer)
+            If Not Object.Equals(value, myExceptionBalloonDuration) Then
+                myExceptionBalloonDuration = value
+                OnExceptionBalloonDurationChanged(EventArgs.Empty)
+            End If
+        End Set
+    End Property
+
+    Protected Overridable Sub OnExceptionBalloonDurationChanged(e As EventArgs)
+        RaiseEvent ExceptionBalloonDurationChanged(Me, e)
+    End Sub
 
     Protected ReadOnly Property ValueControl As ControlType
         Get
@@ -1566,9 +1645,82 @@ SkipToEnd:
             Return Me.TextBoxPart.MaxLength
         End Get
         Set(value As Integer)
-            Me.TextBoxPart.MaxLength = value
+            If Not Object.Equals(Me.TextBoxPart.MaxLength, value) Then
+                Me.TextBoxPart.MaxLength = value
+                OnMaxLengthChanged(EventArgs.Empty)
+            End If
         End Set
     End Property
+
+    Protected Overridable Sub OnMaxLengthChanged(e As EventArgs)
+        RaiseEvent MaxLengthChanged(Me, e)
+    End Sub
+
+    ''' <summary>
+    ''' Bestimmt oder ermittelt, ob bei einem Überlauf in der TextBox der vordere oder der hintere Teiltext angezeigt wird.
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Bestimmt oder ermittelt, ob bei einem Überlauf in der TextBox der vordere oder der hintere Teiltext angezeigt wird."),
+     Category("Verhalten"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(False)>
+    Public Property ReverseTextOverflowBehaviour As Boolean
+        Get
+            Return myReverseTextOverflowBehaviour
+        End Get
+        Set(value As Boolean)
+            If value Xor myReverseTextOverflowBehaviour Then
+                myReverseTextOverflowBehaviour = value
+                If value Then
+                    If Me.RightToLeft <> Windows.Forms.RightToLeft.Yes Then
+                        Me.TextBoxPart.RightToLeft = Windows.Forms.RightToLeft.Yes
+                        Me.TextAlign = HorizontalAlignment.Right
+                    Else
+                        Me.TextBoxPart.RightToLeft = Windows.Forms.RightToLeft.No
+                        Me.TextAlign = HorizontalAlignment.Left
+                    End If
+                End If
+                OnReverseTextOverflowBehaviourChanged(EventArgs.Empty)
+            End If
+        End Set
+    End Property
+
+    Protected Overridable Sub OnReverseTextOverflowBehaviourChanged(e As EventArgs)
+        RaiseEvent ReverseTextOverflowBehaviourChanged(Me, e)
+    End Sub
+
+    ''' <summary>
+    ''' Ermittelt oder bestimmt, wie der Text innerhalb des Steuerelementes ausgerichtet wird.
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Ermittelt oder bestimmt, wie der Text innerhalb des Steuerelementes ausgerichtet wird."),
+     Category("Verhalten"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(HorizontalAlignment.Left)>
+    Public Property TextAlign As HorizontalAlignment
+        Get
+            Return Me.TextBoxPart.TextAlign
+        End Get
+        Set(value As HorizontalAlignment)
+            If Not Object.Equals(Me.TextBoxPart.TextAlign, value) Then
+                If Me.TextAlign = HorizontalAlignment.Right AndAlso ReverseTextOverflowBehaviour Then
+                    ReverseTextOverflowBehaviour = False
+                End If
+                Me.TextBoxPart.TextAlign = value
+                OnTextAlignChanged(EventArgs.Empty)
+            End If
+        End Set
+    End Property
+
+    Protected Overridable Sub OnTextAlignChanged(e As EventArgs)
+        RaiseEvent TextAlignChanged(Me, e)
+    End Sub
 
 #End Region
 
@@ -1656,38 +1808,6 @@ SkipToEnd:
     End Property
 
     ''' <summary>
-    ''' Bestimmt oder ermittelt, ob bei einem Überlauf in der TextBox der vordere oder der hintere Teiltext angezeigt wird.
-    ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
-     Description("Bestimmt oder ermittelt, ob bei einem Überlauf in der TextBox der vordere oder der hintere Teiltext angezeigt wird."),
-     Category("Verhalten"),
-     EditorBrowsable(EditorBrowsableState.Always),
-     Browsable(True), DefaultValue(False)>
-    Public Property ReverseTextOverflowBehaviour As Boolean
-        Get
-            Return myReverseTextOverflowBehaviour
-        End Get
-        Set(value As Boolean)
-            If value Xor myReverseTextOverflowBehaviour Then
-                myReverseTextOverflowBehaviour = value
-                If value Then
-                    If Me.RightToLeft <> Windows.Forms.RightToLeft.Yes Then
-                        Me.TextBoxPart.RightToLeft = Windows.Forms.RightToLeft.Yes
-                        Me.TextBoxPart.TextAlign = HorizontalAlignment.Right
-                    Else
-                        Me.TextBoxPart.RightToLeft = Windows.Forms.RightToLeft.Yes
-                        Me.TextBoxPart.TextAlign = HorizontalAlignment.Right
-                    End If
-                End If
-            End If
-        End Set
-    End Property
-
-
-    ''' <summary>
     ''' Bestimmt oder ermittelt, ob dieses Steuerelement rechtemäßig von einem externen Controler verwaltet werden kann oder nicht.
     ''' </summary>
     ''' <value></value>
@@ -1754,6 +1874,5 @@ SkipToEnd:
             myGroupName = value
         End Set
     End Property
-
 
 End Class

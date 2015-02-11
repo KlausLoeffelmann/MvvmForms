@@ -223,7 +223,6 @@ Public Class ObjectAnalyser
                                           ByVal throwExOnError As Boolean,
                                           Optional ByVal debugChannel As TextWriter = Nothing) As Tuple(Of String, LambdaMethodWrapper())
         If paramString Is Nothing Then
-            'TODO: Check, ob Return Nothing ok ist
             ghandleError("Es wurde kein  paramString angegeben.", debugChannel, throwExOnError)
             Return Nothing
         End If
@@ -237,14 +236,12 @@ Public Class ObjectAnalyser
             If mode = FormatStrEnum.FormatStringDisallowed Then
                 ghandleError("Es wurde ein FormatString angegeben. Das ist nicht erlaubt", debugChannel, throwExOnError)
                 ' falls handle Error keine Exception geworfen hat, muss die Methode hier verlassen werden
-                'TODO: Check, ob Return Nothing ok ist
                 Return Nothing
             End If
 
             If startIdx <> 0 AndAlso paramString.Trim()(0) <> """"c Then
                 ghandleError("Der Formatstring muss mit "" beginnen", debugChannel, throwExOnError)
                 ' falls handle Error keine Exception geworfen hat, muss die Methode hier verlassen werden
-                'TODO: Check, ob Return Nothing ok ist
                 Return Nothing
             End If
 
@@ -252,7 +249,6 @@ Public Class ObjectAnalyser
             If endIdx < 0 Then
                 ghandleError("Der Formatstring wird mit "" geöffnet, aber nicht geschlossen.", debugChannel, throwExOnError)
                 ' falls handle Error keine Exception geworfen hat, muss die Methode hier verlassen werden
-                'TODO: Check, ob Return Nothing ok ist
                 Return Nothing
             End If
         Else
@@ -260,7 +256,6 @@ Public Class ObjectAnalyser
             If mode = FormatStrEnum.FormatStringRequired Then
                 ghandleError("Es wurde kein FormatString angegeben", debugChannel, throwExOnError)
                 ' falls handle Error keine Exception geworfen hat, muss die Methode hier verlassen werden
-                'TODO: Check, ob Return Nothing ok ist
                 Return Nothing
             End If
         End If
@@ -280,7 +275,6 @@ Public Class ObjectAnalyser
         If displayMembers.Length = 0 Then
             ghandleError("Die Displaymember müssen durch Komma seperiert werden. DisplayMember='" & paramString & "'", debugChannel, throwExOnError)
             ' falls handle Error keine Exception geworfen hat, muss die Methode hier verlassen werden
-            'TODO: Check, ob Return Nothing ok ist
             Return Nothing
         End If
 

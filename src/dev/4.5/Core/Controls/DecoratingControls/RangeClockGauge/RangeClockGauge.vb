@@ -199,7 +199,7 @@ Public Class RangeClockGauge
         End If
 
         'New in this version: the MessageText
-        'Todo: Draw via DrawString.
+        'TODO: Draw via DrawString.
         If Not String.IsNullOrEmpty(Me.Text) Then
             'lblAlarmMessage.Text = MessageText
             'lblAlarmMessage.Visible = True

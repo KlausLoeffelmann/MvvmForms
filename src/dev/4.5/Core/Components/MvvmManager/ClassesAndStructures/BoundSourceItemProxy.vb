@@ -419,7 +419,7 @@ Public Class PropertyBindingManager
                                                    myBindingItem)
                     End If
                 Else
-                    'TODO: Events lösen
+                    'TODO: Tritt dieser Fall auf?
                     myBindingItem = Nothing
                 End If
             End If
@@ -434,7 +434,7 @@ Public Class PropertyBindingManager
             If Not Object.Equals(value, myViewModelObject) Then
                 If value IsNot Nothing Then
                     If myViewModelObject IsNot Nothing Then
-                        'TODO: Events lösen
+                        'TODO: Tritt dieser Fall auf?
                     End If
                     myViewModelObject = value
                     If Me.BindingItem IsNot Nothing Then
@@ -442,7 +442,7 @@ Public Class PropertyBindingManager
                                                    myBindingItem)
                     End If
                 Else
-                    'TODO: Events lösen
+                    'TODO: Tritt dieser Fall auf?
                     myViewModelObject = Nothing
                 End If
             End If
@@ -481,7 +481,7 @@ Public Class PropertyBindingManager
                 temp = ObjectAnalyser.PropertyInfoFromNestedPropertyName(myViewModelObject,
                                                                          currentPropertyPath)
             Catch ex As NullReferenceException
-                'TODO: Bereits vorhandene Bindungen lösen?
+                'TODO: Tritt dieser Fall auf?
                 Continue For
             End Try
 
@@ -494,7 +494,7 @@ Public Class PropertyBindingManager
             'muss auf dem Weg zum Pfadende ein Objekt nothing gewesen sein.
             'In diesem Fall müssen wir aufhören.
             If temp.Item1 Is Nothing Then
-                'TODO: Bereits vorhandene Bindungen lösen?
+                'TODO: Tritt dieser Fall auf?
                 Continue For
             End If
 

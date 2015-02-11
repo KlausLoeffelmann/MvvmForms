@@ -93,7 +93,7 @@ Public Class ResizablePopup
     ''' <remarks></remarks>
     Public Event PopupClosing(ByVal sender As Object, ByVal e As PopupClosingEventArgs)
 
-    'TODO: Requestreason einbauen, falls notwendig für die Unterscheidung.
+    'TODO: Requestreason einbauen, falls notwendig, für die Unterscheidung.
     Public Event PopupCloseRequested(ByVal sender As Object, ByVal E As PopupCloseRequestedEventArgs)
 
     <DllImport("user32")>

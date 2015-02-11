@@ -140,7 +140,7 @@ Public Class NullableDateValue
                 ValueControl.ClosePopup()
             End Sub)
 
-        myDisplayFormatString = DEFAULT_DATE_FORMAT_STRING
+        myDisplayFormatString = DEFAULT_DATE_FORMAT_STRING_DE
         myDisplayFormat = DateTimeFormats.ShortDate
     End Sub
 
@@ -161,14 +161,14 @@ Public Class NullableDateValue
     End Function
 
     Protected Overrides Function GetDefaultFormatString() As String
-        Return DEFAULT_DATE_FORMAT_STRING
+        Return DEFAULT_DATE_FORMAT_STRING_DE
     End Function
 
     Private Function CreateFormatString() As String
         Return GetDefaultFormatString()
     End Function
 
-    <DefaultValue(DEFAULT_DATE_FORMAT_STRING)>
+    <DefaultValue(DEFAULT_DATE_FORMAT_STRING_DE)>
     Public Property DisplayFormatString As String
         Get
             Return myDisplayFormatString
