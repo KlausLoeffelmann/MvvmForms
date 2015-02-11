@@ -519,11 +519,10 @@
     <Compile Include="MvvmControls\MvvmDataGrid\Column\ColumnType.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Column\IMvvmColumnTemplateExtender.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Column\MvvmDataGridColumn.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\Column\CustomMvvmDataGridColumn.vb" />
+    <Compile Include="MvvmControls\MvvmDataGrid\Column\MvvmDataGridComboBoxColumn.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\DataGridSettings.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Designer\MvvmDataGridDesigner.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\ItemDoubleClickEventArgs.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\ItemsDeletedEventArgs.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\ColumnBindingsUITypeEditor.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Common\GridColumnCollection.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Common\MvvmDataGridColumnsCodeDomSerializer.vb" />
@@ -626,7 +625,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Controls\Interfaces\InterfaceDiagram.cd" />
-    <None Include="EntitiesFormsLib.1.0.0.nupkg" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -668,7 +666,6 @@
     <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ChangeLog.txt" />
     <Content Include="Components\MvvmManager\Assets\Collapsed.bmp" />
     <Content Include="Components\MvvmManager\Assets\Collapse_small.bmp" />
     <Content Include="Components\MvvmManager\Assets\Expand_small.bmp" />
