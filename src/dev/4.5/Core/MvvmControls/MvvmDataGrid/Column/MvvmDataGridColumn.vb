@@ -466,12 +466,8 @@ Public Class MvvmDataGridColumn
 
 
         'Width
-        If Me.Width IsNot Nothing Then
-            If Me.Width.Value > 0 Then
-                dataGridBoundColumn.Width = New DataGridLength(Me.Width.Value, DataGridLengthUnitType.Pixel)
-            ElseIf Me.Width.Value < 0 Then
-                dataGridBoundColumn.Width = New DataGridLength(Me.Width.Value, DataGridLengthUnitType.Star)
-            End If
+        If Me.Width.HasValue Then
+            dataGridBoundColumn.Width = New DataGridLength(Me.Width.Value, Me.WidthLengthUnitType)
         End If
 
         'Visibility
@@ -621,6 +617,33 @@ Public Class MvvmDataGridColumn
     Protected Overridable Sub OnWidthChanged(e As EventArgs)
         RaiseEvent WidthChanged(Me, e)
     End Sub
+
+    Private _widthLengthUnitType As DataGridLengthUnitType = DataGridLengthUnitType.Star
+    ''' <summary>
+    ''' Typ der Angabe der Spaltenbreite
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>Durch den MvvmManager bindbare View-Property</remarks>
+    <Category("Column")>
+    Public Property WidthLengthUnitType As DataGridLengthUnitType
+        Get
+            Return _widthLengthUnitType
+        End Get
+        Set(ByVal value As DataGridLengthUnitType)
+            If Not Object.Equals(_widthLengthUnitType, value) Then
+                _widthLengthUnitType = value
+                OnWidthLengthUnitTypeChanged(EventArgs.Empty)
+            End If
+        End Set
+    End Property
+
+    Public Event WidthLengthUnitTypeChanged As EventHandler
+
+    Protected Overridable Sub OnWidthLengthUnitTypeChanged(e As EventArgs)
+        RaiseEvent WidthLengthUnitTypeChanged(Me, e)
+    End Sub
+
 
     Private _visibility As Visibility = Windows.Visibility.Visible
     ''' <summary>
