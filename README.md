@@ -1,4 +1,4 @@
-efl
-===
+MvvmForms
+=========
 
-Repository for the Entity Forms Lib.
+Repository for the MvvmForms (f.k.a. EFL).
