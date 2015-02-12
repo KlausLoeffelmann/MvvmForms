@@ -1,9 +1,10 @@
 ﻿Imports System.ComponentModel
-Imports System.Drawing
 Imports System.Windows.Forms
-Imports System.Windows.Forms.VisualStyles
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox
 
+''' <summary>
+''' Steuerelement, mit dessen Hilfe ein NullableValue zur Anzeige als Text mit 
+''' Formatierungsoptionen gebracht werden kann. Derzeit KEINE getestete Mvvm-Unterstützung!!
+''' </summary>
 Public Class CombinedValueInfoLabel
     Inherits TextBox
     Implements IUpdatableInfoControl
@@ -58,6 +59,10 @@ Public Class CombinedValueInfoLabel
      Browsable(True)>
     Public Property AssignedManagerControl As FormToBusinessClassManager Implements IAssignableFormToBusinessClassManager.AssignedManagerControl
 
+    ''' <summary>
+    ''' Aktualisiert die Darstellung.
+    ''' </summary>
+    ''' <param name="Datasource"></param>
     Public Sub UpdateDisplayData(ByVal Datasource As Object) Implements IUpdatableInfoControl.UpdateDisplayData
         Me.Text = ObjectAnalyser.ObjectToString(Datasource, Me.DisplayMember)
     End Sub

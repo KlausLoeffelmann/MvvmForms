@@ -37,6 +37,7 @@ Partial Class MainForm
         Me.NullableNumValue1 = New ActiveDevelop.EntitiesFormsLib.NullableNumValue()
         Me.NullableValueRelationPopup2 = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.NullableValueRelationPopup1 = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
+        Me.NullableMaskTextValue1 = New ActiveDevelop.EntitiesFormsLib.NullableMaskTextValue()
         Me.MainMenuStrip.SuspendLayout()
         CType(Me.NullableValueRelationPopup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NullableValueRelationPopup1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -210,11 +211,28 @@ Partial Class MainForm
         Me.NullableValueRelationPopup1.UIGuid = New System.Guid("d38add81-45e8-436d-8891-6f1770a86ca7")
         Me.NullableValueRelationPopup1.ValueMember = Nothing
         '
+        'NullableMaskTextValue1
+        '
+        Me.NullableMaskTextValue1.AssignedManagerComponent = Nothing
+        Me.NullableMaskTextValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NullableMaskTextValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.NullableMaskTextValue1.Location = New System.Drawing.Point(47, 248)
+        Me.NullableMaskTextValue1.MaxLength = 32767
+        Me.NullableMaskTextValue1.Name = "NullableMaskTextValue1"
+        Me.NullableMaskTextValue1.ObfuscationChar = Nothing
+        Me.NullableMaskTextValue1.PermissionReason = Nothing
+        Me.NullableMaskTextValue1.Size = New System.Drawing.Size(232, 30)
+        Me.NullableMaskTextValue1.TabIndex = 8
+        Me.NullableMaskTextValue1.UIGuid = New System.Guid("04bcd142-2b94-46ec-bb21-f7cd5a464316")
+        Me.NullableMaskTextValue1.Value = Nothing
+        Me.NullableMaskTextValue1.ValueValidationState = Nothing
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1663, 858)
+        Me.Controls.Add(Me.NullableMaskTextValue1)
         Me.Controls.Add(Me.NullableIntValue1)
         Me.Controls.Add(Me.NullableNumValue1)
         Me.Controls.Add(Me.NullableValueRelationPopup2)
@@ -247,4 +265,5 @@ Partial Class MainForm
     Friend WithEvents ToolStripMenuItem3 As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem4 As ToolStripMenuItem
     Friend WithEvents NullableIntValue1 As ActiveDevelop.EntitiesFormsLib.NullableIntValue
+    Friend WithEvents NullableMaskTextValue1 As ActiveDevelop.EntitiesFormsLib.NullableMaskTextValue
 End Class

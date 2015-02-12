@@ -1,5 +1,7 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.ComponentModel
+Imports System.Windows.Forms
 
+<ToolboxItem(False)>
 Public Class BindingModePopupView
 
     Private myBinding As BindingSetting = New BindingSetting With {.BindingMode = MvvmBindingModes.TwoWay,
@@ -32,7 +34,7 @@ Public Class BindingModePopupView
                                           Where DirectCast(rButtonItem, RadioButton).Checked).SingleOrDefault
 
             Dim sourceTriggerRadioButton = (From rButtonItem In gbUpdateSourceTrigger.Controls
-                                          Where GetType(RadioButton).IsAssignableFrom(rButtonItem.GetType) AndAlso
+                                            Where GetType(RadioButton).IsAssignableFrom(rButtonItem.GetType) AndAlso
                                           DirectCast(rButtonItem, RadioButton).Checked).SingleOrDefault
 
             Dim bindingToReturn = New BindingSetting With
@@ -53,7 +55,7 @@ Public Class BindingModePopupView
                                           Where DirectCast(rButtonItem, RadioButton).Name.Substring(2) = tmpBindingmode.ToString).SingleOrDefault
 
             Dim sourceTriggerRadioButton = (From rButtonItem In gbUpdateSourceTrigger.Controls
-                                          Where GetType(RadioButton).IsAssignableFrom(rButtonItem.GetType) AndAlso
+                                            Where GetType(RadioButton).IsAssignableFrom(rButtonItem.GetType) AndAlso
                                           DirectCast(rButtonItem, RadioButton).Name.Substring(2) = value.UpdateSourceTrigger.ToString).SingleOrDefault
 
             ValidatesCheckBox.Checked = value.BindingMode.HasFlag(MvvmBindingModes.ValidatesOnNotifyDataErrors)

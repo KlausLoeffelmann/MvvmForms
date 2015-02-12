@@ -10,6 +10,7 @@ Imports System.Runtime.InteropServices
 ''' </summary>
 ''' <remarks>Diese Komponente kann direkt verwendet werden, ist aber eigentlich eine Subkomponente des 
 ''' <see cref="NullableValueRelationPopup">NullableValueRelationPopup-Steuerelementes.</see></remarks>
+<ToolboxItem(False)>
 Public Class BindableDataGridView
     Inherits DataGridView
     Implements INullableValueRelationBinding, IPermissionManageableUIContentElement
@@ -32,7 +33,7 @@ Public Class BindableDataGridView
     Private myLastColumnSchema As DataGridViewColumnFieldnames
     Private myDontUpdateValueMember As Boolean          ' Flag, das verhindert, dass es beim Setzen zwischen ValueMember und ValueList zu einer Rekursion kommt.
 
-    <DllImport("user32.dll", SetLastError:=True, CharSet:=CharSet.Auto)> _
+    <DllImport("user32.dll", SetLastError:=True, CharSet:=CharSet.Auto)>
     Private Shared Function SendMessage(ByVal hWnd As IntPtr, ByVal Msg As UInteger, ByVal wParam As Integer, ByVal lParam As Integer) As IntPtr
     End Function
 

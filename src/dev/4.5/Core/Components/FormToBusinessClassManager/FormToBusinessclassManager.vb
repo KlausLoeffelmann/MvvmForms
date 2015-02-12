@@ -1,18 +1,15 @@
 ﻿Imports System.ComponentModel
-Imports System.Windows.Forms
-Imports System.Reflection
 Imports System.ComponentModel.Design
 Imports System.Data.Objects
-Imports System.Runtime.CompilerServices
-Imports System.Numerics
-Imports System.Drawing
 Imports System.Data.Objects.DataClasses
-Imports System.IO
+Imports System.Drawing
 Imports System.Drawing.Design
+Imports System.Reflection
+Imports System.Windows.Forms
 
 ''' <summary>
 ''' Stellt Funktionalitäten zur Verfügung, mit denen die Daten in einem WindowsForms-Formular validiert und in eine Business-Objekt
-''' (POCO) (und umgekehrt) übertragen werden können.
+''' (POCO, EntityObject EF kleiner V5.0) (und umgekehrt) übertragen werden können.
 ''' </summary>
 ''' <remarks>Voraussetzung für die Validierung und Verknüpfung eines Windows Forms-Formulars an ein Business-Objekt ist, 
 ''' dass die verwendeten Steuerelemente einen Satz von Funktionalitäten zur Verfügung stellen, über die sie vom 
@@ -49,7 +46,8 @@ Imports System.Drawing.Design
 ''' (<see cref="NullableTextValue">NullableTextValue-Steuerelement</see>) zu unterscheiden.
 ''' </para>
 ''' </remarks>
-<Designer(GetType(FormToBusinessClassManagerDesigner))>
+<Designer(GetType(FormToBusinessClassManagerDesigner)),
+ Obsolete("Diese Komponente ist veraltet. Verwenden Sie alternativ die MvvmManager-Komponente, um Business-Layer-Logik nach dem Model-View-ViewModel-Entwurfsmuster zu implementieren.")>
 Public Class FormToBusinessClassManager
     Inherits ErrorProvider
     Implements IDisposable

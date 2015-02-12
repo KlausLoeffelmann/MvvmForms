@@ -6,7 +6,7 @@
 ''' Funktionen für Rechteverwaltung zur Verfügung stellt und von einer 
 ''' <see cref="FormToBusinessClassManager">FormToBusinessClassManager-Komponente</see> verwaltet werden kann.
 ''' </summary>
-<ToolboxItem(True)>
+<ToolboxItem(False)>
 Public Class BindingSettingPopup
     Inherits TextBoxPopup
 

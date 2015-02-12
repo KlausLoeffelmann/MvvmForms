@@ -1,7 +1,12 @@
-﻿Imports System.Drawing
+﻿Imports System.ComponentModel
+Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports System.Windows.Forms
 
+''' <summary>
+''' EXPERIMENTAL, not ready for deployment.
+''' </summary>
+<ToolboxItem(False)>
 Public Class ShapedButton
     Inherits TransparentControlBase
 
@@ -10,7 +15,7 @@ Public Class ShapedButton
     Private myImage As Image
 
     Sub New()
-        MyBase.new()
+        MyBase.New()
         Me.BackColor = Color.Gray
     End Sub
 
@@ -42,7 +47,6 @@ Public Class ShapedButton
 
         g.FillPie(New SolidBrush(SystemColors.Control), currRect, 180, 180)
         g.FillPie(New SolidBrush(SystemColors.ControlLight), currRect, 0, 180)
-
 
     End Sub
 

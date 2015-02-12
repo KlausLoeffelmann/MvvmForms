@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel
 
-'<ToolboxItem(False)>
+<ToolboxItem(False)>
 Public Class TextBoxSpinButton
     Inherits TextBoxButtonBase(Of UpDownButton)
 

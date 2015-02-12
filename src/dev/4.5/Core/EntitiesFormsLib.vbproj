@@ -315,9 +315,6 @@
     <Compile Include="Components\FormToBusinessClassManager\IsFormDirtyChangedEventArgs.vb" />
     <Compile Include="Components\FormToBusinessClassManager\ValueForControlReceivingEventArgs.vb" />
     <Compile Include="AuxilliaryTypes\ValidationIssues.vb" />
-    <Compile Include="Components\MvvmManager\MvvmViewController.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ContainerAndPanels\BusinessClassUserControl\BusinessClassUserControlBase.vb">
       <SubType>UserControl</SubType>
     </Compile>

@@ -128,21 +128,10 @@
     <Compile Include="MvvmDataGridExample\MvvmDataGridExample\Model\Buchung.vb" />
     <Compile Include="MvvmDataGridExample\MvvmDataGridExample\Model\Kostenart.vb" />
     <Compile Include="MvvmDataGridExample\MvvmDataGridExample\ViewModel\MainViewModel.vb" />
-    <Compile Include="MvvmTest\Converter\IntegerToStringConverter.vb" />
-    <Compile Include="MvvmTest\Converter\TimeSpanToStringConverter.vb" />
-    <Compile Include="MvvmTest\Models\TimeCollectItem.vb" />
-    <Compile Include="MvvmTest\ViewModels\AddEditTimeCollectionItemViewModel.vb" />
     <Compile Include="MvvmTest\Views\TestFormForDesignerError.Designer.vb">
       <DependentUpon>TestFormForDesignerError.vb</DependentUpon>
     </Compile>
     <Compile Include="MvvmTest\Views\TestFormForDesignerError.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MvvmTest\ViewModels\TimeCollectionViewModel.vb" />
-    <Compile Include="MvvmTest\Views\AddEditTimeCollectionItemView.Designer.vb">
-      <DependentUpon>AddEditTimeCollectionItemView.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MvvmTest\Views\AddEditTimeCollectionItemView.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MvvmTest\Views\MvvmTestFormView.Designer.vb">
@@ -150,18 +139,6 @@
     </Compile>
     <Compile Include="MvvmTest\Views\MvvmTestFormView.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MvvmTest\Views\TimeCollectionDataGridView.Designer.vb">
-      <DependentUpon>TimeCollectionDataGridView.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MvvmTest\Views\TimeCollectionDataGridView.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MvvmTest\Views\TimeCollectionView.Designer.vb">
-      <DependentUpon>TimeCollectionView.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MvvmTest\Views\TimeCollectionView.vb">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -198,17 +175,8 @@
     <EmbeddedResource Include="MvvmTest\Views\TestFormForDesignerError.resx">
       <DependentUpon>TestFormForDesignerError.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MvvmTest\Views\AddEditTimeCollectionItemView.resx">
-      <DependentUpon>AddEditTimeCollectionItemView.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MvvmTest\Views\MvvmTestFormView.resx">
       <DependentUpon>MvvmTestFormView.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MvvmTest\Views\TimeCollectionDataGridView.resx">
-      <DependentUpon>TimeCollectionDataGridView.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MvvmTest\Views\TimeCollectionView.resx">
-      <DependentUpon>TimeCollectionView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -245,6 +213,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MvvmDataGridExample\MvvmDataGridExample.sln" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MvvmTest\Converter\" />
+    <Folder Include="MvvmTest\Models\" />
+    <Folder Include="MvvmTest\ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

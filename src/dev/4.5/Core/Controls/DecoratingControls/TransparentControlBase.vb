@@ -1,6 +1,11 @@
 ﻿Imports System.Windows.Forms
 Imports System.Drawing
+Imports System.ComponentModel
 
+''' <summary>
+''' Experimental, not ready to deploy.
+''' </summary>
+<ToolboxItem(False)>
 Public Class TransparentControlBase
     Inherits Panel
 

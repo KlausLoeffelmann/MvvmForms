@@ -2,11 +2,9 @@
 Imports System.Windows.Forms
 
 ''' <summary>
-''' Steuerelement zur Erfassungs von Texten (Zeichenketten), das überdies Null-Werte verarbeitet, 
-''' eine vereinheitlichende Value-Eigenschaft bietet, 
-''' Funktionen für Rechteverwaltung zur Verfügung stellt und von einer 
-''' <see cref="FormToBusinessClassManager">FormToBusinessClassManager-Komponente</see> verwaltet werden kann.
+''' CONCEPTIONAL, DO NOT USE, YET.
 ''' </summary>
+<ToolboxItem(False)>
 Public Class NullableMaskTextValue
     Inherits NullableValueBase(Of StringValue, NullableValuePrimalTextBox)
 

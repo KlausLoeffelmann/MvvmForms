@@ -9,7 +9,7 @@ Public Class UpDownButton
     End Function
 End Class
 
-<ToolboxItem(True)>
+<ToolboxItem(False)>
 Public Class ComboButton
     Inherits MultiPurposeButtonBase
 
@@ -18,7 +18,7 @@ Public Class ComboButton
     End Function
 End Class
 
-<ToolboxItem(True)>
+<ToolboxItem(False)>
 Public Class SimpleButton
     Inherits MultiPurposeButtonBase
 

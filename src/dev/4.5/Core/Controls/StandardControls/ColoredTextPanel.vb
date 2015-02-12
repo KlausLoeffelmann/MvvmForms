@@ -3,7 +3,6 @@ Imports System.Drawing.Imaging
 Imports System.ComponentModel
 Imports System.Drawing
 
-
 ''' <summary>
 ''' Stellt ein Control bereit mit dem Text farbig ausgegeben werden kann
 ''' </summary>
@@ -160,9 +159,6 @@ Partial Public Class ColoredTextPanel
         End Set
     End Property
 
-
-
-
     ''' <summary>
     ''' Gibt eine Textzeile in der per CurrentDrawColor festgelegten Farbe und mit der per CurrentDrawFont festgelegten Font aus
     ''' </summary>
@@ -186,7 +182,6 @@ Partial Public Class ColoredTextPanel
         End SyncLock
 
     End Sub
-
 
     ''' <summary>
     ''' Ruft die Weite des Views ab oder legt diese fest
@@ -225,7 +220,6 @@ Partial Public Class ColoredTextPanel
         End If
         myHScrollBar.LargeChange = myViewPanel.Width
     End Sub
-
 
     ''' <summary>
     ''' Ruft die Höhe des Views ab oder legt diese fest
@@ -266,7 +260,6 @@ Partial Public Class ColoredTextPanel
         '            Console.WriteLine("value {0}, max {1}, Large {2}", myVScrollBar.Value, myVScrollBar.Maximum, myVScrollBar.LargeChange)
     End Sub
 
-
     ''' <summary>
     ''' Löscht alle Einträge der Textbox
     ''' </summary>
@@ -292,8 +285,6 @@ Partial Public Class ColoredTextPanel
         myViewPanel.Refresh()
     End Sub
 
-
-
     ''' <summary>
     ''' ViewScroll wird aufgrufen wenn vertikal oder horizontal gescrollt wird
     ''' </summary>
@@ -304,7 +295,6 @@ Partial Public Class ColoredTextPanel
         'Debug.WriteLine("ViewScroll ausgelöst durch " + DirectCast(sender, Control).Name + " old/new Vals" + e.OldValue.ToString + "/" + e.NewValue.ToString)
         myViewPanel.Refresh()
     End Sub
-
 
     ''' <summary>
     ''' Mit AutoScrollToEnd wird festgelegt, ob Automatisch bei einem WriteLine der View zum Ende gescrollt werden soll
@@ -322,7 +312,6 @@ Partial Public Class ColoredTextPanel
         End Set
     End Property
 
-
     Protected Overrides Sub Finalize()
         MyBase.Finalize()
     End Sub
@@ -339,7 +328,8 @@ Partial Public Class ColoredTextPanel
     ''' Dieses kann der Fall sein, falls der LineManager keine freien Zeilen mehr hat
     ''' oder der ColoredElementManager keine freien Einträge mehr liefern kann
     ''' </remarks>
-    <Category("Behavior"), Description("Steuert, ob bei 'Speicherplatzproblemen(siehe Remark)' automatisch die ersten Zeilen gelöscht werden sollen.")> _
+    <Category("Behavior"),
+     Description("Steuert, ob bei 'Speicherplatzproblemen(siehe Remark)' automatisch die ersten Zeilen gelöscht werden sollen.")>
     Public Property DeleteFirstElementOnNoFreeElement() As Boolean
         Get
             Return myDeleteFirstElementOnNoFreeElement
@@ -489,8 +479,8 @@ Partial Public Class ColoredTextPanel
         writeEl.Recycle()
     End Sub
 
-
     Private Delegate Sub SetScrollbarValueDelegate(ByVal sbar As ScrollBar, ByVal val As Integer)
+
     Private Sub SetScrollbarValue(ByVal sbar As ScrollBar, ByVal val As Integer)
         If InvokeRequired Then
             Dim d As SetScrollbarValueDelegate = AddressOf SetScrollbarValue
@@ -500,7 +490,6 @@ Partial Public Class ColoredTextPanel
         sbar.Value = val
         myViewPanel.Refresh()
     End Sub
-
 
     Private Sub RecycleFirstRow()
         SyncLock myViewPanel.LineElementList
