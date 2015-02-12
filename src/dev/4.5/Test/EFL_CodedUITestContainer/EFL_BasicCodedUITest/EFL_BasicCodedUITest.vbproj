@@ -140,7 +140,9 @@
   <ItemGroup>
     <Compile Include="BasicFunctionTest.vb" />
     <Compile Include="CloningTests.vb" />
-    <Compile Include="MvvmPropertyBindingAssignmentTest.vb" />
+    <Compile Include="MvvmPropertyBindingAssignmentTest.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="ObservableCollectionTest\ObservableCollectionTestForm.Designer.vb">
       <DependentUpon>ObservableCollectionTestForm.vb</DependentUpon>

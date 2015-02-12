@@ -24,8 +24,8 @@ Partial Class TestFormForDesignerError
         Me.components = New System.ComponentModel.Container()
         Me.MvvmManager1 = New ActiveDevelop.EntitiesFormsLib.MvvmManager(Me.components)
         Me.NullableTextValue2 = New ActiveDevelop.EntitiesFormsLib.NullableTextValue()
-        CType(Me.MvvmManager1,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SuspendLayout
+        CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
         '
         'MvvmManager1
         '
@@ -59,7 +59,7 @@ Partial Class TestFormForDesignerError
         '
         'TestFormForDesignerError
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(540, 453)
         Me.Controls.Add(Me.NullableTextValue2)
@@ -67,10 +67,10 @@ Partial Class TestFormForDesignerError
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "TestFormForDesignerError"
         Me.Text = "TestFormForDesignerError"
-        CType(Me.MvvmManager1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
+        CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
 
-End Sub
+    End Sub
     Friend WithEvents MvvmManager1 As ActiveDevelop.EntitiesFormsLib.MvvmManager
     Friend WithEvents NullableTextValue2 As ActiveDevelop.EntitiesFormsLib.NullableTextValue
 End Class
