@@ -33,8 +33,6 @@ Partial Class TestFormForDesignerError
         Me.MvvmManager1.ContainerControl = Me
         Me.MvvmManager1.CurrentContextGuid = New System.Guid("861fafc2-3724-48ce-9bcf-d4a6f0dc5f0b")
         Me.MvvmManager1.DataContext = Nothing
-        Me.MvvmManager1.DataContextType = GetType(EFL_CodedUITestContainer.AddEditTimeCollectionItemViewModel)
-        Me.MvvmManager1.DataSourceType = GetType(EFL_CodedUITestContainer.AddEditTimeCollectionItemViewModel)
         Me.MvvmManager1.DirtyStateManagerComponent = Nothing
         Me.MvvmManager1.DynamicEventHandlingList = Nothing
         Me.MvvmManager1.HostingForm = Me
