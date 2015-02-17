@@ -1283,7 +1283,8 @@ SkipToEnd:
     End Sub
 
     Private Sub HandleNullValueColorChanged()
-        If Not Me.Focus Then
+        'Nur wenn ich nicht fokussiert bin...
+        If Not Me.Focused Then
             If Not Me.Value.HasValue Then
                 Me.TextBoxPart.ForeColor = Me.NullValueColor
             Else
