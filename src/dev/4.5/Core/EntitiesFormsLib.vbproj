@@ -162,6 +162,7 @@
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -541,6 +542,16 @@
     <Compile Include="MvvmControls\MvvmViewSelectorContainer.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MvvmControls\NullableValueComboBox\NullableValueComboBox.Designer.vb">
+      <DependentUpon>NullableValueComboBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MvvmControls\NullableValueComboBox\NullableValueComboBox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MvvmControls\NullableValueComboBox\ToggleControl.vb" />
+    <Compile Include="MvvmControls\NullableValueComboBox\WPFComboBoxWrapper.xaml.vb">
+      <DependentUpon>WPFComboBoxWrapper.xaml</DependentUpon>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -610,6 +621,9 @@
     <EmbeddedResource Include="MvvmControls\MvvmDataGrid\MvvmDataGrid.resx">
       <DependentUpon>MvvmDataGrid.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MvvmControls\NullableValueComboBox\NullableValueComboBox.resx">
+      <DependentUpon>NullableValueComboBox.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -627,6 +641,7 @@
     <None Include="EntitiesFormsLib.1.0.1.nupkg" />
     <None Include="EntitiesFormsLib.2.0.1.nupkg" />
     <None Include="EntitiesFormsLib.2.0.2.nupkg" />
+    <None Include="EntitiesFormsLib.2.0.3.nupkg" />
     <None Include="EntitiesFormsLib.vbproj.bak" />
     <None Include="EntitiesFormsLibCore.1.0.0.nupkg" />
     <None Include="EntitiesFormsLibCore.1.0.1.nupkg" />
@@ -685,6 +700,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="MvvmControls\NullableValueComboBox\WPFComboBoxWrapper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EFLViewModelBase\EFLViewModelBase.vbproj">
@@ -692,6 +711,7 @@
       <Name>EFLViewModelBase</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>

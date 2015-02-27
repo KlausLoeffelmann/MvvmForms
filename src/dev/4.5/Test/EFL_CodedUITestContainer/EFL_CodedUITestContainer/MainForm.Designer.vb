@@ -38,6 +38,7 @@ Partial Class MainForm
         Me.NullableValueRelationPopup2 = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.NullableValueRelationPopup1 = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.NullableMaskTextValue1 = New ActiveDevelop.EntitiesFormsLib.NullableMaskTextValue()
+        Me.CBOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MainMenuStrip.SuspendLayout()
         CType(Me.NullableValueRelationPopup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NullableValueRelationPopup1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,7 +51,7 @@ Partial Class MainForm
         Me.MainMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MainMenuStrip.Name = "MainMenuStrip"
         Me.MainMenuStrip.Padding = New System.Windows.Forms.Padding(12, 2, 0, 2)
-        Me.MainMenuStrip.Size = New System.Drawing.Size(1663, 28)
+        Me.MainMenuStrip.Size = New System.Drawing.Size(1663, 24)
         Me.MainMenuStrip.TabIndex = 0
         Me.MainMenuStrip.Text = "MenuStrip1"
         '
@@ -58,63 +59,63 @@ Partial Class MainForm
         '
         Me.DateiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QuitToolStripMenuItem})
         Me.DateiToolStripMenuItem.Name = "DateiToolStripMenuItem"
-        Me.DateiToolStripMenuItem.Size = New System.Drawing.Size(57, 24)
+        Me.DateiToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.DateiToolStripMenuItem.Text = "&Datei"
         '
         'QuitToolStripMenuItem
         '
         Me.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
-        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(106, 24)
+        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(97, 22)
         Me.QuitToolStripMenuItem.Text = "&Quit"
         '
         'TestToolStripMenuItem
         '
-        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RunBasicUITestToolStripMenuItem, Me.MVVMGridDemoToolStripMenuItem, Me.ZoomingTestToolStripMenuItem})
+        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RunBasicUITestToolStripMenuItem, Me.MVVMGridDemoToolStripMenuItem, Me.ZoomingTestToolStripMenuItem, Me.CBOToolStripMenuItem})
         Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
-        Me.TestToolStripMenuItem.Size = New System.Drawing.Size(47, 24)
+        Me.TestToolStripMenuItem.Size = New System.Drawing.Size(41, 20)
         Me.TestToolStripMenuItem.Text = "&Test"
         '
         'RunBasicUITestToolStripMenuItem
         '
         Me.RunBasicUITestToolStripMenuItem.Name = "RunBasicUITestToolStripMenuItem"
-        Me.RunBasicUITestToolStripMenuItem.Size = New System.Drawing.Size(199, 24)
+        Me.RunBasicUITestToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.RunBasicUITestToolStripMenuItem.Text = "Show basic test UI"
         '
         'MVVMGridDemoToolStripMenuItem
         '
         Me.MVVMGridDemoToolStripMenuItem.Name = "MVVMGridDemoToolStripMenuItem"
-        Me.MVVMGridDemoToolStripMenuItem.Size = New System.Drawing.Size(199, 24)
+        Me.MVVMGridDemoToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.MVVMGridDemoToolStripMenuItem.Text = "MVVM Grid Demo"
         '
         'ZoomingTestToolStripMenuItem
         '
         Me.ZoomingTestToolStripMenuItem.Name = "ZoomingTestToolStripMenuItem"
-        Me.ZoomingTestToolStripMenuItem.Size = New System.Drawing.Size(199, 24)
+        Me.ZoomingTestToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.ZoomingTestToolStripMenuItem.Text = "Zooming Test"
         '
         'ZoomToolStripMenuItem
         '
         Me.ZoomToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ToolStripMenuItem4})
         Me.ZoomToolStripMenuItem.Name = "ZoomToolStripMenuItem"
-        Me.ZoomToolStripMenuItem.Size = New System.Drawing.Size(61, 24)
+        Me.ZoomToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
         Me.ZoomToolStripMenuItem.Text = "Zoom"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(118, 24)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(105, 22)
         Me.ToolStripMenuItem2.Text = "100 %"
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(118, 24)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(105, 22)
         Me.ToolStripMenuItem3.Text = "125 %"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(118, 24)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(105, 22)
         Me.ToolStripMenuItem4.Text = "150 %"
         '
         'NullableIntValue1
@@ -131,7 +132,7 @@ Partial Class MainForm
         Me.NullableIntValue1.NullValueColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.NullableIntValue1.ObfuscationChar = Nothing
         Me.NullableIntValue1.PermissionReason = Nothing
-        Me.NullableIntValue1.Size = New System.Drawing.Size(533, 30)
+        Me.NullableIntValue1.Size = New System.Drawing.Size(533, 26)
         Me.NullableIntValue1.TabIndex = 7
         Me.NullableIntValue1.UIGuid = New System.Guid("fcc026a6-b1bf-477f-a0b2-f83352e015b0")
         Me.NullableIntValue1.Value = 5000
@@ -151,7 +152,7 @@ Partial Class MainForm
         Me.NullableNumValue1.Name = "NullableNumValue1"
         Me.NullableNumValue1.ObfuscationChar = Nothing
         Me.NullableNumValue1.PermissionReason = Nothing
-        Me.NullableNumValue1.Size = New System.Drawing.Size(533, 30)
+        Me.NullableNumValue1.Size = New System.Drawing.Size(533, 26)
         Me.NullableNumValue1.TabIndex = 6
         Me.NullableNumValue1.UIGuid = New System.Guid("46b920b4-6450-4b70-a5ba-fb45e95e005f")
         Me.NullableNumValue1.Value = Nothing
@@ -179,7 +180,7 @@ Partial Class MainForm
         Me.NullableValueRelationPopup2.NullValueString = "* - - - *"
         Me.NullableValueRelationPopup2.PermissionReason = Nothing
         Me.NullableValueRelationPopup2.SearchColumnHeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.NullableValueRelationPopup2.Size = New System.Drawing.Size(533, 30)
+        Me.NullableValueRelationPopup2.Size = New System.Drawing.Size(533, 26)
         Me.NullableValueRelationPopup2.TabIndex = 5
         Me.NullableValueRelationPopup2.UIGuid = New System.Guid("71bdc40d-2956-4a56-af6b-79ef44251f0c")
         Me.NullableValueRelationPopup2.ValueMember = Nothing
@@ -206,7 +207,7 @@ Partial Class MainForm
         Me.NullableValueRelationPopup1.NullValueString = "* - - - *"
         Me.NullableValueRelationPopup1.PermissionReason = Nothing
         Me.NullableValueRelationPopup1.SearchColumnHeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.NullableValueRelationPopup1.Size = New System.Drawing.Size(533, 30)
+        Me.NullableValueRelationPopup1.Size = New System.Drawing.Size(533, 26)
         Me.NullableValueRelationPopup1.TabIndex = 4
         Me.NullableValueRelationPopup1.UIGuid = New System.Guid("d38add81-45e8-436d-8891-6f1770a86ca7")
         Me.NullableValueRelationPopup1.ValueMember = Nothing
@@ -221,15 +222,21 @@ Partial Class MainForm
         Me.NullableMaskTextValue1.Name = "NullableMaskTextValue1"
         Me.NullableMaskTextValue1.ObfuscationChar = Nothing
         Me.NullableMaskTextValue1.PermissionReason = Nothing
-        Me.NullableMaskTextValue1.Size = New System.Drawing.Size(232, 30)
+        Me.NullableMaskTextValue1.Size = New System.Drawing.Size(232, 26)
         Me.NullableMaskTextValue1.TabIndex = 8
         Me.NullableMaskTextValue1.UIGuid = New System.Guid("04bcd142-2b94-46ec-bb21-f7cd5a464316")
         Me.NullableMaskTextValue1.Value = Nothing
         Me.NullableMaskTextValue1.ValueValidationState = Nothing
         '
+        'CBOToolStripMenuItem
+        '
+        Me.CBOToolStripMenuItem.Name = "CBOToolStripMenuItem"
+        Me.CBOToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.CBOToolStripMenuItem.Text = "CBO"
+        '
         'MainForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1663, 858)
         Me.Controls.Add(Me.NullableMaskTextValue1)
@@ -266,4 +273,5 @@ Partial Class MainForm
     Friend WithEvents ToolStripMenuItem4 As ToolStripMenuItem
     Friend WithEvents NullableIntValue1 As ActiveDevelop.EntitiesFormsLib.NullableIntValue
     Friend WithEvents NullableMaskTextValue1 As ActiveDevelop.EntitiesFormsLib.NullableMaskTextValue
+    Friend WithEvents CBOToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

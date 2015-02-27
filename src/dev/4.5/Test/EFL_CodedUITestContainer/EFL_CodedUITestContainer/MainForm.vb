@@ -54,4 +54,8 @@ Public Class MainForm
     Private Sub NullableIntValue1_Click(sender As Object, e As EventArgs) Handles NullableIntValue1.Click
 
     End Sub
+
+    Private Sub CBOToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CBOToolStripMenuItem.Click
+        NullableValueComboBoxView.ShowDialog()
+    End Sub
 End Class
