@@ -162,6 +162,7 @@
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -642,6 +643,7 @@
     <None Include="EntitiesFormsLib.2.0.1.nupkg" />
     <None Include="EntitiesFormsLib.2.0.2.nupkg" />
     <None Include="EntitiesFormsLib.2.0.3.nupkg" />
+    <None Include="EntitiesFormsLib.2.0.4.nupkg" />
     <None Include="EntitiesFormsLib.vbproj.bak" />
     <None Include="EntitiesFormsLibCore.1.0.0.nupkg" />
     <None Include="EntitiesFormsLibCore.1.0.1.nupkg" />

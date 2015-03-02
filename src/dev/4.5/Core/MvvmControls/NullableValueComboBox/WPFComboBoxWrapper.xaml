@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-              xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+              xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
                xmlns:local="clr-namespace:ActiveDevelop.EntitiesFormsLib" x:Name="userControl"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -236,7 +236,7 @@
 
                 <Border x:Name="border" Background="{StaticResource TextBox.Static.Background}" Margin="2,2,1,2">
                     <!--{TemplateBinding BorderThickness}-->
-                    <TextBox x:Name="PART_EditableTextBox" Padding="-1,0,0,0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                    <TextBox SelectionBrush="#FF3399FF" SelectionOpacity="0.6" x:Name="PART_EditableTextBox" Padding="-1,0,0,0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                              IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" 
                              Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
@@ -292,7 +292,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
 
         <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHover.Background" Color="#1F26A0DA"/>
         <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHover.Border" Color="#A826A0DA"/>
