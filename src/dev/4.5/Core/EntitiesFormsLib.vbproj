@@ -638,16 +638,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Controls\Interfaces\InterfaceDiagram.cd" />
-    <None Include="EntitiesFormsLib.1.0.0.nupkg" />
-    <None Include="EntitiesFormsLib.1.0.1.nupkg" />
-    <None Include="EntitiesFormsLib.2.0.1.nupkg" />
-    <None Include="EntitiesFormsLib.2.0.2.nupkg" />
-    <None Include="EntitiesFormsLib.2.0.3.nupkg" />
-    <None Include="EntitiesFormsLib.2.0.4.nupkg" />
+    <None Include="NuGet\EntitiesFormsLib.1.0.0.nupkg" />
+    <None Include="NuGet\EntitiesFormsLib.1.0.1.nupkg" />
+    <None Include="NuGet\EntitiesFormsLib.2.0.1.nupkg" />
+    <None Include="NuGet\EntitiesFormsLib.2.0.2.nupkg" />
+    <None Include="NuGet\EntitiesFormsLib.2.0.3.nupkg" />
+    <None Include="NuGet\EntitiesFormsLib.2.0.4.nupkg" />
+    <None Include="NuGet\EntitiesFormsLib.2.0.5.nupkg" />
     <None Include="EntitiesFormsLib.vbproj.bak" />
-    <None Include="EntitiesFormsLibCore.1.0.0.nupkg" />
-    <None Include="EntitiesFormsLibCore.1.0.1.nupkg" />
-    <None Include="EntitiesFormsLibCore.2.0.1.nupkg" />
+    <None Include="NuGet\EntitiesFormsLibCore.1.0.0.nupkg" />
+    <None Include="NuGet\EntitiesFormsLibCore.1.0.1.nupkg" />
+    <None Include="NuGet\EntitiesFormsLibCore.2.0.1.nupkg" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

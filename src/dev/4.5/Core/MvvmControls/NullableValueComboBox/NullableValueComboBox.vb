@@ -353,6 +353,13 @@ Public Class NullableValueComboBox
         End Set
     End Property
 
+    Protected Overrides Sub [Select](directed As Boolean, forward As Boolean)
+        MyBase.[Select](directed, forward)
+
+        Me.WpfComboBoxWrapper1.Focus()
+        Me.WpfComboBoxWrapper1.InnerComboBox.Focus()
+    End Sub
+
     Public Property AssignedManagerControl As FormToBusinessClassManager Implements IAssignableFormToBusinessClassManager.AssignedManagerControl
 
     Public Property ProcessingPriority As Integer Implements IAssignableFormToBusinessClassManager.ProcessingPriority
