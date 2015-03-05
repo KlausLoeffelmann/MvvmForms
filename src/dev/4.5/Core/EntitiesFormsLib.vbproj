@@ -514,6 +514,7 @@
     <Compile Include="AuxilliaryTypes\StringValue.vb" />
     <Compile Include="FormatterAndValidatorEngines\INullableValueFormatterEngine.vb" />
     <Compile Include="FormatterAndValidatorEngines\NullableStringValueFormatterEngine.vb" />
+    <Compile Include="MvvmControls\ExtendedTextBox.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\ExtDataGrid.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Column\ColumnType.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Column\IMvvmColumnTemplateExtender.vb" />
@@ -706,6 +707,10 @@
     <Page Include="MvvmControls\NullableValueComboBox\WPFComboBoxWrapper.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
