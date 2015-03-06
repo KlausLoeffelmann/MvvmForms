@@ -647,6 +647,7 @@
     <None Include="NuGet\EntitiesFormsLib.2.0.4.nupkg" />
     <None Include="NuGet\EntitiesFormsLib.2.0.5.nupkg" />
     <None Include="EntitiesFormsLib.vbproj.bak" />
+    <None Include="NuGet\EntitiesFormsLib.2.0.6.nupkg" />
     <None Include="NuGet\EntitiesFormsLibCore.1.0.0.nupkg" />
     <None Include="NuGet\EntitiesFormsLibCore.1.0.1.nupkg" />
     <None Include="NuGet\EntitiesFormsLibCore.2.0.1.nupkg" />

@@ -7,6 +7,7 @@ Imports wpf = System.Windows.Controls
 Imports winforms = System.Windows.Forms
 Imports System.Windows.Controls
 Imports System.Windows
+Imports System.Windows.Forms
 
 ''' <summary>
 ''' DataGrid zur Anzeige und Bearbeiten von Daten welche aus eine ItemsSource stammen.
@@ -14,6 +15,7 @@ Imports System.Windows
 ''' <remarks>Wrapper fuer das WPF-DataGrid. Verwendet intern das WPF-DataGrid (mittels ElementHost) und somit auch die WPF-Columns und WPF-Bindungen.</remarks>
 <Designer(GetType(MvvmDataGridDesigner))>
 Public Class MvvmDataGrid
+    Implements System.ComponentModel.ISupportInitialize
 
     ''' <summary>
     ''' Wahr wenn momentan die Spalten-Reihenfolge geladen wird
@@ -50,76 +52,6 @@ Public Class MvvmDataGrid
     Protected Overrides Sub OnLoad(e As System.EventArgs)
         MyBase.OnLoad(e)
 
-        'Hier wird für das MouseDoubleClickEvent ein Style erstellt um mitzubekommen wenn eine Column ausgewählt wurdeDim style = New Style(GetType(DataGridRow))
-        Dim style = New Style(GetType(DataGridRow))
-        style.Setters.Add(New EventSetter(DataGridRow.MouseDoubleClickEvent, New MouseButtonEventHandler(AddressOf InnerDataGridRow_MouseDoubleClick)))
-        Me.WpfDataGridViewWrapper.InnerDataGridView.RowStyle = style
-
-        If Not MyBase.DesignMode AndAlso Settings IsNot Nothing Then
-            Dim settingsKey = Me.ParentForm.Name & "." & Me.Name
-
-            'Schauen ob es schon Settings gibt (für die aktuelle Instanz), wenn nicht dann anlegen
-            If Not Settings.ContainsKey(settingsKey) Then
-                Settings.Add(settingsKey, New MvvmDataGridSetting())
-            End If
-
-            'Meine eigenen Instanz-Settings laden:
-            _mySettings = Settings(settingsKey)
-
-            'Nur wenn Einstelungen gesetzt worden sind:
-            If _mySettings IsNot Nothing Then
-                If _mySettings.ColumnDefinitions.Count > 0 Then
-                    Dim matchedColumns As New List(Of String)()
-                    Dim converter = New DataGridLengthConverter()
-
-                    Try
-                        _isColumnDisplayIndexUpdating = True
-
-                        For Each column In _mySettings.ColumnDefinitions.OrderBy(Function(c) c.DisplayIndex)
-                            'Hier alle gleichen anpassen
-                            For Each innerColumn In Me.Columns
-
-                                If column.Name = innerColumn.Name Then
-                                    'Die gleiche, abgleichen:
-                                    With innerColumn.WpfColumn
-                                        .DisplayIndex = column.DisplayIndex
-                                        .SortDirection = column.SortDirection
-                                        .SortMemberPath = column.SortMemberPath
-                                        If Not String.IsNullOrEmpty(column.Width) Then .Width = DirectCast(converter.ConvertFromString(column.Width), DataGridLength)
-
-                                    End With
-
-                                    matchedColumns.Add(column.Name)
-                                End If
-
-                            Next
-                        Next
-                    Finally
-                        _isColumnDisplayIndexUpdating = False
-                    End Try
-
-
-                    For Each notFoundColumnName In Me.Columns.Select(Function(c) c.Name).Except(matchedColumns).ToList()
-                        Dim notFoundColumn = Me.Columns.Where(Function(wc) wc.Name = notFoundColumnName).Select(Function(iwc) iwc.WpfColumn).Single()
-
-                        'Spalte ist nun neu drin, also auch wieder in Settings speichern:
-                        _mySettings.ColumnDefinitions.Add(New ColumnDefinition() With {.DisplayIndex = notFoundColumn.DisplayIndex, .Name = notFoundColumnName, .Width = notFoundColumn.Width.ToString()})
-                    Next
-
-                    For Each notFoundColumnName In _mySettings.ColumnDefinitions.Select(Function(c) c.Name).Except(matchedColumns).ToList()
-                        Dim notFoundColumn = _mySettings.ColumnDefinitions.Where(Function(cd) cd.Name = notFoundColumnName).Single()
-
-                        'Spalte ist nicht mehr drin, also auch wieder löschen aus Settings:
-                        _mySettings.ColumnDefinitions.Remove(notFoundColumn)
-                    Next
-                Else
-                    'und alle Spalten einmal einfügen
-                    For Each column In Me.Columns
-                        _mySettings.ColumnDefinitions.Add(New ColumnDefinition() With {.DisplayIndex = column.WpfColumn.DisplayIndex, .Name = column.Name, .Width = column.WpfColumn.Width.ToString()})
-                    Next
-                End If
-            End If
-        End If
     End Sub
 
     Private _mySettings As MvvmDataGridSetting
@@ -333,9 +265,9 @@ Public Class MvvmDataGrid
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Public Event InnerKeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
+    Public Event InnerKeyDown(ByVal sender As Object, ByVal e As System.Windows.Input.KeyEventArgs)
 
-    Protected Overridable Sub OnDataGridKeyDown(item As Object, e As KeyEventArgs)
+    Protected Overridable Sub OnDataGridKeyDown(item As Object, e As System.Windows.Input.KeyEventArgs)
         RaiseEvent InnerKeyDown(item, e)
     End Sub
 
@@ -759,7 +691,7 @@ Public Class MvvmDataGrid
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub InnerDataGridView_KeyDown(sender As Object, e As KeyEventArgs)
+    Private Sub InnerDataGridView_KeyDown(sender As Object, e As System.Windows.Input.KeyEventArgs)
         OnDataGridKeyDown(sender, e)
     End Sub
 
@@ -772,6 +704,110 @@ Public Class MvvmDataGrid
     Private Sub InnerDataGridView_ItemsDeleted(sender As Object, e As ItemsDeletedEventArgs)
         OnItemsDeleted(e)
     End Sub
+
+    Public Sub BeginInit() Implements ISupportInitialize.BeginInit
+
+    End Sub
+
+    Public Sub EndInit() Implements ISupportInitialize.EndInit
+
+    End Sub
+
+    Private _myParent As Form
+
+    ''' <summary>
+    ''' Beim Zeichnen nachschauen ob mittlerweile ein ParentForm gesetzt wurde
+    ''' </summary>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Protected Overrides Sub OnLayout(e As LayoutEventArgs)
+        MyBase.OnLayout(e)
+
+        If Not MyBase.DesignMode AndAlso MyBase.ParentForm IsNot Nothing AndAlso _myParent IsNot MyBase.ParentForm Then
+            _myParent = MyBase.ParentForm
+
+            Initialize()
+
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Initialisiert das MvvmDataGrid und konvertiert die Columns
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub Initialize()
+        'Hier wird für das MouseDoubleClickEvent ein Style erstellt um mitzubekommen wenn eine Column ausgewählt wurdeDim style = New Style(GetType(DataGridRow))
+        Dim style = New Style(GetType(DataGridRow))
+        style.Setters.Add(New EventSetter(DataGridRow.MouseDoubleClickEvent, New MouseButtonEventHandler(AddressOf InnerDataGridRow_MouseDoubleClick)))
+        Me.WpfDataGridViewWrapper.InnerDataGridView.RowStyle = style
+
+        If Not MyBase.DesignMode AndAlso Settings IsNot Nothing Then
+            Dim settingsKey = _myParent.Name & "." & Me.Name
+
+            'Schauen ob es schon Settings gibt (für die aktuelle Instanz), wenn nicht dann anlegen
+            If Not Settings.ContainsKey(settingsKey) Then
+                Settings.Add(settingsKey, New MvvmDataGridSetting())
+            End If
+
+            'Meine eigenen Instanz-Settings laden:
+            _mySettings = Settings(settingsKey)
+
+            'Nur wenn Einstelungen gesetzt worden sind:
+            If _mySettings IsNot Nothing Then
+                If _mySettings.ColumnDefinitions.Count > 0 Then
+                    Dim matchedColumns As New List(Of String)()
+                    Dim converter = New DataGridLengthConverter()
+
+                    Try
+                        _isColumnDisplayIndexUpdating = True
+
+                        For Each column In _mySettings.ColumnDefinitions.OrderBy(Function(c) c.DisplayIndex)
+                            'Hier alle gleichen anpassen
+                            For Each innerColumn In Me.Columns
+
+                                If column.Name = innerColumn.Name Then
+                                    'Die gleiche, abgleichen:
+                                    With innerColumn.WpfColumn
+                                        .DisplayIndex = column.DisplayIndex
+                                        .SortDirection = column.SortDirection
+                                        .SortMemberPath = column.SortMemberPath
+                                        If Not String.IsNullOrEmpty(column.Width) Then .Width = DirectCast(converter.ConvertFromString(column.Width), DataGridLength)
+
+                                    End With
+
+                                    matchedColumns.Add(column.Name)
+                                End If
+
+                            Next
+                        Next
+                    Finally
+                        _isColumnDisplayIndexUpdating = False
+                    End Try
+
+
+                    For Each notFoundColumnName In Me.Columns.Select(Function(c) c.Name).Except(matchedColumns).ToList()
+                        Dim notFoundColumn = Me.Columns.Where(Function(wc) wc.Name = notFoundColumnName).Select(Function(iwc) iwc.WpfColumn).Single()
+
+                        'Spalte ist nun neu drin, also auch wieder in Settings speichern:
+                        _mySettings.ColumnDefinitions.Add(New ColumnDefinition() With {.DisplayIndex = notFoundColumn.DisplayIndex, .Name = notFoundColumnName, .Width = notFoundColumn.Width.ToString()})
+                    Next
+
+                    For Each notFoundColumnName In _mySettings.ColumnDefinitions.Select(Function(c) c.Name).Except(matchedColumns).ToList()
+                        Dim notFoundColumn = _mySettings.ColumnDefinitions.Where(Function(cd) cd.Name = notFoundColumnName).Single()
+
+                        'Spalte ist nicht mehr drin, also auch wieder löschen aus Settings:
+                        _mySettings.ColumnDefinitions.Remove(notFoundColumn)
+                    Next
+                Else
+                    'und alle Spalten einmal einfügen
+                    For Each column In Me.Columns
+                        _mySettings.ColumnDefinitions.Add(New ColumnDefinition() With {.DisplayIndex = column.WpfColumn.DisplayIndex, .Name = column.Name, .Width = column.WpfColumn.Width.ToString()})
+                    Next
+                End If
+            End If
+        End If
+    End Sub
+
 
 End Class
 

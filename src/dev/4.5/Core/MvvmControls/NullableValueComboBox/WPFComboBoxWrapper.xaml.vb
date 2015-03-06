@@ -3,6 +3,17 @@ Imports System.Windows.Controls
 
 Public Class WPFComboBoxWrapper
 
+    Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        'AddHandler Application.Current.Deactivated, AddressOf Application_Deactivated
+
+
+    End Sub
+
 End Class
 
 Public Class InnerComboBox
@@ -23,10 +34,26 @@ Public Class InnerComboBox
 
     End Sub
 
+    ''' <summary>
+    ''' Visuelle Selektion aufheben
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub ClearSelectedText()
+        part_EditableTextBox.ClearSelectedText()
+    End Sub
+
     Protected Overrides Sub OnDropDownClosed(e As EventArgs)
         MyBase.OnDropDownClosed(e)
 
         part_EditableTextBox.ShowSelectedText()
 
+    End Sub
+
+    ''' <summary>
+    ''' Visuelle Selektion wiederherstellen
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub ShowSelectedText()
+        part_EditableTextBox.ShowSelectedText()
     End Sub
 End Class

@@ -8,6 +8,10 @@ Partial Class NullableValueComboBox
         Try
             If disposing AndAlso components IsNot Nothing Then
                 components.Dispose()
+
+
+                RemoveHandler ParentForm.Activated, AddressOf ParentForm_Activated
+                RemoveHandler ParentForm.Deactivate, AddressOf ParentForm_Deactivate
             End If
         Finally
             MyBase.Dispose(disposing)
