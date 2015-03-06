@@ -7,6 +7,12 @@
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         'NullableValueComboBox1.Select()
+
+        Dim x = New CBOTestForm()
+
+        x.MdiParent = Me
+
+        x.Show()
     End Sub
 
     Private Sub NullableValueComboBoxView_Leave(sender As Object, e As EventArgs) Handles MyBase.Leave

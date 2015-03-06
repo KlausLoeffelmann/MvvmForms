@@ -371,50 +371,6 @@ Public Class NullableValueComboBox
 
     Public Property ExceptionBalloonDuration As Integer Implements INullableValueControl.ExceptionBalloonDuration
 
-    ''' <summary>
-    ''' Visuelle Selektion aufheben
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub ParentForm_Deactivate(sender As Object, e As EventArgs)
-        Me.WpfComboBoxWrapper1.InnerComboBox.ClearSelectedText()
-    End Sub
-
-    ''' <summary>
-    ''' Visuelle Selektion wiederherstellen
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub ParentForm_Activated(sender As Object, e As EventArgs)
-        Me.WpfComboBoxWrapper1.InnerComboBox.ShowSelectedText()
-    End Sub
-
-    Private _myParent As Form
-
-    ''' <summary>
-    ''' Beim Zeichnen nachschauen ob mittlerweile ein ParentForm gesetzt wurde
-    ''' </summary>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Protected Overrides Sub OnLayout(e As LayoutEventArgs)
-        MyBase.OnLayout(e)
-
-        If Not MyBase.DesignMode AndAlso MyBase.ParentForm IsNot Nothing AndAlso _myParent IsNot MyBase.ParentForm Then
-
-            If _myParent IsNot Nothing Then
-                RemoveHandler _myParent.Activated, AddressOf ParentForm_Activated
-                RemoveHandler _myParent.Deactivate, AddressOf ParentForm_Deactivate
-            End If
-
-            _myParent = MyBase.ParentForm
-
-            AddHandler _myParent.Activated, AddressOf ParentForm_Activated
-            AddHandler _myParent.Deactivate, AddressOf ParentForm_Deactivate
-
-        End If
-    End Sub
 End Class
 
 ''' <summary>

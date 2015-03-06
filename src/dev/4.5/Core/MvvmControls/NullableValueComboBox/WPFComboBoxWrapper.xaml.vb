@@ -34,13 +34,6 @@ Public Class InnerComboBox
 
     End Sub
 
-    ''' <summary>
-    ''' Visuelle Selektion aufheben
-    ''' </summary>
-    ''' <remarks></remarks>
-    Public Sub ClearSelectedText()
-        part_EditableTextBox.ClearSelectedText()
-    End Sub
 
     Protected Overrides Sub OnDropDownClosed(e As EventArgs)
         MyBase.OnDropDownClosed(e)
@@ -49,11 +42,4 @@ Public Class InnerComboBox
 
     End Sub
 
-    ''' <summary>
-    ''' Visuelle Selektion wiederherstellen
-    ''' </summary>
-    ''' <remarks></remarks>
-    Public Sub ShowSelectedText()
-        part_EditableTextBox.ShowSelectedText()
-    End Sub
 End Class

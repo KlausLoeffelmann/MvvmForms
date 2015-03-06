@@ -32,6 +32,7 @@ Imports System.Windows.Controls
 Imports System.Windows
 Imports System.Windows.Documents
 Imports System.Windows.Media
+Imports System.ComponentModel
 
 <TemplatePart(Name:="PART_SelectionTextBox", Type:=GetType(RichTextBox))>
 Public Class ExtendedTextBox
@@ -64,7 +65,7 @@ Public Class ExtendedTextBox
     Public Sub ShowSelectedText()
         Dim selectedTextBox As RichTextBox = part_SelectionTextBox
 
-        If selectedTextBox IsNot Nothing Then
+        If selectedTextBox IsNot Nothing AndAlso MyBase.IsSelectionActive Then
             selectedTextBox.Document = New FlowDocument()
 
             Dim par = New Paragraph()
@@ -81,6 +82,17 @@ Public Class ExtendedTextBox
         MyBase.OnApplyTemplate()
 
         part_SelectionTextBox = DirectCast(GetTemplateChild("PART_SelectionTextBox"), RichTextBox)
+
+        Dim prop As DependencyPropertyDescriptor = DependencyPropertyDescriptor.FromProperty(TextBox.IsSelectionActiveProperty, GetType(TextBox))
+
+        prop.AddValueChanged(Me, Sub()
+                                     If MyBase.IsSelectionActive Then
+                                         Me.ShowSelectedText()
+                                     Else
+                                         Me.ClearSelectedText()
+                                     End If
+
+                                 End Sub)
     End Sub
 
 End Class

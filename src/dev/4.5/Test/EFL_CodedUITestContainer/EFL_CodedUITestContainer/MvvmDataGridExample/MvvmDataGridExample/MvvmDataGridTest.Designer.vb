@@ -37,7 +37,10 @@ Partial Class MvvmDataGridTest
         Me.MvvmManager1 = New ActiveDevelop.EntitiesFormsLib.MvvmManager(Me.components)
         BuchungenDataGrid_ColumnNr.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_ColumnNr.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
         BuchungenDataGrid_ColumnNr.Width = -1.0R
+        BuchungenDataGrid_ColumnNr.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         BuchungenDataGrid_ColumnNr.Visibility = System.Windows.Visibility.Visible
         BuchungenDataGrid_ColumnNr.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         BuchungenDataGrid_ColumnNr.Header = "Nr."
@@ -53,7 +56,10 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_ColumnNr.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         BuchungenDataGrid_ColumnPrio.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_ColumnPrio.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
         BuchungenDataGrid_ColumnPrio.Width = -1.0R
+        BuchungenDataGrid_ColumnPrio.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         BuchungenDataGrid_ColumnPrio.Visibility = System.Windows.Visibility.Visible
         BuchungenDataGrid_ColumnPrio.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         BuchungenDataGrid_ColumnPrio.Header = "Wichtig"
@@ -67,7 +73,10 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_ColumnPrio.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.CheckBox
         BuchungenDataGrid_ColumnDatum.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_ColumnDatum.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
         BuchungenDataGrid_ColumnDatum.Width = -1.0R
+        BuchungenDataGrid_ColumnDatum.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         BuchungenDataGrid_ColumnDatum.Visibility = System.Windows.Visibility.Visible
         BuchungenDataGrid_ColumnDatum.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         BuchungenDataGrid_ColumnDatum.Header = "Datum"
@@ -82,7 +91,10 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_ColumnDatum.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         BuchungenDataGrid_ColumnText.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_ColumnText.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
         BuchungenDataGrid_ColumnText.Width = -75.0R
+        BuchungenDataGrid_ColumnText.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         BuchungenDataGrid_ColumnText.Visibility = System.Windows.Visibility.Visible
         BuchungenDataGrid_ColumnText.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         BuchungenDataGrid_ColumnText.Header = "Buchungstext"
@@ -96,7 +108,10 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_ColumnText.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
         BuchungenDataGrid_ColumnKostenart.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_ColumnKostenart.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
         BuchungenDataGrid_ColumnKostenart.Width = -1.0R
+        BuchungenDataGrid_ColumnKostenart.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         BuchungenDataGrid_ColumnKostenart.Visibility = System.Windows.Visibility.Visible
         BuchungenDataGrid_ColumnKostenart.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         BuchungenDataGrid_ColumnKostenart.Header = "Kostenarten"
@@ -112,7 +127,10 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_ColumnKostenart.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         BuchungenDataGrid_ColumnAusgaben.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_ColumnAusgaben.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
         BuchungenDataGrid_ColumnAusgaben.Width = -25.0R
+        BuchungenDataGrid_ColumnAusgaben.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         BuchungenDataGrid_ColumnAusgaben.Visibility = System.Windows.Visibility.Visible
         BuchungenDataGrid_ColumnAusgaben.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         BuchungenDataGrid_ColumnAusgaben.Header = "Umsatz (brutto)"
@@ -127,7 +145,10 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_ColumnAusgaben.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         BuchungenDataGrid_ColumnSatz.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_ColumnSatz.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
         BuchungenDataGrid_ColumnSatz.Width = -1.0R
+        BuchungenDataGrid_ColumnSatz.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         BuchungenDataGrid_ColumnSatz.Visibility = System.Windows.Visibility.Visible
         BuchungenDataGrid_ColumnSatz.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         BuchungenDataGrid_ColumnSatz.Header = "Satz"
@@ -142,7 +163,10 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_ColumnSatz.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         BuchungenDataGrid_ColumnEntSteuer.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_ColumnEntSteuer.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
         BuchungenDataGrid_ColumnEntSteuer.Width = -1.0R
+        BuchungenDataGrid_ColumnEntSteuer.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         BuchungenDataGrid_ColumnEntSteuer.Visibility = System.Windows.Visibility.Visible
         BuchungenDataGrid_ColumnEntSteuer.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         BuchungenDataGrid_ColumnEntSteuer.Header = "enth. Steuer"
@@ -157,7 +181,10 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_ColumnEntSteuer.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         BuchungenDataGrid_ColumnBetrag.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_ColumnBetrag.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
         BuchungenDataGrid_ColumnBetrag.Width = -1.0R
+        BuchungenDataGrid_ColumnBetrag.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         BuchungenDataGrid_ColumnBetrag.Visibility = System.Windows.Visibility.Visible
         BuchungenDataGrid_ColumnBetrag.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         BuchungenDataGrid_ColumnBetrag.Header = "Betrag (netto)"
@@ -172,7 +199,10 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_ColumnBetrag.Font = New System.Drawing.Font("Segoe UI", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         BuchungenDataGrid_MvvmDataGridColumn10.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_MvvmDataGridColumn10.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
         BuchungenDataGrid_MvvmDataGridColumn10.Width = -1.0R
+        BuchungenDataGrid_MvvmDataGridColumn10.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         BuchungenDataGrid_MvvmDataGridColumn10.Visibility = System.Windows.Visibility.Visible
         BuchungenDataGrid_MvvmDataGridColumn10.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         BuchungenDataGrid_MvvmDataGridColumn10.Header = "Link"
@@ -184,12 +214,15 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_MvvmDataGridColumn10.ColumnHeaderPadding = New System.Windows.Forms.Padding(0)
         BuchungenDataGrid_MvvmDataGridColumn10.Name = "MvvmDataGridColumn10"
         BuchungenDataGrid_MvvmDataGridColumn10.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.Hyperlink
+        CType(Me.BuchungenDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BuchungenDataGrid
         '
         Me.BuchungenDataGrid.AutoGenerateColumns = False
+        Me.BuchungenDataGrid.CanUserAddRows = False
+        Me.BuchungenDataGrid.CanUserDeleteRows = False
         BuchungenDataGrid_ColumnNr.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(Object)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Nummer", GetType(Integer)))
         BuchungenDataGrid_ColumnNr.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("FontFamily", GetType(System.Windows.Media.FontFamily)), GetType(EFL_CodedUITestContainer.BooleanToBoldConverter), Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Wichtig", GetType(Boolean)))
         Me.BuchungenDataGrid.Columns.Add(BuchungenDataGrid_ColumnNr)
@@ -217,12 +250,15 @@ Partial Class MvvmDataGridTest
         Me.BuchungenDataGrid.CustomColumnTemplateType = Nothing
         Me.BuchungenDataGrid.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         Me.BuchungenDataGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BuchungenDataGrid.EnterAction = Nothing
         Me.MvvmManager1.SetEventBindings(Me.BuchungenDataGrid, Nothing)
+        Me.BuchungenDataGrid.GridLinesVisibility = System.Windows.Controls.DataGridGridLinesVisibility.All
         Me.BuchungenDataGrid.ItemsSource = Nothing
         Me.BuchungenDataGrid.Location = New System.Drawing.Point(0, 0)
         Me.BuchungenDataGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.BuchungenDataGrid.Name = "BuchungenDataGrid"
         Me.BuchungenDataGrid.SelectedItem = Nothing
+        Me.BuchungenDataGrid.SelectionMode = System.Windows.Controls.DataGridSelectionMode.[Single]
         Me.BuchungenDataGrid.Size = New System.Drawing.Size(912, 485)
         Me.BuchungenDataGrid.TabIndex = 0
         '
@@ -249,6 +285,7 @@ Partial Class MvvmDataGridTest
         Me.MvvmManager1.SetEventBindings(Me, Nothing)
         Me.Name = "MvvmDataGridTest"
         Me.Text = "Buchungen"
+        CType(Me.BuchungenDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

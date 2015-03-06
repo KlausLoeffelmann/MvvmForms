@@ -26,8 +26,8 @@ Partial Class NullableValueComboBoxView
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.NullableValueComboBox2 = New ActiveDevelop.EntitiesFormsLib.NullableValueComboBox()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Test1 = New EFL_CodedUITestContainer.Test()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -74,16 +74,6 @@ Partial Class NullableValueComboBoxView
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
         '
-        'TabPage2
-        '
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(354, 270)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "TabPage2"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
         'NullableValueComboBox2
         '
         Me.NullableValueComboBox2.AssignedManagerControl = Nothing
@@ -101,6 +91,16 @@ Partial Class NullableValueComboBoxView
         Me.NullableValueComboBox2.TabIndex = 7
         Me.NullableValueComboBox2.ValueNotFoundBehavior = ActiveDevelop.EntitiesFormsLib.ValueNotFoundBehavior.PreserveInput
         '
+        'TabPage2
+        '
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(354, 270)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "TabPage2"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
         'Test1
         '
         Me.Test1.BackColor = System.Drawing.SystemColors.AppWorkspace
@@ -117,6 +117,7 @@ Partial Class NullableValueComboBoxView
         Me.Controls.Add(Me.Test1)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Button1)
+        Me.IsMdiContainer = True
         Me.Name = "NullableValueComboBoxView"
         Me.Text = "NullableValueComboBoxView"
         Me.TabControl1.ResumeLayout(False)
