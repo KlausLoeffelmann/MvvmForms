@@ -444,17 +444,29 @@ Public Class MvvmManager
     Private Sub WireViewmodelEvents(ds As Object)
         Dim datasource = TryCast(ds, IMvvmViewModel)
         If datasource Is Nothing Then Return
-        AddHandler datasource.RequestMessageDialog, AddressOf RequestMessageDialogEventProc
-        AddHandler datasource.RequestModalView, AddressOf RequestModalView
-        AddHandler datasource.RequestView, AddressOf RequestModalView
+        'Hier werden die Events zum anfordern von Dialogen weak verdrahtet (weak damit die View entsorgt werden auch wenn das VM noch da ist, das Form aber geschlossen wurde)
+        Windows.WeakEventManager(Of IMvvmViewModel, RequestMessageDialogEventArgs).AddHandler(
+                        datasource, "RequestMessageDialog", AddressOf RequestMessageDialogEventProc)
+
+        Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).AddHandler(
+                        datasource, "RequestModalView", AddressOf RequestModalView)
+
+        Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).AddHandler(
+                        datasource, "RequestView", AddressOf RequestModalView)
     End Sub
 
     Private Sub UnwireViewmodelEvents(ds As Object)
         Dim datasource = TryCast(ds, IMvvmViewModel)
         If datasource Is Nothing Then Return
-        RemoveHandler datasource.RequestMessageDialog, AddressOf RequestMessageDialogEventProc
-        RemoveHandler datasource.RequestModalView, AddressOf RequestModalView
-        RemoveHandler datasource.RequestView, AddressOf RequestModalView
+
+        Windows.WeakEventManager(Of IMvvmViewModel, RequestMessageDialogEventArgs).RemoveHandler(
+                        datasource, "RequestMessageDialog", AddressOf RequestMessageDialogEventProc)
+
+        Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).RemoveHandler(
+                        datasource, "RequestModalView", AddressOf RequestModalView)
+
+        Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).RemoveHandler(
+                        datasource, "RequestView", AddressOf RequestModalView)
     End Sub
 
     Private Sub RequestMessageDialogEventProc(sender As Object, e As RequestMessageDialogEventArgs)
