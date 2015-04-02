@@ -2,11 +2,11 @@
 
 Public Class MainForm
 
-    Private Sub QuitToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles QuitToolStripMenuItem.Click
+    Private Sub QuitToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
         Me.Close()
     End Sub
 
-    Private Sub RunBasicUITestToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RunBasicUITestToolStripMenuItem.Click
+    Private Sub RunBasicUITestToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
         Dim userControl As New BasicUITestUserControl
         Me.SuspendLayout()
         userControl.Dock = DockStyle.Fill

@@ -644,6 +644,8 @@
     <None Include="NuGet\EntitiesFormsLib.2.0.1.nupkg" />
     <None Include="NuGet\EntitiesFormsLib.2.0.10.nupkg" />
     <None Include="NuGet\EntitiesFormsLib.2.0.12.nupkg" />
+    <None Include="NuGet\EntitiesFormsLib.2.0.13.nupkg" />
+    <None Include="NuGet\EntitiesFormsLib.2.0.14.nupkg" />
     <None Include="NuGet\EntitiesFormsLib.2.0.2.nupkg" />
     <None Include="NuGet\EntitiesFormsLib.2.0.3.nupkg" />
     <None Include="NuGet\EntitiesFormsLib.2.0.4.nupkg" />

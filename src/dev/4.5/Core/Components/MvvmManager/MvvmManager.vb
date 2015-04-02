@@ -274,6 +274,22 @@ Public Class MvvmManager
         End Set
     End Property
 
+    'Component overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+
+                'Wenn der MvvmManager disposed wird, dann muss der DataContext resetet werden und die Bindungen entsorgt werden
+                Me.DataContext = Nothing
+
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
     ''' <summary>
     ''' Bestimmt oder ermittelt das ViewModel für die Binding an die View. Diese Eigenschaft sollte zur Laufzeit gesetzt werden, und erst nachdem 
     ''' die DataContextType-Eigenschaft zur Entwurfszeit gesetzt wurde und die Zuweisungen ViewModel/View über die PropertyBinding- und 
