@@ -274,16 +274,29 @@ Public Class MvvmManager
         End Set
     End Property
 
+    Private _isDisposing As Boolean = False
+
+    Protected ReadOnly Property IsDisposing As Boolean
+        Get
+            Return _isDisposing
+        End Get
+    End Property
+
+
     'Component overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
+                _isDisposing = True
+                Try
+                    'Wenn der MvvmManager disposed wird, dann muss der DataContext resetet werden und die Bindungen entsorgt werden
+                    Me.DataContext = Nothing
+                    components.Dispose()
 
-                'Wenn der MvvmManager disposed wird, dann muss der DataContext resetet werden und die Bindungen entsorgt werden
-                Me.DataContext = Nothing
-
-                components.Dispose()
+                Finally
+                    _isDisposing = False
+                End Try
             End If
         Finally
             MyBase.Dispose(disposing)
@@ -371,7 +384,9 @@ Public Class MvvmManager
                     End If
                     WireViewmodelEvents(value)
                 Else
-                    myBindingManager.UpdateControlsWithNothing()
+                    If Not Me.IsDisposing Then
+                        myBindingManager.UpdateControlsWithNothing()
+                    End If
 
                     Windows.WeakEventManager(Of BindingManager, MvvmBindingExceptionEventArgs).RemoveHandler(
                         myBindingManager, "MvvmBindingException", AddressOf myBindingManager_MvvmBindingException)
