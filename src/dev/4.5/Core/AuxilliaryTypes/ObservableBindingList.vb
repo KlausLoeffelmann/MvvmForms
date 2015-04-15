@@ -1,10 +1,8 @@
 ﻿Imports System.ComponentModel
 Imports System.Collections.ObjectModel
 Imports System.Threading
-Imports System.Runtime.Serialization
-Imports System.Collections.Specialized
 Imports System.Runtime.CompilerServices
-Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
+Imports ActiveDevelop.MvvmBaseLib
 
 <Serializable, MvvmSystemElement>
 Public Class ObservableBindingList(Of T As New)

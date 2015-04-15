@@ -21,13 +21,13 @@ Public Class BoundSourceItemProxyBase
             If Not Object.Equals(value, mySourceObject) Then
                 'Wenn es das Source-Objekt bereits gab, dann das vorhandene PropertyChanged-Ereignis entfernen.
                 If mySourceObject IsNot Nothing Then
-                    Windows.WeakEventManager(Of INotifyPropertyChanged, PropertyChangedEventArgs).RemoveHandler(
+                    System.Windows.WeakEventManager(Of INotifyPropertyChanged, PropertyChangedEventArgs).RemoveHandler(
                         mySourceObject, "PropertyChanged", AddressOf PropertyChangedEventHandler)
                 End If
 
                 Dim tmpSourceAsINotifyDataErrorInfo = TryCast(mySourceObject, INotifyDataErrorInfo)
                 If tmpSourceAsINotifyDataErrorInfo IsNot Nothing Then
-                    Windows.WeakEventManager(Of INotifyDataErrorInfo, DataErrorsChangedEventArgs).RemoveHandler(
+                    System.Windows.WeakEventManager(Of INotifyDataErrorInfo, DataErrorsChangedEventArgs).RemoveHandler(
                         tmpSourceAsINotifyDataErrorInfo, "ErrorsChanged", AddressOf DataErrorsChangedEventHandler)
                 End If
 
@@ -35,13 +35,13 @@ Public Class BoundSourceItemProxyBase
 
                 'Nur wenn nicht Nothing neu zugewiesen wurde, das PropertyChanged des neuen Objektes wieder binden.
                 If mySourceObject IsNot Nothing Then
-                    Windows.WeakEventManager(Of INotifyPropertyChanged, PropertyChangedEventArgs).AddHandler(
+                    System.Windows.WeakEventManager(Of INotifyPropertyChanged, PropertyChangedEventArgs).AddHandler(
                         mySourceObject, "PropertyChanged", AddressOf PropertyChangedEventHandler)
                 End If
 
                 tmpSourceAsINotifyDataErrorInfo = TryCast(mySourceObject, INotifyDataErrorInfo)
                 If tmpSourceAsINotifyDataErrorInfo IsNot Nothing Then
-                    Windows.WeakEventManager(Of INotifyDataErrorInfo, DataErrorsChangedEventArgs).AddHandler(
+                    System.Windows.WeakEventManager(Of INotifyDataErrorInfo, DataErrorsChangedEventArgs).AddHandler(
                         tmpSourceAsINotifyDataErrorInfo, "ErrorsChanged", AddressOf DataErrorsChangedEventHandler)
                 End If
             End If
@@ -77,13 +77,13 @@ Public Class BoundSourceItemProxyBase
         If Not Me.disposedValue Then
             If disposing Then
                 If mySourceObject IsNot Nothing Then
-                    Windows.WeakEventManager(Of INotifyPropertyChanged, PropertyChangedEventArgs).RemoveHandler(
+                    System.Windows.WeakEventManager(Of INotifyPropertyChanged, PropertyChangedEventArgs).RemoveHandler(
                         mySourceObject, "PropertyChanged", AddressOf PropertyChangedEventHandler)
                 End If
 
                 Dim tmpSourceAsINotifyDataErrorInfo = TryCast(mySourceObject, INotifyDataErrorInfo)
                 If tmpSourceAsINotifyDataErrorInfo IsNot Nothing Then
-                    Windows.WeakEventManager(Of INotifyDataErrorInfo, DataErrorsChangedEventArgs).RemoveHandler(
+                    System.Windows.WeakEventManager(Of INotifyDataErrorInfo, DataErrorsChangedEventArgs).RemoveHandler(
                         tmpSourceAsINotifyDataErrorInfo, "ErrorsChanged", AddressOf DataErrorsChangedEventHandler)
                 End If
 
@@ -120,12 +120,12 @@ Public Class BoundSourceItemProxyBase
 
     Protected Overridable Sub NotifyDetached() Implements INotifyAttachOrDetach(Of BoundSourceItemProxyBase).NotifyDetached
         If mySourceObject IsNot Nothing Then
-            Windows.WeakEventManager(Of INotifyPropertyChanged, PropertyChangedEventArgs).RemoveHandler(
+            System.Windows.WeakEventManager(Of INotifyPropertyChanged, PropertyChangedEventArgs).RemoveHandler(
                 mySourceObject, "PropertyChanged", AddressOf PropertyChangedEventHandler)
 
             Dim tmpSourceAsINotifyDataErrorInfo = TryCast(mySourceObject, INotifyDataErrorInfo)
             If tmpSourceAsINotifyDataErrorInfo IsNot Nothing Then
-                Windows.WeakEventManager(Of INotifyDataErrorInfo, DataErrorsChangedEventArgs).RemoveHandler(
+                System.Windows.WeakEventManager(Of INotifyDataErrorInfo, DataErrorsChangedEventArgs).RemoveHandler(
                     tmpSourceAsINotifyDataErrorInfo, "ErrorsChanged", AddressOf DataErrorsChangedEventHandler)
             End If
         End If

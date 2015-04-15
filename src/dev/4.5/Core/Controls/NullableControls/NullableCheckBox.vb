@@ -143,7 +143,7 @@ Public Class NullableCheckBox
         Get
             If Me.Checked Then
                 Return True
-            ElseIf Me.CheckState = Windows.Forms.CheckState.Indeterminate Then
+            ElseIf Me.CheckState = System.Windows.Forms.CheckState.Indeterminate Then
                 Return Nothing
             Else
                 Return False
@@ -168,7 +168,7 @@ Public Class NullableCheckBox
             'damit OnCheckState gleich Bescheid weiß.
             myValueChangedByPropertySetter = True
             If value Is Nothing Then
-                Me.CheckState = Windows.Forms.CheckState.Indeterminate
+                Me.CheckState = System.Windows.Forms.CheckState.Indeterminate
             Else
                 'Versuch zu casten
                 Dim tmpValue As BooleanEx

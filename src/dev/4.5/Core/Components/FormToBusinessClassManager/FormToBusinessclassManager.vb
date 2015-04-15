@@ -386,9 +386,9 @@ Public Class FormToBusinessClassManager
                                                       'RemoveHandler item.IsDirtyChanged, AddressOf ControlDirtyHandlerInternal
                                                       'RemoveHandler item.RequestValidationFailedReaction, AddressOf FailedValidationHandlerInternal
                                                       'RemoveHandler item.ValueChanged, AddressOf ControlValueChangedInternal
-                                                      Windows.WeakEventManager(Of IIsDirtyChangedAware, IsDirtyChangedEventArgs).RemoveHandler(item, "IsDirtyChanged", AddressOf ControlDirtyHandlerInternal)
-                                                      Windows.WeakEventManager(Of INullableValueControl, RequestValidationFailedReactionEventArgs).RemoveHandler(item, "RequestValidationFailedReaction", AddressOf FailedValidationHandlerInternal)
-                                                      Windows.WeakEventManager(Of INullableValueDataBinding, ValueChangedEventArgs).RemoveHandler(item, "ValueChanged", AddressOf ControlValueChangedInternal)
+                                                      System.Windows.WeakEventManager(Of IIsDirtyChangedAware, IsDirtyChangedEventArgs).RemoveHandler(item, "IsDirtyChanged", AddressOf ControlDirtyHandlerInternal)
+                                                      System.Windows.WeakEventManager(Of INullableValueControl, RequestValidationFailedReactionEventArgs).RemoveHandler(item, "RequestValidationFailedReaction", AddressOf FailedValidationHandlerInternal)
+                                                      System.Windows.WeakEventManager(Of INullableValueDataBinding, ValueChangedEventArgs).RemoveHandler(item, "ValueChanged", AddressOf ControlValueChangedInternal)
                                                   End Sub)
                                           Else
                                               If myHostingForm Is Nothing Then
@@ -402,11 +402,11 @@ Public Class FormToBusinessClassManager
                                           myBindingControls.ForEach(
                                               Sub(item)
                                                   'AddHandler item.IsDirtyChanged, AddressOf ControlDirtyHandlerInternal
-                                                  Windows.WeakEventManager(Of IIsDirtyChangedAware, IsDirtyChangedEventArgs).AddHandler(item, "IsDirtyChanged", AddressOf ControlDirtyHandlerInternal)
+                                                  System.Windows.WeakEventManager(Of IIsDirtyChangedAware, IsDirtyChangedEventArgs).AddHandler(item, "IsDirtyChanged", AddressOf ControlDirtyHandlerInternal)
                                                   'AddHandler item.RequestValidationFailedReaction, AddressOf FailedValidationHandlerInternal
-                                                  Windows.WeakEventManager(Of INullableValueControl, RequestValidationFailedReactionEventArgs).AddHandler(item, "RequestValidationFailedReaction", AddressOf FailedValidationHandlerInternal)
+                                                  System.Windows.WeakEventManager(Of INullableValueControl, RequestValidationFailedReactionEventArgs).AddHandler(item, "RequestValidationFailedReaction", AddressOf FailedValidationHandlerInternal)
                                                   'AddHandler item.ValueChanged, AddressOf ControlValueChangedInternal
-                                                  Windows.WeakEventManager(Of INullableValueDataBinding, ValueChangedEventArgs).AddHandler(item, "ValueChanged", AddressOf ControlValueChangedInternal)
+                                                  System.Windows.WeakEventManager(Of INullableValueDataBinding, ValueChangedEventArgs).AddHandler(item, "ValueChanged", AddressOf ControlValueChangedInternal)
                                               End Sub)
                                       End Sub
 
@@ -453,9 +453,9 @@ Public Class FormToBusinessClassManager
                                                                             'RemoveHandler item.IsDirtyChanged, AddressOf ControlDirtyHandlerInternal
                                                                             'RemoveHandler item.RequestValidationFailedReaction, AddressOf FailedValidationHandlerInternal
                                                                             'RemoveHandler item.ValueChanged, AddressOf ControlValueChangedInternal
-                                                                            Windows.WeakEventManager(Of IIsDirtyChangedAware, IsDirtyChangedEventArgs).RemoveHandler(item, "IsDirtyChanged", AddressOf ControlDirtyHandlerInternal)
-                                                                            Windows.WeakEventManager(Of INullableValueControl, RequestValidationFailedReactionEventArgs).RemoveHandler(item, "RequestValidationFailedReaction", AddressOf FailedValidationHandlerInternal)
-                                                                            Windows.WeakEventManager(Of INullableValueDataBinding, ValueChangedEventArgs).RemoveHandler(item, "ValueChanged", AddressOf ControlValueChangedInternal)
+                                                                            System.Windows.WeakEventManager(Of IIsDirtyChangedAware, IsDirtyChangedEventArgs).RemoveHandler(item, "IsDirtyChanged", AddressOf ControlDirtyHandlerInternal)
+                                                                            System.Windows.WeakEventManager(Of INullableValueControl, RequestValidationFailedReactionEventArgs).RemoveHandler(item, "RequestValidationFailedReaction", AddressOf FailedValidationHandlerInternal)
+                                                                            System.Windows.WeakEventManager(Of INullableValueDataBinding, ValueChangedEventArgs).RemoveHandler(item, "ValueChanged", AddressOf ControlValueChangedInternal)
                                                                         End Sub)
                                           Else
                                               If myHostingUserControl Is Nothing Then
@@ -470,9 +470,9 @@ Public Class FormToBusinessClassManager
                                                                         'AddHandler item.IsDirtyChanged, AddressOf ControlDirtyHandlerInternal
                                                                         'AddHandler item.RequestValidationFailedReaction, AddressOf FailedValidationHandlerInternal
                                                                         'AddHandler item.ValueChanged, AddressOf ControlValueChangedInternal
-                                                                        Windows.WeakEventManager(Of IIsDirtyChangedAware, IsDirtyChangedEventArgs).AddHandler(item, "IsDirtyChanged", AddressOf ControlDirtyHandlerInternal)
-                                                                        Windows.WeakEventManager(Of INullableValueControl, RequestValidationFailedReactionEventArgs).AddHandler(item, "RequestValidationFailedReaction", AddressOf FailedValidationHandlerInternal)
-                                                                        Windows.WeakEventManager(Of INullableValueDataBinding, ValueChangedEventArgs).AddHandler(item, "ValueChanged", AddressOf ControlValueChangedInternal)
+                                                                        System.Windows.WeakEventManager(Of IIsDirtyChangedAware, IsDirtyChangedEventArgs).AddHandler(item, "IsDirtyChanged", AddressOf ControlDirtyHandlerInternal)
+                                                                        System.Windows.WeakEventManager(Of INullableValueControl, RequestValidationFailedReactionEventArgs).AddHandler(item, "RequestValidationFailedReaction", AddressOf FailedValidationHandlerInternal)
+                                                                        System.Windows.WeakEventManager(Of INullableValueDataBinding, ValueChangedEventArgs).AddHandler(item, "ValueChanged", AddressOf ControlValueChangedInternal)
                                                                     End Sub)
                                       End Sub
 

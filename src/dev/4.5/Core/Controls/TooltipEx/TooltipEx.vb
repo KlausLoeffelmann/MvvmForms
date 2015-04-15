@@ -94,7 +94,7 @@ Public Class TooltipEx
 
         Me.TransparencyKey = Color.White
         Me.BackColor = Color.White
-        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.TopMost = True
 
         Me.SetStyle(ControlStyles.ResizeRedraw, True)

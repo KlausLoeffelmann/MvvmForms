@@ -324,7 +324,7 @@ Public Class MvvmManager
             If Not Object.Equals(value, MyBase.DataSource) Then
 
                 If MyBase.DataSource IsNot Nothing Then
-                    UnwireViewmodelEvents(MyBase.DataSource)
+                    'UnwireViewmodelEvents(MyBase.DataSource)
                 End If
 
                 If Me.DirtyStateManagerComponent IsNot Nothing Then
@@ -342,13 +342,13 @@ Public Class MvvmManager
                                                             .MvvmItem = propItem.Data}
                     If myBindingManager IsNot Nothing Then
                         'Hiermit werden auch alle Events entbunden.
-                        Windows.WeakEventManager(Of BindingManager, MvvmBindingExceptionEventArgs).RemoveHandler(
+                        System.Windows.WeakEventManager(Of BindingManager, MvvmBindingExceptionEventArgs).RemoveHandler(
                             myBindingManager, "MvvmBindingException", AddressOf myBindingManager_MvvmBindingException)
 
-                        Windows.WeakEventManager(Of BindingManager, ValueAssigningEventArgs).RemoveHandler(
+                        System.Windows.WeakEventManager(Of BindingManager, ValueAssigningEventArgs).RemoveHandler(
                             myBindingManager, "ValueAssigning", AddressOf myBindingManager_ValueAssigning)
 
-                        Windows.WeakEventManager(Of BindingManager, ValueAssignedEventArgs).RemoveHandler(
+                        System.Windows.WeakEventManager(Of BindingManager, ValueAssignedEventArgs).RemoveHandler(
                             myBindingManager, "ValueAssigned", AddressOf myBindingManager_ValueAssigned)
 
                         myBindingManager.Dispose()
@@ -358,13 +358,13 @@ Public Class MvvmManager
                     myBindingManager = New BindingManager(DirectCast(MyBase.DataSource, INotifyPropertyChanged),
                                                           New BindingItems(list), Me, updateControlsAfterInstatiating:=False)
 
-                    Windows.WeakEventManager(Of BindingManager, MvvmBindingExceptionEventArgs).AddHandler(
+                    System.Windows.WeakEventManager(Of BindingManager, MvvmBindingExceptionEventArgs).AddHandler(
                         myBindingManager, "MvvmBindingException", AddressOf myBindingManager_MvvmBindingException)
 
-                    Windows.WeakEventManager(Of BindingManager, ValueAssigningEventArgs).AddHandler(
+                    System.Windows.WeakEventManager(Of BindingManager, ValueAssigningEventArgs).AddHandler(
                         myBindingManager, "ValueAssigning", AddressOf myBindingManager_ValueAssigning)
 
-                    Windows.WeakEventManager(Of BindingManager, ValueAssignedEventArgs).AddHandler(
+                    System.Windows.WeakEventManager(Of BindingManager, ValueAssignedEventArgs).AddHandler(
                         myBindingManager, "ValueAssigned", AddressOf myBindingManager_ValueAssigned)
 
                     'Das hier müssen wir initial machen und zwar nicht schon durch den Konstruktor des BindingManagers,
@@ -372,6 +372,7 @@ Public Class MvvmManager
                     'ausgelöst würden, nicht hier oben ankommen würden! (Siehe auch letzter optionaler Parameter im
                     'BindingManager-Konstruktor.
                     Dim suspendBindingIfInterfaceImplemented = TryCast(value, IMvvmViewModelNotifyBindingProcess)
+
                     If suspendBindingIfInterfaceImplemented IsNot Nothing Then
                         suspendBindingIfInterfaceImplemented.BeginBinding()
                     End If
@@ -382,19 +383,19 @@ Public Class MvvmManager
                     If suspendBindingIfInterfaceImplemented IsNot Nothing Then
                         suspendBindingIfInterfaceImplemented.EndBinding()
                     End If
-                    WireViewmodelEvents(value)
+                    'WireViewmodelEvents(value)
                 Else
                     If Not Me.IsDisposing Then
                         myBindingManager.UpdateControlsWithNothing()
                     End If
 
-                    Windows.WeakEventManager(Of BindingManager, MvvmBindingExceptionEventArgs).RemoveHandler(
+                    System.Windows.WeakEventManager(Of BindingManager, MvvmBindingExceptionEventArgs).RemoveHandler(
                         myBindingManager, "MvvmBindingException", AddressOf myBindingManager_MvvmBindingException)
 
-                    Windows.WeakEventManager(Of BindingManager, ValueAssigningEventArgs).RemoveHandler(
+                    System.Windows.WeakEventManager(Of BindingManager, ValueAssigningEventArgs).RemoveHandler(
                         myBindingManager, "ValueAssigning", AddressOf myBindingManager_ValueAssigning)
 
-                    Windows.WeakEventManager(Of BindingManager, ValueAssignedEventArgs).RemoveHandler(
+                    System.Windows.WeakEventManager(Of BindingManager, ValueAssignedEventArgs).RemoveHandler(
                         myBindingManager, "ValueAssigned", AddressOf myBindingManager_ValueAssigned)
                     myBindingManager.Dispose()
 
@@ -458,143 +459,143 @@ Public Class MvvmManager
         Set(value As DirtyStateManager)
             If Not Object.Equals(myDirtyStateManagerComponent, value) Then
                 If myDirtyStateManagerComponent IsNot Nothing Then
-                    Windows.WeakEventManager(Of DirtyStateManager, IsDirtyChangedEventArgs).RemoveHandler(
+                    System.Windows.WeakEventManager(Of DirtyStateManager, IsDirtyChangedEventArgs).RemoveHandler(
                         myDirtyStateManagerComponent, "IsDirtyChanged", AddressOf myDirtyStateManagerComponent_IsDirtyChanged)
                 End If
 
                 myDirtyStateManagerComponent = value
 
                 If myDirtyStateManagerComponent IsNot Nothing Then
-                    Windows.WeakEventManager(Of DirtyStateManager, IsDirtyChangedEventArgs).AddHandler(
+                    System.Windows.WeakEventManager(Of DirtyStateManager, IsDirtyChangedEventArgs).AddHandler(
                         myDirtyStateManagerComponent, "IsDirtyChanged", AddressOf myDirtyStateManagerComponent_IsDirtyChanged)
                 End If
             End If
         End Set
     End Property
 
-    Private Sub WireViewmodelEvents(ds As Object)
-        Dim datasource = TryCast(ds, IMvvmViewModel)
-        If datasource Is Nothing Then Return
-        'Hier werden die Events zum anfordern von Dialogen weak verdrahtet (weak damit die View entsorgt werden auch wenn das VM noch da ist, das Form aber geschlossen wurde)
-        Windows.WeakEventManager(Of IMvvmViewModel, RequestMessageDialogEventArgs).AddHandler(
-                        datasource, "RequestMessageDialog", AddressOf RequestMessageDialogEventProc)
+    'Private Sub WireViewmodelEvents(ds As Object)
+    '    Dim datasource = TryCast(ds, IMvvmViewModel)
+    '    If datasource Is Nothing Then Return
+    '    'Hier werden die Events zum anfordern von Dialogen weak verdrahtet (weak damit die View entsorgt werden auch wenn das VM noch da ist, das Form aber geschlossen wurde)
+    '    Windows.WeakEventManager(Of IMvvmViewModel, RequestMessageDialogEventArgs).AddHandler(
+    '                    datasource, "RequestMessageDialog", AddressOf RequestMessageDialogEventProc)
 
-        Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).AddHandler(
-                        datasource, "RequestModalView", AddressOf RequestModalView)
+    '    Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).AddHandler(
+    '                    datasource, "RequestModalView", AddressOf RequestModalView)
 
-        Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).AddHandler(
-                        datasource, "RequestView", AddressOf RequestModalView)
-    End Sub
+    '    Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).AddHandler(
+    '                    datasource, "RequestView", AddressOf RequestModalView)
+    'End Sub
 
-    Private Sub UnwireViewmodelEvents(ds As Object)
-        Dim datasource = TryCast(ds, IMvvmViewModel)
-        If datasource Is Nothing Then Return
+    'Private Sub UnwireViewmodelEvents(ds As Object)
+    '    Dim datasource = TryCast(ds, IMvvmViewModel)
+    '    If datasource Is Nothing Then Return
 
-        Windows.WeakEventManager(Of IMvvmViewModel, RequestMessageDialogEventArgs).RemoveHandler(
-                        datasource, "RequestMessageDialog", AddressOf RequestMessageDialogEventProc)
+    '    Windows.WeakEventManager(Of IMvvmViewModel, RequestMessageDialogEventArgs).RemoveHandler(
+    '                    datasource, "RequestMessageDialog", AddressOf RequestMessageDialogEventProc)
 
-        Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).RemoveHandler(
-                        datasource, "RequestModalView", AddressOf RequestModalView)
+    '    Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).RemoveHandler(
+    '                    datasource, "RequestModalView", AddressOf RequestModalView)
 
-        Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).RemoveHandler(
-                        datasource, "RequestView", AddressOf RequestModalView)
-    End Sub
+    '    Windows.WeakEventManager(Of IMvvmViewModel, RequestViewEventArgs).RemoveHandler(
+    '                    datasource, "RequestView", AddressOf RequestModalView)
+    'End Sub
 
-    Private Sub RequestMessageDialogEventProc(sender As Object, e As RequestMessageDialogEventArgs)
-        Dim mButtons As MessageBoxButtons
-        Select Case e.MessageBoxEventButtons
-            Case MvvMessageBoxEventButtons.OK : mButtons = MessageBoxButtons.OK
-            Case MvvMessageBoxEventButtons.OKCancel : mButtons = MessageBoxButtons.OKCancel
-            Case MvvMessageBoxEventButtons.YesNo : mButtons = MessageBoxButtons.YesNo
-            Case MvvMessageBoxEventButtons.YesNoCancel : mButtons = MessageBoxButtons.YesNoCancel
-        End Select
+    'Private Sub RequestMessageDialogEventProc(sender As Object, e As RequestMessageDialogEventArgs)
+    '    Dim mButtons As MessageBoxButtons
+    '    Select Case e.MessageBoxEventButtons
+    '        Case MvvMessageBoxEventButtons.OK : mButtons = MessageBoxButtons.OK
+    '        Case MvvMessageBoxEventButtons.OKCancel : mButtons = MessageBoxButtons.OKCancel
+    '        Case MvvMessageBoxEventButtons.YesNo : mButtons = MessageBoxButtons.YesNo
+    '        Case MvvMessageBoxEventButtons.YesNoCancel : mButtons = MessageBoxButtons.YesNoCancel
+    '    End Select
 
-        Dim mIcons As MessageBoxIcon
-        Select Case e.MessageBoxIcon
-            Case MvvmMessageBoxIcon.Error : mIcons = MessageBoxIcon.Error
-            Case MvvmMessageBoxIcon.Information : mIcons = MessageBoxIcon.Information
-            Case MvvmMessageBoxIcon.None : mIcons = MessageBoxIcon.None
-            Case MvvmMessageBoxIcon.Stop : mIcons = MessageBoxIcon.Stop
-            Case MvvmMessageBoxIcon.Warning : mIcons = MessageBoxIcon.Warning
-        End Select
+    '    Dim mIcons As MessageBoxIcon
+    '    Select Case e.MessageBoxIcon
+    '        Case MvvmMessageBoxIcon.Error : mIcons = MessageBoxIcon.Error
+    '        Case MvvmMessageBoxIcon.Information : mIcons = MessageBoxIcon.Information
+    '        Case MvvmMessageBoxIcon.None : mIcons = MessageBoxIcon.None
+    '        Case MvvmMessageBoxIcon.Stop : mIcons = MessageBoxIcon.Stop
+    '        Case MvvmMessageBoxIcon.Warning : mIcons = MessageBoxIcon.Warning
+    '    End Select
 
-        Dim mDefaultButton As MessageBoxDefaultButton
-        Select Case e.MessageBoxDefaultButton
-            Case MvvmMessageBoxDefaultButton.Button1 : mDefaultButton = MessageBoxDefaultButton.Button1
-            Case MvvmMessageBoxDefaultButton.Button2 : mDefaultButton = MessageBoxDefaultButton.Button2
-            Case MvvmMessageBoxDefaultButton.Button3 : mDefaultButton = MessageBoxDefaultButton.Button3
-        End Select
+    '    Dim mDefaultButton As MessageBoxDefaultButton
+    '    Select Case e.MessageBoxDefaultButton
+    '        Case MvvmMessageBoxDefaultButton.Button1 : mDefaultButton = MessageBoxDefaultButton.Button1
+    '        Case MvvmMessageBoxDefaultButton.Button2 : mDefaultButton = MessageBoxDefaultButton.Button2
+    '        Case MvvmMessageBoxDefaultButton.Button3 : mDefaultButton = MessageBoxDefaultButton.Button3
+    '    End Select
 
-        Dim rValue = MessageBox.Show(e.MessageBoxText, e.MessageBoxTitle, mButtons, mIcons, mDefaultButton)
+    '    Dim rValue = MessageBox.Show(e.MessageBoxText, e.MessageBoxTitle, mButtons, mIcons, mDefaultButton)
 
-        Select Case rValue
-            Case DialogResult.OK : e.MessageBoxReturnValue = MvvmMessageBoxReturnValue.OK
-            Case DialogResult.Cancel : e.MessageBoxReturnValue = MvvmMessageBoxReturnValue.Cancel
-            Case DialogResult.Yes : e.MessageBoxReturnValue = MvvmMessageBoxReturnValue.Yes
-            Case DialogResult.No : e.MessageBoxReturnValue = MvvmMessageBoxReturnValue.No
-        End Select
-    End Sub
+    '    Select Case rValue
+    '        Case DialogResult.OK : e.MessageBoxReturnValue = MvvmMessageBoxReturnValue.OK
+    '        Case DialogResult.Cancel : e.MessageBoxReturnValue = MvvmMessageBoxReturnValue.Cancel
+    '        Case DialogResult.Yes : e.MessageBoxReturnValue = MvvmMessageBoxReturnValue.Yes
+    '        Case DialogResult.No : e.MessageBoxReturnValue = MvvmMessageBoxReturnValue.No
+    '    End Select
+    'End Sub
 
-    Private Sub RequestModalView(sender As Object, e As RequestViewEventArgs)
-        Dim modalableViewModel = DirectCast(e.ViewModel, IMvvmViewModelForModalDialog)
-        If modalableViewModel IsNot Nothing Then
-            Dim winFormsForm = GetViewFromViewModel(modalableViewModel)
-            DirectCast(winFormsForm, IWinFormsMvvmView).GetMvvmController.DataContext = modalableViewModel
+    'Private Sub RequestModalView(sender As Object, e As RequestViewEventArgs)
+    '    Dim modalableViewModel = DirectCast(e.ViewModel, IMvvmViewModelForModalDialog)
+    '    If modalableViewModel IsNot Nothing Then
+    '        Dim winFormsForm = GetViewFromViewModel(modalableViewModel)
+    '        DirectCast(winFormsForm, IWinFormsMvvmView).GetMvvmController.DataContext = modalableViewModel
 
-            Dim rValue = winFormsForm.ShowDialog()
+    '        Dim rValue = winFormsForm.ShowDialog()
 
-            Select Case rValue
-                Case DialogResult.OK : e.DialogResult = MvvmMessageBoxReturnValue.OK
-                Case DialogResult.Cancel : e.DialogResult = MvvmMessageBoxReturnValue.Cancel
-                Case DialogResult.Yes : e.DialogResult = MvvmMessageBoxReturnValue.Yes
-                Case DialogResult.No : e.DialogResult = MvvmMessageBoxReturnValue.No
-            End Select
-        End If
+    '        Select Case rValue
+    '            Case DialogResult.OK : e.DialogResult = MvvmMessageBoxReturnValue.OK
+    '            Case DialogResult.Cancel : e.DialogResult = MvvmMessageBoxReturnValue.Cancel
+    '            Case DialogResult.Yes : e.DialogResult = MvvmMessageBoxReturnValue.Yes
+    '            Case DialogResult.No : e.DialogResult = MvvmMessageBoxReturnValue.No
+    '        End Select
+    '    End If
 
-    End Sub
+    'End Sub
 
-    Private Sub RequestView(sender As Object, e As RequestViewEventArgs)
-        Dim modalableViewModel = DirectCast(sender, IMvvmViewModelForModalDialog)
-        If modalableViewModel IsNot Nothing Then
-            Dim winFormsForm = GetViewFromViewModel(modalableViewModel)
-            DirectCast(winFormsForm, IWinFormsMvvmView).GetMvvmController.DataContext = modalableViewModel
+    'Private Sub RequestView(sender As Object, e As RequestViewEventArgs)
+    '    Dim modalableViewModel = DirectCast(sender, IMvvmViewModelForModalDialog)
+    '    If modalableViewModel IsNot Nothing Then
+    '        Dim winFormsForm = GetViewFromViewModel(modalableViewModel)
+    '        DirectCast(winFormsForm, IWinFormsMvvmView).GetMvvmController.DataContext = modalableViewModel
 
-            winFormsForm.Show()
-        End If
-    End Sub
+    '        winFormsForm.Show()
+    '    End If
+    'End Sub
 
-    Private Function GetViewFromViewModel(viewModel As IMvvmViewModel) As Form
+    'Private Function GetViewFromViewModel(viewModel As IMvvmViewModel) As Form
 
-        If viewModel Is Nothing Then
-            Throw New ArgumentException("The viewmodel must not be null (nothing in VB) to retrieve its view. Please, pass in a valid instance implementing IMvvmViewModel. Thanks.")
-        End If
+    '    If viewModel Is Nothing Then
+    '        Throw New ArgumentException("The viewmodel must not be null (nothing in VB) to retrieve its view. Please, pass in a valid instance implementing IMvvmViewModel. Thanks.")
+    '    End If
 
-        Dim attItems = (From attItem In viewModel.GetType.GetCustomAttributes(True)
-                        Where GetType(MvvmViewAttribute).IsAssignableFrom(attItem.GetType) AndAlso
-                         DirectCast(attItem, MvvmViewAttribute).ContextGuid = Me.CurrentContextGuid
-                        Select DirectCast(attItem, MvvmViewAttribute)).ToList
+    '    Dim attItems = (From attItem In viewModel.GetType.GetCustomAttributes(True)
+    '                    Where GetType(MvvmViewAttribute).IsAssignableFrom(attItem.GetType) AndAlso
+    '                     DirectCast(attItem, MvvmViewAttribute).ContextGuid = Me.CurrentContextGuid
+    '                    Select DirectCast(attItem, MvvmViewAttribute)).ToList
 
-        If attItems IsNot Nothing Then
-            If attItems.Count > 0 And attItems.Count < 2 Then
-                'An dieser Stelle dürfte nur noch ein Item übrig bleiben, sonst wurden doppelte ContextGuids vergeben!
+    '    If attItems IsNot Nothing Then
+    '        If attItems.Count > 0 And attItems.Count < 2 Then
+    '            'An dieser Stelle dürfte nur noch ein Item übrig bleiben, sonst wurden doppelte ContextGuids vergeben!
 
-                Dim attItem = attItems(0)
-                'TODO: Feststellen, ob es ein UserControl ist, und im Bedarfsfall ein Wrapper-Form zurückliefern.
-                Dim formType = Type.GetType(attItem.ViewTypeName & ", " & attItem.Assemblyname)
-                Dim formToReturn = DirectCast(Activator.CreateInstance(formType), Form)
-                Return formToReturn
-            Else
-                If attItems.Count > 1 Then
-                    Throw New ArgumentException("More than one View-ViewModel assignment for one ContextGuid has been detected. Please check the MvvmViewAttribute assignments for your ViewModel Classes.")
-                End If
-            End If
-        Else
-            Throw New ArgumentException("The View for the ViewModel of type " & viewModel.GetType.ToString & " could not be found.")
-        End If
+    '            Dim attItem = attItems(0)
+    '            'TODO: Feststellen, ob es ein UserControl ist, und im Bedarfsfall ein Wrapper-Form zurückliefern.
+    '            Dim formType = Type.GetType(attItem.ViewTypeName & ", " & attItem.Assemblyname)
+    '            Dim formToReturn = DirectCast(Activator.CreateInstance(formType), Form)
+    '            Return formToReturn
+    '        Else
+    '            If attItems.Count > 1 Then
+    '                Throw New ArgumentException("More than one View-ViewModel assignment for one ContextGuid has been detected. Please check the MvvmViewAttribute assignments for your ViewModel Classes.")
+    '            End If
+    '        End If
+    '    Else
+    '        Throw New ArgumentException("The View for the ViewModel of type " & viewModel.GetType.ToString & " could not be found.")
+    '    End If
 
-        Throw New ArgumentException("GetViewFromViewModel could not retrieve a proper result.")
+    '    Throw New ArgumentException("GetViewFromViewModel could not retrieve a proper result.")
 
-    End Function
+    'End Function
 
     ''' <summary>
     ''' Für zukünftige Erweiterungen.

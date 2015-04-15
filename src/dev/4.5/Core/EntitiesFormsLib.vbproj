@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -11,7 +11,7 @@
     <AssemblyName>ActiveDevelop.EntitiesFormsLib</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>On</OptionStrict>
@@ -237,7 +237,6 @@
     <Compile Include="Components\MvvmManager\ClassesAndStructures\INotifyEditState.vb" />
     <Compile Include="Components\MvvmManager\ClassesAndStructures\IWinFormsMvvmView.vb" />
     <Compile Include="Components\MvvmManager\ClassesAndStructures\MvvmBindingItem.vb" />
-    <Compile Include="Components\MvvmManager\ClassesAndStructures\MvvmValidatableValue.vb" />
     <Compile Include="Components\MvvmManager\ClassesAndStructures\ViewToViewmodelAssignments.vb" />
     <Compile Include="Components\MvvmManager\ClassesAndStructures\VisibilityAwareItemCollection.vb" />
     <Compile Include="Components\MvvmManager\DefaultConverters\BooleanToBooleanExConverter.vb" />
@@ -723,12 +722,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EFLViewModelBase\EFLViewModelBase.vbproj">
-      <Project>{16e0a6a1-bce3-4d4c-bb6a-367066f09afa}</Project>
-      <Name>EFLViewModelBase</Name>
+    <ProjectReference Include="..\MvvmBase\MvvmBaseLib.csproj">
+      <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
+      <Name>MvvmBaseLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>

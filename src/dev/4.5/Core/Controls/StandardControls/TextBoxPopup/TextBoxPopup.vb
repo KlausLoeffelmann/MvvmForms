@@ -121,10 +121,10 @@ Public Class TextBoxPopup
         '        Debug.Print(Me.ControlTypeAndNameString & " :PopupContent Instance created!")
         '#End If
 
-        Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
                 myPopupControl, "SizeChanged", AddressOf PopupSizedChangedHandler)
 
-        Windows.WeakEventManager(Of ResizablePopup, PopupOpeningEventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of ResizablePopup, PopupOpeningEventArgs).AddHandler(
             Me.PopupControl, "PopupOpening", Sub(sender As Object, e As PopupOpeningEventArgs)
                                                  If e.Cancel Then
                                                      OnPopupOpening(e)
@@ -134,24 +134,24 @@ Public Class TextBoxPopup
                                                  myIsOpening = True
                                                  OnPopupOpening(e)
                                              End Sub)
-        Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
             Me.PopupControl, "PopupOpened", Sub(sender As Object, e As EventArgs)
                                                 myIsOpening = False
                                                 OnPopupOpened(e)
                                             End Sub)
 
-        Windows.WeakEventManager(Of ResizablePopup, PopupClosingEventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of ResizablePopup, PopupClosingEventArgs).AddHandler(
             Me.PopupControl, "PopupClosing", Sub(sender As Object, e As PopupClosingEventArgs)
                                                  OnPopupClosing(e)
                                                  ClosePopupInternally(e)
                                              End Sub)
 
-        Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
             Me.PopupControl, "PopupClosed", Sub(sender As Object, e As EventArgs)
                                                 OnPopupClosed(e)
                                             End Sub)
 
-        Windows.WeakEventManager(Of ResizablePopup, PopupCloseRequestedEventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of ResizablePopup, PopupCloseRequestedEventArgs).AddHandler(
             Me.PopupControl, "PopupCloseRequested",
             Sub(sender As Object, e As PopupCloseRequestedEventArgs)
 #If DEBUG Then

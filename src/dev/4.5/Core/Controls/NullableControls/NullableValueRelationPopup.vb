@@ -199,7 +199,7 @@ Public Class NullableValueRelationPopup
         Me.PopupControl.MinimumSize = New Size(200, 160)
         Me.PopupControl.ValueTextAlignment = StringAlignment.Center
 
-        Windows.WeakEventManager(Of TextBox, EventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of TextBox, EventArgs).AddHandler(
                 Me.TextBoxPart, "TextChanged",
             Sub(sender As Object, e As EventArgs)
                 'If Me.TextBoxPart.Text = Me.NullValueString Then
@@ -237,14 +237,14 @@ Public Class NullableValueRelationPopup
             End Sub)
 
         'SetColumnSchema hochleiten von BindableDataGridView
-        Windows.WeakEventManager(Of BindableDataGridView, GetColumnSchemaEventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of BindableDataGridView, GetColumnSchemaEventArgs).AddHandler(
             Me.myDataGridForm.BindableDataGridView, "GetColumnSchema",
             Sub(sender As Object, e As GetColumnSchemaEventArgs)
                 OnGetColumnSchema(e)
             End Sub)
 
         'ResetButton behandeln: Hier setzen wir den Wert des Controls auf Null.
-        Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
             Me.PopupControl, "ResetButtonClick",
             Sub(sender As Object, e As EventArgs)
                 If Me.PreserveInput Then
@@ -266,7 +266,7 @@ Public Class NullableValueRelationPopup
         'Wir binden weak an der Stelle, da die Quellen für das Event möglicherweise
         'weit außerhalb des Forms liegen können, und verhindern könnten,
         'dass das NullableValueRealtionPopup entsorgt wird.
-        Windows.WeakEventManager(Of BindableDataGridView, DataGridViewCellEventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of BindableDataGridView, DataGridViewCellEventArgs).AddHandler(
                 Me.myDataGridForm.BindableDataGridView, "CellClick",
                     Sub(sender As Object, e As DataGridViewCellEventArgs)
                         Me.ClosePopup(New PopupClosingEventArgs(PopupClosingReason.ContentClicked) With {.Caused = PopupCloseCause.ExternalByUser})
@@ -277,7 +277,7 @@ Public Class NullableValueRelationPopup
         'Wir binden weak an der Stelle, da die Quellen für das Event möglicherweise
         'weit außerhalb des Forms liegen können, und verhindern könnten,
         'dass das NullableValueRealtionPopup entsorgt wird.
-        Windows.WeakEventManager(Of BindableDataGridView, UnassignableValueDetectedEventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of BindableDataGridView, UnassignableValueDetectedEventArgs).AddHandler(
             Me.myDataGridForm.BindableDataGridView,
             "UnassignableValueDetected",
             Sub(sender As Object, e As UnassignableValueDetectedEventArgs)
@@ -288,7 +288,7 @@ Public Class NullableValueRelationPopup
         'Wir binden weak an der Stelle, da die Quellen für das ValueChange möglicherweise
         'weit außerhalb des Forms liegen können, und verhindern könnten,
         'dass das NullableValueRealtionPopup entsorgt wird.
-        Windows.WeakEventManager(Of BindableDataGridView, EventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of BindableDataGridView, EventArgs).AddHandler(
             Me.myDataGridForm.BindableDataGridView,
             "SelectedValueChanged",
                         Sub(sender As Object, e As EventArgs)
@@ -307,7 +307,7 @@ Public Class NullableValueRelationPopup
                             End If
                         End Sub)
 
-        Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
+        System.Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
             Me.PopupControl, "ValueTextChanged",
             Sub(sender, e)
                 OnValueTextChanged(EventArgs.Empty)
@@ -2328,11 +2328,11 @@ Public Class NullableValueRelationPopup
             If value Xor myReverseTextOverflowBehaviour Then
                 myReverseTextOverflowBehaviour = value
                 If value Then
-                    If Me.RightToLeft <> Windows.Forms.RightToLeft.Yes Then
-                        Me.TextBoxPart.RightToLeft = Windows.Forms.RightToLeft.Yes
+                    If Me.RightToLeft <> System.Windows.Forms.RightToLeft.Yes Then
+                        Me.TextBoxPart.RightToLeft = System.Windows.Forms.RightToLeft.Yes
                         Me.TextBoxPart.TextAlign = HorizontalAlignment.Right
                     Else
-                        Me.TextBoxPart.RightToLeft = Windows.Forms.RightToLeft.Yes
+                        Me.TextBoxPart.RightToLeft = System.Windows.Forms.RightToLeft.Yes
                         Me.TextBoxPart.TextAlign = HorizontalAlignment.Right
                     End If
                 End If

@@ -7,7 +7,7 @@ Public Class WritableTextBox
 
     Sub New()
         Me.Multiline = True
-        Me.ScrollBars = Windows.Forms.ScrollBars.Vertical
+        Me.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         AddHandler WritableTextBox.GlobalWriteOccured, Sub(sender, e)
                                                            If ConsumeGlobalWrite Then
                                                                Write(e.Text)

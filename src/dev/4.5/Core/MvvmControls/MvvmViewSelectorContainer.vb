@@ -60,7 +60,7 @@ Public Class MvvmViewSelectorContainer
 
         'Untersuchen, ob es ein entsprechendes Attribut über der neuen Klasse gibt.
         Dim vAtt = DirectCast((From atItem In DataContext.GetType.GetCustomAttributes(True)
-                    Where GetType(MvvmViewAttribute).IsAssignableFrom(atItem.GetType)).FirstOrDefault, MvvmViewAttribute)
+                               Where GetType(MvvmViewAttribute).IsAssignableFrom(atItem.GetType)).FirstOrDefault, MvvmViewAttribute)
 
         If vAtt Is Nothing Then
             Throw New MissingViewAttributeException("Dem zugewiesenen ViewModel ist kein MvvmViewAttribute zugeordnet, deswegen kann keine View zur Anzeige gefunden werden." & vbNewLine &

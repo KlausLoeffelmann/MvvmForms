@@ -165,7 +165,7 @@ Public Class AnimationFormBase
         ' Add any initialization after the InitializeComponent() call.
         Me.TransitionEffect = TransitionEffects.Circle
         Me.Speed = 500
-        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.AllowClosing = True
         Me.AllowVisible = False
     End Sub

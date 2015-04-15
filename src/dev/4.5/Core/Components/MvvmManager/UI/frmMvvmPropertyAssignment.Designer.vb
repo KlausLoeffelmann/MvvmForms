@@ -415,5 +415,5 @@ End Sub
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents nvrConverterParameter As ActiveDevelop.EntitiesFormsLib.NullableTextValue
     Friend WithEvents nvrConverters As ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup
-    Friend WithEvents Label1 As Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

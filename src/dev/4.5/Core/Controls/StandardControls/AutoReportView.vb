@@ -20,7 +20,7 @@ Public Class AutoReportView
     Sub New()
         MyBase.New()
         'Auf Detailansicht umschalten
-        Me.View = Windows.Forms.View.Details
+        Me.View = System.Windows.Forms.View.Details
         'Trennlinien zwischen den Zeilen einschalten
         Me.GridLines = True
         'Bei Fokusverlust Markierung dennoch anzeigen

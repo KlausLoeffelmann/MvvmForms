@@ -383,7 +383,7 @@ Public Class MvvmDataGridColumn
     ''' <param name="dataGridColumn"></param>
     ''' <remarks></remarks>
     Private Sub MapCommonColumnProperties(dataGridColumn As DataGridColumn)
-        dataGridColumn.HeaderStyle = New Windows.Style()
+        dataGridColumn.HeaderStyle = New System.Windows.Style()
 
 
         If Me.ColumnHeaderFont IsNot Nothing Then
@@ -409,9 +409,9 @@ Public Class MvvmDataGridColumn
         Dim colorBrush As SolidColorBrush
 
         'Neue Styles anlegen
-        dataGridBoundColumn.ElementStyle = New Windows.Style()
-        dataGridBoundColumn.EditingElementStyle = New Windows.Style()
-        dataGridBoundColumn.CellStyle = New Windows.Style()
+        dataGridBoundColumn.ElementStyle = New System.Windows.Style()
+        dataGridBoundColumn.EditingElementStyle = New System.Windows.Style()
+        dataGridBoundColumn.CellStyle = New System.Windows.Style()
 
         'Background:
         If Me.BackgroundColor <> System.Drawing.Color.Empty Then
@@ -530,7 +530,7 @@ Public Class MvvmDataGridColumn
 
     Public Const FontWeightProperty As String = "FontWeight"
 
-    Private _fontStyle As Windows.FontStyle
+    Private _fontStyle As System.Windows.FontStyle
     ''' <summary>
     ''' FontStyle
     ''' </summary>
@@ -538,11 +538,11 @@ Public Class MvvmDataGridColumn
     ''' <returns></returns>
     ''' <remarks>Durch den MvvmManager bindbare View-Property</remarks>
     <Browsable(False)>
-    Public Property FontStyle As Windows.FontStyle
+    Public Property FontStyle As System.Windows.FontStyle
         Get
             Return _fontStyle
         End Get
-        Set(ByVal value As Windows.FontStyle)
+        Set(ByVal value As System.Windows.FontStyle)
             If Not Object.Equals(_fontStyle, value) Then
                 _fontStyle = value
                 OnFontStyleChanged(EventArgs.Empty)
@@ -643,7 +643,7 @@ Public Class MvvmDataGridColumn
     End Sub
 
 
-    Private _visibility As Visibility = Windows.Visibility.Visible
+    Private _visibility As Visibility = System.Windows.Visibility.Visible
     ''' <summary>
     ''' Sichtbarkeit der Spalte
     ''' </summary>
@@ -837,7 +837,7 @@ Public Class MvvmDataGridColumn
         RaiseEvent ForegroundColorChanged(Me, e)
     End Sub
 
-    Private _horizontalAlignment As System.Windows.HorizontalAlignment = Windows.HorizontalAlignment.Stretch
+    Private _horizontalAlignment As System.Windows.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
     ''' <summary>
     ''' Hor. Ausrichtung
     ''' </summary>

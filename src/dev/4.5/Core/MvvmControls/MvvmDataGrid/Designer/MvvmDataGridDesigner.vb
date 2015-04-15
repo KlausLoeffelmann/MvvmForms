@@ -85,7 +85,7 @@ Public Class MvvmDataGridDesigner
                 myReturnValue = frmTemp.DialogResultValue           ' falls wir den Dialog später abbrechen, soll das der Wert sein, den wir zurückgeben wollen
             End If
             frmTemp.ShowDialog()
-            If frmTemp.DialogResult = Windows.Forms.DialogResult.OK Then
+            If frmTemp.DialogResult = System.Windows.Forms.DialogResult.OK Then
                 myReturnValue = frmTemp.DialogResultValue
             End If
         End Using

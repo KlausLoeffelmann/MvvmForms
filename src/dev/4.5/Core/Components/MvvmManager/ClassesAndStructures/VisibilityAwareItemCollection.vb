@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Collections.ObjectModel
-Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
+Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 ''' <summary>
 ''' Definiert eine Schnittstelle für Elemente, die mithilfe einer VisibilityAwareItemCollection als Datenquelle die Sichtbarkeit ihrer 
@@ -300,7 +300,6 @@ Public Class VisibilityAwareItemCollectionInternal(Of T As {New, INotifyProperty
         Return Nothing
     End Function
 
-    <MvvmViewModelInclude>
     Public Property FilteredItems As ObservableBindingList(Of T)
         Get
             Return myFilteredCollection

@@ -184,8 +184,8 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     ''' <returns></returns>
     ''' <remarks>Überschreiben Sie diese Methode, wenn Sie das BorderStyle-Verhalten 
     ''' beim Instanziieren des Steuerelementes beeinflussen wollen.</remarks>
-    Protected Overridable Function DefaultBorderStyle() As Windows.Forms.BorderStyle
-        Return Windows.Forms.BorderStyle.FixedSingle
+    Protected Overridable Function DefaultBorderStyle() As System.Windows.Forms.BorderStyle
+        Return System.Windows.Forms.BorderStyle.FixedSingle
     End Function
 
 #Region "Layout-and Style-Handling"
@@ -303,9 +303,9 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
             tmpRec.Inflate(-offset, -offset)
         Else
             Dim offset As Integer = 0
-            If Me.Borderstyle = Windows.Forms.BorderStyle.FixedSingle Then
+            If Me.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle Then
                 offset = 1
-            ElseIf Me.Borderstyle = Windows.Forms.BorderStyle.Fixed3D Then
+            ElseIf Me.Borderstyle = System.Windows.Forms.BorderStyle.Fixed3D Then
                 offset = 0
             Else
                 offset = 1
@@ -1676,11 +1676,11 @@ SkipToEnd:
             If value Xor myReverseTextOverflowBehaviour Then
                 myReverseTextOverflowBehaviour = value
                 If value Then
-                    If Me.RightToLeft <> Windows.Forms.RightToLeft.Yes Then
-                        Me.TextBoxPart.RightToLeft = Windows.Forms.RightToLeft.Yes
+                    If Me.RightToLeft <> System.Windows.Forms.RightToLeft.Yes Then
+                        Me.TextBoxPart.RightToLeft = System.Windows.Forms.RightToLeft.Yes
                         Me.TextAlign = HorizontalAlignment.Right
                     Else
-                        Me.TextBoxPart.RightToLeft = Windows.Forms.RightToLeft.No
+                        Me.TextBoxPart.RightToLeft = System.Windows.Forms.RightToLeft.No
                         Me.TextAlign = HorizontalAlignment.Left
                     End If
                 End If

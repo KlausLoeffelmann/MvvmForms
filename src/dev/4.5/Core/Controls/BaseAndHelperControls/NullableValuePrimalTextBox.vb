@@ -22,7 +22,7 @@ Public Class NullableValuePrimalTextBox
 
     Protected Overridable Sub InitializeComponentInternal() Implements INullableValuePrimalControl.InitializeComponentInternal
         Me.Text = ""
-        Me.BorderStyle = Windows.Forms.BorderStyle.None
+        Me.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.AutoSize = False
     End Sub
 

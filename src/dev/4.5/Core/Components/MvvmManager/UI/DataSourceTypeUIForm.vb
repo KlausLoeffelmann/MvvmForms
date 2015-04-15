@@ -7,6 +7,7 @@ Imports System.Data.Objects.DataClasses
 Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
 Imports System.Threading.Tasks
 Imports System.Drawing
+Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 Public Class DataSourceTypeUIForm
 
@@ -172,13 +173,13 @@ Public Class DataSourceTypeUIForm
             Me.DialogResultValue = DirectCast(DataSourceTreeView.SelectedNode.Tag, Type)
         End If
 
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Close()
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         myDialogResultValue = Nothing
-        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Close()
     End Sub
 

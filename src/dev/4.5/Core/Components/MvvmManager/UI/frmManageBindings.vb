@@ -60,7 +60,7 @@ Public Class frmManageBindings
     End Sub
 
     Private Sub PlaceMvvmAssigningDialog()
-        myMvvmPropAssignmentForm.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+        myMvvmPropAssignmentForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         myMvvmPropAssignmentForm.TopLevel = False
         myMvvmPropAssignmentForm.Location = New Point(0, 0)
         myMvvmPropAssignmentForm.Dock = DockStyle.Fill
@@ -167,7 +167,7 @@ Public Class frmManageBindings
             Dim dr = MessageBox.Show("Möchten Sie Ihre Änderungen speichern, befor Sie die nächste" & vbNewLine &
                             "Eigenschaftenzuweisung bearbeiten?", "Änderungen speichern?",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If dr = Windows.Forms.DialogResult.Yes Then
+            If dr = System.Windows.Forms.DialogResult.Yes Then
                 myMvvmPropAssignmentForm.CommitChanges()
             Else
                 myMvvmPropAssignmentForm.IgnoreChanges()

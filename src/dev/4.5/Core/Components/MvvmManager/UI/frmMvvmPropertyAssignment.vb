@@ -192,7 +192,7 @@ Public Class frmMvvmPropertyAssignment
                                 "You should consider to either use matching types for the properties or implement a type converter," & vbNewLine &
                                 "to equalize the types, which you can later choose here from the Converter combobox.",
                                 "Types do not match:", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
-                    If dr = Windows.Forms.DialogResult.Cancel Then
+                    If dr = System.Windows.Forms.DialogResult.Cancel Then
                         Exit Sub
                     End If
 skipWarning:
@@ -392,13 +392,13 @@ skipWarning:
     Friend Property IsDirty As Boolean
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
 
     Protected Overrides Sub OnClosing(e As CancelEventArgs)
         MyBase.OnClosing(e)
-        If Me.DialogResult <> Windows.Forms.DialogResult.OK Then
+        If Me.DialogResult <> System.Windows.Forms.DialogResult.OK Then
             'TODO: Fill out!
         End If
     End Sub

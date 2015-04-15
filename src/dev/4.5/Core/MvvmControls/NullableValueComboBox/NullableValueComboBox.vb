@@ -185,11 +185,11 @@ Public Class NullableValueComboBox
 
 
 
-    Private Sub InnerComboBox_SelectionChanged(sender As Object, e As Windows.Controls.SelectionChangedEventArgs)
+    Private Sub InnerComboBox_SelectionChanged(sender As Object, e As System.Windows.Controls.SelectionChangedEventArgs)
 
         If Me.SelectedItem IsNot Nothing Then
             OnSelectedItemChanged(e)
-        ElseIf Not (Me.ValueNotFoundBehavior = ValueNotFoundBehavior.KeepFocus OrElse _
+        ElseIf Not (Me.ValueNotFoundBehavior = ValueNotFoundBehavior.KeepFocus OrElse
                       Me.ValueNotFoundBehavior = ValueNotFoundBehavior.SelectFirst) Then
             'Wenn SelctedItem Nothing ist und ein unbestimmter Wert nicht angegeben werden darf, darf das PropChanged nicht geworfen werden (da der Benutzer gezwungen wird ein validen Wert später beim 
             'Leave auszuwählen bzw automatisch ausgewählt)

@@ -21,7 +21,7 @@ Public Class NullableValuePrimalUpDownControl
 
     Protected Overridable Sub InitializeComponentInternal() Implements INullableValuePrimalControl.InitializeComponentInternal
         Me.Text = ""
-        Me.Borderstyle = Windows.Forms.BorderStyle.None
+        Me.Borderstyle = System.Windows.Forms.BorderStyle.None
         Me.AutoSize = False
     End Sub
 

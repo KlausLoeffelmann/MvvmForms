@@ -43,7 +43,7 @@ Public Class ExtDataGrid
         RaiseEvent ItemsDeleted(Me, New ItemsDeletedEventArgs() With {.DeletedItems = items})
     End Sub
 
-    Protected Overrides Sub OnExecutedDelete(e As Windows.Input.ExecutedRoutedEventArgs)
+    Protected Overrides Sub OnExecutedDelete(e As System.Windows.Input.ExecutedRoutedEventArgs)
         Dim oldItems = New List(Of Object)()
         Dim deletedItems = New List(Of Object)()
         Dim currentItems = New List(Of Object)()

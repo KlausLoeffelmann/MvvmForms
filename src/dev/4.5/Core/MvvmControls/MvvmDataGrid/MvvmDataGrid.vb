@@ -587,7 +587,7 @@ Public Class MvvmDataGrid
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub InnerDataGridView_MouseDoubleClick(sender As Object, e As Windows.Input.MouseButtonEventArgs)
+    Private Sub InnerDataGridView_MouseDoubleClick(sender As Object, e As System.Windows.Input.MouseButtonEventArgs)
         MyBase.OnMouseDoubleClick(Nothing)
     End Sub
 
@@ -604,7 +604,7 @@ Public Class MvvmDataGrid
         grid.BeginEdit()
     End Sub
 
-    Private Sub InnerDataGridView_PreviewKeyDown(sender As Object, e As Windows.Input.KeyEventArgs)
+    Private Sub InnerDataGridView_PreviewKeyDown(sender As Object, e As System.Windows.Input.KeyEventArgs)
         If e.Key.Equals(Key.Enter) OrElse e.Key.Equals(Key.Return) Then
             If Me.EnterAction IsNot Nothing Then
                 e.Handled = True

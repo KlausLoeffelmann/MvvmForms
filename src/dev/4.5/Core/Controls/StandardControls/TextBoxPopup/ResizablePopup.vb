@@ -147,7 +147,7 @@ Public Class ResizablePopup
         Me.AutoSize = True
 
         Me.BackColor = Color.White
-        Me.BorderStyle = Windows.Forms.BorderStyle.FixedSingle
+        Me.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
 
         Me.SetStyle(ControlStyles.ResizeRedraw, True)
         Me.SetStyle(ControlStyles.OptimizedDoubleBuffer, True)

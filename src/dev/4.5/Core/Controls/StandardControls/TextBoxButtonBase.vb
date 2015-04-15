@@ -57,7 +57,7 @@ Public Class TextBoxButtonBase(Of ButtonType As {MultiPurposeButtonBase, New})
         myButton.Name = "mainButton"
         myTextBox.AutoSize = False
         myButton.AutoSize = False
-        myTextBox.BorderStyle = Windows.Forms.BorderStyle.None
+        myTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None
         myButtons.Add(myButton)
 
         Me.Controls.Add(myTextBox)
@@ -124,8 +124,8 @@ Public Class TextBoxButtonBase(Of ButtonType As {MultiPurposeButtonBase, New})
     ''' <returns></returns>
     ''' <remarks>Überschreiben Sie diese Methode, wenn Sie das BorderStyle-Verhalten 
     ''' beim Instanziieren des Steuerelementes beeinflussen wollen.</remarks>
-    Protected Overridable Function DefaultBorderStyle() As Windows.Forms.BorderStyle
-        Return Windows.Forms.BorderStyle.None
+    Protected Overridable Function DefaultBorderStyle() As System.Windows.Forms.BorderStyle
+        Return System.Windows.Forms.BorderStyle.None
     End Function
 
     Protected Overrides ReadOnly Property DefaultSize As Size
