@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22609.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MRViewModelLibrary", "MRViewModelLibrary\MRViewModelLibrary.vbproj", "{325BE318-3E92-4BDD-8EDB-4AA3CA240594}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRWebApiSelfHost", "MRWebApiSelfHost\MRWebApiSelfHost.csproj", "{92F6DC3A-C7ED-42AF-A821-F65651002266}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmBaseLib", "..\..\MvvmBase\MvvmBaseLib.csproj", "{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MeterReaderMvvmForms", "MeterReaderMvvmForms\MeterReaderMvvmForms.vbproj", "{4A66A33E-F71C-46A0-AEF9-2D4E7B67E1DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{325BE318-3E92-4BDD-8EDB-4AA3CA240594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{325BE318-3E92-4BDD-8EDB-4AA3CA240594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{325BE318-3E92-4BDD-8EDB-4AA3CA240594}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{325BE318-3E92-4BDD-8EDB-4AA3CA240594}.Debug|x86.Build.0 = Debug|Any CPU
+		{325BE318-3E92-4BDD-8EDB-4AA3CA240594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{325BE318-3E92-4BDD-8EDB-4AA3CA240594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{325BE318-3E92-4BDD-8EDB-4AA3CA240594}.Release|x86.ActiveCfg = Release|Any CPU
+		{325BE318-3E92-4BDD-8EDB-4AA3CA240594}.Release|x86.Build.0 = Release|Any CPU
+		{92F6DC3A-C7ED-42AF-A821-F65651002266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92F6DC3A-C7ED-42AF-A821-F65651002266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92F6DC3A-C7ED-42AF-A821-F65651002266}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{92F6DC3A-C7ED-42AF-A821-F65651002266}.Debug|x86.Build.0 = Debug|Any CPU
+		{92F6DC3A-C7ED-42AF-A821-F65651002266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92F6DC3A-C7ED-42AF-A821-F65651002266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92F6DC3A-C7ED-42AF-A821-F65651002266}.Release|x86.ActiveCfg = Release|Any CPU
+		{92F6DC3A-C7ED-42AF-A821-F65651002266}.Release|x86.Build.0 = Release|Any CPU
+		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}.Debug|x86.ActiveCfg = Debug|x86
+		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}.Debug|x86.Build.0 = Debug|x86
+		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}.Release|x86.ActiveCfg = Release|x86
+		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}.Release|x86.Build.0 = Release|x86
+		{4A66A33E-F71C-46A0-AEF9-2D4E7B67E1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A66A33E-F71C-46A0-AEF9-2D4E7B67E1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A66A33E-F71C-46A0-AEF9-2D4E7B67E1DD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4A66A33E-F71C-46A0-AEF9-2D4E7B67E1DD}.Debug|x86.Build.0 = Debug|Any CPU
+		{4A66A33E-F71C-46A0-AEF9-2D4E7B67E1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A66A33E-F71C-46A0-AEF9-2D4E7B67E1DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A66A33E-F71C-46A0-AEF9-2D4E7B67E1DD}.Release|x86.ActiveCfg = Release|Any CPU
+		{4A66A33E-F71C-46A0-AEF9-2D4E7B67E1DD}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
