@@ -52,6 +52,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework and Windows SDK is automatically included -->
+    <ProjectReference Include="..\..\..\MvvmBase\MvvmBaseLib.csproj">
+      <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
+      <Name>MvvmBaseLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -81,8 +85,11 @@
     <Import Include="Windows.UI.Xaml.Media.Imaging" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.vb" />
+    <Compile Include="BuildingViewModel.vb" />
+    <Compile Include="ContactViewModel.vb" />
+    <Compile Include="MeterViewModel.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="ReadingViewModel.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
