@@ -1,5 +1,7 @@
-﻿Public Class MeterViewModel
-    Inherits TempBase
+﻿Imports ActiveDevelop.MvvmBaseLib.Mvvm
+
+Public Class MeterViewModel
+    Inherits MvvmBase
 
     Private myId As Guid
     Private myBelongsTo As BuildingViewModel

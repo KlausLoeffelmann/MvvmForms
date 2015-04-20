@@ -1,7 +1,7 @@
-﻿Imports ActiveDevelop.Mvvmbase
+﻿Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 Public Class BuildingViewModel
-    Inherits TempBase
+    Inherits MvvmBase
 
     Private myId As Guid
     Private myOwner As ContactViewModel

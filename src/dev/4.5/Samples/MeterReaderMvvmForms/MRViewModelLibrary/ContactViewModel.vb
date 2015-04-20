@@ -1,5 +1,7 @@
-﻿Public Class ContactViewModel
-    Inherits TempBase
+﻿Imports ActiveDevelop.MvvmBaseLib.Mvvm
+
+Public Class ContactViewModel
+    Inherits MvvmBase
 
     Private myId As Guid
     Private myLastname As String
