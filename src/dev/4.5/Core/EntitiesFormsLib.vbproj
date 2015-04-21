@@ -11,7 +11,7 @@
     <AssemblyName>ActiveDevelop.EntitiesFormsLib</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>On</OptionStrict>
@@ -725,6 +725,10 @@
     <ProjectReference Include="..\MvvmBase\MvvmBaseLib.csproj">
       <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
       <Name>MvvmBaseLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Samples\MeterReaderMvvmForms\MRViewModelLibrary\MRViewModelLibrary.vbproj">
+      <Project>{325be318-3e92-4bdd-8edb-4aa3ca240594}</Project>
+      <Name>MRViewModelLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

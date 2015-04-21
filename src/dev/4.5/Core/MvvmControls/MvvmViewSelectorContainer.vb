@@ -1,5 +1,4 @@
 ﻿Imports System.Windows.Forms
-Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
 Imports System.Drawing
 Imports System.ComponentModel
 

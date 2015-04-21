@@ -4,6 +4,8 @@ Public Class BuildingViewModel
     Inherits MvvmBase
 
     Private myId As Guid
+    Private myIdNum As Integer
+    Private myDescription As String
     Private myOwner As ContactViewModel
     Private myBuildYear As Integer
     Private myLocationAddressLine1 As String
@@ -18,6 +20,24 @@ Public Class BuildingViewModel
         End Get
         Set(value As Guid)
             SetProperty(myId, value)
+        End Set
+    End Property
+
+    Public Property idNum As Integer
+        Get
+            Return myIdNum
+        End Get
+        Set(value As Integer)
+            SetProperty(myIdNum, value)
+        End Set
+    End Property
+
+    Public Property Description As String
+        Get
+            Return myDescription
+        End Get
+        Set(value As String)
+            SetProperty(myDescription, value)
         End Set
     End Property
 

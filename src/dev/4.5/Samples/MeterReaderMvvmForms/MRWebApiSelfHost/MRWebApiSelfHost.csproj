@@ -92,6 +92,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\BuildingController.cs" />
+    <Compile Include="DataLayer\DataAccess\BuildingData.cs" />
     <Compile Include="DataLayer\DataObjects\BuildingItem.cs" />
     <Compile Include="DataLayer\DataObjects\ContactItem.cs" />
     <Compile Include="DataLayer\DataObjects\MeterItem.cs" />
