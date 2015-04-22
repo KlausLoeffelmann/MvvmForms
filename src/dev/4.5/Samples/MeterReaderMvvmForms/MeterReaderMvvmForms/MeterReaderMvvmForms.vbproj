@@ -143,10 +143,18 @@
       <Project>{048EFA6C-B9FB-441E-9432-1F72B332856C}</Project>
       <Name>EntitiesFormsLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\EFLWebApiClientSupport\MvvmFormsWebApiClientSupport.vbproj">
+      <Project>{d8936e28-392e-439d-a036-005722122cf5}</Project>
+      <Name>MvvmFormsWebApiClientSupport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MRViewModelLibrary\MRViewModelLibrary.vbproj">
       <Project>{325be318-3e92-4bdd-8edb-4aa3ca240594}</Project>
       <Name>MRViewModelLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataObjects\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,6 @@
-﻿Imports ActiveDevelop.MvvmBaseLib.Mvvm
+﻿Imports ActiveDevelop.EntitiesFormsLib.WebApiClient
+Imports ActiveDevelop.MvvmBaseLib.Mvvm
+Imports ActiveDevelop.MvvmForms.WebApiClientSupport
 
 Public Class BuildingViewModel
     Inherits MvvmBase
@@ -13,6 +15,13 @@ Public Class BuildingViewModel
     Private myCity As String
     Private myZip As String
     Private myCountry As String
+
+    Public Async Function GetAllBuildings() As Task(Of IEnumerable(Of BuildingViewModel))
+
+        Dim getter = New WebApiAccess("http://localhost:9000", "api")
+        getter.GetDataAsync(Of IEnumerable(Of BuildingViewModel))()
+
+    End Function
 
     Public Property id As Guid
         Get

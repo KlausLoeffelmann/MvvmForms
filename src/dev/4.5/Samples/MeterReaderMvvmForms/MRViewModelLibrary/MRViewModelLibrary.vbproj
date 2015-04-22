@@ -52,6 +52,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework and Windows SDK is automatically included -->
+    <ProjectReference Include="..\..\..\EFLWebApiClientSupport\MvvmFormsWebApiClientSupport.vbproj">
+      <Project>{d8936e28-392e-439d-a036-005722122cf5}</Project>
+      <Name>MvvmFormsWebApiClientSupport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\MvvmBase\MvvmBaseLib.csproj">
       <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
       <Name>MvvmBaseLib</Name>

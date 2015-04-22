@@ -1,5 +1,6 @@
 ﻿Public Class frmMain
-    Private Sub MvvmDataGrid2_Load(sender As Object, e As EventArgs) Handles MvvmDataGrid2.Load
+    Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
 
     End Sub
 End Class

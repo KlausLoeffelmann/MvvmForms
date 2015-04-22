@@ -182,7 +182,7 @@ Partial Class frmMain
         Me.MvvmDataGrid2.Size = New System.Drawing.Size(688, 220)
         Me.MvvmDataGrid2.TabIndex = 0
         '
-        'Form1
+        'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -191,7 +191,7 @@ Partial Class frmMain
         Me.Controls.Add(Me.MenuStrip1)
         Me.MvvmManager1.SetEventBindings(Me, Nothing)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Name = "Form1"
+        Me.Name = "frmMain"
         Me.Text = "Meter Reader Manager - MvvmForms Demo"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
