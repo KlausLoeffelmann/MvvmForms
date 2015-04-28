@@ -1,4 +1,6 @@
 ﻿Imports ActiveDevelop.MvvmBaseLib.Mvvm
+Imports ActiveDevelop.MvvmForms.WebApiClientSupport
+Imports MRWebApiSelfHost.DataLayer.DataObjects
 
 Public Class ContactViewModel
     Inherits MvvmBase
@@ -7,6 +9,13 @@ Public Class ContactViewModel
     Private myLastname As String
     Private myFirstname As String
     Private myPhone As String
+
+    Public Shared Async Function GetContactForBuildingAsync(idBuilding As Guid) As Task(Of ContactViewModel)
+        Dim getter = New WebApiAccess("http://localhost:9000/", "api")
+        Dim contact = Await getter.GetDataAsync(Of ContactItem)(category:="contact",
+                                                                params:=idBuilding.ToString)
+
+    End Function
 
     Public Property id As Guid
         Get

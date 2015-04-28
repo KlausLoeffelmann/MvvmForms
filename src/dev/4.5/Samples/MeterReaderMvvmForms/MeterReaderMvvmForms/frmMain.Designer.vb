@@ -23,6 +23,14 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim MvvmDataGrid1_idNumColumn As ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn = New ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn()
+        Dim MvvmDataGrid1_BuildYearColumn As ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn = New ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn()
+        Dim MvvmDataGrid1_DescriptionColumn As ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn = New ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn()
+        Dim MvvmDataGrid1_CityColumn As ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn = New ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn()
+        Dim MvvmDataGrid1_ZipColumn As ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn = New ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn()
+        Dim MvvmDataGrid1_CountryColumn As ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn = New ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn()
+        Dim MvvmDataGrid2_MeterIdColumn As ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn = New ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn()
+        Dim MvvmDataGrid2_LocalDescriptionColumn As ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn = New ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewReadingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -33,24 +41,161 @@ Partial Class frmMain
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditContactToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditBuildingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MvvmManager1 = New ActiveDevelop.EntitiesFormsLib.MvvmManager(Me.components)
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.MvvmDataGrid1 = New ActiveDevelop.EntitiesFormsLib.MvvmDataGrid()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.MvvmDataGrid2 = New ActiveDevelop.EntitiesFormsLib.MvvmDataGrid()
+        MvvmDataGrid1_idNumColumn.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
+        MvvmDataGrid1_idNumColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
+        MvvmDataGrid1_idNumColumn.Width = -1.0R
+        MvvmDataGrid1_idNumColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
+        MvvmDataGrid1_idNumColumn.Visibility = System.Windows.Visibility.Visible
+        MvvmDataGrid1_idNumColumn.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
+        MvvmDataGrid1_idNumColumn.Header = "idNum"
+        MvvmDataGrid1_idNumColumn.IsEnabled = True
+        MvvmDataGrid1_idNumColumn.BackgroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_idNumColumn.ForegroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_idNumColumn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
+        MvvmDataGrid1_idNumColumn.VerticalAlignment = System.Windows.VerticalAlignment.Top
+        MvvmDataGrid1_idNumColumn.ColumnHeaderPadding = New System.Windows.Forms.Padding(0)
+        MvvmDataGrid1_idNumColumn.Name = "idNumColumn"
+        MvvmDataGrid1_idNumColumn.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
+        MvvmDataGrid1_BuildYearColumn.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
+        MvvmDataGrid1_BuildYearColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
+        MvvmDataGrid1_BuildYearColumn.Width = -1.0R
+        MvvmDataGrid1_BuildYearColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
+        MvvmDataGrid1_BuildYearColumn.Visibility = System.Windows.Visibility.Visible
+        MvvmDataGrid1_BuildYearColumn.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
+        MvvmDataGrid1_BuildYearColumn.Header = "BuildYear"
+        MvvmDataGrid1_BuildYearColumn.IsEnabled = True
+        MvvmDataGrid1_BuildYearColumn.BackgroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_BuildYearColumn.ForegroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_BuildYearColumn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
+        MvvmDataGrid1_BuildYearColumn.VerticalAlignment = System.Windows.VerticalAlignment.Top
+        MvvmDataGrid1_BuildYearColumn.ColumnHeaderPadding = New System.Windows.Forms.Padding(0)
+        MvvmDataGrid1_BuildYearColumn.Name = "BuildYearColumn"
+        MvvmDataGrid1_BuildYearColumn.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
+        MvvmDataGrid1_DescriptionColumn.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
+        MvvmDataGrid1_DescriptionColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
+        MvvmDataGrid1_DescriptionColumn.Width = -1.0R
+        MvvmDataGrid1_DescriptionColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
+        MvvmDataGrid1_DescriptionColumn.Visibility = System.Windows.Visibility.Visible
+        MvvmDataGrid1_DescriptionColumn.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
+        MvvmDataGrid1_DescriptionColumn.Header = "Description"
+        MvvmDataGrid1_DescriptionColumn.IsEnabled = True
+        MvvmDataGrid1_DescriptionColumn.BackgroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_DescriptionColumn.ForegroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_DescriptionColumn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
+        MvvmDataGrid1_DescriptionColumn.VerticalAlignment = System.Windows.VerticalAlignment.Top
+        MvvmDataGrid1_DescriptionColumn.ColumnHeaderPadding = New System.Windows.Forms.Padding(0)
+        MvvmDataGrid1_DescriptionColumn.Name = "DescriptionColumn"
+        MvvmDataGrid1_DescriptionColumn.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
+        MvvmDataGrid1_CityColumn.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
+        MvvmDataGrid1_CityColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
+        MvvmDataGrid1_CityColumn.Width = -1.0R
+        MvvmDataGrid1_CityColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
+        MvvmDataGrid1_CityColumn.Visibility = System.Windows.Visibility.Visible
+        MvvmDataGrid1_CityColumn.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
+        MvvmDataGrid1_CityColumn.Header = "City"
+        MvvmDataGrid1_CityColumn.IsEnabled = True
+        MvvmDataGrid1_CityColumn.BackgroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_CityColumn.ForegroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_CityColumn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
+        MvvmDataGrid1_CityColumn.VerticalAlignment = System.Windows.VerticalAlignment.Top
+        MvvmDataGrid1_CityColumn.ColumnHeaderPadding = New System.Windows.Forms.Padding(0)
+        MvvmDataGrid1_CityColumn.Name = "CityColumn"
+        MvvmDataGrid1_CityColumn.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
+        MvvmDataGrid1_ZipColumn.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
+        MvvmDataGrid1_ZipColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
+        MvvmDataGrid1_ZipColumn.Width = -1.0R
+        MvvmDataGrid1_ZipColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
+        MvvmDataGrid1_ZipColumn.Visibility = System.Windows.Visibility.Visible
+        MvvmDataGrid1_ZipColumn.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
+        MvvmDataGrid1_ZipColumn.Header = "Zip"
+        MvvmDataGrid1_ZipColumn.IsEnabled = True
+        MvvmDataGrid1_ZipColumn.BackgroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_ZipColumn.ForegroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_ZipColumn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
+        MvvmDataGrid1_ZipColumn.VerticalAlignment = System.Windows.VerticalAlignment.Top
+        MvvmDataGrid1_ZipColumn.ColumnHeaderPadding = New System.Windows.Forms.Padding(0)
+        MvvmDataGrid1_ZipColumn.Name = "ZipColumn"
+        MvvmDataGrid1_ZipColumn.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
+        MvvmDataGrid1_CountryColumn.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
+        MvvmDataGrid1_CountryColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
+        MvvmDataGrid1_CountryColumn.Width = -1.0R
+        MvvmDataGrid1_CountryColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
+        MvvmDataGrid1_CountryColumn.Visibility = System.Windows.Visibility.Visible
+        MvvmDataGrid1_CountryColumn.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
+        MvvmDataGrid1_CountryColumn.Header = "Country"
+        MvvmDataGrid1_CountryColumn.IsEnabled = True
+        MvvmDataGrid1_CountryColumn.BackgroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_CountryColumn.ForegroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid1_CountryColumn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
+        MvvmDataGrid1_CountryColumn.VerticalAlignment = System.Windows.VerticalAlignment.Top
+        MvvmDataGrid1_CountryColumn.ColumnHeaderPadding = New System.Windows.Forms.Padding(0)
+        MvvmDataGrid1_CountryColumn.Name = "CountryColumn"
+        MvvmDataGrid1_CountryColumn.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
+        MvvmDataGrid2_MeterIdColumn.DataSourceType = GetType(MRViewModelLibrary.MeterViewModel)
+        MvvmDataGrid2_MeterIdColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
+        MvvmDataGrid2_MeterIdColumn.Width = -1.0R
+        MvvmDataGrid2_MeterIdColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.SizeToCells
+        MvvmDataGrid2_MeterIdColumn.Visibility = System.Windows.Visibility.Visible
+        MvvmDataGrid2_MeterIdColumn.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
+        MvvmDataGrid2_MeterIdColumn.Header = "MeterId"
+        MvvmDataGrid2_MeterIdColumn.IsEnabled = True
+        MvvmDataGrid2_MeterIdColumn.BackgroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid2_MeterIdColumn.ForegroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid2_MeterIdColumn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
+        MvvmDataGrid2_MeterIdColumn.VerticalAlignment = System.Windows.VerticalAlignment.Top
+        MvvmDataGrid2_MeterIdColumn.ColumnHeaderPadding = New System.Windows.Forms.Padding(0)
+        MvvmDataGrid2_MeterIdColumn.Name = "MeterIdColumn"
+        MvvmDataGrid2_MeterIdColumn.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
+        MvvmDataGrid2_LocalDescriptionColumn.DataSourceType = GetType(MRViewModelLibrary.MeterViewModel)
+        MvvmDataGrid2_LocalDescriptionColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
+        'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
+        'Parameter name: e'.
+        MvvmDataGrid2_LocalDescriptionColumn.Width = -1.0R
+        MvvmDataGrid2_LocalDescriptionColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.SizeToCells
+        MvvmDataGrid2_LocalDescriptionColumn.Visibility = System.Windows.Visibility.Visible
+        MvvmDataGrid2_LocalDescriptionColumn.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
+        MvvmDataGrid2_LocalDescriptionColumn.Header = "LocalDescription"
+        MvvmDataGrid2_LocalDescriptionColumn.IsEnabled = True
+        MvvmDataGrid2_LocalDescriptionColumn.BackgroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid2_LocalDescriptionColumn.ForegroundColor = System.Drawing.Color.Empty
+        MvvmDataGrid2_LocalDescriptionColumn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
+        MvvmDataGrid2_LocalDescriptionColumn.VerticalAlignment = System.Windows.VerticalAlignment.Top
+        MvvmDataGrid2_LocalDescriptionColumn.ColumnHeaderPadding = New System.Windows.Forms.Padding(0)
+        MvvmDataGrid2_LocalDescriptionColumn.Name = "LocalDescriptionColumn"
+        MvvmDataGrid2_LocalDescriptionColumn.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
         Me.MenuStrip1.SuspendLayout()
         CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MvvmDataGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
-        CType(Me.MvvmDataGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MvvmDataGrid2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
         Me.MvvmManager1.SetEventBindings(Me.MenuStrip1, Nothing)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.TestToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(712, 24)
@@ -112,18 +257,57 @@ Partial Class frmMain
         Me.EditBuildingToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
         Me.EditBuildingToolStripMenuItem.Text = "Edit Building..."
         '
+        'TestToolStripMenuItem
+        '
+        Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
+        Me.TestToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
+        Me.TestToolStripMenuItem.Text = "Test"
+        '
         'MvvmManager1
         '
         Me.MvvmManager1.CancelButton = Nothing
         Me.MvvmManager1.ContainerControl = Me
         Me.MvvmManager1.CurrentContextGuid = New System.Guid("861fafc2-3724-48ce-9bcf-d4a6f0dc5f0b")
         Me.MvvmManager1.DataContext = Nothing
-        Me.MvvmManager1.DataContextType = Nothing
-        Me.MvvmManager1.DataSourceType = Nothing
+        Me.MvvmManager1.DataContextType = GetType(MRViewModelLibrary.MainViewModel)
+        Me.MvvmManager1.DataSourceType = GetType(MRViewModelLibrary.MainViewModel)
         Me.MvvmManager1.DirtyStateManagerComponent = Nothing
         Me.MvvmManager1.DynamicEventHandlingList = Nothing
         Me.MvvmManager1.HostingForm = Me
         Me.MvvmManager1.HostingUserControl = Nothing
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.MvvmDataGrid1, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("ItemsSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Buildings", GetType(System.Collections.ObjectModel.ObservableCollection(Of MRViewModelLibrary.BuildingViewModel))))
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.MvvmDataGrid1, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("SelectedItem", GetType(Object)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("SelectedBuilding", GetType(MRViewModelLibrary.BuildingViewModel)))
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.MvvmDataGrid2, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("ItemsSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("MetersForBuilding.Value", GetType(System.Collections.ObjectModel.ObservableCollection(Of MRViewModelLibrary.MeterViewModel))))
+        '
+        'MvvmDataGrid1
+        '
+        Me.MvvmDataGrid1.AutoGenerateColumns = False
+        Me.MvvmDataGrid1.CanUserAddRows = False
+        Me.MvvmDataGrid1.CanUserDeleteRows = False
+        MvvmDataGrid1_idNumColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("idNum", GetType(MRViewModelLibrary.BuildingViewModel)))
+        Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_idNumColumn)
+        MvvmDataGrid1_BuildYearColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("BuildYear", GetType(MRViewModelLibrary.BuildingViewModel)))
+        Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_BuildYearColumn)
+        MvvmDataGrid1_DescriptionColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Description", GetType(MRViewModelLibrary.BuildingViewModel)))
+        Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_DescriptionColumn)
+        MvvmDataGrid1_CityColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("City", GetType(MRViewModelLibrary.BuildingViewModel)))
+        Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_CityColumn)
+        MvvmDataGrid1_ZipColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Zip", GetType(MRViewModelLibrary.BuildingViewModel)))
+        Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_ZipColumn)
+        MvvmDataGrid1_CountryColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Country", GetType(MRViewModelLibrary.BuildingViewModel)))
+        Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_CountryColumn)
+        Me.MvvmDataGrid1.CustomColumnTemplateType = Nothing
+        Me.MvvmDataGrid1.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
+        Me.MvvmDataGrid1.EnterAction = Nothing
+        Me.MvvmManager1.SetEventBindings(Me.MvvmDataGrid1, Nothing)
+        Me.MvvmDataGrid1.GridLinesVisibility = System.Windows.Controls.DataGridGridLinesVisibility.All
+        Me.MvvmDataGrid1.ItemsSource = Nothing
+        Me.MvvmDataGrid1.Location = New System.Drawing.Point(12, 12)
+        Me.MvvmDataGrid1.Name = "MvvmDataGrid1"
+        Me.MvvmDataGrid1.SelectedItem = Nothing
+        Me.MvvmDataGrid1.SelectionMode = System.Windows.Controls.DataGridSelectionMode.[Single]
+        Me.MvvmDataGrid1.Size = New System.Drawing.Size(501, 206)
+        Me.MvvmDataGrid1.TabIndex = 0
         '
         'SplitContainer1
         '
@@ -146,31 +330,17 @@ Partial Class frmMain
         Me.SplitContainer1.SplitterDistance = 237
         Me.SplitContainer1.TabIndex = 1
         '
-        'MvvmDataGrid1
-        '
-        Me.MvvmDataGrid1.AutoGenerateColumns = False
-        Me.MvvmDataGrid1.CanUserAddRows = False
-        Me.MvvmDataGrid1.CanUserDeleteRows = False
-        Me.MvvmDataGrid1.CustomColumnTemplateType = Nothing
-        Me.MvvmDataGrid1.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
-        Me.MvvmDataGrid1.EnterAction = Nothing
-        Me.MvvmManager1.SetEventBindings(Me.MvvmDataGrid1, Nothing)
-        Me.MvvmDataGrid1.GridLinesVisibility = System.Windows.Controls.DataGridGridLinesVisibility.All
-        Me.MvvmDataGrid1.ItemsSource = Nothing
-        Me.MvvmDataGrid1.Location = New System.Drawing.Point(12, 12)
-        Me.MvvmDataGrid1.Name = "MvvmDataGrid1"
-        Me.MvvmDataGrid1.SelectedItem = Nothing
-        Me.MvvmDataGrid1.SelectionMode = System.Windows.Controls.DataGridSelectionMode.[Single]
-        Me.MvvmDataGrid1.Size = New System.Drawing.Size(688, 206)
-        Me.MvvmDataGrid1.TabIndex = 0
-        '
         'MvvmDataGrid2
         '
-        Me.MvvmDataGrid2.AutoGenerateColumns = True
+        Me.MvvmDataGrid2.AutoGenerateColumns = False
         Me.MvvmDataGrid2.CanUserAddRows = False
         Me.MvvmDataGrid2.CanUserDeleteRows = False
+        MvvmDataGrid2_MeterIdColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("MeterId", GetType(MRViewModelLibrary.MeterViewModel)))
+        Me.MvvmDataGrid2.Columns.Add(MvvmDataGrid2_MeterIdColumn)
+        MvvmDataGrid2_LocalDescriptionColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("LocalDescription", GetType(MRViewModelLibrary.MeterViewModel)))
+        Me.MvvmDataGrid2.Columns.Add(MvvmDataGrid2_LocalDescriptionColumn)
         Me.MvvmDataGrid2.CustomColumnTemplateType = Nothing
-        Me.MvvmDataGrid2.DataSourceType = Nothing
+        Me.MvvmDataGrid2.DataSourceType = GetType(MRViewModelLibrary.MeterViewModel)
         Me.MvvmDataGrid2.EnterAction = Nothing
         Me.MvvmManager1.SetEventBindings(Me.MvvmDataGrid2, Nothing)
         Me.MvvmDataGrid2.GridLinesVisibility = System.Windows.Controls.DataGridGridLinesVisibility.All
@@ -196,11 +366,11 @@ Partial Class frmMain
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MvvmDataGrid1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
-        CType(Me.MvvmDataGrid1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MvvmDataGrid2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -221,4 +391,5 @@ Partial Class frmMain
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents MvvmDataGrid1 As ActiveDevelop.EntitiesFormsLib.MvvmDataGrid
     Friend WithEvents MvvmDataGrid2 As ActiveDevelop.EntitiesFormsLib.MvvmDataGrid
+    Friend WithEvents TestToolStripMenuItem As ToolStripMenuItem
 End Class

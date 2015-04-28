@@ -1,6 +1,7 @@
-﻿Imports ActiveDevelop.EntitiesFormsLib.WebApiClient
+﻿Imports ActiveDevelop.MvvmBaseLib
 Imports ActiveDevelop.MvvmBaseLib.Mvvm
 Imports ActiveDevelop.MvvmForms.WebApiClientSupport
+Imports MRWebApiSelfHost.DataLayer.DataObjects
 
 Public Class BuildingViewModel
     Inherits MvvmBase
@@ -8,7 +9,6 @@ Public Class BuildingViewModel
     Private myId As Guid
     Private myIdNum As Integer
     Private myDescription As String
-    Private myOwner As ContactViewModel
     Private myBuildYear As Integer
     Private myLocationAddressLine1 As String
     Private myLocationAddressLine2 As String
@@ -16,10 +16,25 @@ Public Class BuildingViewModel
     Private myZip As String
     Private myCountry As String
 
-    Public Async Function GetAllBuildings() As Task(Of IEnumerable(Of BuildingViewModel))
+    Private myOwner As BindableAsyncLazy(Of ContactViewModel) =
+        New BindableAsyncLazy(Of ContactViewModel)(
+            Async Function(param As Object) As Task(Of ContactViewModel)
+                Return Await ContactViewModel.GetContactForBuildingAsync(Me.id)
+            End Function, Nothing)
 
-        Dim getter = New WebApiAccess("http://localhost:9000", "api")
-        getter.GetDataAsync(Of IEnumerable(Of BuildingViewModel))()
+    Public Shared Async Function GetAllBuildings() As Task(Of IEnumerable(Of BuildingViewModel))
+
+        Dim getter = New WebApiAccess("http://localhost:9000/", "api")
+        Dim buildingModels = Await getter.GetDataAsync(Of IEnumerable(Of BuildingItem))(category:="building")
+
+        Dim buildings = New ObservableCollection(Of BuildingViewModel)
+        For Each item In buildingModels
+            Dim buildingVm = New BuildingViewModel
+            buildingVm.CopyPropertiesFrom(item)
+            buildings.Add(buildingVm)
+        Next
+
+        Return buildings
 
     End Function
 
@@ -50,11 +65,11 @@ Public Class BuildingViewModel
         End Set
     End Property
 
-    Public Property Owner As ContactViewModel
+    Public Property Owner As BindableAsyncLazy(Of ContactViewModel)
         Get
             Return myOwner
         End Get
-        Set(value As ContactViewModel)
+        Set(value As BindableAsyncLazy(Of ContactViewModel))
             SetProperty(myOwner, value)
         End Set
     End Property
@@ -114,12 +129,3 @@ Public Class BuildingViewModel
     End Property
 
 End Class
-
-Public Class TempBase
-
-    Public Function SetProperty(Of t)(ByRef storage As t, value As t,
-                                      <CallerMemberName> Optional propertyName As String = Nothing) As Boolean
-
-    End Function
-End Class
-

@@ -1,4 +1,6 @@
 ﻿Imports ActiveDevelop.MvvmBaseLib.Mvvm
+Imports ActiveDevelop.MvvmForms.WebApiClientSupport
+Imports MRWebApiSelfHost.DataLayer.DataObjects
 
 Public Class MeterViewModel
     Inherits MvvmBase
@@ -7,6 +9,22 @@ Public Class MeterViewModel
     Private myBelongsTo As BuildingViewModel
     Private myMeterId As String
     Private myLocalDescription As String
+
+    Public Shared Async Function GetMetersForBuildingAsync(idBuilding As Guid) As Task(Of IEnumerable(Of MeterViewModel))
+
+        Dim getter = New WebApiAccess("http://localhost:9000/", "api")
+        Dim meterModels = Await getter.GetDataAsync(Of IEnumerable(Of MeterItem))(category:="building",
+                                                                                  params:=idBuilding.ToString)
+
+        Dim meters = New ObservableCollection(Of MeterViewModel)
+        For Each item In meterModels
+            Dim meterVm = New MeterViewModel
+            meterVm.CopyPropertiesFrom(item)
+        Next
+
+        Return meters
+
+    End Function
 
     Public Property id As Guid
         Get

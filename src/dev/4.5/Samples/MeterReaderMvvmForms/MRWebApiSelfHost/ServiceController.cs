@@ -10,7 +10,7 @@ namespace MRWebApiSelfHost
     class ServiceController
     {
         private IDisposable myWebApp;
-        private const string BASE_ADDRESS = "Http://localhost:9000";
+        private const string BASE_ADDRESS = "Http://localhost:9000/";
 
         public void Start()
         {

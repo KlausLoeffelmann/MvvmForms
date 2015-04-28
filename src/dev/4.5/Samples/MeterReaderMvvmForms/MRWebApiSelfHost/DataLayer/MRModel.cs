@@ -46,9 +46,10 @@ namespace MRWebApiSelfHost
             var cheffin = sampleContacts.First();
 
             List<BuildingItem> sampleBuildings = new List<BuildingItem>()
-            { new BuildingItem { id=Guid.NewGuid(), BuildYear=1969, City="Lippstadt", LocationAddressLine1="Bremer Str. 4", Zip="59555",Owner=cheffin },
-              new BuildingItem { id=Guid.NewGuid(), BuildYear=1938, City="Soest", LocationAddressLine1="Westenhellweg 4", Zip="59494",Owner=cheffin },
-              new BuildingItem { id=Guid.NewGuid(), BuildYear=1976, City="Paderborn", LocationAddressLine1="An der Synergoge", Zip="34383",Owner=cheffin }
+            { new BuildingItem { id=Guid.NewGuid(), idNum=1000, BuildYear=1969, City="Lippstadt", LocationAddressLine1="Bremer Str. 4", Zip="59555",Country="Germany", Owner=cheffin },
+              new BuildingItem { id=Guid.NewGuid(), idNum=1010, BuildYear=1938, City="Soest", LocationAddressLine1="Westenhellweg 4", Zip="59494",Country="Germany",Owner=cheffin },
+              new BuildingItem { id=Guid.NewGuid(), idNum=4030, BuildYear=1938, City="Pleasanton", LocationAddressLine1="776 Stoneridge Mall Rd.", Zip="CA 94488",Country="USA",Owner=cheffin },
+              new BuildingItem { id=Guid.NewGuid(), idNum=1020, BuildYear=1976, City="Paderborn", LocationAddressLine1="An der Synergoge", Zip="34383",Country="Germany",Owner=cheffin }
             };
 
             List<MeterItem> sampleMeters = new List<MeterItem>()

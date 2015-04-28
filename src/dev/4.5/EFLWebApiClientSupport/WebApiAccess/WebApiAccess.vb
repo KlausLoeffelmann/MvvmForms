@@ -1,4 +1,5 @@
 ﻿Imports System.Net.Http
+Imports System.Runtime.CompilerServices
 Imports System.Threading.Tasks
 
 ''' <summary>
@@ -176,10 +177,15 @@ Public Class WebApiAccess
         Return returnValue
     End Function
 
-    Public Async Function GetDataAsync(Of t)(Optional params As String = "") As Task(Of t)
+    Public Async Function GetDataAsync(Of t)(<CallerMemberName> Optional method As String = "Get",
+                                             Optional category As String = Nothing,
+                                             Optional params As String = "") As Task(Of t)
         'Wir könnten an dieser Stelle auch New HttpClient verwenden, aber wiederverwenden ist effektiver!
         'We could do 'New HttpClient' at this point, but reusage of the HttpClient is more effective.
         Dim client = HttpClientFactory.GetHttpClient
+
+        'Hack: that's not safe enough. Only if method's name ends with it, remove it.
+        method = method.ToLower.Replace("async", "")
 
 #If DEBUG Then
         Dim sw = Stopwatch.StartNew
@@ -187,8 +193,9 @@ Public Class WebApiAccess
 
         'URL setzte sich aus Typnamen, Key und optionalen Parametern zusammen.
         'URL composes from Typename, Key and optional Parameters.
-        Dim url = Me.BaseAddress & Me.ApiPreFix & "/" & GetType(t).Name &
-            If(String.IsNullOrEmpty(params), "", "/" & params)
+        Dim url = Me.BaseAddress & Me.ApiPreFix &
+                  If(String.IsNullOrEmpty(category), "", "/" & category) & "/" & method &
+                  If(String.IsNullOrEmpty(params), "", "/" & params)
 
         'Web API aufrufen!
         'Let's call the Web API!
@@ -208,6 +215,7 @@ Public Class WebApiAccess
 
         Catch ex As Exception
             caughtException = True
+
         End Try
 
         If caughtException Then

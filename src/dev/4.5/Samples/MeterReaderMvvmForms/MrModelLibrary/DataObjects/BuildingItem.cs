@@ -9,6 +9,7 @@ namespace MRWebApiSelfHost.DataLayer.DataObjects
     public class BuildingItem
     {
         public Guid id { get; set; }
+        public int idNum { get; set; }
         public ContactItem Owner { get; set; }
         public int BuildYear { get; set; }
         public string LocationAddressLine1 { get; set;}

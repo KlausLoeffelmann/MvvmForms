@@ -93,11 +93,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\BuildingController.cs" />
+    <Compile Include="Controller\ContactController.cs" />
+    <Compile Include="Controller\MeterController.cs" />
     <Compile Include="DataLayer\DataAccess\BuildingData.cs" />
-    <Compile Include="DataLayer\DataObjects\BuildingItem.cs" />
-    <Compile Include="DataLayer\DataObjects\ContactItem.cs" />
-    <Compile Include="DataLayer\DataObjects\MeterItem.cs" />
-    <Compile Include="DataLayer\DataObjects\ReadingItem.cs" />
+    <Compile Include="DataLayer\DataAccess\ContactData.cs" />
+    <Compile Include="DataLayer\DataAccess\MeterData.cs" />
     <Compile Include="DataLayer\MRModel.cs" />
     <Compile Include="ServiceController.cs" />
     <Compile Include="Startup.cs" />
@@ -134,6 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MrModelLibrary\MrModelLibrary.csproj">
+      <Project>{1e3af1ec-af15-4639-9e67-4ce45d1b4987}</Project>
+      <Name>MrModelLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

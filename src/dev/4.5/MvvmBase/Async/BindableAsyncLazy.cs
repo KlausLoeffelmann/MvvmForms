@@ -144,6 +144,15 @@ namespace ActiveDevelop.MvvmBaseLib
 			set
 			{
 				myParam = value;
+                DefaultValue = default(t);
+
+                lock (mySyncLockObject)
+                {
+                    myIsLoaded = false;
+                    myHasBeenCalled = false;
+                }
+
+                OnValuePropertyChanged();
 			}
 		}
 

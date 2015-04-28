@@ -60,6 +60,10 @@
       <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
       <Name>MvvmBaseLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MrModelLibrary\MrModelLibrary.csproj">
+      <Project>{1e3af1ec-af15-4639-9e67-4ce45d1b4987}</Project>
+      <Name>MrModelLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -89,11 +93,18 @@
     <Import Include="Windows.UI.Xaml.Media.Imaging" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildingViewModel.vb" />
-    <Compile Include="ContactViewModel.vb" />
-    <Compile Include="MeterViewModel.vb" />
+    <Compile Include="ViewModels\BuildingViewModel.vb" />
+    <Compile Include="ViewModels\ContactViewModel.vb" />
+    <Compile Include="ViewModels\MainViewModel.vb" />
+    <Compile Include="ViewModels\MeterViewModel.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
-    <Compile Include="ReadingViewModel.vb" />
+    <Compile Include="ViewModels\ReadingViewModel.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -637,6 +637,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Controls\Interfaces\InterfaceDiagram.cd" />
     <None Include="NuGet\EntitiesFormsLib.1.0.0.nupkg" />
     <None Include="NuGet\EntitiesFormsLib.1.0.1.nupkg" />

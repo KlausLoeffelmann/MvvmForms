@@ -13,11 +13,12 @@ namespace MRWebApiSelfHost
         public void Configuration(IAppBuilder appbuilder)
         {
             HttpConfiguration config = new HttpConfiguration();
+
+            config.MapHttpAttributeRoutes();
+
             config.Routes.MapHttpRoute("DefaultApi",
                                        "api/{controller}/{id}",
                                        new { ID = RouteParameter.Optional });
-
-            //config.Routes.MapHttpAttributeRoutes();
 
             config.Formatters.JsonFormatter.
                 SerializerSettings.ReferenceLoopHandling =

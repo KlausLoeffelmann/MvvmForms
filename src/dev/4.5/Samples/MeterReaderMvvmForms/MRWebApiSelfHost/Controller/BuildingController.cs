@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Diagnostics;
 
-namespace MRWebApiSelfHost.Controller
+namespace MRWebApiSelfHost
 {
-    class BuildingController : ApiController
+    public class BuildingController : ApiController
     {
         [Route("api/building/getallbuildings"), HttpGet]
         public async Task<IHttpActionResult> GetAllBuildings()
