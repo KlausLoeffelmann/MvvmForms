@@ -41,11 +41,15 @@ Partial Class frmMain
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditContactToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditBuildingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MvvmManager1 = New ActiveDevelop.EntitiesFormsLib.MvvmManager(Me.components)
         Me.MvvmDataGrid1 = New ActiveDevelop.EntitiesFormsLib.MvvmDataGrid()
         Me.MvvmDataGrid2 = New ActiveDevelop.EntitiesFormsLib.MvvmDataGrid()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         MvvmDataGrid1_idNumColumn.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
         MvvmDataGrid1_idNumColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
         'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
@@ -152,8 +156,8 @@ Partial Class frmMain
         MvvmDataGrid2_MeterIdColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
         'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
         'Parameter name: e'.
-        MvvmDataGrid2_MeterIdColumn.Width = -1.0R
-        MvvmDataGrid2_MeterIdColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.SizeToCells
+        MvvmDataGrid2_MeterIdColumn.Width = 1.0R
+        MvvmDataGrid2_MeterIdColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         MvvmDataGrid2_MeterIdColumn.Visibility = System.Windows.Visibility.Visible
         MvvmDataGrid2_MeterIdColumn.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         MvvmDataGrid2_MeterIdColumn.Header = "MeterId"
@@ -169,8 +173,8 @@ Partial Class frmMain
         MvvmDataGrid2_LocalDescriptionColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
         'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
         'Parameter name: e'.
-        MvvmDataGrid2_LocalDescriptionColumn.Width = -1.0R
-        MvvmDataGrid2_LocalDescriptionColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.SizeToCells
+        MvvmDataGrid2_LocalDescriptionColumn.Width = 5.0R
+        MvvmDataGrid2_LocalDescriptionColumn.WidthLengthUnitType = System.Windows.Controls.DataGridLengthUnitType.Star
         MvvmDataGrid2_LocalDescriptionColumn.Visibility = System.Windows.Visibility.Visible
         MvvmDataGrid2_LocalDescriptionColumn.CellPadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
         MvvmDataGrid2_LocalDescriptionColumn.Header = "LocalDescription"
@@ -190,12 +194,13 @@ Partial Class frmMain
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
         Me.MvvmManager1.SetEventBindings(Me.MenuStrip1, Nothing)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.TestToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(712, 24)
@@ -257,12 +262,6 @@ Partial Class frmMain
         Me.EditBuildingToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
         Me.EditBuildingToolStripMenuItem.Text = "Edit Building..."
         '
-        'TestToolStripMenuItem
-        '
-        Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
-        Me.TestToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
-        Me.TestToolStripMenuItem.Text = "Test"
-        '
         'MvvmManager1
         '
         Me.MvvmManager1.CancelButton = Nothing
@@ -281,6 +280,9 @@ Partial Class frmMain
         '
         'MvvmDataGrid1
         '
+        Me.MvvmDataGrid1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MvvmDataGrid1.AutoGenerateColumns = False
         Me.MvvmDataGrid1.CanUserAddRows = False
         Me.MvvmDataGrid1.CanUserDeleteRows = False
@@ -311,6 +313,9 @@ Partial Class frmMain
         '
         'MvvmDataGrid2
         '
+        Me.MvvmDataGrid2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MvvmDataGrid2.AutoGenerateColumns = False
         Me.MvvmDataGrid2.CanUserAddRows = False
         Me.MvvmDataGrid2.CanUserDeleteRows = False
@@ -341,6 +346,7 @@ Partial Class frmMain
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.GroupBox1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.MvvmDataGrid1)
         Me.MvvmManager1.SetEventBindings(Me.SplitContainer1.Panel1, Nothing)
         '
@@ -351,6 +357,57 @@ Partial Class frmMain
         Me.SplitContainer1.Size = New System.Drawing.Size(712, 487)
         Me.SplitContainer1.SplitterDistance = 237
         Me.SplitContainer1.TabIndex = 1
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.TextBox2)
+        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.MvvmManager1.SetEventBindings(Me.GroupBox1, Nothing)
+        Me.GroupBox1.Location = New System.Drawing.Point(526, 14)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(173, 203)
+        Me.GroupBox1.TabIndex = 1
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Contact for Building"
+        '
+        'TextBox1
+        '
+        Me.MvvmManager1.SetEventBindings(Me.TextBox1, Nothing)
+        Me.TextBox1.Location = New System.Drawing.Point(6, 37)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(161, 20)
+        Me.TextBox1.TabIndex = 0
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.MvvmManager1.SetEventBindings(Me.Label1, Nothing)
+        Me.Label1.Location = New System.Drawing.Point(6, 21)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(56, 13)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Lastname:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.MvvmManager1.SetEventBindings(Me.Label2, Nothing)
+        Me.Label2.Location = New System.Drawing.Point(6, 69)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(55, 13)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "Firstname:"
+        '
+        'TextBox2
+        '
+        Me.MvvmManager1.SetEventBindings(Me.TextBox2, Nothing)
+        Me.TextBox2.Location = New System.Drawing.Point(6, 85)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(161, 20)
+        Me.TextBox2.TabIndex = 2
         '
         'frmMain
         '
@@ -372,6 +429,8 @@ Partial Class frmMain
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -391,5 +450,9 @@ Partial Class frmMain
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents MvvmDataGrid1 As ActiveDevelop.EntitiesFormsLib.MvvmDataGrid
     Friend WithEvents MvvmDataGrid2 As ActiveDevelop.EntitiesFormsLib.MvvmDataGrid
-    Friend WithEvents TestToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents TextBox1 As TextBox
 End Class

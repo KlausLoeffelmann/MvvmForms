@@ -1,5 +1,18 @@
-﻿Public Class NewEditBuildingView
-    Private Sub NullableDateValue1_Click(sender As Object, e As EventArgs) Handles NullableDateValue1.Click
+﻿Imports ActiveDevelop.EntitiesFormsLib
+Imports MeterReaderMvvmForms
 
-    End Sub
+Public Class NewEditBuildingView
+    Implements IMvvmForm
+
+    Public ReadOnly Property MvvmManager As MvvmManager Implements IMvvmForm.MvvmManager
+        Get
+            Return MvvmManager1
+        End Get
+    End Property
+
+    Public ReadOnly Property Self As Form Implements IMvvmForm.Self
+        Get
+            Return Me
+        End Get
+    End Property
 End Class

@@ -83,6 +83,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseClasses\MvvmFormBase.vb" />
     <Compile Include="frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +112,7 @@
     <Compile Include="Views\NewEditBuildingView.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="BaseClasses\WinFormsDependencyService.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmMain.resx">

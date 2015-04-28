@@ -49,4 +49,7 @@ Public Class MainViewModel
         End Set
     End Property
 
+    Public Property DependencyService As IPlatformDependencyService
+
+
 End Class
