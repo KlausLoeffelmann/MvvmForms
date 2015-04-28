@@ -10,7 +10,7 @@ namespace MRWebApiSelfHost.Controller
 {
     public class MeterController : ApiController
     {
-        [Route("api/meter/getmetersforbuilding"), HttpGet]
+        [Route("api/meter/getmetersforbuilding/{idBuilding}"), HttpGet]
         public async Task<IHttpActionResult> GetMetersForBuilding(Guid idBuilding)
         {
             var meterData = new MeterData();

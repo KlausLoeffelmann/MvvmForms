@@ -100,9 +100,7 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="ViewModels\ReadingViewModel.vb" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>

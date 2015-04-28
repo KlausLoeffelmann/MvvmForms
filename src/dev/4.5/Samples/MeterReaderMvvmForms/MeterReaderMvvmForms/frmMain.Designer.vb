@@ -44,8 +44,8 @@ Partial Class frmMain
         Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MvvmManager1 = New ActiveDevelop.EntitiesFormsLib.MvvmManager(Me.components)
         Me.MvvmDataGrid1 = New ActiveDevelop.EntitiesFormsLib.MvvmDataGrid()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.MvvmDataGrid2 = New ActiveDevelop.EntitiesFormsLib.MvvmDataGrid()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         MvvmDataGrid1_idNumColumn.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
         MvvmDataGrid1_idNumColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
         'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
@@ -185,11 +185,11 @@ Partial Class frmMain
         Me.MenuStrip1.SuspendLayout()
         CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MvvmDataGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MvvmDataGrid2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
-        CType(Me.MvvmDataGrid2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -309,27 +309,6 @@ Partial Class frmMain
         Me.MvvmDataGrid1.Size = New System.Drawing.Size(501, 206)
         Me.MvvmDataGrid1.TabIndex = 0
         '
-        'SplitContainer1
-        '
-        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.MvvmManager1.SetEventBindings(Me.SplitContainer1, Nothing)
-        Me.SplitContainer1.Location = New System.Drawing.Point(0, 24)
-        Me.SplitContainer1.Name = "SplitContainer1"
-        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
-        '
-        'SplitContainer1.Panel1
-        '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.MvvmDataGrid1)
-        Me.MvvmManager1.SetEventBindings(Me.SplitContainer1.Panel1, Nothing)
-        '
-        'SplitContainer1.Panel2
-        '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.MvvmDataGrid2)
-        Me.MvvmManager1.SetEventBindings(Me.SplitContainer1.Panel2, Nothing)
-        Me.SplitContainer1.Size = New System.Drawing.Size(712, 487)
-        Me.SplitContainer1.SplitterDistance = 237
-        Me.SplitContainer1.TabIndex = 1
-        '
         'MvvmDataGrid2
         '
         Me.MvvmDataGrid2.AutoGenerateColumns = False
@@ -352,6 +331,27 @@ Partial Class frmMain
         Me.MvvmDataGrid2.Size = New System.Drawing.Size(688, 220)
         Me.MvvmDataGrid2.TabIndex = 0
         '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MvvmManager1.SetEventBindings(Me.SplitContainer1, Nothing)
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 24)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.MvvmDataGrid1)
+        Me.MvvmManager1.SetEventBindings(Me.SplitContainer1.Panel1, Nothing)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.MvvmDataGrid2)
+        Me.MvvmManager1.SetEventBindings(Me.SplitContainer1.Panel2, Nothing)
+        Me.SplitContainer1.Size = New System.Drawing.Size(712, 487)
+        Me.SplitContainer1.SplitterDistance = 237
+        Me.SplitContainer1.TabIndex = 1
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -367,11 +367,11 @@ Partial Class frmMain
         Me.MenuStrip1.PerformLayout()
         CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MvvmDataGrid1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MvvmDataGrid2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
-        CType(Me.MvvmDataGrid2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
