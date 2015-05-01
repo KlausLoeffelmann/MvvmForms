@@ -4,6 +4,7 @@ Imports ActiveDevelop.MvvmBaseLib.Mvvm
 Public Class MainViewModel
     Inherits MvvmBase
 
+    '*** BACKING FIELDS ***
     Private myBuildings As ObservableCollection(Of BuildingViewModel)
     Private mySelectedBuilding As BuildingViewModel
     Private myMeters As BindableAsyncLazy(Of ObservableCollection(Of MeterViewModel)) =
@@ -15,6 +16,11 @@ Public Class MainViewModel
                     Return Await MeterViewModel.GetMetersForBuildingAsync(CType(param, Guid))
                 End If
             End Function, Nothing)
+
+    Private myNewBuildingCommand As New RelayCommand(AddressOf NewBuildingCommandProc,
+                                                     Function() True)
+
+    '*** BINDABLE PROPERTIES  ***
 
     Public Property Buildings As ObservableCollection(Of BuildingViewModel)
         Get
@@ -49,7 +55,33 @@ Public Class MainViewModel
         End Set
     End Property
 
-    Public Property DependencyService As IPlatformDependencyService
+    '*** COMMANDS ***
 
+    Public Property NewBuildingCommand As RelayCommand
+        Get
+            Return myNewBuildingCommand
+        End Get
+        Set(value As RelayCommand)
+            SetProperty(myNewBuildingCommand, value)
+        End Set
+    End Property
+
+    Private Async Sub NewBuildingCommandProc(obj As Object)
+
+        Dim newId = Await BuildingViewModel.GetNextId
+
+        Dim buildingVm As New BuildingViewModel With {.idNum = newId,
+                                                      .id = Guid.NewGuid}
+
+        Dim dr = Await DependencyService.ShowDialogAsync(buildingVm, "New Building")
+        If dr = MvvmDialogResult.OK Then
+            'TODO: Create new Building via Web Api.
+            Me.Buildings.Add(buildingVm)
+        End If
+    End Sub
+
+    '*** IoC ***
+
+    Public Property DependencyService As IPlatformDependencyService
 
 End Class

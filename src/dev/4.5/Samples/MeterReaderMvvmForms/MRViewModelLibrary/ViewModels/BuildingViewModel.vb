@@ -9,12 +9,13 @@ Public Class BuildingViewModel
     Private myId As Guid
     Private myIdNum As Integer
     Private myDescription As String
-    Private myBuildYear As Integer
+    Private myBuildYear As Integer?
     Private myLocationAddressLine1 As String
     Private myLocationAddressLine2 As String
     Private myCity As String
     Private myZip As String
     Private myCountry As String
+    Private myAlternatingColorFlag As Boolean
 
     Private myOwner As BindableAsyncLazy(Of ContactViewModel) =
         New BindableAsyncLazy(Of ContactViewModel)(
@@ -30,12 +31,21 @@ Public Class BuildingViewModel
         Dim buildings = New ObservableCollection(Of BuildingViewModel)
         For Each item In buildingModels
             Dim buildingVm = New BuildingViewModel
+            Dim alternating As Boolean
             buildingVm.CopyPropertiesFrom(item)
+            buildingVm.AlternatingColorFlag = alternating
+            alternating = alternating Xor True
             buildings.Add(buildingVm)
         Next
 
         Return buildings
 
+    End Function
+
+    Public Shared Async Function GetNextId() As Task(Of Integer)
+        Await Task.Delay(0)
+        'Hack: Here, we have to return the proper next ID! :-S
+        Return Date.Now.Millisecond
     End Function
 
     Public Property id As Guid
@@ -74,11 +84,11 @@ Public Class BuildingViewModel
         End Set
     End Property
 
-    Public Property BuildYear As Integer
+    Public Property BuildYear As Integer?
         Get
             Return myBuildYear
         End Get
-        Set(value As Integer)
+        Set(value As Integer?)
             SetProperty(myBuildYear, value)
         End Set
     End Property
@@ -127,5 +137,17 @@ Public Class BuildingViewModel
             SetProperty(myCountry, value)
         End Set
     End Property
+
+    Public Property TableCellPadding As Integer = 2
+
+    Public Property AlternatingColorFlag As Boolean
+        Get
+            Return myAlternatingColorFlag
+        End Get
+        Set(value As Boolean)
+            SetProperty(myAlternatingColorFlag, value)
+        End Set
+    End Property
+
 
 End Class

@@ -46,10 +46,10 @@ Partial Class frmMain
         Me.MvvmDataGrid2 = New ActiveDevelop.EntitiesFormsLib.MvvmDataGrid()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         MvvmDataGrid1_idNumColumn.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
         MvvmDataGrid1_idNumColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
         'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
@@ -287,16 +287,23 @@ Partial Class frmMain
         Me.MvvmDataGrid1.CanUserAddRows = False
         Me.MvvmDataGrid1.CanUserDeleteRows = False
         MvvmDataGrid1_idNumColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("idNum", GetType(MRViewModelLibrary.BuildingViewModel)))
+        MvvmDataGrid1_idNumColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("CellPadding", GetType(System.Windows.Forms.Padding)), GetType(MeterReaderMvvmForms.IntegerToPaddingConverter), Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("TableCellPadding", GetType(Integer)))
+        MvvmDataGrid1_idNumColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("BackgroundColor", GetType(System.Drawing.Color)), GetType(MeterReaderMvvmForms.BooleanToColorConverter), Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("AlternatingColorFlag", GetType(Boolean)))
         Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_idNumColumn)
         MvvmDataGrid1_BuildYearColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("BuildYear", GetType(MRViewModelLibrary.BuildingViewModel)))
+        MvvmDataGrid1_BuildYearColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("BackgroundColor", GetType(System.Drawing.Color)), GetType(MeterReaderMvvmForms.BooleanToColorConverter), Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("AlternatingColorFlag", GetType(Boolean)))
         Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_BuildYearColumn)
         MvvmDataGrid1_DescriptionColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Description", GetType(MRViewModelLibrary.BuildingViewModel)))
+        MvvmDataGrid1_DescriptionColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("BackgroundColor", GetType(System.Drawing.Color)), GetType(MeterReaderMvvmForms.BooleanToColorConverter), Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("AlternatingColorFlag", GetType(Boolean)))
         Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_DescriptionColumn)
         MvvmDataGrid1_CityColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("City", GetType(MRViewModelLibrary.BuildingViewModel)))
+        MvvmDataGrid1_CityColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("BackgroundColor", GetType(System.Drawing.Color)), GetType(MeterReaderMvvmForms.BooleanToColorConverter), Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("AlternatingColorFlag", GetType(Boolean)))
         Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_CityColumn)
         MvvmDataGrid1_ZipColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Zip", GetType(MRViewModelLibrary.BuildingViewModel)))
+        MvvmDataGrid1_ZipColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("BackgroundColor", GetType(System.Drawing.Color)), GetType(MeterReaderMvvmForms.BooleanToColorConverter), Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("AlternatingColorFlag", GetType(Boolean)))
         Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_ZipColumn)
         MvvmDataGrid1_CountryColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Country", GetType(MRViewModelLibrary.BuildingViewModel)))
+        MvvmDataGrid1_CountryColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("BackgroundColor", GetType(System.Drawing.Color)), GetType(MeterReaderMvvmForms.BooleanToColorConverter), Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("AlternatingColorFlag", GetType(Boolean)))
         Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_CountryColumn)
         Me.MvvmDataGrid1.CustomColumnTemplateType = Nothing
         Me.MvvmDataGrid1.DataSourceType = GetType(MRViewModelLibrary.BuildingViewModel)
@@ -321,7 +328,7 @@ Partial Class frmMain
         Me.MvvmDataGrid2.CanUserDeleteRows = False
         MvvmDataGrid2_MeterIdColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("MeterId", GetType(MRViewModelLibrary.MeterViewModel)))
         Me.MvvmDataGrid2.Columns.Add(MvvmDataGrid2_MeterIdColumn)
-        MvvmDataGrid2_LocalDescriptionColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("LocalDescription", GetType(MRViewModelLibrary.MeterViewModel)))
+        MvvmDataGrid2_LocalDescriptionColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(Object)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("LocationDescription", GetType(String)))
         Me.MvvmDataGrid2.Columns.Add(MvvmDataGrid2_LocalDescriptionColumn)
         Me.MvvmDataGrid2.CustomColumnTemplateType = Nothing
         Me.MvvmDataGrid2.DataSourceType = GetType(MRViewModelLibrary.MeterViewModel)
@@ -373,24 +380,6 @@ Partial Class frmMain
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Contact for Building"
         '
-        'TextBox1
-        '
-        Me.MvvmManager1.SetEventBindings(Me.TextBox1, Nothing)
-        Me.TextBox1.Location = New System.Drawing.Point(6, 37)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(161, 20)
-        Me.TextBox1.TabIndex = 0
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.MvvmManager1.SetEventBindings(Me.Label1, Nothing)
-        Me.Label1.Location = New System.Drawing.Point(6, 21)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(56, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Lastname:"
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -408,6 +397,24 @@ Partial Class frmMain
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(161, 20)
         Me.TextBox2.TabIndex = 2
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.MvvmManager1.SetEventBindings(Me.Label1, Nothing)
+        Me.Label1.Location = New System.Drawing.Point(6, 21)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(56, 13)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Lastname:"
+        '
+        'TextBox1
+        '
+        Me.MvvmManager1.SetEventBindings(Me.TextBox1, Nothing)
+        Me.TextBox1.Location = New System.Drawing.Point(6, 37)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(161, 20)
+        Me.TextBox1.TabIndex = 0
         '
         'frmMain
         '

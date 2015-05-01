@@ -84,6 +84,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClasses\MvvmFormBase.vb" />
+    <Compile Include="Converter\BooleanToColorConverter.vb" />
+    <Compile Include="Converter\IntegerToPaddingConverter.vb" />
     <Compile Include="frmMain.vb">
       <SubType>Form</SubType>
     </Compile>

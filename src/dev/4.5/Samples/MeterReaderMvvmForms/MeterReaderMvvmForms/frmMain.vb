@@ -4,7 +4,8 @@ Imports MRViewModelLibrary
 
 Public Class frmMain
 
-    Private myMainViewModel As New MainViewModel
+    Private myMainViewModel As New MainViewModel With
+        {.DependencyService = New WinFormsDependencyService}
 
     Private Async Sub TestToolStripMenuItem_Click(sender As Object, e As EventArgs)
         Dim buildings = Await MRViewModelLibrary.BuildingViewModel.GetAllBuildings()
@@ -17,7 +18,9 @@ Public Class frmMain
 
     Private Sub NewBuildingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewBuildingToolStripMenuItem.Click
         If myMainViewModel IsNot Nothing Then
-
+            If myMainViewModel.NewBuildingCommand.CanExecute(Nothing) Then
+                myMainViewModel.NewBuildingCommand.Execute(Nothing)
+            End If
         End If
     End Sub
 End Class
