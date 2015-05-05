@@ -29,7 +29,7 @@ Module Module1
     End Sub
 
 End Module"
-            Dim expected = New DiagnosticResult With {.Id = UnusedFieldsAnalyzerAnalyzer.DiagnosticId,
+            Dim expected = New DiagnosticResult With {.Id = UnusedFieldsAnalyzer.DiagnosticId,
                 .Message = String.Format("Type name '{0}' contains lowercase letters", "Module1"),
                 .Severity = DiagnosticSeverity.Warning,
                 .Locations = New DiagnosticResultLocation() {
@@ -56,7 +56,7 @@ End Module"
         End Function
 
         Protected Overrides Function GetBasicDiagnosticAnalyzer() As DiagnosticAnalyzer
-            Return New UnusedFieldsAnalyzerAnalyzer()
+            Return New UnusedFieldsAnalyzer()
         End Function
 
     End Class

@@ -9,7 +9,7 @@ Public Class MvvmFormsAnalyzerCodeFixProvider
 
     Public NotOverridable Overrides ReadOnly Property FixableDiagnosticIds As ImmutableArray(Of String)
         Get
-            Return ImmutableArray.Create(UnusedFieldsAnalyzerAnalyzer.DiagnosticId)
+            Return ImmutableArray.Create(UnusedFieldsAnalyzer.DiagnosticId)
         End Get
     End Property
 
