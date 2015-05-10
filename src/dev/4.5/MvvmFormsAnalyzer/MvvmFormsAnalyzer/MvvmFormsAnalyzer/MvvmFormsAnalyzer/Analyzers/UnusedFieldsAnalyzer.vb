@@ -5,16 +5,20 @@ Public Class UnusedFieldsAnalyzer
     Public Const DiagnosticId = "ADMF0001"
 
     ' You can change these strings in the Resources.resx file. If you do not want your analyzer to be localize-able, you can use regular strings for Title and MessageFormat.
-    Friend Shared ReadOnly Title As LocalizableString = New LocalizableResourceString(NameOf(My.Resources.AnalyzerTitle),
-                                                                                      My.Resources.ResourceManager,
-                                                                                      GetType(My.Resources.Resources))
+    Friend Shared ReadOnly Title As LocalizableString =
+        New LocalizableResourceString(NameOf(My.Resources.AnalyzerTitle),
+                                            My.Resources.ResourceManager,
+                                            GetType(My.Resources.Resources))
 
-    Friend Shared ReadOnly MessageFormat As LocalizableString = New LocalizableResourceString(NameOf(My.Resources.AnalyzerMessageFormat),
-                                                                                              My.Resources.ResourceManager,
-                                                                                              GetType(My.Resources.Resources))
-    Friend Shared ReadOnly Description As LocalizableString = New LocalizableResourceString(NameOf(My.Resources.AnalyzerDescription),
-                                                                                            My.Resources.ResourceManager,
-                                                                                            GetType(My.Resources.Resources))
+    Friend Shared ReadOnly MessageFormat As LocalizableString =
+        New LocalizableResourceString(NameOf(My.Resources.AnalyzerMessageFormat),
+                                            My.Resources.ResourceManager,
+                                            GetType(My.Resources.Resources))
+
+    Friend Shared ReadOnly Description As LocalizableString =
+        New LocalizableResourceString(NameOf(My.Resources.AnalyzerDescription),
+                                            My.Resources.ResourceManager,
+                                            GetType(My.Resources.Resources))
     Friend Const Category = "Naming"
 
     Friend Shared Rule As New DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, isEnabledByDefault:=True, description:=Description)
@@ -97,10 +101,11 @@ Public Class ActionCascadeManager
                             'This is done at the very end: If there are DefinedFields for which
                             'there are no fields in the reference fields, those fields are not in use.
                             If Not myFieldList.ReferenceFields.Contains(fieldSymbolItem.FieldSymbol) Then
-                                innerInnercontext.ReportDiagnostic(
-                    Diagnostic.Create(UnusedFieldsAnalyzer.Rule,
+                                Dim diagToReport = Diagnostic.Create(UnusedFieldsAnalyzer.Rule,
                                       fieldSymbolItem.FieldSymbol.Locations.First,
-                                      fieldSymbolItem.FieldSymbol.Name))
+                                      fieldSymbolItem.FieldSymbol.Name)
+
+                                innerInnercontext.ReportDiagnostic(diagToReport)
                             End If
                         Next
                     End Sub)
@@ -108,6 +113,12 @@ Public Class ActionCascadeManager
     End Sub
 
     Private Sub SymbolActionProc(innerContext As SymbolAnalysisContext)
+
+        'Works:
+        Dim codeFixAction As CodeFixAction = CodeFixAction.SimpleProperty
+
+        'Does not work.
+        'Dim codeFixAction = CodeFixAction.SimpleProperty
 
         'We don't do it on static fields (or fields in modules).
         If innerContext.Symbol.IsStatic Then
@@ -120,20 +131,12 @@ Public Class ActionCascadeManager
             If contType.IsAnonymousType Then
                 Return
             End If
-
-        Else
-            'we shouldn't be here.
-            Return
         End If
 
         If DirectCast(innerContext.Symbol, IFieldSymbol).DeclaredAccessibility = Accessibility.Private Then
             myFieldList.DefinedFields.Add(New FieldActionTuple With {.FieldSymbol = DirectCast(innerContext.Symbol, IFieldSymbol),
                                                                      .Action = CodeFixAction.SimpleProperty})
 
-            Debug.WriteLine("Found private field:" & innerContext.Symbol.Name)
         End If
     End Sub
-
-
-
 End Class

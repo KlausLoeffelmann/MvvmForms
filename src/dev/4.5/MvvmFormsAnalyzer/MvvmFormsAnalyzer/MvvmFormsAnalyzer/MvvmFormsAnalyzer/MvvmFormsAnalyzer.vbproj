@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="CodeFixProviders\CodeFixProvider.vb" />
     <Compile Include="Analyzers\UnusedFieldsAnalyzer.vb" />
+    <Compile Include="ExtensionMethods\AnalyzerExtensionMethods.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -156,6 +157,7 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\v4.5\Microsoft.Portable.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)\packages\NuGet.CommandLine.2.8.2\tools\NuGet.exe" pack Diagnostic.nuspec -NoPackageAnalysis -OutputDirectory .</PostBuildEvent>

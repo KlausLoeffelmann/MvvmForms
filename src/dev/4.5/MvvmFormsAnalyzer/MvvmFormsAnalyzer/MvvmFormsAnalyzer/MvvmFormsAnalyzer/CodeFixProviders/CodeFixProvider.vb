@@ -18,7 +18,12 @@ Public Class MvvmFormsAnalyzerCodeFixProvider
     End Function
 
     Public NotOverridable Overrides Async Function RegisterCodeFixesAsync(context As CodeFixContext) As Task
+
         Dim root = Await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(False)
+
+        Dim semModel = Await context.Document.GetSemanticModelAsync
+        Dim syntaxTrees = semModel.Compilation.SyntaxTrees
+
 
         Dim diagnostic = context.Diagnostics.First()
         Dim diagnosticSpan = diagnostic.Location.SourceSpan
@@ -82,32 +87,29 @@ Public Class MvvmFormsAnalyzerCodeFixProvider
     End Function
 End Class
 
-Public Class test
+'If contType.Interfaces.Where(
+'                    Function(item) item.Name = "INotifyPropertyChanged").FirstOrDefault IsNot Nothing Then
+'CodeFixAction = CodeFixAction.ManualRaiseNotifyPropertyChanged
+'End If
 
-    Private myField As String
-    Private myField2 As Integer
-    Private myField3 As Decimal?
+'Dim basetype = contType.BaseType
+'Dim methods = basetype.GetMembers
 
-    Public Property Field As String
-        Get
-            Return myField
-        End Get
-        Set(value As String)
-            myField = value
-        End Set
-    End Property
-
-    Public Property AutoProperty As String
-
-    Public Property Field2 As Integer
-        Get
-            Return myField2
-        End Get
-        Set(value As Integer)
-            If Not value.Equals(Field2) Then
-                myField2 = value
-            End If
-        End Set
-    End Property
-
-End Class
+'If basetype IsNot Nothing AndAlso basetype.Name <> "Object" Then
+'Debug.WriteLine($"Basetype found: {basetype.ToString}")
+'If basetype.HasTypeInInheritanceHierarchy("BindableBase") Then
+'Dim setProp = TryCast(basetype.GetMethodOrInheritedMethod("SetProperty"), IMethodSymbol)
+'If setProp IsNot Nothing Then
+'If setProp.IsGenericMethod And setProp.Parameters.Count > 0 Then
+'If setProp.Parameters(0).RefKind = RefKind.Out Then
+''Here we can be comparatively sure, we got the right method for raising the PropChange-Event.
+'CodeFixAction = CodeFixAction.UseSetPropertyOfBaseClass
+'End If
+'End If
+'End If
+'End If
+'End If
+'Else
+''we should never be here.
+'Return
+'End If
