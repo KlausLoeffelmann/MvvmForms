@@ -5,7 +5,7 @@ namespace MRWebApiSelfHost
     using System;
     using System.Data.Entity;
     using System.Linq;
-    using MRWebApiSelfHost.DataLayer.DataObjects;
+    using MrModelLibrary.DataObjects;
     using System.Collections.Generic;
 
     public class MRModel : DbContext

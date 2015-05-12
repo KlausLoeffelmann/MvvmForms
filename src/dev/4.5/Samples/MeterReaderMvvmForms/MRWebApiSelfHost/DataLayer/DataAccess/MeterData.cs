@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MRWebApiSelfHost.DataLayer.DataObjects;
+using MrModelLibrary.DataObjects;
 
 namespace MRWebApiSelfHost.DataLayer.DataAccess
 {

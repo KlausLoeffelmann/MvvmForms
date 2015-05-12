@@ -200,10 +200,12 @@ Partial Class frmMain
         'MenuStrip1
         '
         Me.MvvmManager1.SetEventBindings(Me.MenuStrip1, Nothing)
+        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(712, 24)
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(8, 2, 0, 2)
+        Me.MenuStrip1.Size = New System.Drawing.Size(949, 28)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -211,55 +213,55 @@ Partial Class frmMain
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewReadingToolStripMenuItem, Me.NewContactToolStripMenuItem, Me.NewBuildingToolStripMenuItem, Me.ToolStripMenuItem1, Me.QuitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(44, 24)
         Me.FileToolStripMenuItem.Text = "&File"
         '
         'NewReadingToolStripMenuItem
         '
         Me.NewReadingToolStripMenuItem.Name = "NewReadingToolStripMenuItem"
-        Me.NewReadingToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.NewReadingToolStripMenuItem.Size = New System.Drawing.Size(182, 26)
         Me.NewReadingToolStripMenuItem.Text = "New Reading..."
         '
         'NewContactToolStripMenuItem
         '
         Me.NewContactToolStripMenuItem.Name = "NewContactToolStripMenuItem"
-        Me.NewContactToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.NewContactToolStripMenuItem.Size = New System.Drawing.Size(182, 26)
         Me.NewContactToolStripMenuItem.Text = "New Contact..."
         '
         'NewBuildingToolStripMenuItem
         '
         Me.NewBuildingToolStripMenuItem.Name = "NewBuildingToolStripMenuItem"
-        Me.NewBuildingToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.NewBuildingToolStripMenuItem.Size = New System.Drawing.Size(182, 26)
         Me.NewBuildingToolStripMenuItem.Text = "New Building..."
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(151, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(179, 6)
         '
         'QuitToolStripMenuItem
         '
         Me.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
-        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(182, 26)
         Me.QuitToolStripMenuItem.Text = "Quit"
         '
         'EditToolStripMenuItem
         '
         Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditContactToolStripMenuItem, Me.EditBuildingToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(47, 24)
         Me.EditToolStripMenuItem.Text = "&Edit"
         '
         'EditContactToolStripMenuItem
         '
         Me.EditContactToolStripMenuItem.Name = "EditContactToolStripMenuItem"
-        Me.EditContactToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.EditContactToolStripMenuItem.Size = New System.Drawing.Size(178, 26)
         Me.EditContactToolStripMenuItem.Text = "Edit Contact..."
         '
         'EditBuildingToolStripMenuItem
         '
         Me.EditBuildingToolStripMenuItem.Name = "EditBuildingToolStripMenuItem"
-        Me.EditBuildingToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.EditBuildingToolStripMenuItem.Size = New System.Drawing.Size(178, 26)
         Me.EditBuildingToolStripMenuItem.Text = "Edit Building..."
         '
         'MvvmManager1
@@ -311,11 +313,12 @@ Partial Class frmMain
         Me.MvvmManager1.SetEventBindings(Me.MvvmDataGrid1, Nothing)
         Me.MvvmDataGrid1.GridLinesVisibility = System.Windows.Controls.DataGridGridLinesVisibility.All
         Me.MvvmDataGrid1.ItemsSource = Nothing
-        Me.MvvmDataGrid1.Location = New System.Drawing.Point(12, 12)
+        Me.MvvmDataGrid1.Location = New System.Drawing.Point(16, 15)
+        Me.MvvmDataGrid1.Margin = New System.Windows.Forms.Padding(5)
         Me.MvvmDataGrid1.Name = "MvvmDataGrid1"
         Me.MvvmDataGrid1.SelectedItem = Nothing
         Me.MvvmDataGrid1.SelectionMode = System.Windows.Controls.DataGridSelectionMode.[Single]
-        Me.MvvmDataGrid1.Size = New System.Drawing.Size(501, 206)
+        Me.MvvmDataGrid1.Size = New System.Drawing.Size(668, 254)
         Me.MvvmDataGrid1.TabIndex = 0
         '
         'MvvmDataGrid2
@@ -336,18 +339,20 @@ Partial Class frmMain
         Me.MvvmManager1.SetEventBindings(Me.MvvmDataGrid2, Nothing)
         Me.MvvmDataGrid2.GridLinesVisibility = System.Windows.Controls.DataGridGridLinesVisibility.All
         Me.MvvmDataGrid2.ItemsSource = Nothing
-        Me.MvvmDataGrid2.Location = New System.Drawing.Point(12, 14)
+        Me.MvvmDataGrid2.Location = New System.Drawing.Point(16, 17)
+        Me.MvvmDataGrid2.Margin = New System.Windows.Forms.Padding(5)
         Me.MvvmDataGrid2.Name = "MvvmDataGrid2"
         Me.MvvmDataGrid2.SelectedItem = Nothing
         Me.MvvmDataGrid2.SelectionMode = System.Windows.Controls.DataGridSelectionMode.[Single]
-        Me.MvvmDataGrid2.Size = New System.Drawing.Size(688, 220)
+        Me.MvvmDataGrid2.Size = New System.Drawing.Size(917, 269)
         Me.MvvmDataGrid2.TabIndex = 0
         '
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MvvmManager1.SetEventBindings(Me.SplitContainer1, Nothing)
-        Me.SplitContainer1.Location = New System.Drawing.Point(0, 24)
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 28)
+        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(4)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -361,8 +366,9 @@ Partial Class frmMain
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.MvvmDataGrid2)
         Me.MvvmManager1.SetEventBindings(Me.SplitContainer1.Panel2, Nothing)
-        Me.SplitContainer1.Size = New System.Drawing.Size(712, 487)
-        Me.SplitContainer1.SplitterDistance = 237
+        Me.SplitContainer1.Size = New System.Drawing.Size(949, 601)
+        Me.SplitContainer1.SplitterDistance = 292
+        Me.SplitContainer1.SplitterWidth = 5
         Me.SplitContainer1.TabIndex = 1
         '
         'GroupBox1
@@ -373,9 +379,11 @@ Partial Class frmMain
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.MvvmManager1.SetEventBindings(Me.GroupBox1, Nothing)
-        Me.GroupBox1.Location = New System.Drawing.Point(526, 14)
+        Me.GroupBox1.Location = New System.Drawing.Point(701, 17)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(173, 203)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox1.Size = New System.Drawing.Size(231, 250)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Contact for Building"
@@ -384,47 +392,52 @@ Partial Class frmMain
         '
         Me.Label2.AutoSize = True
         Me.MvvmManager1.SetEventBindings(Me.Label2, Nothing)
-        Me.Label2.Location = New System.Drawing.Point(6, 69)
+        Me.Label2.Location = New System.Drawing.Point(8, 85)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(55, 13)
+        Me.Label2.Size = New System.Drawing.Size(74, 17)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Firstname:"
         '
         'TextBox2
         '
         Me.MvvmManager1.SetEventBindings(Me.TextBox2, Nothing)
-        Me.TextBox2.Location = New System.Drawing.Point(6, 85)
+        Me.TextBox2.Location = New System.Drawing.Point(8, 105)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(161, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(213, 22)
         Me.TextBox2.TabIndex = 2
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.MvvmManager1.SetEventBindings(Me.Label1, Nothing)
-        Me.Label1.Location = New System.Drawing.Point(6, 21)
+        Me.Label1.Location = New System.Drawing.Point(8, 26)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(56, 13)
+        Me.Label1.Size = New System.Drawing.Size(74, 17)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Lastname:"
         '
         'TextBox1
         '
         Me.MvvmManager1.SetEventBindings(Me.TextBox1, Nothing)
-        Me.TextBox1.Location = New System.Drawing.Point(6, 37)
+        Me.TextBox1.Location = New System.Drawing.Point(8, 46)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(161, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(213, 22)
         Me.TextBox1.TabIndex = 0
         '
         'frmMain
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(712, 511)
+        Me.ClientSize = New System.Drawing.Size(949, 629)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MvvmManager1.SetEventBindings(Me, Nothing)
         Me.MainMenuStrip = Me.MenuStrip1
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmMain"
         Me.Text = "Meter Reader Manager - MvvmForms Demo"
         Me.MenuStrip1.ResumeLayout(False)

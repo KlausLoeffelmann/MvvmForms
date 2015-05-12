@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MRWebApiSelfHost.DataLayer.DataObjects
+namespace MrModelLibrary.DataObjects
 {
     public class ReadingItem
     {

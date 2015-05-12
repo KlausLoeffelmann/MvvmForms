@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Windows
 
 ''' <summary>
 ''' Steuerelement zur aufklappbaren Darstellung von Elementen in DataGridView-Listen, das überdies Null-Werte verarbeitet, 
@@ -10,11 +11,6 @@
 Public Class BindingSettingPopup
     Inherits TextBoxPopup
 
-    Private Shared myDefaultBindingSettingDelegate As Func(Of BindingSetting) =
-        Function() As BindingSetting
-            Return New BindingSetting(MvvmBindingModes.TwoWay, UpdateSourceTriggerSettings.LostFocus)
-        End Function
-
     Public Event BindingSettingChanged(sender As Object, e As EventArgs)
 
     Private myBindingModePopupForm As BindingModePopupView
@@ -22,23 +18,15 @@ Public Class BindingSettingPopup
 
     Sub New()
         MyBase.New()
+        myBindingSetting = New BindingSetting(MvvmBindingModes.TwoWay, UpdateSourceTriggerSettings.LostFocus)
         Me.TextBoxPart.ReadOnly = True
-        myBindingSetting = DefaultBindingSettingDelegate.Invoke
         Me.TextBoxPart.Text = myBindingSetting.ToString
     End Sub
 
-    Public Shared Property DefaultBindingSettingDelegate As Func(Of BindingSetting)
-        Get
-            Return myDefaultBindingSettingDelegate
-        End Get
-        Set(value As Func(Of BindingSetting))
-            myDefaultBindingSettingDelegate = value
-        End Set
-    End Property
 
     Protected Overrides Function GetPopupContent() As System.Windows.Forms.Control
         If myBindingModePopupForm Is Nothing Then
-            myBindingModePopupForm = New BindingModePopupView
+            myBindingModePopupForm = New BindingModePopupView With {.BindingSetting = Me.BindingSetting}
             AddHandler myBindingModePopupForm.PopupCloseRequested,
                 Sub(sender, e)
                     If Me.IsPopupOpen Then

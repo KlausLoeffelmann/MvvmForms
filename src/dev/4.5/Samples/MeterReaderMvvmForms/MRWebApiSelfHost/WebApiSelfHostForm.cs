@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MrModelLibrary.DataObjects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -65,7 +66,7 @@ namespace MRWebApiSelfHost
             var result = from item in context.ContactItems
                          select item;
 
-            context.ContactItems.Add(new DataLayer.DataObjects.ContactItem
+            context.ContactItems.Add(new ContactItem
             {
                 id = Guid.NewGuid(),
                 Firstname = "Klaus",

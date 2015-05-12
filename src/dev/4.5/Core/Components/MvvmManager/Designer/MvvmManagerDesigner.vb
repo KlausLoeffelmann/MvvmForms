@@ -21,13 +21,13 @@ Public Class MvvmManagerDesigner
                 ' Verbs-Collection erstellen und definieren.
                 myVerbs = New DesignerVerbCollection()
                 myBindingManagerFormVerb =
-                    New DesignerVerb("View-Bindings verwalten...",
+                    New DesignerVerb("Manage View/ViewModel Bindings...",
                             Sub(sender As Object, e As EventArgs)
                                 Dim host As IDesignerHost = TryCast(Me.GetService(GetType(IDesignerHost)), IDesignerHost)
 
                                 If host Is Nothing Then
                                     'Beep()
-                                    MessageBox.Show("Konnte DesignerHost nicht ermitteln.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    MessageBox.Show("Could not retrieve Designer Host.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                     Return
                                 End If
 

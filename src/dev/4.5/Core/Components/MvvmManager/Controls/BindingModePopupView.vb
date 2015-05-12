@@ -11,21 +11,23 @@ Public Class BindingModePopupView
 
     Private Sub BindingModePopupView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        For Each rButton As RadioButton In gbBindingMode.Controls
-            If rButton.Name.Substring(2) Like myBinding.BindingMode.ToString Then
-                rButton.Checked = True
-                Exit For
-            End If
-        Next
+        ReflectBindingProperty(myBinding)
 
-        For Each rButton As ButtonBase In gbUpdateSourceTrigger.Controls
-            If GetType(RadioButton).IsAssignableFrom(rButton.GetType) Then
-                If rButton.Name.Substring(2) Like myBinding.UpdateSourceTrigger.ToString Then
-                    DirectCast(rButton, RadioButton).Checked = True
-                    Exit For
-                End If
-            End If
-        Next
+        'For Each rButton As RadioButton In gbBindingMode.Controls
+        '    If rButton.Name.Substring(2) Like myBinding.BindingMode.ToString Then
+        '        rButton.Checked = True
+        '        Exit For
+        '    End If
+        'Next
+
+        'For Each rButton As ButtonBase In gbUpdateSourceTrigger.Controls
+        '    If GetType(RadioButton).IsAssignableFrom(rButton.GetType) Then
+        '        If rButton.Name.Substring(2) Like myBinding.UpdateSourceTrigger.ToString Then
+        '            DirectCast(rButton, RadioButton).Checked = True
+        '            Exit For
+        '        End If
+        '    End If
+        'Next
     End Sub
 
     Property BindingSetting As BindingSetting
@@ -35,7 +37,7 @@ Public Class BindingModePopupView
 
             Dim sourceTriggerRadioButton = (From rButtonItem In gbUpdateSourceTrigger.Controls
                                             Where GetType(RadioButton).IsAssignableFrom(rButtonItem.GetType) AndAlso
-                                          DirectCast(rButtonItem, RadioButton).Checked).SingleOrDefault
+                                            DirectCast(rButtonItem, RadioButton).Checked).SingleOrDefault
 
             Dim bindingToReturn = New BindingSetting With
                       {.BindingMode = DirectCast([Enum].Parse(GetType(MvvmBindingModes), If(bindingModeRadioButton IsNot Nothing, DirectCast(bindingModeRadioButton, RadioButton).Name.Substring(2), "Default")), MvvmBindingModes),
@@ -48,20 +50,30 @@ Public Class BindingModePopupView
             Return bindingToReturn
         End Get
         Set(value As BindingSetting)
-
-            Dim tmpBindingmode = value.BindingMode And Not MvvmBindingModes.ValidatesOnNotifyDataErrors
-
-            Dim bindingModeRadioButton = (From rButtonItem In gbBindingMode.Controls
-                                          Where DirectCast(rButtonItem, RadioButton).Name.Substring(2) = tmpBindingmode.ToString).SingleOrDefault
-
-            Dim sourceTriggerRadioButton = (From rButtonItem In gbUpdateSourceTrigger.Controls
-                                            Where GetType(RadioButton).IsAssignableFrom(rButtonItem.GetType) AndAlso
-                                          DirectCast(rButtonItem, RadioButton).Name.Substring(2) = value.UpdateSourceTrigger.ToString).SingleOrDefault
-
-            ValidatesCheckBox.Checked = value.BindingMode.HasFlag(MvvmBindingModes.ValidatesOnNotifyDataErrors)
-
+            If Not Object.Equals(myBinding, value) Then
+                myBinding = value
+                ReflectBindingProperty(value)
+            End If
         End Set
     End Property
+
+    Private Sub ReflectBindingProperty(value As BindingSetting)
+        Dim tmpBindingmode = value.BindingMode And Not MvvmBindingModes.ValidatesOnNotifyDataErrors
+
+        Dim bindingModeRadioButton = (From rButtonItem In gbBindingMode.Controls
+                                      Where DirectCast(rButtonItem, RadioButton).Name.Substring(2) = tmpBindingmode.ToString).SingleOrDefault
+
+        DirectCast(bindingModeRadioButton, RadioButton).Checked = True
+
+        Dim sourceTriggerRadioButton = (From rButtonItem In gbUpdateSourceTrigger.Controls
+                                        Where GetType(RadioButton).IsAssignableFrom(rButtonItem.GetType) AndAlso
+                                          DirectCast(rButtonItem, RadioButton).Name.Substring(2) = value.UpdateSourceTrigger.ToString).SingleOrDefault
+
+        DirectCast(sourceTriggerRadioButton, RadioButton).Checked = True
+
+        ValidatesCheckBox.Checked = value.BindingMode.HasFlag(MvvmBindingModes.ValidatesOnNotifyDataErrors)
+
+    End Sub
 
     Protected Overridable Sub OnPopupCloseRequested(e As PopupCloseRequestedEventArgs)
         RaiseEvent PopupCloseRequested(Me, e)

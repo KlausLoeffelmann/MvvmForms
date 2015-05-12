@@ -1,17 +1,9 @@
 ﻿Imports System.Windows.Forms
-Imports System.Drawing
 Imports System.Collections.ObjectModel
 Imports System.Threading.Tasks
-Imports System.Text
-Imports System.Windows.Forms.Design
 Imports System.ComponentModel
 Imports System.ComponentModel.Design
-Imports System.IO
-Imports System.Runtime.CompilerServices
-Imports System.Reflection
 Imports System.Windows.Data
-
-Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
 
 Public Class frmMvvmPropertyAssignment
 
@@ -23,7 +15,7 @@ Public Class frmMvvmPropertyAssignment
 
     Private myPropertyBindings As ObservableBindingList(Of PropertyBindingItem)
     Private myConverters As ObservableCollection(Of ConverterDisplayItem)
-    'Private myReferencedAssemblies As List(Of Assembly)
+
     Private myEventHandlerHaveBeenWired As Boolean
 
     Property PropertyBindings As PropertyBindings
@@ -47,19 +39,7 @@ Public Class frmMvvmPropertyAssignment
 
     Public Sub PopulateDisplayValues()
 
-        '#If DEBUG Then
-        '        If ControlToBind Is Nothing Then
-        '            MessageBox.Show("Warning: Null controls detected, Control must not not be null.",
-        '                            "Null detected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        '            ControlToBind = New NullableTextValue With {.Name = "ndvDateOfBirthTesting"}
-        '            myViewModelType = GetType(ContactTest)
-        '        End If
-        '#End If
         myViewModelType = If(Me.MvvmManager Is Nothing, Nothing, Me.MvvmManager.DataContextType)
-
-        If myViewModelType Is Nothing OrElse myControlToBind Is Nothing Then
-
-        End If
 
         Dim viewName As String = myControlToBind.ToString()
         Dim control = TryCast(myControlToBind, Control)
@@ -286,13 +266,13 @@ skipWarning:
                                                                      Reflection.BindingFlags.Instance)
                  Where methItem.Name.StartsWith("On") And methItem.Name.EndsWith("Changed")
                  Join propItem In myControlToBind.GetType.GetProperties(Reflection.BindingFlags.NonPublic Or
-                                                                        Reflection.BindingFlags.Public Or
-                                                                        Reflection.BindingFlags.Instance) On
-                 methItem.Name.Substring(2, methItem.Name.Length - 9).ToUpper Equals propItem.Name.ToUpper
+                                                                    Reflection.BindingFlags.Public Or
+                                                                    Reflection.BindingFlags.Instance) On
+                            methItem.Name.Substring(2, methItem.Name.Length - 9).ToUpper Equals propItem.Name.ToUpper
                  Order By propItem.Name
                  Select New BindingProperty With
-                 {.PropertyName = propItem.Name,
-                  .PropertyType = propItem.PropertyType}))
+                {.PropertyName = propItem.Name,
+                .PropertyType = propItem.PropertyType}))
         Catch ex As Exception
             MessageBox.Show("Error in Handling:" & vbNewLine & ex.Message & vbNewLine & vbNewLine & ex.StackTrace, "Not wanted:", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
@@ -317,7 +297,7 @@ skipWarning:
 
                 Dim businessClassAtt = (From bcaItem In attList Where GetType(BusinessClassAttribute).IsAssignableFrom(bcaItem.GetType)).SingleOrDefault
 
-                'Das ViewModel-Attribute brauchen wir in diesem Kontext eigentlich nicht mehr.
+                'Legacy-Info (DE-Projects only): Das ViewModel-Attribute brauchen wir in diesem Kontext eigentlich nicht mehr.
                 'Bis Februar 2014 war es erforderlich, ein ViewModel mit dem MvvmViewModel-Attribute auszuzeichnen,
                 'dass es in der Typauflistung erschien - nunmehr reicht es, wenn eine Klasse INotifyPropertyChanged implementiert.
                 'Deswegen ist es hier aber ebenfalls notwendig, eine entsprechende Änderung zu machen, sodass, wenn keine 
@@ -359,12 +339,7 @@ skipWarning:
         End Try
     End Sub
 
-    ''' <summary>
     ''' Hier wird das Control gespeichert, welches von diesem Formular als Bindungselement verwendet wird.
-    ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Friend Property ControlToBind As Object
         Get
             Return myControlToBind
@@ -430,9 +405,7 @@ skipWarning:
 End Class
 
 Friend Class ConverterDisplayItem
-
     Property ConverterName As String
     Property ConverterAssembly As String
     Property ConverterType As Type
-
 End Class

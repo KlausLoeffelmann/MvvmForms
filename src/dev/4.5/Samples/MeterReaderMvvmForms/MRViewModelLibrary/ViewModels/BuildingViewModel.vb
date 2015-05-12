@@ -1,7 +1,7 @@
 ﻿Imports ActiveDevelop.MvvmBaseLib
 Imports ActiveDevelop.MvvmBaseLib.Mvvm
 Imports ActiveDevelop.MvvmForms.WebApiClientSupport
-Imports MRWebApiSelfHost.DataLayer.DataObjects
+Imports MrModelLibrary.DataObjects
 
 Public Class BuildingViewModel
     Inherits MvvmBase
