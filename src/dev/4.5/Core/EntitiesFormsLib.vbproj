@@ -158,8 +158,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero" />
@@ -726,10 +725,6 @@
     <ProjectReference Include="..\MvvmBase\MvvmBaseLib.csproj">
       <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
       <Name>MvvmBaseLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Samples\MeterReaderMvvmForms\MRViewModelLibrary\MRViewModelLibrary.vbproj">
-      <Project>{325be318-3e92-4bdd-8edb-4aa3ca240594}</Project>
-      <Name>MRViewModelLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
