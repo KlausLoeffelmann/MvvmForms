@@ -217,7 +217,7 @@
     <Compile Include="BaseForms\AnimationFormBase.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Components\BindingManager\BindEventArgs.vb" />
+    <Compile Include="Components\BindingManager\BindingEventArgs.vb" />
     <Compile Include="Components\BindingManager\BindingChangedEventHandler.vb" />
     <Compile Include="Components\BindingManager\BindingManager.vb" />
     <Compile Include="Components\BindingManager\BindingPropertyChangedEventArgs.vb" />

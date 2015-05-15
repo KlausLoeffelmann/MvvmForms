@@ -1,6 +1,6 @@
 ﻿'*****************************************************************************************
-'                                          BindingPropertyChangedEventArgs
-'                                          ===============================
+'                                          BindEventArgs
+'                                          ==============
 '
 '          Part of MvvmForms - The Component Library for bringing the Model-View-Viewmodel
 '                              pattern to Data Centric Windows Forms Apps in an easy,
@@ -30,45 +30,64 @@
 '                       email: mvvmforms at activedevelop . de. 
 '*****************************************************************************************
 
-Imports System.Windows.Data
+Imports System.Windows.Forms
+Imports System.ComponentModel
 
-''' <summary>
-''' Provides data for the BindingPropertyChanged Event.
-''' </summary>
-''' <remarks></remarks>
-Public Class BindingPropertyChangedEventArgs
-    Inherits EventArgs
+Public Class ValueAssigningEventArgs
+    Inherits CancelEventArgs
 
     Sub New()
         MyBase.New()
     End Sub
 
-    Sub New(originalSource As Object)
-        Me.OriginalSource = originalSource
+    Sub New(cancel As Boolean)
+        MyBase.New(cancel)
     End Sub
 
-    ''' <summary>
-    ''' Control, which caused this event.
-    ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Public Property OriginalSource As Object
-
-    ''' <summary>
-    ''' BindingPath-Name of the property, which caused this event.
-    ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Public Property EventProperty As String
-
-    ''' <summary>
-    ''' The converter to use for data conversion, if a converter has been spacified, otherwise NULL (Nothing in VB).
-    ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Public Property Converter As IValueConverter
+    Property Control As Object
+    Property ViewModelObject As Object
+    Property ControlPropertyName As String
+    Property ViewModelPropertyName As String
+    Property Value As Object
+    Property Target As Targets
 
 End Class
+
+Public Class ValueAssignedEventArgs
+    Inherits EventArgs
+
+    Private myValue As Object
+
+    Sub New()
+        MyBase.New()
+    End Sub
+
+    Sub New(e As ValueAssigningEventArgs)
+        Me.Control = e.Control
+        Me.ViewModelObject = e.ViewModelObject
+        Me.ControlPropertyName = e.ControlPropertyName
+        Me.ViewModelPropertyName = e.ViewModelPropertyName
+        Me.Value = e.Value
+        Me.Target = e.Target
+    End Sub
+
+    Property Control As Object
+    Property ViewModelObject As Object
+    Property ControlPropertyName As String
+    Property ViewModelPropertyName As String
+    Property Value As Object
+        Get
+            Return myvalue
+        End Get
+        Private Set(value As Object)
+            myValue = value
+        End Set
+    End Property
+    Property Target As Targets
+
+End Class
+
+Public Enum Targets
+    Control
+    ViewModel
+End Enum
