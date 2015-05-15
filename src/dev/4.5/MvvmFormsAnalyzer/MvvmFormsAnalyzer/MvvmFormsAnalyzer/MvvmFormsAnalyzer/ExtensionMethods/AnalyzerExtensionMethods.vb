@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.CodeAnalysis.Editing
 
 Module AnalyzerExtensionMethods
 
@@ -27,6 +28,26 @@ Module AnalyzerExtensionMethods
             typeSymbol = typeSymbol.BaseType
         Loop
         Return Nothing
+    End Function
+
+    ''' <summary>
+    ''' Returns a RaiseEvent-Statement in the format of 'RaiseEvent EventName(me,e_parametername)' where EventName and e_parametername can be passed as arguments.
+    ''' </summary>
+    ''' <param name="eventName">Name of the Event.</param>
+    ''' <param name="e_parameterName">Name of the EventParameter.</param>
+    ''' <returns></returns>
+    <Extension>
+    Public Function RaiseEventStatement(generator As SyntaxGenerator,
+                                        eventName As String, e_parameterName As String) As RaiseEventStatementSyntax
+
+        Dim eventNameIdentifier = SyntaxFactory.IdentifierName(eventName)
+        Dim syntaxList = SyntaxFactory.SeparatedList(Of ArgumentSyntax)(DirectCast(
+                    ({SyntaxFactory.SimpleArgument(SyntaxFactory.MeExpression()),
+                      SyntaxFactory.SimpleArgument(SyntaxFactory.IdentifierName(e_parameterName))}),
+                    IEnumerable(Of ArgumentSyntax)))
+        Dim arguments = SyntaxFactory.ArgumentList(syntaxList)
+        Return SyntaxFactory.RaiseEventStatement(eventNameIdentifier, arguments)
+
     End Function
 
 End Module
