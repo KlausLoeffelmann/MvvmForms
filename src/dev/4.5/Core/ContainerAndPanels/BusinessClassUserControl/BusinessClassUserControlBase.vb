@@ -2,6 +2,7 @@
 Imports System.Drawing
 Imports System.Collections.ObjectModel
 
+'EXPERIMENTAL. Given Up.
 Public Class BusinessClassUserControlBase(Of BusinessClassType)
     Inherits UserControl
 
@@ -10,7 +11,7 @@ Public Class BusinessClassUserControlBase(Of BusinessClassType)
     Private myFormController As FormToBusinessClassManager
 
     Sub New()
-        MyBase.new()
+        MyBase.New()
         myFormController = New FormToBusinessClassManager
         myFormController.HostingUserControl = Me
         InitalizeComponentsInternally()

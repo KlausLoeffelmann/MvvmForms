@@ -24,7 +24,7 @@
 '
 '    MvvmForms is dual licenced. A permissive licence can be obtained - CONTACT INFO:
 '
-'    Klaus Loeffelmann, C/O ActiveDevelop
+'                       ActiveDevelop
 '                       Bremer Str. 4
 '                       Lippstadt, DE-59555
 '                       Germany

@@ -1,4 +1,37 @@
-﻿Imports System.ComponentModel
+﻿'*****************************************************************************************
+'                                      ObservableBindingList
+'                    =======================================================
+'
+'          Part of MvvmForms - The Component Library for bringing the Model-View-Viewmodel
+'                              pattern to Data Centric Windows Forms Apps in an easy,
+'                              feasible and XAML-compatible way.
+'
+'                    Copyright -2015 by Klaus Loeffelmann
+'
+'    This program is free software; you can redistribute it and/or modify
+'    it under the terms of the GNU General Public License as published by
+'    the Free Software Foundation; either version 2 of the License, or
+'    (at your option) any later version.
+'
+'    This program is distributed in the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'    GNU General Public License For more details.
+'
+'    You should have received a copy of the GNU General Public License along
+'    with this program; if not, write to the Free Software Foundation, Inc.,
+'    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+'
+'    MvvmForms is dual licenced. A permissive licence can be obtained - CONTACT INFO:
+'
+'                       ActiveDevelop
+'                       Bremer Str. 4
+'                       Lippstadt, DE-59555
+'                       Germany
+'                       email: mvvmforms at activedevelop . de. 
+'*****************************************************************************************
+
+Imports System.ComponentModel
 Imports System.Collections.ObjectModel
 Imports System.Threading
 Imports System.Runtime.CompilerServices
@@ -18,9 +51,6 @@ Public Class ObservableBindingList(Of T As New)
     Public Event AddingNew(sender As Object, e As AddingNewEventArgs)
 
     Sub New()
-        'If Debugger.IsAttached Then
-        '    Debugger.Break()
-        'End If
         AddHandler Me.CollectionChanged, AddressOf InnerCollectionChanged
     End Sub
 
@@ -110,8 +140,6 @@ Public Class ObservableBindingList(Of T As New)
 
     Protected Overridable Sub OnListChanged(e As ListChangedEventArgs)
         RaiseEvent ListChanged(Me, e)
-        'mySyncContext.Send(Sub()
-        '                   End Sub, Nothing)
     End Sub
 
     Public Sub AddIndex([property] As PropertyDescriptor) Implements IBindingList.AddIndex
@@ -250,5 +278,4 @@ Public Module ObservableBindinglistExtender
     Public Function ToObservableBindingList(Of T As New)(list As IEnumerable(Of T)) As ObservableBindingList(Of T)
         Return New ObservableBindingList(Of T)(list)
     End Function
-
 End Module

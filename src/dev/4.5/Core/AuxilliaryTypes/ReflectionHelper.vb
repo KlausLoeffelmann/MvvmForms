@@ -1,14 +1,45 @@
-﻿Imports System.Data.Objects.DataClasses
+﻿'*****************************************************************************************
+'                                         ReflectionHelper.vb
+'                    =======================================================
+'
+'          Part of MvvmForms - The Component Library for bringing the Model-View-Viewmodel
+'                              pattern to Data Centric Windows Forms Apps in an easy,
+'                              feasible and XAML-compatible way.
+'
+'                    Copyright -2015 by Klaus Loeffelmann
+'
+'    This program is free software; you can redistribute it and/or modify
+'    it under the terms of the GNU General Public License as published by
+'    the Free Software Foundation; either version 2 of the License, or
+'    (at your option) any later version.
+'
+'    This program is distributed in the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'    GNU General Public License For more details.
+'
+'    You should have received a copy of the GNU General Public License along
+'    with this program; if not, write to the Free Software Foundation, Inc.,
+'    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+'
+'    MvvmForms is dual licenced. A permissive licence can be obtained - CONTACT INFO:
+'
+'                       ActiveDevelop
+'                       Bremer Str. 4
+'                       Lippstadt, DE-59555
+'                       Germany
+'                       email: mvvmforms at activedevelop . de. 
+'*****************************************************************************************
+
+Imports System.Data.Objects.DataClasses
 Imports System.Reflection
 Imports System.Text
 Imports System.Runtime.CompilerServices
 Imports System.ComponentModel.Design
-Imports System.Windows.Forms
 Imports System.ComponentModel
 Imports System.IO
 Imports System.Windows.Input
 Imports ActiveDevelop.EntitiesFormsLib
-Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
 
 Public Module ReflectionHelper
 
@@ -140,90 +171,6 @@ Public Module ReflectionHelper
 
     End Sub
 
-    ' ''' <summary>
-    ' ''' Ermittelt alle referenzierten DLLs eines gehosteten Controls auf Basis seines Designers und mögliche Container-Ziele im Formular in einem Rutsch.
-    ' ''' </summary>
-    ' ''' <param name="host">Der Designer-Host.</param>
-    ' ''' <param name="hostingForm">Form oder ContainerControl, auf dem das Steuerelement liegt.</param>
-    ' ''' <param name="referencedAssemblies">Eine instanzierte Assembly-Liste, die die referenzierten Assemblies aufnimmt.</param>
-    ' ''' <param name="possibleTargets">Die Möglichen Container-Ziele Auf dem Formular. (Wird nur ermittelt, wenn eine instanziierte, leere Liste mit übergeben wird.)</param>
-    ' ''' <returns></returns>
-    ' ''' <remarks></remarks>
-    'Public Function RetrieveRefAssembliesAndEligibleContainerControls(ByRef host As IDesignerHost, refService As IReferenceService, loaderHelper As IDesignTimeAssemblyLoader, ByRef hostingForm As ContainerControl,
-    '                             ByRef referencedAssemblies As List(Of Assembly),
-    '                             ByRef possibleTargets As List(Of Control)) As Boolean
-
-    '    If host IsNot Nothing Then
-    '        Dim componentHost As IComponent = host.RootComponent
-    '        If TypeOf componentHost Is Form Then
-    '            hostingForm = TryCast(componentHost, Form)
-    '        ElseIf TypeOf componentHost Is UserControl Then
-    '            hostingForm = TryCast(componentHost, UserControl)
-    '        End If
-    '    Else
-    '        If Debugger.IsAttached Then
-    '            Debugger.Break()
-    '        End If
-    '    End If
-
-    '    Dim t As Type = Nothing
-    '    Try
-    '        t = host.GetType(host.RootComponentClassName)
-    '    Catch ex As Exception
-    '    End Try
-
-    '    Dim useAssembly As Assembly
-
-    '    If t Is Nothing Then
-    '        'If Debugger.IsAttached Then
-    '        '    Debugger.Break()
-    '        'End If
-    '    Else
-    '        If Debugger.IsAttached Then
-    '            Debugger.Break()
-    '        End If
-
-    '        '
-    '        For Each item In refService.GetReferences
-    '            Dim zzz = item
-    '            Console.WriteLine(zzz)
-    '        Next
-
-    '        'loaderHelper.LoadRuntimeAssembly()
-    '        useAssembly = t.Assembly
-    '        referencedAssemblies.Add(useAssembly)
-    '        ' erst einmal die eigentliche Assembly mit dem gerade bearbeiteten Control hinzufügen
-    '        ' und nun alle referenzierten Assemblies
-
-    '        For Each assName As AssemblyName In useAssembly.GetReferencedAssemblies()
-    '            Dim loadedAss As Assembly
-    '            Try
-    '                loadedAss = Assembly.Load(assName)
-    '                'Dim tmp = Assembly.ReflectionOnlyLoad(assName.FullName)
-    '                referencedAssemblies.Add(loadedAss)
-    '            Catch ex As Exception
-    '                Try
-    '                    Dim tmp = Assembly.ReflectionOnlyLoad(assName.FullName)
-    '                    referencedAssemblies.Add(tmp)
-    '                Catch ex2 As Exception
-    '                End Try
-    '            End Try
-    '        Next
-    '    End If
-
-    '    ' und nun alle möglichen Ziele für die Generierung ermitteln
-    '    If possibleTargets IsNot Nothing Then
-    '        For Each Item As Component In host.Container.Components
-    '            'TODO: die Filterung ggf als Lambda implementieren
-    '            If (TryCast(Item, Form) IsNot Nothing OrElse TryCast(Item, Panel) IsNot Nothing OrElse
-    '                    TryCast(Item, TabPage) IsNot Nothing OrElse TryCast(Item, GroupBox) IsNot Nothing) Then
-    '                possibleTargets.Add(CType(Item, Control))
-    '            End If
-    '        Next
-    '    End If
-
-    '    Return True
-    'End Function
 
     ''' <summary>
     ''' Füllt die Eigenschaften einer Klasseninstanz vom Typ String, die Null (Nothing in VB) sind, mit Leerstring.

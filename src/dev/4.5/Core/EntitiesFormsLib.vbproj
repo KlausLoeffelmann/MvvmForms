@@ -211,14 +211,7 @@
     <Compile Include="AuxilliaryTypes\StackedValue.vb" />
     <Compile Include="AuxilliaryTypes\ValidationChangeState.vb" />
     <Compile Include="AuxilliaryTypes\ValidationInfoBase.vb" />
-    <Compile Include="BaseForms\AnimationFormBase.Designer.vb">
-      <DependentUpon>AnimationFormBase.vb</DependentUpon>
-    </Compile>
-    <Compile Include="BaseForms\AnimationFormBase.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Components\BindingManager\BindingEventArgs.vb" />
-    <Compile Include="Components\BindingManager\BindingChangedEventHandler.vb" />
     <Compile Include="Components\BindingManager\BindingManager.vb" />
     <Compile Include="Components\BindingManager\BindingPropertyChangedEventArgs.vb" />
     <Compile Include="Components\BindingManager\ObjectEventAssignmentsClasses.vb" />
@@ -582,9 +575,6 @@
     <Compile Include="Tracing\TracingExtender.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BaseForms\AnimationFormBase.resx">
-      <DependentUpon>AnimationFormBase.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Components\MvvmManager\Controls\BindingModePopupView.resx">
       <DependentUpon>BindingModePopupView.vb</DependentUpon>
     </EmbeddedResource>

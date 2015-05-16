@@ -22,8 +22,9 @@
 '    with this program; if not, write to the Free Software Foundation, Inc.,
 '    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 '
-'    CONTACT INFO:
-'    Klaus Loeffelmann, C/O ActiveDevelop
+'    MvvmForms is dual licenced. A permissive licence can be obtained - CONTACT INFO:
+'
+'                       ActiveDevelop
 '                       Bremer Str. 4
 '                       Lippstadt, DE-59555
 '                       Germany

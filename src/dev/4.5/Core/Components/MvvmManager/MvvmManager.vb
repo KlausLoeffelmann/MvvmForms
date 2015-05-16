@@ -1,22 +1,51 @@
-﻿Imports System.ComponentModel
+﻿'*****************************************************************************************
+'                                         MvvmManager.vb
+'                    =======================================================
+'
+'          Part of MvvmForms - The Component Library for bringing the Model-View-Viewmodel
+'                              pattern to Data Centric Windows Forms Apps in an easy,
+'                              feasible and XAML-compatible way.
+'
+'                    Copyright -2015 by Klaus Loeffelmann
+'
+'    This program is free software; you can redistribute it and/or modify
+'    it under the terms of the GNU General Public License as published by
+'    the Free Software Foundation; either version 2 of the License, or
+'    (at your option) any later version.
+'
+'    This program is distributed in the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'    GNU General Public License For more details.
+'
+'    You should have received a copy of the GNU General Public License along
+'    with this program; if not, write to the Free Software Foundation, Inc.,
+'    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+'
+'    MvvmForms is dual licenced. A permissive licence can be obtained - CONTACT INFO:
+'
+'                       ActiveDevelop
+'                       Bremer Str. 4
+'                       Lippstadt, DE-59555
+'                       Germany
+'                       email: mvvmforms at activedevelop . de. 
+'*****************************************************************************************
+
+Imports System.ComponentModel
 Imports System.Windows.Forms
 Imports System.Windows.Data
 Imports System.Drawing.Design
-Imports System.Collections.ObjectModel
-Imports System.Reflection
 Imports System.IO
 Imports System.Globalization
-Imports System.ComponentModel.Design.Serialization
-Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
-Imports ActiveDevelop.EntitiesFormsLib
+Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 ''' <summary>
-''' Managed das Binden eines ViewModels (Klasse auf Basis <see cref="MvvmViewModelBase">MvvmViewModelBase</see> an eine View, 
-''' die durch ein Formular oder ein UserControl repräsentiert wird. 
+''' Managed das Binden eines ViewModels (Klasse, die <see cref="INotifyPropertyChanged">INotifyPropertyChanged</see> implementiert)
+''' an eine View, die durch ein Formular oder ein UserControl repräsentiert wird. 
 ''' </summary>
 ''' <remarks>
 ''' <para>MVVM ist die Abkürzung von Model View ViewModel, und stellt ein Architekturmuster in der Softwaretechnik dar. Es ist 
-''' State of the Art bei der Entwicklung größerer Entwicklungen für Silverlight, WPF oder Windows 8-Store-Applications (vormals: Metro-Apps) 
+''' State of the Art bei der Entwicklung größerer Entwicklungen für Silverlight, WPF oder Windows 8/8.1/10-Windows Runtime-Applications (vormals: Metro-Apps) 
 ''' und mit den Boardmitteln von Windows Forms nicht ohne immensen Aufwand umsetzbar. Zwar kennt auch Windows Forms prinzipielles Databinding 
 ''' durch die Binding-Klasse, die allerdings für die Umsetzung von Anwendungen im MVVM-Stil nicht alle erforderlichen Features bereit stellt - beispielsweise 
 ''' Fehlen ihr eine UI-Unterstützung für das Binden von Eigenschaftenpfaden (Customer.Address.CommunicationDevices.HomePhone), WPF oder Windows-Store-Apps 
@@ -24,11 +53,13 @@ Imports ActiveDevelop.EntitiesFormsLib
 ''' <para>Die Grundsätzliche Vorgehensweise beim Arbeiten mit dem MVVM-Binding-Manager ist wie folgt:</para>
 ''' <list type="number">
 ''' <item><description>Erstellen Sie die View in Form eines UserControls oder eine Windows Forms.</description></item>
-''' <item><description>Erstellen Sie ein ViewModel zur Steuerung des Forms oder UserControls. Dieses ViewModel können Sie von der Basisklasse 
-''' <see cref="MvvmViewModelBase">MvvmViewModelBase</see>, und Sie geben als Type (T) exakt die Klasse an, die Sie gerade erstellen. Also Beispielsweise:
+''' <item><description>Erstellen Sie ein ViewModel zur Steuerung des Forms oder UserControls. Dieses ViewModel muss das Interface 
+''' <see cref="INotifyPropertyChanged">INotifyPropertyChanged</see> implementieren. Alternativ lassen Sie Ihre ViewModel-Klasse vom Typ
+''' <see cref="BindableBase">BindableBase</see> oder, um noch mehr Support-Funktionalitaet zur Verfuegung zu haben, vom Typ 
+''' <see cref="MvvmBase">MvvmBase</see> erben.
 ''' <code>
 ''' Public Class AddEditTimeCollectionItemViewModel
-'''     Inherits MvvmViewModelBase(Of AddEditTimeCollectionItemViewModel)
+'''     Inherits MvvmBase
 '''
 ''' </code>
 ''' Das ViewModel steuert die Eigenschaften der View durch ein entsprechendes Binding. Inkompatible Typen (Beispiel: Eine Eigenschaft vom Typ String soll an eine 
@@ -58,7 +89,7 @@ Imports ActiveDevelop.EntitiesFormsLib
 ''' End Class
 ''' </code>
 ''' </description></item>
-''' <item><description>Platzieren Sie die MVVMManager-Komponente im Form oder im UserControl</description></item>
+''' <item><description>Platzieren Sie die MvvmManager-Komponente im Form oder im UserControl</description></item>
 ''' <item><description>WICHTIG: Erstellen Sie Ihre Projektmappe neu! (Rebuild).</description></item>
 ''' <item><description>Setzen Sie die <see cref="MvvmManager.DataContextType">DataContextType-Eigenschaft</see> der MvvmManager-Komponente, indem Sie 
 ''' im Dialog erst bestimmen, in welcher Assembly Ihr ViewModel liegt, und darunter, welche Klasse der Assembly als ViewModel zum Einsatz kommen soll.</description></item>
@@ -74,7 +105,7 @@ Imports ActiveDevelop.EntitiesFormsLib
 ''' <item><description>Nur Eigenschaften von Steuerelementen lassen sich binden, die ein entsprechendes 'EigenschaftennameChanged'-Ereignis zur 
 ''' Verfügung stellen. Das Implementieren einer Eigenschaft namens 'NeueFarbe' beispielsweise in einem Steuerelement ist nicht ausreichend; 
 ''' das Steuerelement muss auch ein entsprechendes 'NeueFarbeChanged'-Ereignis zur Verfügung stellen, das ausgelöst wird, sobald sich 'NeueFarbe' ändert.</description></item>
-''' <item><description>Das ViewModel (immer abgeleitet von <see cref="MvvmViewModelBase">MvvmViewModelBase</see> - siehe oben!) muss seine 
+''' <item><description>Das ViewModel (am besten abgeleitet von <see cref="MvvmBase">MvvmBase</see> - siehe oben!) muss seine 
 ''' Eigenschaften so zur Verfügung stellen, dass ein entsprechendes PropertyChange-Ereignis ausgelöst wird, das im ViewModel durch INotifyPropertyChanged 
 ''' vorgegeben wird. Das entsprechende Muster innerhalb eines ViewModels sieht beispielhaft folgender Maßen aus:
 ''' <code>
@@ -96,7 +127,7 @@ Imports ActiveDevelop.EntitiesFormsLib
  ProvideProperty("EventBindings", GetType(Control)),
  Designer(GetType(MvvmManagerDesigner))>
 Public Class MvvmManager
-    Inherits FormToBusinessClassManager
+    Inherits FormToBusinessClassManager ' FormsToBusinessClass Manager war die Ausgangskomponente, die in Projekten von ca. 2008-2011 verwendet wurde.
     Implements IExtenderProvider
     Implements IMvvmManager
 
