@@ -39,21 +39,26 @@ Imports System.IO
 Imports System.Globalization
 Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
+#If CompileToGerman Then
 ''' <summary>
-''' Managed das Binden eines ViewModels (Klasse, die <see cref="INotifyPropertyChanged">INotifyPropertyChanged</see> implementiert)
-''' an eine View, die durch ein Formular oder ein UserControl repräsentiert wird. 
+''' Managt das Binden eines ViewModels (Klasse, die <see cref="INotifyPropertyChanged">INotifyPropertyChanged</see> implementiert)
+''' an eine View, die durch ein Windows Forms Formular oder ein Windows Forms UserControl repräsentiert wird. 
 ''' </summary>
 ''' <remarks>
-''' <para>MVVM ist die Abkürzung von Model View ViewModel, und stellt ein Architekturmuster in der Softwaretechnik dar. Es ist 
-''' State of the Art bei der Entwicklung größerer Entwicklungen für Silverlight, WPF oder Windows 8/8.1/10-Windows Runtime-Applications (vormals: Metro-Apps) 
-''' und mit den Boardmitteln von Windows Forms nicht ohne immensen Aufwand umsetzbar. Zwar kennt auch Windows Forms prinzipielles Databinding 
-''' durch die Binding-Klasse, die allerdings für die Umsetzung von Anwendungen im MVVM-Stil nicht alle erforderlichen Features bereit stellt - beispielsweise 
-''' Fehlen ihr eine UI-Unterstützung für das Binden von Eigenschaftenpfaden (Customer.Address.CommunicationDevices.HomePhone), WPF oder Windows-Store-Apps 
-''' kompatible Converter oder das exakte Steuern von Bindungquelle und Bindungsziel (TwoWay, OneWay, OneWayToSource, OneTime).</para>
-''' <para>Die Grundsätzliche Vorgehensweise beim Arbeiten mit dem MVVM-Binding-Manager ist wie folgt:</para>
+''' <para>MVVM ist die Abkürzung von <i>Model View ViewModel</i>, und stellt ein Architekturmuster in der Softwaretechnik dar. Es ist 
+''' State of the Art bei der Entwicklung größerer Projekte in den XAML-basierten UI-Technologien WPF, Silverlight, Windows 8/8.1/10 Runtime-Applications 
+''' (vormals: Metro-Apps) sowie bei der Cross-Plattform-Entwicklung mit Xamarin Forms (iOS, Android, Windows 8.1, zukuenftig auch Windows Universal Apps). 
+''' Das Mvvm-Pattern ist mit den Boardmitteln von Windows Forms nicht ohne immensen Aufwand oder grosse Abstriche umsetzbar. Zwar kennt auch Windows Forms 
+''' prinzipielles Databinding durch die Binding-Klasse, die allerdings für die Umsetzung von Anwendungen im MVVM-Stil nicht alle erforderlichen Features 
+''' bereitstellt - beispielsweise fehlen ihr eine UI-Unterstützung für das Binden von Eigenschaftenpfaden (wie beispielsweise bei '
+''' Customer.Address.CommunicationDevices.HomePhone'), XAML-kompatible Konverter oder das exakte Steuern von Bindungquelle und Bindungsziel 
+''' (TwoWay, OneWay, OneWayToSource, OneTime).</para>
+''' <para>Grundsätzliche Vorgehensweise beim Arbeiten mit dem MVVMManager von MvvmForms:</para>
 ''' <list type="number">
-''' <item><description>Erstellen Sie die View in Form eines UserControls oder eine Windows Forms.</description></item>
-''' <item><description>Erstellen Sie ein ViewModel zur Steuerung des Forms oder UserControls. Dieses ViewModel muss das Interface 
+''' <item><description>Erstellen Sie die View in Form eines UserControls oder eine Windows Forms.<b>WICHTIG:</b> Da der im Folgenden verwendete 
+''' MvvmManager-Komponente als sogenannter Property Extender fungiert, müssen Sie NICHT auf die speziellen, erweiterten Eingabe-Steuerelemente 
+''' von MvvmForms zurückgreifen - Sie können jedes beliebige Steuerelement (auch die von Dritt-Herstellern) zur Mvvm-Bindung verwenden.</description></item>
+''' <item><description>Erstellen Sie ein ViewModel zur Steuerung des Forms oder UserControls. Dieses ViewModel muss mindestens das Interface 
 ''' <see cref="INotifyPropertyChanged">INotifyPropertyChanged</see> implementieren. Alternativ lassen Sie Ihre ViewModel-Klasse vom Typ
 ''' <see cref="BindableBase">BindableBase</see> oder, um noch mehr Support-Funktionalitaet zur Verfuegung zu haben, vom Typ 
 ''' <see cref="MvvmBase">MvvmBase</see> erben.
@@ -62,9 +67,10 @@ Imports ActiveDevelop.MvvmBaseLib.Mvvm
 '''     Inherits MvvmBase
 '''
 ''' </code>
-''' Das ViewModel steuert die Eigenschaften der View durch ein entsprechendes Binding. Inkompatible Typen (Beispiel: Eine Eigenschaft vom Typ String soll an eine 
-''' Eigenschaft vom Typ Boolean gebunden werden) werden dabei durch Converter-Klassen angepasst. Ein Converter lässt sich durch Einbinden des 
-''' Interfaces <see cref="IValueConverter">IValueConverter</see> implementieren. Ein Beispiel dafür sieht folgender Maßen aus:
+''' Das ViewModel steuert die Eigenschaften der View durch ein entsprechendes Binding. Inkompatible Typen (Beispiel: Eine 
+''' Eigenschaft vom Typ String soll an eine Eigenschaft vom Typ Boolean gebunden werden) werden dabei durch Converter-Klassen angepasst. 
+''' Ein Converter lässt sich durch Einbinden des Interfaces <see cref="IValueConverter">IValueConverter</see> in eine Klasse implementieren. 
+''' Ein Beispiel dafür sieht folgender Maßen aus:
 ''' <code>
 ''' Imports System.Windows.Data
 ''' 
@@ -90,21 +96,26 @@ Imports ActiveDevelop.MvvmBaseLib.Mvvm
 ''' </code>
 ''' </description></item>
 ''' <item><description>Platzieren Sie die MvvmManager-Komponente im Form oder im UserControl</description></item>
-''' <item><description>WICHTIG: Erstellen Sie Ihre Projektmappe neu! (Rebuild).</description></item>
+''' <item><description>WICHTIG: Erstellen Sie Ihre Projektmappe neu (rebuild), damit die ViewModel-Klassen, die Sie verwenden 
+''' möchten, in den Binärdateien (den kompelierten Assemblies) vorhanden sind und per Reflection von der MvvmForms-Entwurfszeit-
+''' Umgebung entdeckt werden können.</description></item>
 ''' <item><description>Setzen Sie die <see cref="MvvmManager.DataContextType">DataContextType-Eigenschaft</see> der MvvmManager-Komponente, indem Sie 
 ''' im Dialog erst bestimmen, in welcher Assembly Ihr ViewModel liegt, und darunter, welche Klasse der Assembly als ViewModel zum Einsatz kommen soll.</description></item>
-''' <item><description>Die MVVMManager-Komponente fungiert als so genannter Property-Extender. Jedes Steuerelement auf dem Formular "erhält" durch sie zwei 
-''' weitere Eigenschaften. Mit der PropertyBinding-Eigenschaft jedes Controls rufen Sie den Dialog auf, mit dem Sie die Bindungen zwischen der ViewModel 
-''' der View (Formular oder UserControl) definieren können.</description></item>
+''' <item><description>Die MVVMManager-Komponente fungiert, wie schon erwähnt, als so genannter Property-Extender. 
+''' Jedes Steuerelement auf dem Formular "erhält" durch sie zwei weitere Eigenschaften. Mit der PropertyBinding-Eigenschaft jedes Controls 
+''' rufen Sie den Dialog auf, mit dem Sie die Bindungen zwischen der ViewModel der View (Formular oder UserControl) definieren können. 
+''' (Hinweis: Die EventBindings-Auflistung ist derzeit im Beta-Stadium, und wird noch nicht verwendet.)</description></item>
 ''' </list>
-''' <item><description>Weisen Sie eine Instanz Ihres ViewModels zur Laufzeit an die DataContext-Eigenschaft der MVVMManager-Komponente zu. Ein geeigneter Zeitpunkt 
-''' ist beispielsweise das FormLoad-Ereignis, falls es sich bei Ihrer View um ein Form-Objekt handelt.</description></item>
+''' <item><description>Weisen Sie eine Instanz Ihres ViewModels zur Laufzeit an die DataContext-Eigenschaft der MVVMManager-Komponente zu. 
+''' Ein geeigneter Zeitpunkt ist beispielsweise das FormLoad-Ereignis, falls es sich bei Ihrer View um ein FormS-Objekt handelt.</description></item>
 ''' <para>Wichtige Hinweise zur Anwendung der MvvmManager-Komponente: Damit die Kommunikation zwischen ViewModel und View problemlos funktionieren kann, 
 ''' müssen folgende Voraussetzungen erfüllt sein:</para>
 ''' <list type="bullet">
 ''' <item><description>Nur Eigenschaften von Steuerelementen lassen sich binden, die ein entsprechendes 'EigenschaftennameChanged'-Ereignis zur 
-''' Verfügung stellen. Das Implementieren einer Eigenschaft namens 'NeueFarbe' beispielsweise in einem Steuerelement ist nicht ausreichend; 
-''' das Steuerelement muss auch ein entsprechendes 'NeueFarbeChanged'-Ereignis zur Verfügung stellen, das ausgelöst wird, sobald sich 'NeueFarbe' ändert.</description></item>
+''' Verfügung stellen. Bei den Standard-Steuerelementen von Windows ist das bei nahezu allen Eigenschaften der Fall, da auch das ursprüngliche 
+''' Datenbinden auf dieser Funktionsweise basierte. Für selbsterstellte Steuerelemente gilt: Das Implementieren einer Eigenschaft namens 'NeueFarbe' 
+''' beispielsweise in einem Steuerelement ist nicht ausreichend; das Steuerelement muss auch ein entsprechendes 'NeueFarbeChanged'-Ereignis zur 
+''' Verfügung stellen, das ausgelöst wird, sobald sich 'NeueFarbe' ändert. Das Auslösen muss der Winows Forms Standardvorgehensweise entsprechen.</description></item>
 ''' <item><description>Das ViewModel (am besten abgeleitet von <see cref="MvvmBase">MvvmBase</see> - siehe oben!) muss seine 
 ''' Eigenschaften so zur Verfügung stellen, dass ein entsprechendes PropertyChange-Ereignis ausgelöst wird, das im ViewModel durch INotifyPropertyChanged 
 ''' vorgegeben wird. Das entsprechende Muster innerhalb eines ViewModels sieht beispielhaft folgender Maßen aus:
@@ -123,11 +134,115 @@ Imports ActiveDevelop.MvvmBaseLib.Mvvm
 ''' </description></item>
 ''' </list>
 ''' </remarks>
+#Else
+''' <summary>
+''' Manages the binding of a ViewModel (Class, which implements <see cref="INotifyPropertyChanged">INotifyPropertyChanged</see>)
+''' to a View, which is represented bei a Windows Forms Form or a Windows Forms User Control, according to the Mvvm Pattern. 
+''' </summary>
+''' <remarks>
+''' <para>MVVM is short for <i>Model View ViewModel</i>, and is a well known and established software development pattern. It is  
+''' state of the art for the development of industry sized projects using the XAML-based UI-technologies WPF, Silverlight, 
+''' Windows 8/8.1/10 Runtime-Applications (f.k.a: Metro-Apps). It is also heavily used in cross platform development projects using Xamarin Forms 
+''' (for building iOS, Android, Windows 8.1 - both tablet and phone - which will later also add support for Windows Universal Apps). The main advantage 
+''' of using the Mvvm pattern is that ViewModel, which carry up to 80% of the UI control logic, can be reused in other projects for a complete different 
+''' UI stack. So, ViewModels, controlling the functionality of maintaining customers in a LOB Windows Application, can for example be reused 
+''' in a dedicated tablet app running Windows 10, or even on a iPhone, iPad or Android tablet.
+''' In Windows Forms, however, the Mvvm pattern cannot be implemented without immense effort or big compromises - Windows Forms simply lacks the required 
+''' base functionality. Although Windows Forms provides basic data binding functionality through its binding class, this class is missing features for 
+''' implementing of LOB Applications. As an example, there is no Visual Designer which allowed the binding of property pathes of ViewModels to Views 
+''' at design time. Also, Windows Forms lacks the concept of Value Converters or tools for controlling the exact type of binding (TwoWay, 
+''' OneWay, OneWayToSource, OneTime), which is essential for the reuse of ViewModels in projects with different UI technologies.</para>
+''' <para>MvvmForms, however, includes everything you need to build Components or even complete LOB Application in Windows Forms with the Mvvm pattern, 
+''' thus providing you a clear migration path away from the traditional, error prone and non-resuable Windows Forms Development paradign to Windows 10 with 
+''' Mobile First/Cloud First and also cross plattform development for Android and iOS.</para> 
+''' <para>How to use MvvmForm's MVVMManager:</para>
+''' <list type="number">
+''' <item><description>Create a View by adding a UserControls or a Windows Forms Form to your project.<b>IMPORTANT:</b>Since the MvvmManager component 
+''' acts as a so called property extender, you do NOT have to use the specialzed, extended data centric input controlls also provided by MvvmForms - 
+''' instead you can use any Windows Forms control (including those of third party vendors) as a View target in Mvvm.</description></item>
+''' <item><description>Create a ViewModel for controlling you Forms or UserControl based view. Your ViewModel class must at least implement  
+''' <see cref="INotifyPropertyChanged">INotifyPropertyChanged</see>, however, it is often easier, if you inherit your ViewModel class from 
+''' <see cref="BindableBase">BindableBase</see> or, for getting even more support through base class functionality, from  
+''' <see cref="MvvmBase">MvvmBase</see>:
+''' <code>
+''' Public Class AddEditTimeCollectionItemViewModel
+'''     Inherits MvvmBase
+'''
+''' </code>
+''' <para>
+''' The ViewModel controls the properties of the View through binding. But: You cannot always bind a ViewModel directly to the view. If you, e.g., what to 
+''' bind a decimal number to a color - the types are not compatible. Does such a binding make sense at all? Of course it does. Imagine, you want to show 
+''' special revenue numbers in the UI with a special background - you're helping the user at a glance that a number with a red background may be too low,
+''' and a number with a yellow background still has space for improvement. Since you cannot implement a UI-depending type in your viewmodel directly, 
+''' use a converter: The converter gets the decimal value, and returns for example the Windows Forms Colors Red, Green or Yellow according the passed value.</para>
+''' <para>You can create a Converter by implementing <see cref="IValueConverter">IValueConverter</see> into a class. 
+''' As an example, take a look at the following code:</para>
+''' <code>
+''' Imports System.Windows.Data
+''' 
+''' Public Class TimeSpanToStringConverter
+'''     Implements IValueConverter
+''' 
+'''     Public Function Convert(value As Object, targetType As Type, parameter As Object,
+'''                             culture As Globalization.CultureInfo) As Object Implements IValueConverter.Convert
+'''         Dim tSpan = DirectCast(value, TimeSpan)
+'''         Return tSpan.ToString(parameter.ToString)
+'''     End Function
+''' 
+'''     Public Function ConvertBack(value As Object, targetType As Type, parameter As Object,
+'''                                 culture As Globalization.CultureInfo) As Object Implements IValueConverter.ConvertBack
+'''         Dim timeAsString As String = DirectCast(value, String)
+'''         Try
+'''             Return TimeSpan.Parse(timeAsString)
+'''         Catch ex As Exception
+'''             Return Date.Now.TimeOfDay
+'''         End Try
+'''     End Function
+''' End Class
+''' </code>
+''' </description></item>
+''' <item><description>After implementing your classes, drag the MvvmComponent from the toolbox to the Form or UserControl which acts as your view.</description></item>
+''' <item><description>IMPORTANT: Rebuild your solution always after you changed the ViewModel codes, so new properties will become available 
+''' in MvvmForm's designer.</description></item>
+''' <item><description>Now, assign the <see cref="MvvmManager.DataContextType">DataContextType-Eigenschaft</see> of the MvvmManager Component by choosing 
+''' the assembly, in which the designer can find the ViewModel, and the ViewMode, you want to use to control your View.</description></item>
+''' <item><description>The MvvmManager-Components acts, as mentioned, as a so-called property extender. 
+''' Each control on the form "gets" two additional properties - of whose only one is used at the moment: With each control's PropertyBindings property you
+''' can call a dialog at design time, with which you create the bindings between ViewModel and View (Form, UserControl).</description></item>
+''' </list>
+''' <item><description>At runtime, assign an instance of your ViewModel to the DataContext property of the MVVMManager component. 
+''' A good time doing this can be the FormLoad event, if your view is of type Form.</description></item>
+''' <para>Important for using the MvvmManager component: For a seamless communication between View and Viewmodel, 
+''' there are a couple of requirements which have to be met:</para>
+''' <list type="bullet">
+''' <item><description>You can only bind to those properties of a control of a view, for which an according 'PropertyChange' event exists.
+''' Almost all properties of almost all Windows Forms Controls meet this criteria. For custom controls: If you want to implement a new property  
+''' named 'TimedColor', it is not enough to just have the property code in your control's codefile. The whole property infrastructure according to the 
+''' Windows Forms standard (Event, OnXXXMethod) has to be implemented, as well.</description></item>
+''' <item><description>The ViewModel must implement INotifyPropertyChange, and the property code must raise the related event -   
+''' so, ideally derive all your ViewModels from <see cref="MvvmBase">MvvmBase</see> - see above!. Here is an example for the property code, if you 
+''' derived the ViewModel class from MvvmView:
+''' <code>
+''' Public Property Firstname As String
+'''     Get
+'''         Return myFistname
+'''     End Get
+'''     Set(value As String)
+'''         'This call takes care of raising the PropertyChanged event  
+'''         'with 'Firstname'as parameter.
+'''         MyBase.SetProperty(myVorname, value)
+'''     End Set
+''' End Property
+''' </code>
+''' </description></item>
+''' </list>
+''' </remarks>
+#End If
 <ProvideProperty("PropertyBindings", GetType(Control)),
  ProvideProperty("EventBindings", GetType(Control)),
  Designer(GetType(MvvmManagerDesigner))>
 Public Class MvvmManager
-    Inherits FormToBusinessClassManager ' FormsToBusinessClass Manager war die Ausgangskomponente, die in Projekten von ca. 2008-2011 verwendet wurde.
+    Inherits FormToBusinessClassManager ' FormToBusinessClassManager war die Ausgangskomponente, die in deutschen Projekten von ca. 2008-2011 verwendet wurde.
     Implements IExtenderProvider
     Implements IMvvmManager
 
