@@ -31,12 +31,72 @@ Public Class UnusedFieldsAnalyzer
 
     Public Overrides Sub Initialize(context As AnalysisContext)
 
+        Dim myFieldList As FieldReferenceTracker
+
         context.RegisterCompilationStartAction(
             Sub(innerContext As CompilationStartAnalysisContext)
+                'We're tracking all private fields and we list all references to them.
+                'If we have fields with no references, those fields are not in use.
+                myFieldList = New FieldReferenceTracker
 
-                Dim actionCascade As New ActionCascadeManager
-                actionCascade.Register(context, innerContext)
+                context.RegisterSymbolAction(
+                Sub(innerContext2 As SymbolAnalysisContext)
+                    'Works:
+                    Dim codeFixAction As CodeFixAction = CodeFixAction.SimpleProperty
 
+                    'Does not work. Did it work in VB2013?
+                    'Dim codeFixAction = CodeFixAction.SimpleProperty
+
+                    'We don't do it on static fields (or fields in modules).
+                    If innerContext2.Symbol.IsStatic Then
+                        Return
+                    End If
+
+                    Dim contType = innerContext2.Symbol.ContainingType
+
+                    If contType IsNot Nothing Then
+                        If contType.IsAnonymousType Then
+                            Return
+                        End If
+                    End If
+
+                    If DirectCast(innerContext2.Symbol, IFieldSymbol).
+                                DeclaredAccessibility = Accessibility.Private Then
+                        myFieldList.DefinedFields.Add(DirectCast(innerContext2.Symbol, IFieldSymbol))
+                    End If
+                End Sub, SymbolKind.Field)
+
+                context.RegisterSyntaxNodeAction(
+                    Sub(innercontext2 As SyntaxNodeAnalysisContext)
+
+                        Dim symInfo = innercontext2.SemanticModel.GetSymbolInfo(innercontext2.Node)
+
+                        Dim actualSymbol = symInfo.Symbol
+
+                        If actualSymbol IsNot Nothing Then
+                            'Test, if symbol is a field.
+                            If actualSymbol.Kind = SymbolKind.Field AndAlso
+                                      DirectCast(actualSymbol, IFieldSymbol).DeclaredAccessibility = Accessibility.Private Then
+                                myFieldList.ReferenceFields.Add(DirectCast(actualSymbol, IFieldSymbol))
+                            End If
+                        End If
+                    End Sub, SyntaxKind.IdentifierName, SyntaxKind.SimpleMemberAccessExpression)
+
+                innerContext.RegisterCompilationEndAction(
+                    Sub(innerInnercontext As CompilationAnalysisContext)
+                        For Each fieldSymbolItem In myFieldList.DefinedFields
+                            'This is done at the very end: If there are DefinedFields for which
+                            'there are no fields in the reference fields, those fields are not in use.
+                            If Not myFieldList.ReferenceFields.Contains(fieldSymbolItem) Then
+                                Dim diagToReport = Diagnostic.Create(UnusedFieldsAnalyzer.Rule,
+                                      fieldSymbolItem.Locations.First,
+                                      fieldSymbolItem.Name)
+
+                                innerInnercontext.ReportDiagnostic(diagToReport)
+
+                            End If
+                        Next
+                    End Sub)
             End Sub)
     End Sub
 
@@ -45,14 +105,9 @@ End Class
 Public Class FieldReferenceTracker
 
     Public Property ClassType As ClassTypes
-    Public Property DefinedFields As HashSet(Of FieldActionTuple) = New HashSet(Of FieldActionTuple)
+    Public Property DefinedFields As HashSet(Of IFieldSymbol) = New HashSet(Of IFieldSymbol)
     Public Property ReferenceFields As HashSet(Of IFieldSymbol) = New HashSet(Of IFieldSymbol)
 
-End Class
-
-Public Class FieldActionTuple
-    Property FieldSymbol As IFieldSymbol
-    Property Action As CodeFixAction
 End Class
 
 Public Enum ClassTypes
@@ -70,73 +125,12 @@ End Enum
 
 Public Class ActionCascadeManager
 
-    Private myFieldList As FieldReferenceTracker
 
     Sub Register(context As AnalysisContext, innerContext As CompilationStartAnalysisContext)
-        'We're tracking all private fields and we list all references to them.
-        'If we have fields with no references, those fields are not in use.
-        myFieldList = New FieldReferenceTracker
-
-        context.RegisterSymbolAction(AddressOf SymbolActionProc, SymbolKind.Field)
-
-        context.RegisterSyntaxNodeAction(
-                    Sub(innercontext2 As SyntaxNodeAnalysisContext)
-
-                        Dim symInfo = innercontext2.SemanticModel.GetSymbolInfo(innercontext2.Node)
-
-                        Dim actualSymbol = symInfo.Symbol
-
-                        If actualSymbol IsNot Nothing Then
-                            'Test, if symbol is a field.
-                            If actualSymbol.Kind = SymbolKind.Field AndAlso
-                                      DirectCast(actualSymbol, IFieldSymbol).DeclaredAccessibility = Accessibility.Private Then
-                                myFieldList.ReferenceFields.Add(DirectCast(actualSymbol, IFieldSymbol))
-                            End If
-                        End If
-                    End Sub, SyntaxKind.IdentifierName, SyntaxKind.SimpleMemberAccessExpression)
-
-        innerContext.RegisterCompilationEndAction(
-                    Sub(innerInnercontext As CompilationAnalysisContext)
-                        For Each fieldSymbolItem In myFieldList.DefinedFields
-                            'This is done at the very end: If there are DefinedFields for which
-                            'there are no fields in the reference fields, those fields are not in use.
-                            If Not myFieldList.ReferenceFields.Contains(fieldSymbolItem.FieldSymbol) Then
-                                Dim diagToReport = Diagnostic.Create(UnusedFieldsAnalyzer.Rule,
-                                      fieldSymbolItem.FieldSymbol.Locations.First,
-                                      fieldSymbolItem.FieldSymbol.Name)
-
-                                innerInnercontext.ReportDiagnostic(diagToReport)
-                            End If
-                        Next
-                    End Sub)
 
     End Sub
 
-    Private Sub SymbolActionProc(innerContext As SymbolAnalysisContext)
+    Private Sub SymbolActionProc()
 
-        'Works:
-        Dim codeFixAction As CodeFixAction = CodeFixAction.SimpleProperty
-
-        'Does not work.
-        'Dim codeFixAction = CodeFixAction.SimpleProperty
-
-        'We don't do it on static fields (or fields in modules).
-        If innerContext.Symbol.IsStatic Then
-            Return
-        End If
-
-        Dim contType = innerContext.Symbol.ContainingType
-
-        If contType IsNot Nothing Then
-            If contType.IsAnonymousType Then
-                Return
-            End If
-        End If
-
-        If DirectCast(innerContext.Symbol, IFieldSymbol).DeclaredAccessibility = Accessibility.Private Then
-            myFieldList.DefinedFields.Add(New FieldActionTuple With {.FieldSymbol = DirectCast(innerContext.Symbol, IFieldSymbol),
-                                                                     .Action = CodeFixAction.SimpleProperty})
-
-        End If
     End Sub
 End Class

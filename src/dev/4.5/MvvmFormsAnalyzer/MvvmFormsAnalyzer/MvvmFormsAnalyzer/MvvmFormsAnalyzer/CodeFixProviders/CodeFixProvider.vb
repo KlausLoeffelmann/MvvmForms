@@ -1,7 +1,6 @@
-﻿Imports System.Collections.Immutable
+﻿Imports System.ComponentModel
 Imports Microsoft.CodeAnalysis.Editing
 Imports Microsoft.CodeAnalysis.Formatting
-Imports Microsoft.CodeAnalysis.Rename
 
 <ExportCodeFixProvider(LanguageNames.VisualBasic, Name:=NameOf(MvvmFormsAnalyzerCodeFixProvider)), [Shared]>
 Public Class MvvmFormsAnalyzerCodeFixProvider
@@ -20,11 +19,6 @@ Public Class MvvmFormsAnalyzerCodeFixProvider
     Public NotOverridable Overrides Async Function RegisterCodeFixesAsync(context As CodeFixContext) As Task
 
         Dim root = Await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(False)
-
-        Dim semModel = Await context.Document.GetSemanticModelAsync
-        Dim syntaxTrees = semModel.Compilation.SyntaxTrees
-
-
         Dim diagnostic = context.Diagnostics.First()
         Dim diagnosticSpan = diagnostic.Location.SourceSpan
 
@@ -33,7 +27,7 @@ Public Class MvvmFormsAnalyzerCodeFixProvider
 
         ' Register a code action that will invoke the fix.
         context.RegisterCodeFix(
-            CodeAction.Create("Create Property.",
+            CodeAction.Create("Create property from unused field.",
                               Function(c) InsertPropertyAsync(context.Document, declaration, c)),
             diagnostic)
     End Function
@@ -42,7 +36,180 @@ Public Class MvvmFormsAnalyzerCodeFixProvider
                                                fieldDeclaration As FieldDeclarationSyntax,
                                                cancellationToken As CancellationToken) As Task(Of Document)
 
+        Dim enclosingType = DirectCast(
+                    (Await document.GetSemanticModelAsync).
+                            GetEnclosingSymbol(fieldDeclaration.GetLocation.SourceSpan.Start), INamedTypeSymbol)
+
+        Dim codefixaction = GetCodeFixActionFromClassType(enclosingType)
+
+        Select Case codefixaction
+            Case CodeFixAction.SimpleProperty
+                Return Await InsertSimpleProperty(document, fieldDeclaration, cancellationToken)
+            Case CodeFixAction.ManualRaiseNotifyPropertyChanged
+                Return Await InsertManuallyRaisedPropChangedProperty(document, fieldDeclaration, cancellationToken)
+            Case CodeFixAction.UseSetPropertyOfBaseClass
+                Return Await InsertPropertyWithSetPropertyOfBaseClass(document, fieldDeclaration, cancellationToken)
+        End Select
+
+        'we should not ever be here.
+        Return Nothing
+    End Function
+
+    Private Async Function InsertSimpleProperty(document As Document,
+                                                fieldDeclaration As FieldDeclarationSyntax,
+                                                cancellationToken As CancellationToken) As Task(Of Document)
+
         Dim fieldname = fieldDeclaration.Declarators(0).Names(0).ToString
+        Dim propertyName As String = GetPropertyNameFromFieldname(fieldname)
+        Dim docRoot = Await document.GetSyntaxRootAsync
+        Dim generator As SyntaxGenerator = SyntaxGenerator.GetGenerator(document.Project.Solution.Workspace, document.Project.Language)
+
+        Dim commentTrivia = SyntaxFactory.CommentTrivia(vbNewLine & "'--- " & propertyName & "---" & vbNewLine)
+        Dim setterStatement = generator.AssignmentStatement(generator.IdentifierName(fieldname),
+                                                            generator.IdentifierName("value"))
+        Dim getterStatement = generator.ReturnStatement(generator.IdentifierName(fieldname))
+
+        Dim propGeneration As SyntaxNode =
+                    generator.PropertyDeclaration(propertyName,
+                                                  fieldDeclaration.Declarators(0).AsClause.Type,
+                                                  Accessibility.Public,
+                                                  DeclarationModifiers.None,
+                                                  {getterStatement},
+                                                  {setterStatement})
+
+        propGeneration = propGeneration.WithLeadingTrivia(commentTrivia)
+        propGeneration = propGeneration.WithAdditionalAnnotations(Formatter.Annotation)
+
+        'Find last Property Block.
+        Dim lastNodeInClass As SyntaxNode = FindLastPropertyNode(fieldDeclaration)
+
+        Dim newroot = docRoot.InsertNodesAfter(lastNodeInClass, {propGeneration})
+
+        Return document.WithSyntaxRoot(newroot)
+
+    End Function
+
+    Private Async Function InsertManuallyRaisedPropChangedProperty(
+                          document As Document,
+                          fieldDeclaration As FieldDeclarationSyntax,
+                          cancellationToken As CancellationToken) As Task(Of Document)
+
+        Dim fieldname = fieldDeclaration.Declarators(0).Names(0).ToString
+        Dim propertyName As String = GetPropertyNameFromFieldname(fieldname)
+        Dim docRoot = Await document.GetSyntaxRootAsync
+        Dim generator As SyntaxGenerator = SyntaxGenerator.GetGenerator(document.Project.Solution.Workspace, document.Project.Language)
+
+        Try
+            Dim commentTrivia = SyntaxFactory.CommentTrivia(vbNewLine & "'--- " & propertyName & "---" & vbNewLine)
+
+            Dim eventArgsDeclaration = generator.LocalDeclarationStatement("e",
+                   generator.ObjectCreationExpression(
+                        generator.IdentifierName("PropertyChangedEventArgs"),
+                        generator.Argument(SyntaxFactory.NameOfExpression(SyntaxFactory.IdentifierName(propertyName)))))
+
+            Dim OnxxxMethodStatements = New List(Of SyntaxNode) From
+                      {eventArgsDeclaration,
+                       generator.RaiseEventStatement("PropertyChanged", "e")}
+
+            Dim OnxxxMethod = generator.MethodDeclaration("On" & propertyName & "Changed",
+                                                         accessibility:=Accessibility.Protected,
+                                                         modifiers:=DeclarationModifiers.Virtual,
+                                                         statements:=OnxxxMethodStatements)
+            OnxxxMethod = OnxxxMethod.WithLeadingTrivia(commentTrivia)
+
+            Dim ifTrueStatements = New List(Of SyntaxNode) From
+                {generator.AssignmentStatement(
+                    generator.IdentifierName(fieldname),
+                    generator.IdentifierName("value")),
+                 generator.InvocationExpression(
+                    generator.MemberAccessExpression(
+                    SyntaxFactory.MeExpression(),
+                    "On" & propertyName & "Changed"))}
+
+            Dim ifFalseStatements = New List(Of SyntaxNode)
+
+            Dim ifBlock = generator.IfStatement(
+            generator.InvocationExpression(
+                    generator.MemberAccessExpression(
+                            generator.IdentifierName("Object"),
+                            "equals"),
+                    generator.Argument(
+                        generator.IdentifierName(fieldname)),
+                    generator.Argument(
+                        generator.IdentifierName("value"))),
+            ifTrueStatements, ifFalseStatements)
+
+            Dim getterStatement = generator.ReturnStatement(generator.IdentifierName(fieldname))
+
+            Dim propBlock As SyntaxNode =
+                    generator.PropertyDeclaration(propertyName,
+                                                  fieldDeclaration.Declarators(0).AsClause.Type,
+                                                  Accessibility.Public,
+                                                  DeclarationModifiers.None,
+                                                  {getterStatement},
+                                                  {ifBlock})
+
+            OnxxxMethod = OnxxxMethod.WithAdditionalAnnotations(Formatter.Annotation)
+            propBlock = propBlock.WithAdditionalAnnotations(Formatter.Annotation)
+
+            'Find last Property Block.
+            Dim lastNodeInClass As SyntaxNode = FindLastPropertyNode(fieldDeclaration)
+
+            Dim newroot = docRoot.InsertNodesAfter(lastNodeInClass, {OnxxxMethod, propBlock})
+
+            Return document.WithSyntaxRoot(newroot)
+        Catch ex As Exception
+            Stop
+        End Try
+
+        Return Nothing
+
+    End Function
+
+    Private Async Function InsertPropertyWithSetPropertyOfBaseClass(
+                                                document As Document,
+                                                fieldDeclaration As FieldDeclarationSyntax,
+                                                cancellationToken As CancellationToken) As Task(Of Document)
+
+        Dim fieldname = fieldDeclaration.Declarators(0).Names(0).ToString
+        Dim propertyName = GetPropertyNameFromFieldname(fieldname)
+
+        Dim docRoot = Await document.GetSyntaxRootAsync
+
+        Dim generator As SyntaxGenerator = SyntaxGenerator.GetGenerator(document.Project.Solution.Workspace,
+                                                                        document.Project.Language)
+
+        Dim setterStatement As SyntaxNode = Nothing
+        Dim commentTrivia = SyntaxFactory.CommentTrivia(vbNewLine & "'--- " & propertyName & "---" & vbNewLine)
+
+        setterStatement = generator.InvocationExpression(
+            generator.IdentifierName("SetProperty"),
+            generator.Argument(RefKind.Out, generator.IdentifierName(fieldname)),
+            generator.Argument(RefKind.None, generator.IdentifierName("value")))
+
+        Dim getterStatement = generator.ReturnStatement(generator.IdentifierName(fieldname))
+
+        Dim propGeneration As SyntaxNode =
+                    generator.PropertyDeclaration(propertyName,
+                                                  fieldDeclaration.Declarators(0).AsClause.Type,
+                                                  Accessibility.Public,
+                                                  DeclarationModifiers.None,
+                                                  {getterStatement},
+                                                  {setterStatement})
+
+        propGeneration = propGeneration.WithLeadingTrivia(commentTrivia)
+        propGeneration = propGeneration.WithAdditionalAnnotations(Formatter.Annotation)
+
+        'Find last Property Block.
+        Dim lastNodeInClass As SyntaxNode = FindLastPropertyNode(fieldDeclaration)
+
+        Dim newroot = docRoot.InsertNodesAfter(lastNodeInClass, {propGeneration})
+
+        Return document.WithSyntaxRoot(newroot)
+
+    End Function
+
+    Private Function GetPropertyNameFromFieldname(fieldname As String) As String
         Dim propertyName As String = ""
 
         'Derive Propertyname from Fieldname.
@@ -55,61 +222,87 @@ Public Class MvvmFormsAnalyzerCodeFixProvider
                            fieldname & "Property"
         End If
 
-        Dim docRoot = Await document.GetSyntaxRootAsync
+        Return propertyName
+    End Function
 
-        Dim generator As SyntaxGenerator = SyntaxGenerator.GetGenerator(document.Project.Solution.Workspace, document.Project.Language)
+    Private Function FindLastPropertyNode(startNode As SyntaxNode) As SyntaxNode
 
-        Dim setterStatement = generator.AssignmentStatement(generator.IdentifierName(fieldname),
-                                                            generator.IdentifierName("value"))
+        Dim parentNode = startNode.Parent
 
-        Dim getterStatement = generator.ReturnStatement(generator.IdentifierName(fieldname))
+        Dim lastPropBlock As SyntaxNode = Nothing
+        Dim lastNode As SyntaxNode = Nothing
+        Dim previousNode As SyntaxNode = parentNode
 
-        Dim propGeneration As SyntaxNode =
-                    generator.PropertyDeclaration(propertyName,
-                                                  fieldDeclaration.Declarators(0).AsClause.Type,
-                                                  Accessibility.Public,
-                                                  DeclarationModifiers.None,
-                                                  {getterStatement},
-                                                  {setterStatement})
+        For Each nodeItem In parentNode.ChildNodes
+            Dim tempNode = TryCast(nodeItem, PropertyBlockSyntax)
+            If tempNode IsNot Nothing Then
+                lastPropBlock = tempNode
+            End If
+            lastNode = previousNode
+            previousNode = nodeItem
+        Next
 
-        propGeneration = propGeneration.WithAdditionalAnnotations(Formatter.Annotation)
+        If lastPropBlock IsNot Nothing Then
+            Return lastPropBlock
+        Else
+            Return lastNode
+        End If
 
-        'Find end of field declaration
-        Dim classNode = fieldDeclaration.Parent
-        Dim childAndTokens = classNode.ChildNodesAndTokens
-        Dim endClassNode As SyntaxNode = DirectCast(classNode, ClassBlockSyntax).EndClassStatement
+    End Function
 
+    Private Function GetCodeFixActionFromClassType(contType As INamedTypeSymbol) As CodeFixAction
 
-        Dim newroot = docRoot.InsertNodesAfter(fieldDeclaration, {propGeneration})
+        Dim codeFixActionToReturn As CodeFixAction = CodeFixAction.SimpleProperty
 
-        Return document.WithSyntaxRoot(newroot)
+        If contType.Interfaces.Where(
+                            Function(item) item.Name = "INotifyPropertyChanged").FirstOrDefault IsNot Nothing Then
+            codeFixActionToReturn = CodeFixAction.ManualRaiseNotifyPropertyChanged
+        End If
+
+        Dim basetype = contType.BaseType
+
+        If basetype IsNot Nothing AndAlso basetype.Name <> "Object" Then
+            Debug.WriteLine($"Basetype found: {basetype.ToString}")
+            If basetype.HasTypeInInheritanceHierarchy("BindableBase") Then
+                Dim setProp = TryCast(basetype.GetMethodOrInheritedMethod("SetProperty"), IMethodSymbol)
+                If setProp IsNot Nothing Then
+                    If setProp.IsGenericMethod And setProp.Parameters.Count > 0 Then
+                        If setProp.Parameters(0).RefKind = RefKind.Ref Then
+                            'Here we can be comparatively sure, we got the right method for raising the PropChange-Event.
+                            codeFixActionToReturn = CodeFixAction.UseSetPropertyOfBaseClass
+                        End If
+                    End If
+                End If
+            End If
+        End If
+
+        Return codeFixActionToReturn
 
     End Function
 End Class
 
-'If contType.Interfaces.Where(
-'                    Function(item) item.Name = "INotifyPropertyChanged").FirstOrDefault IsNot Nothing Then
-'CodeFixAction = CodeFixAction.ManualRaiseNotifyPropertyChanged
-'End If
+Public Class test
+    Implements INotifyPropertyChanged
 
-'Dim basetype = contType.BaseType
-'Dim methods = basetype.GetMembers
+    Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
-'If basetype IsNot Nothing AndAlso basetype.Name <> "Object" Then
-'Debug.WriteLine($"Basetype found: {basetype.ToString}")
-'If basetype.HasTypeInInheritanceHierarchy("BindableBase") Then
-'Dim setProp = TryCast(basetype.GetMethodOrInheritedMethod("SetProperty"), IMethodSymbol)
-'If setProp IsNot Nothing Then
-'If setProp.IsGenericMethod And setProp.Parameters.Count > 0 Then
-'If setProp.Parameters(0).RefKind = RefKind.Out Then
-''Here we can be comparatively sure, we got the right method for raising the PropChange-Event.
-'CodeFixAction = CodeFixAction.UseSetPropertyOfBaseClass
-'End If
-'End If
-'End If
-'End If
-'End If
-'Else
-''we should never be here.
-'Return
-'End If
+    Private myField As Integer
+
+    'Dies ist ein Test
+    Protected Overridable Sub OnTestChanged()
+        Dim e = New PropertyChangedEventArgs(NameOf(Test))
+        RaiseEvent PropertyChanged(Me, e)
+    End Sub
+
+    Public Property Test As Integer
+        Get
+            Return myField
+        End Get
+        Set(value As Integer)
+            If Not Object.Equals(myField, value) Then
+                myField = value
+                OnTestChanged()
+            End If
+        End Set
+    End Property
+End Class
