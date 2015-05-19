@@ -629,7 +629,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Controls\Interfaces\InterfaceDiagram.cd" />
-    <None Include="NuGet\EntitiesFormsLib.1.0.0.nupkg" />
     <None Include="NuGet\EntitiesFormsLib.1.0.1.nupkg" />
     <None Include="NuGet\EntitiesFormsLib.2.0.1.nupkg" />
     <None Include="NuGet\EntitiesFormsLib.2.0.10.nupkg" />
@@ -684,6 +683,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="NuGet\MvvmForms.2.0.16.nupkg" />
+    <None Include="NuGet\MvvmFormsBase.2.0.16.nupkg" />
     <None Include="Resources\delete.ico" />
   </ItemGroup>
   <ItemGroup>
