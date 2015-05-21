@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -13,7 +13,7 @@
     <AssemblyName>EFL_CodedUITestContainer</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <SccProjectName>SAK</SccProjectName>
@@ -78,6 +78,14 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MvvmBaseLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmFormsBase.2.0.17\lib\MvvmBaseLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -227,24 +235,22 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MvvmDataGridExample\MvvmDataGridExample.sln" />
+    <Content Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MvvmTest\Converter\" />
+    <Folder Include="MvvmTest\Models\" />
+    <Folder Include="MvvmTest\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\EntitiesFormsLib.vbproj">
       <Project>{048efa6c-b9fb-441e-9432-1f72b332856c}</Project>
       <Name>EntitiesFormsLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\EFLViewModelBase\EFLViewModelBase.vbproj">
-      <Project>{16e0a6a1-bce3-4d4c-bb6a-367066f09afa}</Project>
-      <Name>EFLViewModelBase</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MvvmDataGridExample\MvvmDataGridExample.sln" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MvvmTest\Converter\" />
-    <Folder Include="MvvmTest\Models\" />
-    <Folder Include="MvvmTest\ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

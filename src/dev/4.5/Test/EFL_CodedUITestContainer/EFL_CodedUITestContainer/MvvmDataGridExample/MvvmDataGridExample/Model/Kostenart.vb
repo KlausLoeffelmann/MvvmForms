@@ -1,4 +1,4 @@
-﻿Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
+﻿Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 Public Class Kostenart
     Inherits BindableBase

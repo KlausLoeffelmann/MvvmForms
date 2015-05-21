@@ -1,6 +1,14 @@
 <==================================
  CHANGELOG
- NEW IN 2.0.0001.1BETA - 2015-05-05
+ NEW IN 2.0.18 - 2015-05-21
+ ==================================
+
+ * Fixed HighDPIIssues with all NullableValueBase derived controls.
+ * Changed direct project reference to EflViewModelBase to NuGet MvvmFormsBase.
+
+<==================================
+ CHANGELOG
+ NEW IN 2.0.17 - 2015-05-05
  ==================================
 
 INTRODUCTION: Have there been other Version?

@@ -1,8 +1,8 @@
-﻿Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
-Imports System.Collections.ObjectModel
+﻿Imports System.Collections.ObjectModel
+Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 Public Class Buchung
-    Inherits MvvmViewModelBase
+    Inherits MvvmBase
 
     Private _url As String
     ''' <summary>
@@ -100,7 +100,7 @@ Public Class Buchung
     ''' <returns></returns>
     ''' <remarks>Bindbare Property</remarks>
     <MvvmViewModelInclude>
-      Public Property Kostenarten As ObservableCollection(Of Kostenart)
+    Public Property Kostenarten As ObservableCollection(Of Kostenart)
         Get
             Return _kostenarten
         End Get
@@ -187,8 +187,4 @@ Public Class Buchung
         End Set
     End Property
     Public Const WichtigProperty As String = "Wichtig"
-
-    Protected Overrides Sub InitializeViewModel()
-
-    End Sub
 End Class

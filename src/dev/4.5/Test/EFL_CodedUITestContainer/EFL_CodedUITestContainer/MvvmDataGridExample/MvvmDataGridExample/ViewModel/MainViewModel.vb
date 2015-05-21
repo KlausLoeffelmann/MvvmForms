@@ -1,8 +1,8 @@
-﻿Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
-Imports System.Collections.ObjectModel
+﻿Imports System.Collections.ObjectModel
+Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 Public Class MainViewModel
-    Inherits MvvmViewModelBase
+    Inherits MvvmBase
 
     Sub New()
         Dim kostenartenLookup = New ObservableCollection(Of Kostenart)
@@ -42,13 +42,13 @@ Public Class MainViewModel
     End Sub
 
     Private _buchungen As ObservableCollection(Of Buchung)
+
     ''' <summary>
     ''' 
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks>Bindbare Property</remarks>
-    <MvvmViewModelInclude>
     Public Property Buchungen As ObservableCollection(Of Buchung)
         Get
             Return _buchungen
@@ -58,8 +58,4 @@ Public Class MainViewModel
         End Set
     End Property
     Public Const BuchungenProperty As String = "Buchungen"
-
-    Protected Overrides Sub InitializeViewModel()
-
-    End Sub
 End Class
