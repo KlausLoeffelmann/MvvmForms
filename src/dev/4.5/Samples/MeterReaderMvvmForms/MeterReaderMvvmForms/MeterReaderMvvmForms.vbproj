@@ -47,9 +47,18 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ActiveDevelop.EntitiesFormsLib, Version=2.0.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmForms.2.0.18\lib\ActiveDevelop.EntitiesFormsLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="MvvmBaseLib">
-      <HintPath>..\..\..\MvvmBase\bin\Debug\MvvmBaseLib.dll</HintPath>
+    <Reference Include="MvvmBaseLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmFormsBase.2.0.18\lib\MvvmBaseLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -150,12 +159,10 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\EntitiesFormsLib.vbproj">
-      <Project>{048EFA6C-B9FB-441E-9432-1F72B332856C}</Project>
-      <Name>EntitiesFormsLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\EFLWebApiClientSupport\MvvmFormsWebApiClientSupport.vbproj">
       <Project>{d8936e28-392e-439d-a036-005722122cf5}</Project>
       <Name>MvvmFormsWebApiClientSupport</Name>
@@ -165,7 +172,10 @@
       <Name>MRViewModelLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ChangeLog.txt" />
+    <Content Include="MvvmFormsBaseInfo.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

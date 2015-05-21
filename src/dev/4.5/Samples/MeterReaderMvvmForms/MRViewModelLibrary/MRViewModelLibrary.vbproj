@@ -56,10 +56,6 @@
       <Project>{d8936e28-392e-439d-a036-005722122cf5}</Project>
       <Name>MvvmFormsWebApiClientSupport</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\MvvmBase\MvvmBaseLib.csproj">
-      <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
-      <Name>MvvmBaseLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MrModelLibrary\MrModelLibrary.csproj">
       <Project>{1e3af1ec-af15-4639-9e67-4ce45d1b4987}</Project>
       <Name>MrModelLibrary</Name>
@@ -100,9 +96,22 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="ViewModels\ReadingViewModel.vb" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MvvmBaseLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmFormsBase.2.0.18\lib\MvvmBaseLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MvvmFormsBaseInfo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -247,9 +247,9 @@
     <Folder Include="MvvmTest\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\EntitiesFormsLib.vbproj">
+    <ProjectReference Include="..\..\..\Core\MvvmForms.vbproj">
       <Project>{048efa6c-b9fb-441e-9432-1f72b332856c}</Project>
-      <Name>EntitiesFormsLib</Name>
+      <Name>MvvmForms</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

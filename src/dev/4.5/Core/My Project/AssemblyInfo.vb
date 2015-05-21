@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Die Werte der Assemblyattribute überprüfen
 
-<Assembly: AssemblyTitle("EntitiesFormsLibEx")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("ActiveDevelop - Application of Excellence.")> 
-<Assembly: AssemblyProduct("EFL")> 
-<Assembly: AssemblyCopyright("Copyright © ActiveDevelop, Klaus Löffelmann")> 
+<Assembly: AssemblyTitle("MvvmForms CoreLib")>
+<Assembly: AssemblyDescription("Windows Forms Class Library for Supporting the Mvvm Pattern")>
+<Assembly: AssemblyCompany("ActiveDevelop - (www.activedevelop.de)")>
+<Assembly: AssemblyProduct("MvvmForms")>
+<Assembly: AssemblyCopyright("Copyright - 2015 © Klaus Löffelmann")>
 <Assembly: AssemblyTrademark("ActiveDevelop")> 
 <Assembly: DebuggerDisplay("{ToString}", Target:=GetType(NullableNumValue))> 
 <Assembly: DebuggerDisplay("{ToString}", Target:=GetType(NullableDateValue))> 
@@ -35,5 +35,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.0.0.*")>
-
+<Assembly: AssemblyVersion("2.0.18.0")>
+<Assembly: AssemblyFileVersion("2.0.18.0")>

@@ -81,7 +81,6 @@ Public Class Buchung
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks>Bindbare Property</remarks>
-    <MvvmViewModelInclude>
     Public Property Kostenart As Kostenart
         Get
             Return _kostenart
@@ -99,7 +98,6 @@ Public Class Buchung
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks>Bindbare Property</remarks>
-    <MvvmViewModelInclude>
     Public Property Kostenarten As ObservableCollection(Of Kostenart)
         Get
             Return _kostenarten
