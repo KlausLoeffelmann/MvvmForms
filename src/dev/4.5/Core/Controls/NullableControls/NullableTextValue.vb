@@ -9,6 +9,10 @@
 Public Class NullableTextValue
     Inherits NullableValueBase(Of StringValue, NullableValuePrimalTextBox)
 
+    Sub New()
+        MyBase.New
+    End Sub
+
     Private myEliminateWhitespacesOnAssignment As Boolean
 
     Protected Overrides Function GetDefaultFormatString() As String

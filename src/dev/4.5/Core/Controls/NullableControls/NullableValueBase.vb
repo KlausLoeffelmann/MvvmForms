@@ -16,7 +16,6 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
                ITextBoxBasedControl, IRequestAdditionalSnapBaselineOffset, 
                IPermissionManageableUIContentElement
 
-
     Private myEditedValueIsInitialized As Boolean
     Private myValueChangedInternally As Boolean
     Private myFailedValidationMessage As String
@@ -108,15 +107,19 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         myFormatterEngine = GetDefaultFormatterEngine()
         SetInitialDefaultBorderstyleOnDemand()
         myValueControl = New ControlType()
+        myValueControl.AutoSize = False
+
         InitializeProperties()
 
         If Me.IsMultiLineControl Then
             myValueControl.TextBoxPart.Multiline = True
             myValueControl.TextBoxPart.ScrollBars = ScrollBars.Vertical
             myValueControl.TextBoxPart.AcceptsReturn = True
+            SetStyle(ControlStyles.FixedHeight, False)
         Else
             'Eigentlich redundant.
             myValueControl.TextBoxPart.Multiline = False
+            SetStyle(ControlStyles.FixedHeight, True)
         End If
 
         myNullValueString = GetDefaultNullValueString()
@@ -227,6 +230,11 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         End Get
     End Property
 
+    Protected Overrides Sub OnHandleCreated(e As EventArgs)
+        MyBase.OnHandleCreated(e)
+        PositionControls()
+    End Sub
+
     Property Borderstyle As BorderStyle
         Set(ByVal value As BorderStyle)
             If (Me.Borderstyle <> value) Then
@@ -264,9 +272,10 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     End Property
 
     Protected Overrides Sub OnFontChanged(e As System.EventArgs)
-        MyBase.OnFontChanged(e)
-        Me.SetBoundsCore(Me.Location.X, Me.Location.Y, Me.Width, Me.Height, BoundsSpecified.Size)
+        'Clear Font Cache
+        FontHeight = -1
         PositionControls()
+        MyBase.OnFontChanged(e)
     End Sub
 
     Protected Overrides Sub OnLayout(ByVal e As System.Windows.Forms.LayoutEventArgs)
@@ -277,6 +286,14 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Protected Sub OnTextBoxResize(ByVal sender As Object, ByVal e As System.EventArgs)
         Me.PositionControls()
     End Sub
+
+    Public Overrides Function GetPreferredSize(proposedSize As Size) As Size
+        myRequestedSize = New Size(Width, Height)
+        If Not Me.IsMultiLineControl Then
+            Height = Me.PreferredHeight
+        End If
+        Return MyBase.GetPreferredSize(myRequestedSize)
+    End Function
 
     Protected Overrides Sub SetBoundsCore(x As Integer, y As Integer, width As Integer, height As Integer, specified As System.Windows.Forms.BoundsSpecified)
         If specified = BoundsSpecified.Size Then
