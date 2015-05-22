@@ -37,8 +37,6 @@ Public Class NullableMaskTextValue
         Return False
     End Function
 
-    'TODO: Soll so etwas möglich sein?
-
     ''' <summary>
     ''' Bestimmt oder ermittelt, ob eine FormsToBusinessManager-Instanz die MaxLength-Eigenschaft zur Laufzeit auf Basis des Business-Objektes setzen darf.
     ''' </summary>

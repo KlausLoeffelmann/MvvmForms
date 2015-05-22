@@ -42,6 +42,7 @@ Public Class TextBoxButtonBase(Of ButtonType As {MultiPurposeButtonBase, New})
         SetStyle(ControlStyles.SupportsTransparentBackColor, True)
         SetStyle(ControlStyles.ContainerControl, True)
         SetStyle(ControlStyles.ResizeRedraw, True)
+        SetStyle(ControlStyles.FixedHeight, True)
         InitializeControlsInternal()
     End Sub
 

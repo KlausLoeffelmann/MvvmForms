@@ -11,7 +11,7 @@
     <AssemblyName>MeterReaderMvvmForms</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -47,11 +47,6 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ActiveDevelop.EntitiesFormsLib, Version=2.0.18.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmForms.2.0.18\lib\ActiveDevelop.EntitiesFormsLib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MvvmBaseLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmFormsBase.2.0.18\lib\MvvmBaseLib.dll</HintPath>
       <Private>True</Private>
@@ -163,6 +158,10 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\MvvmForms.vbproj">
+      <Project>{048efa6c-b9fb-441e-9432-1f72b332856c}</Project>
+      <Name>MvvmForms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\EFLWebApiClientSupport\MvvmFormsWebApiClientSupport.vbproj">
       <Project>{d8936e28-392e-439d-a036-005722122cf5}</Project>
       <Name>MvvmFormsWebApiClientSupport</Name>

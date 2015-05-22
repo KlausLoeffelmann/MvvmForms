@@ -3,6 +3,7 @@ Imports System.Windows.Forms
 Imports System.Collections.Generic
 Imports System.Collections.ObjectModel
 Imports System.Windows.Forms.MonthCalendar
+Imports System.Globalization
 
 ''' <summary>
 ''' Steuerelement zur Auswahl/Erfassungs von Datums-Werten, das überdies Null-Werte verarbeitet, eine vereinheitlichende Value-Eigenschaft bietet, 
@@ -21,10 +22,20 @@ Public Class NullableDateValue
 
     Private myCalendarFormValue As Date?
     Private myDisplayFormatString As String
-    Dim myDisplayFormat As DateTimeFormats
+    Private myDisplayFormat As DateTimeFormats
 
-    Private Shared myDateTimeFormatStrings As String() = {"dd.MM.yyyy", "ddd, dd.MM.yyyy",
-                                                      "dd.MM.yyyy HH:mm:ss"}
+    Private Shared mySharedDateFormat As DateTimeFormatInfo =
+                        CultureInfo.CurrentUICulture.DateTimeFormat
+
+    Private Shared myDateTimeFormatStrings As String() = {GetCultureAwareLegacyShortPattern(),
+                                                          mySharedDateFormat.LongDatePattern,
+                                                          mySharedDateFormat.ShortDatePattern,
+                                                          mySharedDateFormat.LongDatePattern,
+                                                          mySharedDateFormat.SortableDateTimePattern,
+                                                          mySharedDateFormat.UniversalSortableDateTimePattern,
+                                                          mySharedDateFormat.RFC1123Pattern,
+                                                          mySharedDateFormat.ShortDatePattern & " " &
+                                                          mySharedDateFormat.ShortTimePattern}
 
     Private myCommitValueOnMouseClick As Boolean
     Private myLinkedToNullableDateControl As NullableDateValue
@@ -140,7 +151,7 @@ Public Class NullableDateValue
                 ValueControl.ClosePopup()
             End Sub)
 
-        myDisplayFormatString = DEFAULT_DATE_FORMAT_STRING_DE
+        myDisplayFormatString = DEFAULT_DATE_FORMAT_STRING
         myDisplayFormat = DateTimeFormats.ShortDate
     End Sub
 
@@ -152,7 +163,9 @@ Public Class NullableDateValue
     End Function
 
     Protected Overrides Function GetDefaultFormatterEngine() As INullableValueFormatterEngine
-        Dim retTmp = New NullableDateValueFormatterEngine(Me.Value, Me.GetDefaultFormatString, Me.NullValueString)
+        Dim retTmp = New NullableDateValueFormatterEngine(Me.Value,
+                                                          Me.GetDefaultFormatString,
+                                                          Me.NullValueString)
         Return (retTmp)
     End Function
 
@@ -161,14 +174,13 @@ Public Class NullableDateValue
     End Function
 
     Protected Overrides Function GetDefaultFormatString() As String
-        Return DEFAULT_DATE_FORMAT_STRING_DE
+        Return DEFAULT_DATE_FORMAT_STRING
     End Function
 
     Private Function CreateFormatString() As String
         Return GetDefaultFormatString()
     End Function
 
-    <DefaultValue(DEFAULT_DATE_FORMAT_STRING_DE)>
     Public Property DisplayFormatString As String
         Get
             Return myDisplayFormatString
@@ -180,13 +192,24 @@ Public Class NullableDateValue
                 'TODO: Naming-Problem? Soll es DisplayFormat oder Format heißen?
                 MyBase.FormatString = value
                 Me.FormatterEngine.FormatString = value
-                Dim tmpIndex = Array.FindIndex(myDateTimeFormatStrings, Function(item) item = value)
+                Dim tmpIndex = Array.FindIndex(myDateTimeFormatStrings,
+                                               Function(item) item = value)
                 If tmpIndex > -1 Then
                     DisplayFormat = CType(tmpIndex, DateTimeFormats)
+                Else
+                    DisplayFormat = DateTimeFormats.Custom
                 End If
             End If
         End Set
     End Property
+
+    Private Function ShouldSerializeDisplayFormatString() As Boolean
+        Return DisplayFormatString <> DEFAULT_DATE_FORMAT_STRING
+    End Function
+
+    Private Sub ResetDisplayFormatString()
+        DisplayFormatString = DEFAULT_DATE_FORMAT_STRING
+    End Sub
 
     <DefaultValue(DateTimeFormats.ShortDate)>
     Public Property DisplayFormat As DateTimeFormats
@@ -196,7 +219,9 @@ Public Class NullableDateValue
         Set(ByVal value As DateTimeFormats)
             If value <> myDisplayFormat Then
                 myDisplayFormat = value
-                DisplayFormatString = myDateTimeFormatStrings(myDisplayFormat)
+                If myDisplayFormat < DateTimeFormats.Custom Then
+                    DisplayFormatString = myDateTimeFormatStrings(myDisplayFormat)
+                End If
             End If
         End Set
     End Property
@@ -301,11 +326,35 @@ Public Class NullableDateValue
             End If
         End If
     End Sub
+
+    Public Shared Function GetCultureAwareLegacyShortPattern() As String
+        Dim formatString = CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern
+        If formatString.IndexOf("MM") = -1 Then
+            If formatString.IndexOf("M") > -1 Then
+                formatString = formatString.Replace("M", "MM")
+            End If
+        End If
+
+        If formatString.IndexOf("dd") = -1 Then
+            If formatString.IndexOf("d") > -1 Then
+                formatString = formatString.Replace("d", "dd")
+            End If
+        End If
+
+        Return formatString
+    End Function
+
 End Class
 
 Public Enum DateTimeFormats
-    ShortDate = 2
-    LongDate = 3
-    DateTimeCombined = 4
-    Custom = 5
+    ShortDate = 0
+    'Todo: Adjust LongDate to match original pattern.
+    LongDate = 1
+    ShortDateSystem = 2
+    LongDateSystem = 3
+    SortableDateTime = 4
+    UniversalSortableDateTime = 5
+    RFC1123 = 6
+    DateTimeCombined = 7
+    Custom = 8
 End Enum
