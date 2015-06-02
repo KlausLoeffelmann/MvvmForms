@@ -146,14 +146,14 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicFunctionTest.vb" />
-    <Compile Include="CloningTests.vb" />
+    <Compile Include="UnitTests\BasicFunctionTest.vb" />
+    <Compile Include="UnitTests\CloningTests.vb" />
     <Compile Include="MvvmPropertyBindingAssignmentTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
-    <Compile Include="ObservableCollectionTest\ObservableCollectionTestForm.Designer.vb">
+    <Compile Include="CodedUITests\ObservableCollectionTest\ObservableCollectionTestForm.Designer.vb">
       <DependentUpon>ObservableCollectionTestForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="ObservableCollectionTest\ObservableCollectionTestForm.vb">
+    <Compile Include="CodedUITests\ObservableCollectionTest\ObservableCollectionTestForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UIMap.Designer.vb">
@@ -185,7 +185,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ObservableCollectionTest\ObservableCollectionTestForm.resx">
+    <EmbeddedResource Include="CodedUITests\ObservableCollectionTest\ObservableCollectionTestForm.resx">
       <DependentUpon>ObservableCollectionTestForm.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

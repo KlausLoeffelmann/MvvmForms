@@ -148,10 +148,10 @@
     <Compile Include="MvvmTest\Views\NullableValueComboBoxView.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MvvmTest\Views\Test.Designer.vb">
-      <DependentUpon>Test.vb</DependentUpon>
+    <Compile Include="MvvmTest\Views\NullableComboboxTestControl.Designer.vb">
+      <DependentUpon>NullableComboboxTestControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="MvvmTest\Views\Test.vb">
+    <Compile Include="MvvmTest\Views\NullableComboboxTestControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MvvmTest\Views\TestFormForDesignerError.Designer.vb">
@@ -204,8 +204,8 @@
     <EmbeddedResource Include="MvvmTest\Views\NullableValueComboBoxView.resx">
       <DependentUpon>NullableValueComboBoxView.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MvvmTest\Views\Test.resx">
-      <DependentUpon>Test.vb</DependentUpon>
+    <EmbeddedResource Include="MvvmTest\Views\NullableComboboxTestControl.resx">
+      <DependentUpon>NullableComboboxTestControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MvvmTest\Views\TestFormForDesignerError.resx">
       <DependentUpon>TestFormForDesignerError.vb</DependentUpon>
