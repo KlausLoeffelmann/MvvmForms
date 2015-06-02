@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Input
+Imports System.Windows.Forms
 
 ''' <summary>
 ''' Buttonableitung, welcher eine bindbare Command-Property zur Verfügung stellt
