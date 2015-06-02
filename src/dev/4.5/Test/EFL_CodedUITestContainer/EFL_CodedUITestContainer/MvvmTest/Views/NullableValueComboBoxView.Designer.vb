@@ -28,7 +28,7 @@ Partial Class NullableValueComboBoxView
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.NullableValueComboBox2 = New ActiveDevelop.EntitiesFormsLib.NullableValueComboBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Test1 = New EFL_CodedUITestContainer.Test()
+        Me.Test1 = New EFL_CodedUITestContainer.NullableComboboxTestControl()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -132,5 +132,5 @@ Partial Class NullableValueComboBoxView
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents NullableValueComboBox2 As ActiveDevelop.EntitiesFormsLib.NullableValueComboBox
-    Friend WithEvents Test1 As EFL_CodedUITestContainer.Test
+    Friend WithEvents Test1 As EFL_CodedUITestContainer.NullableComboboxTestControl
 End Class

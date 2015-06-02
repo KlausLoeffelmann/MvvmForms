@@ -42,7 +42,7 @@
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -62,6 +62,10 @@
     <Compile Include="Attributes\MvvmViewModelAttribute.cs" />
     <Compile Include="Attributes\MvvmViewModelIncludeAttribute.cs" />
     <Compile Include="BaseClasses\BindableBase.cs" />
+    <Compile Include="FormularParser\AuxilliaryClasses.cs" />
+    <Compile Include="FormularParser\FormularParser.cs" />
+    <Compile Include="FormularParser\FormularParser_Math.cs" />
+    <Compile Include="FormularParser\Function.cs" />
     <Compile Include="IoCPlatformDependend\IMvvmViewModelNotifyBindingProcess.cs" />
     <Compile Include="MvvmBaseClasses\ChangeTracking.cs" />
     <Compile Include="MvvmBaseClasses\CollectionView.cs" />
@@ -85,24 +89,24 @@
     <Compile Include="TimeLib\TimeSpanOverlappingTypes.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>C:\Users\klauslo\Documents\Visual Studio 2015\Projects\AnalyzerTestApp\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\Test\packages\Newtonsoft.Json.7.0.1-beta3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>C:\Users\klauslo\Documents\Visual Studio 2015\Projects\AnalyzerTestApp\packages\Rx-Core.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Core.dll</HintPath>
+    <Reference Include="System.Reactive.Core, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Test\packages\Rx-Core.2.3.0-beta2\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\System.Reactive.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>C:\Users\klauslo\Documents\Visual Studio 2015\Projects\AnalyzerTestApp\packages\Rx-Interfaces.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Interfaces.dll</HintPath>
+    <Reference Include="System.Reactive.Interfaces, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Test\packages\Rx-Interfaces.2.3.0-beta2\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\System.Reactive.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>C:\Users\klauslo\Documents\Visual Studio 2015\Projects\AnalyzerTestApp\packages\Rx-Linq.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Linq.dll</HintPath>
+    <Reference Include="System.Reactive.Linq, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Test\packages\Rx-Linq.2.3.0-beta2\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\System.Reactive.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>C:\Users\klauslo\Documents\Visual Studio 2015\Projects\AnalyzerTestApp\packages\Rx-PlatformServices.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.PlatformServices.dll</HintPath>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Test\packages\Rx-PlatformServices.2.3.0-beta2\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\System.Reactive.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

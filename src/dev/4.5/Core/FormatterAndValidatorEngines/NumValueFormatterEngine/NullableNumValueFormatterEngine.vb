@@ -1,4 +1,6 @@
-﻿Public Class NullableNumValueFormatterEngine
+﻿Imports ActiveDevelop.MvvmLib.FormularParser
+
+Public Class NullableNumValueFormatterEngine
     Inherits NullableValueFormatterEngineBase(Of Decimal)
 
     Private myHandleAsInteger As Boolean

@@ -160,12 +160,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="MvvmBaseLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Test\packages\MvvmFormsBase.2.0.17\lib\MvvmBaseLib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\Test\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\Samples\MeterReaderMvvmForms\packages\Newtonsoft.Json.7.0.1-beta3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -500,10 +496,6 @@
     <Compile Include="ExtenderMethods\ListOfPointCollectionInitializerExtender.vb" />
     <Compile Include="ExtenderMethods\NullableValueExtender.vb" />
     <Compile Include="FormatterAndValidatorEngines\NullableDateValueFormatterEngine.vb" />
-    <Compile Include="FormatterAndValidatorEngines\NumValueFormatterEngine\ADFormularParser.vb" />
-    <Compile Include="FormatterAndValidatorEngines\NumValueFormatterEngine\ADFormularParser_Math.vb" />
-    <Compile Include="FormatterAndValidatorEngines\NumValueFormatterEngine\ADFunction.vb" />
-    <Compile Include="FormatterAndValidatorEngines\NumValueFormatterEngine\AuxilliaryClasses.vb" />
     <Compile Include="FormatterAndValidatorEngines\NumValueFormatterEngine\NullableNumValueFormatterEngine.vb">
     </Compile>
     <Compile Include="FormatterAndValidatorEngines\NullableValueFormatterEngineBase.vb" />
@@ -705,7 +697,7 @@
     <Content Include="Components\MvvmManager\Assets\Collapsed.bmp" />
     <Content Include="Components\MvvmManager\Assets\Collapse_small.bmp" />
     <Content Include="Components\MvvmManager\Assets\Expand_small.bmp" />
-    <Content Include="Readme.txt" />
+    <Content Include="MvvmFormsBaseInfo.txt" />
     <Content Include="Resources\70_row_add_16.png" />
     <Content Include="Resources\92_cancel_16.png" />
     <Content Include="Resources\92_cancel_16_sel.png" />
@@ -723,6 +715,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MvvmBase\MvvmBaseLib.csproj">
+      <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
+      <Name>MvvmBaseLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

@@ -23,31 +23,32 @@ Public Class NullableDateValueFormatterEngine
                          "HH.mm.ss", "H:m", "H:mm", "HH:m", "HH:mm", "HH:mm:ss", _
                          "H,m", "H,mm", "HH,m", "HH,mm", "HH,mm,ss"}
 
-        myDateParseFormatStrings = New String() {"ddM", "ddMM", "ddMMyy", "ddMMyyyy", _
-                 "dddd, dd.MM.yyyy", _
-                 "d.M.y", "dd.M.y", "d.MM.y", "d.M.yy", "dd.M.yy", "dd.MM.yy", "d.M.yyyy", _
-                 "dd.M.yyyy", "d.MM.yyyy", "dd.MM.yyyy", "d,M,y", "dd,M,y", "d,MM,y", "d,M,yy", _
-                 "dd,M,yy", "dd,MM,yy", "d,M,yyyy", "dd,M,yyyy", "d,MM,yyyy", "dd,MM,yyyy"}
+        myDateParseFormatStrings = New String() {"ddM", "ddMM", "ddMMyy", "ddMMyyyy",
+                 "dddd, dd.MM.yyyy",
+                 "d.M.y", "dd.M.y", "d.MM.y", "d.M.yy", "dd.M.yy", "dd.MM.yy", "d.M.yyyy",
+                 "dd.M.yyyy", "d.MM.yyyy", "dd.MM.yyyy", "d,M,y", "dd,M,y", "d,MM,y", "d,M,yy",
+                 "dd,M,yy", "dd,MM,yy", "d,M,yyyy", "dd,M,yyyy", "d,MM,yyyy", "dd,MM,yyyy",
+                 "M/d/yy", "M/d/yyyy", "M/d"}
 
         myTimeParseFormatStrings = New String() {"HH", "HHmm", "HHmmss", "H.m", "H.mm", "HH.m", "HH.mm", _
                 "HH.mm.ss", "H:m", "H:mm", "HH:m", "HH:mm", "HH:mm:ss", _
                 "H,m", "H,mm", "HH,m", "HH,mm", "HH,mm,ss"}
 
-        myDateDisplayFormatStrings = New String() {"HH:mm", _
-                                                    "HH:mm:ss", _
-                                                    "dd.MM.yy", _
-                                                    "dddd, dd.MM.yyyy", _
-                                                    "dd.MM.yy - HH:mm", _
-                                                    "dddd, dd.MM.yyyy HH:mm:ss", _
-                                                    "dddd, \der dd. MMM yyyy"}
+        myDateDisplayFormatStrings = New String() {"HH:mm",
+                                                   "HH:mm:ss",
+                                                   "dd.MM.yy",
+                                                   "dddd, dd.MM.yyyy",
+                                                   "dd.MM.yy - HH:mm",
+                                                   "dddd, dd.MM.yyyy HH:mm:ss",
+                                                   "dddd, \der dd. MMM yyyy"}
 
-        myTimeDisplayFormatStrings = New String() {"HH:mm", _
-                                                    "HH:mm:ss", _
-                                                    "dd.MM.yy", _
-                                                    "dd.MM.yyyy", _
-                                                    "dd.MM.yy HH:mm", _
-                                                    "dd.MM.yyyy HH:mm:ss", _
-                                                    "dd.MM.yy HH:mm:ss"}
+        myTimeDisplayFormatStrings = New String() {"HH:mm",
+                                                   "HH:mm:ss",
+                                                   "dd.MM.yy",
+                                                   "dd.MM.yyyy",
+                                                   "dd.MM.yy HH:mm",
+                                                   "dd.MM.yyyy HH:mm:ss",
+                                                   "dd.MM.yy HH:mm:ss"}
 
     End Sub
 

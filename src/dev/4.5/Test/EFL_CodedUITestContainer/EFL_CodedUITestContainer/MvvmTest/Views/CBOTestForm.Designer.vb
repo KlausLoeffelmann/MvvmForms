@@ -22,7 +22,7 @@ Partial Class CBOTestForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Test1 = New EFL_CodedUITestContainer.Test()
+        Me.Test1 = New EFL_CodedUITestContainer.NullableComboboxTestControl()
         Me.SuspendLayout()
         '
         'Test1
@@ -43,5 +43,5 @@ Partial Class CBOTestForm
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Test1 As EFL_CodedUITestContainer.Test
+    Friend WithEvents Test1 As EFL_CodedUITestContainer.NullableComboboxTestControl
 End Class

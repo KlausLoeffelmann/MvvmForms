@@ -13,6 +13,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MvvmFormsWebApiClientSuppor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MrModelLibrary", "MrModelLibrary\MrModelLibrary.csproj", "{1E3AF1EC-AF15-4639-9E67-4CE45D1B4987}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MvvmForms", "..\..\Core\MvvmForms.vbproj", "{048EFA6C-B9FB-441E-9432-1F72B332856C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{1E3AF1EC-AF15-4639-9E67-4CE45D1B4987}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E3AF1EC-AF15-4639-9E67-4CE45D1B4987}.Release|x86.ActiveCfg = Release|Any CPU
 		{1E3AF1EC-AF15-4639-9E67-4CE45D1B4987}.Release|x86.Build.0 = Release|Any CPU
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.Debug|x86.ActiveCfg = Debug|x86
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.Debug|x86.Build.0 = Debug|x86
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.DebugWork|Any CPU.ActiveCfg = DebugWork|Any CPU
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.DebugWork|Any CPU.Build.0 = DebugWork|Any CPU
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.DebugWork|x86.ActiveCfg = DebugWork|x86
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.DebugWork|x86.Build.0 = DebugWork|x86
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.Release|x86.ActiveCfg = Release|x86
+		{048EFA6C-B9FB-441E-9432-1F72B332856C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
