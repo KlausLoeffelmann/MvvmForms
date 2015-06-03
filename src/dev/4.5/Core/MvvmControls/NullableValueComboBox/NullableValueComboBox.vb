@@ -1,14 +1,16 @@
 ﻿Imports System.Windows
 Imports System.Windows.Media
 Imports System.Windows.Threading
-Imports ActiveDevelop.EntitiesFormsLib
 Imports System.ComponentModel
 Imports System.Windows.Forms
+Imports System.Drawing
 
 ''' <summary>
 ''' Bindungsfähige ComboBox 
 ''' </summary>
 ''' <remarks>Basiert von inneren auf eine WPF-CBO mit UI-Elementen aus der EFL</remarks>
+<ToolboxBitmap(GetType(ComboBox)),
+ ToolboxItem(True)>
 Public Class NullableValueComboBox
     Implements INullableValueDataBinding
 

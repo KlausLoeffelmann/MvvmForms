@@ -1,12 +1,12 @@
 ﻿Imports System.ComponentModel
 
 ''' <summary>
-''' Steuerelement zur Erfassungs von ganzzahligen numerischen Werten, das überdies Null-Werte verarbeitet, Textformeln berechnen kann, 
-''' eine vereinheitlichende Value-Eigenschaft bietet, seinen Inhalt anpassbar formatiert, 
-''' Funktionen für Rechteverwaltung zur Verfügung stellt und von einer 
-''' <see cref="FormToBusinessClassManager">FormToBusinessClassManager-Komponente</see> verwaltet werden kann.
+''' Allows editing of integer values, which can be retrieved/set over the Value property, 
+''' and which can handle Nothing (null in CSharp) on top.
 ''' </summary>
-<Designer("ActiveDevelop.EntitiesFormsLib.TextBoxBasedControlDesigner")>
+<Description("Allows interactive editing of integer values which can be retrieved/set over the Value property," &
+             "and which can handle Nothing (null in CSharp) on top."),
+ Designer("ActiveDevelop.EntitiesFormsLib.TextBoxBasedControlDesigner")>
 Public Class NullableIntValue
     Inherits NullableValueBase(Of Integer, NullableValuePrimalUpDownControl)
 

@@ -232,19 +232,19 @@ Public Class ResizablePopup
         End If
 
         'ESC für offenes Popup behandeln
-        If m.Msg = WM_KEYDOWN And m.WParam.ToInt32 = &H1B And Me.IsOpen Then
+        If m.Msg = WM_KEYDOWN And m.WParam.ToInt64 = &H1B And Me.IsOpen Then
             RaiseEvent PopupCloseRequested(Me, New PopupCloseRequestedEventArgs(PopupCloseRequestReasons.KeyboardCancel) With {.KeyCode = Keys.Escape})
             Return True
         End If
 
         'Return für offenes Popup behandeln
-        If m.Msg = WM_KEYDOWN And m.WParam.ToInt32 = 13 And Me.IsOpen Then
+        If m.Msg = WM_KEYDOWN And m.WParam.ToInt64 = 13 And Me.IsOpen Then
             RaiseEvent PopupCloseRequested(Me, New PopupCloseRequestedEventArgs(PopupCloseRequestReasons.KeyboardCommit) With {.KeyCode = Keys.Return})
             Return True
         End If
 
         'TAB für offenes Popup behandeln
-        If m.Msg = WM_KEYDOWN And m.WParam.ToInt32 = Keys.Tab And Me.IsOpen Then
+        If m.Msg = WM_KEYDOWN And m.WParam.ToInt64 = Keys.Tab And Me.IsOpen Then
 #If DEBUG Then
             TraceEx.TraceInformation("TRACING: ResizingPopup. PreFilterMessage, TAB for WM_KEYDOWN with Open Popup detected.")
 #End If

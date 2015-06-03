@@ -80,7 +80,7 @@ Imports System.Windows.Forms
 ''' (<see cref="NullableTextValue">NullableTextValue-Steuerelement</see>) zu unterscheiden.
 ''' </para>
 ''' </remarks>
-<Designer(GetType(FormToBusinessClassManagerDesigner)),
+<Designer(GetType(FormToBusinessClassManagerDesigner)), ToolboxItem("False"),
  Obsolete("Diese Komponente ist veraltet. Verwenden Sie alternativ die MvvmManager-Komponente, um Business-Layer-Logik nach dem Model-View-ViewModel-Entwurfsmuster zu implementieren.")>
 Public Class FormToBusinessClassManager
     Inherits ErrorProvider

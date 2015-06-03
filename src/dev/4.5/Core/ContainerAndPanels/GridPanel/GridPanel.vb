@@ -1,11 +1,14 @@
 ﻿Imports System.Windows.Forms
 Imports System.ComponentModel
+Imports System.Drawing
 
 ''' <summary>
 ''' !!!EXPERIMENTAL!!!: Stellt ein Grid zur Verfügung, in dem sich Steuerelemente automatisch 
 ''' anhand ihrer Größer selbst anordnen und Layouten.
 ''' </summary>
-<ProvideProperty("GridInfo", GetType(Control))>
+<ProvideProperty("GridInfo", GetType(Control)),
+ ToolboxBitmap(GetType(TableLayoutPanel)),
+ ToolboxItem(True)>
 Public Class GridPanel
     Inherits Panel
     Implements IExtenderProvider

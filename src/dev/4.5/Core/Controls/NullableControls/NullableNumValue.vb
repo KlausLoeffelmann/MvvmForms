@@ -2,12 +2,12 @@
 Imports System.Windows.Forms
 
 ''' <summary>
-''' Steuerelement zur Erfassung von numerischen Werten, das überdies Null-Werte verarbeitet, Textformeln berechnen kann, 
-''' eine vereinheitlichende Value-Eigenschaft bietet, seinen Inhalt anpassbar formatiert, 
-''' Funktionen für Rechteverwaltung zur Verfügung stellt und von einer 
-''' <see cref="FormToBusinessClassManager">FormToBusinessClassManager-Komponente</see> verwaltet werden kann.
+''' Allows editing of numerical values (Decimal), which can be retrieved/set over the Value property, 
+''' and which can handle Nothing (null in CSharp) on top.
 ''' </summary>
-<Designer("ActiveDevelop.EntitiesFormsLib.TextBoxBasedControlDesigner")>
+<Description("Allows interactive editing of numerical values (Decimal) which can be retrieved/set over the Value property," &
+             "and which can handle Nothing (null in CSharp) on top."),
+ Designer("ActiveDevelop.EntitiesFormsLib.TextBoxBasedControlDesigner")>
 Public Class NullableNumValue
     Inherits NullableValueBase(Of Decimal, NullableValuePrimalUpDownControl)
 

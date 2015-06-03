@@ -8,11 +8,11 @@
     <SchemaVersion>
     </SchemaVersion>
     <ProjectGuid>{6B13EC94-21E6-45E7-BB6C-0C8C16E1881F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>EFL_BasicCodedUITest</RootNamespace>
     <AssemblyName>EFL_BasicCodedUITest</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Windows</MyType>
+    <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
     <ReferencePath>$(DevEnvDir)PublicAssemblies\</ReferencePath>
@@ -100,6 +100,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>EFL_BasicCodedUITest.My.MyApplication</StartupObject>
+  </PropertyGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' Or '$(VisualStudioVersion)' == '11.0'">
       <ItemGroup>
@@ -123,6 +126,7 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -146,6 +150,16 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodedUITests\HighDpiTest\FontSizeTestForm.Designer.vb">
+      <DependentUpon>FontSizeTestForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CodedUITests\HighDpiTest\FontSizeTestForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
     <Compile Include="UnitTests\BasicFunctionTest.vb" />
     <Compile Include="UnitTests\CloningTests.vb" />
     <Compile Include="MvvmPropertyBindingAssignmentTest.vb" />
@@ -185,6 +199,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CodedUITests\HighDpiTest\FontSizeTestForm.resx">
+      <DependentUpon>FontSizeTestForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CodedUITests\ObservableCollectionTest\ObservableCollectionTestForm.resx">
       <DependentUpon>ObservableCollectionTestForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -196,6 +213,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
     <Content Include="Readme.txt" />
   </ItemGroup>
   <Choose>

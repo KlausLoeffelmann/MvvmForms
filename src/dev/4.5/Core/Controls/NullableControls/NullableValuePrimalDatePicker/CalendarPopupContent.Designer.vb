@@ -22,74 +22,80 @@ Partial Class CalendarPopupContent
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.pnlDateLabelContainer = New System.Windows.Forms.Panel()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.btnSetDateToNull = New System.Windows.Forms.Button()
         Me.lblDate = New System.Windows.Forms.Label()
         Me.Calendar = New ActiveDevelop.EntitiesFormsLib.MonthCalendarEx()
-        Me.pnlDateLabelContainer.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'pnlDateLabelContainer
+        'TableLayoutPanel1
         '
-        Me.pnlDateLabelContainer.BackColor = System.Drawing.Color.White
-        Me.pnlDateLabelContainer.Controls.Add(Me.btnSetDateToNull)
-        Me.pnlDateLabelContainer.Controls.Add(Me.lblDate)
-        Me.pnlDateLabelContainer.Location = New System.Drawing.Point(-1, 160)
-        Me.pnlDateLabelContainer.Margin = New System.Windows.Forms.Padding(0)
-        Me.pnlDateLabelContainer.Name = "pnlDateLabelContainer"
-        Me.pnlDateLabelContainer.Size = New System.Drawing.Size(198, 25)
-        Me.pnlDateLabelContainer.TabIndex = 3
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.lblDate, 1, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnSetDateToNull, 0, 0)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 164)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(255, 24)
+        Me.TableLayoutPanel1.TabIndex = 0
         '
         'btnSetDateToNull
         '
+        Me.btnSetDateToNull.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.btnSetDateToNull.BackgroundImage = Global.ActiveDevelop.EntitiesFormsLib.My.Resources.Resources._92_cancel_16
         Me.btnSetDateToNull.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnSetDateToNull.FlatAppearance.BorderSize = 0
         Me.btnSetDateToNull.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.btnSetDateToNull.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSetDateToNull.Location = New System.Drawing.Point(5, 3)
+        Me.btnSetDateToNull.Location = New System.Drawing.Point(3, 3)
         Me.btnSetDateToNull.Name = "btnSetDateToNull"
         Me.btnSetDateToNull.Size = New System.Drawing.Size(18, 18)
-        Me.btnSetDateToNull.TabIndex = 2
+        Me.btnSetDateToNull.TabIndex = 6
         Me.btnSetDateToNull.UseVisualStyleBackColor = True
         '
         'lblDate
         '
-        Me.lblDate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblDate.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.lblDate.AutoEllipsis = True
         Me.lblDate.BackColor = System.Drawing.Color.White
-        Me.lblDate.Location = New System.Drawing.Point(29, -1)
+        Me.lblDate.Location = New System.Drawing.Point(85, 2)
         Me.lblDate.Name = "lblDate"
-        Me.lblDate.Size = New System.Drawing.Size(165, 24)
-        Me.lblDate.TabIndex = 0
+        Me.lblDate.Size = New System.Drawing.Size(136, 19)
+        Me.lblDate.TabIndex = 5
         Me.lblDate.Text = "Mo, 31. Sep. 2009"
         Me.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Calendar
         '
+        Me.Calendar.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Calendar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Calendar.Location = New System.Drawing.Point(-2, -2)
+        Me.Calendar.Location = New System.Drawing.Point(3, 2)
         Me.Calendar.Margin = New System.Windows.Forms.Padding(0)
         Me.Calendar.Name = "Calendar"
         Me.Calendar.ShowWeekNumbers = True
-        Me.Calendar.TabIndex = 4
+        Me.Calendar.TabIndex = 8
         '
         'CalendarPopupContent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.pnlDateLabelContainer)
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Controls.Add(Me.Calendar)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Name = "CalendarPopupContent"
-        Me.Size = New System.Drawing.Size(195, 183)
-        Me.pnlDateLabelContainer.ResumeLayout(False)
+        Me.Size = New System.Drawing.Size(255, 191)
+        Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents pnlDateLabelContainer As System.Windows.Forms.Panel
-    Friend WithEvents btnSetDateToNull As System.Windows.Forms.Button
-    Friend WithEvents lblDate As System.Windows.Forms.Label
-    Friend WithEvents Calendar As ActiveDevelop.EntitiesFormsLib.MonthCalendarEx
 
+    Friend WithEvents TableLayoutPanel1 As Windows.Forms.TableLayoutPanel
+    Friend WithEvents lblDate As Windows.Forms.Label
+    Friend WithEvents btnSetDateToNull As Windows.Forms.Button
+    Friend WithEvents Calendar As MonthCalendarEx
 End Class

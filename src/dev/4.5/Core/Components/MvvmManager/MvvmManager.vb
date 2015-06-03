@@ -38,6 +38,7 @@ Imports System.Drawing.Design
 Imports System.IO
 Imports System.Globalization
 Imports ActiveDevelop.MvvmBaseLib.Mvvm
+Imports System.Drawing
 
 #If CompileToGerman Then
 ''' <summary>
@@ -240,7 +241,12 @@ Imports ActiveDevelop.MvvmBaseLib.Mvvm
 #End If
 <ProvideProperty("PropertyBindings", GetType(Control)),
  ProvideProperty("EventBindings", GetType(Control)),
- Designer(GetType(MvvmManagerDesigner))>
+ Designer(GetType(MvvmManagerDesigner)),
+ ToolboxBitmap(GetType(MvvmManager),
+               "Resources\MvvmManager"),
+ ToolboxItem(True),
+ Description("Manages the binding of a ViewModel (Class, which implements INotifyPropertyChanged to a View, " &
+             "which is represented bei a Windows Forms Form or a Windows Forms User Control, according to the Mvvm Pattern.")>
 Public Class MvvmManager
     Inherits FormToBusinessClassManager ' FormToBusinessClassManager war die Ausgangskomponente, die in deutschen Projekten von ca. 2008-2011 verwendet wurde.
     Implements IExtenderProvider
@@ -430,7 +436,7 @@ Public Class MvvmManager
 
 
     'Component overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
