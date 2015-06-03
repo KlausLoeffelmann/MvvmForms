@@ -67,7 +67,7 @@ Public Class MvvmDataGrid
         End Set
     End Property
 
-    Private _headersVisibility As DataGridHeadersVisibility
+    Private _headersVisibility As DataGridHeadersVisibility = DataGridHeadersVisibility.All
     ''' <summary>
     ''' Gets or sets the value that specifies the visibility of the row and column headers.
     ''' </summary>
