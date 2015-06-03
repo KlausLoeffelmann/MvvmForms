@@ -67,6 +67,34 @@ Public Class MvvmDataGrid
         End Set
     End Property
 
+    Private _headersVisibility As DataGridHeadersVisibility
+    ''' <summary>
+    ''' Gets or sets the value that specifies the visibility of the row and column headers.
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>Durch den MvvmManager bindbare View-Property</remarks>
+    Public Property HeadersVisibility As DataGridHeadersVisibility
+        Get
+            Return _headersVisibility
+        End Get
+        Set(ByVal value As DataGridHeadersVisibility)
+            If Not Object.Equals(_headersVisibility, value) Then
+                _headersVisibility = value
+
+                Me.WpfDataGridViewWrapper.InnerDataGridView.HeadersVisibility = value
+
+                OnHeadersVisibilityChanged(EventArgs.Empty)
+            End If
+        End Set
+    End Property
+
+    Public Event HeadersVisibilityChanged As EventHandler
+
+    Protected Overridable Sub OnHeadersVisibilityChanged(e As EventArgs)
+        RaiseEvent HeadersVisibilityChanged(Me, e)
+    End Sub
+
 
     Private _canUserAddRows As Boolean = False
     ''' <summary>
@@ -82,6 +110,9 @@ Public Class MvvmDataGrid
         Set(ByVal value As Boolean)
             If Not Object.Equals(_canUserAddRows, value) Then
                 _canUserAddRows = value
+
+                Me.WpfDataGridViewWrapper.InnerDataGridView.CanUserAddRows = value
+
                 OnCanUserAddRowsChanged(EventArgs.Empty)
             End If
         End Set
@@ -126,6 +157,9 @@ Public Class MvvmDataGrid
         Set(ByVal value As Boolean)
             If Not Object.Equals(_canUserDeleteRows, value) Then
                 _canUserDeleteRows = value
+
+                Me.WpfDataGridViewWrapper.InnerDataGridView.CanUserDeleteRows = value
+
                 OnCanUserDeleteRowsChanged(EventArgs.Empty)
             End If
         End Set
@@ -134,8 +168,6 @@ Public Class MvvmDataGrid
     Public Event CanUserDeleteRowsChanged As EventHandler
 
     Protected Overridable Sub OnCanUserDeleteRowsChanged(e As EventArgs)
-        Me.WpfDataGridViewWrapper.InnerDataGridView.CanUserDeleteRows = Me.CanUserDeleteRows
-
         RaiseEvent CanUserDeleteRowsChanged(Me, e)
     End Sub
 
@@ -154,6 +186,9 @@ Public Class MvvmDataGrid
         Set(ByVal value As wpf.DataGridSelectionMode)
             If Not Object.Equals(_selectionMode, value) Then
                 _selectionMode = value
+
+                Me.WpfDataGridViewWrapper.InnerDataGridView.SelectionMode = value
+
                 OnSelectionModeChanged(EventArgs.Empty)
             End If
         End Set
@@ -162,8 +197,6 @@ Public Class MvvmDataGrid
     Public Event SelectionModeChanged As EventHandler
 
     Protected Overridable Sub OnSelectionModeChanged(e As EventArgs)
-        Me.WpfDataGridViewWrapper.InnerDataGridView.SelectionMode = Me.SelectionMode
-
         RaiseEvent SelectionModeChanged(Me, e)
     End Sub
 
@@ -193,16 +226,11 @@ Public Class MvvmDataGrid
         RaiseEvent EnterActionChanged(Me, e)
     End Sub
 
-
-
     Public Event CanUserAddRowsChanged As EventHandler
 
     Protected Overridable Sub OnCanUserAddRowsChanged(e As EventArgs)
-        Me.WpfDataGridViewWrapper.InnerDataGridView.CanUserAddRows = _canUserAddRows
-
         RaiseEvent CanUserAddRowsChanged(Me, e)
     End Sub
-
 
     ''' <summary>
     ''' Datenquelle
@@ -509,8 +537,6 @@ Public Class MvvmDataGrid
         'Was ist wenn schon Spalten vorhanden sind? ausblenden?
 
         If Me.DataSourceType Is Nothing Then Throw New InvalidOperationException("Es wurde noch kein DataSourceType definiert! Es können die Spalten erst erzeugt werden, wenn ein Typ angegeben wurde.")
-
-        Dim x = Me.DataSourceType.GetProperties(BindingFlags.Public Or BindingFlags.Instance).ToList
 
         If Debugger.IsAttached Then
             Debugger.Break()
