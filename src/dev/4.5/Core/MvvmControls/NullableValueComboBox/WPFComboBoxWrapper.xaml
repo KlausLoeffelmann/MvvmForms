@@ -103,13 +103,13 @@
                                 <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                             </Border>
 
-                            <RichTextBox x:Name="PART_SelectionTextBox" Padding="-4,-1,0,0" HorizontalAlignment="Left" Background="Transparent" 
+                            <local:ComboBoxRichTextBlock x:Name="PART_SelectionTextBox" Padding="-4,-1,0,0" HorizontalAlignment="Left" Background="Transparent" 
                                      BorderBrush="Transparent" Style="{DynamicResource RichTextBoxStyle1}" IsHitTestVisible="False">
                                 <FlowDocument>
                                     <Paragraph>
                                     </Paragraph>
                                 </FlowDocument>
-                            </RichTextBox>
+                            </local:ComboBoxRichTextBlock>
                         </Grid>
 
                         <ControlTemplate.Triggers>

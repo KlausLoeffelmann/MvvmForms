@@ -44,7 +44,7 @@ Public Class ExtendedTextBox
         DefaultStyleKeyProperty.OverrideMetadata(GetType(ExtendedTextBox), New FrameworkPropertyMetadata(GetType(ExtendedTextBox)))
     End Sub
 
-    Private part_SelectionTextBox As RichTextBox
+    Private PART_SelectionTextBox As ComboBoxRichTextBlock
 
     Protected Overrides Sub OnSelectionChanged(e As RoutedEventArgs)
         MyBase.OnSelectionChanged(e)
@@ -59,29 +59,23 @@ Public Class ExtendedTextBox
     End Sub
 
     Public Sub ClearSelectedText()
-        part_SelectionTextBox.Document = New FlowDocument()
+        PART_SelectionTextBox.ClearInlines()
     End Sub
 
     Public Sub ShowSelectedText()
-        Dim selectedTextBox As RichTextBox = part_SelectionTextBox
+        Dim selectedTextBox As ComboBoxRichTextBlock = PART_SelectionTextBox
 
         If selectedTextBox IsNot Nothing AndAlso MyBase.IsSelectionActive Then
-            selectedTextBox.Document = New FlowDocument()
+            selectedTextBox.SetInlines({New Run(MyBase.Text.Substring(0, MyBase.SelectionStart)) With {.Foreground = Brushes.Transparent},
+                                           New Run(MyBase.SelectedText) With {.Foreground = Brushes.White}})
 
-            Dim par = New Paragraph()
-
-
-            par.Inlines.Add(New Run(MyBase.Text.Substring(0, MyBase.SelectionStart)) With {.Foreground = Brushes.Transparent})
-            par.Inlines.Add(New Run(MyBase.SelectedText) With {.Foreground = Brushes.White})
-
-            selectedTextBox.Document.Blocks.Add(par)
         End If
     End Sub
 
     Public Overrides Sub OnApplyTemplate()
         MyBase.OnApplyTemplate()
 
-        part_SelectionTextBox = DirectCast(GetTemplateChild("PART_SelectionTextBox"), RichTextBox)
+        PART_SelectionTextBox = DirectCast(GetTemplateChild("PART_SelectionTextBox"), ComboBoxRichTextBlock)
 
         Dim prop As DependencyPropertyDescriptor = DependencyPropertyDescriptor.FromProperty(TextBox.IsSelectionActiveProperty, GetType(TextBox))
 
@@ -91,8 +85,6 @@ Public Class ExtendedTextBox
                                      Else
                                          Me.ClearSelectedText()
                                      End If
-
                                  End Sub)
     End Sub
-
 End Class

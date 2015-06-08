@@ -4,6 +4,7 @@ Imports System.Windows.Threading
 Imports ActiveDevelop.EntitiesFormsLib
 Imports System.ComponentModel
 Imports System.Windows.Forms
+Imports System.Windows.Input
 
 ''' <summary>
 ''' Bindungsfähige ComboBox 
@@ -110,10 +111,10 @@ Public Class NullableValueComboBox
         MyBase.OnLoad(e)
 
         'Farben
-        _defaultColor = Me.WpfComboBoxWrapper1.InnerComboBox.Background
+        _defaultColor = WpfComboBoxWrapper1.InnerComboBox.Background
         _focusedColor = New SolidColorBrush(Colors.Yellow)
 
-        AddHandler Me.WpfComboBoxWrapper1.InnerComboBox.SelectionChanged, AddressOf InnerComboBox_SelectionChanged
+        AddHandler WpfComboBoxWrapper1.InnerComboBox.SelectionChanged, AddressOf InnerComboBox_SelectionChanged
     End Sub
 
     Private _isItemsSourceSetting As Boolean = False
@@ -126,13 +127,13 @@ Public Class NullableValueComboBox
     ''' <remarks>Durch den MvvmManager bindbare View-Property</remarks>
     Public Property ItemSource As IEnumerable
         Get
-            Return Me.WpfComboBoxWrapper1.InnerComboBox.ItemsSource
+            Return WpfComboBoxWrapper1.InnerComboBox.ItemsSource
         End Get
         Set(ByVal value As IEnumerable)
-            If Not Object.Equals(Me.WpfComboBoxWrapper1.InnerComboBox.ItemsSource, value) Then
+            If Not Object.Equals(WpfComboBoxWrapper1.InnerComboBox.ItemsSource, value) Then
                 Try
                     _isItemsSourceSetting = True
-                    Me.WpfComboBoxWrapper1.InnerComboBox.ItemsSource = value
+                    WpfComboBoxWrapper1.InnerComboBox.ItemsSource = value
                 Finally
                     _isItemsSourceSetting = False
                 End Try
@@ -155,24 +156,24 @@ Public Class NullableValueComboBox
     ''' <remarks>Durch den MvvmManager bindbare View-Property</remarks>
     Public Property SelectedItem As Object Implements INullableValueDataBinding.Value
         Get
-            Return Me.WpfComboBoxWrapper1.InnerComboBox.SelectedItem
+            Return WpfComboBoxWrapper1.InnerComboBox.SelectedItem
         End Get
         Set(ByVal value As Object)
-            If Not Object.Equals(Me.WpfComboBoxWrapper1.InnerComboBox.SelectedItem, value) Then
+            If Not Object.Equals(WpfComboBoxWrapper1.InnerComboBox.SelectedItem, value) Then
 
-                Dim ds = TryCast(Me.ItemSource, IList)
+                Dim ds = TryCast(ItemSource, IList)
 
                 If ds IsNot Nothing AndAlso ds.Count > 0 AndAlso ((value Is Nothing) OrElse (Not ds.Contains(value))) Then
                     'Wenn neuer Wert null ist und eine DataSource gesetzt ist und diese Werte hat
                     'immer den ersten auswählen
-                    Me.WpfComboBoxWrapper1.InnerComboBox.SelectedItem = ds(0)
+                    WpfComboBoxWrapper1.InnerComboBox.SelectedItem = ds(0)
                 Else
                     'Normales Basisverhalten
-                    Me.WpfComboBoxWrapper1.InnerComboBox.SelectedItem = value
+                    WpfComboBoxWrapper1.InnerComboBox.SelectedItem = value
                 End If
 
                 OnSelectedItemChanged(EventArgs.Empty)
-                Me.IsDirty = True
+                IsDirty = True
             End If
         End Set
     End Property
@@ -183,14 +184,19 @@ Public Class NullableValueComboBox
         RaiseEvent SelectedItemChanged(Me, e)
     End Sub
 
-
+    Private _previousItem As Object
 
     Private Sub InnerComboBox_SelectionChanged(sender As Object, e As System.Windows.Controls.SelectionChangedEventArgs)
 
-        If Me.SelectedItem IsNot Nothing Then
-            OnSelectedItemChanged(e)
-        ElseIf Not (Me.ValueNotFoundBehavior = ValueNotFoundBehavior.KeepFocus OrElse
-                      Me.ValueNotFoundBehavior = ValueNotFoundBehavior.SelectFirst) Then
+        If SelectedItem IsNot Nothing Then
+            If _previousItem IsNot SelectedItem Then
+                _previousItem = SelectedItem
+
+                OnSelectedItemChanged(e)
+            End If
+
+        ElseIf Not (ValueNotFoundBehavior = ValueNotFoundBehavior.KeepFocus OrElse
+                      ValueNotFoundBehavior = ValueNotFoundBehavior.SelectFirst) Then
             'Wenn SelctedItem Nothing ist und ein unbestimmter Wert nicht angegeben werden darf, darf das PropChanged nicht geworfen werden (da der Benutzer gezwungen wird ein validen Wert später beim 
             'Leave auszuwählen bzw automatisch ausgewählt)
             OnSelectedItemChanged(e)
@@ -198,7 +204,7 @@ Public Class NullableValueComboBox
 
     End Sub
 
-    Private _leaveBehavior As ValueNotFoundBehavior = EntitiesFormsLib.ValueNotFoundBehavior.KeepFocus
+    Private _leaveBehavior As ValueNotFoundBehavior = EntitiesFormsLib.ValueNotFoundBehavior.SelectFirst
 
     ''' <summary>
     ''' Verhalten was passieren soll, wenn ein Wert eingegben wurde, welcher nicht in der DataSource nachgeschlagen werden kann
@@ -217,13 +223,13 @@ Public Class NullableValueComboBox
 
                 Select Case value
                     Case ValueNotFoundBehavior.KeepFocus
-                        Me.WpfComboBoxWrapper1.InnerComboBox.IsEditable = True
+                        WpfComboBoxWrapper1.InnerComboBox.IsEditable = True
 
                     Case ValueNotFoundBehavior.IsNotEditable
-                        Me.WpfComboBoxWrapper1.InnerComboBox.IsEditable = False
+                        WpfComboBoxWrapper1.InnerComboBox.IsEditable = False
 
                     Case ValueNotFoundBehavior.SelectFirst
-                        Me.WpfComboBoxWrapper1.InnerComboBox.IsEditable = True
+                        WpfComboBoxWrapper1.InnerComboBox.IsEditable = True
 
                 End Select
 
@@ -245,11 +251,11 @@ Public Class NullableValueComboBox
     ''' <remarks>Durch den MvvmManager bindbare View-Property</remarks>
     Public Property DisplayMemberPath As String
         Get
-            Return Me.WpfComboBoxWrapper1.InnerComboBox.DisplayMemberPath
+            Return WpfComboBoxWrapper1.InnerComboBox.DisplayMemberPath
         End Get
         Set(ByVal value As String)
-            If Not Object.Equals(Me.WpfComboBoxWrapper1.InnerComboBox.DisplayMemberPath, value) Then
-                Me.WpfComboBoxWrapper1.InnerComboBox.DisplayMemberPath = value
+            If Not Object.Equals(WpfComboBoxWrapper1.InnerComboBox.DisplayMemberPath, value) Then
+                WpfComboBoxWrapper1.InnerComboBox.DisplayMemberPath = value
                 OnDisplayMemberPathChanged(EventArgs.Empty)
             End If
         End Set
@@ -266,19 +272,19 @@ Public Class NullableValueComboBox
         MyBase.OnLeave(e)
 
         'Nachschauen was passieren soll, wenn ein Wert eingegeben wurde, der nicht vorhanden ist (oder Nothing)
-        If Me.WpfComboBoxWrapper1.InnerComboBox.SelectedItem Is Nothing _
-            AndAlso Me.WpfComboBoxWrapper1.InnerComboBox.SelectedValue Is Nothing Then
+        If (WpfComboBoxWrapper1.InnerComboBox.SelectedItem Is Nothing _
+            AndAlso WpfComboBoxWrapper1.InnerComboBox.SelectedValue Is Nothing) Then
             'Wert konnte nicht gefunden werden
 
-            If Me.ValueNotFoundBehavior = ValueNotFoundBehavior.KeepFocus Then
+            If ValueNotFoundBehavior = ValueNotFoundBehavior.KeepFocus Then
                 'Control darf nicht verlassen werden
 
-                Me.WpfComboBoxWrapper1.InnerComboBox.Dispatcher.BeginInvoke(DispatcherPriority.Input, New Action(AddressOf ResetFocus))
-            ElseIf Me.ValueNotFoundBehavior = ValueNotFoundBehavior.SelectFirst Then
+                WpfComboBoxWrapper1.InnerComboBox.Dispatcher.BeginInvoke(DispatcherPriority.Input, New Action(AddressOf ResetFocus))
+            ElseIf ValueNotFoundBehavior = ValueNotFoundBehavior.SelectFirst Then
                 'Ersten auswählen
-                If Me.ItemSource IsNot Nothing Then
+                If ItemSource IsNot Nothing Then
                     Try
-                        Me.SelectedItem = Me.ItemSource(0)
+                        WpfComboBoxWrapper1.InnerComboBox.SelectedItem = ItemSource(0)
                     Catch ex As IndexOutOfRangeException
                         Throw New InvalidOperationException("Erste Eintrag kann nicht ausgewählt werden weil momentan keine Einträge in der ItemsSource vorhanden sind!")
                     End Try
@@ -289,7 +295,7 @@ Public Class NullableValueComboBox
     End Sub
 
     Private Sub ResetFocus()
-        Me.WpfComboBoxWrapper1.InnerComboBox.Focus()
+        WpfComboBoxWrapper1.InnerComboBox.Focus()
     End Sub
 
     Private myIsDirty As Boolean
@@ -357,8 +363,8 @@ Public Class NullableValueComboBox
     Protected Overrides Sub [Select](directed As Boolean, forward As Boolean)
         MyBase.[Select](directed, forward)
 
-        Me.WpfComboBoxWrapper1.Focus()
-        Me.WpfComboBoxWrapper1.InnerComboBox.Focus()
+        WpfComboBoxWrapper1.Focus()
+        WpfComboBoxWrapper1.InnerComboBox.Focus()
     End Sub
 
     Public Property AssignedManagerControl As FormToBusinessClassManager Implements IAssignableFormToBusinessClassManager.AssignedManagerControl

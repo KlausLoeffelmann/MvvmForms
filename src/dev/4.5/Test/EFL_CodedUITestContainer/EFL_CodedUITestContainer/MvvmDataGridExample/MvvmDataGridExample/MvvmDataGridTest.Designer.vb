@@ -253,6 +253,7 @@ Partial Class MvvmDataGridTest
         Me.BuchungenDataGrid.EnterAction = Nothing
         Me.MvvmManager1.SetEventBindings(Me.BuchungenDataGrid, Nothing)
         Me.BuchungenDataGrid.GridLinesVisibility = System.Windows.Controls.DataGridGridLinesVisibility.All
+        Me.BuchungenDataGrid.HeadersVisibility = CType((System.Windows.Controls.DataGridHeadersVisibility.Column Or System.Windows.Controls.DataGridHeadersVisibility.Row), System.Windows.Controls.DataGridHeadersVisibility)
         Me.BuchungenDataGrid.ItemsSource = Nothing
         Me.BuchungenDataGrid.Location = New System.Drawing.Point(0, 0)
         Me.BuchungenDataGrid.Margin = New System.Windows.Forms.Padding(4)

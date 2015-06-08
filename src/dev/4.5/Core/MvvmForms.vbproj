@@ -506,8 +506,10 @@
     <Compile Include="AuxilliaryTypes\StringValue.vb" />
     <Compile Include="FormatterAndValidatorEngines\INullableValueFormatterEngine.vb" />
     <Compile Include="FormatterAndValidatorEngines\NullableStringValueFormatterEngine.vb" />
-    <Compile Include="MvvmControls\CommandButton.vb" />
-    <Compile Include="MvvmControls\ExtendedTextBox.vb" />
+    <Compile Include="MvvmControls\CommandButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MvvmControls\NullableValueComboBox\ExtendedTextBox.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\ExtDataGrid.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Column\ColumnType.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Column\IMvvmColumnTemplateExtender.vb" />
@@ -537,6 +539,7 @@
     <Compile Include="MvvmControls\MvvmViewSelectorContainer.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MvvmControls\NullableValueComboBox\ComboBoxRichTextBlock.vb" />
     <Compile Include="MvvmControls\NullableValueComboBox\NullableValueComboBox.Designer.vb">
       <DependentUpon>NullableValueComboBox.vb</DependentUpon>
     </Compile>
