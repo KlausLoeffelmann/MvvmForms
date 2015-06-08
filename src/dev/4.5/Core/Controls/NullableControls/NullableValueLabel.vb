@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Drawing
 Imports System.Windows.Forms
 
 ''' <summary>
@@ -7,8 +8,9 @@ Imports System.Windows.Forms
 ''' Funktionen für Rechteverwaltung zur Verfügung stellt und von einer 
 ''' <see cref="FormToBusinessClassManager">FormToBusinessClassManager-Komponente</see> verwaltet werden kann.
 ''' </summary>
+<ToolboxItem(True), ToolboxBitmap(GetType(Label))>
 Public Class NullableValueLabel
-    Inherits NullableValueBase(Of StringValue, 
+    Inherits NullableValueBase(Of StringValue,
                                NullableValuePrimalTextBox)
 
     Private myEliminateWhitespacesOnAssignment As Boolean

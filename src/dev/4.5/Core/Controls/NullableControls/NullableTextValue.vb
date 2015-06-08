@@ -3,12 +3,14 @@ Imports System.Drawing
 Imports System.Windows.Forms
 
 ''' <summary>
-''' Steuerelement zur Erfassungs von Texten (Zeichenketten), das überdies Null-Werte verarbeitet, 
-''' eine vereinheitlichende Value-Eigenschaft bietet, 
-''' Funktionen für Rechteverwaltung zur Verfügung stellt und von einer 
-''' <see cref="FormToBusinessClassManager">FormToBusinessClassManager-Komponente</see> verwaltet werden kann.
+''' Allows editing of single-line text values, which can be retrieved over the Value property, 
+''' and which can handle Nothing (null in CSharp) on top.
 ''' </summary>
-<ToolboxBitmap(GetType(TextBox))>
+<ToolboxBitmap(GetType(NullableTextValue),
+               "Resources\NullableTextValue"),
+ ToolboxItem(True),
+ Description("Allows editing of single-line text values which can be retrieved over the Value property," &
+             "and which can handle Nothing (null in CSharp) on top.")>
 Public Class NullableTextValue
     Inherits NullableValueBase(Of StringValue, NullableValuePrimalTextBox)
 

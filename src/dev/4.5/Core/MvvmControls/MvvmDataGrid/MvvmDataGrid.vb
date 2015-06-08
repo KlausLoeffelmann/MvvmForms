@@ -1,19 +1,21 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing.Design
 Imports System.Reflection
-Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
 Imports System.Windows.Input
 Imports wpf = System.Windows.Controls
 Imports winforms = System.Windows.Forms
 Imports System.Windows.Controls
 Imports System.Windows
 Imports System.Windows.Forms
+Imports System.Drawing
 
 ''' <summary>
 ''' DataGrid zur Anzeige und Bearbeiten von Daten welche aus eine ItemsSource stammen.
 ''' </summary>
 ''' <remarks>Wrapper fuer das WPF-DataGrid. Verwendet intern das WPF-DataGrid (mittels ElementHost) und somit auch die WPF-Columns und WPF-Bindungen.</remarks>
-<Designer(GetType(MvvmDataGridDesigner))>
+<Designer(GetType(MvvmDataGridDesigner)),
+ ToolboxBitmap(GetType(winforms.DataGrid)),
+ ToolboxItem(True)>
 Public Class MvvmDataGrid
     Implements System.ComponentModel.ISupportInitialize
 
@@ -463,8 +465,8 @@ Public Class MvvmDataGrid
     ''' Schluessel zur GridColumn-DependencyProperty
     ''' </summary>
     ''' <remarks></remarks>
-    Friend Shared ReadOnly GridColumnProperty As System.Windows.DependencyProperty = _
-                           System.Windows.DependencyProperty.Register("GridColumn", _
+    Friend Shared ReadOnly GridColumnProperty As System.Windows.DependencyProperty =
+                           System.Windows.DependencyProperty.Register("GridColumn",
                            GetType(MvvmDataGridColumn), GetType(MvvmDataGrid))
 
     ''' <summary>

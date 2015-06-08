@@ -1,16 +1,17 @@
 ﻿Imports System.ComponentModel
 Imports System.Windows.Forms
-Imports System.Collections.Generic
-Imports System.Collections.ObjectModel
 Imports System.Windows.Forms.MonthCalendar
 Imports System.Globalization
+Imports System.Drawing
 
 ''' <summary>
-''' Steuerelement zur Auswahl/Erfassungs von Datums-Werten, das überdies Null-Werte verarbeitet, eine vereinheitlichende Value-Eigenschaft bietet, 
-''' Funktionen für Rechteverwaltung zur Verfügung stellt und von einer 
-''' <see cref="FormToBusinessClassManager">FormToBusinessClassManager-Komponente</see> verwaltet werden kann.
+''' Allows editing of date values, which can be retrieved/set over the Value property, 
+''' and which can handle Nothing (null in CSharp) on top.
 ''' </summary>
-<Designer("ActiveDevelop.EntitiesFormsLib.TextBoxBasedControlDesigner")>
+<Description("Allows interactive editing of date values which can be retrieved/set over the Value property," &
+             "and which can handle Nothing (null in CSharp) on top."),
+ Designer("ActiveDevelop.EntitiesFormsLib.TextBoxBasedControlDesigner"),
+ ToolboxBitmap(GetType(DateTimePicker)), ToolboxItem(True)>
 Public Class NullableDateValue
     Inherits NullableValueBase(Of Date, NullableValuePrimalDatePicker)
 

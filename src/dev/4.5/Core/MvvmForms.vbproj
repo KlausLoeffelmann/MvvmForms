@@ -526,7 +526,7 @@
       <DependentUpon>MvvmDataGrid.vb</DependentUpon>
     </Compile>
     <Compile Include="MvvmControls\MvvmDataGrid\MvvmDataGrid.vb">
-      <SubType>usercontrol</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\ColumnsEditor.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\MvvmDataGridCustomColumnTemplateTypeUIEditor.vb" />
@@ -696,6 +696,16 @@
     <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Assets\NullableValueBaseToolboxIcon.bmp" />
+    <EmbeddedResource Include="Assets\NullableNumValue.bmp" />
+    <EmbeddedResource Include="Assets\NullableValueRelationPopup.bmp" />
+    <EmbeddedResource Include="Assets\NullableTextValue.bmp" />
+    <EmbeddedResource Include="Assets\NullableDateValue.bmp" />
+    <EmbeddedResource Include="Assets\NullableIntValue.bmp" />
+    <EmbeddedResource Include="Assets\NullableCheckBox.bmp" />
+    <EmbeddedResource Include="Assets\MvvmManager.bmp" />
+    <EmbeddedResource Include="Assets\DirtyStateManager.bmp" />
+    <EmbeddedResource Include="Assets\NullableMultilineTextValue.bmp" />
     <Content Include="ChangeLog.txt" />
     <Content Include="Components\MvvmManager\Assets\Collapsed.bmp" />
     <Content Include="Components\MvvmManager\Assets\Collapse_small.bmp" />
@@ -725,6 +735,7 @@
       <Name>MvvmBaseLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>

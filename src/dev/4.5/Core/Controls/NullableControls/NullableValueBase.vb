@@ -273,10 +273,9 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     End Property
 
     Protected Overrides Sub OnFontChanged(e As System.EventArgs)
-        'Clear Font Cache
-        FontHeight = -1
-        PositionControls()
         MyBase.OnFontChanged(e)
+        Me.SetBoundsCore(Me.Location.X, Me.Location.Y, Me.Width, Me.Height, BoundsSpecified.Size)
+        PositionControls()
     End Sub
 
     Protected Overrides Sub OnLayout(ByVal e As System.Windows.Forms.LayoutEventArgs)

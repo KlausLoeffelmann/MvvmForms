@@ -1,15 +1,17 @@
 ﻿Imports System.Windows
 Imports System.Windows.Media
 Imports System.Windows.Threading
-Imports ActiveDevelop.EntitiesFormsLib
 Imports System.ComponentModel
 Imports System.Windows.Forms
+Imports System.Drawing
 Imports System.Windows.Input
 
 ''' <summary>
 ''' Bindungsfähige ComboBox 
 ''' </summary>
 ''' <remarks>Basiert von inneren auf eine WPF-CBO mit UI-Elementen aus der EFL</remarks>
+<ToolboxBitmap(GetType(ComboBox)),
+ ToolboxItem(True)>
 Public Class NullableValueComboBox
     Implements INullableValueDataBinding
 
@@ -17,7 +19,7 @@ Public Class NullableValueComboBox
     Private _focusedColor As Media.Brush
 
     ''' <summary>
-    ''' Wird ausgelöst, wenn sich der Wert im Steuerelement geändert hat, um einen einbindenden Formular oder 
+    ''' Wird ausgelöst wenn sich der Wert im Steuerelement geändert hat, um einen einbindenden Formular oder 
     ''' User Control die Möglichkeit zu geben, den Benutzer zu informieren, dass er Änderungen speichern muss.
     ''' </summary>
     ''' <param name="sender">Steuerelement, das das Ereignis ausgelöst hat.</param>

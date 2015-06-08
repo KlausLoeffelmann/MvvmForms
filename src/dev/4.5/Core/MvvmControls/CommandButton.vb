@@ -1,10 +1,13 @@
 ﻿Imports System.Windows.Input
 Imports System.Windows.Forms
+Imports System.Drawing
+Imports System.ComponentModel
 
 ''' <summary>
 ''' Buttonableitung, welcher eine bindbare Command-Property zur Verfügung stellt
 ''' </summary>
 ''' <remarks></remarks>
+<ToolboxItem(True), ToolboxBitmap(GetType(Button))>
 Public Class CommandButton
     Inherits Button
 
