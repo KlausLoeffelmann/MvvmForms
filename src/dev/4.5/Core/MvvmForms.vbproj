@@ -509,6 +509,7 @@
     <Compile Include="MvvmControls\CommandButton.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MvvmControls\MvvmDataGrid\ItemsDeletingEventArgs.vb" />
     <Compile Include="MvvmControls\NullableValueComboBox\ExtendedTextBox.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\ExtDataGrid.vb" />
     <Compile Include="MvvmControls\MvvmDataGrid\Column\ColumnType.vb" />

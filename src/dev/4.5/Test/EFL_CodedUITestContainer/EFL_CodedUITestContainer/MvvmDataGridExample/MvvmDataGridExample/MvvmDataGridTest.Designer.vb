@@ -222,7 +222,7 @@ Partial Class MvvmDataGridTest
         '
         Me.BuchungenDataGrid.AutoGenerateColumns = False
         Me.BuchungenDataGrid.CanUserAddRows = False
-        Me.BuchungenDataGrid.CanUserDeleteRows = False
+        Me.BuchungenDataGrid.CanUserDeleteRows = True
         BuchungenDataGrid_ColumnNr.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(Object)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Nummer", GetType(Integer)))
         BuchungenDataGrid_ColumnNr.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("FontFamily", GetType(System.Windows.Media.FontFamily)), GetType(EFL_CodedUITestContainer.BooleanToBoldConverter), Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Wichtig", GetType(Boolean)))
         Me.BuchungenDataGrid.Columns.Add(BuchungenDataGrid_ColumnNr)
@@ -259,7 +259,7 @@ Partial Class MvvmDataGridTest
         Me.BuchungenDataGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.BuchungenDataGrid.Name = "BuchungenDataGrid"
         Me.BuchungenDataGrid.SelectedItem = Nothing
-        Me.BuchungenDataGrid.SelectionMode = System.Windows.Controls.DataGridSelectionMode.[Single]
+        Me.BuchungenDataGrid.SelectionMode = System.Windows.Controls.DataGridSelectionMode.Extended
         Me.BuchungenDataGrid.Size = New System.Drawing.Size(912, 485)
         Me.BuchungenDataGrid.TabIndex = 0
         '

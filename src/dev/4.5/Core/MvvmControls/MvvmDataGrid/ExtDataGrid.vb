@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Controls
+Imports System.Windows.Input
 
 ''' <summary>
 ''' Ableitung des WPF-DataGrids
@@ -24,6 +25,13 @@ Public Class ExtDataGrid
     Public Event ItemsDeleted(ByVal sender As Object, ByVal e As ItemsDeletedEventArgs)
 
     ''' <summary>
+    ''' Wird vor interner Loeschfunktion vom DataGrid geworfen
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Public Event ItemsDeleting(ByVal sender As Object, ByVal e As ItemsDeletingEventArgs)
+
+    ''' <summary>
     ''' Wirft NACH der Sortierung das Sorted-Event
     ''' </summary>
     ''' <param name="column"></param>
@@ -42,29 +50,36 @@ Public Class ExtDataGrid
     Protected Overridable Sub OnItemsDeleted(items As IEnumerable)
         RaiseEvent ItemsDeleted(Me, New ItemsDeletedEventArgs() With {.DeletedItems = items})
     End Sub
+    Protected Overridable Sub OnItemsDelete(args As ItemsDeletingEventArgs)
+        RaiseEvent ItemsDeleting(Me, args)
+    End Sub
+
+    Protected Overrides Sub OnPreviewKeyDown(e As KeyEventArgs)
+
+        If MyBase.SelectedItem IsNot Nothing Then
+            Dim dgr = DirectCast(MyBase.ItemContainerGenerator.ContainerFromIndex(MyBase.SelectedIndex), DataGridRow)
+
+            If e.Key = Key.Delete AndAlso Not dgr.IsEditing Then
+                Dim deletedItems = SelectedItems
+                Dim args = New ItemsDeletingEventArgs()
+
+                OnItemsDelete(args)
+
+                e.Handled = args.Cancel
+            End If
+        End If
+
+        MyBase.OnPreviewKeyDown(e)
+    End Sub
 
     Protected Overrides Sub OnExecutedDelete(e As System.Windows.Input.ExecutedRoutedEventArgs)
-        Dim oldItems = New List(Of Object)()
-        Dim deletedItems = New List(Of Object)()
-        Dim currentItems = New List(Of Object)()
+        Dim deletedItems As New List(Of Object)()
 
-        For Each item In MyBase.ItemsSource
-            oldItems.Add(item)
+        For Each item In SelectedItems
+            deletedItems.Add(item)
         Next
 
         MyBase.OnExecutedDelete(e)
-
-        For Each item In MyBase.ItemsSource
-            currentItems.Add(item)
-        Next
-
-        'Diff machen
-        For Each oldItem In oldItems
-            If Not currentItems.Contains(oldItem) Then
-                'Wurde geloescht
-                deletedItems.Add(oldItem)
-            End If
-        Next
 
         If deletedItems.Count > 0 Then
             'Event werfen, Items wurden geloescht

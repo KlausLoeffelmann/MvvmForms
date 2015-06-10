@@ -8,6 +8,7 @@ Imports System.Windows.Controls
 Imports System.Windows
 Imports System.Windows.Forms
 Imports System.Drawing
+Imports ActiveDevelop.EntitiesFormsLib
 
 ''' <summary>
 ''' DataGrid zur Anzeige und Bearbeiten von Daten welche aus eine ItemsSource stammen.
@@ -49,6 +50,22 @@ Public Class MvvmDataGrid
         AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.LayoutUpdated, AddressOf InnerDataGridView_LayoutUpdated
         AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.KeyDown, AddressOf InnerDataGridView_KeyDown
         AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ItemsDeleted, AddressOf InnerDataGridView_ItemsDeleted
+        AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ItemsDeleting, AddressOf InnerDataGridView_ItemsDeleting
+    End Sub
+
+    ''' <summary>
+    ''' Wird von interner Loeschfunktion vom DataGrid geworfen
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Public Event ItemsDeleting(ByVal sender As Object, ByVal e As ItemsDeletingEventArgs)
+
+    Private Sub InnerDataGridView_ItemsDeleting(sender As Object, e As ItemsDeletingEventArgs)
+        OnItemsDelete(e)
+    End Sub
+
+    Private Sub OnItemsDelete(e As ItemsDeletingEventArgs)
+        RaiseEvent ItemsDeleting(Me, e)
     End Sub
 
     Private _mySettings As MvvmDataGridSetting
