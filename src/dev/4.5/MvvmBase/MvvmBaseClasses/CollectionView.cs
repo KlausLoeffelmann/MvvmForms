@@ -4,17 +4,14 @@ using System.Linq;
 using System.Collections.Specialized;
 using System.Reactive.Linq;
 
-namespace ActiveDevelop.MvvmBaseLib
+namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
-    namespace Mvvm
-    {
 
         public class CollectionView<t>
 		{
 
 			private ObservableCollection<t> myResultingCollection;
 			private DataAndQueryCarrier<t> myDataSource = new DataAndQueryCarrier<t>();
-			private DataAndQueryCarrier<t> myAddedItems;
 
 			public CollectionView() : base()
 			{
@@ -27,8 +24,6 @@ namespace ActiveDevelop.MvvmBaseLib
 
 				var colObservable = Observable.FromEventPattern<NotifyCollectionChangedEventArgs>(myDataSource.Source, "CollectionChanged");
 
-//INSTANT C# WARNING: Every field in a C# anonymous type initializer is immutable:
-//ORIGINAL LINE: Dim addedItemsObservable = From item In colObservable Let NewItemSource = New DataAndQueryCarrier(Of t) With {.Query = Me.Query, .Source = New ObservableCollection(Of t)(item.EventArgs.NewItems.OfType(Of t))} Where item.EventArgs.Action = NotifyCollectionChangedAction.Add Select New With {.Action = item.EventArgs.Action, .NewItems = NewItemSource.Query}
 				var addedItemsObservable = from item in colObservable
 				                           let NewItemSource = new DataAndQueryCarrier<t> {Query = this.Query, Source = new ObservableCollection<t>(item.EventArgs.NewItems.OfType<t>())}
 				                           where item.EventArgs.Action == NotifyCollectionChangedAction.Add
@@ -93,58 +88,56 @@ namespace ActiveDevelop.MvvmBaseLib
 
 		}
 
-		public class DataAndQueryCarrier<t>
-		{
+    public class DataAndQueryCarrier<t>
+    {
 
-			public delegate void PropertiesSetEventHandler(object sender, EventArgs e);
-			public event PropertiesSetEventHandler PropertiesSet;
+        public delegate void PropertiesSetEventHandler(object sender, EventArgs e);
+        public event PropertiesSetEventHandler PropertiesSet;
 
-			private INotifyCollectionChanged mySource;
-			private IQueryable<t> myQuery;
+        private INotifyCollectionChanged mySource;
+        private IQueryable<t> myQuery;
 
-			protected virtual void OnPropertiesSet(EventArgs e)
-			{
-				if (PropertiesSet != null)
-					PropertiesSet(this, e);
-			}
+        protected virtual void OnPropertiesSet(EventArgs e)
+        {
+            if (PropertiesSet != null)
+                PropertiesSet(this, e);
+        }
 
-			public IQueryable<t> Query
-			{
-				get
-				{
-					return myQuery;
-				}
-				set
-				{
-					if (!(object.Equals(myQuery, value)))
-					{
-						myQuery = value;
-						if (value != null && Source != null)
-						{
-							OnPropertiesSet(EventArgs.Empty);
-						}
-					}
-				}
-			}
-			public INotifyCollectionChanged Source
-			{
-				get
-				{
-					return mySource;
-				}
-				set
-				{
-					if (!(object.Equals(mySource, value)))
-					{
-						mySource = value;
-						if (value != null && Query != null)
-						{
-							OnPropertiesSet(EventArgs.Empty);
-						}
-					}
-				}
-			}
-		}
-	}
-
+        public IQueryable<t> Query
+        {
+            get
+            {
+                return myQuery;
+            }
+            set
+            {
+                if (!(object.Equals(myQuery, value)))
+                {
+                    myQuery = value;
+                    if (value != null && Source != null)
+                    {
+                        OnPropertiesSet(EventArgs.Empty);
+                    }
+                }
+            }
+        }
+        public INotifyCollectionChanged Source
+        {
+            get
+            {
+                return mySource;
+            }
+            set
+            {
+                if (!(object.Equals(mySource, value)))
+                {
+                    mySource = value;
+                    if (value != null && Query != null)
+                    {
+                        OnPropertiesSet(EventArgs.Empty);
+                    }
+                }
+            }
+        }
+    }
 }

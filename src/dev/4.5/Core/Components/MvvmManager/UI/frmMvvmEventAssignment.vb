@@ -38,7 +38,7 @@ Imports System.Threading.Tasks
 'TODO: This feature has not implemented, yet. It is just a basic skeleton, based on the PropertyBindings.
 Public Class frmMvvmEventAssignment
 
-    Private myViewModelType As Type = GetType(ContactTest)
+    Private myViewModelType As Type
     Private myControlToBind As Control = New NullableDateValue With {.Name = "Geburtsdatum"}
 
     Private myCommandCanExecuteProperties As ObservableCollection(Of BindingProperty)
@@ -80,7 +80,7 @@ Public Class frmMvvmEventAssignment
             MessageBox.Show("Warning: Null Objects detected, Control oder ViewModel should not be null.",
                             "Null detected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             myControlToBind = New NullableDateValue With {.Name = "ndvDateOfBirthTesting"}
-            myViewModelType = GetType(ContactTest)
+            myViewModelType = Nothing
         End If
 
         lblCurrentControl.Text = myControlToBind.Name

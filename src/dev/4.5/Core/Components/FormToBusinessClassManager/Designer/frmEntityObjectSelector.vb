@@ -2,7 +2,6 @@
 Imports System.Reflection
 Imports System.Data.Objects.DataClasses
 Imports System.ComponentModel
-Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
 
 Public Class frmEntityObjectSelector
 

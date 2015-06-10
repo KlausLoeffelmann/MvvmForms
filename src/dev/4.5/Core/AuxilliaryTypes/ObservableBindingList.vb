@@ -35,8 +35,13 @@ Imports System.ComponentModel
 Imports System.Collections.ObjectModel
 Imports System.Threading
 Imports System.Runtime.CompilerServices
-Imports ActiveDevelop.MvvmBaseLib
 
+''' <summary>
+''' Can be used for collections which are supposed to be used in WinForms and WPF. 
+''' Not working in portable class libraries. For those use ObservableCollection and 
+''' ObservableCollectionToBindingListConverter on binding.
+''' </summary>
+''' <typeparam name="T"></typeparam>
 <Serializable, MvvmSystemElement>
 Public Class ObservableBindingList(Of T As New)
     Inherits ObservableCollection(Of T)

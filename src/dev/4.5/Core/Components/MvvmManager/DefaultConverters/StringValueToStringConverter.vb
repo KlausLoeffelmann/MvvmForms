@@ -33,6 +33,11 @@
 
 Imports System.Windows.Data
 
+''' <summary>
+''' Er - we need this internally to go from string to StringValue and vice versa because of a design decision 
+''' we made years ago. StringValue was invented to have a String as pure value to satisfy the need of 
+''' *Value*-part in NullableValueBase. It's a little bit of a hack... 
+''' </summary>
 Public Class StringValueToStringConverter
     Implements IValueConverter
 

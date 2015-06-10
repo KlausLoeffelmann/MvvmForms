@@ -11,8 +11,6 @@ Imports Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard
 Imports Mouse = Microsoft.VisualStudio.TestTools.UITesting.Mouse
 Imports MouseButtons = System.Windows.Forms.MouseButtons
 
-Namespace EFL_BasicCodedUITest
-    
-    Partial Public Class UIMap
-    End Class
-End Namespace
+
+Partial Public Class UIMap
+End Class

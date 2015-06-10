@@ -112,10 +112,6 @@
   </Choose>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="MvvmBaseLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MvvmFormsBase.2.0.17\lib\MvvmBaseLib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -128,6 +124,18 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -160,9 +168,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
-    <Compile Include="UnitTests\BasicFunctionTest.vb" />
+    <Compile Include="UnitTests\ObservableCollectionBindingListAdapterTest.vb" />
+    <Compile Include="CodedUITests\BasicFunctionTest.vb" />
     <Compile Include="UnitTests\CloningTests.vb" />
-    <Compile Include="MvvmPropertyBindingAssignmentTest.vb" />
+    <Compile Include="UnitTests\MvvmPropertyBindingAssignmentTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="CodedUITests\ObservableCollectionTest\ObservableCollectionTestForm.Designer.vb">
       <DependentUpon>ObservableCollectionTestForm.vb</DependentUpon>
@@ -176,8 +185,12 @@
     <Compile Include="UIMap.vb">
       <DependentUpon>UIMap.uitest</DependentUpon>
     </Compile>
+    <Compile Include="UnitTests\TestDataClasses\ContactViewModel.vb" />
+    <Compile Include="UnitTests\TestDataClasses\DemoData.vb" />
+    <Compile Include="UnitTests\TestDataClasses\ObservableCollectionTestFormViewModel.vb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="UIMap.uitest" />
   </ItemGroup>
@@ -211,13 +224,23 @@
       <Project>{048efa6c-b9fb-441e-9432-1f72b332856c}</Project>
       <Name>MvvmForms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\MvvmBase\MvvmBaseLib.csproj">
+      <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
+      <Name>MvvmBaseLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <Content Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MvvmFormsAnalyzerInfo.txt" />
+    <Content Include="MvvmFormsBaseInfo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\MvvmFormsVBAnalyzer.0.9.1-Beta\lib\MvvmFormsAnalyzer.dll" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

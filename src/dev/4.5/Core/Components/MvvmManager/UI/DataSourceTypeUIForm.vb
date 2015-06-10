@@ -36,11 +36,8 @@ Imports System.Reflection
 Imports System.ComponentModel
 Imports System.ComponentModel.Design
 Imports System.Windows.Forms
-Imports System.Data.Objects.DataClasses
-Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
-Imports System.Threading.Tasks
 Imports System.Drawing
-Imports ActiveDevelop.MvvmBaseLib.Mvvm
+Imports ActiveDevelop.MvvmBaseLib
 
 Public Class DataSourceTypeUIForm
 

@@ -36,16 +36,6 @@ Public Class MvvmPropertyBindingAssignmentTest
     End Sub
 
     <TestMethod()>
-    Public Sub TestObservableBindingListWithFrontEnd()
-
-        Dim frmObservableBindingTest As New ObservableCollectionTestForm
-        frmObservableBindingTest.Show()
-
-        frmObservableBindingTest.Contacts.RemoveAt(50)
-
-    End Sub
-
-    <TestMethod()>
     Public Sub BindingManager_BasicFunctionTest()
 
         Dim testDateValue = #7/24/1969#

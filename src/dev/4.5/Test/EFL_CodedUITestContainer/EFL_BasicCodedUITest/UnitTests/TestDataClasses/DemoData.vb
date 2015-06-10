@@ -32,10 +32,13 @@
 '*****************************************************************************************
 
 Imports System.Collections.ObjectModel
+Imports ActiveDevelop.EntitiesFormsLib
 
+#Disable Warning
 <BusinessClass>
 Public Class ProductTest
     Inherits AttributeControlledComparableBase
+#Enable Warning
 
     <EqualityIndicator, DisplayIndicatorAttribute(1, "00000:")>
     Property ProductNo As String
@@ -104,9 +107,11 @@ Public Class ProductTest
     End Function
 End Class
 
+#Disable Warning
 <BusinessClass>
 Public Class ContactTest
     Inherits AttributeControlledComparableBase
+#Enable Warning
 
     Sub New()
         MyBase.New()
@@ -139,47 +144,49 @@ Public Class ContactTest
     Public Property City() As String
     Public Property DateOfBirth As Date?
 
+#Disable Warning
     Public Shared Function GetRandomContactsAsync(contacts As ObservableBindingList(Of ContactTest),
                                                     count As Integer,
                                                     delay As Integer) As Threading.Tasks.Task
+#Enable Warning
 
         Dim workerTask As New Threading.Tasks.Task(
             Sub()
                 Dim tmpRandom As New Random(42)
 
-                Dim tmpLastNames As String() = {"Heckhuis", "Löffelmann", "Jones", "Lowel", _
-                            "Ardelean", "Beckham", "Baur", "Picard", "Trouv", "Feigenbaum", _
-                            "Miller", "Wallace", "Merkel", "Spooner", "Spoonman", "Huffman", _
-                            "Rode", "Trouw", "Schindler", "Brown", "Walker", "Cruise", "Meier", "Maier", "Mayer", _
-                            "Tinoco", "O'Reilly", "O'Donnell", "Ó Briain", "Russel", "English", _
+                Dim tmpLastNames As String() = {"Heckhuis", "Löffelmann", "Jones", "Lowel",
+                            "Ardelean", "Beckham", "Baur", "Picard", "Trouv", "Feigenbaum",
+                            "Miller", "Wallace", "Merkel", "Spooner", "Spoonman", "Huffman",
+                            "Rode", "Trouw", "Schindler", "Brown", "Walker", "Cruise", "Meier", "Maier", "Mayer",
+                            "Tinoco", "O'Reilly", "O'Donnell", "Ó Briain", "Russel", "English",
                             "Clarke", "Schumacher"}
 
-                Dim tmpStreetNames As String() = {"Wiedenbrückerstr.", "Stauffenberg Ave.", "Broadway", "Parkstr.", _
-                                 "Kurgartenweg", "Alter Postweg", "Long Turnpike", "Zzyzx Rd.", "Main Street", _
-                                 "Streetway", "Postplatz", "Beamer Place", "Mercedes Way", "Porsche Drive", _
+                Dim tmpStreetNames As String() = {"Wiedenbrückerstr.", "Stauffenberg Ave.", "Broadway", "Parkstr.",
+                                 "Kurgartenweg", "Alter Postweg", "Long Turnpike", "Zzyzx Rd.", "Main Street",
+                                 "Streetway", "Postplatz", "Beamer Place", "Mercedes Way", "Porsche Drive",
                                  "Weidering", "One Way", "Endof Rd.", "Gotlost Way", "Satnav Rd."}
 
-                Dim tmpFirstNames As String() = {"Jürgen", "Gabriele", "Dianne", "Katrin", "Jack", _
-                            "Arnold", "Christian", "Frank", "Curt", "Peter", "Anne", "Anja", _
-                            "Theo", "Bob", "Katrin", "Guido", "Barbara", "Bernhard", "Margarete", _
-                            "Alfred", "Melanie", "Britta", "José", "Thomas", "Dara", "Klaus", "Axel", _
+                Dim tmpFirstNames As String() = {"Jürgen", "Gabriele", "Dianne", "Katrin", "Jack",
+                            "Arnold", "Christian", "Frank", "Curt", "Peter", "Anne", "Anja",
+                            "Theo", "Bob", "Katrin", "Guido", "Barbara", "Bernhard", "Margarete",
+                            "Alfred", "Melanie", "Britta", "José", "Thomas", "Dara", "Klaus", "Axel",
                             "Gabby", "Gareth", "Bob", "Denise", "Kristen"}
 
-                Dim tmpCities As String() = {"Bellevue", "Dortmund", "Lippstadt", "Redmond", _
-                            "Los Angeles", "Las Vegas", "Seattle", "New York", "Berlin", "Bielefeld", _
-                            "Braunschweig", "Munich", "Cologne", "Hamburg", _
+                Dim tmpCities As String() = {"Bellevue", "Dortmund", "Lippstadt", "Redmond",
+                            "Los Angeles", "Las Vegas", "Seattle", "New York", "Berlin", "Bielefeld",
+                            "Braunschweig", "Munich", "Cologne", "Hamburg",
                             "Bad Waldliesborn", "Bremen", "Encinitas", "Anaheim"}
 
                 For i As Integer = 1 To count
                     Dim tmpLastName, tmpFirstName As String
                     tmpLastName = tmpLastNames(tmpRandom.Next(tmpLastNames.Length - 1))
                     tmpFirstName = tmpFirstNames(tmpRandom.Next(tmpLastNames.Length - 1))
-                    Dim contactToAdd = New ContactTest( _
-                                    i, _
-                                    tmpLastName, _
-                                    tmpFirstName, _
-                                    tmpStreetNames(tmpRandom.Next(tmpStreetNames.Length - 1)), _
-                                    tmpRandom.Next(99999).ToString("00000"), _
+                    Dim contactToAdd = New ContactTest(
+                                    i,
+                                    tmpLastName,
+                                    tmpFirstName,
+                                    tmpStreetNames(tmpRandom.Next(tmpStreetNames.Length - 1)),
+                                    tmpRandom.Next(99999).ToString("00000"),
                                     tmpCities(tmpRandom.Next(tmpCities.Length - 1)),
                                     New Date(1950, 1, 1).AddDays(tmpRandom.Next(19000)))
 

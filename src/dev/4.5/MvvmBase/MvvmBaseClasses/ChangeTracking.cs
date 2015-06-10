@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Reflection;
 
-namespace ActiveDevelop.MvvmBaseLib
+namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
     public class ChangeTracking<T> : INotifyPropertyChanged
 	{

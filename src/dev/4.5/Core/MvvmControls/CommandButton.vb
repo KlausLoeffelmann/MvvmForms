@@ -24,12 +24,18 @@ Public Class CommandButton
             Return myCommand
         End Get
         Set(ByVal value As ICommand)
-            myCommand = value
-            OnCommandChanged()
-            If myCommand IsNot Nothing Then
-                Windows.WeakEventManager(Of ICommand, EventArgs).AddHandler(
+            If Not Object.Equals(value, myCommand) Then
+                If myCommand IsNot Nothing Then
+                    Windows.WeakEventManager(Of ICommand, EventArgs).RemoveHandler(
+                        myCommand, "CanExecuteChanged", AddressOf OnCommandCanExecuteChanged)
+                End If
+                myCommand = value
+                If myCommand IsNot Nothing Then
+                    Windows.WeakEventManager(Of ICommand, EventArgs).AddHandler(
                         myCommand, "CanExecuteChanged", AddressOf OnCommandCanExecuteChanged)
 
+                End If
+                OnCommandChanged()
             End If
         End Set
     End Property

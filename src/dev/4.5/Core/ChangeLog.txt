@@ -1,14 +1,45 @@
-<==================================
+<
+==================================
+ CHANGELOG
+ NEW IN 2.0.21 - 2015-06-08
+ ==================================
+
+ * Introduced the CommandButton controls by merging from a contribution to a specialized private version of MvvmForms.
+ * Introduced first version of Toolbox-Icon set. Due to a bug in VS 2015, those icons are not or not properly 
+   shown on Toolbox-Dropping. In VS 2013, the toolbox is properly populated.
+
+Remember: To show the toolbox items, firstly, add the NuGet packages. Then, compile your solution, find the bin folder and 
+          drag the ActiveDevelop.EntitiesFormsLib.dll to the toolbox, and let it go. Make sure, the MvvmBaseLib.dll is in 
+          present in the bin folder, as well!
+
+==================================
+ CHANGELOG
+ NEW IN 2.0.20 - 2015-06-02
+ ==================================
+
+ * Adjusted FormularParser reference to let NumControls be compatible with relocated FormularParser class in MvvmLibBase.
+
+==================================
+ CHANGELOG
+ NEW IN 2.0.19 - 2015-05-23
+ ==================================
+
+ * Fixed Issue in NullableDateTime where Date-Parsing was broken for Non-German-User-Input.
+ * Fixed Issue in NullableDateTime, where DisplayFormat and DisplayFormatMatch wouldn't match and caused exceptions in the Windows Forms Desginer.
+ * Added DisplayFormats which now correspond to the System Culture Date Format System Settings.
+ 
+ ==================================
  CHANGELOG
  NEW IN 2.0.18 - 2015-05-21
  ==================================
 
- * Fixed HighDPIIssues with all NullableValueBase derived controls.
+ * Fixed High-DPI-Issues with all NullableValueBase derived controls.
  * Changed direct project reference to EflViewModelBase to NuGet MvvmFormsBase.
 
-<==================================
+==================================
  CHANGELOG
  NEW IN 2.0.17 - 2015-05-05
+ (First public available version)
  ==================================
 
 INTRODUCTION: Have there been other Version?
@@ -25,8 +56,8 @@ to take the hazel of registering the DLLs in the Global Assembly Cache, patching
 stuff, we probably need Admin rights to. We didn't want that. Instead, there is a little detour for a project to get started
 with MvvmForms:
 
-TO GET THE TOOLBOX ITEMS: After adding the MvvmForms-Project to your project, just find the EntityFormsLib.DLL in the 
-packages folder, and and drag and drop it to the toolbox - that let's your toolbox get populated. And: It's bound to 
+TO GET THE TOOLBOX ITEMS: After adding the MvvmForms-Project to your project, just find the ActiveDevelop.EntitiesFormsLib.dll
+in the packages folder, and and drag and drop it to the toolbox - that let's your toolbox get populated. And: It's bound to 
 just this project, and that's probably exactly, what you want.
 
 Open Source:

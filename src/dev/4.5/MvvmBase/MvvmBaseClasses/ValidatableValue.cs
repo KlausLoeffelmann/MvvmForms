@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace ActiveDevelop.MvvmBaseLib
+namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
-    namespace Mvvm
-    {
 
         public interface IValidatable
 		{
@@ -153,14 +151,10 @@ namespace ActiveDevelop.MvvmBaseLib
 			}
 		}
 
-		public enum ValidationTypes
-		{
-			Syntactic,
-			Semantic,
-			SyntacticAndSemantic
-		}
-
-	}
-
-
+    public enum ValidationTypes
+    {
+        Syntactic,
+        Semantic,
+        SyntacticAndSemantic
+    }
 }

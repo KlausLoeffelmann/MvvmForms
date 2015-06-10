@@ -1,5 +1,5 @@
 ﻿++++++++++++++++++++++++++
-MvvmForms Info: 2015-23-05
+MvvmForms Info: 2015-06-02
 ++++++++++++++++++++++++++
 
 MvvmFormsBase is part of MvvmForms and offers support classes for creating ViewModels.
@@ -10,6 +10,15 @@ You can use MvvmForms freely for evaluation, for acadamic purposes, for personal
 non-commercial purposes and for Open Source GPL Projects. If you want to use 
 after evaluation in your commercial team projects, you need to obtain a per-developer-licence.
 Please contact mvvmforms@activedevelop.de for further information.
+
+<==================================
+ CHANGELOG
+ NEW IN 2.0.20 - 2015-05-21
+ ==================================
+
+ * Implemented FormularParser Class, with which an abitrary Formular can be calculated. The Formular 
+   need only be present as string. The class is located in ActiveDevelop.MvvmLib.FormularParser.
+
 
 <==================================
  CHANGELOG

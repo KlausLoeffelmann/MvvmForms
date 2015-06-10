@@ -71,8 +71,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MvvmBaseLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Samples\MeterReaderMvvmForms\packages\MvvmFormsBase.2.0.18\lib\MvvmBaseLib.dll</HintPath>
+    <Reference Include="MvvmBaseLib, Version=2.0.20.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Test\packages\MvvmFormsBase.2.0.20-Beta\lib\MvvmBaseLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">

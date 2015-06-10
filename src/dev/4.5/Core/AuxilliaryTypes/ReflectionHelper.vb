@@ -134,6 +134,8 @@ Public Module ReflectionHelper
                 Continue For
             End Try
 
+#Disable Warning
+
             If propItem.PropertyType.IsPrimitive Or
                 propItem.PropertyType Is GetType(String) Or
                 propItem.PropertyType Is GetType(Decimal) Or
@@ -166,6 +168,8 @@ Public Module ReflectionHelper
                     End If
                 End If
             End If
+
+#Enable Warning
 
         Next
 

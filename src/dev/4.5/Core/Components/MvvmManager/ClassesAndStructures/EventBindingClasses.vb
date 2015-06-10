@@ -33,7 +33,7 @@
 
 Imports System.ComponentModel.Design.Serialization
 
-<Serializable, DesignerSerializer(GetType(PropertyBindingsCodeDomSerializer), GetType(CodeDomSerializer))>
+<Serializable, DesignerSerializer(GetType(MvvmBindingItemsCodeDomSerializer), GetType(CodeDomSerializer))>
 Public Class EventBindings
     Inherits List(Of EventBindingItem)
 

@@ -22,389 +22,388 @@ Imports Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard
 Imports Mouse = Microsoft.VisualStudio.TestTools.UITesting.Mouse
 Imports MouseButtons = System.Windows.Forms.MouseButtons
 
-Namespace EFL_BasicCodedUITest
-    
-    <GeneratedCode("Coded UITest Builder", "10.0.40219.1")>  _
-    Partial Public Class UIMap
-        
-        '''<summary>
-        '''CheckForCorrectEventOrder - Use 'CheckForCorrectEventOrderExpectedValues' to pass parameters into this method.
-        '''</summary>
-        Public Sub CheckForCorrectEventOrder()
-            Dim uIResultTextBoxEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIResultTextBoxWindow.UIResultTextBoxEdit
 
-            'Verify that 'ResultTextBox' text box's property 'Text' equals 'SelectedValueChanged to 1
-            'SelectedValueChanged to 2
-            'SelectedValueChanged to 3
-            'SelectedValueChanged to 4
-            'IsDirtyChanged
-            'ValueChanged to 4
-            'SelectedValueChanged to 6
-            'SelectedValueChanged to 58
-            'SelectedValueChanged to 107
-            'SelectedValueChanged to 123
-            'SelectedValueChanged to 131
-            'SelectedValueChanged to 152
-            'SelectedValueChanged to 212
-            'ValueChanged to 212
-            ''
-            Assert.AreEqual(Me.CheckForCorrectEventOrderExpectedValues.UIResultTextBoxEditText, uIResultTextBoxEdit.Text)
-        End Sub
-        
-        '''<summary>
-        '''CheckFormattedResults - Use 'CheckFormattedResultsExpectedValues' to pass parameters into this method.
-        '''</summary>
-        Public Sub CheckFormattedResults()
-            Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow12.UIItemEdit
-            Dim nullableNumValueInput As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow.NullableNumValueInput
-            Dim uIItemEdit1 As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow13.UIItemEdit
+<GeneratedCode("Coded UITest Builder", "10.0.40219.1")>
+Partial Public Class UIMap
 
-            'Verify that 'Unknown Name' text box's property 'Text' equals '41'
-            Assert.AreEqual(Me.CheckFormattedResultsExpectedValues.UIItemEditText, uIItemEdit.Text)
-
-            'Verify that 'Unknown Name' text box's property 'Text' equals '56,21249171'
-            Assert.AreEqual(Me.CheckFormattedResultsExpectedValues.NullableNumValueInputText, nullableNumValueInput.Text)
-
-            'Verify that 'Unknown Name' text box's property 'Text' equals '01.07.2012'
-            Assert.AreEqual(Me.CheckFormattedResultsExpectedValues.UIItemEditText1, uIItemEdit1.Text)
-        End Sub
-        
-        '''<summary>
-        '''CheckForNulledCorrectEventOrder - Use 'CheckForNulledCorrectEventOrderExpectedValues' to pass parameters into this method.
-        '''</summary>
-        Public Sub CheckForNulledCorrectEventOrder()
-            Dim uIResultTextBoxEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIResultTextBoxWindow.UIResultTextBoxEdit
-
-            'Verify that 'ResultTextBox' text box's property 'Text' equals 'SelectedValueChanged to 1
-            'SelectedValueChanged to 2
-            'SelectedValueChanged to 3
-            'SelectedValueChanged to 4
-            'IsDirtyChanged
-            'ValueChanged to 4
-            'SelectedValueChanged to 6
-            'SelectedValueChanged to 58
-            'SelectedValueChanged to 107
-            'SelectedValueChanged to 123
-            'SelectedValueChanged to 131
-            'SelectedValueChanged to 152
-            'SelectedValueChanged to 212
-            'ValueChanged to 212
-            'SelectedValueChanged to * - - - *
-            'ValueChanged to * - - - *
-            ''
-            Assert.AreEqual(Me.CheckForNulledCorrectEventOrderExpectedValues.UIResultTextBoxEditText, uIResultTextBoxEdit.Text)
-        End Sub
-        
-        '''<summary>
-        '''EnterFirstCharInNullableRelationPopup - Use 'EnterFirstCharInNullableRelationPopupParams' to pass parameters into this method.
-        '''</summary>
-        Public Sub EnterFirstCharInNullableRelationPopup()
-            Dim nullableRelationalPopup As WinEdit = Me.UIEntityFormsLibTestCoWindow.NullableRelationalPopupContainer.NullableRelationalPopup
-
-            'Type 'l' in 'Unknown Name' text box
-            nullableRelationalPopup.Text = Me.EnterFirstCharInNullableRelationPopupParams.NullableRelationalPopupText
-        End Sub
-        
-        '''<summary>
-        '''EnterTestDataForNullableDateBox - Use 'EnterTestDataForNullableDateBoxParams' to pass parameters into this method.
-        '''</summary>
-        Public Sub EnterTestDataForNullableDateBox()
-            Dim nullableNumValueInput As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow.NullableNumValueInput
-            Dim uIPropsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UIPropsWindow3.UIPropsButton
-            Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow13.UIItemEdit
-
-            'Type '{Tab}' in 'Unknown Name' text box
-            Keyboard.SendKeys(nullableNumValueInput, Me.EnterTestDataForNullableDateBoxParams.NullableNumValueInputSendKeys, ModifierKeys.None)
-
-            'Type '{Tab}' in 'Prop's' button
-            Keyboard.SendKeys(uIPropsButton, Me.EnterTestDataForNullableDateBoxParams.UIPropsButtonSendKeys, ModifierKeys.None)
-
-            'Type '1,7,2012' in 'Unknown Name' text box
-            uIItemEdit.Text = Me.EnterTestDataForNullableDateBoxParams.UIItemEditText
-        End Sub
-        
-        '''<summary>
-        '''EnterTestDataForNullableIntBox - Use 'EnterTestDataForNullableIntBoxParams' to pass parameters into this method.
-        '''</summary>
-        Public Sub EnterTestDataForNullableIntBox()
-            Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow11.UIItemEdit
-            Dim uIPropsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UIPropsWindow1.UIPropsButton
-            Dim uIItemEdit1 As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow12.UIItemEdit
-
-            'Type '{Tab}' in 'Unknown Name' text box
-            Keyboard.SendKeys(uIItemEdit, Me.EnterTestDataForNullableIntBoxParams.UIItemEditSendKeys, ModifierKeys.None)
-
-            'Type '{Tab}' in 'Prop's' button
-            Keyboard.SendKeys(uIPropsButton, Me.EnterTestDataForNullableIntBoxParams.UIPropsButtonSendKeys, ModifierKeys.None)
-
-            'Type '1+2*3*(6+6)/(10-8)+((12-10)*2)' in 'Unknown Name' text box
-            uIItemEdit1.Text = Me.EnterTestDataForNullableIntBoxParams.UIItemEditText
-        End Sub
-        
-        '''<summary>
-        '''EnterTestDataForNullableMultilineTextBox - Use 'EnterTestDataForNullableMultilineTextBoxParams' to pass parameters into this method.
-        '''</summary>
-        Public Sub EnterTestDataForNullableMultilineTextBox()
-            Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow1.UIItemEdit
-            Dim uIPropsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UIPropsWindow.UIPropsButton
-            Dim uIItemEdit1 As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow11.UIItemEdit
-
-            'Type '{Tab}' in 'Unknown Name' text box
-            Keyboard.SendKeys(uIItemEdit, Me.EnterTestDataForNullableMultilineTextBoxParams.UIItemEditSendKeys, ModifierKeys.None)
-
-            'Type '{Tab}' in 'Prop's' button
-            Keyboard.SendKeys(uIPropsButton, Me.EnterTestDataForNullableMultilineTextBoxParams.UIPropsButtonSendKeys, ModifierKeys.None)
-
-            'Type 'In dieser TextBox gibt der Anwender einen noch längeren Text ein, da an dieser Stelle getestet werden soll, wie sich Text verhält, der über mehrere Zeilen bei einer MultiLine-TextBox zu sehen ist.' in 'Unknown Name' text box
-            uIItemEdit1.Text = Me.EnterTestDataForNullableMultilineTextBoxParams.UIItemEditText
-        End Sub
-        
-        '''<summary>
-        '''EnterTestDataForNullableNumBox - Use 'EnterTestDataForNullableNumBoxParams' to pass parameters into this method.
-        '''</summary>
-        Public Sub EnterTestDataForNullableNumBox()
-            Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow12.UIItemEdit
-            Dim uIPropsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UIPropsWindow2.UIPropsButton
-            Dim nullableNumValueInput As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow.NullableNumValueInput
-
-            'Type '{Tab}' in 'Unknown Name' text box
-            Keyboard.SendKeys(uIItemEdit, Me.EnterTestDataForNullableNumBoxParams.UIItemEditSendKeys, ModifierKeys.None)
-
-            'Type '{Tab}' in 'Prop's' button
-            Keyboard.SendKeys(uIPropsButton, Me.EnterTestDataForNullableNumBoxParams.UIPropsButtonSendKeys, ModifierKeys.None)
-
-            'Type '1,23+2,33*3,3421*(6,6+6,34)/(10,8-8,8)+((12,5-10,2)*2)' in 'Unknown Name' text box
-            nullableNumValueInput.Text = Me.EnterTestDataForNullableNumBoxParams.NullableNumValueInputText
-        End Sub
-        
-        '''<summary>
-        '''EnterTestDataForNullableTextBox - Use 'EnterTestDataForNullableTextBoxParams' to pass parameters into this method.
-        '''</summary>
-        Public Sub EnterTestDataForNullableTextBox()
-            Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow1.UIItemEdit
-            Dim uIItemEdit1 As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow2.UIItemEdit
-
-            'Click 'Unknown Name' text box
-            Mouse.Click(uIItemEdit, New Point(48, 5))
-
-            'Type 'In dieser TextBox gibt der Anwender einen vergleichsweise langen Namen ein' in 'Unknown Name' text box
-            uIItemEdit1.Text = Me.EnterTestDataForNullableTextBoxParams.UIItemEditText
-        End Sub
-        
-        '''<summary>
-        '''FinishTestdateInput - Use 'FinishTestdateInputParams' to pass parameters into this method.
-        '''</summary>
-        Public Sub FinishTestdateInput()
-            Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow13.UIItemEdit
-            Dim uIPropsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UIPropsWindow4.UIPropsButton
-
-            'Type '{Tab}' in 'Unknown Name' text box
-            Keyboard.SendKeys(uIItemEdit, Me.FinishTestdateInputParams.UIItemEditSendKeys, ModifierKeys.None)
-
-            'Type '{Tab}' in 'Prop's' button
-            Keyboard.SendKeys(uIPropsButton, Me.FinishTestdateInputParams.UIPropsButtonSendKeys, ModifierKeys.None)
-        End Sub
-        
-        '''<summary>
-        '''LaunchBasicTestForm
-        '''</summary>
-        Public Sub LaunchBasicTestForm()
-            Dim uIShowbasictestUIMenuItem As WinMenuItem = Me.UIEntityFormsLibTestCoWindow.UIMainMenuStripMenuBar.UITestMenuItem.UIShowbasictestUIMenuItem
-
-            'Click 'Test' -> 'Show basic test UI' menu item
-            Mouse.Click(uIShowbasictestUIMenuItem, New Point(47, 12))
-        End Sub
-        
-        '''<summary>
-        '''NullRelationalPopupInput
-        '''</summary>
-        Public Sub NullRelationalPopupInput()
-            Dim uIMainButtonClient As WinClient = Me.UIEntityFormsLibTestCoWindow.UIMainButtonWindow.UIMainButtonClient
-            Dim uIDesktopClient As WinClient = Me.UIItemWindow.UIItemWindow1.UIDesktopClient
-
-            'Click 'mainButton' client
-            Mouse.Click(uIMainButtonClient, New Point(5, 7))
-
-            'Click 'Desktop' client
-            Mouse.Click(uIDesktopClient, New Point(8, 257))
-        End Sub
-        
-        '''<summary>
-        '''PrepareNullableRelationPopup
-        '''</summary>
-        Public Sub PrepareNullableRelationPopup()
-            Dim uISubTest1PopupTestsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UISubTest1NotdefinedWindow.UISubTest1PopupTestsButton
-
-            'Click 'SubTest 1: Popup Tests' button
-            Mouse.Click(uISubTest1PopupTestsButton, New Point(68, 14))
-        End Sub
-        
-        '''<summary>
-        '''SelectValuesInRelationalPopup - Use 'SelectValuesInRelationalPopupParams' to pass parameters into this method.
-        '''</summary>
-        Public Sub SelectValuesInRelationalPopup()
-            Dim uIEntityFormsLibTestCoTitleBar As WinTitleBar = Me.UIEntityFormsLibTestCoWindow.UIEntityFormsLibTestCoTitleBar
-            Dim nullableRelationalPopup As WinEdit = Me.UIEntityFormsLibTestCoWindow.NullableRelationalPopupContainer.NullableRelationalPopup
-
-            'Click 'EntityFormsLib TestContainer' title bar
-            Mouse.Click(uIEntityFormsLibTestCoTitleBar, New Point(286, 8))
-
-            'Type '0004: Picard, Gabby' in 'Unknown Name' text box
-            nullableRelationalPopup.Text = Me.SelectValuesInRelationalPopupParams.NullableRelationalPopupText
-        End Sub
-        
-        #Region "Properties"
-        Public Overridable ReadOnly Property CheckForCorrectEventOrderExpectedValues() As CheckForCorrectEventOrderExpectedValues
-            Get
-                If (Me.mCheckForCorrectEventOrderExpectedValues Is Nothing) Then
-                    Me.mCheckForCorrectEventOrderExpectedValues = New CheckForCorrectEventOrderExpectedValues()
-                End If
-                Return Me.mCheckForCorrectEventOrderExpectedValues
-            End Get
-        End Property
-        
-        Public Overridable ReadOnly Property CheckFormattedResultsExpectedValues() As CheckFormattedResultsExpectedValues
-            Get
-                If (Me.mCheckFormattedResultsExpectedValues Is Nothing) Then
-                    Me.mCheckFormattedResultsExpectedValues = New CheckFormattedResultsExpectedValues()
-                End If
-                Return Me.mCheckFormattedResultsExpectedValues
-            End Get
-        End Property
-        
-        Public Overridable ReadOnly Property CheckForNulledCorrectEventOrderExpectedValues() As CheckForNulledCorrectEventOrderExpectedValues
-            Get
-                If (Me.mCheckForNulledCorrectEventOrderExpectedValues Is Nothing) Then
-                    Me.mCheckForNulledCorrectEventOrderExpectedValues = New CheckForNulledCorrectEventOrderExpectedValues()
-                End If
-                Return Me.mCheckForNulledCorrectEventOrderExpectedValues
-            End Get
-        End Property
-        
-        Public Overridable ReadOnly Property EnterFirstCharInNullableRelationPopupParams() As EnterFirstCharInNullableRelationPopupParams
-            Get
-                If (Me.mEnterFirstCharInNullableRelationPopupParams Is Nothing) Then
-                    Me.mEnterFirstCharInNullableRelationPopupParams = New EnterFirstCharInNullableRelationPopupParams()
-                End If
-                Return Me.mEnterFirstCharInNullableRelationPopupParams
-            End Get
-        End Property
-        
-        Public Overridable ReadOnly Property EnterTestDataForNullableDateBoxParams() As EnterTestDataForNullableDateBoxParams
-            Get
-                If (Me.mEnterTestDataForNullableDateBoxParams Is Nothing) Then
-                    Me.mEnterTestDataForNullableDateBoxParams = New EnterTestDataForNullableDateBoxParams()
-                End If
-                Return Me.mEnterTestDataForNullableDateBoxParams
-            End Get
-        End Property
-        
-        Public Overridable ReadOnly Property EnterTestDataForNullableIntBoxParams() As EnterTestDataForNullableIntBoxParams
-            Get
-                If (Me.mEnterTestDataForNullableIntBoxParams Is Nothing) Then
-                    Me.mEnterTestDataForNullableIntBoxParams = New EnterTestDataForNullableIntBoxParams()
-                End If
-                Return Me.mEnterTestDataForNullableIntBoxParams
-            End Get
-        End Property
-        
-        Public Overridable ReadOnly Property EnterTestDataForNullableMultilineTextBoxParams() As EnterTestDataForNullableMultilineTextBoxParams
-            Get
-                If (Me.mEnterTestDataForNullableMultilineTextBoxParams Is Nothing) Then
-                    Me.mEnterTestDataForNullableMultilineTextBoxParams = New EnterTestDataForNullableMultilineTextBoxParams()
-                End If
-                Return Me.mEnterTestDataForNullableMultilineTextBoxParams
-            End Get
-        End Property
-        
-        Public Overridable ReadOnly Property EnterTestDataForNullableNumBoxParams() As EnterTestDataForNullableNumBoxParams
-            Get
-                If (Me.mEnterTestDataForNullableNumBoxParams Is Nothing) Then
-                    Me.mEnterTestDataForNullableNumBoxParams = New EnterTestDataForNullableNumBoxParams()
-                End If
-                Return Me.mEnterTestDataForNullableNumBoxParams
-            End Get
-        End Property
-        
-        Public Overridable ReadOnly Property EnterTestDataForNullableTextBoxParams() As EnterTestDataForNullableTextBoxParams
-            Get
-                If (Me.mEnterTestDataForNullableTextBoxParams Is Nothing) Then
-                    Me.mEnterTestDataForNullableTextBoxParams = New EnterTestDataForNullableTextBoxParams()
-                End If
-                Return Me.mEnterTestDataForNullableTextBoxParams
-            End Get
-        End Property
-        
-        Public Overridable ReadOnly Property FinishTestdateInputParams() As FinishTestdateInputParams
-            Get
-                If (Me.mFinishTestdateInputParams Is Nothing) Then
-                    Me.mFinishTestdateInputParams = New FinishTestdateInputParams()
-                End If
-                Return Me.mFinishTestdateInputParams
-            End Get
-        End Property
-        
-        Public Overridable ReadOnly Property SelectValuesInRelationalPopupParams() As SelectValuesInRelationalPopupParams
-            Get
-                If (Me.mSelectValuesInRelationalPopupParams Is Nothing) Then
-                    Me.mSelectValuesInRelationalPopupParams = New SelectValuesInRelationalPopupParams()
-                End If
-                Return Me.mSelectValuesInRelationalPopupParams
-            End Get
-        End Property
-        
-        Public ReadOnly Property UIEntityFormsLibTestCoWindow() As UIEntityFormsLibTestCoWindow
-            Get
-                If (Me.mUIEntityFormsLibTestCoWindow Is Nothing) Then
-                    Me.mUIEntityFormsLibTestCoWindow = New UIEntityFormsLibTestCoWindow()
-                End If
-                Return Me.mUIEntityFormsLibTestCoWindow
-            End Get
-        End Property
-        
-        Public ReadOnly Property UIItemWindow() As UIItemWindow3
-            Get
-                If (Me.mUIItemWindow Is Nothing) Then
-                    Me.mUIItemWindow = New UIItemWindow3()
-                End If
-                Return Me.mUIItemWindow
-            End Get
-        End Property
-        #End Region
-        
-        #Region "Fields"
-        Private mCheckForCorrectEventOrderExpectedValues As CheckForCorrectEventOrderExpectedValues
-        
-        Private mCheckFormattedResultsExpectedValues As CheckFormattedResultsExpectedValues
-        
-        Private mCheckForNulledCorrectEventOrderExpectedValues As CheckForNulledCorrectEventOrderExpectedValues
-        
-        Private mEnterFirstCharInNullableRelationPopupParams As EnterFirstCharInNullableRelationPopupParams
-        
-        Private mEnterTestDataForNullableDateBoxParams As EnterTestDataForNullableDateBoxParams
-        
-        Private mEnterTestDataForNullableIntBoxParams As EnterTestDataForNullableIntBoxParams
-        
-        Private mEnterTestDataForNullableMultilineTextBoxParams As EnterTestDataForNullableMultilineTextBoxParams
-        
-        Private mEnterTestDataForNullableNumBoxParams As EnterTestDataForNullableNumBoxParams
-        
-        Private mEnterTestDataForNullableTextBoxParams As EnterTestDataForNullableTextBoxParams
-        
-        Private mFinishTestdateInputParams As FinishTestdateInputParams
-        
-        Private mSelectValuesInRelationalPopupParams As SelectValuesInRelationalPopupParams
-        
-        Private mUIEntityFormsLibTestCoWindow As UIEntityFormsLibTestCoWindow
-        
-        Private mUIItemWindow As UIItemWindow3
-        #End Region
-    End Class
-    
     '''<summary>
-    '''Parameters to be passed into 'CheckForCorrectEventOrder'
+    '''CheckForCorrectEventOrder - Use 'CheckForCorrectEventOrderExpectedValues' to pass parameters into this method.
     '''</summary>
-    <GeneratedCode("Coded UITest Builder", "10.0.40219.1")>  _
+    Public Sub CheckForCorrectEventOrder()
+        Dim uIResultTextBoxEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIResultTextBoxWindow.UIResultTextBoxEdit
+
+        'Verify that 'ResultTextBox' text box's property 'Text' equals 'SelectedValueChanged to 1
+        'SelectedValueChanged to 2
+        'SelectedValueChanged to 3
+        'SelectedValueChanged to 4
+        'IsDirtyChanged
+        'ValueChanged to 4
+        'SelectedValueChanged to 6
+        'SelectedValueChanged to 58
+        'SelectedValueChanged to 107
+        'SelectedValueChanged to 123
+        'SelectedValueChanged to 131
+        'SelectedValueChanged to 152
+        'SelectedValueChanged to 212
+        'ValueChanged to 212
+        ''
+        Assert.AreEqual(Me.CheckForCorrectEventOrderExpectedValues.UIResultTextBoxEditText, uIResultTextBoxEdit.Text)
+    End Sub
+
+    '''<summary>
+    '''CheckFormattedResults - Use 'CheckFormattedResultsExpectedValues' to pass parameters into this method.
+    '''</summary>
+    Public Sub CheckFormattedResults()
+        Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow12.UIItemEdit
+        Dim nullableNumValueInput As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow.NullableNumValueInput
+        Dim uIItemEdit1 As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow13.UIItemEdit
+
+        'Verify that 'Unknown Name' text box's property 'Text' equals '41'
+        Assert.AreEqual(Me.CheckFormattedResultsExpectedValues.UIItemEditText, uIItemEdit.Text)
+
+        'Verify that 'Unknown Name' text box's property 'Text' equals '56,21249171'
+        Assert.AreEqual(Me.CheckFormattedResultsExpectedValues.NullableNumValueInputText, nullableNumValueInput.Text)
+
+        'Verify that 'Unknown Name' text box's property 'Text' equals '01.07.2012'
+        Assert.AreEqual(Me.CheckFormattedResultsExpectedValues.UIItemEditText1, uIItemEdit1.Text)
+    End Sub
+
+    '''<summary>
+    '''CheckForNulledCorrectEventOrder - Use 'CheckForNulledCorrectEventOrderExpectedValues' to pass parameters into this method.
+    '''</summary>
+    Public Sub CheckForNulledCorrectEventOrder()
+        Dim uIResultTextBoxEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIResultTextBoxWindow.UIResultTextBoxEdit
+
+        'Verify that 'ResultTextBox' text box's property 'Text' equals 'SelectedValueChanged to 1
+        'SelectedValueChanged to 2
+        'SelectedValueChanged to 3
+        'SelectedValueChanged to 4
+        'IsDirtyChanged
+        'ValueChanged to 4
+        'SelectedValueChanged to 6
+        'SelectedValueChanged to 58
+        'SelectedValueChanged to 107
+        'SelectedValueChanged to 123
+        'SelectedValueChanged to 131
+        'SelectedValueChanged to 152
+        'SelectedValueChanged to 212
+        'ValueChanged to 212
+        'SelectedValueChanged to * - - - *
+        'ValueChanged to * - - - *
+        ''
+        Assert.AreEqual(Me.CheckForNulledCorrectEventOrderExpectedValues.UIResultTextBoxEditText, uIResultTextBoxEdit.Text)
+    End Sub
+
+    '''<summary>
+    '''EnterFirstCharInNullableRelationPopup - Use 'EnterFirstCharInNullableRelationPopupParams' to pass parameters into this method.
+    '''</summary>
+    Public Sub EnterFirstCharInNullableRelationPopup()
+        Dim nullableRelationalPopup As WinEdit = Me.UIEntityFormsLibTestCoWindow.NullableRelationalPopupContainer.NullableRelationalPopup
+
+        'Type 'l' in 'Unknown Name' text box
+        nullableRelationalPopup.Text = Me.EnterFirstCharInNullableRelationPopupParams.NullableRelationalPopupText
+    End Sub
+
+    '''<summary>
+    '''EnterTestDataForNullableDateBox - Use 'EnterTestDataForNullableDateBoxParams' to pass parameters into this method.
+    '''</summary>
+    Public Sub EnterTestDataForNullableDateBox()
+        Dim nullableNumValueInput As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow.NullableNumValueInput
+        Dim uIPropsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UIPropsWindow3.UIPropsButton
+        Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow13.UIItemEdit
+
+        'Type '{Tab}' in 'Unknown Name' text box
+        Keyboard.SendKeys(nullableNumValueInput, Me.EnterTestDataForNullableDateBoxParams.NullableNumValueInputSendKeys, ModifierKeys.None)
+
+        'Type '{Tab}' in 'Prop's' button
+        Keyboard.SendKeys(uIPropsButton, Me.EnterTestDataForNullableDateBoxParams.UIPropsButtonSendKeys, ModifierKeys.None)
+
+        'Type '1,7,2012' in 'Unknown Name' text box
+        uIItemEdit.Text = Me.EnterTestDataForNullableDateBoxParams.UIItemEditText
+    End Sub
+
+    '''<summary>
+    '''EnterTestDataForNullableIntBox - Use 'EnterTestDataForNullableIntBoxParams' to pass parameters into this method.
+    '''</summary>
+    Public Sub EnterTestDataForNullableIntBox()
+        Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow11.UIItemEdit
+        Dim uIPropsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UIPropsWindow1.UIPropsButton
+        Dim uIItemEdit1 As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow12.UIItemEdit
+
+        'Type '{Tab}' in 'Unknown Name' text box
+        Keyboard.SendKeys(uIItemEdit, Me.EnterTestDataForNullableIntBoxParams.UIItemEditSendKeys, ModifierKeys.None)
+
+        'Type '{Tab}' in 'Prop's' button
+        Keyboard.SendKeys(uIPropsButton, Me.EnterTestDataForNullableIntBoxParams.UIPropsButtonSendKeys, ModifierKeys.None)
+
+        'Type '1+2*3*(6+6)/(10-8)+((12-10)*2)' in 'Unknown Name' text box
+        uIItemEdit1.Text = Me.EnterTestDataForNullableIntBoxParams.UIItemEditText
+    End Sub
+
+    '''<summary>
+    '''EnterTestDataForNullableMultilineTextBox - Use 'EnterTestDataForNullableMultilineTextBoxParams' to pass parameters into this method.
+    '''</summary>
+    Public Sub EnterTestDataForNullableMultilineTextBox()
+        Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow1.UIItemEdit
+        Dim uIPropsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UIPropsWindow.UIPropsButton
+        Dim uIItemEdit1 As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow11.UIItemEdit
+
+        'Type '{Tab}' in 'Unknown Name' text box
+        Keyboard.SendKeys(uIItemEdit, Me.EnterTestDataForNullableMultilineTextBoxParams.UIItemEditSendKeys, ModifierKeys.None)
+
+        'Type '{Tab}' in 'Prop's' button
+        Keyboard.SendKeys(uIPropsButton, Me.EnterTestDataForNullableMultilineTextBoxParams.UIPropsButtonSendKeys, ModifierKeys.None)
+
+        'Type 'In dieser TextBox gibt der Anwender einen noch längeren Text ein, da an dieser Stelle getestet werden soll, wie sich Text verhält, der über mehrere Zeilen bei einer MultiLine-TextBox zu sehen ist.' in 'Unknown Name' text box
+        uIItemEdit1.Text = Me.EnterTestDataForNullableMultilineTextBoxParams.UIItemEditText
+    End Sub
+
+    '''<summary>
+    '''EnterTestDataForNullableNumBox - Use 'EnterTestDataForNullableNumBoxParams' to pass parameters into this method.
+    '''</summary>
+    Public Sub EnterTestDataForNullableNumBox()
+        Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow12.UIItemEdit
+        Dim uIPropsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UIPropsWindow2.UIPropsButton
+        Dim nullableNumValueInput As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow.NullableNumValueInput
+
+        'Type '{Tab}' in 'Unknown Name' text box
+        Keyboard.SendKeys(uIItemEdit, Me.EnterTestDataForNullableNumBoxParams.UIItemEditSendKeys, ModifierKeys.None)
+
+        'Type '{Tab}' in 'Prop's' button
+        Keyboard.SendKeys(uIPropsButton, Me.EnterTestDataForNullableNumBoxParams.UIPropsButtonSendKeys, ModifierKeys.None)
+
+        'Type '1,23+2,33*3,3421*(6,6+6,34)/(10,8-8,8)+((12,5-10,2)*2)' in 'Unknown Name' text box
+        nullableNumValueInput.Text = Me.EnterTestDataForNullableNumBoxParams.NullableNumValueInputText
+    End Sub
+
+    '''<summary>
+    '''EnterTestDataForNullableTextBox - Use 'EnterTestDataForNullableTextBoxParams' to pass parameters into this method.
+    '''</summary>
+    Public Sub EnterTestDataForNullableTextBox()
+        Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow1.UIItemEdit
+        Dim uIItemEdit1 As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow2.UIItemEdit
+
+        'Click 'Unknown Name' text box
+        Mouse.Click(uIItemEdit, New Point(48, 5))
+
+        'Type 'In dieser TextBox gibt der Anwender einen vergleichsweise langen Namen ein' in 'Unknown Name' text box
+        uIItemEdit1.Text = Me.EnterTestDataForNullableTextBoxParams.UIItemEditText
+    End Sub
+
+    '''<summary>
+    '''FinishTestdateInput - Use 'FinishTestdateInputParams' to pass parameters into this method.
+    '''</summary>
+    Public Sub FinishTestdateInput()
+        Dim uIItemEdit As WinEdit = Me.UIEntityFormsLibTestCoWindow.UIItemWindow13.UIItemEdit
+        Dim uIPropsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UIPropsWindow4.UIPropsButton
+
+        'Type '{Tab}' in 'Unknown Name' text box
+        Keyboard.SendKeys(uIItemEdit, Me.FinishTestdateInputParams.UIItemEditSendKeys, ModifierKeys.None)
+
+        'Type '{Tab}' in 'Prop's' button
+        Keyboard.SendKeys(uIPropsButton, Me.FinishTestdateInputParams.UIPropsButtonSendKeys, ModifierKeys.None)
+    End Sub
+
+    '''<summary>
+    '''LaunchBasicTestForm
+    '''</summary>
+    Public Sub LaunchBasicTestForm()
+        Dim uIShowbasictestUIMenuItem As WinMenuItem = Me.UIEntityFormsLibTestCoWindow.UIMainMenuStripMenuBar.UITestMenuItem.UIShowbasictestUIMenuItem
+
+        'Click 'Test' -> 'Show basic test UI' menu item
+        Mouse.Click(uIShowbasictestUIMenuItem, New Point(47, 12))
+    End Sub
+
+    '''<summary>
+    '''NullRelationalPopupInput
+    '''</summary>
+    Public Sub NullRelationalPopupInput()
+        Dim uIMainButtonClient As WinClient = Me.UIEntityFormsLibTestCoWindow.UIMainButtonWindow.UIMainButtonClient
+        Dim uIDesktopClient As WinClient = Me.UIItemWindow.UIItemWindow1.UIDesktopClient
+
+        'Click 'mainButton' client
+        Mouse.Click(uIMainButtonClient, New Point(5, 7))
+
+        'Click 'Desktop' client
+        Mouse.Click(uIDesktopClient, New Point(8, 257))
+    End Sub
+
+    '''<summary>
+    '''PrepareNullableRelationPopup
+    '''</summary>
+    Public Sub PrepareNullableRelationPopup()
+        Dim uISubTest1PopupTestsButton As WinButton = Me.UIEntityFormsLibTestCoWindow.UISubTest1NotdefinedWindow.UISubTest1PopupTestsButton
+
+        'Click 'SubTest 1: Popup Tests' button
+        Mouse.Click(uISubTest1PopupTestsButton, New Point(68, 14))
+    End Sub
+
+    '''<summary>
+    '''SelectValuesInRelationalPopup - Use 'SelectValuesInRelationalPopupParams' to pass parameters into this method.
+    '''</summary>
+    Public Sub SelectValuesInRelationalPopup()
+        Dim uIEntityFormsLibTestCoTitleBar As WinTitleBar = Me.UIEntityFormsLibTestCoWindow.UIEntityFormsLibTestCoTitleBar
+        Dim nullableRelationalPopup As WinEdit = Me.UIEntityFormsLibTestCoWindow.NullableRelationalPopupContainer.NullableRelationalPopup
+
+        'Click 'EntityFormsLib TestContainer' title bar
+        Mouse.Click(uIEntityFormsLibTestCoTitleBar, New Point(286, 8))
+
+        'Type '0004: Picard, Gabby' in 'Unknown Name' text box
+        nullableRelationalPopup.Text = Me.SelectValuesInRelationalPopupParams.NullableRelationalPopupText
+    End Sub
+
+#Region "Properties"
+    Public Overridable ReadOnly Property CheckForCorrectEventOrderExpectedValues() As CheckForCorrectEventOrderExpectedValues
+        Get
+            If (Me.mCheckForCorrectEventOrderExpectedValues Is Nothing) Then
+                Me.mCheckForCorrectEventOrderExpectedValues = New CheckForCorrectEventOrderExpectedValues()
+            End If
+            Return Me.mCheckForCorrectEventOrderExpectedValues
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property CheckFormattedResultsExpectedValues() As CheckFormattedResultsExpectedValues
+        Get
+            If (Me.mCheckFormattedResultsExpectedValues Is Nothing) Then
+                Me.mCheckFormattedResultsExpectedValues = New CheckFormattedResultsExpectedValues()
+            End If
+            Return Me.mCheckFormattedResultsExpectedValues
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property CheckForNulledCorrectEventOrderExpectedValues() As CheckForNulledCorrectEventOrderExpectedValues
+        Get
+            If (Me.mCheckForNulledCorrectEventOrderExpectedValues Is Nothing) Then
+                Me.mCheckForNulledCorrectEventOrderExpectedValues = New CheckForNulledCorrectEventOrderExpectedValues()
+            End If
+            Return Me.mCheckForNulledCorrectEventOrderExpectedValues
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property EnterFirstCharInNullableRelationPopupParams() As EnterFirstCharInNullableRelationPopupParams
+        Get
+            If (Me.mEnterFirstCharInNullableRelationPopupParams Is Nothing) Then
+                Me.mEnterFirstCharInNullableRelationPopupParams = New EnterFirstCharInNullableRelationPopupParams()
+            End If
+            Return Me.mEnterFirstCharInNullableRelationPopupParams
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property EnterTestDataForNullableDateBoxParams() As EnterTestDataForNullableDateBoxParams
+        Get
+            If (Me.mEnterTestDataForNullableDateBoxParams Is Nothing) Then
+                Me.mEnterTestDataForNullableDateBoxParams = New EnterTestDataForNullableDateBoxParams()
+            End If
+            Return Me.mEnterTestDataForNullableDateBoxParams
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property EnterTestDataForNullableIntBoxParams() As EnterTestDataForNullableIntBoxParams
+        Get
+            If (Me.mEnterTestDataForNullableIntBoxParams Is Nothing) Then
+                Me.mEnterTestDataForNullableIntBoxParams = New EnterTestDataForNullableIntBoxParams()
+            End If
+            Return Me.mEnterTestDataForNullableIntBoxParams
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property EnterTestDataForNullableMultilineTextBoxParams() As EnterTestDataForNullableMultilineTextBoxParams
+        Get
+            If (Me.mEnterTestDataForNullableMultilineTextBoxParams Is Nothing) Then
+                Me.mEnterTestDataForNullableMultilineTextBoxParams = New EnterTestDataForNullableMultilineTextBoxParams()
+            End If
+            Return Me.mEnterTestDataForNullableMultilineTextBoxParams
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property EnterTestDataForNullableNumBoxParams() As EnterTestDataForNullableNumBoxParams
+        Get
+            If (Me.mEnterTestDataForNullableNumBoxParams Is Nothing) Then
+                Me.mEnterTestDataForNullableNumBoxParams = New EnterTestDataForNullableNumBoxParams()
+            End If
+            Return Me.mEnterTestDataForNullableNumBoxParams
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property EnterTestDataForNullableTextBoxParams() As EnterTestDataForNullableTextBoxParams
+        Get
+            If (Me.mEnterTestDataForNullableTextBoxParams Is Nothing) Then
+                Me.mEnterTestDataForNullableTextBoxParams = New EnterTestDataForNullableTextBoxParams()
+            End If
+            Return Me.mEnterTestDataForNullableTextBoxParams
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property FinishTestdateInputParams() As FinishTestdateInputParams
+        Get
+            If (Me.mFinishTestdateInputParams Is Nothing) Then
+                Me.mFinishTestdateInputParams = New FinishTestdateInputParams()
+            End If
+            Return Me.mFinishTestdateInputParams
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property SelectValuesInRelationalPopupParams() As SelectValuesInRelationalPopupParams
+        Get
+            If (Me.mSelectValuesInRelationalPopupParams Is Nothing) Then
+                Me.mSelectValuesInRelationalPopupParams = New SelectValuesInRelationalPopupParams()
+            End If
+            Return Me.mSelectValuesInRelationalPopupParams
+        End Get
+    End Property
+
+    Public ReadOnly Property UIEntityFormsLibTestCoWindow() As UIEntityFormsLibTestCoWindow
+        Get
+            If (Me.mUIEntityFormsLibTestCoWindow Is Nothing) Then
+                Me.mUIEntityFormsLibTestCoWindow = New UIEntityFormsLibTestCoWindow()
+            End If
+            Return Me.mUIEntityFormsLibTestCoWindow
+        End Get
+    End Property
+
+    Public ReadOnly Property UIItemWindow() As UIItemWindow3
+        Get
+            If (Me.mUIItemWindow Is Nothing) Then
+                Me.mUIItemWindow = New UIItemWindow3()
+            End If
+            Return Me.mUIItemWindow
+        End Get
+    End Property
+#End Region
+
+#Region "Fields"
+    Private mCheckForCorrectEventOrderExpectedValues As CheckForCorrectEventOrderExpectedValues
+
+    Private mCheckFormattedResultsExpectedValues As CheckFormattedResultsExpectedValues
+
+    Private mCheckForNulledCorrectEventOrderExpectedValues As CheckForNulledCorrectEventOrderExpectedValues
+
+    Private mEnterFirstCharInNullableRelationPopupParams As EnterFirstCharInNullableRelationPopupParams
+
+    Private mEnterTestDataForNullableDateBoxParams As EnterTestDataForNullableDateBoxParams
+
+    Private mEnterTestDataForNullableIntBoxParams As EnterTestDataForNullableIntBoxParams
+
+    Private mEnterTestDataForNullableMultilineTextBoxParams As EnterTestDataForNullableMultilineTextBoxParams
+
+    Private mEnterTestDataForNullableNumBoxParams As EnterTestDataForNullableNumBoxParams
+
+    Private mEnterTestDataForNullableTextBoxParams As EnterTestDataForNullableTextBoxParams
+
+    Private mFinishTestdateInputParams As FinishTestdateInputParams
+
+    Private mSelectValuesInRelationalPopupParams As SelectValuesInRelationalPopupParams
+
+    Private mUIEntityFormsLibTestCoWindow As UIEntityFormsLibTestCoWindow
+
+    Private mUIItemWindow As UIItemWindow3
+#End Region
+End Class
+
+'''<summary>
+'''Parameters to be passed into 'CheckForCorrectEventOrder'
+'''</summary>
+<GeneratedCode("Coded UITest Builder", "10.0.40219.1")>  _
     Public Class CheckForCorrectEventOrderExpectedValues
 
 #Region "Fields"
@@ -461,8 +460,8 @@ Namespace EFL_BasicCodedUITest
     '''</summary>
     <GeneratedCode("Coded UITest Builder", "10.0.40219.1")>  _
     Public Class CheckForNulledCorrectEventOrderExpectedValues
-        
-        #Region "Fields"
+
+#Region "Fields"
         '''<summary>
         '''Verify that 'ResultTextBox' text box's property 'Text' equals 'SelectedValueChanged to 1
         '''SelectedValueChanged to 2
@@ -480,7 +479,6 @@ Namespace EFL_BasicCodedUITest
         '''ValueChanged to 212
         '''SelectedValueChanged to * - - - *
         '''ValueChanged to * - - - *
-        ''''
         '''</summary>
         Public UIResultTextBoxEditText As String = "SelectedValueChanged to 1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SelectedValueChanged to 2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SelectedValueChanged to 3"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
             "SelectedValueChanged to 4"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"IsDirtyChanged"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ValueChanged to 4"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SelectedValueChang"& _ 
@@ -1408,29 +1406,29 @@ Namespace EFL_BasicCodedUITest
         Private mUIItemWindow1 As UIItemWindow14
         #End Region
     End Class
-    
-    <GeneratedCode("Coded UITest Builder", "10.0.40219.1")>  _
-    Public Class UIItemWindow14
-        Inherits WinWindow
-        
-        Public Sub New(ByVal searchLimitContainer As UITestControl)
-            MyBase.New(searchLimitContainer)
-            Me.SearchProperties.Add(New PropertyExpression(WinWindow.PropertyNames.ClassName, "WindowsForms10.Window", PropertyExpressionOperator.Contains))
-        End Sub
-        
-        #Region "Properties"
-        Public ReadOnly Property UIDesktopClient() As WinClient
-            Get
-                If (Me.mUIDesktopClient Is Nothing) Then
-                    Me.mUIDesktopClient = New WinClient(Me)
-                End If
-                Return Me.mUIDesktopClient
-            End Get
-        End Property
-        #End Region
-        
-        #Region "Fields"
-        Private mUIDesktopClient As WinClient
-        #End Region
-    End Class
-End Namespace
+
+<GeneratedCode("Coded UITest Builder", "10.0.40219.1")>
+Public Class UIItemWindow14
+    Inherits WinWindow
+
+    Public Sub New(ByVal searchLimitContainer As UITestControl)
+        MyBase.New(searchLimitContainer)
+        Me.SearchProperties.Add(New PropertyExpression(WinWindow.PropertyNames.ClassName, "WindowsForms10.Window", PropertyExpressionOperator.Contains))
+    End Sub
+
+#Region "Properties"
+    Public ReadOnly Property UIDesktopClient() As WinClient
+        Get
+            If (Me.mUIDesktopClient Is Nothing) Then
+                Me.mUIDesktopClient = New WinClient(Me)
+            End If
+            Return Me.mUIDesktopClient
+        End Get
+    End Property
+#End Region
+
+#Region "Fields"
+    Private mUIDesktopClient As WinClient
+#End Region
+End Class
+

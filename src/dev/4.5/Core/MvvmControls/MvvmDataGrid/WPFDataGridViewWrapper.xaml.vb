@@ -1,7 +1,3 @@
-﻿''' <summary>
-''' WPF-UserControl, welches ein DataGrid enthaelt und fuer das HostControll benoetigt wird
-''' </summary>
-''' <remarks></remarks>
-Public Class WPFDataGridViewWrapper
+﻿Public Class WPFDataGridViewWrapper
 
 End Class

@@ -34,10 +34,13 @@
 Imports System.ComponentModel.Design.Serialization
 Imports System.Windows.Data
 
+#Disable Warning
 <Serializable, DesignerSerializer(GetType(PropertyBindingsCodeDomSerializer),
                                   GetType(CodeDomSerializer))>
 Public Class PropertyBindings
     Inherits List(Of PropertyBindingItem)
+
+#Enable Warning
 
     Sub New()
         MyBase.New()

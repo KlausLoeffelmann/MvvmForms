@@ -39,6 +39,7 @@ Imports System.IO
 Imports System.Globalization
 Imports ActiveDevelop.MvvmBaseLib.Mvvm
 Imports System.Drawing
+Imports ActiveDevelop.MvvmBaseLib
 
 #If CompileToGerman Then
 ''' <summary>
@@ -331,7 +332,9 @@ Public Class MvvmManager
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Shadows Function CanExtend(extendee As Object) As Boolean Implements IExtenderProvider.CanExtend
-        If GetType(Control).IsAssignableFrom(extendee.GetType) Then
+        'We want to extend Controls as well as Components
+        If GetType(Control).IsAssignableFrom(extendee.GetType) OrElse
+            GetType(Component).IsAssignableFrom(extendee.GetType) Then
             Return True
         End If
         Return False
@@ -518,13 +521,13 @@ Public Class MvvmManager
 
                     System.Windows.WeakEventManager(Of BindingManager, ValueAssignedEventArgs).AddHandler(
                         myBindingManager, "ValueAssigned", AddressOf myBindingManager_ValueAssigned)
-
+#Disable Warning
                     'Das hier müssen wir initial machen und zwar nicht schon durch den Konstruktor des BindingManagers,
                     'da anderenfalls die als WithEvent gebundenen Ereignisse, die durch UpdateAllControlsFromViewModel
                     'ausgelöst würden, nicht hier oben ankommen würden! (Siehe auch letzter optionaler Parameter im
                     'BindingManager-Konstruktor.
                     Dim suspendBindingIfInterfaceImplemented = TryCast(value, IMvvmViewModelNotifyBindingProcess)
-
+#Enable Warning
                     If suspendBindingIfInterfaceImplemented IsNot Nothing Then
                         suspendBindingIfInterfaceImplemented.BeginBinding()
                     End If

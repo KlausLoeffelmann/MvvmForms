@@ -1,6 +1,5 @@
 ﻿Imports System.ComponentModel.Design.Serialization
 Imports System.Collections.ObjectModel
-Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
 
 ''' <summary>
 ''' ObservableCollection mit MvvmDataGridColumns welche mittels der MvvmDataGridColumnsCodeDomSerializer-Klasse serialisiert wird

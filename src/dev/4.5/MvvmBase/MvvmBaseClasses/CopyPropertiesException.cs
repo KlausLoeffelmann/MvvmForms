@@ -1,20 +1,15 @@
 ﻿using System;
 
-namespace ActiveDevelop.MvvmBaseLib
+namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
-	namespace Mvvm
-	{
-		public class CopyPropertiesException : Exception
-		{
-			public CopyPropertiesException(string message) : base(message)
-			{
-			}
+    public class CopyPropertiesException : Exception
+    {
+        public CopyPropertiesException(string message) : base(message)
+        {
+        }
 
-			public CopyPropertiesException(string message, Exception innerException) : base(message, innerException)
-			{
-			}
-
-		}
-	}
-
+        public CopyPropertiesException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+    }
 }

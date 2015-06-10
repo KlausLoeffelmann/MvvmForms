@@ -33,7 +33,6 @@
 
 Imports System.Windows.Forms
 Imports System.Collections.ObjectModel
-Imports ActiveDevelop.EntitiesFormsLib.ViewModelBase
 Imports System.ComponentModel
 
 ''' <summary>

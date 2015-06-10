@@ -285,7 +285,7 @@ namespace ActiveDevelop.MvvmLib.FormularParser
                 myConstEnumCounter += 1;
                 return locString;
             }
-            catch (Exception ex)
+            catch 
             {
                 myConsts.Add(double.NaN);
                 return "ERR";

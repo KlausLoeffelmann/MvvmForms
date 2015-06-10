@@ -1,6 +1,6 @@
 ﻿'*****************************************************************************************
-'                                          AttributeControlledComparableBase
-'                                          =================================
+'                                AttributeControlledComparableBase
+'                                =================================
 '
 '          Part of MvvmForms - The Component Library for bringing the Model-View-Viewmodel
 '                              pattern to Data Centric Windows Forms Apps in an easy,

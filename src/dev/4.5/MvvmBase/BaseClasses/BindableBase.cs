@@ -3,12 +3,11 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
+using ActiveDevelop.MvvmBaseLib.Mvvm;
 using Newtonsoft.Json;
 
 namespace ActiveDevelop.MvvmBaseLib
 {
-    namespace Mvvm
-    {
         /// <summary>
         /// Implementation of <see cref="INotifyPropertyChanged"/> to simplify models.
         /// </summary>
@@ -185,19 +184,17 @@ namespace ActiveDevelop.MvvmBaseLib
                 IsPropertyChangingSuspended = true;
             }
 
-            /// <summary>
-            /// Lässt das Ändern von Properties wieder zu.
-            /// </summary>
-            /// <remarks></remarks>
-            public void ResumePropertyChanges()
+        /// <summary>
+        /// Lässt das Ändern von Properties wieder zu.
+        /// </summary>
+        /// <remarks></remarks>
+        public void ResumePropertyChanges()
+        {
+            if (!IsPropertyChangingSuspended)
             {
-                if (!IsPropertyChangingSuspended)
-                {
-                    throw new ArgumentException("Suspension of Property Changes is not in affect.");
-                }
-                IsPropertyChangingSuspended = false;
+                throw new ArgumentException("Suspension of Property Changes is not in affect.");
             }
-
+            IsPropertyChangingSuspended = false;
         }
     }
 }
