@@ -35,9 +35,9 @@ Public Class MvvmDataGridDesigner
                 ' verbs-collection erstellen und definieren.
                 myVerbs = New DesignerVerbCollection()
 
-                myInsertColumnsVerb = New DesignerVerb("Spalten aus ViewModel erzeugen...", AddressOf InsertColumns)
-                mySetDataContextTypeVerb = New DesignerVerb("DataSourceType setzen...", AddressOf SetDataContextType)
-                myEditColumnsVerb = New DesignerVerb("Spalten editieren...", AddressOf EditColumns)
+                myInsertColumnsVerb = New DesignerVerb("Create Columns from Data Source...", AddressOf InsertColumns)
+                mySetDataContextTypeVerb = New DesignerVerb("Choose Data Source...", AddressOf SetDataContextType)
+                myEditColumnsVerb = New DesignerVerb("Edit Columns...", AddressOf EditColumns)
 
                 myVerbs.Add(mySetDataContextTypeVerb)
                 myVerbs.Add(myInsertColumnsVerb)

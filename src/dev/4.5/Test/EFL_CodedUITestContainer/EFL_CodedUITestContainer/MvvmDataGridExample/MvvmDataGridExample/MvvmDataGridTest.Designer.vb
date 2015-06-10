@@ -222,7 +222,7 @@ Partial Class MvvmDataGridTest
         '
         Me.BuchungenDataGrid.AutoGenerateColumns = False
         Me.BuchungenDataGrid.CanUserAddRows = False
-        Me.BuchungenDataGrid.CanUserDeleteRows = False
+        Me.BuchungenDataGrid.CanUserDeleteRows = True
         BuchungenDataGrid_ColumnNr.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(Object)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Nummer", GetType(Integer)))
         BuchungenDataGrid_ColumnNr.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("FontFamily", GetType(System.Windows.Media.FontFamily)), GetType(EFL_CodedUITestContainer.BooleanToBoldConverter), Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Wichtig", GetType(Boolean)))
         Me.BuchungenDataGrid.Columns.Add(BuchungenDataGrid_ColumnNr)
@@ -253,12 +253,13 @@ Partial Class MvvmDataGridTest
         Me.BuchungenDataGrid.EnterAction = Nothing
         Me.MvvmManager1.SetEventBindings(Me.BuchungenDataGrid, Nothing)
         Me.BuchungenDataGrid.GridLinesVisibility = System.Windows.Controls.DataGridGridLinesVisibility.All
+        Me.BuchungenDataGrid.HeadersVisibility = CType((System.Windows.Controls.DataGridHeadersVisibility.Column Or System.Windows.Controls.DataGridHeadersVisibility.Row), System.Windows.Controls.DataGridHeadersVisibility)
         Me.BuchungenDataGrid.ItemsSource = Nothing
         Me.BuchungenDataGrid.Location = New System.Drawing.Point(0, 0)
         Me.BuchungenDataGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.BuchungenDataGrid.Name = "BuchungenDataGrid"
         Me.BuchungenDataGrid.SelectedItem = Nothing
-        Me.BuchungenDataGrid.SelectionMode = System.Windows.Controls.DataGridSelectionMode.[Single]
+        Me.BuchungenDataGrid.SelectionMode = System.Windows.Controls.DataGridSelectionMode.Extended
         Me.BuchungenDataGrid.Size = New System.Drawing.Size(912, 485)
         Me.BuchungenDataGrid.TabIndex = 0
         '

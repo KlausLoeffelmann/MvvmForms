@@ -1,5 +1,6 @@
 ﻿
 Public Class ItemsDeletedEventArgs
+    Inherits EventArgs
     ''' <summary>
     ''' Die vom DataGrid geleoschten Items
     ''' </summary>
