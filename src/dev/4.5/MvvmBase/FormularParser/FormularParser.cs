@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace ActiveDevelop.MvvmLib.FormularParser
+namespace ActiveDevelop.MvvmBaseLib.FormularParser
 {
     /// <summary>
     /// Stellt Funktionalitäten zur Verfügung, mit denen sich aus einem beliebigen mathematischen Ausdruck, 

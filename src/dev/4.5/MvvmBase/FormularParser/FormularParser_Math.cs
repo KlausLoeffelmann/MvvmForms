@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ActiveDevelop.MvvmLib.FormularParser
+namespace ActiveDevelop.MvvmBaseLib.FormularParser
 {
     public partial class FormulaEvaluator
     {

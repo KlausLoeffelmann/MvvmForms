@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ActiveDevelop.MvvmLib.FormularParser
+namespace ActiveDevelop.MvvmBaseLib.FormularParser
 {
     /// <summary>
     /// Speichert die Parameter für eine Funktion, die von der Klasse zur Berechnung beliebige mathematischer 
