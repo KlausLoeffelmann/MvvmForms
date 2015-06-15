@@ -63,6 +63,7 @@
     <Compile Include="Attributes\MvvmViewModelAttribute.cs" />
     <Compile Include="Attributes\MvvmViewModelIncludeAttribute.cs" />
     <Compile Include="BaseClasses\BindableBase.cs" />
+    <Compile Include="BaseClasses\WeakDelegate.cs" />
     <Compile Include="FormularParser\AuxilliaryClasses.cs" />
     <Compile Include="FormularParser\FormularParser.cs" />
     <Compile Include="FormularParser\FormularParser_Math.cs" />
