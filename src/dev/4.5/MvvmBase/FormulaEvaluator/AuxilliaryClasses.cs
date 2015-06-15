@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace ActiveDevelop.MvvmBaseLib.FormularParser
+namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
 {
     /// <summary>
     /// Auflistung, in der alle Operatoren gleicher Priorität gesammelt werden, damit 

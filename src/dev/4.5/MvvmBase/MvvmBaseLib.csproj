@@ -64,10 +64,10 @@
     <Compile Include="Attributes\MvvmViewModelIncludeAttribute.cs" />
     <Compile Include="BaseClasses\BindableBase.cs" />
     <Compile Include="BaseClasses\WeakDelegate.cs" />
-    <Compile Include="FormularParser\AuxilliaryClasses.cs" />
-    <Compile Include="FormularParser\FormularParser.cs" />
-    <Compile Include="FormularParser\FormularParser_Math.cs" />
-    <Compile Include="FormularParser\Function.cs" />
+    <Compile Include="FormulaEvaluator\AuxilliaryClasses.cs" />
+    <Compile Include="FormulaEvaluator\FormulaEvaluator.cs" />
+    <Compile Include="FormulaEvaluator\FormulaEvaluator_Math.cs" />
+    <Compile Include="FormulaEvaluator\Function.cs" />
     <Compile Include="IoCPlatformDependend\IMvvmViewModelNotifyBindingProcess.cs" />
     <Compile Include="MvvmBaseClasses\ChangeTracking.cs" />
     <Compile Include="MvvmBaseClasses\CollectionView.cs" />

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 
-namespace ActiveDevelop.MvvmBaseLib.FormularParser
+namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
 {
     /// <summary>
     /// Stellt Funktionalitäten zur Verfügung, mit denen sich aus einem beliebigen mathematischen Ausdruck, 
@@ -11,7 +12,7 @@ namespace ActiveDevelop.MvvmBaseLib.FormularParser
     /// <remarks></remarks>
     public partial class FormulaEvaluator
     {
-        private string myFormular;
+        private string myMathExpression;
         private List<FormulaEvaluatorFunction> myFunctions;
         private PrioritizedOperators myPriorizedOperators;
         private static List<FormulaEvaluatorFunction> myPredefinedFunctions;
@@ -53,14 +54,14 @@ namespace ActiveDevelop.MvvmBaseLib.FormularParser
         /// <summary>
         /// Erstellt eine neue Instanz dieser Klasse.
         /// </summary>
-        /// <param name="Formular">Die auszuwertende Formel, die als Zeichenkette vorliegen muss.</param>
+        /// <param name="mathExpression">Die auszuwertende Formel, die als Zeichenkette vorliegen muss.</param>
         /// <remarks></remarks>
-        public FormulaEvaluator(string Formular)
+        public FormulaEvaluator(string mathExpression)
         {
 
             //Vordefinierte Funktionen übertragen
             myFunctions = myPredefinedFunctions;
-            myFormular = Formular;
+            myMathExpression = mathExpression;
             OnAddFunctions();
 
         }
@@ -76,7 +77,7 @@ namespace ActiveDevelop.MvvmBaseLib.FormularParser
         private void Calculate()
         {
 
-            string locFormular = myFormular;
+            string locFormular = myMathExpression;
             string locOpStr = "";
 
             //Operatorenliste anlegen
@@ -339,21 +340,21 @@ namespace ActiveDevelop.MvvmBaseLib.FormularParser
         }
 
         /// <summary>
-        /// Bestimmt oder ermittelt die zu berechnende Formel.
+        /// Bestimmt oder ermittelt den zu berechnenden mathematischen Ausdruck.
         /// </summary>
         /// <value></value>
         /// <returns></returns>
         /// <remarks></remarks>
-        public string Formular
+        public string MathExpression
         {
             get
             {
-                return myFormular;
+                return myMathExpression;
             }
             set
             {
                 IsCalculated = false;
-                myFormular = value;
+                myMathExpression = value;
             }
         }
 
@@ -415,6 +416,23 @@ namespace ActiveDevelop.MvvmBaseLib.FormularParser
                 IsCalculated = false;
                 myFunctions = value;
             }
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            if (!String.IsNullOrWhiteSpace(this.MathExpression))
+            {
+                sb.Append(MathExpression);
+                sb.Append(": ");
+                sb.Append(Result.ToString());
+            }
+            else
+            {
+                sb.Append("--- No valid Expression ---");
+            }
+
+            return sb.ToString();
         }
     }
 }
