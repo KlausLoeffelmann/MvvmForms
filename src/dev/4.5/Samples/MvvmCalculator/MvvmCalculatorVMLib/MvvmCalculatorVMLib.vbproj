@@ -98,6 +98,9 @@
   <ItemGroup>
     <Content Include="MvvmFormsBaseInfo.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\..\Test\packages\MvvmFormsVBAnalyzer.0.9.1-Beta\lib\MvvmFormsAnalyzer.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

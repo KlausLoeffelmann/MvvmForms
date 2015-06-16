@@ -26,7 +26,7 @@ Partial Class MvvmTestFormView
         Dim MvvmDataGrid1_TEstccc As ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn = New ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn()
         Dim MvvmDataGrid1_asdasdasd As ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn = New ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn()
         Me.MvvmDataGrid1 = New ActiveDevelop.EntitiesFormsLib.MvvmDataGrid()
-        MvvmDataGrid1_IsPropertyChangingSuspendedColumn.DataSourceType = GetType(ActiveDevelop.MvvmBaseLib.Mvvm.BindableBase)
+        MvvmDataGrid1_IsPropertyChangingSuspendedColumn.DataSourceType = GetType(ActiveDevelop.MvvmBaseLib.BindableBase)
         MvvmDataGrid1_IsPropertyChangingSuspendedColumn.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
         'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
         'Parameter name: e'.
@@ -43,7 +43,7 @@ Partial Class MvvmTestFormView
         MvvmDataGrid1_IsPropertyChangingSuspendedColumn.ColumnHeaderPadding = New System.Windows.Forms.Padding(0)
         MvvmDataGrid1_IsPropertyChangingSuspendedColumn.Name = "IsPropertyChangingSuspendedColumn"
         MvvmDataGrid1_IsPropertyChangingSuspendedColumn.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.CheckBox
-        MvvmDataGrid1_TEstccc.DataSourceType = GetType(ActiveDevelop.MvvmBaseLib.Mvvm.BindableBase)
+        MvvmDataGrid1_TEstccc.DataSourceType = GetType(ActiveDevelop.MvvmBaseLib.BindableBase)
         MvvmDataGrid1_TEstccc.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
         'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
         'Parameter name: e'.
@@ -60,7 +60,7 @@ Partial Class MvvmTestFormView
         MvvmDataGrid1_TEstccc.ColumnHeaderPadding = New System.Windows.Forms.Padding(0)
         MvvmDataGrid1_TEstccc.Name = "TEstccc"
         MvvmDataGrid1_TEstccc.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
-        MvvmDataGrid1_asdasdasd.DataSourceType = GetType(ActiveDevelop.MvvmBaseLib.Mvvm.BindableBase)
+        MvvmDataGrid1_asdasdasd.DataSourceType = GetType(ActiveDevelop.MvvmBaseLib.BindableBase)
         MvvmDataGrid1_asdasdasd.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
         'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
         'Parameter name: e'.
@@ -85,13 +85,13 @@ Partial Class MvvmTestFormView
         Me.MvvmDataGrid1.AutoGenerateColumns = False
         Me.MvvmDataGrid1.CanUserAddRows = False
         Me.MvvmDataGrid1.CanUserDeleteRows = False
-        MvvmDataGrid1_IsPropertyChangingSuspendedColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("IsPropertyChangingSuspended", GetType(ActiveDevelop.MvvmBaseLib.Mvvm.BindableBase)))
+        MvvmDataGrid1_IsPropertyChangingSuspendedColumn.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("IsPropertyChangingSuspended", GetType(ActiveDevelop.MvvmBaseLib.BindableBase)))
         Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_IsPropertyChangingSuspendedColumn)
         Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_TEstccc)
-        MvvmDataGrid1_asdasdasd.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("IsPropertyChangeNotificationSuspended", GetType(ActiveDevelop.MvvmBaseLib.Mvvm.BindableBase)))
+        MvvmDataGrid1_asdasdasd.PropertyCellBindings.Add(New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Content", GetType(ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("IsPropertyChangeNotificationSuspended", GetType(ActiveDevelop.MvvmBaseLib.BindableBase)))
         Me.MvvmDataGrid1.Columns.Add(MvvmDataGrid1_asdasdasd)
         Me.MvvmDataGrid1.CustomColumnTemplateType = Nothing
-        Me.MvvmDataGrid1.DataSourceType = GetType(ActiveDevelop.MvvmBaseLib.Mvvm.BindableBase)
+        Me.MvvmDataGrid1.DataSourceType = GetType(ActiveDevelop.MvvmBaseLib.BindableBase)
         Me.MvvmDataGrid1.EnterAction = Nothing
         Me.MvvmDataGrid1.GridLinesVisibility = System.Windows.Controls.DataGridGridLinesVisibility.All
         Me.MvvmDataGrid1.HeadersVisibility = CType((System.Windows.Controls.DataGridHeadersVisibility.Column Or System.Windows.Controls.DataGridHeadersVisibility.Row), System.Windows.Controls.DataGridHeadersVisibility)

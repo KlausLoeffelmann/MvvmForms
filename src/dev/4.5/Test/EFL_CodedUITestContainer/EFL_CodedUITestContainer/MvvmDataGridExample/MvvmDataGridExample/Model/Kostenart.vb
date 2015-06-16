@@ -1,4 +1,4 @@
-﻿Imports ActiveDevelop.MvvmBaseLib.Mvvm
+﻿Imports ActiveDevelop.MvvmBaseLib
 
 Public Class Kostenart
     Inherits BindableBase

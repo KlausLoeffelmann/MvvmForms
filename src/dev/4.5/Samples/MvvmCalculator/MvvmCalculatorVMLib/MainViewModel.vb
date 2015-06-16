@@ -9,7 +9,9 @@ Public Class MainViewModel
     Private myResult As String
     Private myCalcCommand As RelayCommand
     Private myFormulaEval As FormulaEvaluator
-    Private myFormulas As ObservableCollection(Of FormulaEvaluator)
+    Private myFormulas As New ObservableCollection(Of FormulaEvaluator)
+    Private myErrorText As String
+    Private mySelectedFormula As FormulaEvaluator
 
     ''' <summary>
     ''' Initializes a new instance of this ViewModel.
@@ -36,7 +38,7 @@ Public Class MainViewModel
     ''' Represents the math term as it is currently in the editable field.
     ''' </summary>
     ''' <returns></returns>
-    Public Property EnteredFormular As String
+    Public Property EnteredFormula As String
         Get
             Return myFormular
         End Get
@@ -51,6 +53,17 @@ Public Class MainViewModel
         End Get
         Set(value As ObservableCollection(Of FormulaEvaluator))
             SetProperty(myFormulas, value)
+        End Set
+    End Property
+
+    Public Property SelectedFormula As FormulaEvaluator
+        Get
+            Return mySelectedFormula
+        End Get
+        Set(value As FormulaEvaluator)
+            If SetProperty(mySelectedFormula, value) Then
+                EnteredFormula = value.MathExpression
+            End If
         End Set
     End Property
 
@@ -84,17 +97,29 @@ Public Class MainViewModel
         End Set
     End Property
 
+    Public Property ErrorText As String
+        Get
+            Return myErrorText
+        End Get
+        Set(value As String)
+            If SetProperty(myErrorText, value) Then
+                Result = ErrorText
+            End If
+        End Set
+    End Property
+
     ''' <summary>
     ''' Method, which is executed, when the related command is invoked.
     ''' </summary>
     ''' <param name="param"></param>
     Private Sub CalcCommandProc(param As Object)
-        myFormulaEval = New FormulaEvaluator(EnteredFormular)
+        myFormulaEval = New FormulaEvaluator(EnteredFormula)
         Try
             Result = myFormulaEval.Result.ToString
+            ErrorText = Nothing
             Me.Formulas.Add(myFormulaEval)
         Catch ex As Exception
-            'Todo: Error Handling
+            ErrorText = ex.Message
         End Try
     End Sub
 
