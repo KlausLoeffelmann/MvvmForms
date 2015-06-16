@@ -14,10 +14,11 @@ Please contact mvvmforms@activedevelop.de for further information.
 <
  ==================================
  CHANGELOG
- NEW IN 2.0.20 - 2015-05-21
+ NEW IN 2.0.24 - 2015-06-15
  ==================================
  
  * Adjusted Namespaces for the Mvvm, the standard and the FormularParser classes.
+   (2.0.23 was a failed upload).
 
  ==================================
  CHANGELOG

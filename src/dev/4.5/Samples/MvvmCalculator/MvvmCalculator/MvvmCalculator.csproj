@@ -33,12 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ActiveDevelop.EntitiesFormsLib, Version=2.0.23.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmForms.2.0.23-Beta\lib\ActiveDevelop.EntitiesFormsLib.dll</HintPath>
+    <Reference Include="ActiveDevelop.EntitiesFormsLib, Version=2.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmForms.2.0.24-Beta\lib\ActiveDevelop.EntitiesFormsLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MvvmBaseLib, Version=2.0.23.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmFormsBase.2.0.23-Beta\lib\MvvmBaseLib.dll</HintPath>
+    <Reference Include="MvvmBaseLib, Version=2.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmFormsBase.2.0.24-Beta2\lib\MvvmBaseLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -80,6 +80,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="MvvmFormsReadMe.md" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,14 +95,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MvvmFormsBaseInfo.txt" />
-    <Content Include="MvvmFormsChangeLog.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MvvmCalculatorVMLib\MvvmCalculatorVMLib.vbproj">
       <Project>{28c81964-a4d9-45e1-99fd-d9e6b47dbd52}</Project>
       <Name>MvvmCalculatorVMLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MvvmFormsBaseInfo.txt" />
+    <Content Include="MvvmFormsChangeLog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

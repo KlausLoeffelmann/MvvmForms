@@ -1,11 +1,12 @@
 <
 ==================================
  CHANGELOG
- NEW IN 2.0.23 - 2015-06-13
+ NEW IN 2.0.24 - 2015-06-15
  ==================================
  
  * Adjusted Library to reflect changes in Namespaces for the Mvvm, the standard and the 
    FormularParser classes in MvvmFormsBase.
+   (2.0.23 was a failed upload).
    
  ==================================
  CHANGELOG
