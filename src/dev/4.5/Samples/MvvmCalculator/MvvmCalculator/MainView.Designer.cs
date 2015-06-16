@@ -34,7 +34,6 @@
             this.historyListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.resultLabel = new System.Windows.Forms.Label();
-            this.formularLabel = new System.Windows.Forms.Label();
             this.calcCommandButton = new ActiveDevelop.EntitiesFormsLib.CommandButton();
             this.mvvmManager1 = new ActiveDevelop.EntitiesFormsLib.MvvmManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mvvmManager1)).BeginInit();
@@ -57,11 +56,13 @@
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mvvmManager1.SetEventBindings(this.textBox1, null);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(12, 219);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(439, 68);
+            this.textBox1.Size = new System.Drawing.Size(439, 75);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // historyListBox
@@ -70,10 +71,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mvvmManager1.SetEventBindings(this.historyListBox, null);
+            this.historyListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.historyListBox.FormattingEnabled = true;
+            this.historyListBox.ItemHeight = 20;
             this.historyListBox.Location = new System.Drawing.Point(15, 24);
             this.historyListBox.Name = "historyListBox";
-            this.historyListBox.Size = new System.Drawing.Size(436, 95);
+            this.historyListBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.historyListBox.ScrollAlwaysVisible = true;
+            this.historyListBox.Size = new System.Drawing.Size(436, 84);
             this.historyListBox.TabIndex = 2;
             // 
             // label1
@@ -92,23 +97,12 @@
             this.resultLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mvvmManager1.SetEventBindings(this.resultLabel, null);
             this.resultLabel.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultLabel.Location = new System.Drawing.Point(292, 152);
+            this.resultLabel.Location = new System.Drawing.Point(15, 133);
             this.resultLabel.Name = "resultLabel";
-            this.resultLabel.Size = new System.Drawing.Size(159, 37);
+            this.resultLabel.Size = new System.Drawing.Size(436, 59);
             this.resultLabel.TabIndex = 5;
             this.resultLabel.Text = "resultLabel";
             this.resultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // formularLabel
-            // 
-            this.formularLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mvvmManager1.SetEventBindings(this.formularLabel, null);
-            this.formularLabel.Location = new System.Drawing.Point(15, 152);
-            this.formularLabel.Name = "formularLabel";
-            this.formularLabel.Size = new System.Drawing.Size(262, 36);
-            this.formularLabel.TabIndex = 6;
-            this.formularLabel.Text = "formularLabel";
             // 
             // calcCommandButton
             // 
@@ -136,8 +130,8 @@
             this.mvvmManager1.HostingUserControl = null;
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.textBox1, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("EnteredFormula", typeof(string)));
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.historyListBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("DataSource", typeof(object)), typeof(ActiveDevelop.EntitiesFormsLib.ObservableCollectionToBindingListConverter), null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("Formulas", typeof(System.Collections.ObjectModel.ObservableCollection<ActiveDevelop.MvvmBaseLib.FormulaEvaluator.FormulaEvaluator>)));
+            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.historyListBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("SelectedIndex", typeof(int)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("SelectedFormulaIndex", typeof(int)));
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.resultLabel, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("Result", typeof(string)));
-            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.formularLabel, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("CurrentFormular", typeof(string)));
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.calcCommandButton, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Command", typeof(System.Windows.Input.ICommand)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("CalcCommand", typeof(ActiveDevelop.MvvmBaseLib.Mvvm.RelayCommand)));
             // 
             // MainView
@@ -146,7 +140,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 364);
             this.Controls.Add(this.calcCommandButton);
-            this.Controls.Add(this.formularLabel);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.historyListBox);
@@ -169,7 +162,6 @@
         private System.Windows.Forms.ListBox historyListBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label resultLabel;
-        private System.Windows.Forms.Label formularLabel;
         private ActiveDevelop.EntitiesFormsLib.MvvmManager mvvmManager1;
         private ActiveDevelop.EntitiesFormsLib.CommandButton calcCommandButton;
     }

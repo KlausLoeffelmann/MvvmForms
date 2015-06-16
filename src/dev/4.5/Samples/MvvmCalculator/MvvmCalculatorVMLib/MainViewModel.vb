@@ -12,6 +12,7 @@ Public Class MainViewModel
     Private myFormulas As New ObservableCollection(Of FormulaEvaluator)
     Private myErrorText As String
     Private mySelectedFormula As FormulaEvaluator
+    Private mySelectedFormulaIndex As Integer = -1
 
     ''' <summary>
     ''' Initializes a new instance of this ViewModel.
@@ -56,7 +57,21 @@ Public Class MainViewModel
         End Set
     End Property
 
-    <MvvmViewModelInclude>
+    Public Property SelectedFormulaIndex As Integer
+        Get
+            Return mySelectedFormulaIndex
+        End Get
+        Set(value As Integer)
+            If SetProperty(mySelectedFormulaIndex, value) Then
+                If value = -1 Then
+                    SelectedFormula = Nothing
+                Else
+                    SelectedFormula = Formulas(value)
+                End If
+            End If
+        End Set
+    End Property
+
     Public Property SelectedFormula As FormulaEvaluator
         Get
             Return mySelectedFormula
