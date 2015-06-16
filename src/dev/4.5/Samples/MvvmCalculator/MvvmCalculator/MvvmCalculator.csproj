@@ -33,13 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ActiveDevelop.EntitiesFormsLib, Version=2.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ActiveDevelop.EntitiesFormsLib, Version=2.0.25.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MvvmForms.2.0.24-Beta\lib\ActiveDevelop.EntitiesFormsLib.dll</HintPath>
+      <HintPath>..\packages\MvvmForms.2.0.25-Beta\lib\ActiveDevelop.EntitiesFormsLib.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmBaseLib, Version=2.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MvvmBaseLib, Version=2.0.25.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MvvmFormsBase.2.0.24-Beta2\lib\MvvmBaseLib.dll</HintPath>
+      <HintPath>..\packages\MvvmFormsBase.2.0.25-Beta\lib\MvvmBaseLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1-beta3\lib\net45\Newtonsoft.Json.dll</HintPath>

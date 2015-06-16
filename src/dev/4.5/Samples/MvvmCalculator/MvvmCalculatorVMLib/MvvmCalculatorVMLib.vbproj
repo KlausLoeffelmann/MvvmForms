@@ -82,9 +82,8 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MvvmBaseLib, Version=2.0.24.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmFormsBase.2.0.24-Beta2\lib\MvvmBaseLib.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MvvmBaseLib">
+      <HintPath>..\packages\MvvmFormsBase.2.0.25-Beta\lib\MvvmBaseLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1-beta3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
@@ -96,10 +95,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MvvmFormsBaseInfo.txt" />
+    <Analyzer Include="..\..\..\Test\packages\MvvmFormsVBAnalyzer.0.9.1-Beta\lib\MvvmFormsAnalyzer.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\..\Test\packages\MvvmFormsVBAnalyzer.0.9.1-Beta\lib\MvvmFormsAnalyzer.dll" />
+    <Content Include="MvvmFormsBaseInfo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

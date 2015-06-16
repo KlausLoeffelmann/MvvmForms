@@ -14,6 +14,13 @@ Please contact mvvmforms@activedevelop.de for further information.
 <
  ==================================
  CHANGELOG
+ NEW IN 2.0.25 - 2015-06-16
+ ==================================
+
+* Corrected reference to incorrect NuGet-Versions of JSon.Net (Downgraded project reference back to last stable 6.0.8).
+
+ ==================================
+ CHANGELOG
  NEW IN 2.0.24 - 2015-06-15
  ==================================
  

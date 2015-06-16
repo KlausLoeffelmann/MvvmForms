@@ -1,16 +1,18 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
+
 /// <summary>
-/// Bestimmt beim Setzen über einer komplexe Eigenschaft, dass die entsprechende Eigenschaft zur Auswahl im ViewModel berücksichtigt werden soll.
+/// Defines for a complex property (not a value type, not a primitve type), 
+/// which does NOT include INotifyPropertyChanged (or BindableBase, MvvmBase), to be 
+/// included in the ViewModel's potential bindable property list in the Binding Designer.
 /// </summary>
-/// <remarks>Standardmäßig werden innerhalb eines ViewModels nur Eigenschaften als bindbare Datenquellen berücksichtigt, denen 
-/// entweder primitive Datentypen zugrunde liegen, oder die selbst einem Datentypen entsprechend, der seinerseits mit dem 
-/// MvvmViewModelAttribute gekennzeichnet ist. In einigen Fällen ist es einfacher, eine komplexe Eigenschaft direkt mit in ein 
-/// ViewModel aufzunehmen. In diesem Fall wird die entsprechende Eigenschaft mit diesem Attribut gekennzeichnet.</remarks>
-[AttributeUsage(AttributeTargets.Property), Obsolete("Dieses Attribut ist obsolet, da nunmehr alle komplexen Eigenschaften eines ViewModels berücksichtigt werden.")]
+/// <remarks>By default, only properties with types which implement INotifyPropertyChanged are displayed in a 
+/// ViewModel's list for potential binding, when editing the PropertyBinding collection of the View's control 
+/// at design time. This is a precaution, especially for types which create bindable property paths. If one of 
+/// properties in a property path does NOT implement INotifyPropertyChanged, the binding engine would not know 
+/// when the property chain becomes broken by assigning Nothing (null in Csharp) to such a property. 
+/// The outer part would still be bound, but it would probably not be accessible anymore via the ViewModel. 
+/// That's why we have to opt in to such a complex property for having it a candidate for binding.</remarks>
+[AttributeUsage(AttributeTargets.Property)]
 public class MvvmViewModelIncludeAttribute : Attribute
 {
 

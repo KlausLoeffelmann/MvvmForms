@@ -56,6 +56,7 @@ Public Class MainViewModel
         End Set
     End Property
 
+    <MvvmViewModelInclude>
     Public Property SelectedFormula As FormulaEvaluator
         Get
             Return mySelectedFormula
