@@ -112,6 +112,10 @@
   </Choose>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="MvvmFormsAnalyzer, Version=1.0.5639.27768, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmFormsVBAnalyzer.0.9.1-Beta\lib\MvvmFormsAnalyzer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -225,6 +229,9 @@
       <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
       <Name>MvvmBaseLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MvvmFormsAnalyzerInfo.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
