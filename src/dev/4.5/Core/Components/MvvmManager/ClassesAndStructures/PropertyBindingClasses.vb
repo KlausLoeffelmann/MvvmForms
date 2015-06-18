@@ -162,13 +162,13 @@ Public Class PropertyBindingItem
                 retString &= "<-- " & BindingSetting.BindingMode.ToString & "--> "
 
             Case MvvmBindingModes.OneWay
-                retString &= "--> " & BindingSetting.BindingMode.ToString & "--> "
-
-            Case MvvmBindingModes.OneWayToSource
                 retString &= "<-- " & BindingSetting.BindingMode.ToString & "<-- "
 
+            Case MvvmBindingModes.OneWayToSource
+                retString &= "--> " & BindingSetting.BindingMode.ToString & "--> "
+
             Case MvvmBindingModes.OneTime
-                retString &= "--> " & BindingSetting.BindingMode.ToString & "!-- "
+                retString &= "!-- " & BindingSetting.BindingMode.ToString & "<-- "
 
             Case Else
                 retString &= "--- " & BindingSetting.BindingMode.ToString & "---"

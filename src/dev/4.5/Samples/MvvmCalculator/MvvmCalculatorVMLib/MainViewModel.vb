@@ -13,6 +13,7 @@ Public Class MainViewModel
     Private myErrorText As String
     Private mySelectedFormula As FormulaEvaluator
     Private mySelectedFormulaIndex As Integer = -1
+    Private myHasInput As Boolean
 
     ''' <summary>
     ''' Initializes a new instance of this ViewModel.
@@ -121,6 +122,15 @@ Public Class MainViewModel
             If SetProperty(myErrorText, value) Then
                 Result = ErrorText
             End If
+        End Set
+    End Property
+
+    Public Property HasInput As Boolean
+        Get
+            Return myHasInput
+        End Get
+        Set(value As Boolean)
+            SetProperty(myHasInput, value)
         End Set
     End Property
 

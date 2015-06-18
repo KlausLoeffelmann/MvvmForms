@@ -8,21 +8,19 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="80"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="History" HorizontalAlignment="Left" Margin="5,5,10,5" Grid.RowSpan="2"/>
-        <ListBox Grid.Row="0" x:Name="listBox" Margin="5,30,5,5" />
-        <TextBlock x:Name="textBox" Grid.Row="1" 
+        <RelativePanel>
+            <Rectangle Width="200" Height="Auto" RelativePanel.LeftOf="historyListBox"  x:Name="testRect" Fill="Azure"/>
+            <TextBlock RelativePanel.Above="historyListBox" x:Name="historyTextBlock" Text="History" Margin="5,5,10,5"/>
+            <ListBox RelativePanel.AlignRightWithPanel="True" x:Name="historyListBox" Grid.Row="0" Width="400" Height="200"/>
+            <TextBlock RelativePanel.Below="historyListBox" RelativePanel.AlignRightWithPanel="True" 
+                 x:Name="resultTextBlock" Height="50"
                  TextWrapping="Wrap" 
                  Text="TextBox" 
                  FontFamily="Consolas" 
                  FontSize="24" 
                  TextAlignment="Right" 
                  VerticalAlignment="Center"/>
-
+            <TextBox RelativePanel.Below="resultTextBlock" x:Name="formularTextBox" Grid.Row="2" TextWrapping="Wrap" Text="TextBox"/>
+        </RelativePanel>
     </Grid>
 </Page>

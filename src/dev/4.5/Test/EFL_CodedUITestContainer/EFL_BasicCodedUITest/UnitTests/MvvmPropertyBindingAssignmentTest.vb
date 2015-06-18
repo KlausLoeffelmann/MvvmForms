@@ -142,6 +142,113 @@ Public Class MvvmPropertyBindingAssignmentTest
     End Sub
 
     <TestMethod()>
+    Sub BindingManager_DirectionTest_OneWay()
+        Dim testDateValue = #7/24/1969#
+
+        Dim sourceObject = New TestViewModel
+        Dim testControl = New TestBindingControl
+        Dim bindingItems = New BindingItems()
+
+        'Test: Binding OneWay. That is ViewModel to Control.
+        Dim simpleTestBindingItem = New PropertyBindingItem With
+                                            {.BindingSetting = New BindingSetting(MvvmBindingModes.OneWay,
+                                                                                UpdateSourceTriggerSettings.LostFocus),
+                                             .ControlProperty = New BindingProperty("Value", GetType(Date?)),
+                                             .Converter = Nothing,
+                                             .ViewModelProperty = New BindingProperty("SomeDateNullableValue", GetType(Date?))}
+
+        Dim complexTestBindingItem = New PropertyBindingItem With
+                                    {.BindingSetting = New BindingSetting(MvvmBindingModes.OneWay,
+                                                                        UpdateSourceTriggerSettings.LostFocus),
+                                     .ControlProperty = New BindingProperty("SimpleStringValue", GetType(String)),
+                                     .Converter = Nothing,
+                                     .ViewModelProperty = New BindingProperty("SomeSubViewModel.SomeStringValue", GetType(String))}
+
+        bindingItems.Add(New BindingItem() With {.Control = testControl,
+                                                    .MvvmItem = New MvvmBindingItem With {
+                                                        .ConverterAssembly = Nothing,
+                                                        .PropertyBindings = New PropertyBindings From {
+                                                                    simpleTestBindingItem,
+                                                                    complexTestBindingItem}}})
+
+        Dim bm As New BindingManager(sourceObject, bindingItems, Nothing)
+
+        'This change of SomeDateValue in the ViewModel should lead to...
+        sourceObject.SomeDateNullableValue = #1969-07-24#
+
+        '...the value SimpleDateValue being changed in the control.
+        Assert.AreEqual(testControl.SimpleDateValue, sourceObject.SomeDateValue)
+
+        'The same with a more complex object and a 2-level Property Path (viewmodel.SomeSubViewModel.SomeStringValue)
+        Dim subViewModel As New TestSubViewModel With {.SomeDoubleValue = 100,
+                                                       .SomeStringValue = "Initial Value."}
+
+        sourceObject.SomeSubViewModel = subViewModel
+        Assert.AreEqual("Initial Value.", testControl.SimpleStringValue)
+
+        sourceObject.SomeSubViewModel.SomeStringValue = "Klaus"
+        Assert.AreEqual("Klaus", testControl.SimpleStringValue)
+
+        'The other direction MUST NOT work!
+        testControl.SimpleStringValue = "Adriana"
+        'So this must still be Klaus, and NOT Adriana. 
+        Assert.AreEqual("Klaus", sourceObject.SomeSubViewModel.SomeStringValue)
+
+    End Sub
+
+    <TestMethod()>
+    Sub BindingManager_DirectionTest_OneWayToSource()
+        Dim testDateValue = #7/24/1969#
+
+        Dim sourceObject = New TestViewModel
+        Dim testControl = New TestBindingControl
+        Dim bindingItems = New BindingItems()
+
+        'Test: Binding OneWay. That is ViewModel to Control.
+        Dim simpleTestBindingItem = New PropertyBindingItem With
+                                            {.BindingSetting = New BindingSetting(MvvmBindingModes.OneWayToSource,
+                                                                                UpdateSourceTriggerSettings.LostFocus),
+                                             .ControlProperty = New BindingProperty("Value", GetType(Date?)),
+                                             .Converter = Nothing,
+                                             .ViewModelProperty = New BindingProperty("SomeDateNullableValue", GetType(Date?))}
+
+        Dim complexTestBindingItem = New PropertyBindingItem With
+                                    {.BindingSetting = New BindingSetting(MvvmBindingModes.OneWayToSource,
+                                                                        UpdateSourceTriggerSettings.LostFocus),
+                                     .ControlProperty = New BindingProperty("SimpleStringValue", GetType(String)),
+                                     .Converter = Nothing,
+                                     .ViewModelProperty = New BindingProperty("SomeSubViewModel.SomeStringValue", GetType(String))}
+
+        bindingItems.Add(New BindingItem() With {.Control = testControl,
+                                                    .MvvmItem = New MvvmBindingItem With {
+                                                    .ConverterAssembly = Nothing,
+                                                    .PropertyBindings = New PropertyBindings From {
+                                                                simpleTestBindingItem,
+                                                                complexTestBindingItem}}})
+
+        Dim bm As New BindingManager(sourceObject, bindingItems, Nothing)
+
+        'This change of SomeDateValue in the ViewModel should lead to...
+        testControl.SimpleDateValue = #1969-07-24#
+
+        '...the value SimpleDateValue being changed in the control.
+        Assert.AreEqual(sourceObject.SomeDateNullableValue, sourceObject.SomeDateValue)
+
+        'The same with a more complex object and a 2-level Property Path (viewmodel.SomeSubViewModel.SomeStringValue)
+        Dim subViewModel As New TestSubViewModel With {.SomeDoubleValue = 100,
+                                                       .SomeStringValue = "Initial Value."}
+
+        'The other direction MUST NOT work!
+        sourceObject.SomeSubViewModel = subViewModel
+        Assert.AreNotEqual("Initial Value.", testControl.SimpleStringValue)
+
+        'This does.
+        testControl.SimpleStringValue = "Klaus"
+        Assert.AreEqual("Klaus", sourceObject.SomeSubViewModel.SomeStringValue)
+    End Sub
+
+
+    <TestMethod()>
     Sub BindingManager_AmbigiousPropertyNameTest()
 
         Dim tmpBindingItems = New BindingItems()

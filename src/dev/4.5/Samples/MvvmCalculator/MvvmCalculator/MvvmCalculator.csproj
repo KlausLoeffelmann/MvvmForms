@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter\StringNotEmptyToBooleanConverter.cs" />
     <Compile Include="Converter\StringNotEmptyToColorConverter.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
