@@ -295,6 +295,13 @@ Public Class MvvmManager
     ''' </remarks>
     Public Event ViewmodelPropertyChanged(sender As Object, e As PropertyChangedEventArgs)
 
+    ''' <summary>
+    ''' Raised, when the LoggingMode changed, which is controllable over the instance's LoggingMode property.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Public Event LoggingModeChanged(sender As Object, e As EventArgs)
+
     Private myBindingManager As BindingManager
     Private myDirtyStateManagerComponent As DirtyStateManager
 
@@ -302,6 +309,7 @@ Public Class MvvmManager
     Private myPropertyStore As New MvvmBindingItems
     Private myViewToViewmodelAssignment As ViewToViewmodelAssignments
     Private myIsDirty As Boolean
+    Private myLoggingMode As LoggingModes = LoggingModes.EtwAndOutputWindow ' Backingfield for LoggingMode Property
 
     ''' <summary>
     ''' Erstellt eine neue Instanz dieser Komponente. Verwenden Sie die Toolbox im Designer, um eine Komponente dem Formular oder UserControl hinzuzufügen.
@@ -458,6 +466,7 @@ Public Class MvvmManager
         End Try
     End Sub
 
+#If CompileToGerman Then
     ''' <summary>
     ''' Bestimmt oder ermittelt das ViewModel für die Binding an die View. Diese Eigenschaft sollte zur Laufzeit gesetzt werden, und erst nachdem 
     ''' die DataContextType-Eigenschaft zur Entwurfszeit gesetzt wurde und die Zuweisungen ViewModel/View über die PropertyBinding- und 
@@ -466,6 +475,15 @@ Public Class MvvmManager
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
+#Else
+    ''' <summary>
+    ''' Gets or sets the ViewModel for binding to the view (form, usercontrol). This property is supposed to be set 
+    ''' at runtime, and only if the binding assignments have been made is InitializeComponent.
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+#End If
     <Browsable(False)>
     Public Property DataContext As Object
         Get
@@ -564,6 +582,38 @@ Public Class MvvmManager
 
         End Set
     End Property
+
+#If CompileToGerman Then
+    ''' <summary>
+    ''' Bestimmt oder ermittelt, wie das Logging des Bindings und das Zuweisen der Werte durch Binding zur Laufzeit erfolgen soll.
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+#Else
+    ''' <summary>
+    ''' Gets or sets who the logging of the binding and the assigning of the values through bindung should be done at runtime.
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+#End If
+    <DefaultValue(LoggingModes.EtwAndOutputWindow),
+     Description("Gets or sets who the logging of the binding and the assigning of the values through bindung should be done at runtime.")>
+    Public Property LoggingMode As LoggingModes
+        Get
+            Return myLoggingMode
+        End Get
+        Set(value As LoggingModes)
+            If Object.Equals(value, myLoggingMode) Then
+                OnLoggingModeChanged(EventArgs.Empty)
+            End If
+        End Set
+    End Property
+
+    Protected Overridable Sub OnLoggingModeChanged(e As EventArgs)
+        RaiseEvent LoggingModeChanged(Me, e)
+    End Sub
 
     ''' <summary>
     ''' Aktualisiert das ViewModel auf Basis des aktuellen Zustands der View.
@@ -753,7 +803,7 @@ Public Class MvvmManager
     'End Function
 
     ''' <summary>
-    ''' Für zukünftige Erweiterungen.
+    ''' For futre extensions.
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
@@ -762,7 +812,7 @@ Public Class MvvmManager
     Public Property CurrentContextGuid As Guid
 
     ''' <summary>
-    ''' Infrastrukturfunktion. Verwenden Sie stattdessen bitte die DataContext-Eigenschaft.
+    ''' Infrastructure, please do NOT use directly. Use DataContext instead.
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
@@ -813,14 +863,14 @@ Public Class MvvmManager
 
     Private Sub myBindingManager_ValueAssigning(sender As Object, e As ValueAssigningEventArgs)
         If Me.DirtyStateManagerComponent IsNot Nothing Then
-            Debug.Print("TRACE CALL: myBindingManager_ValueAssigning. DS_Manager-State:" & DirtyStateManagerComponent.ObservingEnabled &
+            MvvmFormsEtw.Log.Trace("bindingManager_ValueAssigning. DS_Manager-State:" & DirtyStateManagerComponent.ObservingEnabled &
                         " Sender: " & sender.ToString)
             If e.Target = Targets.Control Then
                 myOldDirtyStateManagerComponentObservingEnabled.Value = DirtyStateManagerComponent.ObservingEnabled
                 Me.DirtyStateManagerComponent.ObservingEnabled = False
             End If
         Else
-            Debug.Print("TRACE CALL: myBindingManager_ValueAssigning. DS_Manager-State: null.")
+            MvvmFormsEtw.Log.Trace("bindingManager_ValueAssigning. DS_Manager-State: null.")
         End If
         OnValueAssigning(e)
     End Sub
@@ -836,13 +886,13 @@ Public Class MvvmManager
 
     Private Sub myBindingManager_ValueAssigned(sender As Object, e As ValueAssignedEventArgs)
         If Me.DirtyStateManagerComponent IsNot Nothing Then
-            Debug.Print("TRACE CALL: myBindingManager_ValueAssigned. DS_Manager-State:" & DirtyStateManagerComponent.ObservingEnabled &
+            MvvmFormsEtw.Log.Trace("bindingManager_ValueAssigned. DS_Manager-State:" & DirtyStateManagerComponent.ObservingEnabled &
                         " Sender: " & sender.ToString)
             If e.Target = Targets.Control Then
                 DirtyStateManagerComponent.ObservingEnabled = myOldDirtyStateManagerComponentObservingEnabled.Value
             End If
         Else
-            Debug.Print("TRACE CALL: myBindingManager_ValueAssigned. DS_Manager-State: null.")
+            MvvmFormsEtw.Log.Trace("bindingManager_ValueAssigned. DS_Manager-State: null.")
         End If
         OnValueAssigned(e)
     End Sub
@@ -931,3 +981,11 @@ Public Interface IMvvmManager
     ''' <remarks></remarks>
     Property DataContextType As Type
 End Interface
+
+<Flags>
+Public Enum LoggingModes
+    None = 0
+    Etw = 1
+    OutputWindow = 2
+    EtwAndOutputWindow = 3
+End Enum

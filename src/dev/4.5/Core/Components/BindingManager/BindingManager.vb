@@ -94,8 +94,7 @@ Public Class BindingManager
                     Dim traceInfo = "Unbinding Leave (LostFocus) Event for Property " & propBindingItem.ControlProperty.PropertyName &
                                             " as " & propBindingItem.ControlProperty.PropertyType.Name & " for control " & controlToBind.Name &
                                             " (" & controlToBind.GetType.Name & ")."
-
-
+                    MvvmFormsEtw.Log.BindingSetup(traceInfo)
                     mySourceObjects.Remove(controlToBind, eventName)
                     mySourceObjects.Remove(controlToBind, "Leave")
                 Else
@@ -104,6 +103,7 @@ Public Class BindingManager
                     Dim traceInfo = "Unbinding ChangedEvent for Property " & propBindingItem.ControlProperty.PropertyName &
                                            " as " & propBindingItem.ControlProperty.PropertyType.Name & " for control " & controlToBind.Name &
                                            " (" & controlToBind.GetType.Name & ")."
+                    MvvmFormsEtw.Log.BindingSetup(traceInfo)
                     mySourceObjects.Remove(controlToBind, eventName)
                 End If
             Next
@@ -146,7 +146,7 @@ Public Class BindingManager
                     Dim traceInfo = "Start binding Leave (LostFocus) Event for Property " & propBindingItem.ControlProperty.PropertyName &
                                             " as " & propBindingItem.ControlProperty.PropertyType.Name & " for control " & controlToBind.Name &
                                             " (" & controlToBind.GetType.Name & ")."
-
+                    MvvmFormsEtw.Log.BindingSetup(traceInfo)
 
                     If mySourceObjects.Add(controlToBind, New ObjectEvent With {.EventName = eventName,
                                                     .EventTarget = New PropertyChangedEventHandler(AddressOf propBindingItem.ControlPropertyChangedEventHandler),
@@ -164,6 +164,7 @@ Public Class BindingManager
                     Dim traceInfo = "Start binding Changed Event for Property " & propBindingItem.ControlProperty.PropertyName &
                                            " as " & propBindingItem.ControlProperty.PropertyType.Name & " for control " & controlToBind.Name &
                                            " (" & controlToBind.GetType.Name & ")."
+                    MvvmFormsEtw.Log.BindingSetup(traceInfo)
                     If mySourceObjects.Add(controlToBind, New ObjectEvent With {.EventName = eventName,
                                                     .EventTarget = New PropertyChangedEventHandler(AddressOf propBindingItem.ControlPropertyChangedEventHandler),
                                                     .TraceInfo = traceInfo}) Then
@@ -294,15 +295,24 @@ Public Class BindingManager
 
         If temp.Item2 Is Nothing Then
             'Hier gab es kein Ergebnis, dann brechen wir ab.
-            TraceEx.TraceInformation("FAILED: Aquiring Value for property " & bindingInfo.ViewModelProperty.PropertyName & " caused a NullReference-Exception.")
+            Dim traceinfo = "Aquiring Value for property " & bindingInfo.ViewModelProperty.PropertyName & " caused a NullReference-Exception."
+            Dim ex = HandleBindingException(traceinfo, sender)
+            If Not ex.Handled Then
+                Throw ex
+            End If
+
             Return
         End If
 
         If temp IsNot Nothing AndAlso (temp.Item1 Is Nothing And temp.Item2 Is Nothing) Then
-            Dim ex = HandleBindingException("Binding exception: " &
-                                            "The property path '" & bindingInfo.ViewModelProperty.PropertyName &
-                                            "' to the viewmodel of type is not valid.", sender)
-            Throw ex
+            Dim traceInfo = "Binding exception: " &
+                            "The property path '" & bindingInfo.ViewModelProperty.PropertyName &
+                            "' to the viewmodel of type is not valid."
+            Dim ex = HandleBindingException(traceInfo, sender)
+            If Not ex.Handled Then
+                Throw ex
+            End If
+
             Return
         End If
 
@@ -335,6 +345,7 @@ Public Class BindingManager
         Try
             If usedConverter IsNot Nothing Then
                 Dim valuetoconvert = sourcePropertyInfo.GetValue(sourceObject, Nothing)
+                MvvmFormsEtw.Log.ViewModelBindingInfo("Got value for property " & sourcePropertyInfo.Name & "; using " & usedConverter.GetType.Name & ".")
                 If valuetoconvert IsNot Nothing Then
                     sourceValue = usedConverter.ConvertBack(valuetoconvert,
                                                         targetPropertyInfo.PropertyType, bindingInfo.ConverterParameter,
@@ -344,10 +355,12 @@ Public Class BindingManager
                 End If
             Else
                 sourceValue = sourcePropertyInfo.GetValue(sourceObject, Nothing)
+                MvvmFormsEtw.Log.ViewModelBindingInfo("Got value for property " & sourcePropertyInfo.Name & " without using a converter.")
             End If
 
         Catch innerEx As Exception
-            Dim ex = HandleBindingException("Binding exception: Couldn't retreive value from source object.", sender,
+            Dim traceInfo = "Binding exception: Couldn't retreive value from source object."
+            Dim ex = HandleBindingException(traceInfo, sender,
                                             innerEx, sourcePropertyInfo, sourceObject)
             If Not ex.Handled Then
                 Throw ex
@@ -371,6 +384,7 @@ Public Class BindingManager
 
             If targetObject IsNot Nothing Then
                 targetPropertyInfo.SetValue(targetObject, sourceValue, Nothing)
+                MvvmFormsEtw.Log.ViewModelBindingInfo("Assigned value for property " & targetPropertyInfo.Name & ".")
             End If
 
             If sender IsNot Nothing Then
@@ -378,9 +392,10 @@ Public Class BindingManager
             End If
 
         Catch innerEx As Exception
-            Dim ex = HandleBindingException("Binding exception: Couldn't set value (" &
+            Dim traceInfo = "Binding exception: Couldn't set value (" &
                                             If(sourceValue Is Nothing, "NULL", sourceValue.ToString & " of " &
-                                               sourceValue.GetType.Name & ") in target object."), sender,
+                                               sourceValue.GetType.Name & ") in target object.")
+            Dim ex = HandleBindingException(traceInfo, sender,
                                             innerEx, targetPropertyInfo, targetObject)
             If Not ex.Handled Then
                 Throw ex
@@ -456,9 +471,10 @@ Public Class BindingManager
                 Try
                     propertyShortName = propertyShortName.Substring(dotPos + 1)
                 Catch exep As Exception
-                    Dim ex = HandleBindingException("Binding exception: " &
+                    Dim traceInfo = "Binding exception: " &
                                                     "The property path '" & bindingInfo.ViewModelProperty.PropertyName &
-                                                    "' to the viewmodel of type is not valid.", sender)
+                                                    "' to the viewmodel of type is not valid."
+                    Dim ex = HandleBindingException(traceInfo, sender)
                     If Not ex.Handled Then
                         Throw ex
                     End If
@@ -504,6 +520,7 @@ Public Class BindingManager
                         valueToConvert = Nothing
                     Else
                         valueToConvert = targetPropertyInfo.GetValue(targetObject, Nothing)
+                        MvvmFormsEtw.Log.ControlBindingInfo("Got value for property " & targetPropertyInfo.Name & "; using converter " & usedConverter.GetType.ToString & ".")
                     End If
 
                     If valueToConvert IsNot Nothing Then
@@ -519,11 +536,13 @@ Public Class BindingManager
                         targetValue = Nothing
                     Else
                         targetValue = targetPropertyInfo.GetValue(targetObject, Nothing)
+                        MvvmFormsEtw.Log.ControlBindingInfo("Got value for property " & targetPropertyInfo.Name & " without using a converter.")
                     End If
                 End If
 
             Catch innerEx As Exception
-                Dim ex = HandleBindingException("Binding exception: Couldn't retreive value from target object.", sender,
+                Dim traceInfo = "Binding exception: Couldn't retreive value from target object."
+                Dim ex = HandleBindingException(traceInfo, sender,
                                                 innerEx, targetPropertyInfo, targetObject)
                 If Not ex.Handled Then
                     Throw ex
@@ -549,8 +568,10 @@ Public Class BindingManager
             bindingInfo.UpdatingControlInProgress = True
             If targetPropertyInfo Is Nothing Then
                 sourcePropertyInfo.SetValue(sourceObject, Nothing, Nothing)
+                MvvmFormsEtw.Log.ControlBindingInfo("Assigning Nothing (null/default in CSharp) for property " & sourcePropertyInfo.Name & ".")
             Else
                 sourcePropertyInfo.SetValue(sourceObject, targetValue, Nothing)
+                MvvmFormsEtw.Log.ControlBindingInfo("Assigning value for property " & sourcePropertyInfo.Name & ".")
             End If
             bindingInfo.UpdatingControlInProgress = False
 
@@ -559,10 +580,13 @@ Public Class BindingManager
             End If
 
         Catch innerEx As Exception
-            Dim ex = HandleBindingException("Binding exception: Couldn't set value (" &
-                                            If(targetValue Is Nothing, "NULL", targetValue.ToString & " of " &
-                                               targetValue.GetType.Name & ") in source object for property " & sourcePropertyInfo.Name & "."),
-                                            sender, innerEx, targetPropertyInfo, targetObject)
+            Dim traceInfo = "Binding exception: Couldn't set value (" &
+                            If(targetValue Is Nothing, "NULL", targetValue.ToString & " of " &
+                               targetValue.GetType.Name & ") in source object for property " &
+                               sourcePropertyInfo.Name & ".")
+
+            Dim ex = HandleBindingException(traceInfo, sender, innerEx,
+                                            targetPropertyInfo, targetObject)
             If Not ex.Handled Then
                 Throw ex
             End If
@@ -603,9 +627,10 @@ Public Class BindingManager
                 Try
                     propertyShortName = propertyShortName.Substring(dotPos + 1)
                 Catch exep As Exception
-                    Dim ex = HandleBindingException("Binding exception: " &
-                                                    "The property path '" & bindingInfo.ViewModelProperty.PropertyName &
-                                                    "' to the viewmodel of type is not valid.", sender)
+                    Dim traceInfo = "Binding exception: " &
+                                    "The property path '" & bindingInfo.ViewModelProperty.PropertyName &
+                                    "' to the viewmodel of type is not valid."
+                    Dim ex = HandleBindingException(traceInfo, sender)
                     If Not ex.Handled Then
                         Throw ex
                     End If
@@ -666,7 +691,7 @@ Public Class BindingManager
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub UpdateControlsFromViewModel()
-        Debug.Print("CALLED: UpdateControlsFromViewModel.")
+        MvvmFormsEtw.Log.Trace("CALLED: UpdateControlsFromViewModel")
         For Each item In Me.BindingItems
             For Each bindingItem In item.MvvmItem.PropertyBindings
                 UpdateSourcePropertyInternal(item.Control, Me.ViewModel, bindingItem,
@@ -681,7 +706,7 @@ Public Class BindingManager
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub GetInitialErrorInfo()
-        Debug.Print("CALLED: UpdateControlsFromViewModel.")
+        MvvmFormsEtw.Log.Trace("CALLED: GetInitialErrorInfo")
         For Each item In Me.BindingItems
             For Each bindingItem In item.MvvmItem.PropertyBindings
                 HandleFullPathDataErrorsChangedInternal(item.Control, Me.ViewModel, bindingItem,
@@ -695,7 +720,7 @@ Public Class BindingManager
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub UpdateControlsWithNothing()
-        Debug.Print("CALLED: UpdateControlsWithNothing.")
+        MvvmFormsEtw.Log.Trace("CALLED: UpdateControlsWithNothing")
 
         'Fehler in der View zurücksetzen, falls INotifyDataError-Unterstützung eingeschaltet wurde.
         Dim clearErrors As Boolean = Me.MvvmManager IsNot Nothing
@@ -715,21 +740,16 @@ Public Class BindingManager
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub UpdateViewModelFromControls()
-        Debug.Print("CALLED: UpdateViewModelFromControls.")
+        MvvmFormsEtw.Log.Trace("CALLED: UpdateViewModelFromControls")
         For Each item In Me.BindingItems
             For Each bindingItem In item.MvvmItem.PropertyBindings
-#If DEBUG Then
-                If item.Control.Name = "ntbName2" Then
-                    Debug.Print(item.Control.ToString)
-                End If
-#End If
                 UpdateTargetPropertyInternal(item.Control, Me.ViewModel, bindingItem, sender:=Me)
             Next
         Next
     End Sub
 
     Public Sub GetAllErrorsFromViewmodel()
-        Debug.Print("CALLED: GetAllErrorsFromViewModel")
+        MvvmFormsEtw.Log.Trace("CALLED: GetAllErrorsFromViewModel")
         For Each item In Me.BindingItems
             For Each bindingItem In item.MvvmItem.PropertyBindings
                 If bindingItem.BindingSetting.BindingMode.HasFlag(MvvmBindingModes.ValidatesOnNotifyDataErrors) Then
@@ -782,9 +802,7 @@ Public Class BindingManager
 
         Dim ex As New MvvmBindingException(fullText, innerException)
 
-        If TraceExceptionOnUnassignableBindingProperties Then
-            Trace.TraceWarning(fullText)
-        End If
+        MvvmFormsEtw.Log.Failure("BINDING FAILURE: " & fullText)
 
         If (Not ThrowExceptionOnUnassignableBindingProperties) AndAlso (Not RaiseEventOnUnassignableBindingProperties) Then
             ex.Handled = True

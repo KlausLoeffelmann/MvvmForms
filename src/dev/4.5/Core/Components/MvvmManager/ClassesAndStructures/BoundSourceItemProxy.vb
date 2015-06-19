@@ -125,13 +125,6 @@ Public Class BoundSourceItemProxyBase
         Me.disposedValue = True
     End Sub
 
-    ' TODO: override Finalize() only if Dispose(ByVal disposing As Boolean) above has code to free unmanaged resources.
-    'Protected Overrides Sub Finalize()
-    '    ' Do not change this code.  Put cleanup code in Dispose(ByVal disposing As Boolean) above.
-    '    Dispose(False)
-    '    MyBase.Finalize()
-    'End Sub
-
     ' This code added by Visual Basic to correctly implement the disposable pattern.
     Public Sub Dispose() Implements IDisposable.Dispose
         ' Do not change this code.  Put cleanup code in Dispose(disposing As Boolean) above.
@@ -177,7 +170,7 @@ Public Class PropertyPathBoundSourceItemProxy
 
     Public Sub New(viewModelSource As INotifyPropertyChanged, bindingItem As PropertyBindingItem, targetControl As Control, parentBindingManager As BindingManager)
         If parentBindingManager Is Nothing Then
-            Throw New NullReferenceException("Der übergebendene BindingManager darf nicht null (nothing in VB) sein.")
+            Throw New NullReferenceException("Der übergebendene BindingManager darf nicht null (Nothing in VB) sein.")
         End If
 
         Me.SourceObject = viewModelSource
@@ -337,6 +330,7 @@ Public Class PropertyPathBoundSourceItemProxy
                 Dim traceInfo = "Start binding PropertyChanged Event for Property " & currentPropertyPath &
                                         " as " & BindingItem.ControlProperty.PropertyType.Name & " for ViewModel " &
                                         value.GetType.Name
+                MvvmFormsEtw.Log.BindingSetup(traceInfo)
 
                 parentList.Add(New PropertyBoundSourceItemProxy(DirectCast(viewModelTargetObject, INotifyPropertyChanged), targetControl, BindingItem))
             End If
@@ -542,6 +536,7 @@ Public Class PropertyBindingManager
                 'auf dem Weg (Pfad) zur Eigenschaft geändert hat.
                 Dim traceInfo = "Start binding PropertyPathChanged Event for Property " & currentPropertyPath &
                                         " for ViewModel " & viewModelTargetObject.GetType.Name
+                MvvmFormsEtw.Log.BindingSetup(traceInfo)
 
                 Dim remainingPath = ""
                 For innerCount = count To partObjects.GetLength(0) - 1
@@ -558,6 +553,7 @@ Public Class PropertyBindingManager
                 Dim traceInfo = "Start binding PropertyChanged Event for Property " & currentPropertyPath &
                                         " as " & bindingItem.ControlProperty.PropertyType.Name & " for ViewModel " &
                                         value.GetType.Name
+                MvvmFormsEtw.Log.BindingSetup(traceInfo)
 
                 Me.Add(New PropertyBoundSourceItemProxy(DirectCast(viewModelTargetObject, INotifyPropertyChanged),
                                                         myControl, bindingItem))

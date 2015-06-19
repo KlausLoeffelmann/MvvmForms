@@ -426,6 +426,7 @@
     <Compile Include="Controls\TooltipEx\TooltipExContentBase.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ETW\MvvmFormsEtw.vb" />
     <Compile Include="EventArgsClasses\AfterFormValidatedEventArgs.vb" />
     <Compile Include="EventArgsClasses\ValidationFailedEventArgs.vb" />
     <Compile Include="Controls\BaseAndHelperControls\INullableValuePrimalControl.vb" />
