@@ -94,6 +94,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\StringNotEmptyToBooleanConverter.cs" />
+    <Compile Include="Converter\StringNotEmptyToBrushConverter.cs" />
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -108,6 +110,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MvvmFormsBaseInfo.txt" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
@@ -138,8 +141,13 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.PersistenceChannel.0.14.3-build00177\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.PersistenceChannel.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MvvmFormsAnalyzer">
-      <HintPath>..\..\..\Test\packages\MvvmFormsVBAnalyzer.0.9.1-Beta\lib\MvvmFormsAnalyzer.dll</HintPath>
+    <Reference Include="MvvmBaseLib, Version=2.0.25.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmFormsBase.2.0.25-Beta\lib\MvvmBaseLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\netcore45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Numerics.Vectors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.0.0\lib\win8\System.Numerics.Vectors.dll</HintPath>
@@ -149,6 +157,12 @@
       <HintPath>..\packages\System.Numerics.Vectors.4.0.0\lib\win8\System.Numerics.Vectors.WindowsRuntime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MvvmCalculatorVMLib\MvvmCalculatorVMLib.vbproj">
+      <Project>{28c81964-a4d9-45e1-99fd-d9e6b47dbd52}</Project>
+      <Name>MvvmCalculatorVMLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

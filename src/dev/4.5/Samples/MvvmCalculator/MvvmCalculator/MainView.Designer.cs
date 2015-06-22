@@ -45,9 +45,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.mvvmManager1.SetEventBindings(this.label2, null);
-            this.label2.Location = new System.Drawing.Point(12, 203);
+            this.label2.Location = new System.Drawing.Point(18, 312);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(153, 13);
+            this.label2.Size = new System.Drawing.Size(229, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "Formular (e.g. 123.23+5^sin(2))";
             // 
@@ -57,10 +58,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mvvmManager1.SetEventBindings(this.textBox1, null);
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(12, 219);
+            this.textBox1.Location = new System.Drawing.Point(18, 337);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(439, 75);
+            this.textBox1.Size = new System.Drawing.Size(656, 113);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -73,21 +75,23 @@
             this.mvvmManager1.SetEventBindings(this.historyListBox, null);
             this.historyListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.historyListBox.FormattingEnabled = true;
-            this.historyListBox.ItemHeight = 20;
-            this.historyListBox.Location = new System.Drawing.Point(15, 24);
+            this.historyListBox.ItemHeight = 29;
+            this.historyListBox.Location = new System.Drawing.Point(22, 37);
+            this.historyListBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.historyListBox.Name = "historyListBox";
             this.historyListBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.historyListBox.ScrollAlwaysVisible = true;
-            this.historyListBox.Size = new System.Drawing.Size(436, 84);
+            this.historyListBox.Size = new System.Drawing.Size(652, 120);
             this.historyListBox.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.mvvmManager1.SetEventBindings(this.label1, null);
-            this.label1.Location = new System.Drawing.Point(12, 8);
+            this.label1.Location = new System.Drawing.Point(18, 12);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.Size = new System.Drawing.Size(62, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "History:";
             // 
@@ -97,9 +101,10 @@
             this.resultLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mvvmManager1.SetEventBindings(this.resultLabel, null);
             this.resultLabel.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultLabel.Location = new System.Drawing.Point(15, 133);
+            this.resultLabel.Location = new System.Drawing.Point(22, 205);
+            this.resultLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.resultLabel.Name = "resultLabel";
-            this.resultLabel.Size = new System.Drawing.Size(436, 59);
+            this.resultLabel.Size = new System.Drawing.Size(653, 90);
             this.resultLabel.TabIndex = 5;
             this.resultLabel.Text = "resultLabel";
             this.resultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -109,9 +114,10 @@
             this.calcCommandButton.Command = null;
             this.calcCommandButton.CommandParameter = null;
             this.mvvmManager1.SetEventBindings(this.calcCommandButton, null);
-            this.calcCommandButton.Location = new System.Drawing.Point(352, 315);
+            this.calcCommandButton.Location = new System.Drawing.Point(528, 485);
+            this.calcCommandButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.calcCommandButton.Name = "calcCommandButton";
-            this.calcCommandButton.Size = new System.Drawing.Size(99, 37);
+            this.calcCommandButton.Size = new System.Drawing.Size(148, 57);
             this.calcCommandButton.TabIndex = 7;
             this.calcCommandButton.Text = "Calc";
             this.calcCommandButton.UseVisualStyleBackColor = true;
@@ -138,9 +144,9 @@
             // 
             // MainView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 364);
+            this.ClientSize = new System.Drawing.Size(694, 560);
             this.Controls.Add(this.calcCommandButton);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.label1);
@@ -148,6 +154,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.mvvmManager1.SetEventBindings(this, null);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainView";
             this.Text = "MvvmCalc";
             this.Load += new System.EventHandler(this.Form1_Load);

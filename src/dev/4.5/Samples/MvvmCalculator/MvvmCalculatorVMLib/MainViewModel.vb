@@ -142,6 +142,7 @@ Public Class MainViewModel
         myFormulaEval = New FormulaEvaluator(EnteredFormula)
         Try
             Result = myFormulaEval.Result.ToString
+            'This is an error!
             ErrorText = Nothing
             Me.Formulas.Add(myFormulaEval)
         Catch ex As Exception
