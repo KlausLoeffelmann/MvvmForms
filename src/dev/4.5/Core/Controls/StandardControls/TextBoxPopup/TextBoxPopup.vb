@@ -117,10 +117,6 @@ Public Class TextBoxPopup
              .PopupContentControl = tmpPopupContent
             }
 
-        '#If DEBUG Then
-        '        Debug.Print(Me.ControlTypeAndNameString & " :PopupContent Instance created!")
-        '#End If
-
         System.Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
                 myPopupControl, "SizeChanged", AddressOf PopupSizedChangedHandler)
 
@@ -243,9 +239,6 @@ Public Class TextBoxPopup
     End Sub
 
     Private Sub OpenPopupInternally()
-        '#If DEBUG Then
-        '        Debug.Print(Me.ControlTypeAndNameString & ": OpenPopupInternally")
-        '#End If
         If myPopupControl Is Nothing Then
             CreatePopupControlOnDemand()
             OnPopupCreated()
@@ -264,9 +257,6 @@ Public Class TextBoxPopup
     End Sub
 
     Public Sub OpenPopup()
-        '#If DEBUG Then
-        '        Debug.Print(Me.ControlTypeAndNameString & ": OpenPopup")
-        '#End If
         If Not IsPopupOpen Then
             OnBeginOpenPopup(EventArgs.Empty)
         End If
@@ -347,10 +337,6 @@ Public Class TextBoxPopup
 
         If e.KeyData = Keys.Down Then
             If Not IsPopupOpen Then
-                '#If DEBUG Then
-                '                Debug.Print(Me.ControlTypeAndNameString & " : OnKeyDown")
-                '#End If
-
                 OpenPopup()
                 If IsPopupOpen Then
                     e.Handled = True

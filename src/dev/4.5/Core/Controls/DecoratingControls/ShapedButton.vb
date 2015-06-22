@@ -89,12 +89,10 @@ Public Class ShapedButton
 
     Protected Overrides Sub OnMouseEnter(e As System.EventArgs)
         MyBase.OnMouseEnter(e)
-        Debug.Print("MouseEnter")
     End Sub
 
     Protected Overrides Sub OnMouseLeave(e As System.EventArgs)
         MyBase.OnMouseLeave(e)
-        Debug.Print("MouseLeave")
     End Sub
 
     Property ButtonShaddowDepth As Integer = 1

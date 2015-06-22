@@ -1,8 +1,13 @@
 ﻿Imports System.Diagnostics.Tracing
+Imports System.Threading.Tasks
+Imports Microsoft.Diagnostics.Tracing
+Imports Microsoft.Diagnostics.Tracing.Session
 
-<EventSource(Name:="MvvmFormsCore")>
+<EventSource(Name:=MvvmFormsEtw.MVVMFORMS_CORE_EVENTSOURCE_NAME)>
 Public Class MvvmFormsEtw
     Inherits EventSource
+
+    Public Const MVVMFORMS_CORE_EVENTSOURCE_NAME = "MvvmFormsCore"
 
     Sub New()
         MyBase.New
@@ -97,18 +102,55 @@ Public Class MvvmFormsEtw
         End If
     End Sub
 
+    Private Sub HandleOutputWindowLogging(ID As Integer, message As String)
+        Dim temp = DateTime.Now.ToString("dd. HH:mm:ss.fff ") & ": " & message
+
+        If ID = 9 And Not OutputWindowLoggingSetting.HasFlag(LoggingSettings.ControlTracing) Then
+            Return
+        End If
+
+        If (ID = 8 Or ID = 7) And Not OutputWindowLoggingSetting.HasFlag(LoggingSettings.ControlChangeStateInfo) Then
+            Return
+        End If
+
+        If (ID = 6) And Not OutputWindowLoggingSetting.HasFlag(LoggingSettings.BindingSetupInfo) Then
+            Return
+        End If
+
+        If (ID = 5 Or ID = 4) And Not OutputWindowLoggingSetting.HasFlag(LoggingSettings.RuntimeBindingInfo) Then
+            Return
+        End If
+
+        If (ID = 3) And Not OutputWindowLoggingSetting.HasFlag(LoggingSettings.Information) Then
+            Return
+        End If
+
+        If (ID = 2) And Not OutputWindowLoggingSetting.HasFlag(LoggingSettings.Verbose) Then
+            Return
+        End If
+
+        If (ID = 1) And Not OutputWindowLoggingSetting.HasFlag(LoggingSettings.Diagnostic) Then
+            Return
+        End If
+
+        Debug.WriteLine(DateTime.Now.ToString("dd. HH:mm:ss.fff ") & ": " & message)
+
+    End Sub
+
     Public Shared Log As New MvvmFormsEtw
+
+    Public Property OutputWindowLoggingSetting As LoggingSettings = LoggingSettings.Default
 
     Public Property LoggingMode As LoggingModes
         Get
             Return myLoggingMode
         End Get
         Set(value As LoggingModes)
-            If Object.Equals(value, myLoggingMode) Then
+            If Not Object.Equals(value, myLoggingMode) Then
                 myLoggingAction = Sub(ID, message)
                                   End Sub
 
-                If value = LoggingModes.ETW Then
+                If value = LoggingModes.Etw Then
                     myLoggingAction =
                         Sub(ID, message)
                             WriteEvent(ID, message)
@@ -118,18 +160,16 @@ Public Class MvvmFormsEtw
                 If value = LoggingModes.OutputWindow Then
                     myLoggingAction =
                         Sub(ID, message)
-                            If Not myOutputWindowLoggingSuspended Then
-                                Console.WriteLine(DateTime.Now.ToString("dd. HH:mm:ss.fff " & ": " & message))
-                            End If
+                            HandleOutputWindowLogging(ID, message)
                         End Sub
                 End If
 
-                If value = LoggingModes.OutputWindow + LoggingModes.ETW Then
+                If value = LoggingModes.OutputWindow + LoggingModes.Etw Then
                     myLoggingAction =
                         Sub(ID, message)
                             If Not myOutputWindowLoggingSuspended Then
+                                HandleOutputWindowLogging(ID, message)
                                 WriteEvent(ID, message)
-                                Console.WriteLine(DateTime.Now.ToString("dd. HH:mm:ss.fff " & ": " & message))
                             End If
                         End Sub
                 End If

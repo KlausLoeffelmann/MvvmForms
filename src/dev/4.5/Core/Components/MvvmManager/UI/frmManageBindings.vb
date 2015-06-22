@@ -38,8 +38,6 @@ Imports System.Drawing
 
 Public Class frmManageBindings
 
-    Private enableDebugger As Boolean = True
-
     Private myDesignerHost As IDesignerHost
     Private myContainer As IContainer
     Private myMvvmManager As MvvmManager
@@ -113,34 +111,11 @@ Public Class frmManageBindings
             Debugger.Break()
         End If
 
-        'If String.IsNullOrWhiteSpace(c.Name) Then Return ' ohne Namen keine benannte Instanz -> !?!?!? keine Datenbindung !?!?!?!
-
-        'Dim isOnCurrentDesignedControl = False
-        'For Each cont As Component In container.Components
-        '    Dim contAsC = TryCast(cont, Control)
-        '    If contAsC IsNot Nothing AndAlso contAsC.Name = c.Name Then
-        '        isOnCurrentDesignedControl = True
-        '        Exit For
-        '    End If
-        'Next
-        'If Not isOnCurrentDesignedControl Then Return
-
-
-        If enableDebugger Then Debug.WriteLine("--- Control :" & c.Name & " ------")
-        'If String.IsNullOrWhiteSpace(c.Name) AndAlso Debugger.IsAttached Then
-        '    Debugger.Break()
-        'End If
         Dim imageIdx = 0
         Dim conType = c.GetType
 
-        'Dim custAttribs = (From custAttr In conType.GetCustomAttributes(True)).ToList
-        'For Each caItem In custAttribs
-        '    If enableDebugger Then Debug.WriteLine(caItem.ToString & " --------------- " & caItem.GetType.FullName)
-        'Next
-
-
         Try
-            ' das hier scheint zu funktionieren -> ob das immer ok ist -> kA
+            ' TODO: works. -> Check for further corner cases, though!
 
             Dim resNames = conType.Assembly.GetManifestResourceNames
             Dim matches = (From resItem In resNames Where resItem.StartsWith(conType.FullName))
@@ -154,7 +129,6 @@ Public Class frmManageBindings
         If imageIdx = 0 Then
             Dim custAttribs = (From custAttr In conType.GetCustomAttributes(GetType(System.Drawing.ToolboxBitmapAttribute), True)).ToList
             For Each caItem In custAttribs
-                If enableDebugger Then Debug.WriteLine(caItem.ToString & " --------------- " & caItem.GetType.FullName)
                 Dim toolboxImageAttr = TryCast(caItem, System.Drawing.ToolboxBitmapAttribute)
                 If toolboxImageAttr IsNot Nothing Then
                     Dim bmp = toolboxImageAttr.GetImage(c)

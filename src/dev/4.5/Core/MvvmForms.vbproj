@@ -41,6 +41,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -159,6 +161,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Diagnostics.Tracing.TraceEvent, Version=1.0.32.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\Test\packages\Microsoft.Diagnostics.Tracing.TraceEvent.1.0.32\lib\net40\Microsoft.Diagnostics.Tracing.TraceEvent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\Test\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -426,6 +432,7 @@
     <Compile Include="Controls\TooltipEx\TooltipExContentBase.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ETW\LoggingEnums.vb" />
     <Compile Include="ETW\MvvmFormsEtw.vb" />
     <Compile Include="EventArgsClasses\AfterFormValidatedEventArgs.vb" />
     <Compile Include="EventArgsClasses\ValidationFailedEventArgs.vb" />
@@ -673,6 +680,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="_TraceEventProgrammersGuide.docx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -706,6 +714,8 @@
     <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TraceEvent.ReadMe.txt" />
+    <Content Include="TraceEvent.ReleaseNotes.txt" />
     <EmbeddedResource Include="Assets\NullableValueBaseToolboxIcon.bmp" />
     <EmbeddedResource Include="Assets\NullableNumValue.bmp" />
     <EmbeddedResource Include="Assets\NullableValueRelationPopup.bmp" />
@@ -749,6 +759,13 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\Test\packages\Microsoft.Diagnostics.Tracing.TraceEvent.1.0.32\build\Microsoft.Diagnostics.Tracing.TraceEvent.targets" Condition="Exists('..\Test\packages\Microsoft.Diagnostics.Tracing.TraceEvent.1.0.32\build\Microsoft.Diagnostics.Tracing.TraceEvent.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\Test\packages\Microsoft.Diagnostics.Tracing.TraceEvent.1.0.32\build\Microsoft.Diagnostics.Tracing.TraceEvent.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\Test\packages\Microsoft.Diagnostics.Tracing.TraceEvent.1.0.32\build\Microsoft.Diagnostics.Tracing.TraceEvent.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

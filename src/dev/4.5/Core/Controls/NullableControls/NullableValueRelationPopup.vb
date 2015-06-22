@@ -431,10 +431,6 @@ Public Class NullableValueRelationPopup
             End If
         End If
 
-        '#If DEBUG Then
-        '        Debug.Print("Set TextBoxPart of NullableValueControl!")
-        '#End If
-
         If myTextBoxDeferrer Is Nothing Then
             myTextBoxDeferrer = New TextBoxDeferrer(Me.TextBoxPart)
         End If
@@ -497,18 +493,11 @@ Public Class NullableValueRelationPopup
     End Sub
 
     Protected Overrides Sub OnPopupOpening(ByVal e As PopupOpeningEventArgs)
-        '#If DEBUG Then
-        '        Debug.Print(Me.ControlTypeAndNameString & " : OnPopupOpening")
-        '#End If
         e.PreferredNewSize = New Size(GetPreferredWidthInternal, GetPreferredHeightInternal)
         MyBase.OnPopupOpening(e)
     End Sub
 
     Protected Overrides Sub OnPopupOpened(ByVal e As EventArgs)
-#If DEBUG Then
-        Debug.Print(Me.ControlTypeAndNameString & " : OnPopupOpened")
-#End If
-
         'HACK: Dieses Handling benötigen wir, da eine aufgeklappte Instanz des Popups "verloren" gehen kamm.
         Dim tmpValueOld = Me.BindableDataGridView.RestoreValue
         If tmpValueOld IsNot Nothing Then
@@ -924,9 +913,6 @@ Public Class NullableValueRelationPopup
 
     Private Function GetPreferredHeightInternal() As Integer
         Dim tGrid = myDataGridForm.BindableDataGridView
-        '#If DEBUG Then
-        '        Debug.Print(Me.ControlTypeAndNameString & " : GetPreferredHeightInternal")
-        '#End If
 
         If tGrid.RowCount = 0 Then
             Return Me.PopupSize.Height
@@ -1049,9 +1035,6 @@ Public Class NullableValueRelationPopup
     End Sub
 
     Protected Overrides Sub OnLostFocus(ByVal e As System.EventArgs)
-        '#If DEBUG Then
-        '        Debug.Print(Me.ControlTypeAndNameString & " :OnLostFocus")
-        '#End If
         MyBase.OnLostFocus(e)
     End Sub
 
@@ -1764,18 +1747,14 @@ Public Class NullableValueRelationPopup
         End Get
 
         Set(ByVal value As Object)
-            '#If DEBUG Then
-            '            Debug.Print(Me.ControlTypeAndNameString & " : Value_Setter" &
-            '                        If(value Is Nothing, "*---*", value.ToString) & " - IsLoading-State:" & IsLoading.ToString)
-            '#End If
             myChangedByValueSetAccessor = True
 
             Try
                 myDataGridForm.BindableDataGridView.Value = value
                 myValue = value
             Catch ex As Exception
-                Throw New UnassignableValueException("Der Wert '" & value.ToString & "' konnte konnte dem Steuerelement '" & Me.Name & "' nicht zugewiesen werden." &
-                                                  vbNewLine & "Schauen Sie in InnerException für weitere Informationen, die zum Auslösen dieser Ausnahme führten.",
+                Throw New UnassignableValueException("Value '" & value.ToString & "' could not assigned to control '" & Me.Name & "'." &
+                                                  vbNewLine & "See InnerException for further information.",
                                                   ex, Me)
             End Try
             HandleSelectedValueChanged(False)

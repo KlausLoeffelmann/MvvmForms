@@ -1526,7 +1526,6 @@ Public Class TypeListNameConverter
     Inherits StringConverter
 
     Public Overrides Function GetStandardValuesSupported(ByVal context As System.ComponentModel.ITypeDescriptorContext) As Boolean
-        Debug.Print("GetStandardValuesSupported")
         Return True
     End Function
 

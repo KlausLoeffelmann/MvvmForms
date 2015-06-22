@@ -292,7 +292,6 @@ Partial Public Class ColoredTextPanel
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub ViewScroll(ByVal sender As Object, ByVal e As ScrollEventArgs)
-        'Debug.WriteLine("ViewScroll ausgelöst durch " + DirectCast(sender, Control).Name + " old/new Vals" + e.OldValue.ToString + "/" + e.NewValue.ToString)
         myViewPanel.Refresh()
     End Sub
 
@@ -474,7 +473,6 @@ Partial Public Class ColoredTextPanel
                 y = myHScrollBar.Height
             End If
             newVScrollBarVal = curViewHeight + y - myVScrollBar.LargeChange
-            'Debug.WriteLine("doWrite - > newVScrollbarPos =" + newVScrollBarVal.ToString)
         End If
         writeEl.Recycle()
     End Sub

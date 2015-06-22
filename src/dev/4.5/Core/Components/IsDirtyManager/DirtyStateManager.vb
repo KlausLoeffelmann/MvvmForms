@@ -239,7 +239,6 @@ Public Class DirtyStateManager
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub ResetIsDirty()
-        Debug.Print("TRACED CALL: ResetIsDirty")
         If Me.IsDirty Then
             Me.myIsDirtyChangedEventArgs.CausingControl = Nothing
             Me.IsDirty = False
@@ -305,7 +304,6 @@ Public Class DirtyStateManager
             Return myObservingEnabled
         End Get
         Set(value As Boolean)
-            Debug.Print("TRACED CALL: Setter of ObservingEnabled. OldValue:" & myObservingEnabled.ToString & " NewValue:" & value.ToString & ".")
             If myObservingEnabled <> value Then
                 myObservingEnabled = value
             End If

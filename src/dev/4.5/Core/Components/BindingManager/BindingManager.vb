@@ -143,7 +143,7 @@ Public Class BindingManager
                 Dim eventName = propBindingItem.ControlProperty.PropertyName & "Changed"
 
                 If propBindingItem.BindingSetting.UpdateSourceTrigger = UpdateSourceTriggerSettings.LostFocus Then
-                    Dim traceInfo = "Start binding Leave (LostFocus) Event for Property " & propBindingItem.ControlProperty.PropertyName &
+                    Dim traceInfo = "Binding Leave (LostFocus) Event for Property " & propBindingItem.ControlProperty.PropertyName &
                                             " as " & propBindingItem.ControlProperty.PropertyType.Name & " for control " & controlToBind.Name &
                                             " (" & controlToBind.GetType.Name & ")."
                     MvvmFormsEtw.Log.BindingSetup(traceInfo)
@@ -161,7 +161,7 @@ Public Class BindingManager
                 Else
 
                     'An dieser Stelle müssen wir versuchen, die Changing-Ereignisse zu binden:
-                    Dim traceInfo = "Start binding Changed Event for Property " & propBindingItem.ControlProperty.PropertyName &
+                    Dim traceInfo = "Binding Changed Event for Property " & propBindingItem.ControlProperty.PropertyName &
                                            " as " & propBindingItem.ControlProperty.PropertyType.Name & " for control " & controlToBind.Name &
                                            " (" & controlToBind.GetType.Name & ")."
                     MvvmFormsEtw.Log.BindingSetup(traceInfo)

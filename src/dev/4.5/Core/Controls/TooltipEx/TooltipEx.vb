@@ -123,10 +123,6 @@ Public Class TooltipEx
     End Sub
 
     Private Shadows Sub Show(ByVal location As Point)
-        '#If DEBUG Then
-        '        Debug.Print(Me.ControlTypeAndNameString & " : Show (private)")
-        '#End If
-
         Me.Location = location
         SetParent(Me.Handle, IntPtr.Zero)
         ShowWindow(Me.Handle, 1)

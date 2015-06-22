@@ -126,7 +126,7 @@ Public Class frmMvvmPropertyAssignment
             Try
                 nvrControlProperties.Value = selectedPropBindingItem.ControlProperty
             Catch ex As Exception
-                Debug.Print("INCONSISTENT PROPERTY MAPPING: While deserializing the property mapping from code (control property:  '" &
+                MvvmFormsEtw.Log.Failure("INCONSISTENT PROPERTY MAPPING: While deserializing the property mapping from code (control property:  '" &
                             selectedPropBindingItem.ControlProperty.PropertyName & "'), the following exception occured:" & ex.Message)
             End Try
 
@@ -135,14 +135,14 @@ Public Class frmMvvmPropertyAssignment
                 nvrConverters.Value = (From convItem In myConverters
                                       Where convItem.ConverterType Is selectedPropBindingItem.Converter).FirstOrDefault
             Catch ex As Exception
-                Debug.Print("INCONSISTENT PROPERTY MAPPING: While deserializing the property mapping from code (control property:  '" &
+                MvvmFormsEtw.Log.Failure("INCONSISTENT PROPERTY MAPPING: While deserializing the property mapping from code (control property:  '" &
                             selectedPropBindingItem.Converter.ToString & "'), the following exception occured:" & ex.Message)
             End Try
 
             Try
                 nvrViewModelProperty.Value = selectedPropBindingItem.ViewModelProperty
             Catch ex As Exception
-                Debug.Print("INCONSISTENT PROPERTY MAPPING: While deserializing the property mapping from code (viewmodel property:  '" &
+                MvvmFormsEtw.Log.Failure("INCONSISTENT PROPERTY MAPPING: While deserializing the property mapping from code (viewmodel property:  '" &
                             selectedPropBindingItem.ViewModelProperty.PropertyName & "'), the following exception occured:" & ex.Message)
             End Try
             BindingSettingPopup.BindingSetting = selectedPropBindingItem.BindingSetting

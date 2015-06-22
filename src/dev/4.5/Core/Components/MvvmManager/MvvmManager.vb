@@ -981,11 +981,3 @@ Public Interface IMvvmManager
     ''' <remarks></remarks>
     Property DataContextType As Type
 End Interface
-
-<Flags>
-Public Enum LoggingModes
-    None = 0
-    Etw = 1
-    OutputWindow = 2
-    EtwAndOutputWindow = 3
-End Enum

@@ -319,7 +319,7 @@ Public Class PropertyPathBoundSourceItemProxy
                 'An dieser Stelle müssen wir versuchen, die PropertyPathChanged-Ereignisse zu binden, also die Changed
                 'Ereignisse, die auslösen können, wenn sich nicht die eigentliche Eigenschaft sondern eine Eigenschaft
                 'auf dem Weg (Pfad) zur Eigenschaft geändert hat.
-                Dim traceInfo = "Start binding PropertyPathChanged Event for Property " & currentPropertyPath &
+                Dim traceInfo = "Binding PropertyPathChanged Event for Property " & currentPropertyPath &
                                         " for ViewModel " & viewModelTargetObject.GetType.Name
 
                 parentList.Add(New PropertyPathBoundSourceItemProxy(DirectCast(value, INotifyPropertyChanged), BindingItem, targetControl, Me.ParentBindingManager) With
@@ -327,7 +327,7 @@ Public Class PropertyPathBoundSourceItemProxy
                                                                      .PropertyPathName = partObjects(count)})
             Else
                 'An dieser Stelle müssen wir versuchen, die PropertyChanged-Ereignisse zu binden:
-                Dim traceInfo = "Start binding PropertyChanged Event for Property " & currentPropertyPath &
+                Dim traceInfo = "Binding PropertyChanged Event for Property " & currentPropertyPath &
                                         " as " & BindingItem.ControlProperty.PropertyType.Name & " for ViewModel " &
                                         value.GetType.Name
                 MvvmFormsEtw.Log.BindingSetup(traceInfo)
@@ -534,7 +534,7 @@ Public Class PropertyBindingManager
                 'An dieser Stelle müssen wir versuchen, die PropertyPathChanged-Ereignisse zu binden, also die Changed
                 'Ereignisse, die auslösen können, wenn sich nicht die eigentliche Eigenschaft sondern eine Eigenschaft
                 'auf dem Weg (Pfad) zur Eigenschaft geändert hat.
-                Dim traceInfo = "Start binding PropertyPathChanged Event for Property " & currentPropertyPath &
+                Dim traceInfo = "Binding PropertyPathChanged Event for Property " & currentPropertyPath &
                                         " for ViewModel " & viewModelTargetObject.GetType.Name
                 MvvmFormsEtw.Log.BindingSetup(traceInfo)
 
@@ -550,7 +550,7 @@ Public Class PropertyBindingManager
                                                                     .PropertyPathName = partObjects(count)})
             Else
                 'An dieser Stelle müssen wir versuchen, die PropertyChanged-Ereignisse zu binden:
-                Dim traceInfo = "Start binding PropertyChanged Event for Property " & currentPropertyPath &
+                Dim traceInfo = "Binding PropertyChanged Event for Property " & currentPropertyPath &
                                         " as " & bindingItem.ControlProperty.PropertyType.Name & " for ViewModel " &
                                         value.GetType.Name
                 MvvmFormsEtw.Log.BindingSetup(traceInfo)

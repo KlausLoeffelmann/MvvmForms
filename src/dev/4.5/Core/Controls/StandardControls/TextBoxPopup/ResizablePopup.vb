@@ -195,10 +195,6 @@ Public Class ResizablePopup
     End Sub
 
     Private Shadows Sub Show(ByVal referringControl As Control)
-        '#If DEBUG Then
-        '        Debug.Print(Me.ControlTypeAndNameString & " : Show (private)")
-        '#End If
-
         Me.Location = ResizablePopup.GetPopupLocation(referringControl, Me.Size)
         SetParent(Me.Handle, IntPtr.Zero)
         ShowWindow(Me.Handle, 1)

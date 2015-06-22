@@ -174,7 +174,6 @@ Public Class ObjectEventsAssignments
                 End If
                 eventInfo.AddEventHandler(eventProvidingObject, eventDelegate)
             End If
-            TraceEx.TraceInformation("SUCCEEDED: Binding event '" & eventName & "' for instance of type '" & eventProvidingObject.GetType.Name & "'.")
         Catch ex As Exception
             TraceEx.TraceInformation("FAILED: Binding event '" & eventName & "' for instance of type '" & eventProvidingObject.GetType.Name & "'. " & ex.Message)
             Return False
@@ -218,7 +217,6 @@ Public Class ObjectEventsAssignments
                 End If
                 eventInfo.RemoveEventHandler(eventProvidingObject, eventDelegate)
             End If
-            TraceEx.TraceInformation("SUCCEEDED: Unbinding event '" & eventName & "' for instance of type '" & eventProvidingObject.GetType.Name & "'.")
         Catch ex As Exception
             TraceEx.TraceInformation("FAILED: Unbinding event '" & eventName & "' for instance of type '" & eventProvidingObject.GetType.Name & "'. " & ex.Message)
             Return False

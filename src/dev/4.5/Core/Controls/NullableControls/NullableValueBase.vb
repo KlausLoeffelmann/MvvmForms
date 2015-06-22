@@ -421,10 +421,6 @@ SkipToEnd:
             Return
         End If
 
-        '#If DEBUG Then
-        '        'Debug.Print(Me.ControlTypeAndNameString & " : OnEnter")
-        '#End If
-
         myIsFocused = True
         'If Not Me.TextBoxPart.Focused Then
         '    Me.TextBoxPart.Focus()
