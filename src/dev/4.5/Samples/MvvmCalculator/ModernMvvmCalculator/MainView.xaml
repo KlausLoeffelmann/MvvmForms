@@ -27,13 +27,13 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="titelTextBlock" Grid.Row="0" Margin="5,5,10,5" 
+        <TextBlock x:Name="titelTextBlock" Text="MvvmCalculator" Grid.Row="0" Margin="5,5,10,5" 
 			FontSize="36" HorizontalAlignment="Center"/>
         <TextBlock x:Name="subTitelTextBlock" Grid.Row="0" 
 			Text="Demo for MvvmForms (NuGet) by ActiveDevelop" Margin="5,50,10,5" 
 			HorizontalAlignment="Center"/>
-        <TextBlock x:Name="historyTextBlock" Grid.Row="1" Text="History" Margin="5,5,10,5"/>
-        <ListBox x:Name="historyListBox" Grid.Row="1" Margin="5,30,5,5"
+        <TextBlock x:Name="historyTextBlock" Grid.Row="1" Text="History" Margin="15,10,15,10"/>
+        <ListBox x:Name="historyListBox" Grid.Row="1" Margin="15,40,15,15"
 			ItemsSource="{Binding Formulas}" 
 			comment:a="Here, we're binding the entered formulas to the ListBox' ItemSource..."
 			SelectedIndex="{Binding SelectedFormulaIndex}"
@@ -41,7 +41,7 @@
                  />
         <Border Grid.Row="2" BorderThickness="1" Background="{Binding ErrorText, 
                 Converter={StaticResource StringNotEmptyToColorConverter}}" 
-                BorderBrush="Black" Margin="10,5,10,5" Padding="5,5,5,5">
+                BorderBrush="Black" Margin="15,15,15,15" Padding="5,5,5,5">
             <TextBlock RelativePanel.AlignRightWithPanel="True" 
 				x:Name="resultTextBlock" Grid.Row="2" 
 				TextWrapping="Wrap" 
@@ -52,13 +52,13 @@
 				TextAlignment="Right" 
 				VerticalAlignment="Center"/>
         </Border>
-        <TextBlock x:Name="formulaTextBlock" Grid.Row="3" Text="Formula" Margin="10,5,10,5"/>
+        <TextBlock x:Name="formulaTextBlock" Grid.Row="3" Text="Formula" Margin="15,5,15,5"/>
         <TextBox x:Name="formularTextBox" Grid.Row="3" 
-			Margin="10,30,10,5" TextWrapping="Wrap" 
+			Margin="15,30,15,15" TextWrapping="Wrap"  
 			Text="{Binding EnteredFormula, Mode=TwoWay}"
 			comment:a="The binding to the entered formula. This is TwoWay-Binding, so we also getting the changes from the view."/>
         <Button Grid.Row="4" Content="Calc" Width="80" 
-			HorizontalAlignment="Right" Margin="0,0,10,0"
+			HorizontalAlignment="Right" Margin="0,0,15,0"
 			Command="{Binding CalcCommand}"
 			comment:b="And the binding to the command, so we can execute the calculation."/>
     </Grid>

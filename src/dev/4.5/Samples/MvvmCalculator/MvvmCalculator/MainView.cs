@@ -21,7 +21,12 @@ namespace MvvmCalculator
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void calcCommandButton_Click(object sender, EventArgs e)
+        {
+            resultLabel.Text = "This is the result, world.";
         }
     }
 }

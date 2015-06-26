@@ -28,4 +28,5 @@ namespace ModernMvvmCalculator
             this.DataContext = new MvvmCalculatorVMLib.MainViewModel();
         }
     }
+
 }
