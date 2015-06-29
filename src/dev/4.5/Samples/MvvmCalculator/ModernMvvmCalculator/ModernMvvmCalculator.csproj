@@ -105,6 +105,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="app.config" />
     <None Include="ApplicationInsights.config" />
     <None Include="ModernMvvmCalculator_TemporaryKey.pfx" />
     <None Include="packages.config" />

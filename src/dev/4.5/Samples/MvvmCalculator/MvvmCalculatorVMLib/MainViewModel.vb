@@ -130,7 +130,9 @@ Public Class MainViewModel
             Return myHasInput
         End Get
         Set(value As Boolean)
-            SetProperty(myHasInput, value)
+            If SetProperty(myHasInput, value) Then
+                CalcCommand.RaiseCanExecuteChanged()
+            End If
         End Set
     End Property
 
@@ -155,7 +157,7 @@ Public Class MainViewModel
     ''' </summary>
     ''' <returns></returns>
     Private Function CanExecuteCalcCommand() As Boolean
-        Return True
+        Return HasInput
     End Function
 
 End Class
