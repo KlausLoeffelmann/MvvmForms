@@ -62,7 +62,6 @@
             this.formulaTextBox.Size = new System.Drawing.Size(442, 75);
             this.formulaTextBox.TabIndex = 1;
             this.formulaTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.formulaTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // historyListBox
             // 
@@ -116,7 +115,6 @@
             this.calcCommandButton.TabIndex = 7;
             this.calcCommandButton.Text = "Calc";
             this.calcCommandButton.UseVisualStyleBackColor = true;
-            this.calcCommandButton.Click += new System.EventHandler(this.calcCommandButton_Click);
             // 
             // mvvmManager1
             // 
