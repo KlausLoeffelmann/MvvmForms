@@ -25,7 +25,7 @@ MvvmForms is a collection of controls for Windows Forms. Originally, it was desi
 
 Because of this history, MvvmForms actually addresses two Windows Forms requirements. The first is to simplify designing data-heavy forms by providing controls like NullableDateValue, NullableNumValue, NullableTextValue, controls for DirtyState handling in Forms and so on.
 
-The second one is to enable a Windows Forms for Mvvm. For this to end, you do not need to use one of the controls MvvmForms provide, you just need one component.: the MvvmManager component. Basically, just drag that component into your form, set its DataContextType property to the type of the ViewModel, you want to bind, and every control on that form will get a PropertyBindings property which allow your to bind against the corresponding ViewModel property. You just need to set the DataContext property of the MvvmManager Component at runtime. You'll find a short step-by-step guide for getting started, here:   www.insertguideurlhere.com
+The second one is to enable a Windows Forms for Mvvm. For this to end, you do not need to use one of the controls MvvmForms provide, you just need one component.: the MvvmManager component. Basically, just drag that component into your form, set its DataContextType property to the type of the ViewModel, you want to bind, and every control on that form will get a PropertyBindings property which allow your to bind against the corresponding ViewModel property. You just need to set the DataContext property of the MvvmManager Component at runtime. You'll find a short step-by-step guide for getting started, read the wiki - the links is here on the right side.
 
 ## How stable is MvvmForms? Have you done large LOB projects with it?
 
@@ -37,11 +37,13 @@ WRONG! A third of our current projects are in CSharp, and parts of MvvmForms (th
 
 ## So, MvvmForms is Open Source. Then, it's free, right?
 
-Yes, for open source projects. For propriety, commercial projects, it's not. But it's also not expensive. Our primary goal is to find new opportunities to help with our 25+ year expertise in designing LOB Applications, and especially to show a way withour any risk for our customers to migrate their software from being a big, monolithic Win32-Software to a modern approach, where they can go forward with cloud computing, Windows 10, Mobile Apps, and all that without redoing everything from scratch.
+Yes, for open source projects. For propriety, commercial projects, it's not. But it's also not expensive. Our primary goal is to find new opportunities to help with our 25+ year expertise in designing LOB Applications, and especially to show a way  for our customers to migrate their software from being a big, monolithic Win32-Software to a modern approach without any risk, where they can go forward with cloud computing, Windows 10, Mobile Apps, and all that without redoing everything from scratch.
 
 So, if you want us to help you with your existing Application by doing workshops, helping with designing a new architecture, finding a feasible migration concept, introducing Scrum to your team, or providing human ressources for a limited period of time for the purpose of the migration, we bring MvvmForms along. Then it's free for you, because your our customer. If you, however, do not want us, but you want the toolset, we'll come up with a pricing model soon. If you want it now, talk to us or write a mail to mvvmforms@activedevelop.de.
 
-If you're maintaining an open source project under GPL, and you want to use it. Go ahead: Fork it, change it modify it, and sell it along with your Open Source App. That's Open Source! As long your Application which links to it, or uses classes which derive from MvvmForms is also GPL, that is perfectly OK. But, if you're managing a propriety close source solution, and you want to use (link to, derive from) MvvmForms, you have to obtain one license per active developer. 
+If you're maintaining an open source project under GPL, and you want to use it. Go ahead: Fork it, change it modify it, and sell it along with your Open Source App. That's Open Source! As long your Application which links to it, or uses classes which derive from MvvmForms is also GPL, that is perfectly OK. But, if you're managing a propriety close source solution, and you want to use (link to, derive from) MvvmForms, you have to obtain one license per active developer.
+
+Oh, and as long as it is in Beta - it's free, and you got a GoLive licence!
 
 ## Can I contribute?
 
