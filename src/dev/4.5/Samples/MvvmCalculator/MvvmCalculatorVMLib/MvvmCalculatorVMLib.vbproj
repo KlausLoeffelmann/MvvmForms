@@ -83,19 +83,16 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmBaseLib">
-      <HintPath>..\packages\MvvmFormsBase.2.0.25-Beta\lib\MvvmBaseLib.dll</HintPath>
+      <HintPath>..\..\..\packages\MvvmFormsBase.2.0.25-Beta\lib\MvvmBaseLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\..\Test\packages\MvvmFormsVBAnalyzer.0.9.1-Beta\lib\MvvmFormsAnalyzer.dll" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MvvmFormsBaseInfo.txt" />

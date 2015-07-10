@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>eca55b01-5629-489b-82c2-2726e7eb2afc</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MvvmBaseLibShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Async\BindableAsyncLazy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Async\Timer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\MvvmSystemElementAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\MvvmViewAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\MvvmViewModelAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\MvvmViewModelIncludeAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseClasses\BindableBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseClasses\WeakDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FormulaEvaluator\AuxilliaryClasses.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FormulaEvaluator\FormulaEvaluator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FormulaEvaluator\FormulaEvaluator_Math.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FormulaEvaluator\Function.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IoCPlatformDependend\IMvvmViewModelNotifyBindingProcess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ChangeTracking.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\CollectionView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\CopyPropertiesException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\Extender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\IDiscoverableValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ModelPropertyAttributes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\MvvmBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\TypeDetector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ValidatableBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ValidatableValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\IPlatformDependencyService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmDialogResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmDialogType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmMessageBoxButtons.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmMessageBoxDefaultButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmMessageBoxIcon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeLib\TimeRange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeSpanOverlappingTypes.cs" />
+  </ItemGroup>
+</Project>

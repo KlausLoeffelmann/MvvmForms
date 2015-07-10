@@ -47,12 +47,8 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MvvmBaseLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmFormsBase.2.0.18\lib\MvvmBaseLib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -165,6 +161,10 @@
     <ProjectReference Include="..\..\..\EFLWebApiClientSupport\MvvmFormsWebApiClientSupport.vbproj">
       <Project>{d8936e28-392e-439d-a036-005722122cf5}</Project>
       <Name>MvvmFormsWebApiClientSupport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MvvmBaseLib\MvvmBase\MvvmBaseLib.NET45.csproj">
+      <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
+      <Name>MvvmBaseLib.NET45</Name>
     </ProjectReference>
     <ProjectReference Include="..\MRViewModelLibrary\MRViewModelLibrary.vbproj">
       <Project>{325be318-3e92-4bdd-8edb-4aa3ca240594}</Project>

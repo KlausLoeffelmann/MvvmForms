@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 
 namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
-    [CLSCompliant(true)]
+   
     public class MvvmBase : BindableBase, IEditableObject, INotifyDataErrorInfo
     {
         private Dictionary<string, string> myErrorDictionary = new Dictionary<string, string>();

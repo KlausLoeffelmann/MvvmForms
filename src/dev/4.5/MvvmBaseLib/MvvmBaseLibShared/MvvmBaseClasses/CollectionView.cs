@@ -6,7 +6,6 @@ using System.Reactive.Linq;
 
 namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
-
         public class CollectionView<t>
 		{
 
@@ -73,10 +72,9 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
 				}
 			}
 
-
-//INSTANT C# NOTE: Converted event handler wireups:
 			private bool EventsSubscribed = false;
-			private void SubscribeToEvents()
+
+        private void SubscribeToEvents()
 			{
 				if (EventsSubscribed)
 					return;

@@ -78,8 +78,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -246,9 +246,9 @@
       <Project>{048efa6c-b9fb-441e-9432-1f72b332856c}</Project>
       <Name>MvvmForms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\MvvmBase\MvvmBaseLib.csproj">
+    <ProjectReference Include="..\..\..\MvvmBaseLib\MvvmBase\MvvmBaseLib.NET45.csproj">
       <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
-      <Name>MvvmBaseLib</Name>
+      <Name>MvvmBaseLib.NET45</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
