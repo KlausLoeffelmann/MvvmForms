@@ -1,8 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
 /// <summary>
 /// Bestimmt für ein ViewModel die standardmäßig für Windows Forms zu verwendende View.
 /// </summary>

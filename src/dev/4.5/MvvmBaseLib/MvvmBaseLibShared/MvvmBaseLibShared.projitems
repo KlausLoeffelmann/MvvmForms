@@ -40,6 +40,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmMessageBoxDefaultButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmMessageBoxIcon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeLib\TimeRange.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TimeSpanOverlappingTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeLib\TimeSpanOverlappingTypes.cs" />
   </ItemGroup>
 </Project>

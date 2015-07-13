@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MvvmBaseLib.DxCore50")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("MvvmBaseLib")]
+[assembly: AssemblyDescription("Support library for simplifying the development of ViewModels")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MvvmBaseLib.DxCore50")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyProduct("MvvmBaseLib.W81WP81")]
+[assembly: AssemblyCopyright("Copyright ©  2015 ActiveDevelop - Klaus Loeffelmann")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
@@ -26,5 +26,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.0.26.0")]
-[assembly: AssemblyFileVersion("2.0.26.0")]
+[assembly: AssemblyVersion("2.0.27.0")]
+[assembly: AssemblyFileVersion("2.0.27.0")]

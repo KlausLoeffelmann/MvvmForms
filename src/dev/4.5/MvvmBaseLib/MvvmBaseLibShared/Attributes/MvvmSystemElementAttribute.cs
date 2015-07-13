@@ -1,8 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
 
 /// <summary>
 /// Defines a property as infrastructure or as a system property, so it is not showing up 
@@ -10,7 +6,6 @@ using System.Diagnostics;
 /// </summary>
 public class MvvmSystemElementAttribute : Attribute
 {
-
     public MvvmSystemElementAttribute() : base()
     {
     }
