@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Autofac": "3.5.2",
+    "Autofac": "4.0.0-beta5-90",
     "Microsoft.NETCore.UniversalWindowsPlatform": "1.0.0-beta-23106"
   },
   "frameworks": {
