@@ -2,7 +2,7 @@
   "locked": false,
   "version": 1,
   "targets": {
-    ".NETCore,Version=v5.0": {
+    "UAP,Version=v10.0": {
       "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
@@ -1599,7 +1599,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-arm": {
+    "UAP,Version=v10.0/win10-arm": {
       "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
@@ -3286,7 +3286,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-arm-aot": {
+    "UAP,Version=v10.0/win10-arm-aot": {
       "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
@@ -4917,7 +4917,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-x86": {
+    "UAP,Version=v10.0/win10-x86": {
       "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
@@ -6609,7 +6609,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-x86-aot": {
+    "UAP,Version=v10.0/win10-x86-aot": {
       "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
@@ -8240,7 +8240,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-x64": {
+    "UAP,Version=v10.0/win10-x64": {
       "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
@@ -9932,7 +9932,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-x64-aot": {
+    "UAP,Version=v10.0/win10-x64-aot": {
       "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
@@ -14650,6 +14650,6 @@
       "Microsoft.NETCore.UniversalWindowsPlatform >= 1.0.0-beta-23106",
       "MvvmFormsBase >= 2.0.28-Beta"
     ],
-    ".NETCore,Version=v5.0": []
+    "UAP,Version=v10.0": []
   }
 }

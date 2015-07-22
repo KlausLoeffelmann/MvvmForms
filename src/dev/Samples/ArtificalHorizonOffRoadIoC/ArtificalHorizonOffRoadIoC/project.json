@@ -5,7 +5,7 @@
     "MvvmFormsBase": "2.0.28-Beta"
   },
   "frameworks": {
-    "netcore50": {}
+    "uap10.0": {}
   },
   "runtimes": {
     "win10-arm": {},

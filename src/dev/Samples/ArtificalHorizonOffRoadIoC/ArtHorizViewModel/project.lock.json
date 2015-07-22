@@ -2,7 +2,7 @@
   "locked": false,
   "version": 1,
   "targets": {
-    ".NETCore,Version=v5.0": {
+    "UAP,Version=v10.0": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -1591,7 +1591,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-arm": {
+    "UAP,Version=v10.0/win10-arm": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -3270,7 +3270,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-arm-aot": {
+    "UAP,Version=v10.0/win10-arm-aot": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -4893,7 +4893,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-x86": {
+    "UAP,Version=v10.0/win10-x86": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -6577,7 +6577,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-x86-aot": {
+    "UAP,Version=v10.0/win10-x86-aot": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -8200,7 +8200,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-x64": {
+    "UAP,Version=v10.0/win10-x64": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -9884,7 +9884,7 @@
         }
       }
     },
-    ".NETCore,Version=v5.0/win10-x64-aot": {
+    "UAP,Version=v10.0/win10-x64-aot": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -14579,6 +14579,6 @@
       "Microsoft.NETCore.UniversalWindowsPlatform >= 1.0.0-beta-23106",
       "MvvmFormsBase >= 2.0.28-Beta"
     ],
-    ".NETCore,Version=v5.0": []
+    "UAP,Version=v10.0": []
   }
 }
