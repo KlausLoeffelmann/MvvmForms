@@ -6,8 +6,16 @@ Public Class MvvmPlatformServiceLocator
 
     Private disposedValue As Boolean ' To detect redundant calls
     Private myLifetimeScope As ILifetimeScope
+    Private myContainerLocator As Func(Of Object)
 
     Public Property ContainerLocator As Func(Of Object) Implements IMvvmPlatformServiceLocator.ContainerLocator
+        Get
+            Return myContainerLocator
+        End Get
+        Set(value As Func(Of Object))
+            myContainerLocator = value
+        End Set
+    End Property
 
     Public Function Resolve(Of type)() As type Implements IMvvmPlatformServiceLocator.Resolve
         Dim container As IContainer = DirectCast(ContainerLocator.Invoke, IContainer)
