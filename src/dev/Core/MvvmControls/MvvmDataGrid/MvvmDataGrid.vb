@@ -763,7 +763,6 @@ Public Class MvvmDataGrid
         If Not _isInitialized Then Initialize()
     End Sub
 
-
     ''' <summary>
     ''' Initialisiert das MvvmDataGrid und konvertiert die Columns
     ''' </summary>
@@ -849,6 +848,12 @@ Public Class MvvmDataGrid
         End If
     End Sub
 
-
+    ''' <summary>
+    ''' Scrollt zum übergebenen Objekt welches sich innerhalb der ItemsSource befindet
+    ''' </summary>
+    ''' <param name="item"></param>
+    Public Sub ScrollIntoView(item As Object)
+        Me.WpfDataGridViewWrapper.InnerDataGridView.ScrollIntoView(item)
+    End Sub
 End Class
 
