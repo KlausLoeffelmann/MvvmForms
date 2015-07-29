@@ -51,6 +51,22 @@ Public Class MvvmDataGrid
         AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.KeyDown, AddressOf InnerDataGridView_KeyDown
         AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ItemsDeleted, AddressOf InnerDataGridView_ItemsDeleted
         AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ItemsDeleting, AddressOf InnerDataGridView_ItemsDeleting
+        AddHandler Me.WpfDataGridViewWrapper.InnerDataGridView.Sorting, AddressOf InnerDataGridView_Sorting
+    End Sub
+
+    ''' <summary>
+    ''' Wird aufgerufen wenn eine Spalte angefangen werden soll zu sortieren
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Public Event Sorting(ByVal sender As Object, ByVal e As DataGridSortingEventArgs)
+
+    Private Sub InnerDataGridView_Sorting(sender As Object, e As DataGridSortingEventArgs)
+        OnSorting(e)
+    End Sub
+
+    Private Sub OnSorting(e As DataGridSortingEventArgs)
+        RaiseEvent Sorting(Me, e)
     End Sub
 
     ''' <summary>

@@ -293,8 +293,8 @@ Partial Class MvvmDataGridTest
         'ScrollToLasItemToolStripMenuItem
         '
         Me.ScrollToLasItemToolStripMenuItem.Name = "ScrollToLasItemToolStripMenuItem"
-        Me.ScrollToLasItemToolStripMenuItem.Size = New System.Drawing.Size(111, 20)
-        Me.ScrollToLasItemToolStripMenuItem.Text = "Scroll To Las Item"
+        Me.ScrollToLasItemToolStripMenuItem.Size = New System.Drawing.Size(115, 20)
+        Me.ScrollToLasItemToolStripMenuItem.Text = "Scroll To Last Item"
         '
         'MvvmDataGridTest
         '
