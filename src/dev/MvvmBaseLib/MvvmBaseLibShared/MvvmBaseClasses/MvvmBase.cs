@@ -21,6 +21,11 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         public MvvmBase() : base()
         { }
 
+        public MvvmBase(IPlatformDependencyService uiController)
+        {
+            this.PlatformDependencyService = uiController;
+        }
+
         /// <summary>
         /// Wird aufgerufen, wenn das Editieren eines Datensatzes beginnt. Typischerweise beim Editieren in einer Zeile innerhalb eines Grids, wenn die Zeile betreten wurde.
         /// </summary>
@@ -395,5 +400,10 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                 return false;
             }
         }
+
+        [ModelPropertyIgnore, XmlIgnore, JsonIgnore]
+
+        public IPlatformDependencyService PlatformDependencyService { get; set; }
+
     }
 }

@@ -34,6 +34,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\TypeDetector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ValidatableBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ValidatableValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\IPlatformDependencyService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmDialogResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmDialogType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmMessageBoxButtons.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmMessageBoxDefaultButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmMessageBoxClasses\MvvmMessageBoxIcon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeLib\TimeRange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeLib\TimeSpanOverlappingTypes.cs" />
   </ItemGroup>

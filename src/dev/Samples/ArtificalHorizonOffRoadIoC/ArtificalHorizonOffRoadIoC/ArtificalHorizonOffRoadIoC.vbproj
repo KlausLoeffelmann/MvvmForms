@@ -10,8 +10,8 @@
     <AssemblyName>ArtificalHorizonOffRoadIoC</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.10166.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10166.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
@@ -166,10 +166,6 @@
     <Import Include="Windows.UI.Xaml.Navigation" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MvvmFormsPlatformServices\Generic\MvvmServiceLocatorBase\MvvmServiceLocatorBase.vbproj">
-      <Project>{763b7ea9-d5d8-4f2d-af92-fbf178ebb78b}</Project>
-      <Name>MvvmServiceLocatorBase</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\MvvmFormsPlatformServices\UWP\MvvmServiceLocatorBase\UWP.MvvmServiceLocatorBase.vbproj">
       <Project>{821f27ff-8b35-4b5e-8414-f27df95e1215}</Project>
       <Name>UWP.MvvmServiceLocatorBase</Name>
@@ -178,6 +174,12 @@
       <Project>{41fe3fb9-369a-4da9-9501-954e104f7981}</Project>
       <Name>ArtHorizViewModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ActiveDevelop.MvvmServiceLocatorBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MvvmFormsPlatformServices\Generic\MvvmServiceLocatorBase\bin\Debug\ActiveDevelop.MvvmServiceLocatorBase.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

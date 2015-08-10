@@ -35,8 +35,6 @@ Partial Class MvvmDataGridTest
         Dim BuchungenDataGrid_MvvmDataGridColumn10 As ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn = New ActiveDevelop.EntitiesFormsLib.MvvmDataGridColumn()
         Me.BuchungenDataGrid = New ActiveDevelop.EntitiesFormsLib.MvvmDataGrid()
         Me.MvvmManager1 = New ActiveDevelop.EntitiesFormsLib.MvvmManager(Me.components)
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.ScrollToLasItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         BuchungenDataGrid_ColumnNr.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_ColumnNr.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)
         'TODO: Code generation for '' failed because of Exception 'Value cannot be null.
@@ -51,7 +49,7 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_ColumnNr.ForegroundColor = System.Drawing.Color.Empty
         BuchungenDataGrid_ColumnNr.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
         BuchungenDataGrid_ColumnNr.VerticalAlignment = System.Windows.VerticalAlignment.Top
-        BuchungenDataGrid_ColumnNr.ColumnHeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        BuchungenDataGrid_ColumnNr.ColumnHeaderFont = New System.Drawing.Font("Modern No. 20", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         BuchungenDataGrid_ColumnNr.ColumnHeaderPadding = New System.Windows.Forms.Padding(10)
         BuchungenDataGrid_ColumnNr.Name = "ColumnNr"
         BuchungenDataGrid_ColumnNr.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
@@ -218,7 +216,6 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_MvvmDataGridColumn10.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.Hyperlink
         CType(Me.BuchungenDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'BuchungenDataGrid
@@ -258,12 +255,12 @@ Partial Class MvvmDataGridTest
         Me.BuchungenDataGrid.GridLinesVisibility = System.Windows.Controls.DataGridGridLinesVisibility.All
         Me.BuchungenDataGrid.HeadersVisibility = CType((System.Windows.Controls.DataGridHeadersVisibility.Column Or System.Windows.Controls.DataGridHeadersVisibility.Row), System.Windows.Controls.DataGridHeadersVisibility)
         Me.BuchungenDataGrid.ItemsSource = Nothing
-        Me.BuchungenDataGrid.Location = New System.Drawing.Point(0, 24)
+        Me.BuchungenDataGrid.Location = New System.Drawing.Point(0, 0)
         Me.BuchungenDataGrid.Margin = New System.Windows.Forms.Padding(4)
         Me.BuchungenDataGrid.Name = "BuchungenDataGrid"
         Me.BuchungenDataGrid.SelectedItem = Nothing
         Me.BuchungenDataGrid.SelectionMode = System.Windows.Controls.DataGridSelectionMode.Extended
-        Me.BuchungenDataGrid.Size = New System.Drawing.Size(912, 461)
+        Me.BuchungenDataGrid.Size = New System.Drawing.Size(912, 485)
         Me.BuchungenDataGrid.TabIndex = 0
         '
         'MvvmManager1
@@ -280,43 +277,21 @@ Partial Class MvvmDataGridTest
         Me.MvvmManager1.HostingUserControl = Nothing
         Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.BuchungenDataGrid, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("ItemsSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Buchungen", GetType(System.Collections.ObjectModel.ObservableCollection(Of EFL_CodedUITestContainer.Buchung))))
         '
-        'MenuStrip1
-        '
-        Me.MvvmManager1.SetEventBindings(Me.MenuStrip1, Nothing)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ScrollToLasItemToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(912, 24)
-        Me.MenuStrip1.TabIndex = 1
-        Me.MenuStrip1.Text = "MenuStrip1"
-        '
-        'ScrollToLasItemToolStripMenuItem
-        '
-        Me.ScrollToLasItemToolStripMenuItem.Name = "ScrollToLasItemToolStripMenuItem"
-        Me.ScrollToLasItemToolStripMenuItem.Size = New System.Drawing.Size(115, 20)
-        Me.ScrollToLasItemToolStripMenuItem.Text = "Scroll To Last Item"
-        '
         'MvvmDataGridTest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(912, 485)
         Me.Controls.Add(Me.BuchungenDataGrid)
-        Me.Controls.Add(Me.MenuStrip1)
         Me.MvvmManager1.SetEventBindings(Me, Nothing)
-        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "MvvmDataGridTest"
         Me.Text = "Buchungen"
         CType(Me.BuchungenDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents BuchungenDataGrid As ActiveDevelop.EntitiesFormsLib.MvvmDataGrid
     Friend WithEvents MvvmManager1 As ActiveDevelop.EntitiesFormsLib.MvvmManager
-    Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents ScrollToLasItemToolStripMenuItem As ToolStripMenuItem
+
 End Class

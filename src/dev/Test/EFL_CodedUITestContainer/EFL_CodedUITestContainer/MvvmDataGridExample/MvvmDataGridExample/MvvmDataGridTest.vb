@@ -23,8 +23,4 @@ Public Class MvvmDataGridTest
 
         MessageBox.Show("Es wurden " & sb.ToString.TrimEnd().Trim(","c) & " gelöscht")
     End Sub
-
-    Private Sub ScrollToLasItemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ScrollToLasItemToolStripMenuItem.Click
-        Me.BuchungenDataGrid.ScrollIntoView(DirectCast(MvvmManager1.DataContext, MainViewModel).Buchungen.Last)
-    End Sub
 End Class
