@@ -2,32 +2,13 @@
   "locked": false,
   "version": 1,
   "targets": {
-    "UAP,Version=v10.0": {
-      "Autofac/4.0.0-beta5-90": {
-        "frameworkAssemblies": [
-          "System.Collections",
-          "System.ComponentModel",
-          "System.Core",
-          "System.Diagnostics.Contracts",
-          "System.Diagnostics.Debug",
-          "System.Diagnostics.Tools",
-          "System.Globalization",
-          "System.Linq",
-          "System.Linq.Expressions",
-          "System.ObjectModel",
-          "System.Reflection",
-          "System.Reflection.Extensions",
-          "System.Reflection.Primitives",
-          "System.Resources.ResourceManager",
-          "System.Runtime",
-          "System.Threading",
-          "System.Threading.Tasks"
-        ],
+    ".NETCore,Version=v5.0": {
+      "Autofac/3.5.2": {
         "compile": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0-beta-23106": {
@@ -1618,32 +1599,13 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-arm": {
-      "Autofac/4.0.0-beta5-90": {
-        "frameworkAssemblies": [
-          "System.Collections",
-          "System.ComponentModel",
-          "System.Core",
-          "System.Diagnostics.Contracts",
-          "System.Diagnostics.Debug",
-          "System.Diagnostics.Tools",
-          "System.Globalization",
-          "System.Linq",
-          "System.Linq.Expressions",
-          "System.ObjectModel",
-          "System.Reflection",
-          "System.Reflection.Extensions",
-          "System.Reflection.Primitives",
-          "System.Resources.ResourceManager",
-          "System.Runtime",
-          "System.Threading",
-          "System.Threading.Tasks"
-        ],
+    ".NETCore,Version=v5.0/win10-arm": {
+      "Autofac/3.5.2": {
         "compile": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0-beta-23106": {
@@ -3324,32 +3286,13 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-arm-aot": {
-      "Autofac/4.0.0-beta5-90": {
-        "frameworkAssemblies": [
-          "System.Collections",
-          "System.ComponentModel",
-          "System.Core",
-          "System.Diagnostics.Contracts",
-          "System.Diagnostics.Debug",
-          "System.Diagnostics.Tools",
-          "System.Globalization",
-          "System.Linq",
-          "System.Linq.Expressions",
-          "System.ObjectModel",
-          "System.Reflection",
-          "System.Reflection.Extensions",
-          "System.Reflection.Primitives",
-          "System.Resources.ResourceManager",
-          "System.Runtime",
-          "System.Threading",
-          "System.Threading.Tasks"
-        ],
+    ".NETCore,Version=v5.0/win10-arm-aot": {
+      "Autofac/3.5.2": {
         "compile": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0-beta-23106": {
@@ -4974,32 +4917,13 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-x86": {
-      "Autofac/4.0.0-beta5-90": {
-        "frameworkAssemblies": [
-          "System.Collections",
-          "System.ComponentModel",
-          "System.Core",
-          "System.Diagnostics.Contracts",
-          "System.Diagnostics.Debug",
-          "System.Diagnostics.Tools",
-          "System.Globalization",
-          "System.Linq",
-          "System.Linq.Expressions",
-          "System.ObjectModel",
-          "System.Reflection",
-          "System.Reflection.Extensions",
-          "System.Reflection.Primitives",
-          "System.Resources.ResourceManager",
-          "System.Runtime",
-          "System.Threading",
-          "System.Threading.Tasks"
-        ],
+    ".NETCore,Version=v5.0/win10-x86": {
+      "Autofac/3.5.2": {
         "compile": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0-beta-23106": {
@@ -6685,32 +6609,13 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-x86-aot": {
-      "Autofac/4.0.0-beta5-90": {
-        "frameworkAssemblies": [
-          "System.Collections",
-          "System.ComponentModel",
-          "System.Core",
-          "System.Diagnostics.Contracts",
-          "System.Diagnostics.Debug",
-          "System.Diagnostics.Tools",
-          "System.Globalization",
-          "System.Linq",
-          "System.Linq.Expressions",
-          "System.ObjectModel",
-          "System.Reflection",
-          "System.Reflection.Extensions",
-          "System.Reflection.Primitives",
-          "System.Resources.ResourceManager",
-          "System.Runtime",
-          "System.Threading",
-          "System.Threading.Tasks"
-        ],
+    ".NETCore,Version=v5.0/win10-x86-aot": {
+      "Autofac/3.5.2": {
         "compile": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0-beta-23106": {
@@ -8335,32 +8240,13 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-x64": {
-      "Autofac/4.0.0-beta5-90": {
-        "frameworkAssemblies": [
-          "System.Collections",
-          "System.ComponentModel",
-          "System.Core",
-          "System.Diagnostics.Contracts",
-          "System.Diagnostics.Debug",
-          "System.Diagnostics.Tools",
-          "System.Globalization",
-          "System.Linq",
-          "System.Linq.Expressions",
-          "System.ObjectModel",
-          "System.Reflection",
-          "System.Reflection.Extensions",
-          "System.Reflection.Primitives",
-          "System.Resources.ResourceManager",
-          "System.Runtime",
-          "System.Threading",
-          "System.Threading.Tasks"
-        ],
+    ".NETCore,Version=v5.0/win10-x64": {
+      "Autofac/3.5.2": {
         "compile": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0-beta-23106": {
@@ -10046,32 +9932,13 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-x64-aot": {
-      "Autofac/4.0.0-beta5-90": {
-        "frameworkAssemblies": [
-          "System.Collections",
-          "System.ComponentModel",
-          "System.Core",
-          "System.Diagnostics.Contracts",
-          "System.Diagnostics.Debug",
-          "System.Diagnostics.Tools",
-          "System.Globalization",
-          "System.Linq",
-          "System.Linq.Expressions",
-          "System.ObjectModel",
-          "System.Reflection",
-          "System.Reflection.Extensions",
-          "System.Reflection.Primitives",
-          "System.Resources.ResourceManager",
-          "System.Runtime",
-          "System.Threading",
-          "System.Threading.Tasks"
-        ],
+    ".NETCore,Version=v5.0/win10-x64-aot": {
+      "Autofac/3.5.2": {
         "compile": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll": {}
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0-beta-23106": {
@@ -11698,18 +11565,17 @@
     }
   },
   "libraries": {
-    "Autofac/4.0.0-beta5-90": {
-      "sha512": "W03LtKJXDUBdRdXOK0Al7cW8Pc0cxEO9TpTHmOejw0EKpcusuHb3d5+sIQAjMMMFaMkKvZTXMeLgpYbAC60r7Q==",
+    "Autofac/3.5.2": {
+      "sha512": "pGR5LjY8T/16x6SkJNd7u6EjQnE4C7JS0BZJ7Yl7pt313gIUZ/2ZnPSOIM5eaIA7ArxaudlyyLvAT4ayX5UJ/A==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "Autofac.nuspec",
-        "lib/dnx451/Autofac.dll",
-        "lib/dnx451/Autofac.xml",
-        "lib/dnxcore50/Autofac.dll",
-        "lib/dnxcore50/Autofac.xml",
-        "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll",
-        "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.xml",
+        "lib/net40/Autofac.dll",
+        "lib/net40/Autofac.xml",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.xml",
+        "package/services/metadata/core-properties/14b288cae4b6435c88f25cef31d271e1.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -14780,10 +14646,10 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Autofac >= 4.0.0-beta5-90",
+      "Autofac >= 3.5.2",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 1.0.0-beta-23106",
       "MvvmFormsBase >= 2.0.28-Beta"
     ],
-    "UAP,Version=v10.0": []
+    ".NETCore,Version=v5.0": []
   }
 }

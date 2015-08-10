@@ -2,7 +2,7 @@
   "locked": false,
   "version": 1,
   "targets": {
-    "UAP,Version=v10.0": {
+    ".NETCore,Version=v5.0": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -197,7 +197,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-Beta": {
+      "MvvmFormsBase/2.0.28-beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -1591,7 +1591,7 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-arm": {
+    ".NETCore,Version=v5.0/win10-arm": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -1829,7 +1829,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-Beta": {
+      "MvvmFormsBase/2.0.28-beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -3270,7 +3270,7 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-arm-aot": {
+    ".NETCore,Version=v5.0/win10-arm-aot": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -3494,7 +3494,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-Beta": {
+      "MvvmFormsBase/2.0.28-beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -4893,7 +4893,7 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-x86": {
+    ".NETCore,Version=v5.0/win10-x86": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -5136,7 +5136,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-Beta": {
+      "MvvmFormsBase/2.0.28-beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -6577,7 +6577,7 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-x86-aot": {
+    ".NETCore,Version=v5.0/win10-x86-aot": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -6801,7 +6801,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-Beta": {
+      "MvvmFormsBase/2.0.28-beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -8200,7 +8200,7 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-x64": {
+    ".NETCore,Version=v5.0/win10-x64": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -8443,7 +8443,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-Beta": {
+      "MvvmFormsBase/2.0.28-beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -9884,7 +9884,7 @@
         }
       }
     },
-    "UAP,Version=v10.0/win10-x64-aot": {
+    ".NETCore,Version=v5.0/win10-x64-aot": {
       "Microsoft.CSharp/4.0.0-beta-23106": {
         "dependencies": {
           "System.Runtime": "[4.0.20-beta-23106, )",
@@ -10108,7 +10108,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-Beta": {
+      "MvvmFormsBase/2.0.28-beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -12134,7 +12134,7 @@
         "[Content_Types].xml"
       ]
     },
-    "MvvmFormsBase/2.0.28-Beta": {
+    "MvvmFormsBase/2.0.28-beta": {
       "sha512": "rrisMAERFFQDLRrCR0jlER6pLL3RYCAocv+CYA5It2hgTa/wHQCbBGJAjfqzSBO4RioNbtOL4FqFaqyQM3C2TQ==",
       "type": "Package",
       "files": [
@@ -14579,6 +14579,6 @@
       "Microsoft.NETCore.UniversalWindowsPlatform >= 1.0.0-beta-23106",
       "MvvmFormsBase >= 2.0.28-Beta"
     ],
-    "UAP,Version=v10.0": []
+    ".NETCore,Version=v5.0": []
   }
 }
