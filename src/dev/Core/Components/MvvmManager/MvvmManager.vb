@@ -539,6 +539,7 @@ Public Class MvvmManager
 
                     System.Windows.WeakEventManager(Of BindingManager, ValueAssignedEventArgs).AddHandler(
                         myBindingManager, "ValueAssigned", AddressOf myBindingManager_ValueAssigned)
+
 #Disable Warning
                     'Das hier müssen wir initial machen und zwar nicht schon durch den Konstruktor des BindingManagers,
                     'da anderenfalls die als WithEvent gebundenen Ereignisse, die durch UpdateAllControlsFromViewModel

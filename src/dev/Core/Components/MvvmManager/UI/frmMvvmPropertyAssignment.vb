@@ -326,8 +326,10 @@ skipWarning:
                 'Eigenschaften berücksichtigt wird.
                 Dim viemModelAtt = (From bcaItem In attList Where GetType(MvvmViewModelAttribute).IsAssignableFrom(bcaItem.GetType)).SingleOrDefault
 
-                If (businessClassAtt IsNot Nothing AndAlso DirectCast(businessClassAtt, BusinessClassAttribute).Options.HasFlag(BusinessClassAttributeOptions.IncludeAllPropertiesByDefault)) Or
-                    businessClassAtt Is Nothing Then
+                If (businessClassAtt IsNot Nothing AndAlso
+                    DirectCast(businessClassAtt, BusinessClassAttribute).Options.
+                        HasFlag(BusinessClassAttributeOptions.IncludeAllPropertiesByDefault)) Or
+                            businessClassAtt Is Nothing Then
 
                     'Include bei Default.
                     Dim propertiesList = New List(Of PropertyCheckBoxItemController)
