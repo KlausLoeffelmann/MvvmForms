@@ -276,6 +276,7 @@
     <Compile Include="Components\MvvmManager\DefaultConverters\ObjectToStringConverter.vb" />
     <Compile Include="Components\MvvmManager\Designer\EventBindingsUITypeEditor.vb" />
     <Compile Include="Components\MvvmManager\Designer\PropertyBindingsUITypeEditor.vb" />
+    <Compile Include="Components\MvvmManager\UI\ConverterDisplayItem.vb" />
     <Compile Include="Components\MvvmManager\UI\DataSourceTypeUIForm.Designer.vb">
       <DependentUpon>DataSourceTypeUIForm.vb</DependentUpon>
     </Compile>
@@ -292,6 +293,12 @@
       <DependentUpon>frmMvvmEventAssignment.vb</DependentUpon>
     </Compile>
     <Compile Include="Components\MvvmManager\UI\frmMvvmEventAssignment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\MvvmManager\UI\frmMvvmPropertyAssignmentEx.Designer.vb">
+      <DependentUpon>frmMvvmPropertyAssignmentEx.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MvvmManager\UI\frmMvvmPropertyAssignmentEx.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Components\MvvmManager\UI\frmMvvmPropertyAssignment.Designer.vb">
@@ -611,6 +618,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\MvvmManager\UI\frmMvvmEventAssignment.resx">
       <DependentUpon>frmMvvmEventAssignment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\MvvmManager\UI\frmMvvmPropertyAssignmentEx.resx">
+      <DependentUpon>frmMvvmPropertyAssignmentEx.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\MvvmManager\UI\frmMvvmPropertyAssignment.resx">
       <DependentUpon>frmMvvmPropertyAssignment.vb</DependentUpon>

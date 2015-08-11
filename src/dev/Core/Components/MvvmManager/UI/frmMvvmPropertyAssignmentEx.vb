@@ -1,5 +1,5 @@
 ﻿'*****************************************************************************************
-'                                  frmMvvmPropertyAssignment.vb
+'                              frmMvvmPropertyAssignmentEx.vb
 '                    =======================================================
 '
 '          Part of MvvmForms - The Component Library for bringing the Model-View-Viewmodel
@@ -26,10 +26,7 @@ Imports System.ComponentModel
 Imports System.ComponentModel.Design
 Imports System.Windows.Data
 
-''' <summary>
-''' Dialog, which is shown, when the user wants to assign a ViewModel Property to a control's view property 
-''' </summary>
-Public Class frmMvvmPropertyAssignment
+Public Class frmMvvmPropertyAssignmentEx
 
     Private myViewModelType As Type
     Private myControlToBind As Object
@@ -101,7 +98,7 @@ Public Class frmMvvmPropertyAssignment
         InitializeControlProperties()
 
         nvrControlProperties.DataSource = myControlProperties
-        nvrViewModelProperty.DataSource = myViewModelProperties
+        'nvrViewModelProperty.DataSource = myViewModelProperties
         nvrConverters.DataSource = myConverters
 
         If Not myEventHandlerHaveBeenWired Then
@@ -143,7 +140,7 @@ Public Class frmMvvmPropertyAssignment
             End Try
 
             Try
-                nvrViewModelProperty.Value = selectedPropBindingItem.ViewModelProperty
+                'nvrViewModelProperty.Value = selectedPropBindingItem.ViewModelProperty
             Catch ex As Exception
                 MvvmFormsEtw.Log.Failure("INCONSISTENT PROPERTY MAPPING: While deserializing the property mapping from code (viewmodel property:  '" &
                             selectedPropBindingItem.ViewModelProperty.PropertyName & "'), the following exception occured:" & ex.Message)
@@ -163,11 +160,11 @@ Public Class frmMvvmPropertyAssignment
     Public Sub AddOrChangePropertyItemHandler(sender As Object, e As EventArgs)
 
         Dim ctrlProperty = DirectCast(nvrControlProperties.Value, BindingProperty)
-        Dim vmProperty = DirectCast(nvrViewModelProperty.Value, BindingProperty)
+        Dim vmProperty As BindingProperty '= DirectCast(nvrViewModelProperty.Value, BindingProperty)
 
         'Testen, ob die Daten vollständig erfasst wurden
-        If nvrControlProperties.Value IsNot Nothing AndAlso
-            nvrViewModelProperty.Value IsNot Nothing Then
+        If nvrControlProperties.Value IsNot Nothing Then 'AndAlso
+            'nvrViewModelProperty.Value IsNot Nothing Then
 
             If nvrConverters.Value Is Nothing Then
                 'Auf Typgleichheit prüfen, ansonsten Warnung ausgeben:
@@ -407,7 +404,7 @@ skipWarning:
     End Sub
 
     Private Sub nvrControlProperties_Click(sender As Object, e As EventArgs) Handles nvrControlProperties.IsDirtyChanged,
-        nvrConverterParameter.IsDirtyChanged, nvrConverters.IsDirtyChanged, nvrViewModelProperty.IsDirtyChanged
+        nvrConverterParameter.IsDirtyChanged, nvrConverters.IsDirtyChanged ', nvrViewModelProperty.IsDirtyChanged
         If nvrConverterParameter Is sender Then
             Me.IsDirty = True
         ElseIf DirectCast(sender, INullableValueRelationBinding).IsDirty Then

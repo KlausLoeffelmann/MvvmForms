@@ -65,19 +65,23 @@ Public Module ReflectionHelper
 
     End Function
 
+    'TODO: This has to be refactored. We need a tree view where we could drill into recursive property pathes.
     ''' <summary>
-    ''' Erstellt eine Liste mit allen Eigenschaften und Untereigenschaften des Business-Class-Objektes (rekusiv),
-    ''' die dann in den entsprechenden Klapplisten zur Verfügung gestellt werden.
+    ''' Creates a list with all properties and sub properties of the ViewModel (former Business Class Objects) recursively. This function is 
+    ''' for creating the property pathes for binding in the MvvmForms PropertyBindings Designer UI.
     ''' </summary>
-    ''' <param name="t"></param>
-    ''' <param name="propRoot"></param>
-    ''' <param name="proplist"></param>
-    ''' <param name="depthCount"></param>
+    ''' <param name="t">The type whose properties are discovered including its sub properties for building property pathes.</param>
+    ''' <param name="propRoot">Since this method is called recusively, here is the current property path root where to begin.</param>
+    ''' <param name="proplist">The current list of allready discovered property pathes. Pass an empty but instanciated list at the beginning.</param>
+    ''' <param name="depthCountLimit">The maximum property path depth, if it should be limitted.</param>
+    ''' <param name="excludePropertiesByDefault">For business class objects, if this is set, only those 
+    ''' properties are taken into account when they are marked with BusinessPropertyAttribute.IncludeProperty. 
+    ''' This is legacy a legacy feature. Don't use.</param>
     ''' <remarks></remarks>
-    Friend Sub CreateSubPropsAsList(t As Type, propRoot As String, proplist As List(Of PropertyCheckBoxItemController),
-                                    depthCount As Integer, excludePropertiesByDefault As Boolean,
+    Public Sub CreateSubPropsAsList(t As Type, propRoot As String,
+                                    proplist As List(Of PropertyCheckBoxItemController),
+                                    depthCountLimit As Integer, excludePropertiesByDefault As Boolean,
                                     Optional host As IDesignerHost = Nothing)
-
 
         Dim isEntityObject = False
 
@@ -85,10 +89,11 @@ Public Module ReflectionHelper
             isEntityObject = True
         End If
 
-        If depthCount > 10 Then
+        If depthCountLimit > 10 Then
             If Debugger.IsAttached Then
                 Debugger.Break()
             End If
+
             Throw New OverflowException("Die Verschachtelungstiefe in der Rekursion bei der Ermittlung verschachtelter Eigenschaften wurde zu groß (>10)" & vbNewLine &
                                         "(Info: propRoot war: " & propRoot & ".")
         End If
@@ -160,11 +165,11 @@ Public Module ReflectionHelper
                     proplist.Add(New PropertyCheckBoxItemController(propItem.Name, propItem.PropertyType, propRoot))
 
                     If Not GetType(IEnumerable).IsAssignableFrom(propItem.PropertyType) Then
-                        depthCount += 1
+                        depthCountLimit += 1
                         CreateSubPropsAsList(propItem.PropertyType, If(Not String.IsNullOrWhiteSpace(propRoot),
                                             propRoot & "." & propItem.Name, propItem.Name),
-                                            proplist, depthCount, excludePropertiesByDefault)
-                        depthCount -= 1
+                                            proplist, depthCountLimit, excludePropertiesByDefault)
+                        depthCountLimit -= 1
                     End If
                 End If
             End If
