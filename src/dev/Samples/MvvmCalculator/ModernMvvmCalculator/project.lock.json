@@ -201,7 +201,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-beta": {
+      "MvvmFormsBase/2.0.29-Beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -1850,7 +1850,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-beta": {
+      "MvvmFormsBase/2.0.29-Beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -3532,7 +3532,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-beta": {
+      "MvvmFormsBase/2.0.29-Beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -5219,7 +5219,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-beta": {
+      "MvvmFormsBase/2.0.29-Beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -6901,7 +6901,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-beta": {
+      "MvvmFormsBase/2.0.29-Beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -8588,7 +8588,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-beta": {
+      "MvvmFormsBase/2.0.29-Beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -10270,7 +10270,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmFormsBase/2.0.28-beta": {
+      "MvvmFormsBase/2.0.29-Beta": {
         "dependencies": {
           "Rx-Main": "[2.2.5, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -12365,8 +12365,8 @@
         "[Content_Types].xml"
       ]
     },
-    "MvvmFormsBase/2.0.28-beta": {
-      "sha512": "rrisMAERFFQDLRrCR0jlER6pLL3RYCAocv+CYA5It2hgTa/wHQCbBGJAjfqzSBO4RioNbtOL4FqFaqyQM3C2TQ==",
+    "MvvmFormsBase/2.0.29-Beta": {
+      "sha512": "gMNcaYGB6/DfoXbFg5kOYlf6iZ380aEfBW0xP9na5YE2zEM4/0utP9CFBM+SiwIRlhsUE7WXJu866nfTyhEarA==",
       "type": "Package",
       "files": [
         "_rels/.rels",
@@ -12375,7 +12375,7 @@
         "lib/net45/ActiveDevelop.MvvmBaseLib.dll",
         "lib/portable-net45+wp80+win8+wpa81+dnxcore50/ActiveDevelop.MvvmBaseLib.dll",
         "lib/portable-win81+wpa81/ActiveDevelop.MvvmBaseLib.dll",
-        "package/services/metadata/core-properties/77000062fce6490f8bc638e53648d466.psmdcp",
+        "package/services/metadata/core-properties/fb03b8aca73f424cba113649f54b1d72.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -15231,7 +15231,7 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "MvvmFormsBase >= 2.0.28-Beta"
+      "MvvmFormsBase >= 2.0.29-Beta"
     ],
     "UAP,Version=v10.0": []
   }

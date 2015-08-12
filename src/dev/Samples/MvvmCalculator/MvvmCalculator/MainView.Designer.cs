@@ -44,9 +44,10 @@
             this.entryfieldLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.entryfieldLabel.AutoSize = true;
             this.mvvmManager1.SetEventBindings(this.entryfieldLabel, null);
-            this.entryfieldLabel.Location = new System.Drawing.Point(12, 350);
+            this.entryfieldLabel.Location = new System.Drawing.Point(18, 538);
+            this.entryfieldLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.entryfieldLabel.Name = "entryfieldLabel";
-            this.entryfieldLabel.Size = new System.Drawing.Size(190, 13);
+            this.entryfieldLabel.Size = new System.Drawing.Size(282, 20);
             this.entryfieldLabel.TabIndex = 0;
             this.entryfieldLabel.Text = "Math expression (e.g. 123.23+5^sin(2))";
             // 
@@ -56,10 +57,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mvvmManager1.SetEventBindings(this.formulaTextBox, null);
             this.formulaTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.formulaTextBox.Location = new System.Drawing.Point(12, 366);
+            this.formulaTextBox.Location = new System.Drawing.Point(18, 563);
+            this.formulaTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.formulaTextBox.Multiline = true;
             this.formulaTextBox.Name = "formulaTextBox";
-            this.formulaTextBox.Size = new System.Drawing.Size(340, 75);
+            this.formulaTextBox.Size = new System.Drawing.Size(508, 113);
             this.formulaTextBox.TabIndex = 1;
             this.formulaTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -71,21 +73,23 @@
             this.mvvmManager1.SetEventBindings(this.historyListBox, null);
             this.historyListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.historyListBox.FormattingEnabled = true;
-            this.historyListBox.ItemHeight = 20;
-            this.historyListBox.Location = new System.Drawing.Point(15, 24);
+            this.historyListBox.ItemHeight = 29;
+            this.historyListBox.Location = new System.Drawing.Point(22, 37);
+            this.historyListBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.historyListBox.Name = "historyListBox";
             this.historyListBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.historyListBox.ScrollAlwaysVisible = true;
-            this.historyListBox.Size = new System.Drawing.Size(337, 204);
+            this.historyListBox.Size = new System.Drawing.Size(504, 294);
             this.historyListBox.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.mvvmManager1.SetEventBindings(this.label1, null);
-            this.label1.Location = new System.Drawing.Point(12, 8);
+            this.label1.Location = new System.Drawing.Point(18, 12);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.Size = new System.Drawing.Size(62, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "History:";
             // 
@@ -96,9 +100,10 @@
             this.resultLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mvvmManager1.SetEventBindings(this.resultLabel, null);
             this.resultLabel.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultLabel.Location = new System.Drawing.Point(15, 271);
+            this.resultLabel.Location = new System.Drawing.Point(22, 417);
+            this.resultLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.resultLabel.Name = "resultLabel";
-            this.resultLabel.Size = new System.Drawing.Size(337, 68);
+            this.resultLabel.Size = new System.Drawing.Size(504, 104);
             this.resultLabel.TabIndex = 5;
             this.resultLabel.Text = "resultLabel";
             this.resultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -109,9 +114,10 @@
             this.calcCommandButton.Command = null;
             this.calcCommandButton.CommandParameter = null;
             this.mvvmManager1.SetEventBindings(this.calcCommandButton, null);
-            this.calcCommandButton.Location = new System.Drawing.Point(250, 460);
+            this.calcCommandButton.Location = new System.Drawing.Point(375, 708);
+            this.calcCommandButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.calcCommandButton.Name = "calcCommandButton";
-            this.calcCommandButton.Size = new System.Drawing.Size(99, 37);
+            this.calcCommandButton.Size = new System.Drawing.Size(148, 57);
             this.calcCommandButton.TabIndex = 7;
             this.calcCommandButton.Text = "Calc";
             this.calcCommandButton.UseVisualStyleBackColor = true;
@@ -128,8 +134,7 @@
             this.mvvmManager1.DynamicEventHandlingList = null;
             this.mvvmManager1.HostingForm = this;
             this.mvvmManager1.HostingUserControl = null;
-            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.formulaTextBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("EnteredFormula", typeof(string)));
-            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.formulaTextBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWayToSource, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), typeof(MvvmCalculator.Converter.StringNotEmptyToBooleanConverter), null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("HasInput", typeof(bool)));
+            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.formulaTextBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("EnteredFormula", typeof(string)));
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.historyListBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("DataSource", typeof(object)), typeof(ActiveDevelop.EntitiesFormsLib.ObservableCollectionToBindingListConverter), null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("Formulas", typeof(System.Collections.ObjectModel.ObservableCollection<ActiveDevelop.MvvmBaseLib.FormulaEvaluator.FormulaEvaluator>)));
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.historyListBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("SelectedIndex", typeof(int)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("SelectedFormulaIndex", typeof(int)));
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.resultLabel, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("Result", typeof(string)));
@@ -138,9 +143,9 @@
             // 
             // MainView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 511);
+            this.ClientSize = new System.Drawing.Size(546, 786);
             this.Controls.Add(this.calcCommandButton);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.label1);
@@ -148,6 +153,7 @@
             this.Controls.Add(this.formulaTextBox);
             this.Controls.Add(this.entryfieldLabel);
             this.mvvmManager1.SetEventBindings(this, null);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainView";
             this.Text = "MvvmCalc";
             this.Load += new System.EventHandler(this.Form1_Load);

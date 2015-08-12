@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "MvvmFormsBase": "2.0.28-Beta"
+    "MvvmFormsBase": "2.0.29-Beta"
   },
   "frameworks": {
     "uap10.0": {}

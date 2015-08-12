@@ -1,4 +1,13 @@
 <
+ ==================================
+ CHANGELOG
+ NEW IN 2.0.29 - 2015-08-11
+ ==================================
+
+* Added ScrollIntoView for MvvmDataGrid.
+* Redesign of PropertyBindings Designer UI (we will change how a property will be picked  
+  from NullableRelation to TreeView, so recursive Types can be picked correctly.
+* Updated References to match MvvmFormsBase
 
  ==================================
  CHANGELOG

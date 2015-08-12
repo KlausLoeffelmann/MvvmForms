@@ -205,18 +205,26 @@ Public Class BindingManager
         'Das Steuerelement, das das Ereignis ausgelöst hast.
         Dim sourceAsControl = TryCast(e.OriginalSource, Control)
 
-        'Die Bindinginfos, aus der Eigenschaft des Steuerelementes, das das Ereignis ausgelöst hat.
-        '(sind mehere, da ja eine Eigenschaft an mehrere Eigenschaften des ViewModels gebunden sein kann).
-        Dim bindingInfos = (From bindingInfoItem In Me.BindingItems(sourceAsControl).MvvmItem.PropertyBindings
+        Dim bindingInfos As List(Of PropertyBindingItem)
+
+        Try
+            'Die Bindinginfos, aus der Eigenschaft des Steuerelementes, das das Ereignis ausgelöst hat.
+            '(sind mehere, da ja eine Eigenschaft an mehrere Eigenschaften des ViewModels gebunden sein kann).
+            bindingInfos = (From bindingInfoItem In Me.BindingItems(sourceAsControl).MvvmItem.PropertyBindings
                             Where bindingInfoItem.ControlProperty.PropertyName = e.EventProperty).ToList
+        Catch ex As NullReferenceException
+            Throw New NullReferenceException("Querying the bindings caused an NullReferenceException." & vbNewLine &
+                                             "This is the case when a ViewModel Property has been removed from the ViewModel, without actually removing its correlating binding into the view.",
+                                             ex)
+        End Try
 
         For Each bindingInfo In bindingInfos
 
-            'Wenn das Steuerelement durch einen Trigger-Vorgang gerade aktualisiert wird,
-            'dann entsprechend
-            If bindingInfo.UpdatingControlInProgress Then Continue For
-
             Try
+                'Wenn das Steuerelement durch einen Trigger-Vorgang gerade aktualisiert wird,
+                'dann entsprechend
+                If bindingInfo.UpdatingControlInProgress Then Continue For
+
                 bindingInfo.UpdatingViewmodelInProgress = True
                 Dim targetAsViewModel = Me.ViewModel
 

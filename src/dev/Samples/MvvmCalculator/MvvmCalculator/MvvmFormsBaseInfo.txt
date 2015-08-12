@@ -14,24 +14,29 @@ Please contact mvvmforms@activedevelop.de for further information.
 <
 ==================================
  CHANGELOG    
- NEW IN 2.0.28 - 2015-07-15
+ NEW IN 2.0.29 - 2015-11-8
  ==================================
-
-* Implemented a simple Math-Extension to check for ApproximateEqal
-  (We need this for backwards compatibility purposes for some 8.1 ShardDX projects).
-* Renamed the DLL to ActiveDevelop.MvvmBaseLib.
-* Corrected Meta-Data-Info for additional target dlls (PCL)
-* Updated Dependency to be 7.0.1 for JSon.Net.
+ 
+* Refactored out the PlatformDependencyService. We will come up with an seperate 
+  system for that for Windows Forms/Windows 10.
+* Adjusted referenced Assemblies to be compatible with Windows 10.
 
 ==================================
- CHANGELOG    
- NEW IN 2.0.27 - 2015-07-12
+ CHANGELOG   
+ NEW IN 2.0.28 - 2015-07-12
  ==================================
  
 * Implemented multiple target versions to be compatible for NETCORE5
 
+==================================
+ CHANGELOG   - PRIVATE BUILD -
+ NEW IN 2.0.27 - 2015-07-10
  ==================================
- CHANGELOG    
+
+* Private Test Build for Windows 10 RC Development.
+
+ ==================================
+ CHANGELOG   
  NEW IN 2.0.26 - 2015-07-10
  ==================================
  

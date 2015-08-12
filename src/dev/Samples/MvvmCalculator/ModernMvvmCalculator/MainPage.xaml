@@ -36,7 +36,7 @@
         <ListBox x:Name="historyListBox" Grid.Row="1" Margin="15,40,15,15"
 			ItemsSource="{Binding Formulas}" 
 			comment:a="Here, we're binding the entered formulas to the ListBox' ItemSource..."
-			SelectedIndex="{Binding SelectedFormulaIndex}"
+			SelectedIndex="{Binding SelectedFormulaIndex, Mode=TwoWay}"
 			comment:b="...and the SelectedIndex to the SelectedFormularIndex."
                  />
         <Border Grid.Row="2" BorderThickness="1" Background="{Binding ErrorText, 
@@ -55,7 +55,7 @@
         <TextBlock x:Name="formulaTextBlock" Grid.Row="3" Text="Formula" Margin="15,5,15,5"/>
         <TextBox x:Name="formularTextBox" Grid.Row="3" 
 			Margin="15,30,15,15" TextWrapping="Wrap"  
-			Text="{Binding EnteredFormula, Mode=TwoWay}"
+			Text="{Binding EnteredFormula, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 			comment:a="The binding to the entered formula. This is TwoWay-Binding, so we also getting the changes from the view."/>
         <Button Grid.Row="4" Content="Calc" Width="80" 
 			HorizontalAlignment="Right" Margin="0,0,15,0"

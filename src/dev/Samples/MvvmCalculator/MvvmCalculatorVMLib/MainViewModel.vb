@@ -13,7 +13,7 @@ Public Class MainViewModel
     Private myErrorText As String
     Private mySelectedFormula As FormulaEvaluator
     Private mySelectedFormulaIndex As Integer = -1
-    Private myHasInput As Boolean
+    Private myPreviousContent As String
 
     ''' <summary>
     ''' Initializes a new instance of this ViewModel.
@@ -45,7 +45,12 @@ Public Class MainViewModel
             Return myFormular
         End Get
         Set(value As String)
-            SetProperty(myFormular, value)
+            If SetProperty(myFormular, value) Then
+                If String.IsNullOrEmpty(myPreviousContent) = Not String.IsNullOrEmpty(value) Then
+                    myPreviousContent = value
+                    CalcCommand.RaiseCanExecuteChanged()
+                End If
+            End If
         End Set
     End Property
 
@@ -120,18 +125,9 @@ Public Class MainViewModel
         End Get
         Set(value As String)
             If SetProperty(myErrorText, value) Then
-                Result = ErrorText
-            End If
-        End Set
-    End Property
-
-    Public Property HasInput As Boolean
-        Get
-            Return myHasInput
-        End Get
-        Set(value As Boolean)
-            If SetProperty(myHasInput, value) Then
-                CalcCommand.RaiseCanExecuteChanged()
+                If Not String.IsNullOrEmpty(value) Then
+                    Result = ErrorText
+                End If
             End If
         End Set
     End Property
@@ -157,7 +153,7 @@ Public Class MainViewModel
     ''' </summary>
     ''' <returns></returns>
     Private Function CanExecuteCalcCommand() As Boolean
-        Return HasInput
+        Return Not String.IsNullOrWhiteSpace(EnteredFormula)
     End Function
 
 End Class
