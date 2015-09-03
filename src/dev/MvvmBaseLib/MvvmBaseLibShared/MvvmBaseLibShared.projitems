@@ -29,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\Extender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\IDiscoverableValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ModelPropertyAttributes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\MvvmViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\MvvmBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\TypeDetector.cs" />

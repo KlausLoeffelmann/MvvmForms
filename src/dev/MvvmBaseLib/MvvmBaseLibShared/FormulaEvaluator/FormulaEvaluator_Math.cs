@@ -5,87 +5,87 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
     public partial class FormulaEvaluator
     {
 
-        public static double Addition(double[] Args)
+        internal double Addition(double[] Args)
         {
             return Args[0] + Args[1];
         }
 
-        public static double Substraction(double[] Args)
+        internal double Substraction(double[] Args)
         {
             return Args[0] - Args[1];
         }
 
-        public static double Multiplication(double[] Args)
+        internal double Multiplication(double[] Args)
         {
             return Args[0] * Args[1];
         }
 
-        public static double Division(double[] Args)
+        internal double Division(double[] Args)
         {
             return Args[0] / Args[1];
         }
 
-        public static double Remainder(double[] Args)
+        internal double Remainder(double[] Args)
         {
             return Convert.ToDouble(decimal.Remainder(new decimal(Args[0]), new decimal(Args[1])));
         }
 
-        public static double Power(double[] Args)
+        internal double Power(double[] Args)
         {
             return (System.Math.Pow(Args[0], Args[1]));
         }
 
-        public static double Sin(double[] Args)
+        internal double Sin(double[] Args)
         {
             return Math.Sin(Args[0]);
         }
 
-        public static double Cos(double[] Args)
+        internal double Cos(double[] Args)
         {
             return Math.Cos(Args[0]);
         }
 
-        public static double Tan(double[] Args)
+        internal double Tan(double[] Args)
         {
             return Math.Tan(Args[0]);
         }
 
-        public static double Sqrt(double[] Args)
+        internal double Sqrt(double[] Args)
         {
             return Math.Sqrt(Args[0]);
         }
 
-        public static double PI(double[] Args)
+        internal double PI(double[] Args)
         {
             return Math.PI;
         }
 
-        public static double Tanh(double[] Args)
+        internal double Tanh(double[] Args)
         {
             return Math.Tanh(Args[0]);
         }
 
-        public static double LogDec(double[] Args)
+        internal double LogDec(double[] Args)
         {
             return Math.Log10(Args[0]);
         }
 
-        public static double XVar(double[] Args)
+        internal double XVar(double[] Args)
         {
-            return XVariable;
+            return X;
         }
 
-        public static double YVar(double[] Args)
+        internal double YVar(double[] Args)
         {
-            return YVariable;
+            return Y;
         }
 
-        public static double ZVar(double[] Args)
+        internal double ZVar(double[] Args)
         {
-            return ZVariable;
+            return Z;
         }
 
-        public static double Max(double[] Args)
+        public double Max(double[] Args)
         {
 
             double retDouble = 0;
@@ -109,7 +109,7 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
 
         }
 
-        public static double Min(double[] Args)
+        public double Min(double[] Args)
         {
 
             double retDouble = 0;
@@ -133,7 +133,7 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
 
         }
 
-        public static double XVariable
+        public double X
         {
             get
             {
@@ -142,10 +142,11 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
             set
             {
                 myXVariable = value;
+                IsCalculated = false;
             }
         }
 
-        public static double YVariable
+        public double Y
         {
             get
             {
@@ -154,10 +155,11 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
             set
             {
                 myYVariable = value;
+                IsCalculated = false;
             }
         }
 
-        public static double ZVariable
+        public double Z
         {
             get
             {
@@ -166,6 +168,7 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
             set
             {
                 myZVariable = value;
+                IsCalculated = false;
             }
         }
     }

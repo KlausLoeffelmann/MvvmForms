@@ -78,6 +78,7 @@
     <Import Include="Windows.UI.Xaml.Media.Imaging" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FunctionPlotterViewModel.vb" />
     <Compile Include="MainViewModel.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
@@ -113,6 +114,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MvvmFormsBaseInfo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MvvmFormsPlatformServices\Generic\MvvmServiceLocatorBase\MvvmServiceLocatorBase.vbproj">
+      <Project>{763b7ea9-d5d8-4f2d-af92-fbf178ebb78b}</Project>
+      <Name>MvvmServiceLocatorBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

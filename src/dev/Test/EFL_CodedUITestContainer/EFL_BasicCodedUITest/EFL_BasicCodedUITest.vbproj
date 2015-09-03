@@ -156,6 +156,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
+    <Compile Include="UnitTests\FormulaEvalTest.vb" />
     <Compile Include="UnitTests\ObservableCollectionBindingListAdapterTest.vb" />
     <Compile Include="CodedUITests\BasicFunctionTest.vb" />
     <Compile Include="UnitTests\CloningTests.vb" />
@@ -221,9 +222,9 @@
       <Project>{048efa6c-b9fb-441e-9432-1f72b332856c}</Project>
       <Name>MvvmForms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\MvvmBaseLib\MvvmBase\MvvmBaseLib.NET45W81WP81CP.csproj">
-      <Project>{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}</Project>
-      <Name>MvvmBaseLib.NET45W81WP81CP</Name>
+    <ProjectReference Include="..\..\..\MvvmBaseLib\MvvmBaseLib.NET451\MvvmBaseLib.NET451.csproj">
+      <Project>{9f333c30-bd73-46f2-8716-bf5bdb72b833}</Project>
+      <Name>MvvmBaseLib.NET451</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -38,6 +38,8 @@ namespace ActiveDev.MvvmBaseLib.Threading
             await Task.Delay(myDueTime, this.Token).ContinueWith(
                 async (state) =>
                 {
+                    myCallBack.Invoke();
+
                     do
                     {
                         await Task.Delay(myPeriod, this.Token).ConfigureAwait(false);

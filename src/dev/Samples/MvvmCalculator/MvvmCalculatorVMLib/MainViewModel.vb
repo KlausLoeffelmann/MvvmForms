@@ -1,13 +1,14 @@
-﻿Imports ActiveDevelop.MvvmBaseLib.Mvvm
+﻿Imports ActiveDevelop.IoC.Generic
+Imports ActiveDevelop.MvvmBaseLib
 Imports ActiveDevelop.MvvmBaseLib.FormulaEvaluator
+Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 Public Class MainViewModel
-    Inherits MvvmBase
+    Inherits BindableBase
 
     Private myFormular As String
     Private myCurrentFormular As String
     Private myResult As String
-    Private myCalcCommand As RelayCommand
     Private myFormulaEval As FormulaEvaluator
     Private myFormulas As New ObservableCollection(Of FormulaEvaluator)
     Private myErrorText As String
@@ -15,12 +16,25 @@ Public Class MainViewModel
     Private mySelectedFormulaIndex As Integer = -1
     Private myPreviousContent As String
 
+    Private myCalcCommand As RelayCommand
+    Private myClearListCommand As RelayCommand
+
+    Private myPlatformServiceLocator As Func(Of IMvvmPlatformServiceLocator)
+    'The lifetimecontroller for all the other instances created by this Viewmodel, which need to persist during its lifetime.
+    Private myLifetimeInstanceController As IIoCLifetimeController
+
     ''' <summary>
     ''' Initializes a new instance of this ViewModel.
     ''' </summary>
-    Sub New()
+    Sub New(platformServiceLocator As Func(Of IMvvmPlatformServiceLocator))
         myCalcCommand = New RelayCommand(AddressOf CalcCommandProc,
                                          AddressOf CanExecuteCalcCommand)
+        myClearListCommand = New RelayCommand(AddressOf ClearListProc,
+                                            Function() True)
+
+        myPlatformServiceLocator = platformServiceLocator
+        myLifetimeInstanceController = myPlatformServiceLocator().GetLifetimeController
+
     End Sub
 
     ''' <summary>
@@ -155,6 +169,10 @@ Public Class MainViewModel
     Private Function CanExecuteCalcCommand() As Boolean
         Return Not String.IsNullOrWhiteSpace(EnteredFormula)
     End Function
+
+    Private Sub ClearListProc(param As Object)
+        Me.Formulas = New ObservableCollection(Of FormulaEvaluator)
+    End Sub
 
 End Class
 

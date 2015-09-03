@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 
 namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
-   
+    [Obsolete("This class is obsolete and should no longer be used. Please use MvvmViewModelBase instead.")]
     public class MvvmBase : BindableBase, IEditableObject, INotifyDataErrorInfo
     {
         private Dictionary<string, string> myErrorDictionary = new Dictionary<string, string>();

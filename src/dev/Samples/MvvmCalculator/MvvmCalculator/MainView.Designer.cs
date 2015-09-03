@@ -36,6 +36,7 @@
             this.resultLabel = new System.Windows.Forms.Label();
             this.calcCommandButton = new ActiveDevelop.EntitiesFormsLib.CommandButton();
             this.mvvmManager1 = new ActiveDevelop.EntitiesFormsLib.MvvmManager(this.components);
+            this.clearListCommandButton = new ActiveDevelop.EntitiesFormsLib.CommandButton();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmManager1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,7 +78,6 @@
             this.historyListBox.Location = new System.Drawing.Point(22, 37);
             this.historyListBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.historyListBox.Name = "historyListBox";
-            this.historyListBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.historyListBox.ScrollAlwaysVisible = true;
             this.historyListBox.Size = new System.Drawing.Size(504, 294);
             this.historyListBox.TabIndex = 2;
@@ -141,11 +141,26 @@
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.resultLabel, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("BackColor", typeof(System.Drawing.Color)), typeof(MvvmCalculator.Converter.StringNotEmptyToColorConverter), null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("ErrorText", typeof(string)));
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.calcCommandButton, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Command", typeof(System.Windows.Input.ICommand)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("CalcCommand", typeof(ActiveDevelop.MvvmBaseLib.Mvvm.RelayCommand)));
             // 
+            // clearListCommandButton
+            // 
+            this.clearListCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearListCommandButton.Command = null;
+            this.clearListCommandButton.CommandParameter = null;
+            this.mvvmManager1.SetEventBindings(this.clearListCommandButton, null);
+            this.clearListCommandButton.Location = new System.Drawing.Point(219, 708);
+            this.clearListCommandButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.clearListCommandButton.Name = "clearListCommandButton";
+            this.clearListCommandButton.Size = new System.Drawing.Size(148, 57);
+            this.clearListCommandButton.TabIndex = 8;
+            this.clearListCommandButton.Text = "Clear List";
+            this.clearListCommandButton.UseVisualStyleBackColor = true;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(546, 786);
+            this.Controls.Add(this.clearListCommandButton);
             this.Controls.Add(this.calcCommandButton);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.label1);
@@ -172,6 +187,7 @@
         private System.Windows.Forms.Label resultLabel;
         private ActiveDevelop.EntitiesFormsLib.MvvmManager mvvmManager1;
         private ActiveDevelop.EntitiesFormsLib.CommandButton calcCommandButton;
+        private ActiveDevelop.EntitiesFormsLib.CommandButton clearListCommandButton;
     }
 }
 

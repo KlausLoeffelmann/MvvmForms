@@ -15,7 +15,7 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
         private string myMathExpression;
         private List<FormulaEvaluatorFunction> myFunctions;
         private PrioritizedOperators myPriorizedOperators;
-        private static List<FormulaEvaluatorFunction> myPredefinedFunctions;
+        private List<FormulaEvaluatorFunction> myPredefinedFunctions;
         private double myResult;
         private bool myIsCalculated;
         private List<double> myConsts;
@@ -26,12 +26,12 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
         protected static double myZVariable;
 
         //Definiert die Standardfunktionen statisch bei der ersten Verwendung dieser Klasse.
-        static FormulaEvaluator()
+        FormulaEvaluator()
         {
 
             myPredefinedFunctions = new List<FormulaEvaluatorFunction>();
 
-            myPredefinedFunctions.Add(new FormulaEvaluatorFunction('+', Addition, Convert.ToByte(1)));
+            myPredefinedFunctions.Add(new FormulaEvaluatorFunction('+', this.Addition, Convert.ToByte(1)));
             myPredefinedFunctions.Add(new FormulaEvaluatorFunction('-', Substraction, Convert.ToByte(1)));
             myPredefinedFunctions.Add(new FormulaEvaluatorFunction('*', Multiplication, Convert.ToByte(2)));
             myPredefinedFunctions.Add(new FormulaEvaluatorFunction('/', Division, Convert.ToByte(2)));
@@ -56,14 +56,12 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
         /// </summary>
         /// <param name="mathExpression">Die auszuwertende Formel, die als Zeichenkette vorliegen muss.</param>
         /// <remarks></remarks>
-        public FormulaEvaluator(string mathExpression)
+        public FormulaEvaluator(string mathExpression) :  this()
         {
-
             //Vordefinierte Funktionen übertragen
             myFunctions = myPredefinedFunctions;
             myMathExpression = mathExpression;
             OnAddFunctions();
-
         }
 
         //Mit dem Überschreiben dieser Funktion kann der Entwickler eigene Funktionen hinzufügen
@@ -149,7 +147,7 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
                 //Möglicher Syntaxfehler: Mehrere Parameter, aber keine Funktion
                 if (string.IsNullOrEmpty(locFuncName.Value) && locMoreInnerTerms.Count > 1)
                 {
-                    SyntaxErrorException up = new SyntaxErrorException("Fehler in Formel: Mehrere Klammerparameter aber kein Funktionsname angegeben!");
+                    SyntaxErrorException up = new SyntaxErrorException("Found bracket pairs without a function!");
                     throw up;
                 }
 
@@ -169,7 +167,7 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
 
                     if (locFuncFound == false)
                     {
-                        SyntaxErrorException up = new SyntaxErrorException("Fehler in Formel: Der Funktionsname wurde nicht gefunden");
+                        SyntaxErrorException up = new SyntaxErrorException("Function not found!");
                         throw up;
                     }
                     else
@@ -312,14 +310,14 @@ namespace ActiveDevelop.MvvmBaseLib.FormulaEvaluator
                     locBracketCounter -= 1;
                     if (locBracketCounter < 0)
                     {
-                        SyntaxErrorException up = new SyntaxErrorException("Error in Formular: Too many closing brackets.");
+                        SyntaxErrorException up = new SyntaxErrorException("Too many closing brackets.");
                         throw up;
                     }
                 }
             }
             if (locBracketCounter > 0)
             {
-                SyntaxErrorException up = new SyntaxErrorException("Error in Formular: An open bracket was not closed.");
+                SyntaxErrorException up = new SyntaxErrorException("An open bracket was not closed.");
                 throw up;
             }
 

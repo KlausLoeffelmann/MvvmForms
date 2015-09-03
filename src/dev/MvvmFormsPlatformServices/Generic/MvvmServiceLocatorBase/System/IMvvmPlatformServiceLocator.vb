@@ -1,8 +1,12 @@
-﻿Public Interface IMvvmPlatformServiceLocator
+﻿Public Interface IIoCLifetimeController
+    Function Resolve(Of t)() As t
+End Interface
+
+
+Public Interface IMvvmPlatformServiceLocator
     Inherits IDisposable
 
     Property ContainerLocator As Func(Of Object)
-
-    Function Resolve(Of type)() As type
+    Function GetLifetimeController() As IIoCLifetimeController
 
 End Interface
