@@ -9,9 +9,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MvvmFormsBase")]
 [assembly: AssemblyDescription("ActiveDevelop support library for simplifying the development of ViewModels")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ActiveDevelop - Klaus Löffelmann")]
+[assembly: AssemblyCompany("ActiveDevelop (www.activedevelop.de) - Klaus Löffelmann")]
 [assembly: AssemblyProduct("MvvmForms")]
-[assembly: AssemblyCopyright("Copyright ©  2015 Klaus Läffelmann")]
+[assembly: AssemblyCopyright("Copyright ©  2015 Klaus Löffelmann")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
@@ -26,5 +26,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.0.28.0")]
-[assembly: AssemblyFileVersion("2.0.28.0")]
+[assembly: AssemblyVersion("2.0.30.0")]
+[assembly: AssemblyFileVersion("2.0.30.0")]
