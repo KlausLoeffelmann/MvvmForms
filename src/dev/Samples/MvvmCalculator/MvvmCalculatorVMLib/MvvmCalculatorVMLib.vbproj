@@ -83,8 +83,8 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ActiveDevelop.MvvmBaseLib, Version=2.0.29.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\MvvmFormsBase.2.0.29-Beta\lib\portable-net45+wp80+win8+wpa81+dnxcore50\ActiveDevelop.MvvmBaseLib.dll</HintPath>
+    <Reference Include="ActiveDevelop.MvvmBaseLib, Version=2.0.31.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MvvmFormsBase.2.0.31-Beta\lib\portable-net45+wp80+win8+wpa81+dnxcore50\ActiveDevelop.MvvmBaseLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -113,13 +113,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MvvmFormsBaseInfo.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\MvvmFormsPlatformServices\Generic\MvvmServiceLocatorBase\MvvmServiceLocatorBase.vbproj">
       <Project>{763b7ea9-d5d8-4f2d-af92-fbf178ebb78b}</Project>
       <Name>MvvmServiceLocatorBase</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MvvmFormsBaseInfo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

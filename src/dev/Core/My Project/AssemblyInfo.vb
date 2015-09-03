@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("MvvmForms CoreLib")>
 <Assembly: AssemblyDescription("ActiveDevelop - Windows Forms Class Library for supporting the Mvvm Pattern")>
-<Assembly: AssemblyCompany("ActiveDevelop - (www.activedevelop.de)")>
+<Assembly: AssemblyCompany("ActiveDevelop - (www.activedevelop.de) - Klaus Löffelmann")>
 <Assembly: AssemblyProduct("MvvmForms")>
 <Assembly: AssemblyCopyright("Copyright - 2015 © Klaus Löffelmann")>
 <Assembly: AssemblyTrademark("ActiveDevelop")> 
@@ -35,5 +35,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.0.28.0")>
-<Assembly: AssemblyFileVersion("2.0.28.0")>
+<Assembly: AssemblyVersion("2.0.31.0")>
+<Assembly: AssemblyFileVersion("2.0.31.0")>

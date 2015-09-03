@@ -2,7 +2,7 @@
 Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 Public Class MainViewModel
-    Inherits MvvmBase
+    Inherits MvvmViewModelBase
 
     Sub New()
         Dim kostenartenLookup = New ObservableCollection(Of Kostenart)

@@ -2,7 +2,7 @@
 Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 Public Class ObservableCollectionTestFormViewModel
-    Inherits MvvmBase
+    Inherits MvvmViewModelBase
 
     Private myList As ObservableCollection(Of ContactViewModel)
     Private myGenerateListCommand As RelayCommand = New RelayCommand(

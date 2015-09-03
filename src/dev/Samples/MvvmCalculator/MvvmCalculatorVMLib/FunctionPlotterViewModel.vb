@@ -5,12 +5,11 @@ Imports ActiveDevelop.MvvmBaseLib.FormulaEvaluator
 Public Class FunctionPlotterViewModel
     Inherits BindableBase
 
-    Private myRenderSize As Size
-    Private myPointsToPlot As List(Of Point)
+    Private myRenderSize As Size?
+    Private myPointsToPlot As ObservableCollection(Of Point)
     Private myStartRange As Double?
     Private myEndRange As Double?
-    Private myScale As Size
-    Private myOffset As Size
+    Private myScaling As Size?
     Private myFunction As String
 
     Private myValueCount As Integer = 50
@@ -20,21 +19,51 @@ Public Class FunctionPlotterViewModel
         Function() True)
     Private myErrorText As String
 
-    Public Property RenderSize As Size
+    Public Property RenderSize As Size?
         Get
             Return myRenderSize
         End Get
-        Set(value As Size)
-            SetProperty(myRenderSize, value)
+        Set(value As Size?)
+            If SetProperty(myRenderSize, value) Then
+                OnRenderSizedChanged()
+            End If
         End Set
     End Property
 
-    Public Property PointsToPlot As List(Of Point)
+    Protected Overridable Sub OnRenderSizedChanged()
+        Dim minX, maxX As Double
+        Dim minY, maxY As Double
+
+        If PointsToPlot IsNot Nothing Then
+
+            For c As Integer = 0 To PointsToPlot.Count - 1
+                minX = Math.Min(minX, PointsToPlot(c).X)
+                minY = Math.Min(minY, PointsToPlot(c).Y)
+                maxX = Math.Max(maxX, PointsToPlot(c).X)
+                maxY = Math.Max(maxY, PointsToPlot(c).Y)
+            Next
+        End If
+
+        minX = Math.Min(minX, -minX)
+        minY = Math.Min(minY, -minY)
+        maxX = Math.Max(maxX, -maxX)
+        maxY = Math.Max(maxY, -maxY)
+
+        If RenderSize.HasValue Then
+            Me.Scaling = New Size() With {.Width = (maxX - minX) / RenderSize.Value.Width,
+                                        .Height = (maxY - minY) / RenderSize.Value.Height}
+
+        End If
+    End Sub
+
+    Public Property PointsToPlot As ObservableCollection(Of Point)
         Get
             Return myPointsToPlot
         End Get
-        Set(value As List(Of Point))
-            SetProperty(myPointsToPlot, value)
+        Set(value As ObservableCollection(Of Point))
+            If SetProperty(myPointsToPlot, value) Then
+                OnRenderSizedChanged()
+            End If
         End Set
     End Property
 
@@ -56,21 +85,12 @@ Public Class FunctionPlotterViewModel
         End Set
     End Property
 
-    Public Property Scale As Size
+    Public Property Scaling As Size?
         Get
-            Return myScale
+            Return myScaling
         End Get
-        Set(value As Size)
-            SetProperty(myScale, value)
-        End Set
-    End Property
-
-    Public Property Offset As Size
-        Get
-            Return myOffset
-        End Get
-        Set(value As Size)
-            SetProperty(myOffset, value)
+        Set(value As Size?)
+            SetProperty(myScaling, value)
         End Set
     End Property
 
@@ -114,15 +134,16 @@ Public Class FunctionPlotterViewModel
         Dim formulaEval = New FormulaEvaluator([Function])
         Dim xvar As Double
 
-        formulaEval.Functions.Add(New FormulaEvaluatorFunction("xvar", Function() xvar, 0))
-
         Dim stepScale As Double = ((EndRange.Value - StartRange.Value) / myValueCount)
         xvar = StartRange.Value
         Dim yVar As Double
 
-        Dim resultList As New List(Of Point)
+        Dim resultList As New ObservableCollection(Of Point)
 
         For i = 0 To myValueCount - 1
+
+            formulaEval.X = xvar
+
             Try
                 yVar = formulaEval.Result
             Catch ex As Exception
@@ -140,10 +161,17 @@ End Class
 
 Public Structure Point
     Public Property X As Double
-    Public Property y As Double
+    Public Property Y As Double
+    Public Overrides Function ToString() As String
+        Return $"(X:{X}),(Y:{Y})"
+    End Function
 End Structure
 
 Public Structure Size
     Public Property Width As Double
     Public Property Height As Double
+
+    Public Overrides Function ToString() As String
+        Return $"(Width:{Width}),(Height:{Height})"
+    End Function
 End Structure

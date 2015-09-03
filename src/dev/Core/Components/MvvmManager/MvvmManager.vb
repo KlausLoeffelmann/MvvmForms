@@ -165,7 +165,7 @@ Imports ActiveDevelop.MvvmBaseLib
 ''' <item><description>Create a ViewModel for controlling you Forms or UserControl based view. Your ViewModel class must at least implement  
 ''' <see cref="INotifyPropertyChanged">INotifyPropertyChanged</see>, however, it is often easier, if you inherit your ViewModel class from 
 ''' <see cref="BindableBase">BindableBase</see> or, for getting even more support through base class functionality, from  
-''' <see cref="MvvmBase">MvvmBase</see>:
+''' <see cref="MvvmViewModelBase">MvvmBase</see>:
 ''' <code>
 ''' Public Class AddEditTimeCollectionItemViewModel
 '''     Inherits MvvmBase
@@ -222,7 +222,7 @@ Imports ActiveDevelop.MvvmBaseLib
 ''' named 'TimedColor', it is not enough to just have the property code in your control's codefile. The whole property infrastructure according to the 
 ''' Windows Forms standard (Event, OnXXXMethod) has to be implemented, as well.</description></item>
 ''' <item><description>The ViewModel must implement INotifyPropertyChange, and the property code must raise the related event -   
-''' so, ideally derive all your ViewModels from <see cref="MvvmBase">MvvmBase</see> - see above!. Here is an example for the property code, if you 
+''' so, ideally derive all your ViewModels from <see cref="MvvmViewModelBase">MvvmBase</see> - see above!. Here is an example for the property code, if you 
 ''' derived the ViewModel class from MvvmView:
 ''' <code>
 ''' Public Property Firstname As String

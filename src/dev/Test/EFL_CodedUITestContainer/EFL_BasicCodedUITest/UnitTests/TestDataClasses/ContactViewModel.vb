@@ -2,7 +2,7 @@
 Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 Public Class ContactViewModel
-    Inherits MvvmBase
+    Inherits MvvmViewModelBase
 
     Private myLastname As String
     Private myFirstname As String

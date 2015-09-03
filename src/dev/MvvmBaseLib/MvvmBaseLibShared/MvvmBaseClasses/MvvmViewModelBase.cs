@@ -11,10 +11,11 @@ using System.Xml.Serialization;
 
 namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
-   
-    public class MvvmViewModelBase : BindableBase
+    public class MvvmViewModelBase : BindableBase, IEditableObject, INotifyDataErrorInfo
     {
         private Dictionary<string, string> myErrorDictionary = new Dictionary<string, string>();
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
         public MvvmViewModelBase() : base()
         { }
@@ -110,7 +111,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         /// <see cref="ModelPropertyIgnoreAttribute">ModelPropertyIgnoreAttribute</see>-Attributes können Sie bestimmen, dass
         /// eine Eigenschaft, obwohl sowohl im Model als auch im ViewModel vorhanden, nicht kopiert wird.
         /// </remarks>
-        public static ViewModelType FromModel<ViewModelType, modelType>(modelType model) where ViewModelType : MvvmBase, new()
+        public static ViewModelType FromModel<ViewModelType, modelType>(modelType model) where ViewModelType : MvvmViewModelBase, new()
         {
             ViewModelType viewModelToReturn = new ViewModelType();
             viewModelToReturn.CopyPropertiesFrom(model);
@@ -134,7 +135,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         /// <see cref="ModelPropertyIgnoreAttribute">ModelPropertyIgnoreAttribute</see>-Attributes können Sie bestimmen, dass
         /// eine Eigenschaft, obwohl sowohl im Model als auch im ViewModel vorhanden, nicht kopiert wird.
         /// </remarks>
-        public static IEnumerable<ViewModelType> FromModelList<ViewModelType, Modeltype>(IEnumerable<Modeltype> modelCollection) where ViewModelType : MvvmBase, new()
+        public static IEnumerable<ViewModelType> FromModelList<ViewModelType, Modeltype>(IEnumerable<Modeltype> modelCollection) where ViewModelType : MvvmViewModelBase, new()
         {
             return
                 from modelItem in modelCollection
@@ -330,6 +331,73 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                     CopyPropertiesException copPropException = new CopyPropertiesException("ViewModel property '" + propToPropItem.ViewModelProperty.Name + "' could not be copied to Model property '" + propToPropItem.ModelProperty.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
                     Debug.WriteLine("ViewModel property '" + propToPropItem.ViewModelProperty.Name + "' could not be copied to Model property '" + propToPropItem.ModelProperty.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
                 }
+            }
+        }
+
+        void IEditableObject.BeginEdit()
+        {
+            this.BeginEdit();
+        }
+        private void BeginEdit()
+        {
+            OnNotifyBeginEdit(EventArgs.Empty);
+        }
+
+        private void OnNotifyBeginEdit(EventArgs e)
+        {
+            if (NotifyBeginEdit != null)
+                NotifyBeginEdit(this, e);
+        }
+
+        void IEditableObject.CancelEdit()
+        {
+            this.CancelEdit();
+        }
+        private void CancelEdit()
+        {
+            OnNotifyCancelEdit(EventArgs.Empty);
+        }
+
+        private void OnNotifyCancelEdit(EventArgs e)
+        {
+            if (NotifyCancelEdit != null)
+                NotifyCancelEdit(this, e);
+        }
+
+        void IEditableObject.EndEdit()
+        {
+            this.EndEdit();
+        }
+        private void EndEdit()
+        {
+            OnNotifyEndEdit(EventArgs.Empty);
+        }
+
+        private void OnNotifyEndEdit(EventArgs e)
+        {
+            if (NotifyEndEdit != null)
+                NotifyEndEdit(this, e);
+        }
+
+
+        public virtual IEnumerable GetErrors(string propertyName)
+        {
+            throw new NotImplementedException("Not yet implemented.");
+        }
+
+        protected virtual void OnErrorsChanged(DataErrorsChangedEventArgs eArgs)
+        {
+            if (ErrorsChanged != null)
+                ErrorsChanged(this, eArgs);
+        }
+
+        [ModelPropertyIgnore, XmlIgnore, JsonIgnore]
+        public bool HasErrors
+        {
+            get
+            {
+                //Throw New NotImplementedException("Not yet implemented.")
+                return false;
             }
         }
     }

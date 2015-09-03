@@ -12,7 +12,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
 
 		}
 
-		public class Validatable<T> : MvvmBase, IDiscoverableValue<T>
+		public class Validatable<T> : MvvmViewModelBase, IDiscoverableValue<T>
 		{
 			private T myValue;
 			private string myValidationErrorText;

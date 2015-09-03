@@ -2,7 +2,7 @@
 Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 Public Class Buchung
-    Inherits MvvmBase
+    Inherits MvvmViewModelBase
 
     Private _url As String
     ''' <summary>

@@ -160,7 +160,7 @@ Public Class frmMvvmPropertyAssignmentEx
     Public Sub AddOrChangePropertyItemHandler(sender As Object, e As EventArgs)
 
         Dim ctrlProperty = DirectCast(nvrControlProperties.Value, BindingProperty)
-        Dim vmProperty As BindingProperty '= DirectCast(nvrViewModelProperty.Value, BindingProperty)
+        Dim vmProperty As BindingProperty = Nothing  '= DirectCast(nvrViewModelProperty.Value, BindingProperty)
 
         'Testen, ob die Daten vollständig erfasst wurden
         If nvrControlProperties.Value IsNot Nothing Then 'AndAlso

@@ -11,14 +11,12 @@ using System.Xml.Serialization;
 
 namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
-    [Obsolete("This class is obsolete and should no longer be used. Please use MvvmViewModelBase instead.")]
-    public class MvvmBase : BindableBase, IEditableObject, INotifyDataErrorInfo
+   
+    public class MvvmViewModelBase : BindableBase
     {
         private Dictionary<string, string> myErrorDictionary = new Dictionary<string, string>();
 
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-        public MvvmBase() : base()
+        public MvvmViewModelBase() : base()
         { }
 
         /// <summary>
@@ -332,67 +330,6 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                     CopyPropertiesException copPropException = new CopyPropertiesException("ViewModel property '" + propToPropItem.ViewModelProperty.Name + "' could not be copied to Model property '" + propToPropItem.ModelProperty.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
                     Debug.WriteLine("ViewModel property '" + propToPropItem.ViewModelProperty.Name + "' could not be copied to Model property '" + propToPropItem.ModelProperty.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
                 }
-            }
-        }
-
-        void IEditableObject.BeginEdit()
-        {
-            this.BeginEdit();
-        }
-        private void BeginEdit()
-        {
-            OnNotifyBeginEdit(EventArgs.Empty);
-        }
-
-        private void OnNotifyBeginEdit(EventArgs e)
-        {
-            if (NotifyBeginEdit != null)
-                NotifyBeginEdit(this, e);
-        }
-
-        void IEditableObject.CancelEdit()
-        {
-            this.CancelEdit();
-        }
-        private void CancelEdit()
-        {
-            OnNotifyCancelEdit(EventArgs.Empty);
-        }
-
-        private void OnNotifyCancelEdit(EventArgs e)
-        {
-            if (NotifyCancelEdit != null)
-                NotifyCancelEdit(this, e);
-        }
-
-        void IEditableObject.EndEdit()
-        {
-            this.EndEdit();
-        }
-        private void EndEdit()
-        {
-            OnNotifyEndEdit(EventArgs.Empty);
-        }
-
-        private void OnNotifyEndEdit(EventArgs e)
-        {
-            if (NotifyEndEdit != null)
-                NotifyEndEdit(this, e);
-        }
-
-
-        public virtual IEnumerable GetErrors(string propertyName)
-        {
-            throw new NotImplementedException("Not yet implemented.");
-        }
-
-        [ModelPropertyIgnore, XmlIgnore, JsonIgnore]
-        public bool HasErrors
-        {
-            get
-            {
-                //Throw New NotImplementedException("Not yet implemented.")
-                return false;
             }
         }
     }

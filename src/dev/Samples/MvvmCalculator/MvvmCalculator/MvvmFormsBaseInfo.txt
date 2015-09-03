@@ -14,6 +14,20 @@ Please contact mvvmforms@activedevelop.de for further information.
 <
 ==================================
  CHANGELOG    
+ NEW IN 2.0.31 - 2015-9-3
+ ==================================
+ 
+* Introduced MvvmViewModelBase (MvvmBase got deprecated).
+* Corrected First Fire Issue in Timer.
+* Minor bug fixing in FormulaEval-Class.
+
+==================================
+ CHANGELOG - PRIVATE TEST BUILD    
+ NEW IN 2.0.30 - 2015-9-3
+ ==================================
+
+==================================
+ CHANGELOG    
  NEW IN 2.0.29 - 2015-11-8
  ==================================
  
