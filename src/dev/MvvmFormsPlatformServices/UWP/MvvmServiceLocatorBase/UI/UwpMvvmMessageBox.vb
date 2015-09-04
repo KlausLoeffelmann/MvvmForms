@@ -69,6 +69,7 @@ Public Class UwpMvvmMessageBox
         Dim dr As MvvmDialogResult = MvvmDialogResult.None
 
         Dim mesDialog = New MessageDialog(text)
+
         If String.IsNullOrEmpty(caption) Then
             mesDialog.Title = caption
         End If

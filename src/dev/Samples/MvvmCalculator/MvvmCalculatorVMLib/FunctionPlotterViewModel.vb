@@ -50,8 +50,8 @@ Public Class FunctionPlotterViewModel
         maxY = Math.Max(maxY, -maxY)
 
         If RenderSize.HasValue Then
-            Me.Scaling = New Size() With {.Width = (maxX - minX) / RenderSize.Value.Width,
-                                        .Height = (maxY - minY) / RenderSize.Value.Height}
+            Me.Scaling = New Size() With {.Width = RenderSize.Value.Width / (maxX - minX),
+                                          .Height = RenderSize.Value.Height / (maxY - minY)}
 
         End If
     End Sub

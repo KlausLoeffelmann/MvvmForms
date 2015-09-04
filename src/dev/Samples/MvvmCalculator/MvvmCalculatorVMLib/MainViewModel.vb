@@ -18,6 +18,7 @@ Public Class MainViewModel
 
     Private myCalcCommand As RelayCommand
     Private myClearListCommand As RelayCommand
+    Private myCallFunctionPlotterCommand As RelayCommand
 
     Private myPlatformServiceLocator As Func(Of IMvvmPlatformServiceLocator)
     'The lifetimecontroller for all the other instances created by this Viewmodel, which need to persist during its lifetime.
@@ -29,8 +30,12 @@ Public Class MainViewModel
     Sub New(platformServiceLocator As Func(Of IMvvmPlatformServiceLocator))
         myCalcCommand = New RelayCommand(AddressOf CalcCommandProc,
                                          AddressOf CanExecuteCalcCommand)
+
         myClearListCommand = New RelayCommand(AddressOf ClearListProc,
                                             Function() True)
+
+        myCallFunctionPlotterCommand = New RelayCommand(AddressOf CallFunctionPlotterProc,
+                                                      Function() True)
 
         myPlatformServiceLocator = platformServiceLocator
         myLifetimeInstanceController = myPlatformServiceLocator().GetLifetimeController
@@ -133,6 +138,24 @@ Public Class MainViewModel
         End Set
     End Property
 
+    Public Property ClearListCommand As RelayCommand
+        Get
+            Return myClearListCommand
+        End Get
+        Set(value As RelayCommand)
+            SetProperty(myClearListCommand, value)
+        End Set
+    End Property
+
+    Public Property CallFunctionPlotterCommand As RelayCommand
+        Get
+            Return myCallFunctionPlotterCommand
+        End Get
+        Set(value As RelayCommand)
+            SetProperty(myCallFunctionPlotterCommand, value)
+        End Set
+    End Property
+
     Public Property ErrorText As String
         Get
             Return myErrorText
@@ -170,8 +193,25 @@ Public Class MainViewModel
         Return Not String.IsNullOrWhiteSpace(EnteredFormula)
     End Function
 
-    Private Sub ClearListProc(param As Object)
-        Me.Formulas = New ObservableCollection(Of FormulaEvaluator)
+    Private Async Sub ClearListProc(param As Object)
+        Dim dialogResult = Await myLifetimeInstanceController.
+            GetMessageBoxService.
+                ShowMessageBoxAsync("Are you sure you want to clear the list?",
+                                    "Clear list",
+                                     MvvmMessageBoxButtons.YesNo,
+                                     MvvmMessageBoxDefaultButton.Button2,
+                                     MvvmMessageBoxIcon.Question)
+
+        If dialogResult = MvvmDialogResult.Yes Then
+            Me.Formulas = New ObservableCollection(Of FormulaEvaluator)
+        End If
+
+    End Sub
+
+    Private Sub CallFunctionPlotterProc(param As Object)
+        Dim functionPlotterVm = myLifetimeInstanceController.Resolve(Of FunctionPlotterViewModel)
+
+        myLifetimeInstanceController.GetNavigationService.NavigateTo(functionPlotterVm)
     End Sub
 
 End Class

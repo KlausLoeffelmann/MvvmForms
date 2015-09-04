@@ -35,8 +35,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.resultLabel = new System.Windows.Forms.Label();
             this.calcCommandButton = new ActiveDevelop.EntitiesFormsLib.CommandButton();
-            this.mvvmManager1 = new ActiveDevelop.EntitiesFormsLib.MvvmManager(this.components);
             this.clearListCommandButton = new ActiveDevelop.EntitiesFormsLib.CommandButton();
+            this.functionPlotterCommandButton = new ActiveDevelop.EntitiesFormsLib.CommandButton();
+            this.mvvmManager1 = new ActiveDevelop.EntitiesFormsLib.MvvmManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mvvmManager1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,6 +123,34 @@
             this.calcCommandButton.Text = "Calc";
             this.calcCommandButton.UseVisualStyleBackColor = true;
             // 
+            // clearListCommandButton
+            // 
+            this.clearListCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearListCommandButton.Command = null;
+            this.clearListCommandButton.CommandParameter = null;
+            this.mvvmManager1.SetEventBindings(this.clearListCommandButton, null);
+            this.clearListCommandButton.Location = new System.Drawing.Point(219, 708);
+            this.clearListCommandButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.clearListCommandButton.Name = "clearListCommandButton";
+            this.clearListCommandButton.Size = new System.Drawing.Size(148, 57);
+            this.clearListCommandButton.TabIndex = 8;
+            this.clearListCommandButton.Text = "Clear List";
+            this.clearListCommandButton.UseVisualStyleBackColor = true;
+            // 
+            // functionPlotterCommandButton
+            // 
+            this.functionPlotterCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.functionPlotterCommandButton.Command = null;
+            this.functionPlotterCommandButton.CommandParameter = null;
+            this.mvvmManager1.SetEventBindings(this.functionPlotterCommandButton, null);
+            this.functionPlotterCommandButton.Location = new System.Drawing.Point(63, 708);
+            this.functionPlotterCommandButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.functionPlotterCommandButton.Name = "functionPlotterCommandButton";
+            this.functionPlotterCommandButton.Size = new System.Drawing.Size(148, 57);
+            this.functionPlotterCommandButton.TabIndex = 9;
+            this.functionPlotterCommandButton.Text = "Function Plotter";
+            this.functionPlotterCommandButton.UseVisualStyleBackColor = true;
+            // 
             // mvvmManager1
             // 
             this.mvvmManager1.CancelButton = null;
@@ -140,26 +169,15 @@
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.resultLabel, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("Result", typeof(string)));
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.resultLabel, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("BackColor", typeof(System.Drawing.Color)), typeof(MvvmCalculator.Converter.StringNotEmptyToColorConverter), null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("ErrorText", typeof(string)));
             this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.calcCommandButton, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Command", typeof(System.Windows.Input.ICommand)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("CalcCommand", typeof(ActiveDevelop.MvvmBaseLib.Mvvm.RelayCommand)));
-            // 
-            // clearListCommandButton
-            // 
-            this.clearListCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearListCommandButton.Command = null;
-            this.clearListCommandButton.CommandParameter = null;
-            this.mvvmManager1.SetEventBindings(this.clearListCommandButton, null);
-            this.clearListCommandButton.Location = new System.Drawing.Point(219, 708);
-            this.clearListCommandButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.clearListCommandButton.Name = "clearListCommandButton";
-            this.clearListCommandButton.Size = new System.Drawing.Size(148, 57);
-            this.clearListCommandButton.TabIndex = 8;
-            this.clearListCommandButton.Text = "Clear List";
-            this.clearListCommandButton.UseVisualStyleBackColor = true;
+            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.clearListCommandButton, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Command", typeof(System.Windows.Input.ICommand)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("ClearListCommand", typeof(ActiveDevelop.MvvmBaseLib.Mvvm.RelayCommand)));
+            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.functionPlotterCommandButton, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Command", typeof(System.Windows.Input.ICommand)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("CallFunctionPlotterCommand", typeof(ActiveDevelop.MvvmBaseLib.Mvvm.RelayCommand)));
             // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(546, 786);
+            this.Controls.Add(this.functionPlotterCommandButton);
             this.Controls.Add(this.clearListCommandButton);
             this.Controls.Add(this.calcCommandButton);
             this.Controls.Add(this.resultLabel);
@@ -188,6 +206,7 @@
         private ActiveDevelop.EntitiesFormsLib.MvvmManager mvvmManager1;
         private ActiveDevelop.EntitiesFormsLib.CommandButton calcCommandButton;
         private ActiveDevelop.EntitiesFormsLib.CommandButton clearListCommandButton;
+        private ActiveDevelop.EntitiesFormsLib.CommandButton functionPlotterCommandButton;
     }
 }
 

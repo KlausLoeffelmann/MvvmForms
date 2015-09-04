@@ -19,7 +19,7 @@ Public Class UwpMvvmPlatformServiceLocator
     ''' Centralized Viewsolver for finding Views as Pages based on ViewModels
     ''' </summary>
     ''' <returns></returns>
-    Public Shared Property ViewToPageResolver As Func(Of INotifyPropertyChanged, Type)
+    Public Shared Property ViewModelToPageResolver As Func(Of INotifyPropertyChanged, Type)
 
     ''' <summary>
     ''' Centralized View solver for finding Views as ContentDialogs based on ViewModels

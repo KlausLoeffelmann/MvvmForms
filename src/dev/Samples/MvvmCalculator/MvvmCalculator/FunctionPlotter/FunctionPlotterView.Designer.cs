@@ -31,20 +31,21 @@
             this.components = new System.ComponentModel.Container();
             this.updateCommandButton = new ActiveDevelop.EntitiesFormsLib.CommandButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.functionTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.fromLabel = new System.Windows.Forms.Label();
             this.fromTextBox = new System.Windows.Forms.TextBox();
             this.toTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.functionTextBox = new System.Windows.Forms.TextBox();
-            this.functionPlotterRenderer1 = new MvvmCalculator.FunctionPlotter.FunctionPlotterRenderer();
             this.mvvmManager1 = new ActiveDevelop.EntitiesFormsLib.MvvmManager(this.components);
+            this.functionPlotterRenderer1 = new MvvmCalculator.FunctionPlotter.FunctionPlotterRenderer();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // updateCommandButton
             // 
+            this.updateCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.updateCommandButton.Command = null;
             this.updateCommandButton.CommandParameter = null;
             this.mvvmManager1.SetEventBindings(this.updateCommandButton, null);
@@ -57,6 +58,8 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -76,6 +79,39 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(722, 155);
             this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // functionTextBox
+            // 
+            this.functionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.functionTextBox, 3);
+            this.mvvmManager1.SetEventBindings(this.functionTextBox, null);
+            this.functionTextBox.Location = new System.Drawing.Point(190, 103);
+            this.functionTextBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.functionTextBox.Name = "functionTextBox";
+            this.functionTextBox.Size = new System.Drawing.Size(522, 26);
+            this.functionTextBox.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label2.AutoSize = true;
+            this.mvvmManager1.SetEventBindings(this.label2, null);
+            this.label2.Location = new System.Drawing.Point(102, 106);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Function:";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label1.AutoSize = true;
+            this.mvvmManager1.SetEventBindings(this.label1, null);
+            this.label1.Location = new System.Drawing.Point(510, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "to:";
             // 
             // fromLabel
             // 
@@ -108,38 +144,25 @@
             this.toTextBox.Size = new System.Drawing.Size(162, 26);
             this.toTextBox.TabIndex = 2;
             // 
-            // label1
+            // mvvmManager1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.mvvmManager1.SetEventBindings(this.label1, null);
-            this.label1.Location = new System.Drawing.Point(510, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "to:";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label2.AutoSize = true;
-            this.mvvmManager1.SetEventBindings(this.label2, null);
-            this.label2.Location = new System.Drawing.Point(102, 106);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Function:";
-            // 
-            // functionTextBox
-            // 
-            this.functionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.functionTextBox, 3);
-            this.mvvmManager1.SetEventBindings(this.functionTextBox, null);
-            this.functionTextBox.Location = new System.Drawing.Point(190, 103);
-            this.functionTextBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.functionTextBox.Name = "functionTextBox";
-            this.functionTextBox.Size = new System.Drawing.Size(522, 26);
-            this.functionTextBox.TabIndex = 5;
+            this.mvvmManager1.CancelButton = null;
+            this.mvvmManager1.ContainerControl = this;
+            this.mvvmManager1.CurrentContextGuid = new System.Guid("861fafc2-3724-48ce-9bcf-d4a6f0dc5f0b");
+            this.mvvmManager1.DataContext = null;
+            this.mvvmManager1.DataContextType = typeof(MvvmCalculatorVMLib.FunctionPlotterViewModel);
+            this.mvvmManager1.DataSourceType = typeof(MvvmCalculatorVMLib.FunctionPlotterViewModel);
+            this.mvvmManager1.DirtyStateManagerComponent = null;
+            this.mvvmManager1.DynamicEventHandlingList = null;
+            this.mvvmManager1.HostingForm = this;
+            this.mvvmManager1.HostingUserControl = null;
+            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.updateCommandButton, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Command", typeof(System.Windows.Input.ICommand)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("CalculateCommand", typeof(ActiveDevelop.MvvmBaseLib.Mvvm.RelayCommand)));
+            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.fromTextBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), typeof(MvvmCalculator.Converter.NullableDoubleToStringConverter), null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("StartRange", typeof(System.Nullable<double>)));
+            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.toTextBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), typeof(MvvmCalculator.Converter.NullableDoubleToStringConverter), null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("EndRange", typeof(System.Nullable<double>)));
+            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.functionTextBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("Function", typeof(string)));
+            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.functionPlotterRenderer1, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("PointsToPlot", typeof(System.Collections.ObjectModel.ObservableCollection<MvvmCalculatorVMLib.Point>)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("PointsToPlot", typeof(System.Collections.ObjectModel.ObservableCollection<MvvmCalculatorVMLib.Point>)));
+            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.functionPlotterRenderer1, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("MvvmRenderSize", typeof(System.Nullable<MvvmCalculatorVMLib.Size>)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("RenderSize", typeof(System.Nullable<MvvmCalculatorVMLib.Size>)));
+            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.functionPlotterRenderer1, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("MvvmScaling", typeof(System.Nullable<MvvmCalculatorVMLib.Size>)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("Scaling", typeof(System.Nullable<MvvmCalculatorVMLib.Size>)));
             // 
             // functionPlotterRenderer1
             // 
@@ -153,26 +176,6 @@
             this.functionPlotterRenderer1.PointsToPlot = null;
             this.functionPlotterRenderer1.Size = new System.Drawing.Size(943, 628);
             this.functionPlotterRenderer1.TabIndex = 0;
-            // 
-            // mvvmManager1
-            // 
-            this.mvvmManager1.CancelButton = null;
-            this.mvvmManager1.ContainerControl = this;
-            this.mvvmManager1.CurrentContextGuid = new System.Guid("861fafc2-3724-48ce-9bcf-d4a6f0dc5f0b");
-            this.mvvmManager1.DataContext = null;
-            this.mvvmManager1.DataContextType = typeof(MvvmCalculatorVMLib.FunctionPlotterViewModel);
-            this.mvvmManager1.DataSourceType = typeof(MvvmCalculatorVMLib.FunctionPlotterViewModel);
-            this.mvvmManager1.DirtyStateManagerComponent = null;
-            this.mvvmManager1.DynamicEventHandlingList = null;
-            this.mvvmManager1.HostingForm = this;
-            this.mvvmManager1.HostingUserControl = null;
-            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.functionPlotterRenderer1, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("PointsToPlot", typeof(System.Collections.ObjectModel.ObservableCollection<MvvmCalculatorVMLib.Point>)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("PointsToPlot", typeof(System.Collections.ObjectModel.ObservableCollection<MvvmCalculatorVMLib.Point>)));
-            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.functionPlotterRenderer1, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("MvvmRenderSize", typeof(System.Nullable<MvvmCalculatorVMLib.Size>)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("RenderSize", typeof(System.Nullable<MvvmCalculatorVMLib.Size>)));
-            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.functionPlotterRenderer1, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("MvvmScaling", typeof(System.Nullable<MvvmCalculatorVMLib.Size>)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("Scaling", typeof(System.Nullable<MvvmCalculatorVMLib.Size>)));
-            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.updateCommandButton, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Command", typeof(System.Windows.Input.ICommand)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("CalculateCommand", typeof(ActiveDevelop.MvvmBaseLib.Mvvm.RelayCommand)));
-            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.functionTextBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), null, null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("Function", typeof(string)));
-            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.fromTextBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), typeof(MvvmCalculator.Converter.NullableDoubleToStringConverter), null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("StartRange", typeof(System.Nullable<double>)));
-            this.mvvmManager1.MvvmBindings.AddPropertyBinding(this.toTextBox, new ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), new ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", typeof(string)), typeof(MvvmCalculator.Converter.NullableDoubleToStringConverter), null, new ActiveDevelop.EntitiesFormsLib.BindingProperty("EndRange", typeof(System.Nullable<double>)));
             // 
             // FunctionPlotterView
             // 

@@ -17,7 +17,7 @@ Public Class UwpMvvmPageNavigationService
     End Sub
 
     Public Sub NavigateTo(pageThroughViewmodel As INotifyPropertyChanged) Implements IMvvmPageNavigationService.NavigateTo
-        Dim newPage = UwpMvvmPlatformServiceLocator.ViewToPageResolver(pageThroughViewmodel)
+        Dim newPage = UwpMvvmPlatformServiceLocator.ViewModelToPageResolver(pageThroughViewmodel)
         NavigationFrame.Navigate(newPage)
         DirectCast(NavigationFrame.Content, Page).DataContext = pageThroughViewmodel
     End Sub

@@ -14,12 +14,16 @@ using System.Collections.ObjectModel;
 
 namespace MvvmCalculator.FunctionPlotter
 {
+    // Important: Since MvvmForms uses dynamic Event binding, we cannot use EventHandler<t>.
+    public delegate void MvvmRenderSizeChangedEventHandler(object sender, EventArgs eArgs);
+    public delegate void MvvmScalingChangedEventHandler(object sender, EventArgs eArgs);
+    public delegate void PointsToPlotChangedEventHandler(object sender, EventArgs eArgs);
 
     public partial class FunctionPlotterRenderer : UserControl
     {
-        public event EventHandler<EventArgs> MvvmRenderSizeChanged;
-        public event EventHandler<EventArgs> MvvmScalingChanged;
-        public event EventHandler<EventArgs> PointsToPlotChanged;
+        public event MvvmRenderSizeChangedEventHandler MvvmRenderSizeChanged;
+        public event MvvmScalingChangedEventHandler MvvmScalingChanged;
+        public event PointsToPlotChangedEventHandler PointsToPlotChanged;
 
         private MvvmSize? myScaling;
         private ObservableCollection<MvvmPoint> myPointsToPlot;
@@ -27,6 +31,8 @@ namespace MvvmCalculator.FunctionPlotter
         public FunctionPlotterRenderer()
         {
             InitializeComponent();
+            ResizeRedraw = true;
+            this.DoubleBuffered = true;
         }
 
         /// <summary>
@@ -55,7 +61,6 @@ namespace MvvmCalculator.FunctionPlotter
             }
         }
 
-        //Although we never need this really, we have to have it, so the binding engine would discover the property.
         protected virtual void OnMvvmRenderSizeChanged(EventArgs eArgs)
         {
             if (MvvmRenderSizeChanged!=null) 
@@ -112,18 +117,26 @@ namespace MvvmCalculator.FunctionPlotter
             this.Invalidate();
         }
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            OnMvvmRenderSizeChanged(EventArgs.Empty);
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
             MvvmPoint? lastPoint = null;
 
+            e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, 0, this.ClientSize.Width - 1, this.ClientSize.Height - 1));
             e.Graphics.DrawRectangle(Pens.Black, new Rectangle(0, 0, this.ClientSize.Width-1, this.ClientSize.Height-1));
 
             if (MvvmScaling.HasValue && PointsToPlot!= null)
             {
                 e.Graphics.ScaleTransform((float)MvvmScaling.Value.Width,
                                           (float)MvvmScaling.Value.Height);
+
                 foreach (var pointItem in PointsToPlot) 
                 {
                     if (!lastPoint.HasValue)
@@ -137,6 +150,7 @@ namespace MvvmCalculator.FunctionPlotter
                                        (float)lastPoint.Value.Y),
                             new PointF((float)pointItem.X,
                                         (float)pointItem.Y));
+                        lastPoint = pointItem;
                     }
 
                 }

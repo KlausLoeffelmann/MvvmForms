@@ -89,6 +89,10 @@ Public Class WinFormsMvvmMessageBox
                 winFormsMsgIcon = MessageBoxIcon.None
             Case MvvmMessageBoxIcon.Warning
                 winFormsMsgIcon = MessageBoxIcon.Warning
+            Case MvvmMessageBoxIcon.Question
+                winFormsMsgIcon = MessageBoxIcon.Question
+            Case MvvmMessageBoxIcon.Stop
+                winFormsMsgIcon = MessageBoxIcon.Stop
             Case Else
                 Throw New NotSupportedException("MvvmForms does not support any other MessageBoxIcon combination.")
         End Select

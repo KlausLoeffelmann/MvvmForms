@@ -28,6 +28,7 @@ Public Enum MvvmMessageBoxIcon
     Information
     Warning
     [Stop]
+    Question
 End Enum
 
 

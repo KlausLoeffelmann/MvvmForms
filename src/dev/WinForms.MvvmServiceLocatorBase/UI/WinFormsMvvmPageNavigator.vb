@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Windows.Forms
+Imports ActiveDevelop.EntitiesFormsLib
 Imports ActiveDevelop.IoC.Generic
 
 ''' <summary>
@@ -19,7 +20,25 @@ Public Class WinFormsMvvmPageNavigationService
     End Sub
 
     Public Sub NavigateTo(pageThroughViewmodel As INotifyPropertyChanged) Implements IMvvmPageNavigationService.NavigateTo
-        Throw New NotImplementedException("Not implemented yet.")
+        Dim newFormType = WinFormsMvvmPlatformServiceLocator.ViewModelToPageResolver(pageThroughViewmodel)
+        Dim newForm = DirectCast(Activator.CreateInstance(newFormType), Form)
+
+        'Find out, if target has implemented DataContext-Property
+        If newForm IsNot Nothing Then
+            Dim dataContextProperty = newForm.GetType().GetProperty("DataContext")
+            If dataContextProperty IsNot Nothing Then
+                dataContextProperty.SetValue(newForm, pageThroughViewmodel)
+            Else
+                Throw New ArgumentException("Could not assign ViewModel to Page (Form) of type '" & newForm.GetType.Name &
+                                            "', because it does not have DataContext property." & vbNewLine &
+                                            "Please, implement a DataContext property and wire it up to the MvvmManager component to make it a proper view.")
+            End If
+        Else
+            Throw New ArgumentException("The View of type '" & newForm.GetType.Name & "' could not be created.")
+        End If
+
+        newForm.ShowDialog()
+
     End Sub
 
     Public Function CanGoBack() As Boolean Implements IMvvmPageNavigationService.CanGoBack

@@ -16,5 +16,10 @@ namespace MvvmCalculator
         {
             InitializeComponent();
         }
+        public object DataContext
+        {
+            get { return mvvmManager1.DataContext; }
+            set { mvvmManager1.DataContext = value; }
+        }
     }
 }

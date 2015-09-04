@@ -29,19 +29,24 @@ namespace MvvmCalculator
 
         private void RegisterTypes(Form mainWindow)
         {
+            // To introduce a new ViewModel/View relation...
+
+            // 1. Register the ViewModel with RegisterTypes here, and ...
             WinFormsMvvmPlatformServiceLocator.
             BeginRegister().
             RegisterPlatformServiceLocator(mainWindow).
-            RegisterTypes(new List<Type>{ typeof(MainViewModel)}).
+            RegisterTypes(new List<Type>{ typeof(MainViewModel),
+                                          typeof(FunctionPlotterViewModel)}).
             EndRegister();
 
-            WinFormsMvvmPlatformServiceLocator.ViewToPageResolver =
+            WinFormsMvvmPlatformServiceLocator.ViewModelToPageResolver =
                 (INotifyPropertyChanged viewModel) =>
                 {
                     var vmType = viewModel.GetType();
 
+                    // 2. create the assignment, which ViewModel should return which view ...
                     if (viewModel.GetType() == typeof(MainViewModel)) return typeof(MainView);
-                    if (viewModel.GetType() == typeof(MainViewModel)) return typeof(MainView);
+                    if (viewModel.GetType() == typeof(FunctionPlotterViewModel)) return typeof(FunctionPlotterView);
 
                     return null;
 
