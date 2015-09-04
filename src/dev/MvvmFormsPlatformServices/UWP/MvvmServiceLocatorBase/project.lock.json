@@ -3,7 +3,7 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
-      "Autofac/4.0.0-beta5-90": {
+      "Autofac/4.0.0-beta6-110": {
         "frameworkAssemblies": [
           "System.Collections",
           "System.ComponentModel",
@@ -1573,7 +1573,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
-      "Autofac/4.0.0-beta5-90": {
+      "Autofac/4.0.0-beta6-110": {
         "frameworkAssemblies": [
           "System.Collections",
           "System.ComponentModel",
@@ -3233,7 +3233,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
-      "Autofac/4.0.0-beta5-90": {
+      "Autofac/4.0.0-beta6-110": {
         "frameworkAssemblies": [
           "System.Collections",
           "System.ComponentModel",
@@ -4865,7 +4865,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
-      "Autofac/4.0.0-beta5-90": {
+      "Autofac/4.0.0-beta6-110": {
         "frameworkAssemblies": [
           "System.Collections",
           "System.ComponentModel",
@@ -6530,7 +6530,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
-      "Autofac/4.0.0-beta5-90": {
+      "Autofac/4.0.0-beta6-110": {
         "frameworkAssemblies": [
           "System.Collections",
           "System.ComponentModel",
@@ -8162,7 +8162,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
-      "Autofac/4.0.0-beta5-90": {
+      "Autofac/4.0.0-beta6-110": {
         "frameworkAssemblies": [
           "System.Collections",
           "System.ComponentModel",
@@ -9827,7 +9827,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
-      "Autofac/4.0.0-beta5-90": {
+      "Autofac/4.0.0-beta6-110": {
         "frameworkAssemblies": [
           "System.Collections",
           "System.ComponentModel",
@@ -11460,8 +11460,8 @@
     }
   },
   "libraries": {
-    "Autofac/4.0.0-beta5-90": {
-      "sha512": "W03LtKJXDUBdRdXOK0Al7cW8Pc0cxEO9TpTHmOejw0EKpcusuHb3d5+sIQAjMMMFaMkKvZTXMeLgpYbAC60r7Q==",
+    "Autofac/4.0.0-beta6-110": {
+      "sha512": "fZ9HKKTFRxKmnRZP0tCLIBB6iPLg7nwdD9NUDGObQ4QJkQ8pz8OrEt10q1WlDAX67H2kbpDF0zVWJ6JjUDh+YQ==",
       "type": "Package",
       "files": [
         "_rels/.rels",
@@ -11472,6 +11472,7 @@
         "lib/dnxcore50/Autofac.xml",
         "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.dll",
         "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+Xamarin.iOS10+MonoTouch10/Autofac.xml",
+        "repo.json",
         "[Content_Types].xml"
       ]
     },
@@ -14849,7 +14850,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Autofac >= 4.0.0-beta5-90",
+      "Autofac >= 4.0.0-beta6-110",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Newtonsoft.Json >= 7.0.1"
     ],

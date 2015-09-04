@@ -25,8 +25,8 @@ namespace MvvmCalculator.FunctionPlotter
         public event MvvmScalingChangedEventHandler MvvmScalingChanged;
         public event PointsToPlotChangedEventHandler PointsToPlotChanged;
 
-        private MvvmSize? myScaling;
         private ObservableCollection<MvvmPoint> myPointsToPlot;
+        private Size myLastKnownSize;
 
         public FunctionPlotterRenderer()
         {
@@ -66,31 +66,6 @@ namespace MvvmCalculator.FunctionPlotter
             if (MvvmRenderSizeChanged!=null) 
                 MvvmRenderSizeChanged(this, eArgs);
         }
-        
-        public MvvmSize? MvvmScaling
-        {
-            get
-            {
-                return myScaling;
-            }
-
-            set
-            {
-                if (!object.Equals(myScaling, value))
-                {
-                    myScaling = value;
-                    OnMvvmScalingChanged(EventArgs.Empty);
-                }
-            }
-        }
-
-        protected virtual void OnMvvmScalingChanged(EventArgs eArgs)
-        {
-            if (MvvmScalingChanged != null)
-                this?.MvvmScalingChanged(this, eArgs);
-
-            this.Invalidate();
-        }
 
         public ObservableCollection<MvvmPoint> PointsToPlot
         {
@@ -111,16 +86,33 @@ namespace MvvmCalculator.FunctionPlotter
 
         protected virtual void OnPointsToPlotChanged(EventArgs eArgs)
         {
-            if (PointsToPlotChanged!=null)
+            if (PointsToPlotChanged != null)
+            {
                 PointsToPlotChanged(this, eArgs);
+            }
 
             this.Invalidate();
+        }
+
+        //Important: When all the Resize Events have been fired on start, the Binding has not taken place.
+        //The ViewModel does hence not know about the size. OnLayout is fired later, when the Binding took place.
+        //So, we use this to update the ClientSize in the ViewModel.
+        protected override void OnLayout(LayoutEventArgs e)
+        {
+            base.OnLayout(e);
+            OnMvvmRenderSizeChanged(EventArgs.Empty);
         }
 
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
-            OnMvvmRenderSizeChanged(EventArgs.Empty);
+
+            //Since we have Resize/Redraw, we can only raise the resize event back to 
+            //the ViewModel, when the Size really changed. Old GDR+... :-S
+            if (myLastKnownSize!=this.Size)
+                OnMvvmRenderSizeChanged(EventArgs.Empty);
+
+            myLastKnownSize = this.Size;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -132,10 +124,12 @@ namespace MvvmCalculator.FunctionPlotter
             e.Graphics.FillRectangle(Brushes.White, new Rectangle(0, 0, this.ClientSize.Width - 1, this.ClientSize.Height - 1));
             e.Graphics.DrawRectangle(Pens.Black, new Rectangle(0, 0, this.ClientSize.Width-1, this.ClientSize.Height-1));
 
-            if (MvvmScaling.HasValue && PointsToPlot!= null)
+            if (PointsToPlot!= null)
             {
-                e.Graphics.ScaleTransform((float)MvvmScaling.Value.Width,
-                                          (float)MvvmScaling.Value.Height);
+                var minX = PointsToPlot.Min((item) => item.X);
+                var minY = PointsToPlot.Min((item) => item.Y);
+
+                var pen = new Pen(Color.Black, 2);
 
                 foreach (var pointItem in PointsToPlot) 
                 {
@@ -145,11 +139,20 @@ namespace MvvmCalculator.FunctionPlotter
                     }
                     else
                     {
-                        e.Graphics.DrawLine(Pens.Black,
-                            new PointF((float)lastPoint.Value.X,
-                                       (float)lastPoint.Value.Y),
-                            new PointF((float)pointItem.X,
-                                        (float)pointItem.Y));
+                        try
+                        {
+                            //We just ignore weird calculation results.
+
+                            e.Graphics.DrawLine(pen,
+                                new PointF((float)lastPoint.Value.X,
+                                           (float)lastPoint.Value.Y),
+                                new PointF((float)pointItem.X,
+                                            (float)pointItem.Y));
+                        }
+                        catch (Exception)
+                        {
+                        }
+
                         lastPoint = pointItem;
                     }
 

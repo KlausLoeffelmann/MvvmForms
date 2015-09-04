@@ -7,6 +7,7 @@ Public Class FunctionPlotterViewModel
 
     Private myRenderSize As Size?
     Private myPointsToPlot As ObservableCollection(Of Point)
+    Private myPointsToPlotUntransformed As List(Of Point)
     Private myStartRange As Double?
     Private myEndRange As Double?
     Private myScaling As Size?
@@ -34,13 +35,13 @@ Public Class FunctionPlotterViewModel
         Dim minX, maxX As Double
         Dim minY, maxY As Double
 
-        If PointsToPlot IsNot Nothing Then
+        If myPointsToPlotUntransformed IsNot Nothing Then
 
-            For c As Integer = 0 To PointsToPlot.Count - 1
-                minX = Math.Min(minX, PointsToPlot(c).X)
-                minY = Math.Min(minY, PointsToPlot(c).Y)
-                maxX = Math.Max(maxX, PointsToPlot(c).X)
-                maxY = Math.Max(maxY, PointsToPlot(c).Y)
+            For c As Integer = 0 To myPointsToPlotUntransformed.Count - 1
+                minX = Math.Min(minX, myPointsToPlotUntransformed(c).X)
+                minY = Math.Min(minY, myPointsToPlotUntransformed(c).Y)
+                maxX = Math.Max(maxX, myPointsToPlotUntransformed(c).X)
+                maxY = Math.Max(maxY, myPointsToPlotUntransformed(c).Y)
             Next
         End If
 
@@ -52,8 +53,24 @@ Public Class FunctionPlotterViewModel
         If RenderSize.HasValue Then
             Me.Scaling = New Size() With {.Width = RenderSize.Value.Width / (maxX - minX),
                                           .Height = RenderSize.Value.Height / (maxY - minY)}
-
+        Else
+            'Es long as the RenderSize has not been determined, we cannot scale the series up.
+            Return
         End If
+
+        If myPointsToPlotUntransformed Is Nothing Then
+            Return
+        End If
+
+        Dim transformedPointsToPlot As New ObservableCollection(Of Point)
+        For Each item In myPointsToPlotUntransformed
+            transformedPointsToPlot.Add(
+                New Point With {.X = (item.X - minX) * Me.Scaling.Value.Width,
+                                .Y = (item.Y - minY) * Me.Scaling.Value.Height})
+        Next
+
+        PointsToPlot = transformedPointsToPlot
+
     End Sub
 
     Public Property PointsToPlot As ObservableCollection(Of Point)
@@ -61,9 +78,7 @@ Public Class FunctionPlotterViewModel
             Return myPointsToPlot
         End Get
         Set(value As ObservableCollection(Of Point))
-            If SetProperty(myPointsToPlot, value) Then
-                OnRenderSizedChanged()
-            End If
+            SetProperty(myPointsToPlot, value)
         End Set
     End Property
 
@@ -138,7 +153,7 @@ Public Class FunctionPlotterViewModel
         xvar = StartRange.Value
         Dim yVar As Double
 
-        Dim resultList As New ObservableCollection(Of Point)
+        Dim resultList As New List(Of Point)
 
         For i = 0 To myValueCount - 1
 
@@ -154,7 +169,13 @@ Public Class FunctionPlotterViewModel
             xvar = xvar + stepScale
         Next
 
-        Me.PointsToPlot = resultList
+        myPointsToPlotUntransformed = resultList
+
+        'We trigger generating the scaled/transformed list with this,
+        'which causes the PointsToPlot property to be writting which then again
+        'causes the function to be rendered in the View.
+        OnRenderSizedChanged()
+
     End Sub
 
 End Class

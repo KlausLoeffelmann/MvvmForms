@@ -127,12 +127,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestView.Designer.cs">
-      <DependentUpon>TestView.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="FunctionPlotter\FunctionPlotterRenderer.resx">
       <DependentUpon>FunctionPlotterRenderer.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,11 +146,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TestView.resx">
-      <DependentUpon>TestView.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.manifest" />
-    <None Include="MvvmFormsReadMe.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -180,10 +170,6 @@
       <Project>{28c81964-a4d9-45e1-99fd-d9e6b47dbd52}</Project>
       <Name>MvvmCalculatorVMLib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MvvmFormsBaseInfo.txt" />
-    <Content Include="MvvmFormsChangeLog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -24,10 +24,13 @@ Public Class MainViewModel
     'The lifetimecontroller for all the other instances created by this Viewmodel, which need to persist during its lifetime.
     Private myLifetimeInstanceController As IIoCLifetimeController
 
+    Public Sub New()
+    End Sub
+
     ''' <summary>
     ''' Initializes a new instance of this ViewModel.
     ''' </summary>
-    Sub New(platformServiceLocator As Func(Of IMvvmPlatformServiceLocator))
+    Public Sub New(platformServiceLocator As Func(Of IMvvmPlatformServiceLocator))
         myCalcCommand = New RelayCommand(AddressOf CalcCommandProc,
                                          AddressOf CanExecuteCalcCommand)
 

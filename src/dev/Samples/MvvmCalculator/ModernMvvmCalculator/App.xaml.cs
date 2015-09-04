@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using ActiveDevelop.IoC.UWP;
+using ModernMvvmCalculator.FunctionPlotter;
+using MvvmCalculatorVMLib;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Phone.UI.Input;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -56,6 +62,10 @@ namespace ModernMvvmCalculator
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
+
+                RegisterTypes(rootFrame);
+
+
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
@@ -101,5 +111,74 @@ namespace ModernMvvmCalculator
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+        // To implement
+        // 1. NuGet AutoFac, latest version (>4.0.0!!)
+        // 2. Reference to MvvmServiceLocatorBase (Generic)
+        // 3. Reference to Uwp.MvvmServiceLocatorBase ...
+        private void RegisterTypes(Frame navigationFrame)
+        {
+            // To introduce a new ViewModel/View relation...
+
+            // 1. Register the ViewModel with RegisterTypes here, and ...
+            UwpMvvmPlatformServiceLocator.
+            BeginRegister().
+            RegisterPlatformServiceLocator(navigationFrame).
+            RegisterTypes(new List<Type>{ typeof(MainViewModel),
+                                          typeof(FunctionPlotterViewModel)}).
+            EndRegister();
+
+            UwpMvvmPlatformServiceLocator.ViewModelToPageResolver =
+                (INotifyPropertyChanged viewModel) =>
+                {
+                    var vmType = viewModel.GetType();
+
+                    // 2. ...create the assignment, which ViewModel should return which view.
+                    if (viewModel.GetType() == typeof(MainViewModel)) return typeof(MainPage);
+                    if (viewModel.GetType() == typeof(FunctionPlotterViewModel)) return typeof(FunctionPlotterView);
+
+                    return null;
+                };
+
+            // 4. Tweaking a little bit here, so the Navigation works OK on Phone and Desktop.
+
+            //Hooking up the HardwareBackButton, if we're on the phone.
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                HardwareButtons.BackPressed += (sender, eventargs) =>
+                {
+                    if (navigationFrame.CanGoBack)
+                    {
+                        eventargs.Handled = true;
+                        navigationFrame.GoBack();
+                    }
+                };
+            }
+
+            //Hooking up the TitleBar's Backbutton, if we're on tablet or desktop.
+            SystemNavigationManager.GetForCurrentView().BackRequested += (sender, eventArgs) =>
+            {
+                if (navigationFrame.CanGoBack)
+                {
+                    eventArgs.Handled = true;
+                    navigationFrame.GoBack();
+                }
+            };
+
+            // Enabling the Backbutton in the Titlebar oin the Desktop accordingly.
+            navigationFrame.Navigating += (sender, eventargs) =>
+            {
+                if (navigationFrame.CanGoBack)
+                {
+                    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+                }
+                else
+                {
+                    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+                }
+
+            };
+        }
     }
 }
+

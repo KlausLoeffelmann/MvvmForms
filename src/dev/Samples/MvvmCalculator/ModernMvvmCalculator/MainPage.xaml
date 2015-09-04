@@ -10,7 +10,8 @@
     x:Class="ModernMvvmCalculator.MainPage"
     comment:a="This way, thanks to Laurent Bugnion's brilliant idea, we can comment inside tags as attributes! :-)"
     comment:b="with the above line, we're introducing our Viewmodel assembly to the XAML namespace."
-    d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+    d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel,IsDesignTimeCreatable=True}"
+
     comment:c="And here, we're stating that we wanne use an instance of our ViewModel."
     mc:Ignorable="d comment"
     >
@@ -19,47 +20,52 @@
         <Converter:StringNotEmptyToColorConverter x:Key="StringNotEmptyToColorConverter"/>
     </Page.Resources>
 
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="View" Command="{Binding CallFunctionPlotterCommand}"/>
+            <AppBarButton Icon="ClearSelection" Command="{Binding ClearListCommand}"/>
+            <AppBarButton Icon="Accept" Command="{Binding CalcCommand}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="15*"/>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="15*"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="titelTextBlock" Text="MvvmCalculator" Grid.Row="0" Margin="5,5,10,5" 
-			FontSize="36" HorizontalAlignment="Center"/>
+ 			       FontSize="36" HorizontalAlignment="Center"/>
         <TextBlock x:Name="subTitelTextBlock" Grid.Row="0" 
-			Text="Demo for MvvmForms (NuGet) by ActiveDevelop" Margin="5,50,10,5" 
-			HorizontalAlignment="Center"/>
-        <TextBlock x:Name="historyTextBlock" Grid.Row="1" Text="History" Margin="15,10,15,10"/>
-        <ListBox x:Name="historyListBox" Grid.Row="1" Margin="15,40,15,15"
-			ItemsSource="{Binding Formulas}" 
-			comment:a="Here, we're binding the entered formulas to the ListBox' ItemSource..."
-			SelectedIndex="{Binding SelectedFormulaIndex, Mode=TwoWay}"
-			comment:b="...and the SelectedIndex to the SelectedFormularIndex."
-                 />
-        <Border Grid.Row="2" BorderThickness="1" Background="{Binding ErrorText, 
-                Converter={StaticResource StringNotEmptyToColorConverter}}" 
+			       Text="Demo for MvvmForms (NuGet) by ActiveDevelop" Margin="5,50,10,5" 
+			       HorizontalAlignment="Center"/>
+        <TextBox x:Name="formularTextBox" Grid.Row="1" InputScope="CurrencyAmountAndSymbol" 
+                 TextAlignment="Right"  AutomationProperties.ItemType=""
+   			     Margin="15,30,15,15" TextWrapping="Wrap" Header="Formular" PlaceholderText="Enter a formular like 4+4*SQRT(16)^3"
+			     Text="{Binding EnteredFormula, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+			     comment:a="The binding to the entered formula. This is TwoWay-Binding, so we also getting the changes from the view."/>
+
+        <Border Grid.Row="2" BorderThickness="1" 
+                Background="{Binding ErrorText, 
+                            Converter={StaticResource StringNotEmptyToColorConverter}}" 
                 BorderBrush="Black" Margin="15,15,15,15" Padding="5,5,5,5">
             <TextBlock RelativePanel.AlignRightWithPanel="True" 
-				x:Name="resultTextBlock" Grid.Row="2" 
-				TextWrapping="Wrap" 
-				Text="{Binding Result}"
-				comment:a="Here is the binding for the formula, the user just entered."
-				FontFamily="Consolas" 
-				FontSize="24" 
-				TextAlignment="Right" 
-				VerticalAlignment="Center"/>
+        				x:Name="resultTextBlock" Grid.Row="2" 
+		        		TextWrapping="Wrap" 
+        				Text="{Binding Result}"
+		        		comment:a="Here is the binding for the formula, the user just entered."
+        				FontFamily="Consolas" 
+        				FontSize="24" 
+        				TextAlignment="Right" 
+				        VerticalAlignment="Center"/>
         </Border>
-        <TextBox x:Name="formularTextBox" Grid.Row="3" InputScope="CurrencyAmountAndSymbol" 
-                 TextAlignment="Right"  AutomationProperties.ItemType=""
-			Margin="15,30,15,15" TextWrapping="Wrap" Header="Formular" PlaceholderText="Enter a formular like 4+4*SQRT(16)^3"
-			Text="{Binding EnteredFormula, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-			comment:a="The binding to the entered formula. This is TwoWay-Binding, so we also getting the changes from the view."/>
-        <Button Grid.Row="4" Content="Calc" Width="80" 
-			HorizontalAlignment="Right" Margin="0,0,15,0"
-			Command="{Binding CalcCommand}"
-			comment:b="And the binding to the command, so we can execute the calculation."/>
+        <TextBlock x:Name="historyTextBlock" Grid.Row="3" Text="History" Margin="15,10,15,10"/>
+        <ListBox x:Name="historyListBox" Grid.Row="3" Margin="15,40,15,15"
+			      ItemsSource="{Binding Formulas}" 
+			      comment:a="Here, we're binding the entered formulas to the ListBox' ItemSource..."
+			      SelectedIndex="{Binding SelectedFormulaIndex, Mode=TwoWay}"
+			      comment:b="...and the SelectedIndex to the SelectedFormularIndex."/>
+
     </Grid>
 </Page>
