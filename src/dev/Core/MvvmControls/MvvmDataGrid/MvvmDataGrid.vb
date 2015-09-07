@@ -388,7 +388,8 @@ Public Class MvvmDataGrid
     End Property
 
     ''' <summary>
-    ''' Hier wird das selektierte Item innerhalb des DataGrid gespeichert
+    ''' Gibt das erste Element in der aktuellen Auswahl bzw. NULL zurück,
+    ''' wenn die Auswahl leer ist, oder legt das Element fest
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
@@ -401,6 +402,23 @@ Public Class MvvmDataGrid
             If Not Object.Equals(WpfDataGridViewWrapper.InnerDataGridView.SelectedItem, value) Then
                 WpfDataGridViewWrapper.InnerDataGridView.SelectedItem = value
                 OnSelectedItemChanged(EventArgs.Empty)
+            End If
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Ruft den Index des ersten Elements in der aktuellen Auswahl ab bzw. legt diesen fest,
+    ''' oder gibt eine negative Eins ("-1") zurück, falls die Auswahl leer ist
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property SelectedIndex As Integer
+        Get
+            Return WpfDataGridViewWrapper.InnerDataGridView.SelectedIndex
+        End Get
+        Set(ByVal value As Integer)
+            If Not Object.Equals(WpfDataGridViewWrapper.InnerDataGridView.SelectedIndex, value) Then
+                WpfDataGridViewWrapper.InnerDataGridView.SelectedIndex = value
+                OnSelectedIndexChanged(EventArgs.Empty)
             End If
         End Set
     End Property
@@ -421,6 +439,12 @@ Public Class MvvmDataGrid
 
     Protected Overridable Sub OnSelectedItemChanged(e As EventArgs)
         RaiseEvent SelectedItemChanged(Me, e)
+    End Sub
+
+    Public Event SelectedIndexChanged As EventHandler
+
+    Protected Overridable Sub OnSelectedIndexChanged(e As EventArgs)
+        RaiseEvent SelectedIndexChanged(Me, e)
     End Sub
 
     Private _columns As GridColumnCollection
@@ -600,6 +624,21 @@ Public Class MvvmDataGrid
             binding.ControlProperty = New BindingProperty("Content", GetType(MvvmDataGridColumn))
             binding.ViewModelProperty = New BindingProperty(prop.Name, prop.DeclaringType)
 
+            Dim containsProp As Boolean = False
+
+            'Schauen ob die Spalte schon vorhanden ist (also schon eine Bindung existiert)
+            For Each column As MvvmDataGridColumn In Me.Columns
+                For Each columnBinding In column.PropertyCellBindings
+                    If columnBinding.ViewModelProperty.PropertyName = prop.Name AndAlso columnBinding.ViewModelProperty.PropertyType = prop.DeclaringType Then
+                        'Bereits vorhanden
+                        containsProp = True
+                        Continue For
+                    End If
+                Next
+                If containsProp Then Continue For
+            Next
+            If containsProp Then Continue For
+
             'Spaltentyp ermitteln:
             If prop.PropertyType Is GetType(Boolean) Then
                 gridColumn.ColumnType = ColumnType.CheckBox
@@ -640,6 +679,7 @@ Public Class MvvmDataGrid
     ''' <remarks></remarks>
     Private Sub InnerDataGridView_SelectionChanged(sender As Object, e As wpf.SelectionChangedEventArgs)
         OnSelectedItemChanged(e)
+        OnSelectedIndexChanged(e)
     End Sub
 
     ''' <summary>
