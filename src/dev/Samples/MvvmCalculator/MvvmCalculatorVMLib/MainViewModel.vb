@@ -10,7 +10,7 @@ Public Class MainViewModel
     Private myCurrentFormular As String
     Private myResult As String
     Private myFormulaEval As FormulaEvaluator
-    Private myFormulas As New ObservableCollection(Of FormulaEvaluator)
+    Private myHistoryItems As New ObservableCollection(Of HistoryItemViewModel)
     Private myErrorText As String
     Private mySelectedFormula As FormulaEvaluator
     Private mySelectedFormulaIndex As Integer = -1
@@ -76,12 +76,12 @@ Public Class MainViewModel
         End Set
     End Property
 
-    Public Property Formulas As ObservableCollection(Of FormulaEvaluator)
+    Public Property Formulas As ObservableCollection(Of HistoryItemViewModel)
         Get
-            Return myFormulas
+            Return myHistoryItems
         End Get
-        Set(value As ObservableCollection(Of FormulaEvaluator))
-            SetProperty(myFormulas, value)
+        Set(value As ObservableCollection(Of HistoryItemViewModel))
+            SetProperty(myHistoryItems, value)
         End Set
     End Property
 
@@ -94,7 +94,7 @@ Public Class MainViewModel
                 If value = -1 Then
                     SelectedFormula = Nothing
                 Else
-                    SelectedFormula = Formulas(value)
+                    SelectedFormula = Formulas(value).OriginalFormula
                 End If
             End If
         End Set
@@ -182,7 +182,7 @@ Public Class MainViewModel
             Result = myFormulaEval.Result.ToString
             'This is an error!
             ErrorText = Nothing
-            Me.Formulas.Add(myFormulaEval)
+            Me.Formulas.Add(New HistoryItemViewModel(myFormulaEval))
         Catch ex As Exception
             ErrorText = ex.Message
         End Try
@@ -206,7 +206,7 @@ Public Class MainViewModel
                                      MvvmMessageBoxIcon.Question)
 
         If dialogResult = MvvmDialogResult.Yes Then
-            Me.Formulas = New ObservableCollection(Of FormulaEvaluator)
+            Me.Formulas = New ObservableCollection(Of HistoryItemViewModel)
         End If
 
     End Sub

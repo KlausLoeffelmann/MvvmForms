@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FunctionPlotterViewModel.vb" />
+    <Compile Include="HistoryItemViewModel.vb" />
     <Compile Include="MainViewModel.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
