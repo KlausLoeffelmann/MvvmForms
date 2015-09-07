@@ -13,7 +13,7 @@ Public Class FunctionPlotterViewModel
     Private myScaling As Size?
     Private myFunction As String
 
-    Private myValueCount As Integer = 50
+    Private myValueCount As Integer = 250
 
     Private myCalculateCommand As RelayCommand = New RelayCommand(
         AddressOf CalculateCommandProc,

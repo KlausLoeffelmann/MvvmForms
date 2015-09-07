@@ -8,6 +8,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    RequestedTheme="Dark"
+
     
     d:DataContext="{d:DesignInstance Type=viewmodel:FunctionPlotterViewModel,
                     IsDesignTimeCreatable=True}">
@@ -23,8 +25,8 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -49,7 +51,8 @@
         <TextBox Grid.Row="1" Grid.ColumnSpan="2"
                  Margin="10,10,10,10" 
                  Text="{Binding Function,Mode=TwoWay}" 
-                 InputScope="Number" 
+                 InputScope="FormulaNumber"
+                 IsSpellCheckEnabled="False"
                  PlaceholderText="Function"/>
     </Grid>
 </Page>

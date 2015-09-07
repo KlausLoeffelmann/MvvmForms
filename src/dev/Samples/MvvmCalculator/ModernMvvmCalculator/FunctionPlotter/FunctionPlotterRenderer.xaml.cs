@@ -114,7 +114,7 @@ namespace ModernMvvmCalculator.FunctionPlotter
                                                          (float)lastPoint.Value.Y,
                                                          (float)pointItem.X,
                                                          (float)pointItem.Y,
-                                                         Colors.White);
+                                                         Colors.White,3);
                         }
                         catch (Exception ex)
                         {

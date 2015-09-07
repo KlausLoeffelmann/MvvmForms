@@ -14,7 +14,7 @@ namespace MvvmCalculator.Converter
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (String.IsNullOrEmpty((string)value))
-                return new SolidColorBrush(Colors.White);
+                return new SolidColorBrush(Colors.DarkSlateGray);
             else
                 return new SolidColorBrush(Colors.Red);
         }
