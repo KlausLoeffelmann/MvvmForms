@@ -66,8 +66,25 @@
         <ListBox x:Name="historyListBox" Grid.Row="3" Margin="15,40,15,15"
 			      ItemsSource="{Binding Formulas}" 
 			      comment:a="Here, we're binding the entered formulas to the ListBox' ItemSource..."
-			      SelectedIndex="{Binding SelectedFormulaIndex, Mode=TwoWay}"
-			      comment:b="...and the SelectedIndex to the SelectedFormularIndex."/>
+			      SelectedItem="{Binding SelectedFormula, Mode=TwoWay}"
+			      comment:b="...and the SelectedIndex to the SelectedFormularIndex.">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Result}" Grid.Column="0" FontSize="24" FontWeight="Bold" 
+                                   HorizontalAlignment="Right" VerticalAlignment="Center"
+                                   TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Text="{Binding Formula}" Grid.Column="1" FontSize="16" 
+                                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                                   Margin="10,0,0,0"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </Page>
