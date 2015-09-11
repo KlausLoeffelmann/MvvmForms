@@ -20,5 +20,17 @@ Public Class Kostenart
     End Property
     Public Const NameProperty As String = "Name"
 
+    Private newPropertyValue As Test
+    Public Property TestProp() As Test
+        Get
+            Return newPropertyValue
+        End Get
+        Set(ByVal value As Test)
+            newPropertyValue = value
+        End Set
+    End Property
+End Class
 
+Public Class Test
+    Property Test As Integer
 End Class

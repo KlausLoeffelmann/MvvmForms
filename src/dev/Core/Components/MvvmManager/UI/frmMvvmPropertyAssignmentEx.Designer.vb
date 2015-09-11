@@ -10,7 +10,7 @@ Partial Class frmMvvmPropertyAssignmentEx
                 components.Dispose()
                 myConverters = Nothing
                 myControlProperties = Nothing
-                myViewModelProperties = Nothing
+                myFlatViewModelProperties = Nothing
 
                 RemoveHandler PropertyBindingGrid.GridDataSource.CurrentChanged, AddressOf CurrentDataGridRowChanged
                 RemoveHandler PropertyBindingGrid.AddButton.Click, AddressOf AddOrChangePropertyItemHandler
@@ -30,7 +30,6 @@ Partial Class frmMvvmPropertyAssignmentEx
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.lblControlProperty = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -40,18 +39,18 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.nvrConverterParameter = New ActiveDevelop.EntitiesFormsLib.NullableTextValue()
         Me.nvrConverters = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
+        Me.BindingSettingPopup = New ActiveDevelop.EntitiesFormsLib.BindingSettingPopup()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.ViewModelPropertiesTreeView = New ActiveDevelop.EntitiesFormsLib.BindableTreeView()
+        Me.ViewModelPropertyComboBox = New ActiveDevelop.EntitiesFormsLib.ViewModelPropertyComboBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.lblCurrentViewModelType = New System.Windows.Forms.Label()
         Me.lblCurrentViewModelFullName = New System.Windows.Forms.Label()
         Me.lblCurrentControl = New System.Windows.Forms.Label()
         Me.lblCurrentControlType = New System.Windows.Forms.Label()
-        Me.FormToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.FormToolTip = New System.Windows.Forms.ToolTip()
         Me.btnOK = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.BindingSettingPopup = New ActiveDevelop.EntitiesFormsLib.BindingSettingPopup()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TreeView1 = New System.Windows.Forms.TreeView()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.nvrControlProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -114,8 +113,8 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.TableLayoutPanel1.Controls.Add(Me.Label3, 2, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.BindingSettingPopup, 3, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Label6, 2, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.TreeView1, 3, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox1, 3, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.ViewModelPropertiesTreeView, 2, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.ViewModelPropertyComboBox, 3, 1)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(11, 107)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
@@ -162,11 +161,11 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.PropertyBindingGrid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TableLayoutPanel1.SetColumnSpan(Me.PropertyBindingGrid, 3)
+        Me.TableLayoutPanel1.SetColumnSpan(Me.PropertyBindingGrid, 2)
         Me.PropertyBindingGrid.Location = New System.Drawing.Point(3, 113)
         Me.PropertyBindingGrid.Margin = New System.Windows.Forms.Padding(3, 8, 3, 5)
         Me.PropertyBindingGrid.Name = "PropertyBindingGrid"
-        Me.PropertyBindingGrid.Size = New System.Drawing.Size(690, 532)
+        Me.PropertyBindingGrid.Size = New System.Drawing.Size(555, 532)
         Me.PropertyBindingGrid.TabIndex = 7
         '
         'Panel1
@@ -228,6 +227,66 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.nvrConverters.TabIndex = 0
         Me.nvrConverters.UIGuid = New System.Guid("7b05d4b5-998f-4216-ae43-12e7bd51942c")
         Me.nvrConverters.ValueMember = Nothing
+        '
+        'BindingSettingPopup
+        '
+        Me.BindingSettingPopup.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BindingSettingPopup.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.BindingSettingPopup.HideButtons = False
+        Me.BindingSettingPopup.Location = New System.Drawing.Point(699, 7)
+        Me.BindingSettingPopup.Name = "BindingSettingPopup"
+        Me.BindingSettingPopup.Size = New System.Drawing.Size(493, 20)
+        Me.BindingSettingPopup.TabIndex = 21
+        Me.BindingSettingPopup.Text = "TwoWay on LostFocus"
+        '
+        'Label6
+        '
+        Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(561, 11)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(80, 13)
+        Me.Label6.TabIndex = 22
+        Me.Label6.Text = "Binding mode"
+        '
+        'ViewModelPropertiesTreeView
+        '
+        Me.ViewModelPropertiesTreeView.ChildMemberPath = "SubProperties"
+        Me.TableLayoutPanel1.SetColumnSpan(Me.ViewModelPropertiesTreeView, 2)
+        Me.ViewModelPropertiesTreeView.DataSource = Nothing
+        Me.ViewModelPropertiesTreeView.DisplayMemberPath = "Description"
+        Me.ViewModelPropertiesTreeView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ViewModelPropertiesTreeView.HideSelection = False
+        Me.ViewModelPropertiesTreeView.LazyLoading = True
+        Me.ViewModelPropertiesTreeView.Location = New System.Drawing.Point(564, 113)
+        Me.ViewModelPropertiesTreeView.Margin = New System.Windows.Forms.Padding(3, 8, 3, 5)
+        Me.ViewModelPropertiesTreeView.Name = "ViewModelPropertiesTreeView"
+        Me.ViewModelPropertiesTreeView.SelectedItem = Nothing
+        Me.ViewModelPropertiesTreeView.SelectedRootItem = Nothing
+        Me.ViewModelPropertiesTreeView.Size = New System.Drawing.Size(628, 532)
+        Me.ViewModelPropertiesTreeView.TabIndex = 23
+        '
+        'ViewModelPropertyComboBox
+        '
+        Me.ViewModelPropertyComboBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ViewModelPropertyComboBox.AssignedManagerControl = Nothing
+        Me.ViewModelPropertyComboBox.DisplayMemberPath = "Binding.PropertyName"
+        Me.ViewModelPropertyComboBox.ExceptionBalloonDuration = 0
+        Me.ViewModelPropertyComboBox.IsKeyField = False
+        Me.ViewModelPropertyComboBox.ItemSource = Nothing
+        Me.ViewModelPropertyComboBox.Location = New System.Drawing.Point(699, 59)
+        Me.ViewModelPropertyComboBox.Name = "ViewModelPropertyComboBox"
+        Me.ViewModelPropertyComboBox.NodesSource = Nothing
+        Me.ViewModelPropertyComboBox.NullValueMessage = ""
+        Me.ViewModelPropertyComboBox.ProcessingPriority = 0
+        Me.ViewModelPropertyComboBox.SelectedForProcessing = False
+        Me.ViewModelPropertyComboBox.SelectedItem = Nothing
+        Me.ViewModelPropertyComboBox.SelectedNode = Nothing
+        Me.ViewModelPropertyComboBox.Size = New System.Drawing.Size(493, 22)
+        Me.ViewModelPropertyComboBox.TabIndex = 24
+        Me.ViewModelPropertyComboBox.ValueNotFoundBehavior = ActiveDevelop.EntitiesFormsLib.ValueNotFoundBehavior.KeepFocus
         '
         'TableLayoutPanel2
         '
@@ -319,44 +378,6 @@ Partial Class frmMvvmPropertyAssignmentEx
     "Text control, please remember to return StringValue and not String as the Conver" &
     "t method's Data Type."
         '
-        'BindingSettingPopup
-        '
-        Me.BindingSettingPopup.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BindingSettingPopup.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.BindingSettingPopup.HideButtons = False
-        Me.BindingSettingPopup.Location = New System.Drawing.Point(699, 6)
-        Me.BindingSettingPopup.Name = "BindingSettingPopup"
-        Me.BindingSettingPopup.Size = New System.Drawing.Size(493, 22)
-        Me.BindingSettingPopup.TabIndex = 21
-        Me.BindingSettingPopup.Text = "TwoWay on LostFocus"
-        '
-        'Label6
-        '
-        Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(561, 11)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(80, 13)
-        Me.Label6.TabIndex = 22
-        Me.Label6.Text = "Binding mode"
-        '
-        'TreeView1
-        '
-        Me.TreeView1.Location = New System.Drawing.Point(699, 108)
-        Me.TreeView1.Name = "TreeView1"
-        Me.TreeView1.Size = New System.Drawing.Size(399, 310)
-        Me.TreeView1.TabIndex = 23
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Location = New System.Drawing.Point(699, 59)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(493, 22)
-        Me.TextBox1.TabIndex = 24
-        '
         'frmMvvmPropertyAssignmentEx
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -400,6 +421,6 @@ Partial Class frmMvvmPropertyAssignmentEx
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents BindingSettingPopup As BindingSettingPopup
     Friend WithEvents Label6 As Windows.Forms.Label
-    Friend WithEvents TreeView1 As Windows.Forms.TreeView
-    Friend WithEvents TextBox1 As Windows.Forms.TextBox
+    Friend WithEvents ViewModelPropertiesTreeView As BindableTreeView
+    Friend WithEvents ViewModelPropertyComboBox As ViewModelPropertyComboBox
 End Class

@@ -132,10 +132,18 @@
     <Compile Include="MvvmDataGridExample\MvvmDataGridExample\Model\Buchung.vb" />
     <Compile Include="MvvmDataGridExample\MvvmDataGridExample\Model\Kostenart.vb" />
     <Compile Include="MvvmDataGridExample\MvvmDataGridExample\ViewModel\MainViewModel.vb" />
+    <Compile Include="MvvmTest\ViewModels\BindableTreeViewModels.vb" />
+    <Compile Include="MvvmTest\ViewModels\ZircTestPerson.vb" />
     <Compile Include="MvvmTest\Views\CBOTestForm.Designer.vb">
       <DependentUpon>CBOTestForm.vb</DependentUpon>
     </Compile>
     <Compile Include="MvvmTest\Views\CBOTestForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MvvmTest\Views\MvvmTestFormView.Designer.vb">
+      <DependentUpon>MvvmTestFormView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MvvmTest\Views\MvvmTestFormView.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MvvmTest\Views\NullableValueComboBoxView.Designer.vb">
@@ -154,12 +162,6 @@
       <DependentUpon>TestFormForDesignerError.vb</DependentUpon>
     </Compile>
     <Compile Include="MvvmTest\Views\TestFormForDesignerError.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MvvmTest\Views\MvvmTestFormView.Designer.vb">
-      <DependentUpon>MvvmTestFormView.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MvvmTest\Views\MvvmTestFormView.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -197,6 +199,9 @@
     <EmbeddedResource Include="MvvmTest\Views\CBOTestForm.resx">
       <DependentUpon>CBOTestForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MvvmTest\Views\MvvmTestFormView.resx">
+      <DependentUpon>MvvmTestFormView.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MvvmTest\Views\NullableValueComboBoxView.resx">
       <DependentUpon>NullableValueComboBoxView.vb</DependentUpon>
     </EmbeddedResource>
@@ -205,9 +210,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MvvmTest\Views\TestFormForDesignerError.resx">
       <DependentUpon>TestFormForDesignerError.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MvvmTest\Views\MvvmTestFormView.resx">
-      <DependentUpon>MvvmTestFormView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -239,7 +241,6 @@
   <ItemGroup>
     <Folder Include="MvvmTest\Converter\" />
     <Folder Include="MvvmTest\Models\" />
-    <Folder Include="MvvmTest\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\MvvmForms.vbproj">

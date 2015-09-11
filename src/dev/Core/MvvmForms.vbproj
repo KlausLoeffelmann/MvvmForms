@@ -217,6 +217,7 @@
     <Compile Include="AuxilliaryTypes\ObjectAnalyzer.vb" />
     <Compile Include="AuxilliaryTypes\ObservableBindingList.vb" />
     <Compile Include="AuxilliaryTypes\ObservableCollectionBindingListAdapter.vb" />
+    <Compile Include="AuxilliaryTypes\ObservaleCollectionExtender.vb" />
     <Compile Include="AuxilliaryTypes\Recyclable.vb" />
     <Compile Include="AuxilliaryTypes\ReflectionHelper.vb" />
     <Compile Include="AuxilliaryTypes\StackedValue.vb" />
@@ -331,6 +332,7 @@
     <Compile Include="Components\FormToBusinessClassManager\ValueForControlReceivingEventArgs.vb" />
     <Compile Include="AuxilliaryTypes\ValidationIssues.vb" />
     <Compile Include="Components\MvvmManager\DefaultConverters\ObservableCollectionToBindingListConverter.vb" />
+    <Compile Include="Components\MvvmManager\UI\PropertyBindingNodeDefinition.vb" />
     <Compile Include="ContainerAndPanels\BusinessClassUserControl\BusinessClassUserControlBase.vb">
       <SubType>UserControl</SubType>
     </Compile>
@@ -526,6 +528,9 @@
     <Compile Include="AuxilliaryTypes\StringValue.vb" />
     <Compile Include="FormatterAndValidatorEngines\INullableValueFormatterEngine.vb" />
     <Compile Include="FormatterAndValidatorEngines\NullableStringValueFormatterEngine.vb" />
+    <Compile Include="MvvmControls\BindableTreeView.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MvvmControls\CommandButton.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -639,6 +644,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TooltipEx\TooltipExContentBase.resx">
       <DependentUpon>TooltipExContentBase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MvvmControls\BindableTreeView.resx">
+      <DependentUpon>BindableTreeView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MvvmControls\MvvmDataGrid\MvvmDataGrid.resx">
       <DependentUpon>MvvmDataGrid.vb</DependentUpon>

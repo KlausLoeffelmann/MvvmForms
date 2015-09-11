@@ -58,4 +58,9 @@ Public Class MainForm
     Private Sub CBOToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CBOToolStripMenuItem.Click
         NullableValueComboBoxView.ShowDialog()
     End Sub
+
+    Private Sub TreeViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TreeViewToolStripMenuItem.Click
+        Dim frm = New MvvmTestFormView()
+        frm.ShowDialog()
+    End Sub
 End Class

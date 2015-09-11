@@ -42,4 +42,10 @@ Public Class InnerComboBox
 
     End Sub
 
+    ''' <summary>
+    ''' Moves the cursor to the end
+    ''' </summary>
+    Friend Sub SetCursorToEnd()
+        part_EditableTextBox.SetCursorToEnd()
+    End Sub
 End Class

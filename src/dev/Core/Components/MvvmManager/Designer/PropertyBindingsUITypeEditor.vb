@@ -61,7 +61,7 @@ Public Class PropertyBindingsUITypeEditor
             End If
 
             Dim controlToBind = TryCast(context.Instance, Control)
-            Dim frmTemp = New frmMvvmPropertyAssignment
+            Dim frmTemp = New frmMvvmPropertyAssignmentEx()
 
             frmTemp.ControlToBind = controlToBind
 

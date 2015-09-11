@@ -25,6 +25,7 @@ Imports System.Threading.Tasks
 Imports System.ComponentModel
 Imports System.ComponentModel.Design
 Imports System.Windows.Data
+Imports System.Runtime.CompilerServices
 
 Public Class frmMvvmPropertyAssignmentEx
 
@@ -32,7 +33,8 @@ Public Class frmMvvmPropertyAssignmentEx
     Private myControlToBind As Object
 
     Private myControlProperties As ObservableCollection(Of BindingProperty)
-    Private myViewModelProperties As ObservableCollection(Of BindingProperty)
+    Private myFlatViewModelProperties As ObservableCollection(Of BindingProperty)
+    Private myTreeViewViewModelProperties As ObservableCollection(Of PropertyBindingNodeDefinition)
 
     Private myPropertyBindings As ObservableBindingList(Of PropertyBindingItem)
     Private myConverters As ObservableCollection(Of ConverterDisplayItem)
@@ -98,7 +100,9 @@ Public Class frmMvvmPropertyAssignmentEx
         InitializeControlProperties()
 
         nvrControlProperties.DataSource = myControlProperties
-        'nvrViewModelProperty.DataSource = myViewModelProperties
+        ViewModelPropertiesTreeView.DataSource = myTreeViewViewModelProperties
+        ViewModelPropertyComboBox.NodesSource = New ObservableCollection(Of PropertyBindingNodeDefinition)(myTreeViewViewModelProperties)
+
         nvrConverters.DataSource = myConverters
 
         If Not myEventHandlerHaveBeenWired Then
@@ -109,6 +113,12 @@ Public Class frmMvvmPropertyAssignmentEx
 
             AddHandler PropertyBindingGrid.DeleteButton.Click, AddressOf DeletePropertyItemHandler
             myEventHandlerHaveBeenWired = True
+        End If
+
+        If myPropertyBindings.Count > 0 Then
+            Dim maxLvl = myPropertyBindings.Select(Function(b) b.ViewModelProperty.PropertyName.Count(Function(c) c = "."c)).Max()
+
+            ViewModelPropertiesTreeView.LoadLevels(maxLvl)
         End If
 
         'Ganz zum Schluss erst Quelle binden, damit die Ereignisse, die das zur Folge hat, auch abgearbeitet werden.
@@ -140,7 +150,7 @@ Public Class frmMvvmPropertyAssignmentEx
             End Try
 
             Try
-                'nvrViewModelProperty.Value = selectedPropBindingItem.ViewModelProperty
+                ViewModelPropertiesTreeView.SelectedItem = New PropertyBindingNodeDefinition(selectedPropBindingItem.ViewModelProperty)
             Catch ex As Exception
                 MvvmFormsEtw.Log.Failure("INCONSISTENT PROPERTY MAPPING: While deserializing the property mapping from code (viewmodel property:  '" &
                             selectedPropBindingItem.ViewModelProperty.PropertyName & "'), the following exception occured:" & ex.Message)
@@ -160,11 +170,11 @@ Public Class frmMvvmPropertyAssignmentEx
     Public Sub AddOrChangePropertyItemHandler(sender As Object, e As EventArgs)
 
         Dim ctrlProperty = DirectCast(nvrControlProperties.Value, BindingProperty)
-        Dim vmProperty As BindingProperty = Nothing  '= DirectCast(nvrViewModelProperty.Value, BindingProperty)
+        Dim vmProperty As BindingProperty = Nothing
 
         'Testen, ob die Daten vollständig erfasst wurden
-        If nvrControlProperties.Value IsNot Nothing Then 'AndAlso
-            'nvrViewModelProperty.Value IsNot Nothing Then
+        If nvrControlProperties.Value IsNot Nothing AndAlso ViewModelPropertiesTreeView.SelectedItem IsNot Nothing Then
+            vmProperty = DirectCast(ViewModelPropertiesTreeView.SelectedItem, PropertyBindingNodeDefinition).Binding
 
             If nvrConverters.Value Is Nothing Then
                 'Auf Typgleichheit prüfen, ansonsten Warnung ausgeben:
@@ -307,7 +317,7 @@ skipWarning:
         End If
 
         If myViewModelType Is Nothing Then
-            myViewModelProperties = New ObservableCollection(Of BindingProperty)
+            myFlatViewModelProperties = New ObservableCollection(Of BindingProperty)
             Return
         End If
 
@@ -335,9 +345,9 @@ skipWarning:
 
                     'Include bei Default.
                     Dim propertiesList = New List(Of PropertyCheckBoxItemController)
-                    ReflectionHelper.CreateSubPropsAsList(myViewModelType, "", propertiesList, 5, False)
+                    ReflectionHelper.CreateFlatSubPropAsList(myViewModelType, "", propertiesList, False)
 
-                    myViewModelProperties = New ObservableCollection(Of BindingProperty)(
+                    myFlatViewModelProperties = New ObservableCollection(Of BindingProperty)(
                         From pItem In propertiesList
                         Order By pItem.PropertyFullname
                         Select New BindingProperty With
@@ -349,15 +359,22 @@ skipWarning:
 
                     'Exclude bei Default
                     Dim propertiesList = New List(Of PropertyCheckBoxItemController)
-                    ReflectionHelper.CreateSubPropsAsList(myViewModelType, "", propertiesList, 5, True)
+                    ReflectionHelper.CreateFlatSubPropAsList(myViewModelType, "", propertiesList, True)
 
-                    myViewModelProperties = New ObservableCollection(Of BindingProperty)(
+                    myFlatViewModelProperties = New ObservableCollection(Of BindingProperty)(
                         From pItem In propertiesList
                         Order By pItem.PropertyFullname
                         Select New BindingProperty With
                         {.PropertyName = pItem.PropertyFullname,
                         .PropertyType = pItem.PropertyType})
                 End If
+
+                myTreeViewViewModelProperties = New ObservableCollection(Of PropertyBindingNodeDefinition)()
+
+                'Create List for TreeView
+                For Each binding In myFlatViewModelProperties
+                    myTreeViewViewModelProperties.Add(New PropertyBindingNodeDefinition() With {.Binding = binding, .PropertyName = binding.PropertyName})
+                Next
             End If
         Catch ex As Exception
             MessageBox.Show("Error in Handling:" & vbNewLine & ex.Message & vbNewLine & vbNewLine & ex.StackTrace, "Not wanted:", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -405,6 +422,7 @@ skipWarning:
 
     Private Sub nvrControlProperties_Click(sender As Object, e As EventArgs) Handles nvrControlProperties.IsDirtyChanged,
         nvrConverterParameter.IsDirtyChanged, nvrConverters.IsDirtyChanged ', nvrViewModelProperty.IsDirtyChanged
+
         If nvrConverterParameter Is sender Then
             Me.IsDirty = True
         ElseIf DirectCast(sender, INullableValueRelationBinding).IsDirty Then
@@ -426,5 +444,150 @@ skipWarning:
             End If
         End If
 
+    End Sub
+
+    Private Sub ViewModelPropertiesTreeView_SelectedItemChanged(sender As Object, e As EventArgs) Handles ViewModelPropertiesTreeView.SelectedItemChanged
+        ViewModelPropertyComboBox.SelectedNode = DirectCast(ViewModelPropertiesTreeView.SelectedItem, PropertyBindingNodeDefinition)
+
+        Me.IsDirty = True
+    End Sub
+
+    Private Sub ViewModelPropertyComboBox_SelectedItemChanged(sender As Object, e As EventArgs) Handles ViewModelPropertyComboBox.SelectedItemChanged
+        'odo: Load Tree only selective (via Path)!
+        If ViewModelPropertyComboBox.SelectedNode.Binding.PropertyName.Contains("."c) Then
+            ViewModelPropertiesTreeView.LoadLevels(ViewModelPropertyComboBox.SelectedNode.Binding.PropertyName.Count(Function(c) c = "."c))
+        End If
+
+        ViewModelPropertiesTreeView.SelectedItem = ViewModelPropertyComboBox.SelectedNode
+    End Sub
+End Class
+
+''' <summary>
+''' Expansion of NullableValueComboBox with PropertyBinding-Context
+''' </summary>
+Public Class ViewModelPropertyComboBox
+    Inherits NullableValueComboBox
+
+    ''' <summary>
+    ''' The current selected Binding-Node
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property SelectedNode As PropertyBindingNodeDefinition
+        Get
+            Return CType(MyBase.SelectedItem, PropertyBindingNodeDefinition)
+        End Get
+        Set(ByVal value As PropertyBindingNodeDefinition)
+            If value Is Nothing Then
+                MyBase.SelectedItem = Nothing
+                Return
+            End If
+
+            _oldSelectedNode = value
+            _oldTextValue = _oldSelectedNode.Binding.PropertyName
+
+            RefreshDataSource(value)
+
+            MyBase.SelectedItem = value
+        End Set
+    End Property
+
+    Private Sub RefreshDataSource(value As PropertyBindingNodeDefinition)
+        If Debugger.IsAttached Then Debugger.Break()
+        'loading depth level
+        Dim props = value.Binding.PropertyName.Split("."c)
+        Dim firstProp As Boolean = True
+
+        'DS-Reset
+        Dim newDS = New ObservableCollection(Of PropertyBindingNodeDefinition)(_rootNodes)
+        Dim node As PropertyBindingNodeDefinition = Nothing
+
+        If props.Count > 1 Then
+            For Each prop In props
+
+                If Not firstProp Then
+                    node = node.SubProperties.Where(Function(n) n.PropertyName = prop).Single 'III und b
+                Else
+                    node = _rootNodes.Where(Function(n) n.PropertyName = prop).Single 'A
+                    firstProp = False
+                End If
+
+                newDS.AddRange(node.SubProperties)
+            Next
+        End If
+
+        'All necessary nodes in
+        MyBase.ItemSource = newDS
+
+    End Sub
+
+    Private _rootNodes As ObservableCollection(Of PropertyBindingNodeDefinition)
+
+    ''' <summary>
+    ''' The DataSource (Flat-ViewModel-Properties) for the Binding-Nodes
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property NodesSource As ObservableCollection(Of PropertyBindingNodeDefinition)
+        Get
+            Return CType(MyBase.ItemSource, ObservableCollection(Of PropertyBindingNodeDefinition))
+        End Get
+        Set(ByVal value As ObservableCollection(Of PropertyBindingNodeDefinition))
+            If value IsNot Nothing Then
+                _rootNodes = value
+                MyBase.ItemSource = New ObservableCollection(Of PropertyBindingNodeDefinition)(value)
+            End If
+        End Set
+    End Property
+
+    Private _oldTextValue As String
+    Private _oldSelectedNode As PropertyBindingNodeDefinition
+
+    Protected Overrides Sub OnKeyDown(e As KeyEventArgs)
+        MyBase.OnKeyDown(e)
+
+        _oldTextValue = MyBase.Text
+        _oldSelectedNode = SelectedNode
+    End Sub
+
+    Protected Overrides Sub OnTextChanged(e As EventArgs)
+        MyBase.OnTextChanged(e)
+
+        If _oldTextValue IsNot Nothing AndAlso _oldSelectedNode IsNot Nothing Then
+            'Nur wenn der letzte String ein Node enstpricht
+            If Text.Split("."c).Last = _oldSelectedNode.PropertyName OrElse
+                Text.Trim("."c).Split("."c).Last = _oldSelectedNode.PropertyName Then
+                If _oldTextValue.Last() <> "."c AndAlso MyBase.Text.Last() = "."c Then
+                    'Punkt zum Schluss eingegeben, SubProps in Liste hinzufügen
+                    If Me._oldSelectedNode.SubProperties IsNot Nothing AndAlso Me._oldSelectedNode.SubProperties.Count > 0 Then
+                        Dim src = DirectCast(ItemSource, ObservableCollection(Of PropertyBindingNodeDefinition))
+                        src.AddRange(Me._oldSelectedNode.SubProperties)
+                        'TODO: wieso muss hier ne neue angelegt werden, mit obs.col sollte dorch das auch gehen?!?!
+                        MyBase.ItemSource = New ObservableCollection(Of PropertyBindingNodeDefinition)(src)
+                        WpfComboBoxWrapper1.InnerComboBox.IsDropDownOpen = True
+                        'WpfComboBoxWrapper1.InnerComboBox.AppendText(NodesSource.First.PropertyName.First)
+                        WpfComboBoxWrapper1.InnerComboBox.SetCursorToEnd()
+                    End If
+
+                ElseIf _oldTextValue.Last() = "."c AndAlso MyBase.Text.Last() <> "."c Then
+                    SelectedNode = Nothing
+                End If
+            End If
+        End If
+    End Sub
+
+    Protected Overrides Sub OnInnerSelectedItemChanged(e As Windows.Controls.SelectionChangedEventArgs)
+        If SelectedItem IsNot Nothing Then
+            If PreviousItem IsNot SelectedItem Then
+                OnSelectedItemChanged(e)
+                SelectedNode = DirectCast(SelectedItem, PropertyBindingNodeDefinition)
+            End If
+
+        ElseIf Not (ValueNotFoundBehavior = ValueNotFoundBehavior.KeepFocus OrElse
+                      ValueNotFoundBehavior = ValueNotFoundBehavior.SelectFirst) Then
+            'Wenn SelctedItem Nothing ist und ein unbestimmter Wert nicht angegeben werden darf, darf das PropChanged nicht geworfen werden (da der Benutzer gezwungen wird ein validen Wert später beim 
+            'Leave auszuwählen bzw automatisch ausgewählt)
+            OnSelectedItemChanged(e)
+        End If
+
+        PreviousItem = SelectedItem
     End Sub
 End Class

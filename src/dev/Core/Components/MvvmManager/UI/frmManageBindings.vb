@@ -41,7 +41,7 @@ Public Class frmManageBindings
     Private myDesignerHost As IDesignerHost
     Private myContainer As IContainer
     Private myMvvmManager As MvvmManager
-    Private myMvvmPropAssignmentForm As New frmMvvmPropertyAssignment With
+    Private myMvvmPropAssignmentForm As New frmMvvmPropertyAssignmentEx With
                                             {.EmbeddedMode = True}
     Private myChangeService As IComponentChangeService
     Private myPropertyChangeInformerCallBack As Action()

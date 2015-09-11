@@ -5,12 +5,13 @@ Imports System.ComponentModel
 Imports System.Windows.Forms
 Imports System.Drawing
 Imports System.Windows.Input
+Imports System.Windows.Controls
 
 ''' <summary>
 ''' Bindungsfähige ComboBox 
 ''' </summary>
 ''' <remarks>Basiert von inneren auf eine WPF-CBO mit UI-Elementen aus der EFL</remarks>
-<ToolboxBitmap(GetType(ComboBox)),
+<ToolboxBitmap(GetType(Forms.ComboBox)),
  ToolboxItem(True)>
 Public Class NullableValueComboBox
     Implements INullableValueDataBinding
@@ -117,6 +118,27 @@ Public Class NullableValueComboBox
         _focusedColor = New SolidColorBrush(Colors.Yellow)
 
         AddHandler WpfComboBoxWrapper1.InnerComboBox.SelectionChanged, AddressOf InnerComboBox_SelectionChanged
+        AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyDown, AddressOf InnerComboBox_KeyDown
+        AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyUp, AddressOf InnerComboBox_KeyUp
+
+        WpfComboBoxWrapper1.InnerComboBox.AddHandler(System.Windows.Controls.Primitives.TextBoxBase.TextChangedEvent,
+                      New System.Windows.Controls.TextChangedEventHandler(AddressOf InnerComboBox_TextChanged))
+    End Sub
+
+    Private Sub InnerComboBox_TextChanged(sender As Object, e As TextChangedEventArgs)
+        OnTextChanged(e)
+    End Sub
+
+    Private Sub InnerComboBox_KeyUp(sender As Object, e As Input.KeyEventArgs)
+        Dim formsKey = DirectCast(KeyInterop.VirtualKeyFromKey(e.Key), Forms.Keys)
+
+        OnKeyUp(New Forms.KeyEventArgs(formsKey))
+    End Sub
+
+    Private Sub InnerComboBox_KeyDown(sender As Object, e As Input.KeyEventArgs)
+        Dim formsKey = DirectCast(KeyInterop.VirtualKeyFromKey(e.Key), Forms.Keys)
+
+        OnKeyDown(New Forms.KeyEventArgs(formsKey))
     End Sub
 
     Private _isItemsSourceSetting As Boolean = False
@@ -186,13 +208,20 @@ Public Class NullableValueComboBox
         RaiseEvent SelectedItemChanged(Me, e)
     End Sub
 
-    Private _previousItem As Object
+    ''' <summary>
+    ''' The previous selected Item
+    ''' </summary>
+    ''' <returns></returns>
+    Friend Property PreviousItem As Object
 
     Private Sub InnerComboBox_SelectionChanged(sender As Object, e As System.Windows.Controls.SelectionChangedEventArgs)
+        OnInnerSelectedItemChanged(e)
+    End Sub
 
+    Protected Overridable Sub OnInnerSelectedItemChanged(e As SelectionChangedEventArgs)
         If SelectedItem IsNot Nothing Then
-            If _previousItem IsNot SelectedItem Then
-                _previousItem = SelectedItem
+            If PreviousItem IsNot SelectedItem Then
+                PreviousItem = SelectedItem
 
                 OnSelectedItemChanged(e)
             End If
@@ -202,8 +231,8 @@ Public Class NullableValueComboBox
             'Wenn SelctedItem Nothing ist und ein unbestimmter Wert nicht angegeben werden darf, darf das PropChanged nicht geworfen werden (da der Benutzer gezwungen wird ein validen Wert später beim 
             'Leave auszuwählen bzw automatisch ausgewählt)
             OnSelectedItemChanged(e)
-        End If
 
+        End If
     End Sub
 
     Private _leaveBehavior As ValueNotFoundBehavior = EntitiesFormsLib.ValueNotFoundBehavior.SelectFirst
@@ -359,6 +388,19 @@ Public Class NullableValueComboBox
         End Get
         Set(value As String)
             myGroupName = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Inner-Text-Property
+    ''' </summary>
+    ''' <returns></returns>
+    Friend Shadows Property Text As String
+        Get
+            Return WpfComboBoxWrapper1.InnerComboBox.Text
+        End Get
+        Set(ByVal value As String)
+            WpfComboBoxWrapper1.InnerComboBox.Text = value
         End Set
     End Property
 

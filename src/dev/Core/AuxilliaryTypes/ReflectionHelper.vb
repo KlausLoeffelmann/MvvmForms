@@ -65,7 +65,6 @@ Public Module ReflectionHelper
 
     End Function
 
-    'TODO: This has to be refactored. We need a tree view where we could drill into recursive property pathes.
     ''' <summary>
     ''' Creates a list with all properties and sub properties of the ViewModel (former Business Class Objects) recursively. This function is 
     ''' for creating the property pathes for binding in the MvvmForms PropertyBindings Designer UI.
@@ -77,11 +76,12 @@ Public Module ReflectionHelper
     ''' <param name="excludePropertiesByDefault">For business class objects, if this is set, only those 
     ''' properties are taken into account when they are marked with BusinessPropertyAttribute.IncludeProperty. 
     ''' This is legacy a legacy feature. Don't use.</param>
+    ''' <param name="enableRecursion">Flag which describes whether recursion is turned on or not.</param>
     ''' <remarks></remarks>
     Public Sub CreateSubPropsAsList(t As Type, propRoot As String,
                                     proplist As List(Of PropertyCheckBoxItemController),
                                     depthCountLimit As Integer, excludePropertiesByDefault As Boolean,
-                                    Optional host As IDesignerHost = Nothing)
+                                    Optional host As IDesignerHost = Nothing, Optional enableRecursion As Boolean = True)
 
         Dim isEntityObject = False
 
@@ -89,7 +89,7 @@ Public Module ReflectionHelper
             isEntityObject = True
         End If
 
-        If depthCountLimit > 10 Then
+        If enableRecursion AndAlso depthCountLimit > 10 Then
             If Debugger.IsAttached Then
                 Debugger.Break()
             End If
@@ -164,7 +164,7 @@ Public Module ReflectionHelper
                     'Hier müssen wir rekursiv ran, aber das Element selbst muss auch in die Liste.
                     proplist.Add(New PropertyCheckBoxItemController(propItem.Name, propItem.PropertyType, propRoot))
 
-                    If Not GetType(IEnumerable).IsAssignableFrom(propItem.PropertyType) Then
+                    If enableRecursion AndAlso Not GetType(IEnumerable).IsAssignableFrom(propItem.PropertyType) Then
                         depthCountLimit += 1
                         CreateSubPropsAsList(propItem.PropertyType, If(Not String.IsNullOrWhiteSpace(propRoot),
                                             propRoot & "." & propItem.Name, propItem.Name),
@@ -177,6 +177,32 @@ Public Module ReflectionHelper
 #Enable Warning
 
         Next
+
+    End Sub
+
+    ''' <summary>
+    ''' Creates a list with all properties of the ViewModel (former Business Class Objects) flat. This function is 
+    ''' for creating the property pathes for binding in the MvvmForms PropertyBindings Designer UI.
+    ''' </summary>
+    ''' <param name="t">The type whose properties are discovered including its sub properties for building property pathes.</param>
+    ''' <param name="propRoot">Since this method is called recusively, here is the current property path root where to begin.</param>
+    ''' <param name="proplist">The current list of allready discovered property pathes. Pass an empty but instanciated list at the beginning.</param>
+    ''' <param name="excludePropertiesByDefault">For business class objects, if this is set, only those 
+    ''' properties are taken into account when they are marked with BusinessPropertyAttribute.IncludeProperty. 
+    ''' This is legacy a legacy feature. Don't use.</param>
+    Public Sub CreateFlatSubPropAsList(t As Type, propRoot As String,
+                                    proplist As List(Of PropertyCheckBoxItemController), excludePropertiesByDefault As Boolean,
+                                    Optional host As IDesignerHost = Nothing)
+        Dim isEntityObject = GetType(EntityObject).IsAssignableFrom(t) Or
+            GetType(INotifyPropertyChanged).IsAssignableFrom(t)
+
+        If (t.GetCustomAttributes(GetType(BusinessClassAttribute), True).Length > 0) Or
+                    (GetType(INotifyPropertyChanged).IsAssignableFrom(t)) Or
+                    (t.GetCustomAttributes(GetType(MvvmViewModelIncludeAttribute), True).Length > 0) Or
+                    (GetType(ICommand).IsAssignableFrom(t)) Or
+                    ((Not isEntityObject) And (GetType(EntityObject).IsAssignableFrom(t))) Then
+            CreateSubPropsAsList(t, propRoot, proplist, 0, excludePropertiesByDefault, host, False)
+        End If
 
     End Sub
 

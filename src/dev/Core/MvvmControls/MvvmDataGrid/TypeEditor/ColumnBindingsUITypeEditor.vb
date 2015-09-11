@@ -38,7 +38,7 @@ Public Class ColumnBindingsUITypeEditor
                 End If
             End If
 
-            Dim frmTemp = New frmMvvmPropertyAssignment
+            Dim frmTemp = New frmMvvmPropertyAssignmentEx
 
             frmTemp.ControlToBind = selectedColumn
             frmTemp.DesignTimeAssemblyLoader = DirectCast(provider.GetService(GetType(IDesignTimeAssemblyLoader)), IDesignTimeAssemblyLoader)

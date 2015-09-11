@@ -30,6 +30,13 @@ Public Class ExtendedTextBox
         PART_SelectionTextBox.ClearInlines()
     End Sub
 
+    ''' <summary>
+    ''' Moves the cursor to the end
+    ''' </summary>
+    Friend Sub SetCursorToEnd()
+        MyBase.CaretIndex = MyBase.Text.Length
+    End Sub
+
     Public Sub ShowSelectedText()
         Dim selectedTextBox As ComboBoxRichTextBlock = PART_SelectionTextBox
 
