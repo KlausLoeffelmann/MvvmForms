@@ -12,7 +12,7 @@ Public Class MainViewModel
     Private myFormulaEval As FormulaEvaluator
     Private myHistoryItems As New ObservableCollection(Of HistoryItemViewModel)
     Private myErrorText As String
-    Private mySelectedFormula As FormulaEvaluator
+    Private mySelectedFormula As HistoryItemViewModel
     Private mySelectedFormulaIndex As Integer = -1
     Private myPreviousContent As String
 
@@ -45,18 +45,6 @@ Public Class MainViewModel
 
     End Sub
 
-    ''' <summary>
-    ''' Represents the current math term which was calculated at last.
-    ''' </summary>
-    ''' <returns></returns>
-    Public Property CurrentFormular As String
-        Get
-            Return myCurrentFormular
-        End Get
-        Set(value As String)
-            SetProperty(myCurrentFormular, value)
-        End Set
-    End Property
 
     ''' <summary>
     ''' Represents the math term as it is currently in the editable field.
@@ -85,28 +73,14 @@ Public Class MainViewModel
         End Set
     End Property
 
-    Public Property SelectedFormulaIndex As Integer
-        Get
-            Return mySelectedFormulaIndex
-        End Get
-        Set(value As Integer)
-            If SetProperty(mySelectedFormulaIndex, value) Then
-                If value = -1 Then
-                    SelectedFormula = Nothing
-                Else
-                    SelectedFormula = Formulas(value).OriginalFormula
-                End If
-            End If
-        End Set
-    End Property
-
-    Public Property SelectedFormula As FormulaEvaluator
+    Public Property SelectedFormula As HistoryItemViewModel
         Get
             Return mySelectedFormula
         End Get
-        Set(value As FormulaEvaluator)
+        Set(value As HistoryItemViewModel)
             If SetProperty(mySelectedFormula, value) Then
-                EnteredFormula = value.MathExpression
+                EnteredFormula = mySelectedFormula?.Formula
+                Result = mySelectedFormula?.Result
             End If
         End Set
     End Property
