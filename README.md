@@ -13,9 +13,9 @@ Welcome to ActiveDevelop's MvvmForms Library Project. MvvmForm's purpose is to p
 
 ## Why Mvvm for WinForms? Does it make sense? Why not using WPF/XAML to begin with?
 
-Good one. If you have the luxury of a clean start for your new project, and your development team is up to the task, you most probable do not need MvvmForms. But that is seldom the case. In many cases, during the time between 1996 and 2010, hundreds of millions of lines of code have been written for the Windows platform, and often in CSharp and Visual Basic .NET for Windows Forms, or even with Visual Basic 6. Many companies don't have the means of throwing those projects away and start from scratch. And what for, anyway? Your solution works, it is stable and tested. So, why not continue using it?
+Good one. If you have the luxury of a clean start for your new project, and your development team is up to the task, you most probable do not need MvvmForms. But that is not that often the case. In most scenarious during the time between 1996 and 2010, hundreds of millions of lines of code have been written for the Windows platform, and often in CSharp and Visual Basic .NET for Windows Forms, or even with Visual Basic 6. Many companies don't have the means of throwing those projects away and start from scratch. And what for, anyway? Your solution works, it is stable and tested. So, why not continue using it?
 
-MvvmForms is for your, if your want to change your development paradigm for the Front End of your LOB Application to migrate to a modern world without the risk, where there is Cloud First, Mobile First and the need to reuse big parts of your Windows Forms monolithic Application on tablets and phones.
+MvvmForms is for you if your want to change your development paradigm. If you want to get rid of Code Behind and introduce a good architecture with seperations of concerns. If you want to build based on an architecture which allows unit testing. If you want to create an multi-tear architecture from your existing software simply by refactoring part by part, where you can reuse big parts of the software for different UIs like for Windows Universal Apps, iOS Apps or Android Apps.
 
 Our company, located in Westphalia Germany, has specialized in migrating from a typical Windows Forms Code Behind paradigm to a modern architecture. And we help to do this in a feasible way. We know, your team does neither have the time nor the budget to start from scratch, and that is the reason we developed MvvmForms: To help our customers to enter the new world of software development without jeopardizing the project.
 
@@ -25,15 +25,15 @@ MvvmForms is a collection of controls for Windows Forms. Originally, it was desi
 
 Because of this history, MvvmForms actually addresses two Windows Forms requirements. The first is to simplify designing data-heavy forms by providing controls like NullableDateValue, NullableNumValue, NullableTextValue, controls for DirtyState handling in Forms and so on.
 
-The second one is to enable a Windows Forms for Mvvm. For this to end, you do not need to use one of the controls MvvmForms provide, you just need one component.: the MvvmManager component. Basically, just drag that component into your form, set its DataContextType property to the type of the ViewModel, you want to bind, and every control on that form will get a PropertyBindings property which allow your to bind against the corresponding ViewModel property. You just need to set the DataContext property of the MvvmManager Component at runtime. You'll find a short step-by-step guide for getting started, read the wiki - the links is here on the right side.
+The second one is to enable a Windows Forms for Mvvm. For this to end, you do not need to use one of the controls MvvmForms provide, you just need one component: the MvvmManager component. Basically, just drag that component into your form, set its DataContextType property to the type of the ViewModel, you want to bind, and every control on that form will get a PropertyBindings property which allow your to bind against the corresponding ViewModel property. You just need to set the DataContext property of the MvvmManager Component at runtime. You'll find a short step-by-step guide for getting started, read the wiki - the links is here on the right side.
 
 ## How stable is MvvmForms? Have you done large LOB projects with it?
 
-Oh, yes! Our team at ActiveDevelop is taking care of MvvmForms on a daily bases, because a couple of big projects in Germany rely on MvvmForms - some bigger than 1 Million lines of code. Since we are a German company, and we're only recently started to localize MvvmForms to English, there are sill a lot of German comments and XML-Docu-Tags inside the source - but we're working on it. Still, MvvmForms is ready to be used, it is stable, reliable, thoroughly tested, and if you need special support or want to start with it urgently and need us to customize, localize or extend its functionality, than simply talk to us, so we can find a way to make this happen. 
+Oh, yes! Our team at ActiveDevelop is taking care of MvvmForms on a daily bases, because a couple of big projects in Germany rely on MvvmForms - some bigger than 1 Million lines of code. Since we are a German company, and we're started to localize MvvmForms to English, there are still a lot of German comments and XML-Docu-Tags inside the source - but we're working on it. But, MvvmForms is ready to be used, it is stable, reliable, thoroughly tested, and if you need special support or want to start with it urgently and need us to customize, localize or extend its functionality, than simply talk to us, so we can find a way to make this happen. 
 
-## I saw the source is basically Visual Basic - so, I cannot use it with CSharp projects, right?
+## Can I use it both for CSharp and Visual Basic WinForms Projects?
 
-WRONG! A third of our current projects are in CSharp, and parts of MvvmForms (the Mvvm Base Library for example) are in CSharp, as well. So, as long as you do Windows Forms, your good to go - the language doesn't matter,
+Yes, with no limitations. A third of our current projects are in CSharp, the rest we do in VB, and parts of MvvmForms (the Mvvm Base Library for example) are in CSharp, as well. Other parts are in VB. So, as long as you do Windows Forms, your good to go - the language doesn't matter,
 
 ## So, MvvmForms is Open Source. Then, it's free, right?
 
@@ -43,7 +43,7 @@ So, if you want us to help you with your existing Application by doing workshops
 
 If you're maintaining an open source project under GPL, and you want to use it. Go ahead: Fork it, change it modify it, and sell it along with your Open Source App. That's Open Source! As long your Application which links to it, or uses classes which derive from MvvmForms is also GPL, that is perfectly OK. But, if you're managing a propriety close source solution, and you want to use (link to, derive from) MvvmForms, you have to obtain one license per active developer.
 
-Oh, and as long as it is in Beta - it's free, and you got a GoLive licence!
+Oh, and as long as it is in Beta - it's free, and you've got a GoLive licence!
 
 ## Can I contribute?
 
