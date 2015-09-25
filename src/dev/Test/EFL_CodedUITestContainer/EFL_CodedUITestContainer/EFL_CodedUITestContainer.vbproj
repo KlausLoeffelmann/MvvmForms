@@ -133,7 +133,7 @@
     <Compile Include="MvvmDataGridExample\MvvmDataGridExample\Model\Kostenart.vb" />
     <Compile Include="MvvmDataGridExample\MvvmDataGridExample\ViewModel\MainViewModel.vb" />
     <Compile Include="MvvmTest\ViewModels\BindableTreeViewModels.vb" />
-    <Compile Include="MvvmTest\ViewModels\ZircTestPerson.vb" />
+    <Compile Include="MvvmTest\ViewModels\CircTestPerson.vb" />
     <Compile Include="MvvmTest\Views\CBOTestForm.Designer.vb">
       <DependentUpon>CBOTestForm.vb</DependentUpon>
     </Compile>
