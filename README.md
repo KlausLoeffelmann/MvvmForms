@@ -27,6 +27,10 @@ Because of this history, MvvmForms actually addresses two Windows Forms requirem
 
 The second one is to enable a Windows Forms for Mvvm. For this to end, you do not need to use one of the controls MvvmForms provide, you just need one component: the MvvmManager component. Basically, just drag that component into your form, set its DataContextType property to the type of the ViewModel, you want to bind, and every control on that form will get a PropertyBindings property which allow you to bind against the corresponding ViewModel property. You just need to set the DataContext property of the MvvmManager Component at runtime. You'll find a short step-by-step guide for getting started, read the wiki - the links is here on the right side.
 
+On top: take a look at this introduction video on youtube, which does not only give an introduction to MvvmForms, but also to MVVM in general.
+
+https://www.youtube.com/watch?v=1R_81Np5New
+
 ## How stable is MvvmForms? Have you done large LOB projects with it?
 
 Oh, yes! Our team at ActiveDevelop is taking care of MvvmForms on a daily bases, because a couple of big projects in Germany rely on MvvmForms - some bigger than 1 Million lines of code. Since we are a German company, and we're started to localize MvvmForms to English, there are still a lot of German comments and XML-Docu-Tags inside the source - but we're working on it. But, MvvmForms is ready to be used, it is stable, reliable, thoroughly tested, and if you need special support or want to start with it urgently and need us to customize, localize or extend its functionality, than simply talk to us, so we can find a way to make this happen. 
