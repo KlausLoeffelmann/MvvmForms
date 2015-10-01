@@ -206,7 +206,43 @@ Public Class NullableValueComboBox
 
     Protected Overridable Sub OnSelectedItemChanged(e As EventArgs)
         RaiseEvent SelectedItemChanged(Me, e)
+        OnSelectedValueChanged(e)
     End Sub
+
+    ''' <summary>
+    ''' Gets or sets the value of the System.Windows.Controls.Primitives.Selector.SelectedItem,
+    ''' obtained by using System.Windows.Controls.Primitives.Selector.SelectedValuePath.
+    ''' </summary>
+    ''' <returns>The value of the selected item.</returns>
+    Public Property SelectedValue As Object
+        Get
+            Return WpfComboBoxWrapper1.InnerComboBox.SelectedValue
+        End Get
+        Set(ByVal value As Object)
+            WpfComboBoxWrapper1.InnerComboBox.SelectedValue = value
+        End Set
+    End Property
+
+    Public Event SelectedValueChanged As EventHandler
+
+    Protected Overridable Sub OnSelectedValueChanged(e As EventArgs)
+        RaiseEvent SelectedValueChanged(Me, e)
+    End Sub
+
+    ''' <summary>
+    ''' Gets or sets the path that is used to get the System.Windows.Controls.Primitives.Selector.SelectedValue
+    ''' from the System.Windows.Controls.Primitives.Selector.SelectedItem.
+    ''' </summary>
+    ''' <returns>The path used to get the System.Windows.Controls.Primitives.Selector.SelectedValue.
+    ''' The default is an empty string.</returns>
+    Public Property SelectedValuePath As String
+        Get
+            Return WpfComboBoxWrapper1.InnerComboBox.SelectedValuePath
+        End Get
+        Set(ByVal value As String)
+            WpfComboBoxWrapper1.InnerComboBox.SelectedValuePath = value
+        End Set
+    End Property
 
     ''' <summary>
     ''' The previous selected Item
