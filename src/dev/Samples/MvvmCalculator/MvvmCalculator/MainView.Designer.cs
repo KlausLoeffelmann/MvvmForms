@@ -219,6 +219,7 @@
             this.mvvmDataGrid1.Location = new System.Drawing.Point(22, 37);
             this.mvvmDataGrid1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.mvvmDataGrid1.Name = "mvvmDataGrid1";
+            this.mvvmDataGrid1.SelectedIndex = -1;
             this.mvvmDataGrid1.SelectedItem = null;
             this.mvvmDataGrid1.SelectionMode = System.Windows.Controls.DataGridSelectionMode.Single;
             this.mvvmDataGrid1.Size = new System.Drawing.Size(504, 348);

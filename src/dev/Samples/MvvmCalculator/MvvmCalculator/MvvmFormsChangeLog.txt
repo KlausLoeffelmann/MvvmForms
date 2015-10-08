@@ -1,0 +1,171 @@
+<
+ ==================================
+ CHANGELOG
+ NEW IN 2.1.0 - 2015-09-3
+ ==================================
+
+* Introducing TreeView/IntelliSense Emulation for ViewModel Property Picker in PropertyBindings Designer.
+* Optimized ViewModelType discovery for better UI experience.
+* Fixed Layout/Scrollbar Issue with PropertyBindingList DataGridView.
+* Fixed IsDirty-Handling in PropertyAssignment.
+
+ ==================================
+ CHANGELOG
+ NEW IN 2.0.31 - 2015-09-3
+ ==================================
+
+* Minor changes to match MvvmFormsBase V2.0.31
+
+==================================
+ CHANGELOG - PRIVATE BUILD
+ NEW IN 2.0.30 - 2015-09-3
+ ==================================
+
+ ==================================
+ CHANGELOG
+ NEW IN 2.0.29 - 2015-08-11
+ ==================================
+
+* Added ScrollIntoView for MvvmDataGrid.
+* Redesign of PropertyBindings Designer UI (we will change how a property will be picked  
+  from NullableRelation to TreeView, so recursive Types can be picked correctly.
+* Updated References to match MvvmFormsBase
+
+ ==================================
+ CHANGELOG
+ NEW IN 2.0.28 - 2015-07-15
+ ==================================
+
+* Updated References to match MvvmFormsBase
+
+ ==================================
+ CHANGELOG
+ NEW IN 2.0.25 - 2015-06-16
+ ==================================
+
+* Corrected reference to incorrect NuGet-Versions of JSon.Net (Downgraded project reference back to last stable 6.0.8).
+
+==================================
+ CHANGELOG
+ NEW IN 2.0.24 - 2015-06-15
+ ==================================
+ 
+ * Adjusted Library to reflect changes in Namespaces for the Mvvm, the standard and the 
+   FormularParser classes in MvvmFormsBase.
+   (2.0.23 was a failed upload).
+   
+ ==================================
+ CHANGELOG
+ NEW IN 2.0.22 - 2015-06-10
+ ==================================
+
+
+ * Implemented ObservableCollectionBindingListAdapter
+ * Implemented Default Converter 'ObservableCollectionToBindingListAdapterConverter'
+   With those changes, standard ListControls can be bound against ObservableCollection-ViewModel-Properties,
+   although ObservableCollection is NOT compatible with IBindingList or BindingList<t>. To this end,
+   simply use the 'ObservableCollectionToBindingListAdapterConverter' to bind the ObservableCollection 
+   against a lists DataSource.
+ 
+ * MvvmDataGrid: Set HeadersVisibility default to DataGridHeadersVisibility.All
+ * MvvmDataGrid: Localized DesignerVerbs
+ * NullableComboBox: Set ValueNotFoundBehavior default to ValueNotFoundBehavior.SelectFirst
+ * BugFix NullableComboBox: If no value had been selected, SelectionChanged is no longer called multiple times (ValueNotFoundBehavior).
+
+==================================
+ CHANGELOG
+ NEW IN 2.0.21 - 2015-06-08
+ ==================================
+
+ * Introduced the CommandButton controls by merging from a contribution to a specialized private version of MvvmForms.
+ * Introduced first version of Toolbox-Icon set. Due to a bug in VS 2015, those icons are not or not properly 
+   shown on Toolbox-Dropping. In VS 2013, the toolbox is properly populated.
+ * Included XML-Docu in Package, so Intellisense should show class documentation (which is still partly in German, btw.
+   It is not easy to create a dual-language docu structure, so, that will need a while.)
+
+Remember: To show the toolbox items, firstly, add the NuGet packages. Then, compile your solution, find the bin folder and 
+          drag the ActiveDevelop.EntitiesFormsLib.dll to the toolbox, and let it go. Make sure, the MvvmBaseLib.dll is in 
+          present in the bin folder, as well!
+
+==================================
+ CHANGELOG
+ NEW IN 2.0.20 - 2015-06-02
+ ==================================
+
+ * Adjusted FormularParser reference to let NumControls be compatible with relocated FormularParser class in MvvmLibBase.
+
+==================================
+ CHANGELOG
+ NEW IN 2.0.19 - 2015-05-23
+ ==================================
+
+ * Fixed Issue in NullableDateTime where Date-Parsing was broken for Non-German-User-Input.
+ * Fixed Issue in NullableDateTime, where DisplayFormat and DisplayFormatMatch wouldn't match and caused exceptions in the Windows Forms Desginer.
+ * Added DisplayFormats which now correspond to the System Culture Date Format System Settings.
+ 
+ ==================================
+ CHANGELOG
+ NEW IN 2.0.18 - 2015-05-21
+ ==================================
+
+ * Fixed High-DPI-Issues with all NullableValueBase derived controls.
+ * Changed direct project reference to EflViewModelBase to NuGet MvvmFormsBase.
+
+==================================
+ CHANGELOG
+ NEW IN 2.0.17 - 2015-05-05
+ (First public available version)
+ ==================================
+
+INTRODUCTION: Have there been other Version?
+Yes. But we at ActiveDevelop used them only internally. This is why we decided to pick this version number for the 
+first public version. Said that, we have customers, who of course want to know, what changed between this first public 
+release and our internal-only releases.
+
+BIGGEST CHANGE: NuGet Support and Open Source!
+
+NuGet-Support:
+==============
+That was the toughest decision. Why? Because in Windows Forms, there is no easy way to update the toolbox, if we don't want
+to take the hazel of registering the DLLs in the Global Assembly Cache, patching the registry in HKY_LOCAL_MACHINE, and other 
+stuff, we probably need Admin rights to. We didn't want that. Instead, there is a little detour for a project to get started
+with MvvmForms:
+
+TO GET THE TOOLBOX ITEMS: After adding the MvvmForms-Project to your project, just find the ActiveDevelop.EntitiesFormsLib.dll
+in the packages folder, and and drag and drop it to the toolbox - that let's your toolbox get populated. And: It's bound to 
+just this project, and that's probably exactly, what you want.
+
+Open Source:
+============
+Yes, the decision is made. From now on, we're putting MvvmForms under a Dual Licence model: MvvmForms will be 
+GNU General Public Licence 2.0 and therefore free and forkable for all Open Source Projects. But, since GPL is a 
+copyleft licence, in addition Developers will have a the option to buy a Propriatry Licence directly from ActiveDevelop, so 
+they will be able to use MvvmForms even in their Propriatry Closed Source Commercial Software Projects. For more information,
+also read the readme.md file on GitHub.
+
+DETAILED OTHER CHANGES:
+=======================
+
+* Ported to Visual Basic/CSharp 2015 - 
+  From now on, you'll need the new Roslyn Compilers to compile to source code for MvvmForms.
+* Start of a WinForms/Windows 10 Sample Project:
+  We will have a Sample Project, which demonstrates who MvvmForms provides a path 
+ from WinForms to Windows Universal in Windows 10
+
+* Nullable Value Base:
+  - Introduced NullValueColor
+    NullValueColor allows to set the ForeColor for the NullValueText (equal to a PlaceHolder Property in Windows Store), 
+    when it gets displayed. NullValueColor is bindable.
+
+  - Introduced TextAlign Property
+    Behaves like TextAlign of the TextBox. TextAlign is bindable.
+    !TextAlign and ReverseTextOverflowBehaviourChanged now interact with each other!
+
+  - ExceptionBalloonDuration Property became bindable.
+
+  - MaxLength became bindable.
+
+  - ReverseTextOverflowBehaviourChanged became bindable.
+    !TextAlign and ReverseTextOverflowBehaviourChanged now interact with each other!
+
+==============================/>

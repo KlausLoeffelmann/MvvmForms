@@ -23,9 +23,9 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="View" Command="{Binding CallFunctionPlotterCommand}"/>
-            <AppBarButton Icon="ClearSelection" Command="{Binding ClearListCommand}"/>
-            <AppBarButton Icon="Accept" Command="{Binding CalcCommand}"/>
+            <AppBarButton Icon="View" Command="{Binding CallFunctionPlotterCommand}" ClickMode="Release"/>
+            <AppBarButton Icon="ClearSelection" Command="{Binding ClearListCommand}" ClickMode="Release"/>
+            <AppBarButton Icon="Accept" Command="{Binding CalcCommand}" ClickMode="Release"/>
         </CommandBar>
     </Page.BottomAppBar>
 
