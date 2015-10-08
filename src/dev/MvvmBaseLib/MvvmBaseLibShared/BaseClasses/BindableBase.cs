@@ -107,7 +107,7 @@ namespace ActiveDevelop.MvvmBaseLib
             /// <value></value>
             /// <returns></returns>
             /// <remarks></remarks>
-            [ModelPropertyIgnore, XmlIgnore, JsonIgnore]
+            [MvvmSystemElement, XmlIgnore, JsonIgnore]
             public bool IsPropertyChangingSuspended
             {
                 get
@@ -158,7 +158,7 @@ namespace ActiveDevelop.MvvmBaseLib
             /// <value></value>
             /// <returns></returns>
             /// <remarks></remarks>
-            [ModelPropertyIgnore, XmlIgnore, JsonIgnore]
+            [MvvmSystemElement, XmlIgnore, JsonIgnore]
             public bool IsPropertyChangeNotificationSuspended
             {
                 get

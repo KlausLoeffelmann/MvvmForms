@@ -16,6 +16,7 @@ Imports winforms = System.Windows.Forms
  ToolboxItem(True)>
 Public Class BindableTreeView
     Inherits TreeView
+    Implements IIsDirtyChangedAware
 
     Private _dataSource As IEnumerable
     ''' <summary>
@@ -129,6 +130,7 @@ Public Class BindableTreeView
     End Property
 
     Public Event SelectedRootItemChanged As EventHandler
+    Public Event IsDirtyChanged(sender As Object, e As IsDirtyChangedEventArgs) Implements IIsDirtyChangedAware.IsDirtyChanged
 
     Protected Overridable Sub OnSelectedRootItemChanged(e As EventArgs)
         RaiseEvent SelectedRootItemChanged(Me, e)
@@ -533,6 +535,38 @@ Public Class BindableTreeView
             ResumeLayout()
         End If
     End Sub
+
+    Private myIsDirty As Boolean
+
+    Public Property IsDirty As Boolean Implements IIsDirtyChangedAware.IsDirty
+        Get
+            Return myIsDirty
+        End Get
+        Private Set(value As Boolean)
+            If Not Object.Equals(myIsDirty, value) Then
+                myIsDirty = value
+                OnIsDirtyChanged(New IsDirtyChangedEventArgs(Me))
+            End If
+        End Set
+    End Property
+
+    Protected Overridable Sub OnIsDirtyChanged(e As IsDirtyChangedEventArgs)
+        RaiseEvent IsDirtyChanged(Me, e)
+    End Sub
+
+    Public Sub ResetIsDirty() Implements IIsDirtyChangedAware.ResetIsDirty
+        IsDirty = False
+    End Sub
+
+    Protected Overrides Sub OnBeforeSelect(e As TreeViewCancelEventArgs)
+        MyBase.OnBeforeSelect(e)
+        If Not e.Cancel Then
+            If e.Action = TreeViewAction.ByKeyboard Or e.Action = TreeViewAction.ByMouse Then
+                IsDirty = True
+            End If
+        End If
+    End Sub
+
 End Class
 
 ''' <summary>

@@ -333,6 +333,9 @@
     <Compile Include="AuxilliaryTypes\ValidationIssues.vb" />
     <Compile Include="Components\MvvmManager\DefaultConverters\ObservableCollectionToBindingListConverter.vb" />
     <Compile Include="Components\MvvmManager\UI\PropertyBindingNodeDefinition.vb" />
+    <Compile Include="Components\MvvmManager\UI\ViewModelPropertyComboBox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ContainerAndPanels\BusinessClassUserControl\BusinessClassUserControlBase.vb">
       <SubType>UserControl</SubType>
     </Compile>
