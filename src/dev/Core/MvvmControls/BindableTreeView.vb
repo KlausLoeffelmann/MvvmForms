@@ -144,7 +144,7 @@ Public Class BindableTreeView
     ''' <remarks></remarks>
     Private Sub RefreshTree()
 
-        For Each list In _notifyLists.GetLists()
+        For Each list In _notifyLists.GetLists.ToList()
             For Each node In _notifyLists.GetTreeNodes(list)
                 RemoveAllChilds(node)
             Next

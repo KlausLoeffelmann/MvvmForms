@@ -26,7 +26,6 @@ Public Class ToggleButton
         MyBase.Content = host
     End Sub
 
-
     ''' <summary>
     ''' Schluessel zur IsChecked-DependencyProperty
     ''' </summary>

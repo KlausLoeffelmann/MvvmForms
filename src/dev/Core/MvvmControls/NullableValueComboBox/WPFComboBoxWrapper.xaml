@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        
+
         <!--Themes-->
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
@@ -137,9 +137,9 @@
             </Style.Triggers>
         </Style>
         <!--Ende Themes-->
-        
-        
-        
+
+
+
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -355,24 +355,34 @@
                     </Themes:SystemDropShadowChrome>
                 </Popup>
 
-                <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" 
-        			BorderThickness="{TemplateBinding BorderThickness}" Background="Red"
-        			Grid.ColumnSpan="2"
-        			Style="{StaticResource ComboBoxToggleButton}"/>
 
-                <local:ToggleButton Grid.Column="1" HorizontalContentAlignment="Right" HorizontalAlignment="Right" 
-                                    VerticalAlignment="Stretch" Margin="2" 
-                                    IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
-                                    Width="16"
-                                    x:Name="customToggleButton" />
-
-                <Border x:Name="border" Background="{StaticResource TextBox.Static.Background}" Margin="1">
+                <Border Background="{StaticResource ComboBox.Disabled.Editable.Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2"><!--{StaticResource TextBox.Static.Background}-->
                     <!--{TemplateBinding BorderThickness}-->
                     <!--<TextBox SelectionBrush="#FF3399FF" SelectionOpacity="0.6" x:Name="PART_EditableTextBox" Padding="-1,0,0,0"/>-->
 
-                    <local:ExtendedTextBox VerticalAlignment="Center" x:Name="PART_EditableTextBox"
+                    <Border x:Name="border" Margin="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <!--{MinWidth="DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"-->
+                            </Grid.ColumnDefinitions>
+
+                            <!--<ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}"
+        			BorderThickness="{TemplateBinding BorderThickness}"
+        			Grid.ColumnSpan="2"
+        			Style="{StaticResource ComboBoxToggleButton}"/>-->
+                            <Grid Grid.Column="1">
+                                <local:ToggleButton Width="16" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0" 
+                                    IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                                    x:Name="customToggleButton" />
+                            </Grid>
+
+                            <local:ExtendedTextBox VerticalAlignment="Center" x:Name="PART_EditableTextBox"
                              IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" 
                              BorderThickness="0" Background="Transparent"/>
+                        </Grid>
+                    </Border>
 
                 </Border>
             </Grid>
@@ -421,7 +431,7 @@
                 <Trigger Property="IsEditable" Value="false">
                     <Setter Property="IsTabStop" Value="false"/>
                     <Setter Property="Padding" Value="2"/>
-                    <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/> 
+                    <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -525,5 +535,5 @@
 
 
     </Grid>
-  
+
 </UserControl>
