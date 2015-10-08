@@ -30,6 +30,7 @@ Partial Class frmMvvmPropertyAssignmentEx
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.lblControlProperty = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -48,7 +49,7 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.lblCurrentViewModelFullName = New System.Windows.Forms.Label()
         Me.lblCurrentControl = New System.Windows.Forms.Label()
         Me.lblCurrentControlType = New System.Windows.Forms.Label()
-        Me.FormToolTip = New System.Windows.Forms.ToolTip()
+        Me.FormToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnOK = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -113,7 +114,7 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.TableLayoutPanel1.Controls.Add(Me.Label3, 2, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.BindingSettingPopup, 3, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Label6, 2, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.ViewModelPropertiesTreeView, 2, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.ViewModelPropertiesTreeView, 3, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.ViewModelPropertyComboBox, 3, 1)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(11, 107)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -161,11 +162,11 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.PropertyBindingGrid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TableLayoutPanel1.SetColumnSpan(Me.PropertyBindingGrid, 2)
+        Me.TableLayoutPanel1.SetColumnSpan(Me.PropertyBindingGrid, 3)
         Me.PropertyBindingGrid.Location = New System.Drawing.Point(3, 113)
-        Me.PropertyBindingGrid.Margin = New System.Windows.Forms.Padding(3, 8, 3, 5)
+        Me.PropertyBindingGrid.Margin = New System.Windows.Forms.Padding(3, 8, 10, 5)
         Me.PropertyBindingGrid.Name = "PropertyBindingGrid"
-        Me.PropertyBindingGrid.Size = New System.Drawing.Size(555, 532)
+        Me.PropertyBindingGrid.Size = New System.Drawing.Size(683, 532)
         Me.PropertyBindingGrid.TabIndex = 7
         '
         'Panel1
@@ -254,18 +255,17 @@ Partial Class frmMvvmPropertyAssignmentEx
         'ViewModelPropertiesTreeView
         '
         Me.ViewModelPropertiesTreeView.ChildMemberPath = "SubProperties"
-        Me.TableLayoutPanel1.SetColumnSpan(Me.ViewModelPropertiesTreeView, 2)
         Me.ViewModelPropertiesTreeView.DataSource = Nothing
         Me.ViewModelPropertiesTreeView.DisplayMemberPath = "Description"
         Me.ViewModelPropertiesTreeView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ViewModelPropertiesTreeView.HideSelection = False
         Me.ViewModelPropertiesTreeView.LazyLoading = True
-        Me.ViewModelPropertiesTreeView.Location = New System.Drawing.Point(564, 113)
-        Me.ViewModelPropertiesTreeView.Margin = New System.Windows.Forms.Padding(3, 8, 3, 5)
+        Me.ViewModelPropertiesTreeView.Location = New System.Drawing.Point(701, 113)
+        Me.ViewModelPropertiesTreeView.Margin = New System.Windows.Forms.Padding(5, 8, 3, 5)
         Me.ViewModelPropertiesTreeView.Name = "ViewModelPropertiesTreeView"
         Me.ViewModelPropertiesTreeView.SelectedItem = Nothing
         Me.ViewModelPropertiesTreeView.SelectedRootItem = Nothing
-        Me.ViewModelPropertiesTreeView.Size = New System.Drawing.Size(628, 532)
+        Me.ViewModelPropertiesTreeView.Size = New System.Drawing.Size(491, 532)
         Me.ViewModelPropertiesTreeView.TabIndex = 23
         '
         'ViewModelPropertyComboBox
@@ -284,6 +284,8 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.ViewModelPropertyComboBox.SelectedForProcessing = False
         Me.ViewModelPropertyComboBox.SelectedItem = Nothing
         Me.ViewModelPropertyComboBox.SelectedNode = Nothing
+        Me.ViewModelPropertyComboBox.SelectedValue = Nothing
+        Me.ViewModelPropertyComboBox.SelectedValuePath = ""
         Me.ViewModelPropertyComboBox.Size = New System.Drawing.Size(493, 22)
         Me.ViewModelPropertyComboBox.TabIndex = 24
         Me.ViewModelPropertyComboBox.ValueNotFoundBehavior = ActiveDevelop.EntitiesFormsLib.ValueNotFoundBehavior.KeepFocus

@@ -117,13 +117,15 @@ Public Class DataSourceTypeUIForm
                     Dim isSystemClass As Boolean = False
                     Dim isBindableBase As Boolean = False
 
+                    'If class is marked with the MvvmSystemElementAttribute, we do not list the class.
                     For Each att In typeItem.GetCustomAttributes(False)
                         If GetType(MvvmSystemElementAttribute).IsAssignableFrom(att.GetType) Then
                             isSystemClass = True
                         End If
                     Next
 
-                    If isSystemClass Then
+                    'We filter out Abstract classes, so BindableBase, MvvmViewModelBase, and all the derived system classes are not listed, here.
+                    If isSystemClass Or typeItem.IsAbstract Then
                         Continue For
                     End If
 

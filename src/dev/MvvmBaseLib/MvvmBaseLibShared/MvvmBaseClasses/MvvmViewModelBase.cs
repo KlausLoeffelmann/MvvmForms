@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 
 namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
-    public class MvvmViewModelBase : BindableBase, IEditableObject, INotifyDataErrorInfo
+    public abstract class MvvmViewModelBase : BindableBase, IEditableObject, INotifyDataErrorInfo
     {
         private Dictionary<string, string> myErrorDictionary = new Dictionary<string, string>();
 
@@ -391,7 +391,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                 ErrorsChanged(this, eArgs);
         }
 
-        [ModelPropertyIgnore, XmlIgnore, JsonIgnore]
+        [MvvmSystemElement, XmlIgnore, JsonIgnore]
         public bool HasErrors
         {
             get

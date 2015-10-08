@@ -8,9 +8,10 @@ using ActiveDevelop.MvvmBaseLib.Mvvm;
 namespace ActiveDevelop.MvvmBaseLib
 {
     /// <summary>
-    /// 
+    /// Base class for binding properties having a default value and which are asynchronously retrieving their actual values on requesting their bound properties.
     /// </summary>
     /// <typeparam name="t"></typeparam>
+    [MvvmSystemElement]
     public class BindableAsyncLazy<t> : INotifyPropertyChanged, IDiscoverableValue<t>
 	{
 		private t myDefaultValue;

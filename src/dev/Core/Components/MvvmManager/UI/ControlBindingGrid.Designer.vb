@@ -26,6 +26,8 @@ Partial Class ControlBindingGrid
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ControlBindingGrid))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.AddToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.EditToolStripButton = New System.Windows.Forms.ToolStripButton()
@@ -49,9 +51,9 @@ Partial Class ControlBindingGrid
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(48, 48)
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripButton, Me.EditToolStripButton, Me.DeleteToolStripButton})
         Me.ToolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 424)
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 320)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(639, 70)
+        Me.ToolStrip1.Size = New System.Drawing.Size(626, 76)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -60,7 +62,8 @@ Partial Class ControlBindingGrid
         Me.AddToolStripButton.Image = CType(resources.GetObject("AddToolStripButton.Image"), System.Drawing.Image)
         Me.AddToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddToolStripButton.Name = "AddToolStripButton"
-        Me.AddToolStripButton.Size = New System.Drawing.Size(52, 67)
+        Me.AddToolStripButton.Padding = New System.Windows.Forms.Padding(3)
+        Me.AddToolStripButton.Size = New System.Drawing.Size(58, 73)
         Me.AddToolStripButton.Text = "Add"
         Me.AddToolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.AddToolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
@@ -70,7 +73,8 @@ Partial Class ControlBindingGrid
         Me.EditToolStripButton.Image = CType(resources.GetObject("EditToolStripButton.Image"), System.Drawing.Image)
         Me.EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.EditToolStripButton.Name = "EditToolStripButton"
-        Me.EditToolStripButton.Size = New System.Drawing.Size(52, 67)
+        Me.EditToolStripButton.Padding = New System.Windows.Forms.Padding(3)
+        Me.EditToolStripButton.Size = New System.Drawing.Size(58, 73)
         Me.EditToolStripButton.Text = "Edit"
         Me.EditToolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.EditToolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
@@ -80,7 +84,8 @@ Partial Class ControlBindingGrid
         Me.DeleteToolStripButton.Image = CType(resources.GetObject("DeleteToolStripButton.Image"), System.Drawing.Image)
         Me.DeleteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.DeleteToolStripButton.Name = "DeleteToolStripButton"
-        Me.DeleteToolStripButton.Size = New System.Drawing.Size(52, 67)
+        Me.DeleteToolStripButton.Padding = New System.Windows.Forms.Padding(3)
+        Me.DeleteToolStripButton.Size = New System.Drawing.Size(58, 73)
         Me.DeleteToolStripButton.Text = "Delete"
         Me.DeleteToolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.DeleteToolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
@@ -88,6 +93,15 @@ Partial Class ControlBindingGrid
         'myBindingDataGrid
         '
         Me.myBindingDataGrid.AutoGenerateColumns = False
+        Me.myBindingDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.myBindingDataGrid.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.myBindingDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.myBindingDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ControlPropertyDataGridViewTextBoxColumn, Me.ConverterDataGridViewTextBoxColumn, Me.ConverterParameter, Me.BindingSettingDataGridViewTextBoxColumn, Me.ViewModelPropertyDataGridViewTextBoxColumn})
         Me.myBindingDataGrid.DataSource = Me.PropertyBindingItemBindingSource
@@ -95,8 +109,19 @@ Partial Class ControlBindingGrid
         Me.myBindingDataGrid.Location = New System.Drawing.Point(0, 0)
         Me.myBindingDataGrid.Name = "myBindingDataGrid"
         Me.myBindingDataGrid.ReadOnly = True
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.myBindingDataGrid.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.myBindingDataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.myBindingDataGrid.RowTemplate.DefaultCellStyle.Padding = New System.Windows.Forms.Padding(3)
+        Me.myBindingDataGrid.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.myBindingDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.myBindingDataGrid.Size = New System.Drawing.Size(639, 494)
+        Me.myBindingDataGrid.Size = New System.Drawing.Size(626, 320)
         Me.myBindingDataGrid.TabIndex = 0
         '
         'ControlPropertyDataGridViewTextBoxColumn
@@ -106,7 +131,7 @@ Partial Class ControlBindingGrid
         Me.ControlPropertyDataGridViewTextBoxColumn.HeaderText = "Control Property"
         Me.ControlPropertyDataGridViewTextBoxColumn.Name = "ControlPropertyDataGridViewTextBoxColumn"
         Me.ControlPropertyDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ControlPropertyDataGridViewTextBoxColumn.Width = 98
+        Me.ControlPropertyDataGridViewTextBoxColumn.Width = 113
         '
         'ConverterDataGridViewTextBoxColumn
         '
@@ -115,7 +140,7 @@ Partial Class ControlBindingGrid
         Me.ConverterDataGridViewTextBoxColumn.HeaderText = "Converter"
         Me.ConverterDataGridViewTextBoxColumn.Name = "ConverterDataGridViewTextBoxColumn"
         Me.ConverterDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ConverterDataGridViewTextBoxColumn.Width = 78
+        Me.ConverterDataGridViewTextBoxColumn.Width = 87
         '
         'ConverterParameter
         '
@@ -124,7 +149,7 @@ Partial Class ControlBindingGrid
         Me.ConverterParameter.HeaderText = "Converter Parameter"
         Me.ConverterParameter.Name = "ConverterParameter"
         Me.ConverterParameter.ReadOnly = True
-        Me.ConverterParameter.Width = 118
+        Me.ConverterParameter.Width = 135
         '
         'BindingSettingDataGridViewTextBoxColumn
         '
@@ -133,7 +158,7 @@ Partial Class ControlBindingGrid
         Me.BindingSettingDataGridViewTextBoxColumn.HeaderText = "Binding Setting"
         Me.BindingSettingDataGridViewTextBoxColumn.Name = "BindingSettingDataGridViewTextBoxColumn"
         Me.BindingSettingDataGridViewTextBoxColumn.ReadOnly = True
-        Me.BindingSettingDataGridViewTextBoxColumn.Width = 95
+        Me.BindingSettingDataGridViewTextBoxColumn.Width = 108
         '
         'ViewModelPropertyDataGridViewTextBoxColumn
         '
@@ -142,7 +167,7 @@ Partial Class ControlBindingGrid
         Me.ViewModelPropertyDataGridViewTextBoxColumn.HeaderText = "ViewModel Property"
         Me.ViewModelPropertyDataGridViewTextBoxColumn.Name = "ViewModelPropertyDataGridViewTextBoxColumn"
         Me.ViewModelPropertyDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ViewModelPropertyDataGridViewTextBoxColumn.Width = 115
+        Me.ViewModelPropertyDataGridViewTextBoxColumn.Width = 132
         '
         'PropertyBindingItemBindingSource
         '
@@ -152,10 +177,10 @@ Partial Class ControlBindingGrid
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.myBindingDataGrid)
+        Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "ControlBindingGrid"
-        Me.Size = New System.Drawing.Size(639, 494)
+        Me.Size = New System.Drawing.Size(626, 396)
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         CType(Me.myBindingDataGrid, System.ComponentModel.ISupportInitialize).EndInit()

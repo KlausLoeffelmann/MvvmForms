@@ -35,14 +35,15 @@ Partial Class TestFormForDesignerError
         Me.MvvmManager1.ContainerControl = Me
         Me.MvvmManager1.CurrentContextGuid = New System.Guid("861fafc2-3724-48ce-9bcf-d4a6f0dc5f0b")
         Me.MvvmManager1.DataContext = Nothing
-        Me.MvvmManager1.DataContextType = Nothing
-        Me.MvvmManager1.DataSourceType = Nothing
+        Me.MvvmManager1.DataContextType = GetType(EFL_CodedUITestContainer.CircTestPerson)
+        Me.MvvmManager1.DataSourceType = GetType(EFL_CodedUITestContainer.CircTestPerson)
         Me.MvvmManager1.DirtyStateManagerComponent = Nothing
         Me.MvvmManager1.DynamicEventHandlingList = Nothing
         Me.MvvmManager1.HostingForm = Me
         Me.MvvmManager1.HostingUserControl = Nothing
         Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("CausesValidation", GetType(Boolean)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("DeleteTimeCollectionItemCommand.CanExecuteState", GetType(Boolean)))
-        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.NullableTextValue2, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Value", GetType(System.Nullable(Of ActiveDevelop.EntitiesFormsLib.StringValue))), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Vorname", GetType(String)))
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.NullableTextValue2, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Value", GetType(System.Nullable(Of ActiveDevelop.EntitiesFormsLib.StringValue))), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Anschrift.Person.Name", GetType(String)))
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.ListBox1, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("DataSource", GetType(Object)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Anschrift.Person.HasErrors", GetType(Boolean)))
         '
         'NullableTextValue2
         '

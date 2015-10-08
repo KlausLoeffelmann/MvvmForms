@@ -12,7 +12,8 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
 
 		}
 
-		public class Validatable<T> : MvvmViewModelBase, IDiscoverableValue<T>
+        [MvvmSystemElement]
+        public class Validatable<T> : MvvmViewModelBase, IDiscoverableValue<T>
 		{
 			private T myValue;
 			private string myValidationErrorText;
@@ -137,7 +138,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
 
 			public override string ToString()
 			{
-				return (((((IDiscoverableValue<T>)this).Value == null) ? "<null>" : ((IDiscoverableValue<T>)this).Value.ToString()));
+				return (((IDiscoverableValue<T>)this).Value == null) ? "<null>" : ((IDiscoverableValue<T>)this).Value.ToString();
 			}
 
 			public void SetValue(object value)

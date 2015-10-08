@@ -4,6 +4,7 @@ using System.Reflection;
 
 namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
+    [MvvmSystemElement]
     public class ChangeTracking<T> : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;

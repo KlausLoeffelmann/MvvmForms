@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
-    public class ValidatableBase : MvvmViewModelBase
+    public abstract class ValidatableBase : MvvmViewModelBase
     {
         private string myValidationErrors;
 
