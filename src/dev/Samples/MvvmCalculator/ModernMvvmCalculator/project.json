@@ -2,7 +2,7 @@
   "dependencies": {
     "Autofac": "4.0.0-beta6-110",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "MvvmFormsBase": "2.0.31-Beta",
+    "MvvmFormsBase": "2.1.0-Beta",
     "Win2D.uwp": "1.3.0"
   },
   "frameworks": {

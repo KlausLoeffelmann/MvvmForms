@@ -2,7 +2,7 @@
 Public Class CloningTests
 
     <TestMethod()>
-    Public Sub BindingManager_BasicFunctionTest()
+    Public Sub BindingManager_BasicCloningTest()
 
     End Sub
 

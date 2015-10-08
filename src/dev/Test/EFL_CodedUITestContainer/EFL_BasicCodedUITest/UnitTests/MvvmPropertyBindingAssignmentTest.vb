@@ -142,6 +142,48 @@ Public Class MvvmPropertyBindingAssignmentTest
     End Sub
 
     <TestMethod()>
+    Sub BindingManager_BindingTest_TwoWayWithReadonlyProperty()
+
+        'Keine Exceptions bei Readonly-Eigenschaften schmeissen
+        BindingManager.ThrowExceptionOnUnassignableBindingProperties = False
+
+        Dim testDateValue = #7/24/1969#
+
+        Dim sourceObject = New TestViewModel
+        Dim testControl = New TestBindingControl
+        Dim bindingItems = New BindingItems()
+
+        'Test: Binding OneWay. That is ViewModel to Control.
+        Dim simpleTestBindingItem = New PropertyBindingItem With
+                                            {.BindingSetting = New BindingSetting(MvvmBindingModes.TwoWay,
+                                                                                UpdateSourceTriggerSettings.PropertyChangedImmediately),
+                                             .ControlProperty = New BindingProperty("SimpleStringValue", GetType(String)),
+                                             .Converter = Nothing,
+                                             .ViewModelProperty = New BindingProperty("SomeReadOnlyStringValue", GetType(String))}
+
+        bindingItems.Add(New BindingItem() With {.Control = testControl,
+                                                    .MvvmItem = New MvvmBindingItem With {
+                                                        .ConverterAssembly = Nothing,
+                                                        .PropertyBindings = New PropertyBindings From {
+                                                                    simpleTestBindingItem}}})
+
+
+        sourceObject.SetSomeReadOnlyStringValue("MvvmForms rules!")
+        'The setting up of the Binding should lead to...
+        Dim bm As New BindingManager(sourceObject, bindingItems, Nothing,
+                                     updateControlsAfterInstatiating:=True)
+
+
+        '...the value SimpleStringValue being changed in the control.
+        Assert.AreEqual(Of String)(testControl.SimpleStringValue, sourceObject.SomeReadOnlyStringValue)
+
+        'And this now should not have any exception consequences!
+        testControl.SimpleStringValue = "Let's see how this goes!"
+
+    End Sub
+
+
+    <TestMethod()>
     Sub BindingManager_DirectionTest_OneWay()
         Dim testDateValue = #7/24/1969#
 
@@ -558,7 +600,8 @@ Public Class TestViewModel
     Private mySomeDateNullableValue As Date?
     Private mySomeStringValue As String
     Private mySomeSubValueModel As TestSubViewModel
-
+    Private mySomeReadOnlyStringValue As String
+    Private mySomeSubViewModelWithPrivateSetter As TestSubViewModel
     Public Event PropertyChanged(sender As Object, e As PropertyChangedEventArgs) Implements INotifyPropertyChanged.PropertyChanged
 
     Public Property SomeDateValue As Date
@@ -610,6 +653,16 @@ Public Class TestViewModel
         End Set
     End Property
 
+    Public Sub SetSomeReadOnlyStringValue(value As String)
+        mySomeReadOnlyStringValue = value
+    End Sub
+
+    Public ReadOnly Property SomeReadOnlyStringValue As String
+        Get
+            Return mySomeReadOnlyStringValue
+        End Get
+    End Property
+
     Public Property SomeSubViewModel As TestSubViewModel
         Get
             Return mySomeSubValueModel
@@ -622,6 +675,21 @@ Public Class TestViewModel
         End Set
     End Property
 
+    Public Sub SetSomeSubViewModelWithPrivateSetter(value As TestSubViewModel)
+        SomeSubViewModelWithPrivateSetter = value
+    End Sub
+
+    Public Property SomeSubViewModelWithPrivateSetter As TestSubViewModel
+        Get
+            Return mySomeSubViewModelWithPrivateSetter
+        End Get
+        Private Set(value As TestSubViewModel)
+            If Not Object.Equals(value, mySomeSubViewModelWithPrivateSetter) Then
+                mySomeSubViewModelWithPrivateSetter = value
+                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("SomeSubViewModelWithPrivateSetter"))
+            End If
+        End Set
+    End Property
 End Class
 
 Public Class TestSubViewModel
