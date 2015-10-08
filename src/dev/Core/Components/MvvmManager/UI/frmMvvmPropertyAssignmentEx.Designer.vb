@@ -38,12 +38,12 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.ViewModelPropertyComboBox = New ActiveDevelop.EntitiesFormsLib.ViewModelPropertyComboBox()
         Me.nvrControlProperties = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.PropertyBindingGrid = New ActiveDevelop.EntitiesFormsLib.ControlBindingGrid()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.nvrConverterParameter = New ActiveDevelop.EntitiesFormsLib.NullableTextValue()
-        Me.nvrConverters = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.BindingSettingPopup = New ActiveDevelop.EntitiesFormsLib.BindingSettingPopup()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.ViewModelPropertiesTreeView = New ActiveDevelop.EntitiesFormsLib.BindableTreeView()
+        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+        Me.nvrConverterParameter = New ActiveDevelop.EntitiesFormsLib.NullableTextValue()
+        Me.nvrConverters = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.lblCurrentViewModelType = New System.Windows.Forms.Label()
         Me.lblCurrentViewModelFullName = New System.Windows.Forms.Label()
@@ -54,7 +54,7 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.nvrControlProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
+        Me.TableLayoutPanel3.SuspendLayout()
         CType(Me.nvrConverters, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.SuspendLayout()
@@ -113,13 +113,13 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.TableLayoutPanel1.Controls.Add(Me.PropertyBindingGrid, 0, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.Label2, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.lblControlProperty, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.BindingSettingPopup, 3, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Label6, 2, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.ViewModelPropertiesTreeView, 3, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.Label3, 2, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel3, 1, 1)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(7, 71)
-        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23.0!))
@@ -168,7 +168,7 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.nvrControlProperties.IsPopupAutoSize = False
         Me.nvrControlProperties.IsPopupResizable = True
         Me.nvrControlProperties.Location = New System.Drawing.Point(82, 2)
-        Me.nvrControlProperties.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.nvrControlProperties.Margin = New System.Windows.Forms.Padding(2)
         Me.nvrControlProperties.MinimumPopupSize = New System.Drawing.Size(436, 80)
         Me.nvrControlProperties.MultiSelect = False
         Me.nvrControlProperties.Name = "nvrControlProperties"
@@ -196,72 +196,13 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.PropertyBindingGrid.Size = New System.Drawing.Size(455, 346)
         Me.PropertyBindingGrid.TabIndex = 7
         '
-        'Panel1
-        '
-        Me.Panel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.Controls.Add(Me.nvrConverterParameter)
-        Me.Panel1.Controls.Add(Me.nvrConverters)
-        Me.Panel1.Location = New System.Drawing.Point(80, 23)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(294, 56)
-        Me.Panel1.TabIndex = 19
-        '
-        'nvrConverterParameter
-        '
-        Me.nvrConverterParameter.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.nvrConverterParameter.AssignedManagerComponent = Nothing
-        Me.nvrConverterParameter.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.nvrConverterParameter.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
-        Me.nvrConverterParameter.Location = New System.Drawing.Point(2, 30)
-        Me.nvrConverterParameter.MaxLength = 32767
-        Me.nvrConverterParameter.Name = "nvrConverterParameter"
-        Me.nvrConverterParameter.ObfuscationChar = Nothing
-        Me.nvrConverterParameter.PermissionReason = Nothing
-        Me.nvrConverterParameter.Size = New System.Drawing.Size(290, 22)
-        Me.nvrConverterParameter.TabIndex = 1
-        Me.nvrConverterParameter.UIGuid = New System.Guid("23ef76aa-2b5f-4314-988d-38992f5d4564")
-        Me.nvrConverterParameter.Value = Nothing
-        Me.nvrConverterParameter.ValueValidationState = Nothing
-        '
-        'nvrConverters
-        '
-        Me.nvrConverters.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.nvrConverters.AssignedManagerComponent = Nothing
-        Me.nvrConverters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None
-        Me.nvrConverters.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None
-        Me.nvrConverters.BeepOnFailedValidation = False
-        Me.nvrConverters.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.nvrConverters.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
-        Me.nvrConverters.DataSource = Nothing
-        Me.nvrConverters.DisplayMember = """{0}"" ,ConverterName"
-        Me.nvrConverters.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nvrConverters.HideButtons = False
-        Me.nvrConverters.IsPopupAutoSize = False
-        Me.nvrConverters.IsPopupResizable = True
-        Me.nvrConverters.Location = New System.Drawing.Point(2, 4)
-        Me.nvrConverters.MinimumPopupSize = New System.Drawing.Size(436, 80)
-        Me.nvrConverters.MultiSelect = False
-        Me.nvrConverters.Name = "nvrConverters"
-        Me.nvrConverters.NullValueString = "* - - - *"
-        Me.nvrConverters.PermissionReason = Nothing
-        Me.nvrConverters.PreferredVisibleColumnsOnOpen = 2
-        Me.nvrConverters.PreferredVisibleRowsOnOpen = 10
-        Me.nvrConverters.ReverseTextOverflowBehaviour = True
-        Me.nvrConverters.Searchable = True
-        Me.nvrConverters.SearchColumnHeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.nvrConverters.Size = New System.Drawing.Size(290, 22)
-        Me.nvrConverters.TabIndex = 0
-        Me.nvrConverters.UIGuid = New System.Guid("7b05d4b5-998f-4216-ae43-12e7bd51942c")
-        Me.nvrConverters.ValueMember = Nothing
-        '
         'BindingSettingPopup
         '
         Me.BindingSettingPopup.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BindingSettingPopup.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.BindingSettingPopup.HideButtons = False
         Me.BindingSettingPopup.Location = New System.Drawing.Point(466, 2)
-        Me.BindingSettingPopup.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BindingSettingPopup.Margin = New System.Windows.Forms.Padding(2)
         Me.BindingSettingPopup.Name = "BindingSettingPopup"
         Me.BindingSettingPopup.Size = New System.Drawing.Size(329, 22)
         Me.BindingSettingPopup.TabIndex = 21
@@ -295,6 +236,72 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.ViewModelPropertiesTreeView.Size = New System.Drawing.Size(328, 346)
         Me.ViewModelPropertiesTreeView.TabIndex = 23
         '
+        'TableLayoutPanel3
+        '
+        Me.TableLayoutPanel3.ColumnCount = 1
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.nvrConverterParameter, 0, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.nvrConverters, 0, 0)
+        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(80, 24)
+        Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0, 1, 0, 1)
+        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+        Me.TableLayoutPanel3.RowCount = 2
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(294, 54)
+        Me.TableLayoutPanel3.TabIndex = 24
+        '
+        'nvrConverterParameter
+        '
+        Me.nvrConverterParameter.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.nvrConverterParameter.AssignedManagerComponent = Nothing
+        Me.nvrConverterParameter.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.nvrConverterParameter.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.nvrConverterParameter.Location = New System.Drawing.Point(2, 28)
+        Me.nvrConverterParameter.Margin = New System.Windows.Forms.Padding(2, 1, 2, 3)
+        Me.nvrConverterParameter.MaxLength = 32767
+        Me.nvrConverterParameter.Name = "nvrConverterParameter"
+        Me.nvrConverterParameter.ObfuscationChar = Nothing
+        Me.nvrConverterParameter.PermissionReason = Nothing
+        Me.nvrConverterParameter.Size = New System.Drawing.Size(290, 22)
+        Me.nvrConverterParameter.TabIndex = 1
+        Me.nvrConverterParameter.UIGuid = New System.Guid("23ef76aa-2b5f-4314-988d-38992f5d4564")
+        Me.nvrConverterParameter.Value = Nothing
+        Me.nvrConverterParameter.ValueValidationState = Nothing
+        '
+        'nvrConverters
+        '
+        Me.nvrConverters.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.nvrConverters.AssignedManagerComponent = Nothing
+        Me.nvrConverters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None
+        Me.nvrConverters.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None
+        Me.nvrConverters.BeepOnFailedValidation = False
+        Me.nvrConverters.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.nvrConverters.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.nvrConverters.DataSource = Nothing
+        Me.nvrConverters.DisplayMember = """{0}"" ,ConverterName"
+        Me.nvrConverters.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nvrConverters.HideButtons = False
+        Me.nvrConverters.IsPopupAutoSize = False
+        Me.nvrConverters.IsPopupResizable = True
+        Me.nvrConverters.Location = New System.Drawing.Point(2, 3)
+        Me.nvrConverters.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.nvrConverters.MinimumPopupSize = New System.Drawing.Size(436, 80)
+        Me.nvrConverters.MultiSelect = False
+        Me.nvrConverters.Name = "nvrConverters"
+        Me.nvrConverters.NullValueString = "* - - - *"
+        Me.nvrConverters.PermissionReason = Nothing
+        Me.nvrConverters.PreferredVisibleColumnsOnOpen = 2
+        Me.nvrConverters.PreferredVisibleRowsOnOpen = 10
+        Me.nvrConverters.ReverseTextOverflowBehaviour = True
+        Me.nvrConverters.Searchable = True
+        Me.nvrConverters.SearchColumnHeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.nvrConverters.Size = New System.Drawing.Size(290, 22)
+        Me.nvrConverters.TabIndex = 0
+        Me.nvrConverters.UIGuid = New System.Guid("7b05d4b5-998f-4216-ae43-12e7bd51942c")
+        Me.nvrConverters.ValueMember = Nothing
+        '
         'TableLayoutPanel2
         '
         Me.TableLayoutPanel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -307,7 +314,7 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.TableLayoutPanel2.Controls.Add(Me.lblCurrentControl, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.lblCurrentControlType, 0, 0)
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(8, 3)
-        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(2)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.84615!))
@@ -371,7 +378,7 @@ Partial Class frmMvvmPropertyAssignmentEx
         '
         Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnOK.Location = New System.Drawing.Point(728, 514)
-        Me.btnOK.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnOK.Margin = New System.Windows.Forms.Padding(2)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(77, 23)
         Me.btnOK.TabIndex = 0
@@ -400,7 +407,7 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.Controls.Add(Me.TableLayoutPanel2)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MinimumSize = New System.Drawing.Size(371, 256)
         Me.Name = "frmMvvmPropertyAssignmentEx"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -408,7 +415,7 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         CType(Me.nvrControlProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
+        Me.TableLayoutPanel3.ResumeLayout(False)
         CType(Me.nvrConverters, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
@@ -429,7 +436,6 @@ Partial Class frmMvvmPropertyAssignmentEx
     Friend WithEvents lblCurrentControlType As System.Windows.Forms.Label
     Friend WithEvents lblCurrentViewModelFullName As System.Windows.Forms.Label
     Friend WithEvents btnOK As System.Windows.Forms.Button
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents nvrConverterParameter As ActiveDevelop.EntitiesFormsLib.NullableTextValue
     Friend WithEvents nvrConverters As ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -437,4 +443,5 @@ Partial Class frmMvvmPropertyAssignmentEx
     Friend WithEvents Label6 As Windows.Forms.Label
     Friend WithEvents ViewModelPropertiesTreeView As BindableTreeView
     Friend WithEvents ViewModelPropertyComboBox As ViewModelPropertyComboBox
+    Friend WithEvents TableLayoutPanel3 As Windows.Forms.TableLayoutPanel
 End Class
