@@ -18,6 +18,42 @@ Public Class BindableTreeView
     Inherits TreeView
     Implements IIsDirtyChangedAware
 
+    Private _isSelecting As Boolean = False
+    Protected _nodes As New NodesDictionary(Of Object)
+    Private _notifyLists As New NodesListDictionary
+    Friend WithEvents ImageList1 As System.Windows.Forms.ImageList
+    Private components As System.ComponentModel.IContainer
+    Private _loadedLevels As Integer? = Nothing
+    Private _displayProps As New Dictionary(Of Integer, PropertyInfo)
+    ''' <summary>
+    ''' Level/Property
+    ''' </summary>
+    Private _childProps As New Dictionary(Of Integer, PropertyInfo)
+
+    Public Event DataSourceChanged As EventHandler
+
+    Protected Overridable Sub OnDataSourceChanged(e As EventArgs)
+        RaiseEvent DataSourceChanged(Me, e)
+    End Sub
+
+    Public Event SelectedItemChanged As EventHandler
+
+    Protected Overridable Sub OnSelectedItemChanged(e As EventArgs)
+        RaiseEvent SelectedItemChanged(Me, e)
+    End Sub
+
+    Public Event IsDirtyChanged(sender As Object, e As IsDirtyChangedEventArgs) Implements IIsDirtyChangedAware.IsDirtyChanged
+
+    Protected Overridable Sub OnIsDirtyChanged(e As IsDirtyChangedEventArgs)
+        RaiseEvent IsDirtyChanged(Me, e)
+    End Sub
+
+    Public Event SelectedRootItemChanged As EventHandler
+
+    Protected Overridable Sub OnSelectedRootItemChanged(e As EventArgs)
+        RaiseEvent SelectedRootItemChanged(Me, e)
+    End Sub
+
     Private _dataSource As IEnumerable
     ''' <summary>
     ''' Die Quelle welche als Knoten abgebildet werden soll
@@ -58,13 +94,6 @@ Public Class BindableTreeView
         End Set
     End Property
 
-    Public Event DataSourceChanged As EventHandler
-
-    Protected Overridable Sub OnDataSourceChanged(e As EventArgs)
-        RaiseEvent DataSourceChanged(Me, e)
-    End Sub
-    Friend WithEvents ImageList1 As System.Windows.Forms.ImageList
-
     Private _selectedItem As Object
     ''' <summary>
     ''' Das Element welches in der TreeView ausgewählt wurde
@@ -94,11 +123,29 @@ Public Class BindableTreeView
         End Set
     End Property
 
-    Public Event SelectedItemChanged As EventHandler
+    Private myIsDirty As Boolean
 
-    Protected Overridable Sub OnSelectedItemChanged(e As EventArgs)
-        RaiseEvent SelectedItemChanged(Me, e)
-    End Sub
+    Public Property IsDirty As Boolean Implements IIsDirtyChangedAware.IsDirty
+        Get
+            Return myIsDirty
+        End Get
+        Private Set(value As Boolean)
+            If Not Object.Equals(myIsDirty, value) Then
+                myIsDirty = value
+                OnIsDirtyChanged(New IsDirtyChangedEventArgs(Me))
+            End If
+        End Set
+    End Property
+
+    Private _lazyLoading As Boolean = False
+    Public Property LazyLoading As Boolean
+        Get
+            Return _lazyLoading
+        End Get
+        Set(ByVal value As Boolean)
+            _lazyLoading = value
+        End Set
+    End Property
 
     Private _selectedRootItem As Object
     ''' <summary>
@@ -129,14 +176,25 @@ Public Class BindableTreeView
         End Set
     End Property
 
-    Public Event SelectedRootItemChanged As EventHandler
-    Public Event IsDirtyChanged(sender As Object, e As IsDirtyChangedEventArgs) Implements IIsDirtyChangedAware.IsDirtyChanged
+    Private _displayMemberPath As String = Nothing
+    Public Property DisplayMemberPath As String
+        Get
+            Return _displayMemberPath
+        End Get
+        Set(ByVal value As String)
+            _displayMemberPath = value
+        End Set
+    End Property
 
-    Protected Overridable Sub OnSelectedRootItemChanged(e As EventArgs)
-        RaiseEvent SelectedRootItemChanged(Me, e)
-    End Sub
-
-    Protected _nodes As New NodesDictionary(Of Object)
+    Private _childMemberPath As String = Nothing
+    Public Property ChildMemberPath As String
+        Get
+            Return _childMemberPath
+        End Get
+        Set(ByVal value As String)
+            _childMemberPath = value
+        End Set
+    End Property
 
     ''' <summary>
     ''' Erstellt den Baum anhand der DataSource neu
@@ -243,8 +301,6 @@ Public Class BindableTreeView
         End If
     End Sub
 
-    Private _notifyLists As New NodesListDictionary
-
     Protected Overrides Sub OnAfterExpand(e As TreeViewEventArgs)
         MyBase.OnAfterExpand(e)
         Dim node = DirectCast(e.Node, DataTreeNode)
@@ -272,8 +328,6 @@ Public Class BindableTreeView
         node.IsLoaded = True
 
     End Sub
-
-    Private _isSelecting As Boolean = False
 
     ''' <summary>
     ''' Selecteditem synchronisieren
@@ -330,8 +384,6 @@ Public Class BindableTreeView
         End If
     End Sub
 
-    Private components As System.ComponentModel.IContainer
-
     Private Sub DataSource_CollectionChanged(sender As Object, e As NotifyCollectionChangedEventArgs)
 
         Select Case e.Action
@@ -385,28 +437,6 @@ Public Class BindableTreeView
         End Select
     End Sub
 
-    Private _displayMemberPath As String = Nothing
-    Public Property DisplayMemberPath As String
-        Get
-            Return _displayMemberPath
-        End Get
-        Set(ByVal value As String)
-            _displayMemberPath = value
-        End Set
-    End Property
-
-    Private _childMemberPath As String = Nothing
-    Public Property ChildMemberPath As String
-        Get
-            Return _childMemberPath
-        End Get
-        Set(ByVal value As String)
-            _childMemberPath = value
-        End Set
-    End Property
-
-    Private _displayProps As New Dictionary(Of Integer, PropertyInfo)
-
     Protected Function GetDisplayMember(nodeItem As Object, level As Integer) As String
         If String.IsNullOrWhiteSpace(DisplayMemberPath) Then
             'ToString auswerten
@@ -427,11 +457,6 @@ Public Class BindableTreeView
             End If
         End If
     End Function
-
-    ''' <summary>
-    ''' Level/Property
-    ''' </summary>
-    Private _childProps As New Dictionary(Of Integer, PropertyInfo)
 
     Protected Function GetChilds(nodeItem As Object, level As Integer) As IEnumerable
         If Not String.IsNullOrWhiteSpace(ChildMemberPath) Then
@@ -455,15 +480,29 @@ Public Class BindableTreeView
         End If
     End Function
 
-    Private _lazyLoading As Boolean = False
-    Public Property LazyLoading As Boolean
-        Get
-            Return _lazyLoading
-        End Get
-        Set(ByVal value As Boolean)
-            _lazyLoading = value
-        End Set
-    End Property
+    Public Sub LoadLevels(lvlCount As Integer)
+        If (Not _loadedLevels.HasValue) OrElse lvlCount > _loadedLevels.Value Then
+            SuspendLayout()
+            For Each node As DataTreeNode In Nodes
+                LoadNode(node, lvlCount)
+            Next
+            _loadedLevels = lvlCount
+            ResumeLayout()
+        End If
+    End Sub
+
+    Public Sub ResetIsDirty() Implements IIsDirtyChangedAware.ResetIsDirty
+        IsDirty = False
+    End Sub
+
+    Protected Overrides Sub OnBeforeSelect(e As TreeViewCancelEventArgs)
+        MyBase.OnBeforeSelect(e)
+        If Not e.Cancel Then
+            If e.Action = TreeViewAction.ByKeyboard Or e.Action = TreeViewAction.ByMouse Then
+                IsDirty = True
+            End If
+        End If
+    End Sub
 
     Public Class NodesDictionary(Of T)
         Inherits Dictionary(Of T, DataTreeNode)
@@ -522,51 +561,6 @@ Public Class BindableTreeView
             Return _dictionary.ContainsKey(list)
         End Function
     End Class
-
-    Private _loadedLevels As Integer? = Nothing
-
-    Public Sub LoadLevels(lvlCount As Integer)
-        If (Not _loadedLevels.HasValue) OrElse lvlCount > _loadedLevels.Value Then
-            SuspendLayout()
-            For Each node As DataTreeNode In Nodes
-                LoadNode(node, lvlCount)
-            Next
-            _loadedLevels = lvlCount
-            ResumeLayout()
-        End If
-    End Sub
-
-    Private myIsDirty As Boolean
-
-    Public Property IsDirty As Boolean Implements IIsDirtyChangedAware.IsDirty
-        Get
-            Return myIsDirty
-        End Get
-        Private Set(value As Boolean)
-            If Not Object.Equals(myIsDirty, value) Then
-                myIsDirty = value
-                OnIsDirtyChanged(New IsDirtyChangedEventArgs(Me))
-            End If
-        End Set
-    End Property
-
-    Protected Overridable Sub OnIsDirtyChanged(e As IsDirtyChangedEventArgs)
-        RaiseEvent IsDirtyChanged(Me, e)
-    End Sub
-
-    Public Sub ResetIsDirty() Implements IIsDirtyChangedAware.ResetIsDirty
-        IsDirty = False
-    End Sub
-
-    Protected Overrides Sub OnBeforeSelect(e As TreeViewCancelEventArgs)
-        MyBase.OnBeforeSelect(e)
-        If Not e.Cancel Then
-            If e.Action = TreeViewAction.ByKeyboard Or e.Action = TreeViewAction.ByMouse Then
-                IsDirty = True
-            End If
-        End If
-    End Sub
-
 End Class
 
 ''' <summary>
