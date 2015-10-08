@@ -103,7 +103,7 @@
                                 <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                             </Border>
 
-                            <local:ComboBoxRichTextBlock x:Name="PART_SelectionTextBox" Padding="-4,-1,0,0" HorizontalAlignment="Left" Background="Transparent" 
+                            <local:ComboBoxRichTextBlock SnapsToDevicePixels="True" x:Name="PART_SelectionTextBox" Padding="-4,-1,0,0" HorizontalAlignment="Left" Background="Transparent" 
                                      BorderBrush="Transparent" Style="{DynamicResource RichTextBoxStyle1}" IsHitTestVisible="False">
                                 <FlowDocument>
                                     <Paragraph>
@@ -335,7 +335,7 @@
             </Setter>
         </Style>
         <ControlTemplate x:Key="ComboBoxEditableTemplate" TargetType="{x:Type ComboBox}">
-            <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+            <Grid x:Name="templateRoot" SnapsToDevicePixels="true" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
@@ -366,10 +366,11 @@
                                     Width="16"
                                     x:Name="customToggleButton" />
 
-                <Border x:Name="border" Background="{StaticResource TextBox.Static.Background}" Margin="2,2,1,2">
+                <Border x:Name="border" Background="{StaticResource TextBox.Static.Background}" Margin="1">
                     <!--{TemplateBinding BorderThickness}-->
                     <!--<TextBox SelectionBrush="#FF3399FF" SelectionOpacity="0.6" x:Name="PART_EditableTextBox" Padding="-1,0,0,0"/>-->
-                    <local:ExtendedTextBox  x:Name="PART_EditableTextBox"
+
+                    <local:ExtendedTextBox VerticalAlignment="Center" x:Name="PART_EditableTextBox"
                              IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" 
                              BorderThickness="0" Background="Transparent"/>
 
@@ -518,7 +519,8 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <local:InnerComboBox StaysOpenOnEdit="True" UseLayoutRounding="True" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" 
+        <local:InnerComboBox TextOptions.TextFormattingMode="Display" UseLayoutRounding="True" StaysOpenOnEdit="True" 
+                             ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" 
               x:Name="InnerComboBox" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}"/>
 
 

@@ -44,9 +44,25 @@ Public Class PropertyBindingNodeDefinition
     ''' <returns></returns>
     Public ReadOnly Property Description As String
         Get
-            Return String.Format("{0} : ({1})", PropertyName, Binding.PropertyType.Name)
+            Return String.Format("{0} : ({1})", PropertyName, ToGenericTypeString(Binding.PropertyType))
         End Get
     End Property
+
+    ''' <summary>
+    ''' Generates the generic type list as String with full type params
+    ''' </summary>
+    ''' <param name="t"></param>
+    ''' <returns></returns>
+    Private Function ToGenericTypeString(t As Type) As String
+        If Not t.IsGenericType Then Return t.Name
+
+        Dim genericTypeName = t.GetGenericTypeDefinition().Name
+
+        genericTypeName = genericTypeName.Substring(0, genericTypeName.IndexOf("`"c))
+        Dim genericArgs = String.Join(",", t.GetGenericArguments().Select(Function(ta) ToGenericTypeString(ta)).ToArray())
+
+        Return $"{genericTypeName}<{genericArgs}>"
+    End Function
 
     ''' <summary>
     ''' Inner BindingProperty-Instance
