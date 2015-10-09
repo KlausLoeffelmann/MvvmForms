@@ -165,6 +165,7 @@ Public Class frmMvvmPropertyAssignmentEx
         If myPropertyBindings IsNot Nothing Then
             Dim bProperty = DirectCast(PropertyBindingGrid.GridDataSource.Current, PropertyBindingItem)
             myPropertyBindings.Remove(bProperty)
+            Me.IsDirty = False
         End If
     End Sub
 
@@ -181,9 +182,9 @@ Public Class frmMvvmPropertyAssignmentEx
                 'Auf Typgleichheit prüfen, ansonsten Warnung ausgeben:
                 If Not ctrlProperty.PropertyType.IsAssignableFrom(vmProperty.PropertyType) Then
 
-                    If Debugger.IsAttached Then
-                        Debugger.Break()
-                    End If
+                    'If Debugger.IsAttached Then
+                    '    Debugger.Break()
+                    'End If
 
                     Dim controlType = ctrlProperty.PropertyType
 
@@ -308,9 +309,9 @@ skipWarning:
     End Sub
 
     Private Sub InitializeViewModelProperties()
-        If Debugger.IsAttached Then
-            Debugger.Break()
-        End If
+        'If Debugger.IsAttached Then
+        '    Debugger.Break()
+        'End If
 
         If myViewModelType Is Nothing Then
             myFlatViewModelProperties = New ObservableCollection(Of BindingProperty)
@@ -410,7 +411,12 @@ skipWarning:
 
     Protected Overrides Sub OnClosing(e As CancelEventArgs)
         MyBase.OnClosing(e)
-        If Me.DialogResult <> System.Windows.Forms.DialogResult.OK Then
+
+        If Debugger.IsAttached Then
+            Debugger.Break()
+        End If
+
+        If Me.DialogResult = System.Windows.Forms.DialogResult.OK Then
             If IsDirty Then
                 Dim dr = MessageBox.Show("Pending changes",
                                 "Do you want to discard your pending changes?",
@@ -453,7 +459,12 @@ skipWarning:
         End Get
         Set(value As Boolean)
             If Not Object.Equals(myIsDirty, value) Then
-                myIsDirty = False
+
+                If Debugger.IsAttached Then
+                    Debugger.Break()
+                End If
+
+                myIsDirty = value
                 If Not value Then
                     ViewModelPropertiesTreeView.ResetIsDirty()
                     nvrControlProperties.ResetIsDirty()
@@ -468,7 +479,7 @@ skipWarning:
                                                                                                                     nvrControlProperties.IsDirtyChanged,
                                                                                                                     nvrConverters.IsDirtyChanged,
                                                                                                                     nvrConverterParameter.IsDirtyChanged
-        Me.IsDirty = True
+        Me.IsDirty = Me.IsDirty Or DirectCast(e.CausingControl, IIsDirtyChangedAware).IsDirty
     End Sub
 
     Private Sub BindingSettingPopup_BindingSettingChanged(sender As Object, e As EventArgs) Handles BindingSettingPopup.BindingSettingChanged

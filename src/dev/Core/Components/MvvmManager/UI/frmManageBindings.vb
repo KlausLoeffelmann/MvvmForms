@@ -175,9 +175,7 @@ Public Class frmManageBindings
                             "Eigenschaftenzuweisung bearbeiten?", "Änderungen speichern?",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If dr = System.Windows.Forms.DialogResult.Yes Then
-                myMvvmPropAssignmentForm.CommitChanges()
-            Else
-                myMvvmPropAssignmentForm.IgnoreChanges()
+                e.Cancel = True
             End If
         End If
     End Sub
@@ -216,6 +214,7 @@ Public Class frmManageBindings
                                 transaction.Commit()
                             End Using
                         End If
+                        myMvvmPropAssignmentForm.IsDirty = False
                     End Sub)
             End If
 

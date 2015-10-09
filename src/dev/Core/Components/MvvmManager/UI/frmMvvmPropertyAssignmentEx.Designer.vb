@@ -169,6 +169,7 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.nvrControlProperties.IsPopupResizable = True
         Me.nvrControlProperties.Location = New System.Drawing.Point(82, 2)
         Me.nvrControlProperties.Margin = New System.Windows.Forms.Padding(2)
+        Me.nvrControlProperties.MaxLength = 32767
         Me.nvrControlProperties.MinimumPopupSize = New System.Drawing.Size(436, 80)
         Me.nvrControlProperties.MultiSelect = False
         Me.nvrControlProperties.Name = "nvrControlProperties"
@@ -287,6 +288,7 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.nvrConverters.IsPopupResizable = True
         Me.nvrConverters.Location = New System.Drawing.Point(2, 3)
         Me.nvrConverters.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.nvrConverters.MaxLength = 32767
         Me.nvrConverters.MinimumPopupSize = New System.Drawing.Size(436, 80)
         Me.nvrConverters.MultiSelect = False
         Me.nvrConverters.Name = "nvrConverters"
@@ -391,11 +393,11 @@ Partial Class frmMvvmPropertyAssignmentEx
         Me.Label1.Location = New System.Drawing.Point(9, 515)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(409, 30)
+        Me.Label1.Size = New System.Drawing.Size(550, 30)
         Me.Label1.TabIndex = 18
-        Me.Label1.Text = "Note: If you implement an IValueConvert for the Value property of a NullableValue" &
-    "Text control, please remember to return StringValue and not String as the Conver" &
-    "t method's Data Type."
+        Me.Label1.Text = "Note: If you implement an IValueConverter for the Value property of a NullableVal" &
+    "ueText control, please remember to return StringValue and not String as the Conv" &
+    "ert method's Data Type."
         '
         'frmMvvmPropertyAssignmentEx
         '

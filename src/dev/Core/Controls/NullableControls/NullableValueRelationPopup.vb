@@ -2230,6 +2230,25 @@ Public Class NullableValueRelationPopup
     End Property
 
     ''' <summary>
+    ''' Gets or sets the maximum number of characters that can be manually entered into the Textbox-Part of this control. NOTE: This also limits the search text length, when PreserveInput is not used!
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Gets or sets the maximum number of characters that can be manually entered into the Textbox-Part of this control. NOTE: This also limits the search text length, when PreserveInput is not used!"),
+     Category("Behaviour"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(0)>
+    Public Property MaxLength As Integer
+        Get
+            Return TextBoxPart.MaxLength
+        End Get
+        Set(value As Integer)
+            TextBoxPart.MaxLength = value
+        End Set
+    End Property
+
+    ''' <summary>
     ''' Bestimmt oder ermittelt, ob IsDirty ausgelöst werden soll, 
     ''' wenn Preserve-Input gesetzt ist, und der Anwender bereits ein einzelnes Zeichen im Eingabefeld geändert hat.
     ''' </summary>
