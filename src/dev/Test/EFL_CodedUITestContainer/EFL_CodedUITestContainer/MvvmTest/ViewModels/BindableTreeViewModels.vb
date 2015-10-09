@@ -73,6 +73,8 @@ Public Class MainNodeTestViewModel
 
     Property ViewModelTypes As ObservableCollection(Of PropertyBindingNodeDefinition)
 
+    Property Rekursion As MainNodeTestViewModel
+
 End Class
 
 Public Class PersonenViewModelNodeTest

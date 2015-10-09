@@ -203,11 +203,12 @@ Public Class BindableTreeView
     Private Sub RefreshTree()
 
         For Each list In _notifyLists.GetLists.ToList()
-            For Each node In _notifyLists.GetTreeNodes(list)
-                RemoveAllChilds(node)
-            Next
+            Windows.WeakEventManager(Of INotifyCollectionChanged, NotifyCollectionChangedEventArgs).RemoveHandler(
+                           DirectCast(list, INotifyCollectionChanged), "CollectionChanged", AddressOf DataSource_CollectionChanged)
+            _notifyLists.Remove(list)
         Next
 
+        _loadedLevels = Nothing
         Nodes.Clear()
         _nodes.Clear()
 
@@ -469,10 +470,8 @@ Public Class BindableTreeView
             End If
 
             If Not _childProps.ContainsKey(level) Then
-
                 _childProps.Add(level, nodeItem.GetType().GetProperties().Where(Function(prop) prop.Name = childMembers(level) AndAlso GetType(IEnumerable).IsAssignableFrom(prop.PropertyType)).Single)
             End If
-
 
             Return DirectCast(_childProps(level).GetValue(nodeItem), IEnumerable)
         Else
@@ -515,10 +514,22 @@ Public Class BindableTreeView
     End Class
 
     Public Class NodesListDictionary
+        ''' <summary>
+        ''' Speichert eine Zuordnung die benachrichtigungsfähige Unterliste von einem gebundenen Knotenelement
+        ''' </summary>
         Private _dictionary As New Dictionary(Of IEnumerable, DataTreeNode)()
 
+        ''' <summary>
+        ''' Speichert die benachrichtigungsfähige Unterliste von einem gebundenen Knotenelement welche schon einmal in der TreeView verwendet wurden
+        ''' </summary>
         Private _additionalDictionary As New Dictionary(Of IEnumerable, List(Of DataTreeNode))()
 
+        ''' <summary>
+        ''' Fügt eine benachrichtigungsfähige Liste in eine lookup-Liste, wenn diese schon vorhanden ist (weil in der TreeView 
+        ''' die selbe Instanz vorher verwendet wurde, wird es in ein gesondertes Dic. geschoben)
+        ''' </summary>
+        ''' <param name="key"></param>
+        ''' <param name="item"></param>
         Sub Add(key As IEnumerable, item As DataTreeNode)
             If Not _dictionary.ContainsKey(key) Then
                 _dictionary.Add(key, item)
@@ -532,6 +543,11 @@ Public Class BindableTreeView
             End If
         End Sub
 
+        ''' <summary>
+        ''' Liefert alle zu der übergebenen Liste zugehörigen Knoten (Können mehrere sein wenn in der TreeView die selbe Instanz schon vorher verwendet wurde)
+        ''' </summary>
+        ''' <param name="key"></param>
+        ''' <returns></returns>
         Function GetTreeNodes(key As IEnumerable) As IEnumerable(Of DataTreeNode)
             Dim nodes = New List(Of DataTreeNode)() From {_dictionary(key)}
 
@@ -542,10 +558,19 @@ Public Class BindableTreeView
             Return nodes
         End Function
 
+        ''' <summary>
+        ''' Liefert ALLE gespeicherten Listen
+        ''' </summary>
+        ''' <returns></returns>
         Function GetLists() As IEnumerable(Of IEnumerable)
             Return _dictionary.Keys
         End Function
 
+        ''' <summary>
+        ''' Löscht eine gebundene Liste vom übergebenen KNoten entweder aus der Hauptliste (oder wenn es sich um einen hinterliegendenen Knoten handelt) aus der Zusatz-Lookup
+        ''' </summary>
+        ''' <param name="nodeList"></param>
+        ''' <param name="node"></param>
         Friend Sub Remove(nodeList As IEnumerable, node As DataTreeNode)
             If _dictionary(nodeList) Is node Then
                 _dictionary.Remove(nodeList)
@@ -560,6 +585,11 @@ Public Class BindableTreeView
         Friend Function ContainsKey(list As IEnumerable) As Boolean
             Return _dictionary.ContainsKey(list)
         End Function
+
+        Friend Sub Remove(list As IEnumerable)
+            _dictionary.Remove(list)
+            _additionalDictionary.Remove(list)
+        End Sub
     End Class
 End Class
 
