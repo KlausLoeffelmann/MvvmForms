@@ -171,7 +171,7 @@ Public Class frmManageBindings
 
     Private Sub ControlTreeView_BeforeSelect(sender As Object, e As TreeViewCancelEventArgs) Handles ControlTreeView.BeforeSelect
         If myMvvmPropAssignmentForm.IsDirty Then
-            Dim dr = MessageBox.Show("Möchten Sie Ihre Änderungen speichern, befor Sie die nächste" & vbNewLine &
+            Dim dr = MessageBox.Show("Möchten Sie Ihre Änderungen speichern, bevor Sie die nächste" & vbNewLine &
                             "Eigenschaftenzuweisung bearbeiten?", "Änderungen speichern?",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If dr = System.Windows.Forms.DialogResult.Yes Then

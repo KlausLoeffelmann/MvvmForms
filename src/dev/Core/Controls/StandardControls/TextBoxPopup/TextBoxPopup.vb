@@ -228,7 +228,7 @@ Public Class TextBoxPopup
     End Sub
 
     ''' <summary>
-    ''' Löst das BeforePopupOpen-Ereignis aus, das benötigt wird, um Dinge zu behandeln, kurz befor das Öffnen des Popups beginnt.
+    ''' Löst das BeforePopupOpen-Ereignis aus, das benötigt wird, um Dinge zu behandeln, kurz bevor das Öffnen des Popups beginnt.
     ''' </summary>
     ''' <param name="e"></param>
     ''' <remarks>Gibt überschreibenden Steuerelementen die Möglichkeit, beispielsweise ein IsDirty-Handling für das Formular zu implementieren, 
