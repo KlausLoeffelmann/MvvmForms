@@ -1,4 +1,34 @@
 <
+ MVVMForms ChangeLog
+ 
+ Find complete info on GitHub: https://github.com/ActiveDevelop/MvvmForms
+ Find an introduction video to MvvmForms on YouTube: https://www.youtube.com/watch?v=1R_81Np5New
+ 
+ ==================================
+ CHANGELOG
+ NEW IN 2.1.1 - 2015-10-10
+ ==================================
+
+* Introducing MvvmComponent Quick Task SmartTag for browsing and editing a View's Controls Tree at a glance.
+* Introducing of Binding Report/Printing for View (using MvvmComponant's SmartTag).
+* Fixed IsDirty-Handling in PropertyAssignment when using in Quick Task Tags.
+* Adjusted Property Bindings Dialog.
+* Introducing setting for exception handling with the static BindingManager.ThrowExceptionOnUnassignableBindingProperties property.
+* Introducing BindableTreeView, which add to the list of special MvvmControls: 
+  MvvmDataGrid
+  CommandButton
+  BindableTreeView.
+
+ ==================================
+ CHANGELOG
+ NEW IN 2.1.0 - 2015-09-3
+ ==================================
+
+* Introducing TreeView/IntelliSense Emulation for ViewModel Property Picker in PropertyBindings Designer.
+* Optimized ViewModelType discovery for better UI experience.
+* Fixed Layout/Scrollbar Issue with PropertyBindingList DataGridView.
+* Fixed IsDirty-Handling in PropertyAssignment.
+
  ==================================
  CHANGELOG
  NEW IN 2.1.0 - 2015-09-3

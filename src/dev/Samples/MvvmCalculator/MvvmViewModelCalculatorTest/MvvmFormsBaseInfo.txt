@@ -1,5 +1,5 @@
 ﻿++++++++++++++++++++++++++
-MvvmForms Info: 2015-09-27
+MvvmForms Info: 2015-10-10
 ++++++++++++++++++++++++++
 
 MvvmFormsBase is part of MvvmForms and offers support classes for creating ViewModels.
@@ -12,6 +12,15 @@ after evaluation in your commercial team projects, you need to obtain a per-deve
 Please contact mvvmforms@activedevelop.de for further information.
 
 <
+
+==================================
+ CHANGELOG    
+ NEW IN 2.1.1 - 2015-10-10
+ ==================================
+ 
+* Corrected some attributes so the binding engine UI's would not show them.
+* Version is made for being used in MvvmForms 2.1.1 Beta.
+
 
 ==================================
  CHANGELOG    
