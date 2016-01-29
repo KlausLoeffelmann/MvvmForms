@@ -134,6 +134,7 @@
     <Compile Include="MvvmDataGridExample\MvvmDataGridExample\ViewModel\MainViewModel.vb" />
     <Compile Include="MvvmTest\ViewModels\BindableTreeViewModels.vb" />
     <Compile Include="MvvmTest\ViewModels\CircTestPerson.vb" />
+    <Compile Include="MvvmTest\ViewModels\LateBindingViewModel.vb" />
     <Compile Include="MvvmTest\Views\CBOTestForm.Designer.vb">
       <DependentUpon>CBOTestForm.vb</DependentUpon>
     </Compile>
@@ -157,6 +158,12 @@
     </Compile>
     <Compile Include="MvvmTest\Views\NullableComboboxTestControl.vb">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MvvmTest\Views\NVRPLateBinding.Designer.vb">
+      <DependentUpon>NVRPLateBinding.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MvvmTest\Views\NVRPLateBinding.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="MvvmTest\Views\TestFormForDesignerError.Designer.vb">
       <DependentUpon>TestFormForDesignerError.vb</DependentUpon>
@@ -207,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MvvmTest\Views\NullableComboboxTestControl.resx">
       <DependentUpon>NullableComboboxTestControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MvvmTest\Views\NVRPLateBinding.resx">
+      <DependentUpon>NVRPLateBinding.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MvvmTest\Views\TestFormForDesignerError.resx">
       <DependentUpon>TestFormForDesignerError.vb</DependentUpon>

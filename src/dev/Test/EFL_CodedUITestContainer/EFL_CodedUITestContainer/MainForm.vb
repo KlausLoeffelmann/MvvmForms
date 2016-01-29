@@ -63,4 +63,14 @@ Public Class MainForm
         Dim frm = New MvvmTestFormView()
         frm.ShowDialog()
     End Sub
+
+    Private Sub NVRPLateBindingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NVRPLateBindingToolStripMenuItem.Click
+        Dim frm = New NVRPLateBinding()
+        frm.ShowDialog()
+    End Sub
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        GC.Collect()
+    End Sub
 End Class

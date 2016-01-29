@@ -30,17 +30,19 @@ Partial Class MainForm
         Me.MVVMGridDemoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ZoomingTestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CBOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TreeViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox()
+        Me.NVRPLateBindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NullableMaskTextValue1 = New ActiveDevelop.EntitiesFormsLib.NullableMaskTextValue()
         Me.NullableIntValue1 = New ActiveDevelop.EntitiesFormsLib.NullableIntValue()
         Me.NullableNumValue1 = New ActiveDevelop.EntitiesFormsLib.NullableNumValue()
         Me.NullableValueRelationPopup2 = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.NullableValueRelationPopup1 = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
-        Me.NullableMaskTextValue1 = New ActiveDevelop.EntitiesFormsLib.NullableMaskTextValue()
-        Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox()
-        Me.TreeViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.MainMenuStrip.SuspendLayout()
         CType(Me.NullableValueRelationPopup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NullableValueRelationPopup1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,7 +74,7 @@ Partial Class MainForm
         '
         'TestToolStripMenuItem
         '
-        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RunBasicUITestToolStripMenuItem, Me.MVVMGridDemoToolStripMenuItem, Me.ZoomingTestToolStripMenuItem, Me.CBOToolStripMenuItem, Me.TreeViewToolStripMenuItem})
+        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RunBasicUITestToolStripMenuItem, Me.MVVMGridDemoToolStripMenuItem, Me.ZoomingTestToolStripMenuItem, Me.CBOToolStripMenuItem, Me.TreeViewToolStripMenuItem, Me.NVRPLateBindingToolStripMenuItem})
         Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
         Me.TestToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
         Me.TestToolStripMenuItem.Text = "&Test"
@@ -80,26 +82,32 @@ Partial Class MainForm
         'RunBasicUITestToolStripMenuItem
         '
         Me.RunBasicUITestToolStripMenuItem.Name = "RunBasicUITestToolStripMenuItem"
-        Me.RunBasicUITestToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.RunBasicUITestToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.RunBasicUITestToolStripMenuItem.Text = "Show basic test UI"
         '
         'MVVMGridDemoToolStripMenuItem
         '
         Me.MVVMGridDemoToolStripMenuItem.Name = "MVVMGridDemoToolStripMenuItem"
-        Me.MVVMGridDemoToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.MVVMGridDemoToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.MVVMGridDemoToolStripMenuItem.Text = "MVVM Grid Demo"
         '
         'ZoomingTestToolStripMenuItem
         '
         Me.ZoomingTestToolStripMenuItem.Name = "ZoomingTestToolStripMenuItem"
-        Me.ZoomingTestToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.ZoomingTestToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.ZoomingTestToolStripMenuItem.Text = "Zooming Test"
         '
         'CBOToolStripMenuItem
         '
         Me.CBOToolStripMenuItem.Name = "CBOToolStripMenuItem"
-        Me.CBOToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.CBOToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.CBOToolStripMenuItem.Text = "CBO"
+        '
+        'TreeViewToolStripMenuItem
+        '
+        Me.TreeViewToolStripMenuItem.Name = "TreeViewToolStripMenuItem"
+        Me.TreeViewToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.TreeViewToolStripMenuItem.Text = "TreeView"
         '
         'ZoomToolStripMenuItem
         '
@@ -125,6 +133,35 @@ Partial Class MainForm
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
         Me.ToolStripMenuItem4.Size = New System.Drawing.Size(105, 22)
         Me.ToolStripMenuItem4.Text = "150 %"
+        '
+        'MaskedTextBox1
+        '
+        Me.MaskedTextBox1.Location = New System.Drawing.Point(188, 314)
+        Me.MaskedTextBox1.Name = "MaskedTextBox1"
+        Me.MaskedTextBox1.Size = New System.Drawing.Size(328, 26)
+        Me.MaskedTextBox1.TabIndex = 9
+        '
+        'NVRPLateBindingToolStripMenuItem
+        '
+        Me.NVRPLateBindingToolStripMenuItem.Name = "NVRPLateBindingToolStripMenuItem"
+        Me.NVRPLateBindingToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.NVRPLateBindingToolStripMenuItem.Text = "NVRP Late Binding"
+        '
+        'NullableMaskTextValue1
+        '
+        Me.NullableMaskTextValue1.AssignedManagerComponent = Nothing
+        Me.NullableMaskTextValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NullableMaskTextValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.NullableMaskTextValue1.Location = New System.Drawing.Point(47, 248)
+        Me.NullableMaskTextValue1.MaxLength = 32767
+        Me.NullableMaskTextValue1.Name = "NullableMaskTextValue1"
+        Me.NullableMaskTextValue1.ObfuscationChar = Nothing
+        Me.NullableMaskTextValue1.PermissionReason = Nothing
+        Me.NullableMaskTextValue1.Size = New System.Drawing.Size(232, 26)
+        Me.NullableMaskTextValue1.TabIndex = 8
+        Me.NullableMaskTextValue1.UIGuid = New System.Guid("04bcd142-2b94-46ec-bb21-f7cd5a464316")
+        Me.NullableMaskTextValue1.Value = Nothing
+        Me.NullableMaskTextValue1.ValueValidationState = Nothing
         '
         'NullableIntValue1
         '
@@ -182,6 +219,7 @@ Partial Class MainForm
         Me.NullableValueRelationPopup2.IsPopupResizable = True
         Me.NullableValueRelationPopup2.Location = New System.Drawing.Point(42, 414)
         Me.NullableValueRelationPopup2.Margin = New System.Windows.Forms.Padding(6)
+        Me.NullableValueRelationPopup2.MaxLength = 32767
         Me.NullableValueRelationPopup2.MinimumPopupSize = New System.Drawing.Size(533, 80)
         Me.NullableValueRelationPopup2.MultiSelect = False
         Me.NullableValueRelationPopup2.Name = "NullableValueRelationPopup2"
@@ -209,6 +247,7 @@ Partial Class MainForm
         Me.NullableValueRelationPopup1.IsPopupResizable = True
         Me.NullableValueRelationPopup1.Location = New System.Drawing.Point(42, 498)
         Me.NullableValueRelationPopup1.Margin = New System.Windows.Forms.Padding(6)
+        Me.NullableValueRelationPopup1.MaxLength = 32767
         Me.NullableValueRelationPopup1.MinimumPopupSize = New System.Drawing.Size(533, 80)
         Me.NullableValueRelationPopup1.MultiSelect = False
         Me.NullableValueRelationPopup1.Name = "NullableValueRelationPopup1"
@@ -220,40 +259,21 @@ Partial Class MainForm
         Me.NullableValueRelationPopup1.UIGuid = New System.Guid("d38add81-45e8-436d-8891-6f1770a86ca7")
         Me.NullableValueRelationPopup1.ValueMember = Nothing
         '
-        'NullableMaskTextValue1
+        'Button1
         '
-        Me.NullableMaskTextValue1.AssignedManagerComponent = Nothing
-        Me.NullableMaskTextValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.NullableMaskTextValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
-        Me.NullableMaskTextValue1.Location = New System.Drawing.Point(47, 248)
-        Me.NullableMaskTextValue1.MaxLength = 32767
-        Me.NullableMaskTextValue1.Name = "NullableMaskTextValue1"
-        Me.NullableMaskTextValue1.ObfuscationChar = Nothing
-        Me.NullableMaskTextValue1.PermissionReason = Nothing
-        Me.NullableMaskTextValue1.Size = New System.Drawing.Size(232, 26)
-        Me.NullableMaskTextValue1.TabIndex = 8
-        Me.NullableMaskTextValue1.UIGuid = New System.Guid("04bcd142-2b94-46ec-bb21-f7cd5a464316")
-        Me.NullableMaskTextValue1.Value = Nothing
-        Me.NullableMaskTextValue1.ValueValidationState = Nothing
-        '
-        'MaskedTextBox1
-        '
-        Me.MaskedTextBox1.Location = New System.Drawing.Point(188, 314)
-        Me.MaskedTextBox1.Name = "MaskedTextBox1"
-        Me.MaskedTextBox1.Size = New System.Drawing.Size(328, 26)
-        Me.MaskedTextBox1.TabIndex = 9
-        '
-        'TreeViewToolStripMenuItem
-        '
-        Me.TreeViewToolStripMenuItem.Name = "TreeViewToolStripMenuItem"
-        Me.TreeViewToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.TreeViewToolStripMenuItem.Text = "TreeView"
+        Me.Button1.Location = New System.Drawing.Point(42, 543)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(284, 44)
+        Me.Button1.TabIndex = 10
+        Me.Button1.Text = "GC Collect"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1663, 858)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.MaskedTextBox1)
         Me.Controls.Add(Me.NullableMaskTextValue1)
         Me.Controls.Add(Me.NullableIntValue1)
@@ -292,4 +312,6 @@ Partial Class MainForm
     Friend WithEvents CBOToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MaskedTextBox1 As System.Windows.Forms.MaskedTextBox
     Friend WithEvents TreeViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents NVRPLateBindingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Button1 As Button
 End Class

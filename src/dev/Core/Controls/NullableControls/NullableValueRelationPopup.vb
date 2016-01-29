@@ -48,6 +48,7 @@ Public Class NullableValueRelationPopup
     Private myIsInitializing As Boolean
     Private myIgnoreNextValueReset As Boolean
     Private myRaiseIsDirtyOnPreserveInputTextChange As Boolean
+    Private myIsHandleDestroyed As Boolean
 
     Private myDataGridForm As DataGridViewPopupContent
     Private myCurrentRowIndex As Integer
@@ -322,6 +323,7 @@ Public Class NullableValueRelationPopup
     End Sub
 
     Protected Overrides Sub OnHandleDestroyed(e As EventArgs)
+        myIsHandleDestroyed = True
         MyBase.DestroyPopup()
         MyBase.OnHandleDestroyed(e)
         RemoveHandler myTextBoxDeferrer.DeferralTextChanged, AddressOf OnDeferralTextChanged
@@ -396,69 +398,72 @@ Public Class NullableValueRelationPopup
     ''' oder spät und impliziet (durch FocusLost) erfolgte.</param>
     ''' <remarks></remarks>
     Private Sub HandleSelectedValueChanged(lateCommit As Boolean)
-        If myDataGridForm.BindableDataGridView.Value Is Nothing Then
-            If Me.Focused Or Me.TextBoxPart.Focused Then
-                If Me.PreserveInput Then
-                    Me.PopupControl.ValueText = Me.TextBoxPart.Text
+        If Not myIsHandleDestroyed Then
+
+            If myDataGridForm.BindableDataGridView.Value Is Nothing Then
+                If Me.Focused Or Me.TextBoxPart.Focused Then
+                    If Me.PreserveInput Then
+                        Me.PopupControl.ValueText = Me.TextBoxPart.Text
+                    Else
+                        Me.PopupControl.ValueText = String.Empty
+                    End If
                 Else
-                    Me.PopupControl.ValueText = String.Empty
+                    'Eigentlich sollten wir hier nie hinkommen, da dieser Part von
+                    'CommitOnLeave abgefangen wird. Für etwaige Sonderfälle lassen wir
+                    'den Code aber wie er ist.
+                    If Me.PreserveInput Then
+                        Me.PopupControl.ValueText = Me.TextBoxPart.Text
+                    Else
+                        Me.PopupControl.ValueText = Me.NullValueString
+                    End If
                 End If
             Else
-                'Eigentlich sollten wir hier nie hinkommen, da dieser Part von
-                'CommitOnLeave abgefangen wird. Für etwaige Sonderfälle lassen wir
-                'den Code aber wie er ist.
-                If Me.PreserveInput Then
-                    Me.PopupControl.ValueText = Me.TextBoxPart.Text
-                Else
-                    Me.PopupControl.ValueText = Me.NullValueString
-                End If
-            End If
-        Else
-            If Not String.IsNullOrWhiteSpace(Me.DisplayMember) Then
-                Me.PopupControl.ValueText =
+                If Not String.IsNullOrWhiteSpace(Me.DisplayMember) Then
+                    Me.PopupControl.ValueText =
                     ObjectAnalyser.ObjectToString(Me.ValueBase, Me.DisplayMember)
+                Else
+                    Me.PopupControl.ValueText = Value.ToString
+                End If
+            End If
+
+            'ValueChanged nur auslösen, wenn sich Value wirklich geändert hat.
+            If Not Object.Equals(myValueBeforeValueChanged, Me.Value) Then
+                If myChangedByValueSetAccessor Then
+                    OnValueChangedInternal(ValueChangedEventArgs.PredefinedWithPropertySetter)
+                Else
+                    OnValueChangedInternal(ValueChangedEventArgs.PredefinedWithUser)
+                End If
+            End If
+
+            If myTextBoxDeferrer Is Nothing Then
+                myTextBoxDeferrer = New TextBoxDeferrer(Me.TextBoxPart)
+            End If
+            myTextBoxDeferrer.NoDeferOnNextTextChange = True
+
+            'TextChanged für TextBoxPart unterdrücken, da dies
+            'myValue wieder auf nothing setzen würde, was wir brauchen
+            'um bei PreserveInput nur dann den Wert der Liste zu haben
+            'wenn er gezielt mit Return ausgewählt wurde.
+            myIgnoreNextValueReset = True
+            Me.TextBoxPart.Text = Me.PopupControl.ValueText
+            myIgnoreNextValueReset = False
+            Me.TextBoxPart.SelectAll()
+
+            If Not lateCommit Then
+                If Not myChangedByValueSetAccessor Then
+                    Me.TextBoxPart.Focus()
+                End If
+            End If
+
+            If myDataGridForm.BindableDataGridView.SelectedRows.Count > 0 Then
+                myCurrentRowIndex = myDataGridForm.BindableDataGridView.SelectedRows(0).Index
             Else
-                Me.PopupControl.ValueText = Value.ToString
+                myCurrentRowIndex = -1
             End If
+
+            'Brauchen wir, um festzustellen, ob sich Value seit dem letzten Mal wirklich geändert hat.
+            myValueBeforeValueChanged = Me.Value
         End If
-
-        'ValueChanged nur auslösen, wenn sich Value wirklich geändert hat.
-        If Not Object.Equals(myValueBeforeValueChanged, Me.Value) Then
-            If myChangedByValueSetAccessor Then
-                OnValueChangedInternal(ValueChangedEventArgs.PredefinedWithPropertySetter)
-            Else
-                OnValueChangedInternal(ValueChangedEventArgs.PredefinedWithUser)
-            End If
-        End If
-
-        If myTextBoxDeferrer Is Nothing Then
-            myTextBoxDeferrer = New TextBoxDeferrer(Me.TextBoxPart)
-        End If
-        myTextBoxDeferrer.NoDeferOnNextTextChange = True
-
-        'TextChanged für TextBoxPart unterdrücken, da dies
-        'myValue wieder auf nothing setzen würde, was wir brauchen
-        'um bei PreserveInput nur dann den Wert der Liste zu haben
-        'wenn er gezielt mit Return ausgewählt wurde.
-        myIgnoreNextValueReset = True
-        Me.TextBoxPart.Text = Me.PopupControl.ValueText
-        myIgnoreNextValueReset = False
-        Me.TextBoxPart.SelectAll()
-
-        If Not lateCommit Then
-            If Not myChangedByValueSetAccessor Then
-                Me.TextBoxPart.Focus()
-            End If
-        End If
-
-        If myDataGridForm.BindableDataGridView.SelectedRows.Count > 0 Then
-            myCurrentRowIndex = myDataGridForm.BindableDataGridView.SelectedRows(0).Index
-        Else
-            myCurrentRowIndex = -1
-        End If
-
-        'Brauchen wir, um festzustellen, ob sich Value seit dem letzten Mal wirklich geändert hat.
-        myValueBeforeValueChanged = Me.Value
     End Sub
 
     Protected Sub OnGetColumnSchema(ByVal e As GetColumnSchemaEventArgs)
