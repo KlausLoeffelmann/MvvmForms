@@ -8,6 +8,15 @@ Public Class MvvmDataGridTest
 
         ' Add any initialization after the InitializeComponent() call.
         Me.MvvmManager1.DataContext = New MainViewModel()
+
+        Dim cm = New Windows.Controls.ContextMenu()
+        Dim bt = New Windows.Controls.MenuItem() With {.Header = "Löschen"}
+        AddHandler bt.Click, Sub()
+                                 MessageBox.Show(DirectCast(BuchungenDataGrid.SelectedItem, Buchung).Nummer & " Gelöscht!")
+                             End Sub
+        cm.Items.Add(bt)
+
+        BuchungenDataGrid.ContextMenu = cm
     End Sub
 
     Private Sub BuchungenDataGrid_ItemsDeleting(sender As Object, e As ActiveDevelop.EntitiesFormsLib.ItemsDeletingEventArgs) Handles BuchungenDataGrid.ItemsDeleting

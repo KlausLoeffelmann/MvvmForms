@@ -154,6 +154,38 @@ Public Class MvvmDataGrid
     End Property
 
     ''' <summary>
+    ''' Gets the items in the System.Windows.Controls.Primitives.MultiSelector that are selected.
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property SelectedItems As IList
+        Get
+            Return WpfDataGridViewWrapper.InnerDataGridView.SelectedItems
+        End Get
+    End Property
+
+    Private _contextMenu As wpf.ContextMenu
+    ''' <summary>
+    ''' Gets or sets the context menu element that should appear whenever the context menu is requested through user interface (UI) from within this element.(Inherited from FrameworkElement.)
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>Durch den MvvmManager bindbare View-Property</remarks>
+    Public Shadows Property ContextMenu As wpf.ContextMenu
+        Get
+            Return _contextMenu
+        End Get
+        Set(ByVal value As wpf.ContextMenu)
+            If Not Object.Equals(_contextMenu, value) Then
+                _contextMenu = value
+
+                Me.WpfDataGridViewWrapper.InnerDataGridView.ContextMenu = value
+
+                Me.OnContextMenuChanged(EventArgs.Empty)
+            End If
+        End Set
+    End Property
+
+    ''' <summary>
     ''' Anzeigeeinstellung der Linien im DataGrid
     ''' </summary>
     ''' <value></value>
@@ -265,6 +297,12 @@ Public Class MvvmDataGrid
 
     Protected Overridable Sub OnCanUserAddRowsChanged(e As EventArgs)
         RaiseEvent CanUserAddRowsChanged(Me, e)
+    End Sub
+
+    Public Shadows Event ContextMenuChanged As EventHandler
+
+    Protected Overridable Shadows Sub OnContextMenuChanged(e As EventArgs)
+        RaiseEvent ContextMenuChanged(Me, e)
     End Sub
 
     ''' <summary>
