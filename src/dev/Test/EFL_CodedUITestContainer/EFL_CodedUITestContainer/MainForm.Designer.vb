@@ -30,6 +30,7 @@ Partial Class MainForm
         Me.MVVMGridDemoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ZoomingTestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CBOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TreeViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
@@ -40,7 +41,6 @@ Partial Class MainForm
         Me.NullableValueRelationPopup1 = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.NullableMaskTextValue1 = New ActiveDevelop.EntitiesFormsLib.NullableMaskTextValue()
         Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox()
-        Me.TreeViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MainMenuStrip.SuspendLayout()
         CType(Me.NullableValueRelationPopup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NullableValueRelationPopup1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +100,12 @@ Partial Class MainForm
         Me.CBOToolStripMenuItem.Name = "CBOToolStripMenuItem"
         Me.CBOToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.CBOToolStripMenuItem.Text = "CBO"
+        '
+        'TreeViewToolStripMenuItem
+        '
+        Me.TreeViewToolStripMenuItem.Name = "TreeViewToolStripMenuItem"
+        Me.TreeViewToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.TreeViewToolStripMenuItem.Text = "TreeView"
         '
         'ZoomToolStripMenuItem
         '
@@ -182,6 +188,7 @@ Partial Class MainForm
         Me.NullableValueRelationPopup2.IsPopupResizable = True
         Me.NullableValueRelationPopup2.Location = New System.Drawing.Point(42, 414)
         Me.NullableValueRelationPopup2.Margin = New System.Windows.Forms.Padding(6)
+        Me.NullableValueRelationPopup2.MaxLength = 32767
         Me.NullableValueRelationPopup2.MinimumPopupSize = New System.Drawing.Size(533, 80)
         Me.NullableValueRelationPopup2.MultiSelect = False
         Me.NullableValueRelationPopup2.Name = "NullableValueRelationPopup2"
@@ -209,6 +216,7 @@ Partial Class MainForm
         Me.NullableValueRelationPopup1.IsPopupResizable = True
         Me.NullableValueRelationPopup1.Location = New System.Drawing.Point(42, 498)
         Me.NullableValueRelationPopup1.Margin = New System.Windows.Forms.Padding(6)
+        Me.NullableValueRelationPopup1.MaxLength = 32767
         Me.NullableValueRelationPopup1.MinimumPopupSize = New System.Drawing.Size(533, 80)
         Me.NullableValueRelationPopup1.MultiSelect = False
         Me.NullableValueRelationPopup1.Name = "NullableValueRelationPopup1"
@@ -242,12 +250,6 @@ Partial Class MainForm
         Me.MaskedTextBox1.Name = "MaskedTextBox1"
         Me.MaskedTextBox1.Size = New System.Drawing.Size(328, 26)
         Me.MaskedTextBox1.TabIndex = 9
-        '
-        'TreeViewToolStripMenuItem
-        '
-        Me.TreeViewToolStripMenuItem.Name = "TreeViewToolStripMenuItem"
-        Me.TreeViewToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.TreeViewToolStripMenuItem.Text = "TreeView"
         '
         'MainForm
         '

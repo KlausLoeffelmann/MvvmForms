@@ -54,7 +54,7 @@ Public Class TextBoxDeferrer
     End Sub
 
     Public Sub DeferralTimerEventHandler(sender As Object, e As EventArgs)
-        If myStopWatch.ElapsedMilliseconds > PauseAfterKeystrokeToRaiseEvent Then
+        If myStopWatch.ElapsedMilliseconds > DeferredTextChangeDelay Then
             OnDeferralTextChanged(myTextBox, EventArgs.Empty)
         End If
     End Sub
@@ -65,7 +65,7 @@ Public Class TextBoxDeferrer
         RaiseEvent DeferralTextChanged(sender, e)
     End Sub
 
-    Public Property PauseAfterKeystrokeToRaiseEvent As Integer = 300
+    Public Property DeferredTextChangeDelay As Integer = 300
     Public Property IgnoreTextChange As Boolean
     Public Property IgnoreNextTextChange As Boolean
     Public Property NoDeferOnNextTextChange As Boolean

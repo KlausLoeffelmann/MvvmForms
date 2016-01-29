@@ -59,7 +59,7 @@ Public Class BasicUITestUserControl
         NullableValueRelationPopupInput.Select()
 
         nvrPreserveInputTest.PreserveInput = True
-        nvrPreserveInputTest.DataSource = Address.RandomAddresses(10000)
+        nvrPreserveInputTest.DataSource = Address.RandomAddresses(100000)
         nvrPreserveInputTest.DisplayMember = """{0}"",{Street}"
         nvrPreserveInputTest.SearchPattern = """{0}, {1}: {2}"",{Street},{ZIP},{City}"
         nvrPreserveInputTest.PreferredVisibleColumnsOnOpen = 4
