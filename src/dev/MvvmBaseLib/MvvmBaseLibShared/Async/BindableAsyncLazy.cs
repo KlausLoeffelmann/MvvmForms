@@ -28,7 +28,9 @@ namespace ActiveDevelop.MvvmBaseLib
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private static PropertyChangedEventArgs CachedNotifyPropertyChangedEventArgs = new PropertyChangedEventArgs("Value");
+        private static PropertyChangedEventArgs CachedNotifyValuePropertyChangedEventArgs = new PropertyChangedEventArgs("Value");
+        private static PropertyChangedEventArgs CachedNotifyDefaultValuePropertyChangedEventArgs = new PropertyChangedEventArgs("DefaultValue");
+        private static PropertyChangedEventArgs CachedNotifyIsLoadedPropertyChangedEventArgs = new PropertyChangedEventArgs("IsLoaded");
 
         /// <summary>
         /// Creates an Instance of this method.
@@ -51,7 +53,7 @@ namespace ActiveDevelop.MvvmBaseLib
 			{
                 Func<bool> tmpBoolEval = () => {
                     lock (mySyncLockObject) {
-                        return myIsLoaded;
+                        return IsLoaded;
                     } };
 
                 if (!(tmpBoolEval()))
@@ -76,12 +78,32 @@ namespace ActiveDevelop.MvvmBaseLib
 				if (!(object.Equals(myValue, value)))
 				{
 					myValue = value;
-					OnValuePropertyChanged();
+					OnValueChanged();
 				}
 			}
 		}
 
-		[DebuggerNonUserCode]
+        public bool IsLoaded
+        {
+            get { return myIsLoaded; }
+
+            set
+            {
+                if (!object.Equals(myIsLoaded, value))
+                {
+                    myIsLoaded = value;
+                    OnIsLoadedChanged();
+                }
+            }
+        }
+
+        protected virtual void OnIsLoadedChanged()
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, CachedNotifyIsLoadedPropertyChangedEventArgs);
+        }
+
+        [DebuggerNonUserCode]
 		private async void OnLoadValueAsync(object o)
 		{
 			var oTemp = o;
@@ -97,18 +119,18 @@ namespace ActiveDevelop.MvvmBaseLib
 
 			lock (mySyncLockObject)
 			{
-				myIsLoaded = true;
+				IsLoaded = true;
 			}
 
-			mySyncContext.Post((ignoreValue) => {
-								   OnValuePropertyChanged();
-							   }, null);
+            mySyncContext.Post((SendOrPostCallback)((ignoreValue) => {
+								   OnValueChanged();
+							   }), null);
 		}
 
-		private void OnValuePropertyChanged()
+		protected virtual void OnValueChanged()
 		{
 			if (PropertyChanged != null)
-				PropertyChanged(this, CachedNotifyPropertyChangedEventArgs);
+				PropertyChanged(this, CachedNotifyValuePropertyChangedEventArgs);
 		}
 
 		void ActiveDevelop.MvvmBaseLib.Mvvm.IDiscoverableValue.SetValue(object value)
@@ -126,7 +148,7 @@ namespace ActiveDevelop.MvvmBaseLib
 		}
 		private object GetValue()
 		{
-			if (this.myIsLoaded)
+			if (this.IsLoaded)
 			{
 				return myValue;
 			}
@@ -149,11 +171,11 @@ namespace ActiveDevelop.MvvmBaseLib
 
                 lock (mySyncLockObject)
                 {
-                    myIsLoaded = false;
+                    IsLoaded = false;
                     myHasBeenCalled = false;
                 }
 
-                OnValuePropertyChanged();
+                OnValueChanged();
 			}
 		}
 
@@ -170,15 +192,23 @@ namespace ActiveDevelop.MvvmBaseLib
 					myDefaultValue = value;
 					lock (mySyncLockObject)
 					{
-						myIsLoaded = false;
+						IsLoaded = false;
 						myHasBeenCalled = false;
 					}
+                    OnDefaultValueChanged();
 				}
 
 			}
 		}
 
-		public Func<object, Task<t>> ValueLoader
+        protected virtual void OnDefaultValueChanged()
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, CachedNotifyDefaultValuePropertyChangedEventArgs);
+        }
+
+
+        public Func<object, Task<t>> ValueLoader
 		{
 			get
 			{

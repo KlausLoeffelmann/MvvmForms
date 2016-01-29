@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ActiveDev.MvvmBaseLib.Threading
+namespace ActiveDevelop.MvvmBaseLib.Threading
 {
     public class Timer : CancellationTokenSource, IDisposable
     {
