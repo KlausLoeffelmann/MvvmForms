@@ -42,7 +42,6 @@ Partial Class MainForm
         Me.NullableNumValue1 = New ActiveDevelop.EntitiesFormsLib.NullableNumValue()
         Me.NullableValueRelationPopup2 = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.NullableValueRelationPopup1 = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.MainMenuStrip.SuspendLayout()
         CType(Me.NullableValueRelationPopup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NullableValueRelationPopup1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -258,22 +257,33 @@ Partial Class MainForm
         Me.NullableValueRelationPopup1.TabIndex = 4
         Me.NullableValueRelationPopup1.UIGuid = New System.Guid("d38add81-45e8-436d-8891-6f1770a86ca7")
         Me.NullableValueRelationPopup1.ValueMember = Nothing
+
+        Me.NullableMaskTextValue1.AssignedManagerComponent = Nothing
+        Me.NullableMaskTextValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NullableMaskTextValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.NullableMaskTextValue1.Location = New System.Drawing.Point(47, 248)
+        Me.NullableMaskTextValue1.MaxLength = 32767
+        Me.NullableMaskTextValue1.Name = "NullableMaskTextValue1"
+        Me.NullableMaskTextValue1.ObfuscationChar = Nothing
+        Me.NullableMaskTextValue1.PermissionReason = Nothing
+        Me.NullableMaskTextValue1.Size = New System.Drawing.Size(232, 26)
+        Me.NullableMaskTextValue1.TabIndex = 8
+        Me.NullableMaskTextValue1.UIGuid = New System.Guid("04bcd142-2b94-46ec-bb21-f7cd5a464316")
+        Me.NullableMaskTextValue1.Value = Nothing
+        Me.NullableMaskTextValue1.ValueValidationState = Nothing
         '
-        'Button1
+        'MaskedTextBox1
         '
-        Me.Button1.Location = New System.Drawing.Point(42, 543)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(284, 44)
-        Me.Button1.TabIndex = 10
-        Me.Button1.Text = "GC Collect"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.MaskedTextBox1.Location = New System.Drawing.Point(188, 314)
+        Me.MaskedTextBox1.Name = "MaskedTextBox1"
+        Me.MaskedTextBox1.Size = New System.Drawing.Size(328, 26)
+        Me.MaskedTextBox1.TabIndex = 9
         '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1663, 858)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.MaskedTextBox1)
         Me.Controls.Add(Me.NullableMaskTextValue1)
         Me.Controls.Add(Me.NullableIntValue1)
@@ -313,5 +323,4 @@ Partial Class MainForm
     Friend WithEvents MaskedTextBox1 As System.Windows.Forms.MaskedTextBox
     Friend WithEvents TreeViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NVRPLateBindingToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Button1 As Button
 End Class

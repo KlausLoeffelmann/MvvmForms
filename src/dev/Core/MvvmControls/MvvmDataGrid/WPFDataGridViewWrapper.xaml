@@ -1,5 +1,5 @@
 ﻿<UserControl x:Class="WPFDataGridViewWrapper"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:efl="clr-namespace:ActiveDevelop.EntitiesFormsLib">
-    <efl:ExtDataGrid x:Name="InnerDataGridView" EnableColumnVirtualization="True" HorizontalGridLinesBrush="#4C000000" VerticalGridLinesBrush="#4C000000" UseLayoutRounding="True"/>
+    <efl:ExtDataGrid x:Name="InnerDataGridView" EnableColumnVirtualization="True" HorizontalGridLinesBrush="#4C000000" VerticalGridLinesBrush="#4C000000" UseLayoutRounding="True"></efl:ExtDataGrid>
 </UserControl>

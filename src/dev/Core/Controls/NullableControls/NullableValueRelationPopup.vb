@@ -20,8 +20,8 @@ Imports ActiveDevelop.EntitiesFormsLib.ObjectAnalyser
 <ToolboxItem(True)>
 Public Class NullableValueRelationPopup
     Inherits TextBoxPopup
-    Implements ITextBoxBasedControl, INullableValueDataBinding, 
-                INullableValueRelationBinding, IPermissionManageableUIContentElement, 
+    Implements ITextBoxBasedControl, INullableValueDataBinding,
+                INullableValueRelationBinding, IPermissionManageableUIContentElement,
                 ISupportInitialize
 
     Private Const WM_KEYFIRST = &H100
@@ -92,9 +92,9 @@ Public Class NullableValueRelationPopup
     Private myValue As Object
     Private myMultiSelect As Boolean
     Private myDataFieldname As String
+    Private myDeferredTextChangeDelay As Integer = 300
 
-
-    <DllImport("user32.dll", SetLastError:=True, CharSet:=CharSet.Auto)> _
+    <DllImport("user32.dll", SetLastError:=True, CharSet:=CharSet.Auto)>
     Private Shared Function PeekMessage(ByRef lpMsg As NativeMessage, ByVal hWnd As IntPtr, wMsgFilterMin As UInteger,
                                         wMsgFilterMax As UInteger, removeMessage As UInteger) As Boolean
     End Function
@@ -149,6 +149,15 @@ Public Class NullableValueRelationPopup
     ''' <param name="e">EventArgs-Parameter, mit denen festgelegt werden kann, welche Spalten angezeigt werden sollen.</param>
     ''' <remarks></remarks>
     Public Event GetColumnSchema(ByVal sender As Object, ByVal e As GetColumnSchemaEventArgs)
+
+    ''' <summary>
+    ''' Wird ausgelöst, wenn der Wert der Eigenschaft DeferredTextChangeDelay geändert wurde.
+    ''' Grids anzupassen.
+    ''' </summary>
+    ''' <param name="sender">Steuerelement, das das Ereignis ausgelöst hat.</param>
+    ''' <param name="e">EventArgs-Parameter, mit denen festgelegt werden kann, welche Spalten angezeigt werden sollen.</param>
+    ''' <remarks></remarks>
+    Public Event DeferredTextChangeDelayChanged(sender As Object, e As EventArgs)
 
     ''' <summary>
     ''' Wird ausgelöst, wenn bei der Zuweisung der Value-Eigenschaft ein Wert erkannt wurde, der es nicht ermöglich, den entsprechenden Eintrag in der Liste zu selektieren.
@@ -420,7 +429,7 @@ Public Class NullableValueRelationPopup
             Else
                 If Not String.IsNullOrWhiteSpace(Me.DisplayMember) Then
                     Me.PopupControl.ValueText =
-                    ObjectAnalyser.ObjectToString(Me.ValueBase, Me.DisplayMember)
+                        ObjectAnalyser.ObjectToString(Me.ValueBase, Me.DisplayMember)
                 Else
                     Me.PopupControl.ValueText = Value.ToString
                 End If
@@ -437,6 +446,7 @@ Public Class NullableValueRelationPopup
 
             If myTextBoxDeferrer Is Nothing Then
                 myTextBoxDeferrer = New TextBoxDeferrer(Me.TextBoxPart)
+                myTextBoxDeferrer.DeferredTextChangeDelay = DeferredTextChangeDelay
             End If
             myTextBoxDeferrer.NoDeferOnNextTextChange = True
 
@@ -582,12 +592,12 @@ Public Class NullableValueRelationPopup
         MyBase.DecideUndoCommit(closingReason)
     End Sub
 
-    Private Sub FilterBindingView()
+    Private Async Function FilterBindingView() As Task
 
         If myFilterBindingViewInProgress Then
             myFilterTask.AssignedCancellationTokenSource.Cancel()
             Try
-                myFilterTask.FilterTask.Wait()
+                Await myFilterTask.FilterTask
             Catch ex As Exception
                 'Stop
             End Try
@@ -599,7 +609,7 @@ Public Class NullableValueRelationPopup
                         Sub()
                             FilterBindingViewAsync(myFilterTask.AssignedCancellationTokenSource.Token)
                         End Sub, myFilterTask.AssignedCancellationTokenSource.Token)
-    End Sub
+    End Function
 
     Private Class SyncLockedArrayList
         Inherits ArrayList
@@ -665,10 +675,9 @@ Public Class NullableValueRelationPopup
                                            If textToSearch.IndexOf(orItem.ToUpper) > -1 Then
                                                foundFlagOr = foundFlagOr Or True
                                            End If
+                                           If ct.IsCancellationRequested Then Exit For
                                        Next
                                        FoundFlagAnd = FoundFlagAnd And foundFlagOr
-
-                                       If ct.IsCancellationRequested Then Exit For
                                    Next
 
                                    If FoundFlagAnd Then
@@ -704,6 +713,11 @@ Public Class NullableValueRelationPopup
             End If
 
             mySupressSelectedValueChange = False
+            If myDataGridForm.BindableDataGridView.Rows.Count > 0 Then
+                Dim firstRow = myDataGridForm.BindableDataGridView.Rows(0)
+                myDataGridForm.BindableDataGridView.SelectRow(firstRow)
+            End If
+
             If Not Object.Equals(myOldSelectedValue, BindableDataGridView.Value) Then
                 myOldSelectedValue = Me.myDataGridForm.BindableDataGridView.Value
                 OnSelectedValueChanged(EventArgs.Empty)
@@ -999,7 +1013,7 @@ Public Class NullableValueRelationPopup
         MyBase.OnTextChanged(e)
     End Sub
 
-    Protected Overridable Sub OnDeferralTextChanged(sender As Object, e As EventArgs)
+    Protected Overridable Async Sub OnDeferralTextChanged(sender As Object, e As EventArgs)
         If Me.DesignMode Then
             Return
         End If
@@ -1021,7 +1035,7 @@ Public Class NullableValueRelationPopup
                     If Not Me.IsPopupOpen Then
                         Me.OpenPopup()
                     End If
-                    FilterBindingView()
+                    Await FilterBindingView()
                 End If
                 myTextDiff = ""
             End If
@@ -1032,7 +1046,7 @@ Public Class NullableValueRelationPopup
                 If Not Me.IsPopupOpen Then
                     Me.OpenPopup()
                 End If
-                FilterBindingView()
+                Await FilterBindingView()
             End If
         Catch ex As Exception
             TraceEx.TraceError("OnDeferralTextChange caused an " & ex.GetType.ToString & " in EntityFormsLib. Message: " & ex.Message)
@@ -1705,6 +1719,31 @@ Public Class NullableValueRelationPopup
             Me.PopupControl.ValueTextAlignment = value
         End Set
     End Property
+
+    ''' <summary>
+    ''' Bestimmt oder ermittelt, nach welcher Zeitspanne der verzögerte TextChange-Event eine Hintergrundsuche in den Elementen für die AutoComplete-List auslösen soll.
+    ''' </summary>
+    ''' <returns></returns>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Bestimmt oder ermittelt, nach welcher Zeitspanne der verzögerte TextChange-Event eine Hintergrundsuche in den Elementen für die AutoComplete-List auslösen soll."),
+     Category("Verhalten"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(300)>
+    Public Property DeferredTextChangeDelay As Integer
+        Get
+            Return myDeferredTextChangeDelay
+        End Get
+        Set(value As Integer)
+            If Not Object.Equals(myDeferredTextChangeDelay, value) Then
+                myDeferredTextChangeDelay = value
+                OnDeferredTextChangeDelayChanged()
+            End If
+        End Set
+    End Property
+
+    Protected Overridable Sub OnDeferredTextChangeDelayChanged()
+        RaiseEvent DeferredTextChangeDelayChanged(Me, EventArgs.Empty)
+    End Sub
 
     <AttributeProvider(GetType(IListSource))>
     Public Property DataSource As Object Implements INullableValueRelationBinding.Datasource

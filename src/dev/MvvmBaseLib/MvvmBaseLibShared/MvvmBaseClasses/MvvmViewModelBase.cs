@@ -20,6 +20,8 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         public MvvmViewModelBase() : base()
         { }
 
+        static public bool IsDebugMode { get; set; } = false;
+
         /// <summary>
         /// Wird aufgerufen, wenn das Editieren eines Datensatzes beginnt. Typischerweise beim Editieren in einer Zeile innerhalb eines Grids, wenn die Zeile betreten wurde.
         /// </summary>
@@ -181,6 +183,8 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                 catch (Exception ex)
                 {
                     CopyPropertiesException copPropException = new CopyPropertiesException("Model property '" + propItem.Name + "' could not be copied to ViewModel property '" + propItem.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
+                    if (IsDebugMode)
+                        Debug.WriteLine("Model property '" + propItem.Name + "' could not be copied to ViewModel property '" + propItem.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
                 }
             }
         }
@@ -239,7 +243,8 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                 {
                     CopyPropertiesException copPropException =
                         new CopyPropertiesException("Model property '" + propToPropItem.ModelProperty.Name + "' could not be copied to ViewModel property '" + propToPropItem.ModelProperty.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
-                    Debug.WriteLine("Model property '" + propToPropItem.ModelProperty.Name + "' could not be copied to ViewModel property '" + propToPropItem.ModelProperty.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
+                    if (IsDebugMode)
+                        Debug.WriteLine("Model property '" + propToPropItem.ModelProperty.Name + "' could not be copied to ViewModel property '" + propToPropItem.ModelProperty.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
                 }
             }
         }
@@ -271,6 +276,8 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                 catch (Exception ex)
                 {
                     CopyPropertiesException copPropException = new CopyPropertiesException("Model property '" + propItem.Name + "' could not be copied to ViewModel property '" + propItem.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
+                    if (IsDebugMode)
+                        Debug.WriteLine("Model property '" + propItem.Name + "' could not be copied to ViewModel property '" + propItem.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
                 }
             }
         }
@@ -329,7 +336,8 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                 catch (Exception ex)
                 {
                     CopyPropertiesException copPropException = new CopyPropertiesException("ViewModel property '" + propToPropItem.ViewModelProperty.Name + "' could not be copied to Model property '" + propToPropItem.ModelProperty.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
-                    Debug.WriteLine("ViewModel property '" + propToPropItem.ViewModelProperty.Name + "' could not be copied to Model property '" + propToPropItem.ModelProperty.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
+                    if (IsDebugMode)
+                        Debug.WriteLine("ViewModel property '" + propToPropItem.ViewModelProperty.Name + "' could not be copied to Model property '" + propToPropItem.ModelProperty.Name + "'." + Environment.NewLine + "Reason: " + ex.Message);
                 }
             }
         }

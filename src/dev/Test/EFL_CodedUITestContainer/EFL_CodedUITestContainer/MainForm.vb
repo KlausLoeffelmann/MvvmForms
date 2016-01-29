@@ -6,7 +6,7 @@ Public Class MainForm
         Me.Close()
     End Sub
 
-    Private Sub RunBasicUITestToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
+    Private Sub RunBasicUITestToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RunBasicUITestToolStripMenuItem.Click
         Dim userControl As New BasicUITestUserControl
         Me.SuspendLayout()
         userControl.Dock = DockStyle.Fill
@@ -69,8 +69,4 @@ Public Class MainForm
         frm.ShowDialog()
     End Sub
 
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        GC.Collect()
-    End Sub
 End Class
