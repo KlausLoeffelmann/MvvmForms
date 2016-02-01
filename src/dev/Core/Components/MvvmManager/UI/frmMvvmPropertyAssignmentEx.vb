@@ -418,8 +418,8 @@ skipWarning:
 
         If Me.DialogResult = System.Windows.Forms.DialogResult.OK Then
             If IsDirty Then
-                Dim dr = MessageBox.Show("Pending changes",
-                                "Do you want to discard your pending changes?",
+                Dim dr = MessageBox.Show("Do you want to discard your pending changes?",
+                                 "Pending changes",
                                  MessageBoxButtons.YesNo, MessageBoxIcon.Error)
                 e.Cancel = (dr = DialogResult.No)
             End If
