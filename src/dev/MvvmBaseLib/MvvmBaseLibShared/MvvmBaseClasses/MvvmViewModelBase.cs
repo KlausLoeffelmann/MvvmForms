@@ -200,6 +200,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
             //                  propItem.Name, propItem.GetCustomAttribute(Of ModelPropertyNameAttribute).PropertyName))}
             foreach (var propToPropItem in
             from propItem in GetType().GetRuntimeProperties()
+            where propItem.GetCustomAttribute<ModelPropertyIgnoreAttribute>() == null
             select new
             {
                 ViewModelProperty = propItem,

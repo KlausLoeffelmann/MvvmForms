@@ -9,7 +9,7 @@ Public Class CloningTests
         Dim contactModel As New ContactModel
 
         contactVm.CopyPropertiesTo(contactModel)
-
+        contactModel.ID = contactVm.ID.ToString("N")
         Dim newContactVM As New ContactViewModel
         newContactVM.CopyPropertiesFrom(contactModel)
 
