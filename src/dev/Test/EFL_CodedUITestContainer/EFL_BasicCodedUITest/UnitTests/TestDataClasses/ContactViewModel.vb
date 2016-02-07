@@ -10,6 +10,17 @@ Public Class ContactViewModel
     Private myAddressLine2 As String
     Private myCity As String
     Private myZip As String
+    Private myID As Guid
+
+    <ModelPropertyIgnore>
+    Public Property ID As Guid
+        Get
+            Return myID
+        End Get
+        Set(value As Guid)
+            SetProperty(myID, value)
+        End Set
+    End Property
 
     '--- Lastname---
     Public Property Lastname As String
@@ -104,7 +115,8 @@ Public Class ContactViewModel
 
             lastName = lastNames(rnd.Next(lastNames.Length - 1))
             firstName = firstNames(rnd.Next(lastNames.Length - 1))
-            contactList.Add(New ContactViewModel With {.Firstname = firstName,
+            contactList.Add(New ContactViewModel With {.ID = Guid.NewGuid(),
+                                                       .Firstname = firstName,
                                                        .Lastname = lastName,
                                                        .AddressLine1 = streets(rnd.Next(streets.Length - 1)),
                                                        .City = cities(rnd.Next(cities.Length - 1)),
