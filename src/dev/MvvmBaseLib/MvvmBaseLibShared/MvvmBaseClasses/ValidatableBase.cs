@@ -45,7 +45,8 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                         var validatableTemp = (ValidatableBase)propToPropItem.GetValue(this);
                         if (validatableTemp == null)
                         {
-                            Debug.WriteLine("WARNING: A validatable property is Nothing (null in CSharp)," + "but this class may be used in a different context with this property. Propertyname:" + propToPropItem.Name);
+                            if (IsDebugMode)
+                                Debug.WriteLine("WARNING: A validatable property is Nothing (null in CSharp)," + "but this class may be used in a different context with this property. Propertyname:" + propToPropItem.Name);
                         }
                         else
                         {

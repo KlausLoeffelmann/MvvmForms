@@ -4,7 +4,7 @@ using System.Windows.Input;
 namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
     /// <summary>
-    ///  
+    ///  Defines a command in a ViewModel which can be easily bound to a View in a MVVM based scenario.
     /// </summary>
     /// <remarks></remarks>
     public class RelayCommand : ICommand

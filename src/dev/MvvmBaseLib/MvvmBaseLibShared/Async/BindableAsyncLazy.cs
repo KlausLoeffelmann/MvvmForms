@@ -83,6 +83,9 @@ namespace ActiveDevelop.MvvmBaseLib
 			}
 		}
 
+        /// <summary>
+        /// Singnals, if the value has already been been gotten asynchronously.
+        /// </summary>
         public bool IsLoaded
         {
             get { return myIsLoaded; }
@@ -97,6 +100,9 @@ namespace ActiveDevelop.MvvmBaseLib
             }
         }
 
+        /// <summary>
+        /// Raises the PropertyChanged event for IsLoaded.
+        /// </summary>
         protected virtual void OnIsLoadedChanged()
         {
             if (PropertyChanged != null)
@@ -127,7 +133,10 @@ namespace ActiveDevelop.MvvmBaseLib
 							   }), null);
 		}
 
-		protected virtual void OnValueChanged()
+        /// <summary>
+        /// Raises the PropertyChanged event for Value.
+        /// </summary>
+        protected virtual void OnValueChanged()
 		{
 			if (PropertyChanged != null)
 				PropertyChanged(this, CachedNotifyValuePropertyChangedEventArgs);
@@ -158,7 +167,10 @@ namespace ActiveDevelop.MvvmBaseLib
 			}
 		}
 
-		public object Param
+        /// <summary>
+        /// Params for the Loader delegate.
+        /// </summary>
+        public object Param
 		{
 			get
 			{
@@ -179,6 +191,10 @@ namespace ActiveDevelop.MvvmBaseLib
 			}
 		}
 
+        /// <summary>
+        /// Default Value, which is returned until the actual value has been loaded asynchronously. 
+        /// Setting this value resets IsLoaded.
+        /// </summary>
 		public t DefaultValue
 		{
 			get
@@ -201,6 +217,10 @@ namespace ActiveDevelop.MvvmBaseLib
 			}
 		}
 
+        /// <summary>
+        /// Raises the PropertyChanged event for DefaultValue.
+        /// </summary>
+
         protected virtual void OnDefaultValueChanged()
         {
             if (PropertyChanged != null)
@@ -208,6 +228,9 @@ namespace ActiveDevelop.MvvmBaseLib
         }
 
 
+        /// <summary>
+        /// The delegate, which loads the Value asynchronously.
+        /// </summary>
         public Func<object, Task<t>> ValueLoader
 		{
 			get
