@@ -6,6 +6,6 @@
     Public Property AddressLine1 As String
     Public Property AddressLine2 As String
     Public Property City As String
-    Public Property Zip As String
+    Public ReadOnly Property Zip As String
 
 End Class

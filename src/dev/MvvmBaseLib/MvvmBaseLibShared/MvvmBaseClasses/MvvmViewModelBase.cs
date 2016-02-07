@@ -200,7 +200,8 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
             //                  propItem.Name, propItem.GetCustomAttribute(Of ModelPropertyNameAttribute).PropertyName))}
             foreach (var propToPropItem in
             from propItem in GetType().GetRuntimeProperties()
-            where propItem.GetCustomAttribute<ModelPropertyIgnoreAttribute>() == null
+            where (propItem.GetCustomAttribute<ModelPropertyIgnoreAttribute>() == null &&
+                  propItem.CanWrite)
             select new
             {
                 ViewModelProperty = propItem,
@@ -222,22 +223,34 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                     object value = null;
                     if (typeof(IDiscoverableValue).GetTypeInfo().IsAssignableFrom(propToPropItem.ModelProperty.PropertyType.GetTypeInfo()))
                     {
-                        var source = (IDiscoverableValue)propToPropItem.ModelProperty.GetValue(model, null);
-                        value = source.GetValue();
+                        if (propToPropItem.ModelProperty.CanRead)
+                        {
+                            var source = (IDiscoverableValue)propToPropItem.ModelProperty.GetValue(model, null);
+                            value = source.GetValue();
+                        }
                     }
                     else
                     {
-                        value = propToPropItem.ModelProperty.GetValue(model, null);
+                        if (propToPropItem.ModelProperty.CanRead)
+                        {
+                            value = propToPropItem.ModelProperty.GetValue(model, null);
+                        }
                     }
 
                     if (typeof(IDiscoverableValue).GetTypeInfo().IsAssignableFrom(propToPropItem.ViewModelProperty.PropertyType.GetTypeInfo()))
                     {
-                        var target = (IDiscoverableValue)propToPropItem.ViewModelProperty.GetValue(this, null);
-                        target.SetValue(value);
+                        if (propToPropItem.ViewModelProperty.CanWrite)
+                        {
+                            var target = (IDiscoverableValue)propToPropItem.ViewModelProperty.GetValue(this, null);
+                            target.SetValue(value);
+                        }
                     }
                     else
                     {
-                        propToPropItem.ViewModelProperty.SetValue(this, value, null);
+                        if (propToPropItem.ViewModelProperty.CanWrite)
+                        {
+                            propToPropItem.ViewModelProperty.SetValue(this, value, null);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -293,7 +306,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
             //ORIGINAL LINE: For Each propToPropItem In From propItem In GetType.GetRuntimeProperties Where propItem.GetCustomAttribute(Of ModelPropertyIgnoreAttribute)() Is Nothing Select New With { .ViewModelProperty = propItem, .ModelProperty = model.GetType.GetRuntimeProperty(If(propItem.GetCustomAttribute(Of ModelPropertyNameAttribute)() Is Nothing, propItem.Name, propItem.GetCustomAttribute(Of ModelPropertyNameAttribute).PropertyName))}
             foreach (var propToPropItem in
                 from propItem in GetType().GetRuntimeProperties()
-                where propItem.GetCustomAttribute<ModelPropertyIgnoreAttribute>() == null
+                where (propItem.GetCustomAttribute<ModelPropertyIgnoreAttribute>() == null)
                 select new
                 {
                     ViewModelProperty = propItem,
@@ -316,22 +329,34 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                     object value = null;
                     if (typeof(IDiscoverableValue).GetTypeInfo().IsAssignableFrom(propToPropItem.ViewModelProperty.PropertyType.GetTypeInfo()))
                     {
-                        var source = (IDiscoverableValue)propToPropItem.ViewModelProperty.GetValue(this, null);
-                        value = source.GetValue();
+                        if (propToPropItem.ViewModelProperty.CanRead)
+                        {
+                            var source = (IDiscoverableValue)propToPropItem.ViewModelProperty.GetValue(this, null);
+                            value = source.GetValue();
+                        }
                     }
                     else
                     {
-                        value = propToPropItem.ViewModelProperty.GetValue(this, null);
+                        if (propToPropItem.ViewModelProperty.CanRead)
+                        {
+                            value = propToPropItem.ViewModelProperty.GetValue(this, null);
+                        }
                     }
 
                     if (typeof(IDiscoverableValue).GetTypeInfo().IsAssignableFrom(propToPropItem.ModelProperty.PropertyType.GetTypeInfo()))
                     {
-                        var target = (IDiscoverableValue)propToPropItem.ModelProperty.GetValue(model, null);
-                        target.SetValue(value);
+                        if (propToPropItem.ModelProperty.CanWrite)
+                        {
+                            var target = (IDiscoverableValue)propToPropItem.ModelProperty.GetValue(model, null);
+                            target.SetValue(value);
+                        }
                     }
                     else
                     {
-                        propToPropItem.ModelProperty.SetValue(model, value, null);
+                        if (propToPropItem.ModelProperty.CanWrite)
+                        {
+                            propToPropItem.ModelProperty.SetValue(model, value, null);
+                        }
                     }
                 }
                 catch (Exception ex)

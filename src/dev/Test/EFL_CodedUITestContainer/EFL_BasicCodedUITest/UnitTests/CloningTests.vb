@@ -10,6 +10,7 @@ Public Class CloningTests
 
         contactVm.CopyPropertiesTo(contactModel)
         contactModel.ID = contactVm.ID.ToString("N")
+
         Dim newContactVM As New ContactViewModel
         newContactVM.CopyPropertiesFrom(contactModel)
 
@@ -19,7 +20,9 @@ Public Class CloningTests
         Assert.AreEqual(contactVm.AddressLine1, newContactVM.AddressLine1)
         Assert.AreEqual(contactVm.AddressLine2, newContactVM.AddressLine2)
         Assert.AreEqual(contactVm.City, newContactVM.City)
-        Assert.AreEqual(contactVm.Zip, newContactVM.Zip)
+
+        'Zip is readonly - cannot be written.
+        Assert.AreNotEqual(contactVm.Zip, newContactVM.Zip)
     End Sub
 
 End Class
