@@ -543,7 +543,7 @@ Public Class MvvmDataGrid
                     If oldItem Is gridColumn Then
                         Me.WpfDataGridViewWrapper.InnerDataGridView.Columns.Remove(column)
 
-                        If Not MyBase.DesignMode Then
+                        If Not MyBase.DesignMode AndAlso _mySettings IsNot Nothing Then
                             _mySettings.ColumnDefinitions.Remove(_mySettings.ColumnDefinitions.Where(Function(col) col.Name = oldItem.Name).First)
                         End If
 
@@ -552,6 +552,13 @@ Public Class MvvmDataGrid
 
                 Next
             Next
+        ElseIf e.Action = Specialized.NotifyCollectionChangedAction.Reset Then
+            'Clear all
+            WpfDataGridViewWrapper.InnerDataGridView.Columns.Clear()
+
+            If _mySettings IsNot Nothing Then
+                _mySettings.ColumnDefinitions.Clear()
+            End If
         End If
 
     End Sub
@@ -585,7 +592,6 @@ Public Class MvvmDataGrid
             End If
 
         Next
-
 
         'Den Datentyp setzen:
         newColumn.DataSourceType = Me.DataSourceType
