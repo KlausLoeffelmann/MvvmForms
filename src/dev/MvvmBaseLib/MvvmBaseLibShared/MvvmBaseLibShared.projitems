@@ -16,7 +16,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\MvvmViewModelAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\MvvmViewModelIncludeAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseClasses\BindableBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BaseClasses\WeakDelegate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormulaEvaluator\AuxilliaryClasses.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormulaEvaluator\FormulaEvaluator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormulaEvaluator\FormulaEvaluator_Math.cs" />
@@ -24,7 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IoCPlatformDependend\IMvvmViewModelNotifyBindingProcess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MathExtension\MathExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ChangeTracking.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\CollectionView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\RxCollectionView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\CopyPropertiesException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\Extender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\IDiscoverableValue.cs" />

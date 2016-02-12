@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace ActiveDevelop.MvvmBaseLib.Threading
 {
+    /// <summary>
+    /// A timer which can reside in portable class libraries and has no additional references besides System.Threading.
+    /// </summary>
     public class Timer : CancellationTokenSource, IDisposable
     {
         private Task myTimerTask;
@@ -11,6 +14,10 @@ namespace ActiveDevelop.MvvmBaseLib.Threading
         private int myDueTime;
         private Action myCallBack;
 
+        /// <summary>
+        /// Creates a new instance of this class and passes the callback. Call Dispose to cancel the timer.
+        /// </summary>
+        /// <param name="callBack">Action delegate, which is called, when the timer has ellapsed.</param>
         public Timer(Action callBack)
         {
             if (callBack == null)
@@ -18,6 +25,13 @@ namespace ActiveDevelop.MvvmBaseLib.Threading
             myCallBack = callBack;
         }
 
+        /// <summary>
+        /// Creates a new instance of this class and passes the timer control parameters. Call Dispose to cancel the timer.
+        /// </summary>
+        /// <param name="callBack">Action delegate, which is called, when the timer has ellapsed.</param>
+        /// <param name="state">An abitrary state object for own purposes.</param>
+        /// <param name="dueTime">Milliseconds, when the timer should firstly be ellapsed.</param>
+        /// <param name="period">Period of timer ellapsing in milliseconds.</param>
         public Timer(Action callBack, object state, int dueTime, int period)
         {
             if (callBack == null)
