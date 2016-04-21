@@ -9,6 +9,9 @@ Imports System.Windows
 Imports System.Windows.Forms
 Imports System.Drawing
 Imports ActiveDevelop.EntitiesFormsLib
+Imports System.Windows.Controls.Primitives
+Imports System.Collections.Specialized
+Imports System.Windows.Data
 
 ''' <summary>
 ''' DataGrid zur Anzeige und Bearbeiten von Daten welche aus eine ItemsSource stammen.
@@ -24,7 +27,8 @@ Public Class MvvmDataGrid
     ''' Wahr wenn momentan die Spalten-Reihenfolge geladen wird
     ''' </summary>
     ''' <remarks></remarks>
-    Dim _isColumnDisplayIndexUpdating As Boolean
+    Private _isColumnDisplayIndexUpdating As Boolean
+    Private _collectionView As ICollectionView ' Bei eingeschaltener Filterung wird die CollectionView verwendet
 
     Public Sub New()
 
@@ -317,7 +321,14 @@ Public Class MvvmDataGrid
         End Get
         Set(ByVal value As IEnumerable)
             If Not Object.Equals(WpfDataGridViewWrapper.InnerDataGridView.ItemsSource, value) Then
-                WpfDataGridViewWrapper.InnerDataGridView.ItemsSource = value
+                If IsFilteringEnabled Then
+                    _collectionView = CollectionViewSource.GetDefaultView(value)
+
+                    WpfDataGridViewWrapper.InnerDataGridView.ItemsSource = _collectionView
+                Else
+                    WpfDataGridViewWrapper.InnerDataGridView.ItemsSource = value
+                End If
+
                 OnItemsSourceChanged(EventArgs.Empty)
             End If
         End Set
@@ -399,6 +410,60 @@ Public Class MvvmDataGrid
                 For Each column In Me.Columns
                     column.DataSourceType = Me.DataSourceType
                 Next
+            End If
+        End Set
+    End Property
+
+    <Description("Gets or sets a value that indicates whether the user can edit values in the DataGrid.")>
+    Property IsReadOnly As Boolean
+        Get
+            Return WpfDataGridViewWrapper.InnerDataGridView.IsReadOnly
+        End Get
+        Set(value As Boolean)
+            If WpfDataGridViewWrapper.InnerDataGridView.IsReadOnly <> value Then
+                WpfDataGridViewWrapper.InnerDataGridView.IsReadOnly = value
+            End If
+        End Set
+    End Property
+
+    Private _isFilteringEnabled As Boolean = False
+
+    ''' <summary>
+    ''' Wenn gesetzt wird das Filtern vom DataGrid bei String-Eigenschaften aktiviert
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>Gleiche Vorraussetzung am Typ wie DataContextTyp am MvvmManager</remarks>
+    <Category("Filter"),
+    Description("Wert welcher angibt, ob das DataGrid das Filtern von Daten ermöglicht.")>
+    Property IsFilteringEnabled As Boolean
+        Get
+            Return _isFilteringEnabled
+        End Get
+        Set(value As Boolean)
+            If _isFilteringEnabled <> value Then
+                _isFilteringEnabled = value
+            End If
+        End Set
+    End Property
+
+    Private _filterCaseSensitive As Boolean = True
+
+    ''' <summary>
+    ''' Filterung unterscheidet Groß- und Kleinschreibung
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>Gleiche Vorraussetzung am Typ wie DataContextTyp am MvvmManager</remarks>
+    <Category("Filter"),
+    Description("Gibt an ob Klein- oder Großschreibung in der Filterung unterschieden wird.")>
+    Property FilterCaseSensitive As Boolean
+        Get
+            Return _filterCaseSensitive
+        End Get
+        Set(value As Boolean)
+            If _filterCaseSensitive <> value Then
+                _filterCaseSensitive = value
             End If
         End Set
     End Property
@@ -577,6 +642,9 @@ Public Class MvvmDataGrid
     ''' <param name="newColumn"></param>
     ''' <remarks></remarks>
     Private Sub AddNewColumn(newColumn As MvvmDataGridColumn)
+
+        newColumn.IsFilteringEnabled = IsFilteringEnabled
+
         'Nun nicht mehr Default Spalten anlegen:
         Me.WpfDataGridViewWrapper.InnerDataGridView.AutoGenerateColumns = False
 
@@ -593,8 +661,23 @@ Public Class MvvmDataGrid
 
         Next
 
+        If IsFilteringEnabled Then
+            If newColumn.DataSourceType IsNot Nothing AndAlso newColumn.PropertyCellBindings IsNot Nothing Then
+                Dim vmprop = newColumn.PropertyCellBindings.Where(Function(p) p.ControlProperty.PropertyName = "Content").Select(Function(p) p.ViewModelProperty).SingleOrDefault()
+
+                If vmprop IsNot Nothing Then
+                    Dim propdef = newColumn.DataSourceType.GetProperty(vmprop.PropertyName)
+
+                    newColumn.BoundPropertyInfo = propdef
+                End If
+            End If
+        End If
+
         'Den Datentyp setzen:
-        newColumn.DataSourceType = Me.DataSourceType
+        If DataSourceType IsNot Nothing Then
+            newColumn.DataSourceType = Me.DataSourceType
+        End If
+
 
         'Nur anlegen, wenn ein typ auch hinterlegt wurde...
         If Me.CustomColumnTemplateType IsNot Nothing AndAlso newColumn.ColumnTemplateExtender Is Nothing Then
@@ -608,11 +691,27 @@ Public Class MvvmDataGrid
         'Tag zum identifizieren der Spalte setzen
         newWpfColumn.SetValue(MvvmDataGrid.GridColumnProperty, newColumn)
 
+        If IsFilteringEnabled Then
+            If TypeOf newWpfColumn Is DataGridTextColumn Then
+                newWpfColumn.HeaderStyle = CType(WpfDataGridViewWrapper.InnerDataGridView.FindResource("DataGridColumnHeaderStyle"), Style)
+            End If
+        End If
+
         'Und dem internen DataGrid hinzufuegen
         Me.WpfDataGridViewWrapper.InnerDataGridView.Columns.Add(newWpfColumn)
 
         If Not MyBase.DesignMode AndAlso _mySettings IsNot Nothing Then
             _mySettings.ColumnDefinitions.Add(New ColumnDefinition() With {.DisplayIndex = newWpfColumn.DisplayIndex, .Name = newColumn.Name, .Width = newWpfColumn.Width.ToString()})
+        End If
+
+        If Not DesignMode Then
+            DependencyPropertyDescriptor.FromProperty(DataGridColumn.WidthProperty,
+                                                                                              GetType(DataGridColumn)).AddValueChanged(newWpfColumn,
+                                                                                                                                       Sub(s, e)
+                                                                                                                                           If _isInitialized Then
+                                                                                                                                               UpdateAllColumnDefs()
+                                                                                                                                           End If
+                                                                                                                                       End Sub)
         End If
     End Sub
 
@@ -755,8 +854,11 @@ Public Class MvvmDataGrid
                 e.Handled = True
                 Me.EnterAction.Invoke()
             End If
-        End If
 
+            If IsFilteringEnabled AndAlso WpfDataGridViewWrapper.InnerDataGridView.SelectedItem Is Nothing Then
+                e.Handled = True
+            End If
+        End If
     End Sub
 
     ''' <summary>
@@ -791,7 +893,9 @@ Public Class MvvmDataGrid
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub InnerDataGridView_LayoutUpdated(sender As Object, e As EventArgs)
-        UpdateAllColumnDefs()
+        If IsFilteringEnabled AndAlso Not MyBase.DesignMode Then
+            UpdateFilterAddons()
+        End If
     End Sub
 
     ''' <summary>
@@ -808,7 +912,6 @@ Public Class MvvmDataGrid
                     columnDef.SortMemberPath = .SortMemberPath
                     columnDef.Width = .Width.ToString()
                 End With
-
             Next
         End If
     End Sub
@@ -849,8 +952,15 @@ Public Class MvvmDataGrid
 
     End Sub
 
+    ''' <summary>
+    ''' Refresh:
+    ''' </summary>
     Public Sub EndInit() Implements ISupportInitialize.EndInit
-        'If Not _isInitialized Then Initialize()
+        Dim c = Columns.ToList()
+
+        Columns.Clear()
+
+        c.ForEach(Sub(itm) Columns.Add(itm))
     End Sub
 
     Private _myParent As Forms.Control
@@ -907,7 +1017,6 @@ Public Class MvvmDataGrid
                                             .SortDirection = column.SortDirection
                                             .SortMemberPath = column.SortMemberPath
                                             If Not String.IsNullOrEmpty(column.Width) Then .Width = DirectCast(converter.ConvertFromString(column.Width), DataGridLength)
-
                                         End With
 
                                         matchedColumns.Add(column.Name)
@@ -954,6 +1063,214 @@ Public Class MvvmDataGrid
     ''' <param name="item"></param>
     Public Sub ScrollIntoView(item As Object)
         Me.WpfDataGridViewWrapper.InnerDataGridView.ScrollIntoView(item)
+    End Sub
+
+    ''' <summary>
+    ''' Liefert en Spaltenkopf von einer Spalte (Da UI-Visualisierung im Grid selber gemacht wird, gibt es keine direkte Referenz)
+    ''' </summary>
+    ''' <param name="column"></param>
+    ''' <param name="reference"></param>
+    ''' <returns></returns>
+    Private Function GetHeader(column As DataGridColumn, reference As DependencyObject) As Primitives.DataGridColumnHeader
+        For i As Integer = 0 To Media.VisualTreeHelper.GetChildrenCount(reference) - 1
+            Dim child As DependencyObject = Media.VisualTreeHelper.GetChild(reference, i)
+
+            Dim colHeader As DataGridColumnHeader = TryCast(child, DataGridColumnHeader)
+            If (colHeader IsNot Nothing) AndAlso (colHeader.Column Is column) Then
+                Return colHeader
+            End If
+
+            colHeader = GetHeader(column, child)
+            If colHeader IsNot Nothing Then
+                Return colHeader
+            End If
+        Next
+
+        Return Nothing
+    End Function
+
+    ''' <summary>
+    ''' Aktualisiert -wenn eingeschaltet- die Filter-UI für die Spaltenköpfe
+    ''' </summary>
+    Private Sub UpdateFilterAddons()
+        Dim style = CType(WpfDataGridViewWrapper.InnerDataGridView.FindResource("DataGridColumnHeaderStyle"), Style)
+
+        For Each c In Columns
+
+            'Filteraddons pflegen
+            If TypeOf c.WpfColumn Is DataGridTextColumn AndAlso Not c.IsFilterInitialized Then
+                For Each setter As Setter In style.Setters
+                    If setter.Property Is DataGridColumnHeader.TemplateProperty Then
+                        Dim value = DirectCast(setter.Value, ControlTemplate)
+                        Dim header = GetHeader(c.WpfColumn, WpfDataGridViewWrapper.InnerDataGridView)
+                        Dim column = c
+
+                        Try
+                            If header IsNot Nothing Then
+                                Dim btn = DirectCast(value.FindName("PART_FilterButton", header), wpf.Button)
+                                Dim tb = DirectCast(value.FindName("PART_FilterTextBox", header), wpf.TextBox)
+                                Dim isClosedByTB As Boolean = False
+
+                                AddHandler btn.Click, Sub(s, e)
+                                                          If isClosedByTB Then
+                                                              isClosedByTB = False
+                                                              Return
+                                                          End If
+
+                                                          If tb.Visibility = Visibility.Visible Then
+                                                              tb.Visibility = Visibility.Hidden
+                                                              btn.Content = "  "
+                                                              ResetFilter()
+                                                          Else
+                                                              CloseAllFilter()
+                                                              tb.Visibility = Visibility.Visible
+                                                              btn.Content = "  "
+                                                              tb.Focus()
+                                                          End If
+                                                      End Sub
+
+                                AddHandler tb.KeyUp, Sub(s, e)
+                                                         If e.Key = Key.Enter Then
+                                                             'Filter anwenden
+                                                             FilterColumn(tb.Text, column.BoundPropertyInfo)
+                                                         End If
+                                                     End Sub
+
+                                AddHandler tb.GotFocus, Sub(s, e)
+                                                            WpfDataGridViewWrapper.InnerDataGridView.SelectedItem = Nothing
+                                                        End Sub
+
+                                AddHandler tb.LostFocus, Sub(s, e)
+                                                             If String.IsNullOrWhiteSpace(tb.Text) Then
+                                                                 tb.Visibility = Visibility.Hidden
+                                                                 btn.Content = "  "
+                                                                 tb.Text = String.Empty
+                                                                 ResetFilter()
+                                                             End If
+                                                         End Sub
+
+                                AddHandler btn.PreviewMouseDown, Sub(s, e)
+                                                                     If tb.IsFocused AndAlso String.IsNullOrWhiteSpace(tb.Text) Then
+                                                                         isClosedByTB = True
+                                                                     End If
+                                                                 End Sub
+
+                                c.IsFilterInitialized = True
+                            End If
+                        Catch ex As InvalidOperationException
+                            TraceError("Fehler beim Laden der Filter-Controls einer Spalte")
+                        End Try
+                    End If
+                Next
+            End If
+        Next
+    End Sub
+
+    ''' <summary>
+    ''' Schließt alle eventuell geöffneten Filteraddons
+    ''' </summary>
+    Private Sub CloseAllFilter()
+        Dim style = CType(WpfDataGridViewWrapper.InnerDataGridView.FindResource("DataGridColumnHeaderStyle"), Style)
+
+        For Each c In Columns
+
+            'Filteraddons pflegen
+            If TypeOf c.WpfColumn Is DataGridTextColumn Then
+                For Each setter As Setter In style.Setters
+                    If setter.Property Is DataGridColumnHeader.TemplateProperty Then
+                        Dim value = DirectCast(setter.Value, ControlTemplate)
+                        Dim header = GetHeader(c.WpfColumn, WpfDataGridViewWrapper.InnerDataGridView)
+
+                        Dim btn = DirectCast(value.FindName("PART_FilterButton", header), wpf.Button)
+                        Dim tb = DirectCast(value.FindName("PART_FilterTextBox", header), wpf.TextBox)
+
+                        tb.Text = String.Empty
+                        tb.Visibility = Visibility.Hidden
+                        btn.Content = "  "
+                    End If
+                Next
+            End If
+        Next
+    End Sub
+
+    ''' <summary>
+    ''' Setzt den Filter in der CVS zurück
+    ''' </summary>
+    Private Sub ResetFilter()
+        _collectionView.Filter = Nothing
+    End Sub
+
+    ''' <summary>
+    ''' Filtert eine Spalte
+    ''' </summary>
+    ''' <param name="filterString"></param>
+    ''' <param name="prop"></param>
+    Private Sub FilterColumn(filterString As String, prop As PropertyInfo)
+        If String.IsNullOrWhiteSpace(filterString) Then
+            _collectionView.Filter = Nothing
+        Else
+            _collectionView.Filter = Function(p)
+                                         Dim suchStr = filterString
+
+                                         If prop.PropertyType = GetType(String) Then
+                                             Dim val = DirectCast(prop.GetValue(p), String)
+
+                                             Return FilterColumnValue(suchStr, val)
+                                         Else
+                                             Dim val = prop.GetValue(p).ToString()
+
+                                             Return FilterColumnValue(suchStr, val)
+                                         End If
+
+                                         Return False
+                                     End Function
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Filtert einen Wert in einer Spalte
+    ''' </summary>
+    ''' <param name="suchStr"></param>
+    ''' <param name="val"></param>
+    ''' <returns></returns>
+    Private Function FilterColumnValue(suchStr As String, val As String) As Boolean
+
+        If Not FilterCaseSensitive Then
+            suchStr = suchStr.ToLower()
+            val = val.ToLower()
+        End If
+
+        If suchStr.First = "*"c AndAlso Not suchStr.Last = "*"c Then
+            If val.EndsWith(suchStr.Trim("*"c)) Then
+                Return True
+            End If
+        ElseIf Not suchStr.First = "*"c AndAlso suchStr.Last = "*"c Then
+            If val.StartsWith(suchStr.Trim("*"c)) Then
+                Return True
+            End If
+        ElseIf suchStr.First = "*"c AndAlso suchStr.Last = "*"c Then
+            If val.Contains(suchStr.Trim("*"c)) Then
+                Return True
+            End If
+        ElseIf Not suchStr.Contains("*"c) Then
+            If suchStr = val Then
+                Return True
+            End If
+        Else
+            Return False
+        End If
+
+        Return False
+    End Function
+
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
     End Sub
 End Class
 

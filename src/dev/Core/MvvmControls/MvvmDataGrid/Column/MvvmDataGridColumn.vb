@@ -39,16 +39,27 @@ Public Class MvvmDataGridColumn
         Me.Name = NewColumnName
     End Sub
 
-    Private _propertyBindings As New PropertyBindings
+    Private _textWrapping As TextWrapping = TextWrapping.NoWrap
 
     ''' <summary>
-    ''' Hier werden die Bindungen fuer eine Zelle gespeichert
+    ''' Definiert ob der Text in der Spalte umgebrochen werden soll
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    <Category("MVVM"), Editor(GetType(ColumnBindingsUITypeEditor), GetType(UITypeEditor)),
- DesignerSerializationVisibility(DesignerSerializationVisibility.Content)>
+    <Category("Column")>
+    Public Property TextWrapping As TextWrapping
+        Get
+            Return _textWrapping
+        End Get
+        Set(ByVal value As TextWrapping)
+            _textWrapping = value
+        End Set
+    End Property
+
+    Private _propertyBindings As New PropertyBindings()
+
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Content)>
     Public Property PropertyCellBindings As PropertyBindings
         Get
             Return _propertyBindings
@@ -451,6 +462,15 @@ Public Class MvvmDataGridColumn
                 textcolumn.FontWeight = If(Me.Font.Bold, System.Windows.FontWeights.Bold, System.Windows.FontWeights.Regular)
                 textcolumn.FontStyle = If(Me.Font.Italic, System.Windows.FontStyles.Italic, System.Windows.FontStyles.Normal)
                 textcolumn.FontSize = Font.Size
+            End If
+
+            'MultiLine
+            If TextWrapping <> TextWrapping.NoWrap Then
+                textcolumn.ElementStyle.Setters.Add(New Setter(TextBlock.TextWrappingProperty, TextWrapping))
+                textcolumn.ElementStyle.Setters.Add(New Setter(TextBlock.TextAlignmentProperty, TextAlignment.Center))
+
+                textcolumn.EditingElementStyle.Setters.Add(New Setter(Controls.TextBox.TextWrappingProperty, TextWrapping))
+                textcolumn.EditingElementStyle.Setters.Add(New Setter(Controls.TextBox.TextAlignmentProperty, TextAlignment.Center))
             End If
         End If
 
@@ -1018,7 +1038,22 @@ Public Class MvvmDataGridColumn
     <Browsable(False)>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
     <Category("Column")>
-    Public Property ColumnTemplateExtender As IMvvmColumnTemplateExtender
+    Friend Property ColumnTemplateExtender As IMvvmColumnTemplateExtender
+
+    <Browsable(False)>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
+    <Category("Column")>
+    Friend Property BoundPropertyInfo As PropertyInfo
+
+    <Browsable(False)>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
+    <Category("Column")>
+    Friend Property IsFilteringEnabled As Boolean
+
+    <Browsable(False)>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
+    <Category("Column")>
+    Friend Property IsFilterInitialized As Boolean = False
 
     Private Function ShouldSerializeColumnTemplateExtender() As Boolean
         Return False
