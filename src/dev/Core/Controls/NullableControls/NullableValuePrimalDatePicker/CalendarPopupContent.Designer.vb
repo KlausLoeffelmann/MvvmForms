@@ -23,8 +23,8 @@ Partial Class CalendarPopupContent
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.btnSetDateToNull = New System.Windows.Forms.Button()
         Me.lblDate = New System.Windows.Forms.Label()
+        Me.btnSetDateToNull = New System.Windows.Forms.Button()
         Me.Calendar = New ActiveDevelop.EntitiesFormsLib.MonthCalendarEx()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
@@ -39,9 +39,21 @@ Partial Class CalendarPopupContent
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 164)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(255, 24)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(203, 24)
         Me.TableLayoutPanel1.TabIndex = 0
+        '
+        'lblDate
+        '
+        Me.lblDate.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblDate.AutoEllipsis = True
+        Me.lblDate.BackColor = System.Drawing.Color.White
+        Me.lblDate.Location = New System.Drawing.Point(53, 2)
+        Me.lblDate.Name = "lblDate"
+        Me.lblDate.Size = New System.Drawing.Size(136, 19)
+        Me.lblDate.TabIndex = 5
+        Me.lblDate.Text = "Mo, 31. Sep. 2009"
+        Me.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnSetDateToNull
         '
@@ -57,23 +69,11 @@ Partial Class CalendarPopupContent
         Me.btnSetDateToNull.TabIndex = 6
         Me.btnSetDateToNull.UseVisualStyleBackColor = True
         '
-        'lblDate
-        '
-        Me.lblDate.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.lblDate.AutoEllipsis = True
-        Me.lblDate.BackColor = System.Drawing.Color.White
-        Me.lblDate.Location = New System.Drawing.Point(85, 2)
-        Me.lblDate.Name = "lblDate"
-        Me.lblDate.Size = New System.Drawing.Size(136, 19)
-        Me.lblDate.TabIndex = 5
-        Me.lblDate.Text = "Mo, 31. Sep. 2009"
-        Me.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'Calendar
         '
         Me.Calendar.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Calendar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Calendar.Location = New System.Drawing.Point(3, 2)
+        Me.Calendar.Location = New System.Drawing.Point(2, 2)
         Me.Calendar.Margin = New System.Windows.Forms.Padding(0)
         Me.Calendar.Name = "Calendar"
         Me.Calendar.ShowWeekNumbers = True
@@ -88,7 +88,7 @@ Partial Class CalendarPopupContent
         Me.Controls.Add(Me.Calendar)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Name = "CalendarPopupContent"
-        Me.Size = New System.Drawing.Size(255, 191)
+        Me.Size = New System.Drawing.Size(205, 191)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
