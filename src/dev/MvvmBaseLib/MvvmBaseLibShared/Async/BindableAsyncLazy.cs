@@ -45,6 +45,24 @@ namespace ActiveDevelop.MvvmBaseLib
 		}
 
         /// <summary>
+        /// Resets an instance completely.
+        /// </summary>
+        public void Reset()
+        {
+            DefaultValue = default(t);
+        }
+
+
+        /// <summary>
+        /// Resets an instance back to a new default and an unloaded actual value.
+        /// </summary>
+        /// <param name="newDefaultValue"></param>
+        public void Reset(t newDefaultValue)
+        {
+            DefaultValue = newDefaultValue;
+        }
+
+        /// <summary>
         /// The actual Value of the property. First reading returns the default value, and triggers loading the actual value asynchronously.
         /// </summary>
         public t Value
@@ -90,7 +108,7 @@ namespace ActiveDevelop.MvvmBaseLib
         {
             get { return myIsLoaded; }
 
-            set
+            internal set
             {
                 if (!object.Equals(myIsLoaded, value))
                 {
@@ -206,14 +224,16 @@ namespace ActiveDevelop.MvvmBaseLib
 				if (!(object.Equals(myDefaultValue, value)))
 				{
 					myDefaultValue = value;
+                    
 					lock (mySyncLockObject)
 					{
 						IsLoaded = false;
+                        myValue = default(t);
 						myHasBeenCalled = false;
 					}
                     OnDefaultValueChanged();
+                    OnValueChanged();
 				}
-
 			}
 		}
 

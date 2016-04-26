@@ -442,8 +442,8 @@ Partial Class frmMvvmPropertyAssignmentEx
     Friend WithEvents nvrConverters As ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents BindingSettingPopup As BindingSettingPopup
-    Friend WithEvents Label6 As Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents ViewModelPropertiesTreeView As BindableTreeView
     Friend WithEvents ViewModelPropertyComboBox As ViewModelPropertyComboBox
-    Friend WithEvents TableLayoutPanel3 As Windows.Forms.TableLayoutPanel
+    Friend WithEvents TableLayoutPanel3 As System.Windows.Forms.TableLayoutPanel
 End Class

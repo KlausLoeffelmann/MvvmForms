@@ -94,8 +94,8 @@ Partial Class CalendarPopupContent
 
     End Sub
 
-    Friend WithEvents TableLayoutPanel1 As Windows.Forms.TableLayoutPanel
-    Friend WithEvents lblDate As Windows.Forms.Label
-    Friend WithEvents btnSetDateToNull As Windows.Forms.Button
+    Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents lblDate As System.Windows.Forms.Label
+    Friend WithEvents btnSetDateToNull As System.Windows.Forms.Button
     Friend WithEvents Calendar As MonthCalendarEx
 End Class

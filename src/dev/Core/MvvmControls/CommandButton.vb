@@ -26,12 +26,12 @@ Public Class CommandButton
         Set(ByVal value As ICommand)
             If Not Object.Equals(value, myCommand) Then
                 If myCommand IsNot Nothing Then
-                    Windows.WeakEventManager(Of ICommand, EventArgs).RemoveHandler(
+                    System.Windows.WeakEventManager(Of ICommand, EventArgs).RemoveHandler(
                         myCommand, "CanExecuteChanged", AddressOf OnCommandCanExecuteChanged)
                 End If
                 myCommand = value
                 If myCommand IsNot Nothing Then
-                    Windows.WeakEventManager(Of ICommand, EventArgs).AddHandler(
+                    System.Windows.WeakEventManager(Of ICommand, EventArgs).AddHandler(
                         myCommand, "CanExecuteChanged", AddressOf OnCommandCanExecuteChanged)
 
                 End If

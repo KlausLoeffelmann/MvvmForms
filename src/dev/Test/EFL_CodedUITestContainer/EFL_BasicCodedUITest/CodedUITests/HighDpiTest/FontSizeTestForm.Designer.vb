@@ -59,6 +59,6 @@ Partial Class FontSizeTestForm
     End Sub
 
     Friend WithEvents MvvmManager1 As ActiveDevelop.EntitiesFormsLib.MvvmManager
-    Friend WithEvents Label1 As Windows.Forms.Label
-    Friend WithEvents Button1 As Windows.Forms.Button
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

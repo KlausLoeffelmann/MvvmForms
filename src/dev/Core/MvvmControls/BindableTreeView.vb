@@ -203,7 +203,7 @@ Public Class BindableTreeView
     Private Sub RefreshTree()
 
         For Each list In _notifyLists.GetLists.ToList()
-            Windows.WeakEventManager(Of INotifyCollectionChanged, NotifyCollectionChangedEventArgs).RemoveHandler(
+            System.Windows.WeakEventManager(Of INotifyCollectionChanged, NotifyCollectionChangedEventArgs).RemoveHandler(
                            DirectCast(list, INotifyCollectionChanged), "CollectionChanged", AddressOf DataSource_CollectionChanged)
             _notifyLists.Remove(list)
         Next
@@ -296,7 +296,7 @@ Public Class BindableTreeView
             'Liste Schmeisst Event
             Dim notifyList = DirectCast(subItems, INotifyCollectionChanged)
 
-            Windows.WeakEventManager(Of INotifyCollectionChanged, NotifyCollectionChangedEventArgs).AddHandler(
+            System.Windows.WeakEventManager(Of INotifyCollectionChanged, NotifyCollectionChangedEventArgs).AddHandler(
                    notifyList, "CollectionChanged", AddressOf DataSource_CollectionChanged)
             _notifyLists.Add(subItems, node)
         End If
@@ -360,7 +360,7 @@ Public Class BindableTreeView
     Private Sub RemoveAllChilds(node As DataTreeNode)
         Dim nodeList = GetChilds(node.DataItem, node.Level)
         If nodeList IsNot Nothing Then
-            Windows.WeakEventManager(Of INotifyCollectionChanged, NotifyCollectionChangedEventArgs).RemoveHandler(
+            System.Windows.WeakEventManager(Of INotifyCollectionChanged, NotifyCollectionChangedEventArgs).RemoveHandler(
                        DirectCast(nodeList, INotifyCollectionChanged), "CollectionChanged", AddressOf DataSource_CollectionChanged)
             _notifyLists.Remove(nodeList, node)
 
@@ -373,7 +373,7 @@ Public Class BindableTreeView
                     If list IsNot Nothing AndAlso _notifyLists.ContainsKey(list) Then
                         RemoveAllChilds(subNode)
 
-                        Windows.WeakEventManager(Of INotifyCollectionChanged, NotifyCollectionChangedEventArgs).RemoveHandler(
+                        System.Windows.WeakEventManager(Of INotifyCollectionChanged, NotifyCollectionChangedEventArgs).RemoveHandler(
                            DirectCast(list, INotifyCollectionChanged), "CollectionChanged", AddressOf DataSource_CollectionChanged)
 
                         If _notifyLists.ContainsKey(list) Then
