@@ -82,7 +82,7 @@ Partial Class ObservableCollectionTestForm
 
     End Sub
 
-    Friend WithEvents ListBox1 As Windows.Forms.ListBox
+    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents MvvmManager1 As MvvmManager
     Friend WithEvents CommandButton1 As CommandButton
 End Class

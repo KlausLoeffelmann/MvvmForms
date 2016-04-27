@@ -113,7 +113,7 @@ Public Class ViewModelPropertyComboBox
         End If
     End Sub
 
-    Protected Overrides Sub OnInnerSelectedItemChanged(e As Windows.Controls.SelectionChangedEventArgs)
+    Protected Overrides Sub OnInnerSelectedItemChanged(e As System.Windows.Controls.SelectionChangedEventArgs)
         If SelectedItem IsNot Nothing Then
             If PreviousItem IsNot SelectedItem Then
                 OnSelectedItemChanged(e)
