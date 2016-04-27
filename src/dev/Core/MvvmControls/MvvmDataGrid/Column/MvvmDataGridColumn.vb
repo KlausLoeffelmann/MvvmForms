@@ -467,10 +467,8 @@ Public Class MvvmDataGridColumn
             'MultiLine
             If TextWrapping <> TextWrapping.NoWrap Then
                 textcolumn.ElementStyle.Setters.Add(New Setter(TextBlock.TextWrappingProperty, TextWrapping))
-                textcolumn.ElementStyle.Setters.Add(New Setter(TextBlock.TextAlignmentProperty, TextAlignment.Center))
 
                 textcolumn.EditingElementStyle.Setters.Add(New Setter(Controls.TextBox.TextWrappingProperty, TextWrapping))
-                textcolumn.EditingElementStyle.Setters.Add(New Setter(Controls.TextBox.TextAlignmentProperty, TextAlignment.Center))
             End If
         End If
 
@@ -1053,7 +1051,12 @@ Public Class MvvmDataGridColumn
     <Browsable(False)>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
     <Category("Column")>
-    Friend Property IsFilterInitialized As Boolean = False
+    Friend Property FilterButton As Controls.Button
+
+    <Browsable(False)>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
+    <Category("Column")>
+    Friend Property FilterTextBox As Controls.TextBox
 
     Private Function ShouldSerializeColumnTemplateExtender() As Boolean
         Return False

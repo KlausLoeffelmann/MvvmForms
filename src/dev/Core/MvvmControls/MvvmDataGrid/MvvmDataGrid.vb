@@ -29,6 +29,8 @@ Public Class MvvmDataGrid
     ''' <remarks></remarks>
     Private _isColumnDisplayIndexUpdating As Boolean
     Private _collectionView As ICollectionView ' Bei eingeschaltener Filterung wird die CollectionView verwendet
+    Private Const FILTER_BUTTON_CONTENT_VISIBLE As String = "  "
+    Private Const FILTER_BUTTON_CONTENT_HIDDEN As String = "  "
 
     Public Sub New()
 
@@ -154,6 +156,19 @@ Public Class MvvmDataGrid
 
                 OnCanUserAddRowsChanged(EventArgs.Empty)
             End If
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Gets or sets a value that indicates whether the user can sort columns by clicking the column header.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property CanUserSortColumns As Boolean
+        Get
+            Return Me.WpfDataGridViewWrapper.InnerDataGridView.CanUserSortColumns
+        End Get
+        Set(ByVal value As Boolean)
+            Me.WpfDataGridViewWrapper.InnerDataGridView.CanUserSortColumns = value
         End Set
     End Property
 
@@ -691,7 +706,7 @@ Public Class MvvmDataGrid
         'Tag zum identifizieren der Spalte setzen
         newWpfColumn.SetValue(MvvmDataGrid.GridColumnProperty, newColumn)
 
-        If IsFilteringEnabled Then
+        If IsFilteringEnabled AndAlso newColumn.BoundPropertyInfo IsNot Nothing Then
             If TypeOf newWpfColumn Is DataGridTextColumn Then
                 newWpfColumn.HeaderStyle = CType(WpfDataGridViewWrapper.InnerDataGridView.FindResource("DataGridColumnHeaderStyle"), Style)
             End If
@@ -797,12 +812,17 @@ Public Class MvvmDataGrid
             'Bei ReadOnly-Props oder Nicht-Primitiven, nicht-nullable-Properties soll 
             'standardmäßig nur OneWay gebunden werden. Hier müsste der Entwickler einen
             'Konverter implementieren, um TwoWay zu binden.
-            If prop.CanWrite Or prop.PropertyType.IsPrimitive Or
+
+            If Not prop.CanWrite OrElse Not prop.PropertyType.IsPrimitive OrElse
                     (prop.PropertyType.IsGenericType AndAlso
-                    (prop.PropertyType.GetGenericTypeDefinition Is GetType(Nullable(Of )))) Then
-                bindingSetting.BindingMode = MvvmBindingModes.TwoWay
+                    prop.PropertyType.GetGenericTypeDefinition Is GetType(Nullable(Of ))) Then
+                If prop.PropertyType Is GetType(String) Then
+                    bindingSetting.BindingMode = MvvmBindingModes.TwoWay
+                Else
+                    bindingSetting.BindingMode = MvvmBindingModes.OneWay
+                End If
             Else
-                bindingSetting.BindingMode = MvvmBindingModes.OneWay
+                bindingSetting.BindingMode = MvvmBindingModes.TwoWay
             End If
 
             binding.BindingSetting = bindingSetting
@@ -1098,7 +1118,7 @@ Public Class MvvmDataGrid
         For Each c In Columns
 
             'Filteraddons pflegen
-            If TypeOf c.WpfColumn Is DataGridTextColumn AndAlso Not c.IsFilterInitialized Then
+            If TypeOf c.WpfColumn Is DataGridTextColumn AndAlso c.BoundPropertyInfo IsNot Nothing Then
                 For Each setter As Setter In style.Setters
                     If setter.Property Is DataGridColumnHeader.TemplateProperty Then
                         Dim value = DirectCast(setter.Value, ControlTemplate)
@@ -1111,51 +1131,28 @@ Public Class MvvmDataGrid
                                 Dim tb = DirectCast(value.FindName("PART_FilterTextBox", header), wpf.TextBox)
                                 Dim isClosedByTB As Boolean = False
 
-                                AddHandler btn.Click, Sub(s, e)
-                                                          If isClosedByTB Then
-                                                              isClosedByTB = False
-                                                              Return
-                                                          End If
+                                If c.FilterButton IsNot btn OrElse c.FilterTextBox IsNot tb Then
+                                    If c.FilterButton IsNot Nothing Then
+                                        RemoveHandler c.FilterButton.Click, AddressOf FilterButton_Click
+                                        RemoveHandler c.FilterButton.PreviewMouseDown, AddressOf FilterButton_PreviewMouseDown
+                                    End If
 
-                                                          If tb.Visibility = Visibility.Visible Then
-                                                              tb.Visibility = Visibility.Hidden
-                                                              btn.Content = "  "
-                                                              ResetFilter()
-                                                          Else
-                                                              CloseAllFilter()
-                                                              tb.Visibility = Visibility.Visible
-                                                              btn.Content = "  "
-                                                              tb.Focus()
-                                                          End If
-                                                      End Sub
+                                    If c.FilterTextBox IsNot Nothing Then
+                                        RemoveHandler c.FilterTextBox.KeyUp, AddressOf FilterTextBox_KeyUp
+                                        RemoveHandler c.FilterTextBox.GotFocus, AddressOf FilterTextBox_GotFocus
+                                        RemoveHandler c.FilterTextBox.LostFocus, AddressOf FilterTextBox_LostFocus
+                                    End If
 
-                                AddHandler tb.KeyUp, Sub(s, e)
-                                                         If e.Key = Key.Enter Then
-                                                             'Filter anwenden
-                                                             FilterColumn(tb.Text, column.BoundPropertyInfo)
-                                                         End If
-                                                     End Sub
+                                    c.FilterButton = btn
+                                    c.FilterTextBox = tb
 
-                                AddHandler tb.GotFocus, Sub(s, e)
-                                                            WpfDataGridViewWrapper.InnerDataGridView.SelectedItem = Nothing
-                                                        End Sub
+                                    AddHandler c.FilterButton.Click, AddressOf FilterButton_Click
+                                    AddHandler c.FilterButton.PreviewMouseDown, AddressOf FilterButton_PreviewMouseDown
+                                    AddHandler c.FilterTextBox.KeyUp, AddressOf FilterTextBox_KeyUp
+                                    AddHandler c.FilterTextBox.GotFocus, AddressOf FilterTextBox_GotFocus
+                                    AddHandler c.FilterTextBox.LostFocus, AddressOf FilterTextBox_LostFocus
+                                End If
 
-                                AddHandler tb.LostFocus, Sub(s, e)
-                                                             If String.IsNullOrWhiteSpace(tb.Text) Then
-                                                                 tb.Visibility = Visibility.Hidden
-                                                                 btn.Content = "  "
-                                                                 tb.Text = String.Empty
-                                                                 ResetFilter()
-                                                             End If
-                                                         End Sub
-
-                                AddHandler btn.PreviewMouseDown, Sub(s, e)
-                                                                     If tb.IsFocused AndAlso String.IsNullOrWhiteSpace(tb.Text) Then
-                                                                         isClosedByTB = True
-                                                                     End If
-                                                                 End Sub
-
-                                c.IsFilterInitialized = True
                             End If
                         Catch ex As InvalidOperationException
                             TraceError("Fehler beim Laden der Filter-Controls einer Spalte")
@@ -1165,6 +1162,68 @@ Public Class MvvmDataGrid
             End If
         Next
     End Sub
+
+    Private _isFilterClosedByTB As wpf.TextBox = Nothing
+
+    Private Sub FilterButton_PreviewMouseDown(sender As Object, e As MouseButtonEventArgs)
+        Dim btn = DirectCast(sender, wpf.Button)
+        Dim column = Columns.Where(Function(c) c.FilterButton Is btn).SingleOrDefault()
+
+        If column IsNot Nothing Then
+            If column.FilterTextBox.IsFocused AndAlso String.IsNullOrWhiteSpace(column.FilterTextBox.Text) Then
+                _isFilterClosedByTB = column.FilterTextBox
+            End If
+        End If
+
+    End Sub
+
+    Private Sub FilterButton_Click(sender As Object, e As RoutedEventArgs)
+        Dim btn = DirectCast(sender, wpf.Button)
+        Dim column = Columns.Where(Function(c) c.FilterButton Is btn).SingleOrDefault()
+
+        If _isFilterClosedByTB IsNot Nothing AndAlso column.FilterTextBox Is _isFilterClosedByTB Then
+            _isFilterClosedByTB = Nothing
+            Return
+        End If
+
+        If column.FilterTextBox.Visibility = Visibility.Visible Then
+            column.FilterTextBox.Visibility = Visibility.Hidden
+            btn.Content = FILTER_BUTTON_CONTENT_VISIBLE
+            ResetFilter()
+        Else
+            CloseAllFilter()
+            column.FilterTextBox.Visibility = Visibility.Visible
+            btn.Content = FILTER_BUTTON_CONTENT_HIDDEN
+            column.FilterTextBox.Focus()
+        End If
+    End Sub
+
+    Private Sub FilterTextBox_LostFocus(sender As Object, e As RoutedEventArgs)
+        Dim tb = DirectCast(sender, wpf.TextBox)
+        Dim column = Columns.Where(Function(c) c.FilterTextBox Is tb).SingleOrDefault()
+
+        If String.IsNullOrWhiteSpace(tb.Text) Then
+            tb.Visibility = Visibility.Hidden
+            column.FilterButton.Content = FILTER_BUTTON_CONTENT_VISIBLE
+            tb.Text = String.Empty
+            ResetFilter()
+        End If
+    End Sub
+
+    Private Sub FilterTextBox_GotFocus(sender As Object, e As RoutedEventArgs)
+        WpfDataGridViewWrapper.InnerDataGridView.SelectedItem = Nothing
+    End Sub
+
+    Private Sub FilterTextBox_KeyUp(sender As Object, e As Input.KeyEventArgs)
+        Dim tb = DirectCast(sender, wpf.TextBox)
+        Dim column = Columns.Where(Function(c) c.FilterTextBox Is tb).SingleOrDefault()
+
+        If e.Key = Key.Enter Then
+            'Filter anwenden
+            FilterColumn(tb.Text, column.BoundPropertyInfo)
+        End If
+    End Sub
+
 
     ''' <summary>
     ''' Schließt alle eventuell geöffneten Filteraddons
@@ -1176,19 +1235,11 @@ Public Class MvvmDataGrid
 
             'Filteraddons pflegen
             If TypeOf c.WpfColumn Is DataGridTextColumn Then
-                For Each setter As Setter In style.Setters
-                    If setter.Property Is DataGridColumnHeader.TemplateProperty Then
-                        Dim value = DirectCast(setter.Value, ControlTemplate)
-                        Dim header = GetHeader(c.WpfColumn, WpfDataGridViewWrapper.InnerDataGridView)
-
-                        Dim btn = DirectCast(value.FindName("PART_FilterButton", header), wpf.Button)
-                        Dim tb = DirectCast(value.FindName("PART_FilterTextBox", header), wpf.TextBox)
-
-                        tb.Text = String.Empty
-                        tb.Visibility = Visibility.Hidden
-                        btn.Content = "  "
-                    End If
-                Next
+                If c.FilterTextBox IsNot Nothing AndAlso c.FilterButton IsNot Nothing Then
+                    c.FilterTextBox.Text = String.Empty
+                    c.FilterTextBox.Visibility = Visibility.Hidden
+                    c.FilterButton.Content = FILTER_BUTTON_CONTENT_VISIBLE
+                End If
             End If
         Next
     End Sub
@@ -1197,7 +1248,10 @@ Public Class MvvmDataGrid
     ''' Setzt den Filter in der CVS zurück
     ''' </summary>
     Private Sub ResetFilter()
-        _collectionView.Filter = Nothing
+        If _collectionView IsNot Nothing Then
+            _collectionView.Filter = Nothing
+
+        End If
     End Sub
 
     ''' <summary>
@@ -1206,24 +1260,26 @@ Public Class MvvmDataGrid
     ''' <param name="filterString"></param>
     ''' <param name="prop"></param>
     Private Sub FilterColumn(filterString As String, prop As PropertyInfo)
-        If String.IsNullOrWhiteSpace(filterString) Then
-            _collectionView.Filter = Nothing
-        Else
-            _collectionView.Filter = Function(p)
-                                         Dim suchStr = filterString
+        If _collectionView IsNot Nothing Then
+            If String.IsNullOrWhiteSpace(filterString) Then
+                _collectionView.Filter = Nothing
+            Else
+                _collectionView.Filter = Function(p)
+                                             Dim suchStr = filterString
 
-                                         If prop.PropertyType = GetType(String) Then
-                                             Dim val = DirectCast(prop.GetValue(p), String)
+                                             If prop.PropertyType = GetType(String) Then
+                                                 Dim val = DirectCast(prop.GetValue(p), String)
 
-                                             Return FilterColumnValue(suchStr, val)
-                                         Else
-                                             Dim val = prop.GetValue(p).ToString()
+                                                 Return FilterColumnValue(suchStr, val)
+                                             Else
+                                                 Dim val = prop.GetValue(p).ToString()
 
-                                             Return FilterColumnValue(suchStr, val)
-                                         End If
+                                                 Return FilterColumnValue(suchStr, val)
+                                             End If
 
-                                         Return False
-                                     End Function
+                                             Return False
+                                         End Function
+            End If
         End If
     End Sub
 
@@ -1234,6 +1290,9 @@ Public Class MvvmDataGrid
     ''' <param name="val"></param>
     ''' <returns></returns>
     Private Function FilterColumnValue(suchStr As String, val As String) As Boolean
+        If val Is Nothing Then
+            Return False
+        End If
 
         If Not FilterCaseSensitive Then
             suchStr = suchStr.ToLower()
