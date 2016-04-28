@@ -1187,7 +1187,7 @@ Public Class MvvmDataGrid
         End If
 
         If column.FilterTextBox.Visibility = Visibility.Visible Then
-            column.FilterTextBox.Visibility = Visibility.Hidden
+            column.FilterTextBox.Visibility = Visibility.Collapsed
             btn.Content = FILTER_BUTTON_CONTENT_VISIBLE
             ResetFilter()
         Else
@@ -1203,7 +1203,7 @@ Public Class MvvmDataGrid
         Dim column = Columns.Where(Function(c) c.FilterTextBox Is tb).SingleOrDefault()
 
         If String.IsNullOrWhiteSpace(tb.Text) Then
-            tb.Visibility = Visibility.Hidden
+            tb.Visibility = Visibility.Collapsed
             column.FilterButton.Content = FILTER_BUTTON_CONTENT_VISIBLE
             tb.Text = String.Empty
             ResetFilter()
@@ -1237,7 +1237,7 @@ Public Class MvvmDataGrid
             If TypeOf c.WpfColumn Is DataGridTextColumn Then
                 If c.FilterTextBox IsNot Nothing AndAlso c.FilterButton IsNot Nothing Then
                     c.FilterTextBox.Text = String.Empty
-                    c.FilterTextBox.Visibility = Visibility.Hidden
+                    c.FilterTextBox.Visibility = Visibility.Collapsed
                     c.FilterButton.Content = FILTER_BUTTON_CONTENT_VISIBLE
                 End If
             End If
