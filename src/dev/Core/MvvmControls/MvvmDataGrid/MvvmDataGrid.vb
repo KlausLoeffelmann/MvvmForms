@@ -1216,11 +1216,11 @@ Public Class MvvmDataGrid
 
     Private Sub FilterTextBox_KeyUp(sender As Object, e As Input.KeyEventArgs)
         Dim tb = DirectCast(sender, wpf.TextBox)
-        Dim column = Columns.Where(Function(c) c.FilterTextBox Is tb).SingleOrDefault()
+        Dim c = Columns.Where(Function(col) col.FilterTextBox Is tb).SingleOrDefault()
 
         If e.Key = Key.Enter Then
             'Filter anwenden
-            FilterColumn(tb.Text, column.BoundPropertyInfo)
+            FilterColumn(tb.Text, c)
         End If
     End Sub
 
@@ -1258,23 +1258,35 @@ Public Class MvvmDataGrid
     ''' Filtert eine Spalte
     ''' </summary>
     ''' <param name="filterString"></param>
-    ''' <param name="prop"></param>
-    Private Sub FilterColumn(filterString As String, prop As PropertyInfo)
+    ''' <param name="column"></param>
+    Private Sub FilterColumn(filterString As String, column As MvvmDataGridColumn)
         If _collectionView IsNot Nothing Then
             If String.IsNullOrWhiteSpace(filterString) Then
                 _collectionView.Filter = Nothing
             Else
                 _collectionView.Filter = Function(p)
                                              Dim suchStr = filterString
+                                             Dim prop = column.BoundPropertyInfo
+                                             Dim binding = column.PropertyCellBindings.Where(Function(pb) pb.ControlProperty.PropertyName = "Content").SingleOrDefault()
 
-                                             If prop.PropertyType = GetType(String) Then
-                                                 Dim val = DirectCast(prop.GetValue(p), String)
+                                             If binding IsNot Nothing AndAlso binding.Converter IsNot Nothing Then
+                                                 Dim val = prop.GetValue(p)
+                                                 Dim converter = DirectCast(Activator.CreateInstance(binding.Converter), IValueConverter)
+                                                 Dim convertedValue = converter.Convert(val, GetType(String), binding.ConverterParameter, Globalization.CultureInfo.CurrentCulture).ToString()
 
-                                                 Return FilterColumnValue(suchStr, val)
+                                                 'mit converter
+                                                 Return FilterColumnValue(suchStr, convertedValue)
                                              Else
-                                                 Dim val = prop.GetValue(p).ToString()
+                                                 If prop.PropertyType = GetType(String) Then
+                                                     Dim val = DirectCast(prop.GetValue(p), String)
 
-                                                 Return FilterColumnValue(suchStr, val)
+                                                     Return FilterColumnValue(suchStr, val)
+                                                 Else
+
+                                                     Dim val = prop.GetValue(p).ToString()
+
+                                                     Return FilterColumnValue(suchStr, val)
+                                                 End If
                                              End If
 
                                              Return False
