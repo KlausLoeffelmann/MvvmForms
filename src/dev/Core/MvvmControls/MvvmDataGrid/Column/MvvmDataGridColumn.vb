@@ -59,7 +59,12 @@ Public Class MvvmDataGridColumn
 
     Private _propertyBindings As New PropertyBindings()
 
-    <DesignerSerializationVisibility(DesignerSerializationVisibility.Content)>
+    ''' <summary>
+    ''' Hier werden die Bindungen fuer eine Zelle gespeichert
+    ''' </summary>
+    ''' <returns></returns>
+    <Category("MVVM"), Editor(GetType(ColumnBindingsUITypeEditor), GetType(UITypeEditor)),
+ DesignerSerializationVisibility(DesignerSerializationVisibility.Content)>
     Public Property PropertyCellBindings As PropertyBindings
         Get
             Return _propertyBindings
