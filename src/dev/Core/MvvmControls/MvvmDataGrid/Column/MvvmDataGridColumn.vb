@@ -1051,6 +1051,11 @@ Public Class MvvmDataGridColumn
     <Browsable(False)>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
     <Category("Column")>
+    Friend Property FilterConverterInstance As IValueConverter
+
+    <Browsable(False)>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
+    <Category("Column")>
     Friend Property IsFilteringEnabled As Boolean
 
     <Browsable(False)>

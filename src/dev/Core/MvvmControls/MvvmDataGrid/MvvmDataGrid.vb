@@ -678,12 +678,16 @@ Public Class MvvmDataGrid
 
         If IsFilteringEnabled Then
             If newColumn.DataSourceType IsNot Nothing AndAlso newColumn.PropertyCellBindings IsNot Nothing Then
-                Dim vmprop = newColumn.PropertyCellBindings.Where(Function(p) p.ControlProperty.PropertyName = "Content").Select(Function(p) p.ViewModelProperty).SingleOrDefault()
+                Dim binding = newColumn.PropertyCellBindings.Where(Function(p) p.ControlProperty.PropertyName = "Content").SingleOrDefault()
 
-                If vmprop IsNot Nothing Then
-                    Dim propdef = newColumn.DataSourceType.GetProperty(vmprop.PropertyName)
+                If binding IsNot Nothing AndAlso binding.ViewModelProperty IsNot Nothing Then
+                    Dim propdef = newColumn.DataSourceType.GetProperty(binding.ViewModelProperty.PropertyName)
 
                     newColumn.BoundPropertyInfo = propdef
+
+                    If binding.Converter IsNot Nothing Then
+                        newColumn.FilterConverterInstance = DirectCast(Activator.CreateInstance(binding.Converter), IValueConverter)
+                    End If
                 End If
             End If
         End If
@@ -1269,10 +1273,9 @@ Public Class MvvmDataGrid
                                              Dim prop = column.BoundPropertyInfo
                                              Dim binding = column.PropertyCellBindings.Where(Function(pb) pb.ControlProperty.PropertyName = "Content").SingleOrDefault()
 
-                                             If binding IsNot Nothing AndAlso binding.Converter IsNot Nothing Then
+                                             If binding IsNot Nothing AndAlso binding.Converter IsNot Nothing AndAlso column.FilterConverterInstance IsNot Nothing Then
                                                  Dim val = prop.GetValue(p)
-                                                 Dim converter = DirectCast(Activator.CreateInstance(binding.Converter), IValueConverter)
-                                                 Dim convertedValue = converter.Convert(val, GetType(String), binding.ConverterParameter, Globalization.CultureInfo.CurrentCulture).ToString()
+                                                 Dim convertedValue = column.FilterConverterInstance.Convert(val, GetType(String), binding.ConverterParameter, Globalization.CultureInfo.CurrentCulture).ToString()
 
                                                  'mit converter
                                                  Return FilterColumnValue(suchStr, convertedValue)
