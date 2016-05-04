@@ -1238,23 +1238,26 @@ Public Class MvvmDataGrid
         For Each c In Columns
 
             'Filteraddons pflegen
-            If TypeOf c.WpfColumn Is DataGridTextColumn Then
-                If c.FilterTextBox IsNot Nothing AndAlso c.FilterButton IsNot Nothing Then
-                    c.FilterTextBox.Text = String.Empty
-                    c.FilterTextBox.Visibility = Visibility.Collapsed
-                    c.FilterButton.Content = FILTER_BUTTON_CONTENT_VISIBLE
-                End If
-            End If
+            ClearColumn(c)
         Next
+    End Sub
+
+    Private Sub ClearColumn(c As MvvmDataGridColumn)
+        If TypeOf c.WpfColumn Is DataGridTextColumn Then
+            If c.FilterTextBox IsNot Nothing AndAlso c.FilterButton IsNot Nothing Then
+                c.FilterTextBox.Text = String.Empty
+                c.FilterTextBox.Visibility = Visibility.Collapsed
+                c.FilterButton.Content = FILTER_BUTTON_CONTENT_VISIBLE
+            End If
+        End If
     End Sub
 
     ''' <summary>
     ''' Setzt den Filter in der CVS zurück
     ''' </summary>
     Private Sub ResetFilter()
-        If _collectionView IsNot Nothing Then
+        If _collectionView IsNot Nothing AndAlso _collectionView.Filter IsNot Nothing Then
             _collectionView.Filter = Nothing
-
         End If
     End Sub
 
@@ -1268,32 +1271,37 @@ Public Class MvvmDataGrid
             If String.IsNullOrWhiteSpace(filterString) Then
                 _collectionView.Filter = Nothing
             Else
-                _collectionView.Filter = Function(p)
-                                             Dim suchStr = filterString
-                                             Dim prop = column.BoundPropertyInfo
-                                             Dim binding = column.PropertyCellBindings.Where(Function(pb) pb.ControlProperty.PropertyName = "Content").SingleOrDefault()
+                Try
+                    _collectionView.Filter = Function(p)
+                                                 Dim suchStr = filterString
+                                                 Dim prop = column.BoundPropertyInfo
+                                                 Dim binding = column.PropertyCellBindings.Where(Function(pb) pb.ControlProperty.PropertyName = "Content").SingleOrDefault()
 
-                                             If binding IsNot Nothing AndAlso binding.Converter IsNot Nothing AndAlso column.FilterConverterInstance IsNot Nothing Then
-                                                 Dim val = prop.GetValue(p)
-                                                 Dim convertedValue = column.FilterConverterInstance.Convert(val, GetType(String), binding.ConverterParameter, Globalization.CultureInfo.CurrentCulture).ToString()
+                                                 If binding IsNot Nothing AndAlso binding.Converter IsNot Nothing AndAlso column.FilterConverterInstance IsNot Nothing Then
+                                                     Dim val = prop.GetValue(p)
+                                                     Dim convertedValue = column.FilterConverterInstance.Convert(val, GetType(String), binding.ConverterParameter, Globalization.CultureInfo.CurrentCulture).ToString()
 
-                                                 'mit converter
-                                                 Return FilterColumnValue(suchStr, convertedValue)
-                                             Else
-                                                 If prop.PropertyType = GetType(String) Then
-                                                     Dim val = DirectCast(prop.GetValue(p), String)
-
-                                                     Return FilterColumnValue(suchStr, val)
+                                                     'mit converter
+                                                     Return FilterColumnValue(suchStr, convertedValue)
                                                  Else
+                                                     If prop.PropertyType = GetType(String) Then
+                                                         Dim val = DirectCast(prop.GetValue(p), String)
 
-                                                     Dim val = prop.GetValue(p).ToString()
+                                                         Return FilterColumnValue(suchStr, val)
+                                                     Else
 
-                                                     Return FilterColumnValue(suchStr, val)
+                                                         Dim val = prop.GetValue(p).ToString()
+
+                                                         Return FilterColumnValue(suchStr, val)
+                                                     End If
                                                  End If
-                                             End If
 
-                                             Return False
-                                         End Function
+                                                 Return False
+                                             End Function
+                Catch ex As InvalidOperationException
+                    Forms.MessageBox.Show(ex.Message, "Fehler beim Filtern", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    ClearColumn(column)
+                End Try
             End If
         End If
     End Sub
