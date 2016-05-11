@@ -1278,11 +1278,16 @@ Public Class MvvmDataGrid
                                                  Dim binding = column.PropertyCellBindings.Where(Function(pb) pb.ControlProperty.PropertyName = "Content").SingleOrDefault()
 
                                                  If binding IsNot Nothing AndAlso binding.Converter IsNot Nothing AndAlso column.FilterConverterInstance IsNot Nothing Then
-                                                     Dim val = prop.GetValue(p)
-                                                     Dim convertedValue = column.FilterConverterInstance.Convert(val, GetType(String), binding.ConverterParameter, Globalization.CultureInfo.CurrentCulture).ToString()
-
                                                      'mit converter
-                                                     Return FilterColumnValue(suchStr, convertedValue)
+
+                                                     Dim val = prop.GetValue(p)
+                                                     Dim convertedValue = column.FilterConverterInstance.Convert(val, GetType(String), binding.ConverterParameter, Globalization.CultureInfo.CurrentCulture)
+
+                                                     If convertedValue IsNot Nothing Then
+                                                         Return FilterColumnValue(suchStr, convertedValue.ToString())
+                                                     Else
+                                                         Return FilterColumnValue(suchStr, Nothing)
+                                                     End If
                                                  Else
                                                      If prop.PropertyType = GetType(String) Then
                                                          Dim val = DirectCast(prop.GetValue(p), String)
@@ -1290,9 +1295,13 @@ Public Class MvvmDataGrid
                                                          Return FilterColumnValue(suchStr, val)
                                                      Else
 
-                                                         Dim val = prop.GetValue(p).ToString()
+                                                         Dim val = prop.GetValue(p)
 
-                                                         Return FilterColumnValue(suchStr, val)
+                                                         If val IsNot Nothing Then
+                                                             Return FilterColumnValue(suchStr, val.ToString())
+                                                         Else
+                                                             Return FilterColumnValue(suchStr, Nothing)
+                                                         End If
                                                      End If
                                                  End If
 
