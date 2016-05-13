@@ -456,7 +456,7 @@
     <Compile Include="Controls\NullableControls\NullableValuePrimalDatePicker\NullableValuePrimalDatePicker.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\NullableControls\NullableValueRelationPopup.vb">
+    <Compile Include="Controls\NullableControls\NullableRelationPopup\NullableValueRelationPopup.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\BaseAndHelperControls\NullableValuePrimalTextBox.vb">
@@ -511,6 +511,7 @@
     <Compile Include="Controls\TestClass.vb" />
     <Compile Include="Designers\NullableValueBaseDesigner.vb" />
     <Compile Include="EventArgsClasses\GetEditedValueEventArgs.vb" />
+    <Compile Include="Exceptions\BindableDataGridLayoutException.vb" />
     <Compile Include="Exceptions\ContainsUIMessageException.vb" />
     <Compile Include="Exceptions\MissingDatafieldNameException.vb" />
     <Compile Include="Exceptions\MissingObjectContextException.vb" />

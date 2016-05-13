@@ -47,6 +47,13 @@ Public Class BindableDataGridView
     Public Event GetColumnSchema(ByVal sender As Object, ByVal e As GetColumnSchemaEventArgs)
 
     ''' <summary>
+    ''' Raised, if ThrowLayoutException is set to false and there was an exception on auto-layouting the BindableDataGrid.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Public Event BindableGridLayoutException(sender As Object, e As EventArgs)
+
+    ''' <summary>
     ''' Wird ausgelöst, wenn sich der Wert im Steuerelement geändert hat, um einen einbindenden Formular oder 
     ''' User Control die Möglichkeit zu geben, den Benutzer zu informieren, dass er Änderungen speichern muss.
     ''' </summary>
@@ -113,17 +120,25 @@ Public Class BindableDataGridView
 
                                                    For Each column As DataGridViewColumn In Me.Columns
                                                        If e2.SchemaFieldnames.Contains(column.Name) Then
-                                                           column.HeaderText = e2.SchemaFieldnames(column.Name).DisplayName
-                                                           column.DisplayIndex = e2.SchemaFieldnames(column.Name).OrdinalNo
-                                                           column.AutoSizeMode = e2.SchemaFieldnames(column.Name).AutoSizeColumnMode
-                                                           If e2.SchemaFieldnames(column.Name).FillWeight > 0 Then
-                                                               column.FillWeight = e2.SchemaFieldnames(column.Name).FillWeight
-                                                               Me.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-                                                           End If
-                                                           If e2.SchemaFieldnames(column.Name).FixedWidth.HasValue Then
-                                                               column.Width = e2.SchemaFieldnames(column.Name).FixedWidth.Value
-                                                               column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-                                                           End If
+                                                           Try
+                                                               column.HeaderText = e2.SchemaFieldnames(column.Name).DisplayName
+                                                               column.DisplayIndex = e2.SchemaFieldnames(column.Name).OrdinalNo
+                                                               column.AutoSizeMode = e2.SchemaFieldnames(column.Name).AutoSizeColumnMode
+                                                               If e2.SchemaFieldnames(column.Name).FillWeight > 0 Then
+                                                                   column.FillWeight = e2.SchemaFieldnames(column.Name).FillWeight
+                                                                   Me.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                                                               End If
+                                                               If e2.SchemaFieldnames(column.Name).FixedWidth.HasValue Then
+                                                                   column.Width = e2.SchemaFieldnames(column.Name).FixedWidth.Value
+                                                                   column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+                                                               End If
+                                                           Catch ex As Exception
+                                                               Dim bdgEx As New BindableDataGridLayoutException("Layouting the DataGrid caused an internal exception." & vbNewLine &
+                                                                                                                "Please check, if you've handeled the BindableDataGrid's GetColumnSchema event correctly!",
+                                                                                                                e2.SchemaFieldnames(column.Name).FixedWidth,
+                                                                                                                ex)
+                                                               OnBindableDataGridLayoutException(bdgEx)
+                                                           End Try
                                                        Else
                                                            column.Visible = False
                                                            'column.DisplayIndex = Me.Columns.Count - column.DisplayIndex
@@ -131,6 +146,17 @@ Public Class BindableDataGridView
                                                    Next
                                                End If
                                            End Sub
+    End Sub
+
+    Protected Overridable Sub OnBindableDataGridLayoutException(ex As BindableDataGridLayoutException)
+        If ThrowLayoutException Then
+            If ex IsNot Nothing Then
+                Throw ex
+            End If
+        Else
+            Dim layoutExceptionArgs As New BindableDataGridLayoutExceptionEventArgs(ex)
+            RaiseEvent BindableGridLayoutException(Me, layoutExceptionArgs)
+        End If
     End Sub
 
     Protected Overrides Sub OnHandleCreated(ByVal e As System.EventArgs)
@@ -821,6 +847,12 @@ Public Class BindableDataGridView
         End Get
     End Property
 
+    ''' <summary>
+    ''' Gets or sets if exceptions which are occuring while layouting the DataGrid are thrown.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property ThrowLayoutException As Boolean = True
+
     <DefaultValue(GetType(UnassignableValueAction), "TryHandleUnassignableValueDetectedEvent")>
     Public Property OnUnassignableValueAction As UnassignableValueAction
 
@@ -1002,3 +1034,4 @@ Public Enum UnassignableValueAction
     SelectFirstInList = 8
     SelectFirstInListThenThrowException = 9
 End Enum
+

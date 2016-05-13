@@ -100,6 +100,13 @@ Public Class NullableValueRelationPopup
     End Function
 
     ''' <summary>
+    ''' Raised, if ThrowLayoutException is set to false and there was an exception on auto-layouting the BindableDataGrid.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Public Event GridLayoutException(sender As Object, e As EventArgs)
+
+    ''' <summary>
     ''' Wird ausgelöst, wenn der Anwender den Text ändert, der zur Suche des Eintrages in der Liste 
     ''' oder zur Textbestimmung bei PreserveInput = true verwendet wird.
     ''' </summary>
@@ -315,6 +322,13 @@ Public Class NullableValueRelationPopup
                                 myOldSelectedValue = Me.myDataGridForm.BindableDataGridView.Value
                                 OnSelectedValueChanged(e)
                             End If
+                        End Sub)
+
+        System.Windows.WeakEventManager(Of BindableDataGridView, BindableDataGridLayoutExceptionEventArgs).AddHandler(
+            Me.myDataGridForm.BindableDataGridView,
+            NameOf(BindableDataGridView.BindableGridLayoutException),
+                        Sub(sender As Object, e As BindableDataGridLayoutExceptionEventArgs)
+                            RaiseEvent GridLayoutException(Me, e)
                         End Sub)
 
         System.Windows.WeakEventManager(Of ResizablePopup, EventArgs).AddHandler(
@@ -2440,6 +2454,24 @@ Public Class NullableValueRelationPopup
         End Get
         Set(value As DataGridViewAutoSizeRowsMode)
             BindableDataGridView.AutoSizeRowsMode = value
+        End Set
+    End Property
+
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
+     EditorBrowsable(EditorBrowsableState.Advanced),
+     Browsable(False)>
+    Public Property ThrowLayoutException As Boolean
+        Get
+            If myDataGridForm IsNot Nothing Then
+                Return myDataGridForm.BindableDataGridView.ThrowLayoutException
+            Else
+                Return False
+            End If
+        End Get
+        Set(value As Boolean)
+            If myDataGridForm IsNot Nothing Then
+                myDataGridForm.BindableDataGridView.ThrowLayoutException = value
+            End If
         End Set
     End Property
 End Class
