@@ -16,7 +16,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+
             <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -37,7 +37,58 @@
                                         <TextBox x:Name="PART_FilterTextBox" Visibility="Hidden" HorizontalAlignment="Stretch"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
-                                        <Button Grid.Column="1" HorizontalAlignment="Right" x:Name="PART_FilterButton" Margin="5,0,0,0" Content="  " FontFamily="Segoe MDL2 Assets"/>
+                                        <Button Grid.Column="1" Width="20" HorizontalAlignment="Right" x:Name="PART_FilterButton" Margin="5,0,0,0">
+                                            <Button.Resources>
+                                                <Viewbox x:Key="AddFilterIcon" Stretch="Uniform">
+                                                    <Canvas Width="36" Height="30">
+                                                        <Canvas.Resources>
+                                                            <LinearGradientBrush x:Key="linearGradient4162" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,1">
+                                                                <LinearGradientBrush.GradientStops>
+                                                                    <GradientStopCollection>
+                                                                        <GradientStop Color="#FF000000" Offset="0"/>
+                                                                    </GradientStopCollection>
+                                                                </LinearGradientBrush.GradientStops>
+                                                            </LinearGradientBrush>
+                                                            <LinearGradientBrush x:Key="linearGradient4166" MappingMode="Absolute" StartPoint="2,15" EndPoint="34,15">
+                                                                <LinearGradientBrush.GradientStops>
+                                                                    <GradientStopCollection>
+                                                                        <GradientStop Color="#FF000000" Offset="0"/>
+                                                                    </GradientStopCollection>
+                                                                </LinearGradientBrush.GradientStops>
+                                                            </LinearGradientBrush>
+                                                        </Canvas.Resources>
+                                                        <Canvas>
+                                                            <Path Fill="{StaticResource linearGradient4166}" StrokeThickness="1" Stroke="#FF000000" StrokeMiterLimit="4" StrokeLineJoin="Miter" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" Opacity="1">
+                                                                <Path.Data>
+                                                                    <PathGeometry Figures="m 1.9753759 1.999502 c 4.0803322 3.8340005 8.1606561 7.6679929 12.2409871 11.501993 0 4.967116 0 9.934231 0 14.901346 2.522425 -1.576514 5.044849 -3.153031 7.567274 -4.729545 0 -3.3906 0 -6.7812 0 -10.171801 4.080323 -3.8340001 8.160654 -7.6679925 12.240987 -11.501993 -10.683089 0 -21.366168 0 -32.0492397 0 z m 1.78179 0.840808 c 9.4952191 0 18.9904411 0 28.4856601 0 -3.766661 3.4530052 -7.533328 6.9060107 -11.299998 10.359016 0 3.335864 0 6.671727 0 10.007584 -1.961891 1.226174 -3.923773 2.452358 -5.885656 3.678534 0 -4.562039 0 -9.12408 0 -13.686118 C 11.290502 9.7463207 7.5238346 6.2933152 3.7571659 2.84031 Z" FillRule="nonzero"/>
+                                                                </Path.Data>
+                                                            </Path>
+                                                        </Canvas>
+                                                    </Canvas>
+                                                </Viewbox>
+
+                                                <Viewbox x:Key="RemoveFilterIcon" Stretch="Uniform">
+                                                    <Canvas Width="36" Height="30">
+                                                        <Canvas.Resources>
+                                                            <LinearGradientBrush x:Key="linearGradient4162" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,1">
+                                                                <LinearGradientBrush.GradientStops>
+                                                                    <GradientStopCollection>
+                                                                        <GradientStop Color="#FF000000" Offset="0"/>
+                                                                    </GradientStopCollection>
+                                                                </LinearGradientBrush.GradientStops>
+                                                            </LinearGradientBrush>
+                                                        </Canvas.Resources>
+                                                        <Canvas/>
+                                                        <Path Fill="#FF121313">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="m 19.031802 14.913076 8.239 -8.1940003 c 0.395 -0.391 0.395 -1.024 0 -1.414 -0.394 -0.391 -1.034 -0.391 -1.428 0 l -8.232 8.1870003 -8.3080002 -8.3090003 c -0.394 -0.395 -1.034 -0.395 -1.428 0 -0.394 0.396 -0.394 1.037 0 1.432 l 8.3020002 8.3030003 -8.3320002 8.286 c -0.394 0.391 -0.394 1.024 0 1.414 0.394 0.391 1.034 0.391 1.428 0 l 8.3250002 -8.279 8.275 8.276 c 0.394 0.395 1.034 0.395 1.428 0 0.394 -0.396 0.394 -1.037 0 -1.432 l -8.269 -8.27 z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                    </Canvas>
+                                                </Viewbox>
+
+                                            </Button.Resources>
+                                        </Button>
 
                                     </Grid>
 

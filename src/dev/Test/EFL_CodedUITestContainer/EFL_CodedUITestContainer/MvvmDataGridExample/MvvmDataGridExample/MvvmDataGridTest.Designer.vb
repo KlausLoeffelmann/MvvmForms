@@ -54,7 +54,7 @@ Partial Class MvvmDataGridTest
         BuchungenDataGrid_ColumnNr.ColumnHeaderPadding = New System.Windows.Forms.Padding(10)
         BuchungenDataGrid_ColumnNr.Name = "ColumnNr"
         BuchungenDataGrid_ColumnNr.ColumnType = ActiveDevelop.EntitiesFormsLib.ColumnType.TextAndNumbers
-        BuchungenDataGrid_ColumnNr.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        BuchungenDataGrid_ColumnNr.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         BuchungenDataGrid_ColumnPrio.TextWrapping = System.Windows.TextWrapping.NoWrap
         BuchungenDataGrid_ColumnPrio.DataSourceType = GetType(EFL_CodedUITestContainer.Buchung)
         BuchungenDataGrid_ColumnPrio.FontWeight = System.Windows.FontWeight.FromOpenTypeWeight(400)

@@ -23,6 +23,10 @@ Imports System.Windows.Controls.Primitives
 Public Class MvvmDataGridColumn
     Implements IMvvmManager
 
+    Private _filterButton As Controls.Button
+    Private _filterButtonAddFilterIcon As Viewbox
+    Private _filterButtonRemoveFilterIcon As Viewbox
+
     Shared Sub New()
         _bindingMappings = New Dictionary(Of String, System.Action(Of DataGridColumn, System.Windows.Data.Binding))
         AddBindingMappings()
@@ -1062,11 +1066,30 @@ Public Class MvvmDataGridColumn
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
     <Category("Column")>
     Friend Property FilterButton As Controls.Button
+        Get
+            Return _filterButton
+        End Get
+        Set(ByVal value As Controls.Button)
+            _filterButton = value
+            _filterButtonAddFilterIcon = CType(value.FindResource("AddFilterIcon"), Viewbox)
+            _filterButtonRemoveFilterIcon = CType(value.FindResource("RemoveFilterIcon"), Viewbox)
+            value.Content = _filterButtonAddFilterIcon
+        End Set
+    End Property
+
 
     <Browsable(False)>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
     <Category("Column")>
     Friend Property FilterTextBox As Controls.TextBox
+
+    Friend Sub AddFilterButton()
+        FilterButton.Content = _filterButtonAddFilterIcon
+    End Sub
+
+    Friend Sub RemoveFilterButton()
+        FilterButton.Content = _filterButtonRemoveFilterIcon
+    End Sub
 
     Private Function ShouldSerializeColumnTemplateExtender() As Boolean
         Return False
