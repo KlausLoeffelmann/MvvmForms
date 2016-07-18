@@ -29,8 +29,6 @@ Public Class MvvmDataGrid
     ''' <remarks></remarks>
     Private _isColumnDisplayIndexUpdating As Boolean
     Private _collectionView As ICollectionView ' Bei eingeschaltener Filterung wird die CollectionView verwendet
-    Private Const FILTER_BUTTON_CONTENT_VISIBLE As String = "  "
-    Private Const FILTER_BUTTON_CONTENT_HIDDEN As String = "  "
 
     Public Sub New()
 
@@ -1192,12 +1190,12 @@ Public Class MvvmDataGrid
 
         If column.FilterTextBox.Visibility = Visibility.Visible Then
             column.FilterTextBox.Visibility = Visibility.Collapsed
-            btn.Content = FILTER_BUTTON_CONTENT_VISIBLE
+            column.AddFilterButton()
             ResetFilter()
         Else
             CloseAllFilter()
             column.FilterTextBox.Visibility = Visibility.Visible
-            btn.Content = FILTER_BUTTON_CONTENT_HIDDEN
+            column.RemoveFilterButton()
             column.FilterTextBox.Focus()
         End If
     End Sub
@@ -1208,7 +1206,7 @@ Public Class MvvmDataGrid
 
         If String.IsNullOrWhiteSpace(tb.Text) Then
             tb.Visibility = Visibility.Collapsed
-            column.FilterButton.Content = FILTER_BUTTON_CONTENT_VISIBLE
+            column.AddFilterButton()
             tb.Text = String.Empty
             ResetFilter()
         End If
@@ -1247,7 +1245,7 @@ Public Class MvvmDataGrid
             If c.FilterTextBox IsNot Nothing AndAlso c.FilterButton IsNot Nothing Then
                 c.FilterTextBox.Text = String.Empty
                 c.FilterTextBox.Visibility = Visibility.Collapsed
-                c.FilterButton.Content = FILTER_BUTTON_CONTENT_VISIBLE
+                c.AddFilterButton()
             End If
         End If
     End Sub
