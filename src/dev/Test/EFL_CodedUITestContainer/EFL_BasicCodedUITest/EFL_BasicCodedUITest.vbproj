@@ -156,6 +156,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
+    <Compile Include="UnitTests\Calculator\SimpleCalcTests.vb" />
     <Compile Include="UnitTests\FormulaEvalTest.vb" />
     <Compile Include="UnitTests\ObservableCollectionBindingListAdapterTest.vb" />
     <Compile Include="CodedUITests\BasicFunctionTest.vb" />

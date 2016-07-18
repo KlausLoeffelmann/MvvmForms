@@ -17,6 +17,7 @@ Public Class NullableNumValue
     Private myCurrencySymbolUpFront As Boolean
     Private myAllowFormular As Boolean
     Private myLeadingZeros As Integer
+    Private myCalculatorPopup As ResizablePopup      ' wir halten das Popup des Calculators
 
     Private Const DEFAULT_MAX_VALUE_EXCEEDED_MESSAGE As String = "Der eingegebenene Wert überschreitet das Maximum!"
     Private Const DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE As String = "Der eingegebene Wert unterschreitet das Minimum!"
@@ -99,6 +100,20 @@ Public Class NullableNumValue
             End Sub
     End Sub
 
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
+
+        'Console.WriteLine("keyData= {0}, (Keys.Control And Keys.R) = {1}", keyData, (Keys.Control Or Keys.R))
+        If (DropDownCalculatorTrigger = CalculatorActivationTrigger.Strg_R AndAlso keyData = (Keys.Control Or Keys.R)) OrElse
+            (DropDownCalculatorTrigger = CalculatorActivationTrigger.Cursor_UpOrDown AndAlso (keyData = Keys.Down OrElse keyData = Keys.Up)) Then
+
+            If DropDownCalculatorMode = CalculatorType.Simple Then
+                ToggleCalculator()
+                Return True
+            End If
+        End If
+        Return MyBase.ProcessCmdKey(msg, keyData)
+    End Function
+
     Private Sub myReadOnlyChanged(sender As Object, e As EventArgs)
         MyBase.ValueControl.Enabled = Not Me.ReadOnly
     End Sub
@@ -108,6 +123,8 @@ Public Class NullableNumValue
         HasThousandsSeperator = True
         CurrencySymbolString = ""
         AllowFormular = True
+        DropDownCalculatorMode = CalculatorType.None
+        DropDownCalculatorTrigger = CalculatorActivationTrigger.None
     End Sub
 
     Protected Overrides Function IsMultiLineControl() As Boolean
@@ -454,4 +471,220 @@ Public Class NullableNumValue
     Private Sub ResetMinValueExceededMessage()
         MinValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMinValueExceededMessage(Me, DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE)
     End Sub
+
+    ''' <summary>
+    ''' Bestimmt ob und welcher Taschenrechner in dem Control angezeigt werden kann
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Bestimmt ob und welcher Taschenrechner in dem Control angezeigt werden kann"),
+     Category("Verhalten"),
+     EditorBrowsable(EditorBrowsableState.Advanced),
+     Browsable(True), DefaultValue(CalculatorType.None)>
+    Public Property DropDownCalculatorMode As CalculatorType
+
+    ''' <summary>
+    ''' Bestimmt wie der Taschenrechner angezeigt werden kann
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Bestimmt wie der Taschenrechner angezeigt werden kann"),
+     Category("Verhalten"),
+     EditorBrowsable(EditorBrowsableState.Advanced),
+     Browsable(True), DefaultValue(CalculatorActivationTrigger.None)>
+    Public Property DropDownCalculatorTrigger As CalculatorActivationTrigger
+
+
+
+    ''' <summary>
+    ''' Zeigt den Taschenrechner an oder blendet ihn aus, wenn er bereits angezeigt wird
+    ''' </summary>
+    Public Sub ToggleCalculator()
+        Dim calcWin As SimpleCalculator = Nothing
+        If myCalculatorPopup Is Nothing Then
+            myCalculatorPopup = New ResizablePopup
+            calcWin = New SimpleCalculator
+            calcWin.UseBuildInCalcResultWindow = False
+            myCalculatorPopup.PopupContentControl = calcWin
+        End If
+        If myCalculatorPopup.IsOpen Then
+            ' das RemoveHandler wird  in der Funktion PopupClosing durchgeführt
+            myCalculatorPopup.ClosePopup()
+        Else
+            Dim val As Decimal = 0
+            ' vor dem verdrahten der Events erst mal gucken, ob ein gültiger Wert als input für den Taschenrechner vorhanden ist
+            Try
+                Dim tmpVal = Me.Value
+                If tmpVal.HasValue Then
+                    val = tmpVal.Value
+                End If
+            Catch aoore As ArgumentOutOfRangeException
+                ' es ist nur min/max falsch
+                ' den Wert können wir trotzdem übernehmen
+                Debug.WriteLine(aoore.Message)
+                Try
+                    'Debug.WriteLine("Text:" & Me.TextBoxPart.Text)
+                    Dim valEngine = New NullableNumValueFormatterEngine(0, "", "")
+                    Dim tmpVal = valEngine.ConvertToValue(Me.TextBoxPart.Text)
+                    If tmpVal.HasValue Then val = tmpVal.Value
+                    'Console.WriteLine("Val: {0}" , val)
+                Catch ex As Exception
+                    ' scheint doch ein anderes problem zu sein
+                    Debug.WriteLine(ex.Message)
+                    Return
+                End Try
+            End Try
+
+
+            AddHandler Me.TextBoxPart.KeyDown, AddressOf ResendAndSupressKeys
+            AddHandler Me.TextBoxPart.KeyUp, AddressOf SupressKeys
+            calcWin = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
+            AddHandler calcWin.SetResult, AddressOf SetResult
+            AddHandler myCalculatorPopup.PopupClosing, AddressOf PopupClosing
+            AddHandler myCalculatorPopup.PopupCloseRequested, AddressOf PopupCloseRequested
+
+            Dim upDown = FindNullableValuePrimalUpDownControl()
+            If upDown IsNot Nothing Then
+                upDown.Enabled = False
+            End If
+
+
+            'AddHandler Me.TextBoxPart.EnabledChanged, Sub(x, y)
+            '                                              Dim a = 5
+            '                                          End Sub
+            'Me.ValueControl.Enabled = False
+            'Me.TextBoxPart.Enabled = True
+            'Me.ValueControl.Visible = False
+
+            SimpleCalculator.HideCaret(Me.TextBoxPart)
+
+
+            calcWin.SetInitialValue(val)
+            myCalculatorPopup.OpenPopup(Me)
+        End If
+    End Sub
+
+    Private Sub ResendAndSupressKeys(sender As Object, e As KeyEventArgs)
+        If myCalculatorPopup Is Nothing OrElse Not myCalculatorPopup.IsOpen Then Return     ' das haette nicht passieren sollen
+        Dim calc = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
+        calc.ProcessKeyDown(e.KeyData)
+        SupressKeys(sender, e)
+    End Sub
+    Private Sub SupressKeys(sender As Object, e As KeyEventArgs)
+        'Debug.WriteLine("SupressKeys called for KeyCode='{0}', KeyData='{1}'", e.KeyCode, e.KeyData)
+        Dim isTab = (e.KeyCode = Keys.Tab)
+        Dim isESC = (e.KeyCode = Keys.Escape)
+        If Not isESC AndAlso Not isTab Then
+            ' Tab + Esc ist für das Popup wichtig
+            ' Return behandeln wir selbst
+            e.SuppressKeyPress = True
+        End If
+    End Sub
+
+
+    Private Sub SetResult(sender As Object, e As CalculatorSetResultEventArgs)
+        If e.Action = CalculatorAction.Init OrElse
+            e.Action = CalculatorAction.ClearAll OrElse
+            e.Action = CalculatorAction.ClearEntry OrElse
+            e.Action = CalculatorAction.Operand OrElse
+            e.Action = CalculatorAction.EraseLastChar OrElse
+            e.Action = CalculatorAction.DecimalSeparator OrElse
+            e.Action = CalculatorAction.ToggleSign Then
+            Me.TextBoxPart.Text = e.Input
+        ElseIf e.Action = CalculatorAction.IntermediaryResult OrElse e.Action = CalculatorAction.FinalResult Then
+            Me.Value = e.Value
+            If e.Action = CalculatorAction.FinalResult Then
+                Dim calcWin = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
+                Try
+                    RemoveHandler calcWin.SetResult, AddressOf SetResult
+                    ToggleCalculator()
+                Finally
+                    RemoveHandler calcWin.SetResult, AddressOf SetResult
+                End Try
+                Me.TextBoxPart.SelectionLength = 0
+                Me.TextBoxPart.SelectionStart = Me.TextBoxPart.Text.Length
+
+            End If
+        End If
+    End Sub
+
+    Private Sub PopupClosing(sender As Object, e As PopupClosingEventArgs)
+        'If e.PopupCloseReason = PopupClosingReason.AppFocusChanged OrElse e.PopupCloseReason = PopupClosingReason.AppClicked Then
+        '    ' den Taschenrechner lassen wir offen
+        '    e.Cancel = True
+        '    Return
+        'End If
+        Dim calcWin = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
+        Try
+            calcWin.ForceFinalCalculation()
+        Finally
+            RemoveHandler Me.TextBoxPart.KeyDown, AddressOf ResendAndSupressKeys
+            RemoveHandler Me.TextBoxPart.KeyUp, AddressOf SupressKeys
+            RemoveHandler calcWin.SetResult, AddressOf SetResult
+            RemoveHandler myCalculatorPopup.PopupClosing, AddressOf PopupClosing
+            RemoveHandler myCalculatorPopup.PopupCloseRequested, AddressOf PopupCloseRequested
+
+            myCalculatorPopup.ClosePopupInternally(e)
+
+            SimpleCalculator.ShowCaret(Me.TextBoxPart)
+
+            Dim upDown = FindNullableValuePrimalUpDownControl()
+            If upDown IsNot Nothing Then
+                upDown.Enabled = True
+            End If
+            'Me.TextBoxPart.Enabled = False  ' konsistenten zustand wiederherstellen
+            'Me.ValueControl.Enabled = True
+
+            'Me.ValueControl.Visible = True
+        End Try
+    End Sub
+
+    Private Sub PopupCloseRequested(sender As Object, e As PopupCloseRequestedEventArgs)
+        Dim e2 As New PopupClosingEventArgs(PopupClosingReason.Keyboard,
+                                                    e.KeyCode)
+
+        If Not e2.Cancel Then
+            myCalculatorPopup.ClosePopupInternally(e2)
+        End If
+
+    End Sub
+
+    Private Function FindNullableValuePrimalUpDownControl() As UpDownButton
+        Dim x = (From item In Me.ValueControl.Controls
+                 Let titem = TryCast(item, UpDownButton)
+                 Where titem IsNot Nothing
+                 Select titem).FirstOrDefault
+        Return x
+    End Function
 End Class
+
+Public Enum CalculatorType
+    ''' <summary>
+    ''' Es steht kein Taschenrechner zur Verfügung
+    ''' </summary>
+    None
+    ''' <summary>
+    ''' Ein einfacher Taschenrechner mit den Grundrechenarten
+    ''' </summary>
+    Simple
+End Enum
+
+Public Enum CalculatorActivationTrigger
+    ''' <summary>
+    ''' Keine automatische anzeige des Taschenrechners möglich
+    ''' </summary>
+    None
+    ''' <summary>
+    ''' Anzeige des Taschenrechners über den Hotkey Strg-R (Strg C geht ja leider nicht)
+    ''' </summary>
+    Strg_R
+    ''' <summary>
+    ''' Anzeige des Taschenrechners über die Cursor Up oder Down-Taste
+    ''' </summary>
+    Cursor_UpOrDown
+
+End Enum

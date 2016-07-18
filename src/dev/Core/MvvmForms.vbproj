@@ -423,6 +423,12 @@
     <Compile Include="Controls\StandardControls\ColoredTextPanelPartial\WriterStructure.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\StandardControls\SimpleCalculator.Designer.vb">
+      <DependentUpon>SimpleCalculator.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StandardControls\SimpleCalculator.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\StandardControls\TextBoxPopup\SimplePopupContent.Designer.vb">
       <DependentUpon>SimplePopupContent.vb</DependentUpon>
     </Compile>
@@ -641,6 +647,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\NullableControls\NullableValuePrimalDatePicker\CalendarPopupContent.resx">
       <DependentUpon>CalendarPopupContent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StandardControls\SimpleCalculator.resx">
+      <DependentUpon>SimpleCalculator.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\StandardControls\TextBoxPopup\SimplePopupContent.resx">
       <DependentUpon>SimplePopupContent.vb</DependentUpon>
