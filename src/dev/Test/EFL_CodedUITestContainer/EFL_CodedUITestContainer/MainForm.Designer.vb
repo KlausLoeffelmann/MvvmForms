@@ -31,12 +31,12 @@ Partial Class MainForm
         Me.ZoomingTestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CBOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreeViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NVRPLateBindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox()
-        Me.NVRPLateBindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NullableMaskTextValue1 = New ActiveDevelop.EntitiesFormsLib.NullableMaskTextValue()
         Me.NullableIntValue1 = New ActiveDevelop.EntitiesFormsLib.NullableIntValue()
         Me.NullableNumValue1 = New ActiveDevelop.EntitiesFormsLib.NullableNumValue()
@@ -108,6 +108,12 @@ Partial Class MainForm
         Me.TreeViewToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.TreeViewToolStripMenuItem.Text = "TreeView"
         '
+        'NVRPLateBindingToolStripMenuItem
+        '
+        Me.NVRPLateBindingToolStripMenuItem.Name = "NVRPLateBindingToolStripMenuItem"
+        Me.NVRPLateBindingToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.NVRPLateBindingToolStripMenuItem.Text = "NVRP Late Binding"
+        '
         'ZoomToolStripMenuItem
         '
         Me.ZoomToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ToolStripMenuItem4})
@@ -139,12 +145,6 @@ Partial Class MainForm
         Me.MaskedTextBox1.Name = "MaskedTextBox1"
         Me.MaskedTextBox1.Size = New System.Drawing.Size(328, 26)
         Me.MaskedTextBox1.TabIndex = 9
-        '
-        'NVRPLateBindingToolStripMenuItem
-        '
-        Me.NVRPLateBindingToolStripMenuItem.Name = "NVRPLateBindingToolStripMenuItem"
-        Me.NVRPLateBindingToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.NVRPLateBindingToolStripMenuItem.Text = "NVRP Late Binding"
         '
         'NullableMaskTextValue1
         '
@@ -188,6 +188,8 @@ Partial Class MainForm
         Me.NullableNumValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.NullableNumValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
         Me.NullableNumValue1.CurrencySymbolString = Nothing
+        Me.NullableNumValue1.DropDownCalculatorMode = ActiveDevelop.EntitiesFormsLib.CalculatorType.Simple
+        Me.NullableNumValue1.DropDownCalculatorTrigger = ActiveDevelop.EntitiesFormsLib.CalculatorActivationTrigger.Strg_R
         Me.NullableNumValue1.Location = New System.Drawing.Point(42, 101)
         Me.NullableNumValue1.Margin = New System.Windows.Forms.Padding(6)
         Me.NullableNumValue1.MaxLength = 32767
@@ -257,27 +259,6 @@ Partial Class MainForm
         Me.NullableValueRelationPopup1.TabIndex = 4
         Me.NullableValueRelationPopup1.UIGuid = New System.Guid("d38add81-45e8-436d-8891-6f1770a86ca7")
         Me.NullableValueRelationPopup1.ValueMember = Nothing
-
-        Me.NullableMaskTextValue1.AssignedManagerComponent = Nothing
-        Me.NullableMaskTextValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.NullableMaskTextValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
-        Me.NullableMaskTextValue1.Location = New System.Drawing.Point(47, 248)
-        Me.NullableMaskTextValue1.MaxLength = 32767
-        Me.NullableMaskTextValue1.Name = "NullableMaskTextValue1"
-        Me.NullableMaskTextValue1.ObfuscationChar = Nothing
-        Me.NullableMaskTextValue1.PermissionReason = Nothing
-        Me.NullableMaskTextValue1.Size = New System.Drawing.Size(232, 26)
-        Me.NullableMaskTextValue1.TabIndex = 8
-        Me.NullableMaskTextValue1.UIGuid = New System.Guid("04bcd142-2b94-46ec-bb21-f7cd5a464316")
-        Me.NullableMaskTextValue1.Value = Nothing
-        Me.NullableMaskTextValue1.ValueValidationState = Nothing
-        '
-        'MaskedTextBox1
-        '
-        Me.MaskedTextBox1.Location = New System.Drawing.Point(188, 314)
-        Me.MaskedTextBox1.Name = "MaskedTextBox1"
-        Me.MaskedTextBox1.Size = New System.Drawing.Size(328, 26)
-        Me.MaskedTextBox1.TabIndex = 9
         '
         'MainForm
         '

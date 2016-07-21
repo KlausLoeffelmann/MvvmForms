@@ -328,6 +328,14 @@ Public Class MvvmDataGridColumn
                                                           BindingOperations.SetBinding(colorBrush, SolidColorBrush.ColorProperty, wpfBinding)
 
                                                           wpfColumn.CellStyle.Setters.Add(New Setter(Controls.DataGridCell.ForegroundProperty, colorBrush))
+
+                                                          'Bei aktiver selektierter Zelle soll trotz der Bindung immer weiß verwendet werden
+                                                          Dim trigger = New MultiTrigger()
+                                                          trigger.Conditions.Add(New Condition() With {.Property = Controls.DataGridCell.IsSelectedProperty, .Value = True})
+                                                          trigger.Conditions.Add(New Condition() With {.Property = Selector.IsSelectionActiveProperty, .Value = True})
+                                                          trigger.Setters.Add(New Setter(Controls.DataGridCell.ForegroundProperty, System.Windows.SystemColors.HighlightTextBrush))
+
+                                                          wpfColumn.CellStyle.Triggers.Add(trigger)
                                                       End Sub)
 
         _bindingMappings.Add(HorizontalAlignmentProperty, Sub(wpfColumn As DataGridColumn, wpfBinding As System.Windows.Data.Binding)
