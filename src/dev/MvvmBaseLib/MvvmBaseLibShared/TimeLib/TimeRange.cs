@@ -3,39 +3,38 @@ using System.Collections.Generic;
 
 namespace ActiveDevelop.MvvmBaseLib
 {
-    // <summary>
-    // Stellt Funktionalitäten für Zeitbereiche 
-    // und das Aufteilen und Abfragen von Zeitpunkten oder Zeitbereichen in Zeitbereichen zur Verfügung.
-    // </summary>
-    // 
+    /// <summary>
+    /// Stellt Funktionalitäten für Zeitbereiche 
+    /// und das Aufteilen und Abfragen von Zeitpunkten oder Zeitbereichen in Zeitbereichen zur Verfügung.
+    /// </summary>
     public class TimeRange
         : IComparable
     {
 
-        // <summary>
-        // Erstellt eine Instanz dieser Klasse aus Start- und Endzeitpunkt.
-        // </summary>
-        // <param name="startTime">Der Startzeitpunkt dieser Zeitspanne.</param>
-        // <param name="endTime">Der Endzeitpunkt dieser Zeitspanne.</param>
+        /// <summary>
+        /// Erstellt eine Instanz dieser Klasse aus Start- und Endzeitpunkt.
+        /// </summary>
+        /// <param name="startTime">Der Startzeitpunkt dieser Zeitspanne.</param>
+        /// <param name="endTime">Der Endzeitpunkt dieser Zeitspanne.</param>
         public TimeRange(DateTimeOffset? startTime, DateTimeOffset? endTime)
         {
             StartTime = startTime;
             EndTime = endTime;
         }
 
-        // <summary>
-        // Bestimmt oder ermittelt den Startzeitpunkt.
-        // </summary>
+        /// <summary>
+        /// Bestimmt oder ermittelt den Startzeitpunkt.
+        /// </summary>
         public DateTimeOffset? StartTime { get; set; }
 
-        // <summary>
-        // Bestimmt oder ermittelt den Endzeitpunkt.
-        // </summary>
+        /// <summary>
+        /// Bestimmt oder ermittelt den Endzeitpunkt.
+        /// </summary>
         public DateTimeOffset? EndTime { get; set; }
 
-        // <summary>
-        // Ermittelt die Dauer dieser Zeitspanne.
-        // </summary>
+        /// <summary>
+        /// Ermittelt die Dauer dieser Zeitspanne.
+        /// </summary>
         public TimeSpan? TimeSpan
         {
             get
@@ -44,9 +43,9 @@ namespace ActiveDevelop.MvvmBaseLib
             }
         }
 
-        // <summary>
-        // Ermittelt, ob der Endzeitpunkt vor dem Startzeitpunkt liegt.
-        // </summary>
+        /// <summary>
+        /// Ermittelt, ob der Endzeitpunkt vor dem Startzeitpunkt liegt.
+        /// </summary>
         public Boolean? IsEndTimePriorToStartTime
         {
 
@@ -61,11 +60,11 @@ namespace ActiveDevelop.MvvmBaseLib
             }
         }
 
-        // <summary>
-        // Ermittelt, ob ein Zeitpunkt innerhalb dieser Zeitspanne liegt.
-        // </summary>
-        // <param name="pointOfTime">Der Zeitpunkt, der überprüft werden soll.</param>
-        // <returns>Wahr, wenn der Zeitpunkt innerhalb dieser Zeitspanne gelegen hat, sonst falsch.</returns>
+        /// <summary>
+        /// Ermittelt, ob ein Zeitpunkt innerhalb dieser Zeitspanne liegt.
+        /// </summary>
+        /// <param name="pointOfTime">Der Zeitpunkt, der überprüft werden soll.</param>
+        /// <returns>Wahr, wenn der Zeitpunkt innerhalb dieser Zeitspanne gelegen hat, sonst falsch.</returns>
         public Boolean IsIn(DateTimeOffset pointOfTime)
         {
             if (!EndTime.HasValue || !StartTime.HasValue)
@@ -76,11 +75,11 @@ namespace ActiveDevelop.MvvmBaseLib
             return (pointOfTime >= StartTime.Value && pointOfTime <= EndTime.Value);
         }
 
-        // <summary>
-        // Ermittelt eine Liste aus Zeitspannen, die sich ergeben, wenn ein Zeitpunkt eine Zeitspanne teilen soll.
-        // </summary>
-        // <param name="pointOfTime">Der Zeitpunkt, der die Zeitspanne teilt.</param>
-        // <returns></returns>
+        /// <summary>
+        /// Ermittelt eine Liste aus Zeitspannen, die sich ergeben, wenn ein Zeitpunkt eine Zeitspanne teilen soll.
+        /// </summary>
+        /// <param name="pointOfTime">Der Zeitpunkt, der die Zeitspanne teilt.</param>
+        /// <returns></returns>
         public List<TimeRange> InsertOrCloseSimpleEvent(DateTimeOffset pointOfTime)
         {
             var retTimeSpans = new List<TimeRange>();
@@ -125,11 +124,11 @@ namespace ActiveDevelop.MvvmBaseLib
             return retTimeSpans;
         }
 
-        // <summary>
-        // Ermittelt ob und in wie fern sich zwei Zeitbereiche überschneiden.
-        // </summary>
-        // <param name="timePeriod">Der Zeitbereich der mit diesem Zeitbereich verglichen werden soll.</param>
-        // <returns></returns>
+        /// <summary>
+        /// Ermittelt ob und in wie fern sich zwei Zeitbereiche überschneiden.
+        /// </summary>
+        /// <param name="timePeriod">Der Zeitbereich der mit diesem Zeitbereich verglichen werden soll.</param>
+        /// <returns></returns>
         public OverlappingSpanInfo OverlappingSpanInfo(TimeRange timePeriod)
         {
             // die zu vergleichende Zeitspanne darf nicht null sein.

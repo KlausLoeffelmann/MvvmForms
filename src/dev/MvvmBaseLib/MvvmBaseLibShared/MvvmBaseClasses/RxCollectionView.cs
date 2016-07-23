@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Collections.Specialized;
 using System.Reactive.Linq;
-using System.Collections.Generic;
+
 
 namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
@@ -20,6 +20,9 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         private ObservableCollection<o> myResultingCollection;
         private DataAndQueryCarrier<o> myDataSource = new DataAndQueryCarrier<o>();
 
+        /// <summary>
+        /// Creates a new instance of this class.
+        /// </summary>
         public RxCollectionView() : base()
         {
             SubscribeToEvents();

@@ -68,5 +68,4 @@ Public Class MainForm
         Dim frm = New NVRPLateBinding()
         frm.ShowDialog()
     End Sub
-
 End Class

@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IoCPlatformDependend\IMvvmViewModelNotifyBindingProcess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MathExtension\MathExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ChangeTracking.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\Experimental\WeakPropertyChangedEventManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\RxCollectionView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\CopyPropertiesException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\Extender.cs" />
