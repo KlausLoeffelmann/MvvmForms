@@ -110,21 +110,6 @@ Public Class NullableValueComboBox
         DatafieldName = Nothing
     End Sub
 
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        MyBase.OnLoad(e)
-
-        'Farben
-        _defaultColor = WpfComboBoxWrapper1.InnerComboBox.Background
-        _focusedColor = New SolidColorBrush(Colors.Yellow)
-
-        AddHandler WpfComboBoxWrapper1.InnerComboBox.SelectionChanged, AddressOf InnerComboBox_SelectionChanged
-        AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyDown, AddressOf InnerComboBox_KeyDown
-        AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyUp, AddressOf InnerComboBox_KeyUp
-
-        WpfComboBoxWrapper1.InnerComboBox.AddHandler(System.Windows.Controls.Primitives.TextBoxBase.TextChangedEvent,
-                      New System.Windows.Controls.TextChangedEventHandler(AddressOf InnerComboBox_TextChanged))
-    End Sub
-
     Private Sub InnerComboBox_TextChanged(sender As Object, e As TextChangedEventArgs)
         OnTextChanged(e)
     End Sub
@@ -406,6 +391,24 @@ Public Class NullableValueComboBox
     End Sub
 
     Private myGroupName As String = NullableControlManager.GetInstance.GetDefaultGroupName(Me, "Default")
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        'Farben
+        _defaultColor = WpfComboBoxWrapper1.InnerComboBox.Background
+        _focusedColor = New SolidColorBrush(Colors.Yellow)
+
+        AddHandler WpfComboBoxWrapper1.InnerComboBox.SelectionChanged, AddressOf InnerComboBox_SelectionChanged
+        AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyDown, AddressOf InnerComboBox_KeyDown
+        AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyUp, AddressOf InnerComboBox_KeyUp
+
+        WpfComboBoxWrapper1.InnerComboBox.AddHandler(System.Windows.Controls.Primitives.TextBoxBase.TextChangedEvent,
+                      New System.Windows.Controls.TextChangedEventHandler(AddressOf InnerComboBox_TextChanged))
+    End Sub
 
     ''' <summary>
     ''' Bestimmt oder ermittelt einen Gruppierungsnamen, um eine Möglichkeit zur Verfügung zu stellen, zentral eine Reihe von Steuerelementen zu steuern.

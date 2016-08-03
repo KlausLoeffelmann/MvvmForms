@@ -1,6 +1,8 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports System.Windows.Forms
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class NullableValueComboBox
-    Inherits System.Windows.Forms.UserControl
+    Inherits UserControl
 
     'UserControl overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -41,7 +43,6 @@ Partial Class NullableValueComboBox
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.ElementHost1)
-        Me.Name = "BindableComboBox"
         Me.Size = New System.Drawing.Size(120, 22)
         Me.ResumeLayout(False)
 
