@@ -1,17 +1,16 @@
-﻿using System.Resources;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MvvmFormsBase")]
-[assembly: AssemblyDescription("ActiveDevelop Support library for simplifying the development of ViewModels")]
+[assembly: AssemblyTitle("MvvmFormsCSharpDemos")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ActiveDevelop (www.activedevelop.de) - Klaus Löffelmann")]
-[assembly: AssemblyProduct("MvvmForms")]
-[assembly: AssemblyCopyright("Copyright ©  2010-2016 by Klaus Loeffelmann")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("MvvmFormsCSharpDemos")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9f333c30-bd73-46f2-8716-bf5bdb72b833")]
+[assembly: Guid("7f52989f-0a48-4697-b822-49f9f815370e")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,7 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.5.0")]
-[assembly: AssemblyFileVersion("2.1.5.0")]
-[assembly: NeutralResourcesLanguage("en")]
-
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
