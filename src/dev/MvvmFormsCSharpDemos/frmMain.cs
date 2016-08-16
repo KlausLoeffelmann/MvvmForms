@@ -27,5 +27,10 @@ namespace MvvmFormsCSharpDemos
             RxCollectionView.frmRxCollectionView frmView = new RxCollectionView.frmRxCollectionView();
             frmView.ShowDialog();
         }
+
+        private void AllowFormulaCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            numValueField.AllowFormular = AllowFormulaCheckBox.Checked;
+        }
     }
 }

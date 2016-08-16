@@ -62,7 +62,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
                         //if (Debugger.IsAttached)
                         //    Debugger.Break();
 
-                        mySource.Source = new MutatingSource<t>(value.EventArgs.NewItems.OfType<t>());
+                        mySource.Source = value.EventArgs.NewItems.OfType<t>();
 
                         foreach (var item in Query.ToList())
                         {

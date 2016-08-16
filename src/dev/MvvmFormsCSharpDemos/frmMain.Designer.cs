@@ -37,17 +37,22 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.nullableIntValue1 = new ActiveDevelop.EntitiesFormsLib.NullableIntValue();
             this.label1 = new System.Windows.Forms.Label();
-            this.nullableNumValue1 = new ActiveDevelop.EntitiesFormsLib.NullableNumValue();
             this.panel1 = new System.Windows.Forms.Panel();
             this.nullableTextValue4 = new ActiveDevelop.EntitiesFormsLib.NullableTextValue();
             this.nullableTextValue3 = new ActiveDevelop.EntitiesFormsLib.NullableTextValue();
             this.nullableTextValue2 = new ActiveDevelop.EntitiesFormsLib.NullableTextValue();
             this.nullableTextValue1 = new ActiveDevelop.EntitiesFormsLib.NullableTextValue();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.nullableIntValue1 = new ActiveDevelop.EntitiesFormsLib.NullableIntValue();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.numValueField = new ActiveDevelop.EntitiesFormsLib.NullableNumValue();
+            this.AllowFormulaCheckBox = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -99,10 +104,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.nullableIntValue1, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.nullableNumValue1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(16, 44);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
@@ -132,27 +137,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = resources.GetString("label2.Text");
             // 
-            // nullableIntValue1
-            // 
-            this.nullableIntValue1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.nullableIntValue1.AssignedManagerComponent = null;
-            this.nullableIntValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nullableIntValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
-            this.nullableIntValue1.Location = new System.Drawing.Point(378, 207);
-            this.nullableIntValue1.MaxLength = 32767;
-            this.nullableIntValue1.MaxValue = null;
-            this.nullableIntValue1.MinValue = 0;
-            this.nullableIntValue1.Name = "nullableIntValue1";
-            this.nullableIntValue1.NullValueColor = System.Drawing.SystemColors.ControlDark;
-            this.nullableIntValue1.NullValueString = "Enter an Integer value.";
-            this.nullableIntValue1.ObfuscationChar = null;
-            this.nullableIntValue1.PermissionReason = null;
-            this.nullableIntValue1.Size = new System.Drawing.Size(369, 22);
-            this.nullableIntValue1.TabIndex = 3;
-            this.nullableIntValue1.UIGuid = new System.Guid("b564b830-a531-45ff-9bcb-3a74bcbae0ea");
-            this.nullableIntValue1.Value = null;
-            this.nullableIntValue1.ValueValidationState = null;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -162,34 +146,6 @@
             this.label1.Size = new System.Drawing.Size(365, 136);
             this.label1.TabIndex = 2;
             this.label1.Text = resources.GetString("label1.Text");
-            // 
-            // nullableNumValue1
-            // 
-            this.nullableNumValue1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.nullableNumValue1.AssignedManagerComponent = null;
-            this.nullableNumValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nullableNumValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
-            this.nullableNumValue1.CurrencySymbolString = "$ ";
-            this.nullableNumValue1.CurrencySymbolUpFront = true;
-            this.nullableNumValue1.DecimalPlaces = 2;
-            this.nullableNumValue1.Location = new System.Drawing.Point(378, 385);
-            this.nullableNumValue1.MaxLength = 32767;
-            this.nullableNumValue1.MaxValue = null;
-            this.nullableNumValue1.MinValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.nullableNumValue1.Name = "nullableNumValue1";
-            this.nullableNumValue1.NullValueColor = System.Drawing.SystemColors.ControlDark;
-            this.nullableNumValue1.NullValueString = "Enter a Floating Point Value or a Formula like \"12*(3+3)\"";
-            this.nullableNumValue1.ObfuscationChar = null;
-            this.nullableNumValue1.PermissionReason = null;
-            this.nullableNumValue1.Size = new System.Drawing.Size(369, 22);
-            this.nullableNumValue1.TabIndex = 5;
-            this.nullableNumValue1.UIGuid = new System.Guid("48a3250e-b5b5-4f1b-9ab7-50c5c3802e5b");
-            this.nullableNumValue1.Value = null;
-            this.nullableNumValue1.ValueValidationState = null;
             // 
             // panel1
             // 
@@ -247,6 +203,7 @@
             this.nullableTextValue2.AssignedManagerComponent = null;
             this.nullableTextValue2.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nullableTextValue2.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
+            this.nullableTextValue2.ForeColor = System.Drawing.Color.Peru;
             this.nullableTextValue2.Location = new System.Drawing.Point(0, 31);
             this.nullableTextValue2.MaxLength = 32767;
             this.nullableTextValue2.Name = "nullableTextValue2";
@@ -280,6 +237,89 @@
             this.nullableTextValue1.Value = null;
             this.nullableTextValue1.ValueValidationState = null;
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.nullableIntValue1);
+            this.panel2.Location = new System.Drawing.Point(378, 147);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(369, 142);
+            this.panel2.TabIndex = 6;
+            // 
+            // nullableIntValue1
+            // 
+            this.nullableIntValue1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.nullableIntValue1.AssignedManagerComponent = null;
+            this.nullableIntValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nullableIntValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
+            this.nullableIntValue1.Location = new System.Drawing.Point(3, 14);
+            this.nullableIntValue1.MaxLength = 32767;
+            this.nullableIntValue1.MaxValue = null;
+            this.nullableIntValue1.MinValue = 0;
+            this.nullableIntValue1.Name = "nullableIntValue1";
+            this.nullableIntValue1.NullValueColor = System.Drawing.SystemColors.ControlDark;
+            this.nullableIntValue1.NullValueString = "Enter an Integer value.";
+            this.nullableIntValue1.ObfuscationChar = null;
+            this.nullableIntValue1.PermissionReason = null;
+            this.nullableIntValue1.Size = new System.Drawing.Size(353, 22);
+            this.nullableIntValue1.TabIndex = 4;
+            this.nullableIntValue1.UIGuid = new System.Guid("b564b830-a531-45ff-9bcb-3a74bcbae0ea");
+            this.nullableIntValue1.Value = null;
+            this.nullableIntValue1.ValueValidationState = null;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.AllowFormulaCheckBox);
+            this.panel3.Controls.Add(this.numValueField);
+            this.panel3.Location = new System.Drawing.Point(378, 295);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(369, 203);
+            this.panel3.TabIndex = 7;
+            // 
+            // numValueField
+            // 
+            this.numValueField.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.numValueField.AssignedManagerComponent = null;
+            this.numValueField.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numValueField.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
+            this.numValueField.CurrencySymbolString = "$ ";
+            this.numValueField.CurrencySymbolUpFront = true;
+            this.numValueField.DecimalPlaces = 2;
+            this.numValueField.Location = new System.Drawing.Point(3, 13);
+            this.numValueField.MaxLength = 32767;
+            this.numValueField.MaxValue = null;
+            this.numValueField.MinValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numValueField.Name = "numValueField";
+            this.numValueField.NullValueColor = System.Drawing.SystemColors.ControlDark;
+            this.numValueField.NullValueString = "Enter a Floating Point Value or a Formula like \"12*(3+3)\"";
+            this.numValueField.ObfuscationChar = null;
+            this.numValueField.PermissionReason = null;
+            this.numValueField.Size = new System.Drawing.Size(339, 22);
+            this.numValueField.TabIndex = 6;
+            this.numValueField.UIGuid = new System.Guid("48a3250e-b5b5-4f1b-9ab7-50c5c3802e5b");
+            this.numValueField.Value = null;
+            this.numValueField.ValueValidationState = null;
+            // 
+            // AllowFormulaCheckBox
+            // 
+            this.AllowFormulaCheckBox.AutoSize = true;
+            this.AllowFormulaCheckBox.Location = new System.Drawing.Point(3, 41);
+            this.AllowFormulaCheckBox.Name = "AllowFormulaCheckBox";
+            this.AllowFormulaCheckBox.Size = new System.Drawing.Size(117, 21);
+            this.AllowFormulaCheckBox.TabIndex = 7;
+            this.AllowFormulaCheckBox.Text = "Allow Formula";
+            this.AllowFormulaCheckBox.UseVisualStyleBackColor = true;
+            this.AllowFormulaCheckBox.CheckedChanged += new System.EventHandler(this.AllowFormulaCheckBox_CheckedChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -296,6 +336,9 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,11 +350,9 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private ActiveDevelop.EntitiesFormsLib.NullableIntValue nullableIntValue1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private ActiveDevelop.EntitiesFormsLib.NullableNumValue nullableNumValue1;
         private System.Windows.Forms.Panel panel1;
         private ActiveDevelop.EntitiesFormsLib.NullableTextValue nullableTextValue3;
         private ActiveDevelop.EntitiesFormsLib.NullableTextValue nullableTextValue2;
@@ -319,6 +360,11 @@
         private ActiveDevelop.EntitiesFormsLib.NullableTextValue nullableTextValue4;
         private System.Windows.Forms.ToolStripMenuItem testsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rxCollectionViewDemoTestToolStripMenuItem;
+        private System.Windows.Forms.Panel panel2;
+        private ActiveDevelop.EntitiesFormsLib.NullableIntValue nullableIntValue1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.CheckBox AllowFormulaCheckBox;
+        private ActiveDevelop.EntitiesFormsLib.NullableNumValue numValueField;
     }
 }
 

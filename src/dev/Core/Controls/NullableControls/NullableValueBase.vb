@@ -480,10 +480,6 @@ SkipToEnd:
             End If
         End If
 
-        If myNullValueColor.HasValue Then
-            Me.TextBoxPart.ForeColor = NullValueColor
-        End If
-
         If Me.AutoValidateOnLeaving Then
             Dim ce As New CancelEventArgs
             myEditedValue = myValueControl.Value.ToString
@@ -494,6 +490,13 @@ SkipToEnd:
             End If
             OnValidated(EventArgs.Empty)
         End If
+
+        If myNullValueColor.HasValue Then
+            If Not Me.Value.HasValue Then
+                Me.TextBoxPart.ForeColor = NullValueColor
+            End If
+        End If
+
     End Sub
 
     Protected Overrides Sub OnValidating(ByVal e As System.ComponentModel.CancelEventArgs)

@@ -11,12 +11,15 @@ Public Class NullableValuePrimalUpDownControl
     Inherits TextBoxSpinButton
     Implements ITextBoxBasedControl, INullableValuePrimalControl
 
+    Private myAllowNonNumericKeys As Boolean = True
+
     Public Event ControlValidated(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Implements INullableValuePrimalControl.ControlValidated
     Public Event ControlValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Implements INullableValuePrimalControl.ControlValueChanged
 
     Sub New()
         MyBase.New()
         InitializeComponentInternal()
+        AddHandler Me.TextBoxPart.KeyPress, AddressOf TextBoxPartKeyPressHandler
     End Sub
 
     Protected Overridable Sub InitializeComponentInternal() Implements INullableValuePrimalControl.InitializeComponentInternal
@@ -69,4 +72,32 @@ Public Class NullableValuePrimalUpDownControl
             Me.ForeColor = value
         End Set
     End Property
+
+    Public Property AllowNonNumericKeys As Boolean
+        Get
+            Return myAllowNonNumericKeys
+        End Get
+        Set(value As Boolean)
+            If Not Object.Equals(myAllowNonNumericKeys, value) Then
+                myAllowNonNumericKeys = value
+            End If
+        End Set
+    End Property
+
+    Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyPressEventArgs)
+        MyBase.OnKeyPress(e)
+        If Not AllowNonNumericKeys Then
+            If Char.IsNumber(e.KeyChar) Or Char.IsPunctuation(e.KeyChar) Or Char.IsSeparator(e.KeyChar) Or Char.IsControl(e.KeyChar) Then
+            Else
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
+    Protected Overrides Sub Dispose(disposing As Boolean)
+        MyBase.Dispose(disposing)
+        If disposing Then
+            RemoveHandler Me.TextBoxPart.KeyPress, AddressOf TextBoxPartKeyPressHandler
+        End If
+    End Sub
 End Class

@@ -341,8 +341,11 @@ Public Class NullableNumValue
             Return myAllowFormular
         End Get
         Set(ByVal value As Boolean)
-            myAllowFormular = value
-            DirectCast(Me.FormatterEngine, NullableNumValueFormatterEngine).IsFormularAllowed = value
+            If Not Object.Equals(value, myAllowFormular) Then
+                myAllowFormular = value
+                Me.ValueControl.AllowNonNumericKeys = value
+                DirectCast(Me.FormatterEngine, NullableNumValueFormatterEngine).IsFormularAllowed = value
+            End If
         End Set
     End Property
 
