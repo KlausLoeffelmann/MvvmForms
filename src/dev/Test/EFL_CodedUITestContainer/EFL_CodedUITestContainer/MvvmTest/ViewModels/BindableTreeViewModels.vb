@@ -75,6 +75,25 @@ Public Class MainNodeTestViewModel
 
     Property Rekursion As MainNodeTestViewModel
 
+    Private myNumVal As Decimal?
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>Bindbare Property</remarks>
+    Public Property NumVal As Decimal?
+        Get
+            Return myNumVal
+        End Get
+        Set(ByVal value As Decimal?)
+            If MyBase.SetProperty(myNumVal, value) Then
+                'Debug.WriteLine($"Neues Num-Val: {value}")
+            End If
+        End Set
+    End Property
+    Public Const NumValProperty As String = "NumVal"
+
 End Class
 
 Public Class PersonenViewModelNodeTest

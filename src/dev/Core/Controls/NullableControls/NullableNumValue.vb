@@ -599,9 +599,16 @@ Public Class NullableNumValue
             e.Action = CalculatorAction.ToggleSign Then
             Me.TextBoxPart.Text = e.Input
         ElseIf e.Action = CalculatorAction.IntermediaryResult OrElse e.Action = CalculatorAction.FinalResult Then
-            Me.Value = e.Value
+            Dim calcWin As SimpleCalculator = Nothing
+            Try
+                calcWin = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
+                Me.TextBoxPart.Text = CStr(e.Value)
+                calcWin.Tag = e.Value       ' wird beim Close des Popups als Value zurückgeschrieben
+
+            Catch aoor As ArgumentOutOfRangeException
+
+            End Try
             If e.Action = CalculatorAction.FinalResult Then
-                Dim calcWin = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
                 Try
                     RemoveHandler calcWin.SetResult, AddressOf SetResult
                     ToggleCalculator()
@@ -624,6 +631,12 @@ Public Class NullableNumValue
         Dim calcWin = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
         Try
             calcWin.ForceFinalCalculation()
+            If calcWin.Tag IsNot Nothing Then
+                Me.Value = CDec(calcWin.Tag)
+            End If
+        Catch be As MvvmBindingException
+            ' hier ging was schief
+            ' Wert ggf. negativ?
         Finally
             RemoveHandler Me.TextBoxPart.KeyDown, AddressOf ResendAndSupressKeys
             RemoveHandler Me.TextBoxPart.KeyUp, AddressOf SupressKeys
