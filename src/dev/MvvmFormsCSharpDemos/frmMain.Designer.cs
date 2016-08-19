@@ -46,8 +46,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.nullableIntValue1 = new ActiveDevelop.EntitiesFormsLib.NullableIntValue();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.numValueField = new ActiveDevelop.EntitiesFormsLib.NullableNumValue();
             this.AllowFormulaCheckBox = new System.Windows.Forms.CheckBox();
+            this.numValueField = new ActiveDevelop.EntitiesFormsLib.NullableNumValue();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -63,7 +63,8 @@
             this.testsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(791, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1186, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -72,13 +73,13 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(64, 36);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(112, 26);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(161, 38);
             this.quitToolStripMenuItem.Text = "&Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -87,13 +88,13 @@
             this.testsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rxCollectionViewDemoTestToolStripMenuItem});
             this.testsToolStripMenuItem.Name = "testsToolStripMenuItem";
-            this.testsToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.testsToolStripMenuItem.Size = new System.Drawing.Size(79, 36);
             this.testsToolStripMenuItem.Text = "Tests";
             // 
             // rxCollectionViewDemoTestToolStripMenuItem
             // 
             this.rxCollectionViewDemoTestToolStripMenuItem.Name = "rxCollectionViewDemoTestToolStripMenuItem";
-            this.rxCollectionViewDemoTestToolStripMenuItem.Size = new System.Drawing.Size(276, 26);
+            this.rxCollectionViewDemoTestToolStripMenuItem.Size = new System.Drawing.Size(421, 38);
             this.rxCollectionViewDemoTestToolStripMenuItem.Text = "RxCollectionView Demo/Test";
             this.rxCollectionViewDemoTestToolStripMenuItem.Click += new System.EventHandler(this.rxCollectionViewDemoTestToolStripMenuItem_Click);
             // 
@@ -108,42 +109,43 @@
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(16, 44);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(24, 69);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 144F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 148F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(750, 501);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 225F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 231F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1125, 783);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 297);
-            this.label3.Margin = new System.Windows.Forms.Padding(5);
+            this.label3.Location = new System.Drawing.Point(8, 464);
+            this.label3.Margin = new System.Windows.Forms.Padding(8);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(364, 170);
+            this.label3.Size = new System.Drawing.Size(545, 250);
             this.label3.TabIndex = 4;
             this.label3.Text = resources.GetString("label3.Text");
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 5);
-            this.label2.Margin = new System.Windows.Forms.Padding(5);
+            this.label2.Location = new System.Drawing.Point(8, 8);
+            this.label2.Margin = new System.Windows.Forms.Padding(8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(365, 119);
+            this.label2.Size = new System.Drawing.Size(542, 175);
             this.label2.TabIndex = 0;
             this.label2.Text = resources.GetString("label2.Text");
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 149);
-            this.label1.Margin = new System.Windows.Forms.Padding(5);
+            this.label1.Location = new System.Drawing.Point(8, 233);
+            this.label1.Margin = new System.Windows.Forms.Padding(8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(365, 136);
+            this.label1.Size = new System.Drawing.Size(541, 200);
             this.label1.TabIndex = 2;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -154,9 +156,10 @@
             this.panel1.Controls.Add(this.nullableTextValue2);
             this.panel1.Controls.Add(this.nullableTextValue1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(378, 3);
+            this.panel1.Location = new System.Drawing.Point(566, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(369, 138);
+            this.panel1.Size = new System.Drawing.Size(555, 215);
             this.panel1.TabIndex = 1;
             // 
             // nullableTextValue4
@@ -165,13 +168,15 @@
             this.nullableTextValue4.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nullableTextValue4.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
             this.nullableTextValue4.ForeColor = System.Drawing.Color.Gold;
-            this.nullableTextValue4.Location = new System.Drawing.Point(3, 87);
+            this.nullableTextValue4.Location = new System.Drawing.Point(4, 136);
+            this.nullableTextValue4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nullableTextValue4.MaxLength = 32767;
             this.nullableTextValue4.Name = "nullableTextValue4";
             this.nullableTextValue4.NullValueString = "";
             this.nullableTextValue4.ObfuscationChar = null;
             this.nullableTextValue4.PermissionReason = null;
-            this.nullableTextValue4.Size = new System.Drawing.Size(363, 22);
+            this.nullableTextValue4.ImitateTabByPageKeys = false;
+            this.nullableTextValue4.Size = new System.Drawing.Size(544, 31);
             this.nullableTextValue4.TabIndex = 3;
             this.nullableTextValue4.UIGuid = new System.Guid("b29b2dfa-5a4d-4ccd-8d2a-0921bfa76aa8");
             this.nullableTextValue4.Value = null;
@@ -184,14 +189,16 @@
             this.nullableTextValue3.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nullableTextValue3.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
             this.nullableTextValue3.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.nullableTextValue3.Location = new System.Drawing.Point(0, 59);
+            this.nullableTextValue3.Location = new System.Drawing.Point(0, 91);
+            this.nullableTextValue3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nullableTextValue3.MaxLength = 32767;
             this.nullableTextValue3.Name = "nullableTextValue3";
             this.nullableTextValue3.NullValueColor = System.Drawing.SystemColors.ControlDark;
             this.nullableTextValue3.NullValueString = "Enter a Text!";
             this.nullableTextValue3.ObfuscationChar = null;
             this.nullableTextValue3.PermissionReason = null;
-            this.nullableTextValue3.Size = new System.Drawing.Size(369, 22);
+            this.nullableTextValue3.ImitateTabByPageKeys = false;
+            this.nullableTextValue3.Size = new System.Drawing.Size(555, 31);
             this.nullableTextValue3.TabIndex = 2;
             this.nullableTextValue3.UIGuid = new System.Guid("69e30f88-8446-4b99-b9b6-a651cf8e10a5");
             this.nullableTextValue3.Value = null;
@@ -204,7 +211,8 @@
             this.nullableTextValue2.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nullableTextValue2.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
             this.nullableTextValue2.ForeColor = System.Drawing.Color.Peru;
-            this.nullableTextValue2.Location = new System.Drawing.Point(0, 31);
+            this.nullableTextValue2.Location = new System.Drawing.Point(0, 47);
+            this.nullableTextValue2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nullableTextValue2.MaxLength = 32767;
             this.nullableTextValue2.Name = "nullableTextValue2";
             this.nullableTextValue2.NullValueColor = System.Drawing.SystemColors.ControlDark;
@@ -212,7 +220,8 @@
             this.nullableTextValue2.ObfuscationChar = null;
             this.nullableTextValue2.PermissionReason = null;
             this.nullableTextValue2.ReadOnly = true;
-            this.nullableTextValue2.Size = new System.Drawing.Size(369, 22);
+            this.nullableTextValue2.ImitateTabByPageKeys = false;
+            this.nullableTextValue2.Size = new System.Drawing.Size(555, 31);
             this.nullableTextValue2.TabIndex = 1;
             this.nullableTextValue2.UIGuid = new System.Guid("69e30f88-8446-4b99-b9b6-a651cf8e10a5");
             this.nullableTextValue2.Value = null;
@@ -224,14 +233,16 @@
             this.nullableTextValue1.AssignedManagerComponent = null;
             this.nullableTextValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nullableTextValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
-            this.nullableTextValue1.Location = new System.Drawing.Point(0, 3);
+            this.nullableTextValue1.Location = new System.Drawing.Point(4, 6);
+            this.nullableTextValue1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nullableTextValue1.MaxLength = 32767;
             this.nullableTextValue1.Name = "nullableTextValue1";
             this.nullableTextValue1.NullValueColor = System.Drawing.SystemColors.ControlDark;
             this.nullableTextValue1.NullValueString = "Enter a Text!";
             this.nullableTextValue1.ObfuscationChar = null;
             this.nullableTextValue1.PermissionReason = null;
-            this.nullableTextValue1.Size = new System.Drawing.Size(369, 22);
+            this.nullableTextValue1.ImitateTabByPageKeys = false;
+            this.nullableTextValue1.Size = new System.Drawing.Size(544, 31);
             this.nullableTextValue1.TabIndex = 0;
             this.nullableTextValue1.UIGuid = new System.Guid("69e30f88-8446-4b99-b9b6-a651cf8e10a5");
             this.nullableTextValue1.Value = null;
@@ -243,9 +254,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.nullableIntValue1);
-            this.panel2.Location = new System.Drawing.Point(378, 147);
+            this.panel2.Location = new System.Drawing.Point(566, 230);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(369, 142);
+            this.panel2.Size = new System.Drawing.Size(555, 221);
             this.panel2.TabIndex = 6;
             // 
             // nullableIntValue1
@@ -254,7 +266,8 @@
             this.nullableIntValue1.AssignedManagerComponent = null;
             this.nullableIntValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nullableIntValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
-            this.nullableIntValue1.Location = new System.Drawing.Point(3, 14);
+            this.nullableIntValue1.Location = new System.Drawing.Point(4, 21);
+            this.nullableIntValue1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nullableIntValue1.MaxLength = 32767;
             this.nullableIntValue1.MaxValue = null;
             this.nullableIntValue1.MinValue = 0;
@@ -263,7 +276,8 @@
             this.nullableIntValue1.NullValueString = "Enter an Integer value.";
             this.nullableIntValue1.ObfuscationChar = null;
             this.nullableIntValue1.PermissionReason = null;
-            this.nullableIntValue1.Size = new System.Drawing.Size(353, 22);
+            this.nullableIntValue1.ImitateTabByPageKeys = false;
+            this.nullableIntValue1.Size = new System.Drawing.Size(531, 31);
             this.nullableIntValue1.TabIndex = 4;
             this.nullableIntValue1.UIGuid = new System.Guid("b564b830-a531-45ff-9bcb-3a74bcbae0ea");
             this.nullableIntValue1.Value = null;
@@ -276,10 +290,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.Controls.Add(this.AllowFormulaCheckBox);
             this.panel3.Controls.Add(this.numValueField);
-            this.panel3.Location = new System.Drawing.Point(378, 295);
+            this.panel3.Location = new System.Drawing.Point(566, 461);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(369, 203);
+            this.panel3.Size = new System.Drawing.Size(555, 317);
             this.panel3.TabIndex = 7;
+            // 
+            // AllowFormulaCheckBox
+            // 
+            this.AllowFormulaCheckBox.AutoSize = true;
+            this.AllowFormulaCheckBox.Location = new System.Drawing.Point(4, 64);
+            this.AllowFormulaCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AllowFormulaCheckBox.Name = "AllowFormulaCheckBox";
+            this.AllowFormulaCheckBox.Size = new System.Drawing.Size(179, 29);
+            this.AllowFormulaCheckBox.TabIndex = 7;
+            this.AllowFormulaCheckBox.Text = "Allow Formula";
+            this.AllowFormulaCheckBox.UseVisualStyleBackColor = true;
+            this.AllowFormulaCheckBox.CheckedChanged += new System.EventHandler(this.AllowFormulaCheckBox_CheckedChanged);
             // 
             // numValueField
             // 
@@ -290,7 +317,8 @@
             this.numValueField.CurrencySymbolString = "$ ";
             this.numValueField.CurrencySymbolUpFront = true;
             this.numValueField.DecimalPlaces = 2;
-            this.numValueField.Location = new System.Drawing.Point(3, 13);
+            this.numValueField.Location = new System.Drawing.Point(4, 20);
+            this.numValueField.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numValueField.MaxLength = 32767;
             this.numValueField.MaxValue = null;
             this.numValueField.MinValue = new decimal(new int[] {
@@ -303,31 +331,22 @@
             this.numValueField.NullValueString = "Enter a Floating Point Value or a Formula like \"12*(3+3)\"";
             this.numValueField.ObfuscationChar = null;
             this.numValueField.PermissionReason = null;
-            this.numValueField.Size = new System.Drawing.Size(339, 22);
+            this.numValueField.ImitateTabByPageKeys = false;
+            this.numValueField.Size = new System.Drawing.Size(509, 31);
             this.numValueField.TabIndex = 6;
             this.numValueField.UIGuid = new System.Guid("48a3250e-b5b5-4f1b-9ab7-50c5c3802e5b");
             this.numValueField.Value = null;
             this.numValueField.ValueValidationState = null;
             // 
-            // AllowFormulaCheckBox
-            // 
-            this.AllowFormulaCheckBox.AutoSize = true;
-            this.AllowFormulaCheckBox.Location = new System.Drawing.Point(3, 41);
-            this.AllowFormulaCheckBox.Name = "AllowFormulaCheckBox";
-            this.AllowFormulaCheckBox.Size = new System.Drawing.Size(117, 21);
-            this.AllowFormulaCheckBox.TabIndex = 7;
-            this.AllowFormulaCheckBox.Text = "Allow Formula";
-            this.AllowFormulaCheckBox.UseVisualStyleBackColor = true;
-            this.AllowFormulaCheckBox.CheckedChanged += new System.EventHandler(this.AllowFormulaCheckBox_CheckedChanged);
-            // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(791, 557);
+            this.ClientSize = new System.Drawing.Size(1186, 870);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CSharp MvvmForms Demo";

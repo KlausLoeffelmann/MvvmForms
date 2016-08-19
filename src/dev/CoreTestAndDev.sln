@@ -24,8 +24,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MvvmBaseLibShared", "MvvmBa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmBaseLib.NET45W81WP81CP", "MvvmBaseLib\MvvmBase\MvvmBaseLib.NET45W81WP81CP.csproj", "{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmBaseLib.W81WP81", "MvvmBaseLib\MvvmBaseLib.W81WP81\MvvmBaseLib.W81WP81.csproj", "{C5A528AA-9D42-4D71-860E-DFB432D16FF3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmBaseLib.NET451", "MvvmBaseLib\MvvmBaseLib.NET451\MvvmBaseLib.NET451.csproj", "{9F333C30-BD73-46F2-8716-BF5BDB72B833}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmFormsCSharpDemos", "MvvmFormsCSharpDemos\MvvmFormsCSharpDemos.csproj", "{7F52989F-0A48-4697-B822-49F9F815370E}"
@@ -34,7 +32,6 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MvvmBaseLib\MvvmBaseLibShared\MvvmBaseLibShared.projitems*{7ac91d9a-e827-4bae-85be-97e3a3dbcf6d}*SharedItemsImports = 4
 		MvvmBaseLib\MvvmBaseLibShared\MvvmBaseLibShared.projitems*{9f333c30-bd73-46f2-8716-bf5bdb72b833}*SharedItemsImports = 4
-		MvvmBaseLib\MvvmBaseLibShared\MvvmBaseLibShared.projitems*{c5a528aa-9d42-4d71-860e-dfb432d16ff3}*SharedItemsImports = 4
 		MvvmBaseLib\MvvmBaseLibShared\MvvmBaseLibShared.projitems*{eca55b01-5629-489b-82c2-2726e7eb2afc}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,30 +158,6 @@ Global
 		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}.Release|x64.Build.0 = Release|Any CPU
 		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}.Release|x86.ActiveCfg = Release|x86
 		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D}.Release|x86.Build.0 = Release|x86
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Debug|x64.Build.0 = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Debug|x86.Build.0 = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.DebugWork|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.DebugWork|Any CPU.Build.0 = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.DebugWork|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.DebugWork|Mixed Platforms.Build.0 = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.DebugWork|x64.ActiveCfg = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.DebugWork|x64.Build.0 = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.DebugWork|x86.ActiveCfg = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.DebugWork|x86.Build.0 = Debug|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Release|x64.ActiveCfg = Release|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Release|x64.Build.0 = Release|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Release|x86.ActiveCfg = Release|Any CPU
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3}.Release|x86.Build.0 = Release|Any CPU
 		{9F333C30-BD73-46F2-8716-BF5BDB72B833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F333C30-BD73-46F2-8716-BF5BDB72B833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F333C30-BD73-46F2-8716-BF5BDB72B833}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -240,7 +213,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{ECA55B01-5629-489B-82C2-2726E7EB2AFC} = {4878A1AE-E6A1-41D4-A7A8-D9D5ECD40F6F}
 		{7AC91D9A-E827-4BAE-85BE-97E3A3DBCF6D} = {4878A1AE-E6A1-41D4-A7A8-D9D5ECD40F6F}
-		{C5A528AA-9D42-4D71-860E-DFB432D16FF3} = {4878A1AE-E6A1-41D4-A7A8-D9D5ECD40F6F}
 		{9F333C30-BD73-46F2-8716-BF5BDB72B833} = {4878A1AE-E6A1-41D4-A7A8-D9D5ECD40F6F}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution

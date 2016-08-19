@@ -90,6 +90,9 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Protected Const DEFAULT_FOCUS_SELECTION_BEHAVIOUR As FocusSelectionBehaviours = FocusSelectionBehaviours.PreSelectInput
     Protected Const DEFAULT_ON_FOCUS_COLOR As Boolean = True
     Protected Const DEFAULT_BEEP_ON_FAILED_VALIDATION As Boolean = False
+    Protected Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
+
+    Private Const WM_KEYDOWN = &H100
 
     'Shapepoints für den Balloon.
     Private myShapePointTypes As Byte() = {CByte(PathPointType.Start),
@@ -101,6 +104,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
                                            CByte(PathPointType.Line),
                                            CByte(PathPointType.Line Or PathPointType.CloseSubpath)}
     Private myExceptionBalloonDuration As Integer
+    Private myImitateTabByPageKeys As Boolean
 
     Public Sub New()
         MyBase.New()
@@ -109,6 +113,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         SetInitialDefaultBorderstyleOnDemand()
         myValueControl = New ControlType()
         myValueControl.AutoSize = False
+        myValueControl.TabStop = False
 
         InitializeProperties()
 
@@ -132,6 +137,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         myFormatString = NullableControlManager.GetInstance.GetDefaultFormatString(Me, GetDefaultFormatString)
         myFocusSelectionBehaviour = NullableControlManager.GetInstance.GetDefaultFocusSelectionBehaviour(Me, DEFAULT_FOCUS_SELECTION_BEHAVIOUR)
         ExceptionBalloonDuration = NullableControlManager.GetInstance.GetDefaultExceptionBalloonDuration(Me, 5000)
+        ImitateTabByPageKeys = NullableControlManager.GetInstance.GetDefaultImitateTabByPageKeys(Me, DEFAULT_IMITATE_TAB_BY_PAGE_KEYS)
 
         SetStyle(ControlStyles.ResizeRedraw, True)
         SetStyle(ControlStyles.UseTextForAccessibility, True)
@@ -143,6 +149,9 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         Me.Controls.Add(myValueControl)
 
         AddHandler DirectCast(myValueControl, ITextBoxBasedControl).TextBoxPart.Resize, AddressOf OnTextBoxResize
+
+        'Wirering up the event which blocks alpha keys when no Formula is allowed.
+        AddHandler Me.TextBoxPart.KeyDown, AddressOf TextBoxPartKeyPressHandler
 
         'Verhalten geändert: Hier wurde aus ungeklärten Gründen schon direkt beim Ändern der TextBox das ValueChanging-Ereignis getriggert.
         'Dieser Workflow ist falsch. Wir haben das Verhalten dahin gehend geändert, dass nun die Text-Eigenschaft geändert wird,
@@ -159,9 +168,21 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
                 'Else
                 '    myValueChangedByPropertySetter = False
                 'End If
-        End Sub
+            End Sub
         InitializeValue()
+    End Sub
 
+
+    Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyEventArgs)
+        If ImitateTabByPageKeys Then
+            If e.KeyCode = Keys.Next Then
+                SendKeys.SendWait("{TAB}")
+                e.SuppressKeyPress = True
+            ElseIf e.KeyCode = Keys.PageUp Then
+                SendKeys.SendWait("+{TAB}")
+                e.SuppressKeyPress = True
+            End If
+        End If
     End Sub
 
     Protected MustOverride Sub InitializeProperties()
@@ -191,6 +212,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Protected Overridable Function DefaultBorderStyle() As System.Windows.Forms.BorderStyle
         Return System.Windows.Forms.BorderStyle.FixedSingle
     End Function
+
 
 #Region "Layout-and Style-Handling"
 
@@ -1557,7 +1579,27 @@ SkipToEnd:
     End Sub
 #End Region
 
-#Region "Other Properties"
+#Region "Other Properties (Keyboard, Readonly, Security)"
+
+    ''' <summary>
+    ''' Returns or sets a flag which determines that the use can cycle between entry fields with Page up and Page down rather than Tab and Shift+Tab.
+    ''' </summary>
+    ''' <returns></returns>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Returns or sets if the user can cycle between entry fields with Page up and Page down in addition to Tab and Shift+Tab."),
+     Category("Behaviour"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(False)>
+    Public Property ImitateTabByPageKeys As Boolean
+        Get
+            Return myImitateTabByPageKeys
+        End Get
+        Set(value As Boolean)
+            If Not Object.Equals(myImitateTabByPageKeys, value) Then
+                myImitateTabByPageKeys = value
+            End If
+        End Set
+    End Property
 
     ''' <summary>
     ''' Definiert, ob Daten im Steuerelement nur dargestellt (true) oder auch verändert werden können.
