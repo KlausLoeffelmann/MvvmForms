@@ -27,10 +27,6 @@ Public Class NullableValueRelationPopup
     Private Const WM_KEYFIRST = &H100
     Private Const WM_KEYLAST = &H108
 
-    Private ReadOnly DEFAULT_SEARCH_COLUMN_BACKGROUND_COLOR As Color = Drawing.Color.FromArgb(255, 255, 224)
-    Private ReadOnly DEFAULT_SEARCH_COLUMN_HEADER_BACKGROUND_COLOR As Color = Drawing.Color.FromArgb(238, 232, 170)
-    Private ReadOnly DEFAULT_SEARCH_COLUMN_HEADER_FONT_STYLE As FontStyle = FontStyle.Bold
-
     Private Const STATUSBAROFFSETHEIGHT = 41
     Private Const SCROLLBAROFFSETHEIGHT = 4
     Private Const SCROLLBAROFFSETWIDTH = 3
@@ -79,6 +75,7 @@ Public Class NullableValueRelationPopup
     Private mySearchColumnHeaderFont As Font
     Private mySearchColumnBackgroundColor As Color = DEFAULT_SEARCH_COLUMN_BACKGROUND_COLOR
     Private mySearchColumnHeaderBackgroundColor As Color = DEFAULT_SEARCH_COLUMN_HEADER_BACKGROUND_COLOR
+
     Private myDataSource As Object
     Private myGroupName As String = NullableControlManager.GetInstance.GetDefaultGroupName(Me, "Default")
     Private myOnUnassignableValueAction As UnassignableValueAction
@@ -93,11 +90,19 @@ Public Class NullableValueRelationPopup
     Private myMultiSelect As Boolean
     Private myDataFieldname As String
     Private myDeferredTextChangeDelay As Integer = 300
+    Private myImitateTabByPageKeys As Boolean
 
-    <DllImport("user32.dll", SetLastError:=True, CharSet:=CharSet.Auto)>
-    Private Shared Function PeekMessage(ByRef lpMsg As NativeMessage, ByVal hWnd As IntPtr, wMsgFilterMin As UInteger,
-                                        wMsgFilterMax As UInteger, removeMessage As UInteger) As Boolean
-    End Function
+    'Default Values
+    Private ReadOnly DEFAULT_SEARCH_COLUMN_BACKGROUND_COLOR As Color = Drawing.Color.FromArgb(255, 255, 224)
+    Private ReadOnly DEFAULT_SEARCH_COLUMN_HEADER_BACKGROUND_COLOR As Color = Drawing.Color.FromArgb(238, 232, 170)
+    Private ReadOnly DEFAULT_SEARCH_COLUMN_HEADER_FONT_STYLE As FontStyle = FontStyle.Bold
+
+    Private Const DEFAULT_BEEP_ON_FAILED_VALIDATION As Boolean = False
+    Private Const DEFAULT_ON_FOCUS_COLOR As Boolean = True
+    Private ReadOnly DEFAULT_FOCUS_COLOR As Color = Color.Yellow
+    Private ReadOnly DEFAULT_ERROR_COLOR As Color = Color.Red
+    Private Const DEFAULT_FOCUS_SELECTION_BEHAVIOUR As FocusSelectionBehaviours = FocusSelectionBehaviours.PreSelectInput
+    Private Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
 
     ''' <summary>
     ''' Raised, if ThrowLayoutException is set to false and there was an exception on auto-layouting the BindableDataGrid.
@@ -197,9 +202,14 @@ Public Class NullableValueRelationPopup
 
         SetStyle(ControlStyles.ResizeRedraw, True)
 
-        Me.ExceptionBalloonDuration = NullableControlManager.GetInstance.GetDefaultExceptionBalloonDuration(Me, 5000)
+        NullValueString = NullableControlManager.GetInstance.GetDefaultNullValueString(Me, "* - - - *")
+        BeepOnFailedValidation = NullableControlManager.GetInstance.GetDefaultBeepOnFailedValidation(Me, DEFAULT_BEEP_ON_FAILED_VALIDATION)
+        OnFocusColor = NullableControlManager.GetInstance.GetDefaultOnFocusColor(Me, DEFAULT_ON_FOCUS_COLOR)
+        FocusColor = NullableControlManager.GetInstance.GetDefaultFocusColor(Me, DEFAULT_FOCUS_COLOR)
+        FocusSelectionBehaviour = NullableControlManager.GetInstance.GetDefaultFocusSelectionBehaviour(Me, DEFAULT_FOCUS_SELECTION_BEHAVIOUR)
+        ExceptionBalloonDuration = NullableControlManager.GetInstance.GetDefaultExceptionBalloonDuration(Me, 5000)
+        ImitateTabByPageKeys = NullableControlManager.GetInstance.GetDefaultImitateTabByPageKeys(Me, DEFAULT_IMITATE_TAB_BY_PAGE_KEYS)
 
-        Me.NullValueString = NullableControlManager.GetInstance.GetDefaultNullValueString(Me, "* - - - *")
         Me.TextBoxPart.ReadOnly = True
         Me.PreferredVisibleColumnsOnOpen = 0
         Me.AutoResizeColumnsOnOpen = True
@@ -337,6 +347,23 @@ Public Class NullableValueRelationPopup
                 OnValueTextChanged(EventArgs.Empty)
             End Sub)
 
+        System.Windows.WeakEventManager(Of TextBox, KeyEventArgs).AddHandler(
+            Me.TextBoxPart, NameOf(TextBox.KeyDown), AddressOf TextBoxPartKeyPressHandler)
+    End Sub
+
+    'Handles the TextBoxPart KeyPress Event for the ImitateTabByPageKeys Property.
+    Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyEventArgs)
+        If ImitateTabByPageKeys Then
+            If Not Me.PopupControl.IsOpen Then
+                If e.KeyCode = Keys.Next Then
+                    SendKeys.SendWait("{TAB}")
+                    e.SuppressKeyPress = True
+                ElseIf e.KeyCode = Keys.PageUp Then
+                    SendKeys.SendWait("+{TAB}")
+                    e.SuppressKeyPress = True
+                End If
+            End If
+        End If
     End Sub
 
     Protected Overrides Sub OnHandleCreated(e As EventArgs)
@@ -1344,7 +1371,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DefaultValue(GetType(UnassignableValueAction), "TryHandleUnassignableValueDetectedEvent"),
      Description("Bestimmt oder ermittelt, was passieren soll, wenn Value ein Wert zugewiesen wird, der in der Liste keinem Eintrag entspricht."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property OnUnassignableValueAction As UnassignableValueAction
@@ -1367,7 +1394,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob das Steuerelement mit FocusColor eingefärbt werden soll, wenn das Steuerelement den Fokus erhält."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property OnFocusColor As Boolean
@@ -1395,7 +1422,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die Farbe, die im Bedarfsfall vorselektiert werden soll, wenn das Steuerelement den Fokus erhält."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property FocusColor As Color
@@ -1423,7 +1450,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die Zeichenfolge, die beim Verlassen des Steuerelements angezeigt wird, wenn eine Null-Eingabe erfolgte."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property NullValueString As String
@@ -1443,7 +1470,7 @@ Public Class NullableValueRelationPopup
     ''' </remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt den Namen der Eigenschaft, deren Inhalt die Value-Eigenschaft beim Auswählen eines Elements der Liste zurückliefert."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property ValueMember As String Implements INullableValueRelationBinding.ValueMember
@@ -1482,7 +1509,7 @@ Public Class NullableValueRelationPopup
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder Ermittelt den ausgeschriebenen/lolkalisierten Namen des Feldes, mit dem dieses Steuerelement verknüpft werden soll." & vbNewLine &
         "Zum Beispiel: " & """{0:000000}: {1}, {2}"", {Kundennummer},{Nachname},{Vorname}"),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property DisplayMember As String
@@ -1573,7 +1600,7 @@ Public Class NullableValueRelationPopup
     ''' Validierung auch auf jedenfall gesetzt sein, weil anderenfalls eine Ausnahme ausgelöst werden kann.</remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder Ermittelt den ausgeschriebenen/lolkalisierten Namen des Feldes, mit dem dieses Steuerelement verknüpft werden soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property DatafieldDescription As String Implements INullableValueDataBinding.DatafieldDescription
@@ -1594,7 +1621,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder Ermittelt den Datenquellen-Feldnamen des Feldes, mit dem dieses Steuerelement verknüpft werden soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property DatafieldName As String Implements INullableValueDataBinding.DatafieldName
@@ -1628,7 +1655,7 @@ Public Class NullableValueRelationPopup
     ''' versucht, ein Eingabefeld zu verlassen, das keine Null-Werte akzeptiert, er aber keinen Wert eingegeben hat.</remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder Ermittelt den Text der ausgegeben werden soll, wenn der Anwender versucht ein Feld zu verlassen, dass keine Eingaben enthält."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property NullValueMessage As String Implements INullableValueDataBinding.NullValueMessage
@@ -1659,7 +1686,7 @@ Public Class NullableValueRelationPopup
 
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob Mehrfachselektierungen in der Liste zulässig sind oder nicht."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property MultiSelect As Boolean
@@ -1674,7 +1701,7 @@ Public Class NullableValueRelationPopup
 
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, wieviele Spalten beim Öffnen des Popups der enthaltenen Tabelle nach Möglichkeit im sichtbaren Ausschnitt angezeigt werden."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(0)>
     Public Property PreferredVisibleColumnsOnOpen As Integer
@@ -1691,7 +1718,7 @@ Public Class NullableValueRelationPopup
 
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, wieviele Zeilen beim Öffnen des Popups der enthaltenen Tabelle nach Möglichkeit im sichtbaren Ausschnitt angezeigt werden."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(0)>
     Public Property PreferredVisibleRowsOnOpen As Integer
@@ -1715,14 +1742,14 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob die Spaltenbreiten vor dem Öffnen an die Inhalte der Überschriften/Zellen angepasst werden sollen."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(True)>
     Public Property AutoResizeColumnsOnOpen As Boolean
 
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, wie der Text in der Statuszeile des geöffneten Popups ausgerichtet werden soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(System.Drawing.StringAlignment.Center)>
     Public Property ValueTextAlignment As System.Drawing.StringAlignment
@@ -1740,7 +1767,7 @@ Public Class NullableValueRelationPopup
     ''' <returns></returns>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, nach welcher Zeitspanne der verzögerte TextChange-Event eine Hintergrundsuche in den Elementen für die AutoComplete-List auslösen soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(300)>
     Public Property DeferredTextChangeDelay As Integer
@@ -1829,7 +1856,7 @@ Public Class NullableValueRelationPopup
 
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob der Anwender zur Laufzeit in der Lage sein soll, in der Popup-Liste zu suchen."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Property Searchable As Boolean
@@ -1914,7 +1941,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die FormToBusinessClassManager-Komponente, die die Verwaltung dieses NullableValue-Controls übernimmt."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property AssignedManagerComponent As FormToBusinessClassManager Implements INullableValueControl.AssignedManagerControl
@@ -1997,7 +2024,7 @@ Public Class NullableValueRelationPopup
     ''' </remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob bei der Zuweisung der Value-Eigenschaft Typengleichheit zwischen ValueMember (entsprechende Eigenschaft des Item in der Liste) und gesetztem Wert herschen muss."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(True)>
     Public Property EnforceValueMemberTypeSafety As Boolean
@@ -2018,7 +2045,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt einen Prioritätsindex, der bestimmt, in welcher Reihenfolge das Steuerelement vom FormsToBusinessClass-Manager verarbeitet wird (Höhere Nummer, frühere Verarbeitung.)"),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(True), DefaultValue(0)>
     Public Property ProcessingPriority As Integer Implements IAssignableFormToBusinessClassManager.ProcessingPriority
@@ -2045,9 +2072,9 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob ein Warnton bei einer fehlgeschlagenen Validierung ausgegeben werden soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
-     Browsable(True)>
+     Browsable(True), DefaultValue(False)>
     Public Property BeepOnFailedValidation As Boolean
 
     ''' <summary>
@@ -2058,7 +2085,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt einen Gruppierungsnamen, um eine Möglichkeit zur Verfügung zu stellen, zentral eine Reihe von Steuerelementen zu steuern."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue("Default")>
     Public Property GroupName As String Implements IAssignableFormToBusinessClassManager.GroupName
@@ -2072,21 +2099,21 @@ Public Class NullableValueRelationPopup
 
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die Dauer in Millisekunden, die ein Baloontip im Falle einer Fehlermeldung angezeigt wird."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(5000)>
     Public Property ExceptionBalloonDuration As Integer Implements INullableValueControl.ExceptionBalloonDuration
 
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt das Zeichen, mit dem Suchbegriffe so verknüpft werden, dass alle Suchbegriffe für einen Zeilentreffer zutreffen müssen."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue("+"c)>
     Public Property SearchKeywordAndChar As Char = "+"c
 
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt das Zeichen, mit dem Suchbegriffe so verknüpft werden, dass einer der Suchbegriffe für einen Zeilentreffer zutreffen muss."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(";"c)>
     Public Property SearchKeywordOrChar As Char = ";"c
@@ -2099,7 +2126,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob es sich bei einem Eingabefeld um ein Key-Feld handelt oder nicht."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Property IsKeyField As Boolean Implements IKeyFieldProvider.IsKeyField
@@ -2113,7 +2140,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob die Spalten, nach denen bei eingeschalteter Suche gesucht werden kann, mit der SearchColumnBackgroundColor eingefärbt werden sollen (True) oder nicht."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(True)>
     Public Property ColorSearchColumn As Boolean = True
@@ -2127,7 +2154,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt den Font, mit dem die Titel der Spalten, nach denen bei eingeschalteter Suche gesucht werden kann, ausgezeichnet werden soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property SearchColumnHeaderFont As Font
@@ -2183,7 +2210,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die Farbe, mit dem die Titel der Spalten, nach denen bei eingeschalteter Suche gesucht werden kann, ausgezeichnet werden soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property SearchColumnBackgroundColor As Color
@@ -2214,7 +2241,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die Farbe, mit dem die Titel der Spaltenköpfe, nach denen bei eingeschalteter Suche gesucht werden kann, ausgezeichnet werden soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property SearchColumnHeaderBackgroundColor As Color
@@ -2244,7 +2271,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob das RelationalPopup über einen Hinzufüge-Button verfügt."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Property HasAddButton As Boolean
@@ -2275,7 +2302,7 @@ Public Class NullableValueRelationPopup
     ''' bei einem Control-Fokus-Wechsel ebenfalls den Wert aus der Liste.</remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob das RelationalPopup seine Texteingabe behält, wenn ein entsprechender Wert nicht in der Lookup-Tabelle gefunden wurde."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Property PreserveInput As Boolean
@@ -2294,7 +2321,7 @@ Public Class NullableValueRelationPopup
     ''' <returns></returns>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Gets or sets the maximum number of characters that can be manually entered into the Textbox-Part of this control. NOTE: This also limits the search text length, when PreserveInput is not used!"),
-     Category("Behaviour"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(0)>
     Public Property MaxLength As Integer
@@ -2321,7 +2348,7 @@ Public Class NullableValueRelationPopup
     ''' Diese Eigenschaft hat Opt-In-Charakteristik.</remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob IsDirty ausgelöst werden soll, wenn Preserve-Input gesetzt ist, und der Anwender bereits ein einzelnes Zeichen im Eingabefeld geändert hat."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Property RaiseIsDirtyOnPreserveInputTextChange As Boolean
@@ -2348,7 +2375,7 @@ Public Class NullableValueRelationPopup
     ''' bei einem Control-Fokus-Wechsel ebenfalls den Wert aus der Liste.</remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob das RelationalPopup seine Texteingabe behält, wenn ein entsprechender Wert nicht in der Lookup-Tabelle gefunden wurde."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Property PreselectFirstMatchWithPreserveInput As Boolean
@@ -2373,7 +2400,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob bei einem Überlauf in der TextBox der vordere oder der hintere Teiltext angezeigt wird."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Property ReverseTextOverflowBehaviour As Boolean
@@ -2396,6 +2423,26 @@ Public Class NullableValueRelationPopup
         End Set
     End Property
 
+    ''' <summary>
+    ''' Returns or sets a flag which determines that the use can cycle between entry fields with Page up and Page down rather than Tab and Shift+Tab.
+    ''' </summary>
+    ''' <returns></returns>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Returns or sets if the user can cycle between entry fields with Page up and Page down in addition to Tab and Shift+Tab."),
+     Category("Behavior"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(False)>
+    Public Property ImitateTabByPageKeys As Boolean
+        Get
+            Return myImitateTabByPageKeys
+        End Get
+        Set(value As Boolean)
+            If Not Object.Equals(myImitateTabByPageKeys, value) Then
+                myImitateTabByPageKeys = value
+            End If
+        End Set
+    End Property
+
     Protected Overridable Sub OnHasAddButtonChanged(e As EventArgs)
         MyBase.PositionControls()
     End Sub
@@ -2408,7 +2455,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob der Filtervorgang bei der Eingabe von Suchbegriffen für eine große Anzahl von Elementen (>5000) parallelisiert werden soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Property ParallelizeFiltering As Boolean
@@ -2421,7 +2468,7 @@ Public Class NullableValueRelationPopup
     ''' <remarks>Diese Eigenschaft wird nur programmatisch gesetzt und steht im Designer nicht zur Verfügung.</remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
      Description("Bestimmt oder ermittelt wenn PreserveInput auf True gesetzt ist, welcher neue Wert (reiner Text) im Eingabebereich angezeigt wird, der nicht einem Wert der Liste entspricht."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(False), DefaultValue("")>
     Public Property ValueText As String

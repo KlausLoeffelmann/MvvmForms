@@ -1,4 +1,5 @@
-﻿''' <summary>
+﻿Imports ActiveDevelop.EntitiesFormsLib
+''' <summary>
 ''' Zentraler Manager der Standardwerte für alle NullableControl-Steuerelemente, der per Ereignis bindbar ist und damit eigene Standardwerte ermöglicht.
 ''' </summary>
 ''' <remarks></remarks>
@@ -9,7 +10,7 @@ Public NotInheritable Class NullableControlManager
     Public Shared Event RequestNullableControlDefaultValue(sender As Object, e As RequestNullableControlDefaultValueEventArgs)
 
     Private Sub New()
-        MyBase.new()
+        MyBase.New()
     End Sub
 
     Public Shared Function GetInstance() As NullableControlManager
@@ -45,6 +46,20 @@ Public NotInheritable Class NullableControlManager
                 NameOf(BindableDataGridView.OnUnassignableValueAction), predefinedValue)
         RaiseEvent RequestNullableControlDefaultValue(sender, e)
         Return CType(e.Value, UnassignableValueAction)
+    End Function
+
+    Friend Function GetDefaultCalculatorTrigger(sender As Object, predefinedValue As CalculatorActivationTrigger) As CalculatorActivationTrigger
+        Dim e As New RequestNullableControlDefaultValueEventArgs(
+                NameOf(NullableNumValue.DropDownCalculatorTrigger), predefinedValue)
+        RaiseEvent RequestNullableControlDefaultValue(sender, e)
+        Return CType(e.Value, CalculatorActivationTrigger)
+    End Function
+
+    Friend Function GetDefaultCalculatorMode(sender As Object, predefinedValue As CalculatorType) As CalculatorType
+        Dim e As New RequestNullableControlDefaultValueEventArgs(
+                NameOf(NullableNumValue.DropDownCalculatorMode), predefinedValue)
+        RaiseEvent RequestNullableControlDefaultValue(sender, e)
+        Return CType(e.Value, CalculatorType)
     End Function
 
     Function GetDefaultFocusSelectionBehaviour(sender As Object, predefinedValue As FocusSelectionBehaviours) As FocusSelectionBehaviours

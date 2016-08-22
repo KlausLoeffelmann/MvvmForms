@@ -62,6 +62,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DemoData\DemoData.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,7 +77,7 @@
     <Compile Include="RxCollectionView\frmRxCollectionView.Designer.cs">
       <DependentUpon>frmRxCollectionView.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimpleContactData.cs" />
+    <Compile Include="DemoData\SimpleContactData.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>

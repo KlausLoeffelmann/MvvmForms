@@ -21,6 +21,8 @@ Public Class NullableNumValue
 
     Private Const DEFAULT_MAX_VALUE_EXCEEDED_MESSAGE As String = "Der eingegebenene Wert überschreitet das Maximum!"
     Private Const DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE As String = "Der eingegebene Wert unterschreitet das Minimum!"
+    Private ReadOnly DEFAULT_CALCULATOR_MODE As CalculatorType = CalculatorType.None
+    Private ReadOnly DEFAULT_CALCULATOR_TRIGGER As CalculatorActivationTrigger = CalculatorActivationTrigger.None
 
     Private ReadOnly DEFAULT_MIN_VALUE As Decimal? = 0
     Private ReadOnly DEFAULT_MAX_VALUE As Decimal? = Nothing
@@ -37,10 +39,15 @@ Public Class NullableNumValue
         Me.MinValue = NullableControlManager.GetInstance.GetDefaultMinValue(Me, DEFAULT_MIN_VALUE)
         Me.MaxValue = NullableControlManager.GetInstance.GetDefaultMaxValue(Me, DEFAULT_MAX_VALUE)
 
+        'TODO: Do we need to take the relationship between those into account?
+        Me.DropDownCalculatorMode = NullableControlManager.GetInstance.GetDefaultCalculatorMode(Me, DEFAULT_CALCULATOR_MODE)
+        Me.DropDownCalculatorTrigger = NullableControlManager.GetInstance.GetDefaultCalculatorTrigger(Me, DEFAULT_CALCULATOR_TRIGGER)
+        Me.AllowFormular = NullableControlManager.GetInstance.GetDefaultAllowFormular(Me, DEFAULT_ALLOW_FORMULAR)
+
+
         Me.Increment = NullableControlManager.GetInstance.GetDefaultIncrement(Me, DEFAULT_INCREMENT)
         Me.MaxValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMaxValueExceededMessage(Me, DEFAULT_MAX_VALUE_EXCEEDED_MESSAGE)
         Me.MinValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMinValueExceededMessage(Me, DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE)
-        Me.AllowFormular = NullableControlManager.GetInstance.GetDefaultAllowFormular(Me, DEFAULT_ALLOW_FORMULAR)
 
         AddHandler Me.ReadOnlyChanged, AddressOf myReadOnlyChanged
 
