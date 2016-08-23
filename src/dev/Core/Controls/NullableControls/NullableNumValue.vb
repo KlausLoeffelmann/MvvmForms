@@ -485,8 +485,8 @@ Public Class NullableNumValue
         MinValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMinValueExceededMessage(Me, DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE)
     End Sub
 
+    'Handels the TextBoxPartKeyPress event and prevent letters when AllowFormular is false.
     Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyPressEventArgs)
-        MyBase.OnKeyPress(e)
         If Not AllowFormular Then
             If Char.IsNumber(e.KeyChar) Or
                Char.IsPunctuation(e.KeyChar) Or

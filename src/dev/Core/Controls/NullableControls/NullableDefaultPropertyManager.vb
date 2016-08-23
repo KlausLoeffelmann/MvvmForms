@@ -97,6 +97,20 @@ Public NotInheritable Class NullableControlManager
         Return e.Value.ToString
     End Function
 
+    Function GetDefaultDisplayFormatString(sender As Object, predefinedValue As String) As String
+        Dim e As New RequestNullableControlDefaultValueEventArgs(
+                NameOf(NullableDateValue.DisplayFormatString), predefinedValue)
+        RaiseEvent RequestNullableControlDefaultValue(sender, e)
+        Return e.Value.ToString
+    End Function
+
+    Function GetDefaultDisplayFormat(sender As Object, predefinedValue As DateTimeFormats) As DateTimeFormats
+        Dim e As New RequestNullableControlDefaultValueEventArgs(
+                NameOf(NullableDateValue.DisplayFormat), predefinedValue)
+        RaiseEvent RequestNullableControlDefaultValue(sender, e)
+        Return CType(e.Value, DateTimeFormats)
+    End Function
+
     Function GetDefaultBeepOnFailedValidation(sender As Object, predefinedValue As Boolean) As Boolean
         Dim e As New RequestNullableControlDefaultValueEventArgs(
                         NameOf(NullableValueBase(Of Integer, NullableValuePrimalTextBox).BeepOnFailedValidation),
@@ -147,6 +161,7 @@ Public NotInheritable Class NullableControlManager
         RaiseEvent RequestNullableControlDefaultValue(sender, e)
         Return CBool(e.Value)
     End Function
+
 
 End Class
 

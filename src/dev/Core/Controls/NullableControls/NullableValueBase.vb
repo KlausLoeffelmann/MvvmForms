@@ -86,11 +86,12 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
 
     Protected Const CONTROLDEFAULTWIDTH As Integer = 120
     Protected Const DEFAULT_NULL_VALUE_STRING = "* - - -*"
-    Protected Shared ReadOnly DEFAULT_DATE_FORMAT_STRING As String = CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern
     Protected Const DEFAULT_FOCUS_SELECTION_BEHAVIOUR As FocusSelectionBehaviours = FocusSelectionBehaviours.PreSelectInput
     Protected Const DEFAULT_ON_FOCUS_COLOR As Boolean = True
     Protected Const DEFAULT_BEEP_ON_FAILED_VALIDATION As Boolean = False
     Protected Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
+
+    Protected Shared ReadOnly DEFAULT_DATE_FORMAT_STRING As String = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern
 
     Private Const WM_KEYDOWN = &H100
 
@@ -174,6 +175,10 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
 
     'Handles the TextBoxPart KeyPress Event for the ImitateTabByPageKeys Property.
     Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyEventArgs)
+        OnTextBoxPartKeyPress(e)
+    End Sub
+
+    Protected Overridable Sub OnTextBoxPartKeyPress(e As KeyEventArgs)
         If ImitateTabByPageKeys Then
             If e.KeyCode = Keys.Next Then
                 SendKeys.SendWait("{TAB}")

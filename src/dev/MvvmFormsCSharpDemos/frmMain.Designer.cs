@@ -43,6 +43,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.AllowFormulaCheckBox = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.nullableTextValue4 = new ActiveDevelop.EntitiesFormsLib.NullableTextValue();
             this.nullableTextValue3 = new ActiveDevelop.EntitiesFormsLib.NullableTextValue();
             this.nullableTextValue2 = new ActiveDevelop.EntitiesFormsLib.NullableTextValue();
@@ -50,12 +51,14 @@
             this.nullableIntValue1 = new ActiveDevelop.EntitiesFormsLib.NullableIntValue();
             this.numValueField = new ActiveDevelop.EntitiesFormsLib.NullableNumValue();
             this.nullableValueRelationPopup = new ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup();
+            this.nullableDateValue1 = new ActiveDevelop.EntitiesFormsLib.NullableDateValue();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nullableValueRelationPopup)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,13 +116,15 @@
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.panel5, 1, 4);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(16, 44);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 144F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 148F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(750, 737);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -207,8 +212,19 @@
             this.panel4.Controls.Add(this.nullableValueRelationPopup);
             this.panel4.Location = new System.Drawing.Point(378, 477);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(369, 257);
+            this.panel4.Size = new System.Drawing.Size(369, 100);
             this.panel4.TabIndex = 8;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.Controls.Add(this.nullableDateValue1);
+            this.panel5.Location = new System.Drawing.Point(378, 583);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(369, 151);
+            this.panel5.TabIndex = 9;
             // 
             // nullableTextValue4
             // 
@@ -308,7 +324,7 @@
             this.nullableIntValue1.NullValueString = "Enter an Integer value.";
             this.nullableIntValue1.ObfuscationChar = null;
             this.nullableIntValue1.PermissionReason = null;
-            this.nullableIntValue1.Size = new System.Drawing.Size(353, 22);
+            this.nullableIntValue1.Size = new System.Drawing.Size(362, 22);
             this.nullableIntValue1.TabIndex = 4;
             this.nullableIntValue1.UIGuid = new System.Guid("b564b830-a531-45ff-9bcb-3a74bcbae0ea");
             this.nullableIntValue1.Value = null;
@@ -337,7 +353,7 @@
             this.numValueField.NullValueString = "Enter a Floating Point Value or a Formula like \"12*(3+3)\"";
             this.numValueField.ObfuscationChar = null;
             this.numValueField.PermissionReason = null;
-            this.numValueField.Size = new System.Drawing.Size(338, 22);
+            this.numValueField.Size = new System.Drawing.Size(362, 22);
             this.numValueField.TabIndex = 6;
             this.numValueField.UIGuid = new System.Guid("48a3250e-b5b5-4f1b-9ab7-50c5c3802e5b");
             this.numValueField.Value = null;
@@ -372,6 +388,26 @@
             this.nullableValueRelationPopup.ValueMember = null;
             this.nullableValueRelationPopup.GetColumnSchema += new ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup.GetColumnSchemaEventHandler(this.nullableValueRelationPopup1_GetColumnSchema);
             // 
+            // nullableDateValue1
+            // 
+            this.nullableDateValue1.AssignedManagerComponent = null;
+            this.nullableDateValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nullableDateValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
+            this.nullableDateValue1.DaysDistanceBetweenLinkedControl = null;
+            this.nullableDateValue1.ImitateTabByPageKeys = true;
+            this.nullableDateValue1.LinkedToNullableDateControl = null;
+            this.nullableDateValue1.Location = new System.Drawing.Point(6, 3);
+            this.nullableDateValue1.MaxLength = 32767;
+            this.nullableDateValue1.Name = "nullableDateValue1";
+            this.nullableDateValue1.NullValueString = "* - - - *";
+            this.nullableDateValue1.ObfuscationChar = null;
+            this.nullableDateValue1.PermissionReason = null;
+            this.nullableDateValue1.Size = new System.Drawing.Size(359, 22);
+            this.nullableDateValue1.TabIndex = 10;
+            this.nullableDateValue1.UIGuid = new System.Guid("9c8ca551-6d86-4219-8ff7-66eb809e0c5e");
+            this.nullableDateValue1.Value = null;
+            this.nullableDateValue1.ValueValidationState = null;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -392,6 +428,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nullableValueRelationPopup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -421,6 +458,8 @@
         private ActiveDevelop.EntitiesFormsLib.NullableNumValue numValueField;
         private System.Windows.Forms.Panel panel4;
         private ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup nullableValueRelationPopup;
+        private System.Windows.Forms.Panel panel5;
+        private ActiveDevelop.EntitiesFormsLib.NullableDateValue nullableDateValue1;
     }
 }
 

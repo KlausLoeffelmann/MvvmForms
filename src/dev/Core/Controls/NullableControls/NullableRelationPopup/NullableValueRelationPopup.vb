@@ -353,6 +353,10 @@ Public Class NullableValueRelationPopup
 
     'Handles the TextBoxPart KeyPress Event for the ImitateTabByPageKeys Property.
     Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyEventArgs)
+        OnTextBoxKeyPress(e)
+    End Sub
+
+    Protected Overridable Sub OnTextBoxKeyPress(e As KeyEventArgs)
         If ImitateTabByPageKeys Then
             If Not Me.PopupControl.IsOpen Then
                 If e.KeyCode = Keys.Next Then
@@ -365,6 +369,7 @@ Public Class NullableValueRelationPopup
             End If
         End If
     End Sub
+
 
     Protected Overrides Sub OnHandleCreated(e As EventArgs)
         MyBase.OnHandleCreated(e)
