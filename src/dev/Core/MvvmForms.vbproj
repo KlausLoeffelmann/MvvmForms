@@ -744,8 +744,6 @@
     <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TraceEvent.ReadMe.txt" />
-    <Content Include="TraceEvent.ReleaseNotes.txt" />
     <EmbeddedResource Include="Assets\NullableValueBaseToolboxIcon.bmp" />
     <EmbeddedResource Include="Assets\NullableNumValue.bmp" />
     <EmbeddedResource Include="Assets\NullableValueRelationPopup.bmp" />
