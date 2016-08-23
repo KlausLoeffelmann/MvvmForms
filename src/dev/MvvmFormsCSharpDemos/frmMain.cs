@@ -58,5 +58,21 @@ namespace MvvmFormsCSharpDemos
             fn.Add("City", "City");
             e.SchemaFieldnames = fn;
         }
+
+        private async void aSyncShowDialogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dialog = new TestViewWithFocusableFields();
+            button1.Enabled = false;
+            await Task.WhenAll(LongLastingOperationAsync(),
+                               dialog.ShowDialogAsync());
+            button1.Enabled = true;
+
+        }
+
+        private async Task LongLastingOperationAsync()
+        {
+            await Task.Delay(2000);
+            toolStripStatusLabel1.Text = "Long lasting operation done";
+        }
     }
 }

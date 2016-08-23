@@ -117,23 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Same properties as NullableIntValue control, but for Double Values (floating point numeric values).
-Use the AllowFormula Property to type in Math Expressions for direct calculations. Use the DecimalPlaces Property, to determine the decimal places. Use the LeadingZeros property to determine the format option through leading zeros. 
-Use the CurrencySymbolString and CurrencySymbolUpFront propterties for Currency Format Options.</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Entry field for Nullable Text Values (Strings). Fields get automatically highlighted, when they receive the focus.
-Set the highlight color with the FocusColor property. The Null/Nothing representation can be set with the NullValueString. Use this like the Placeholder Property in XAML. Set the Placeholder color with the NullValueColor property.</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Same properties as NullableTextValue control, but for Integer (numeric values).
-Set the Thousands Seperator with the HasThousendsSeperator property. Define a Max and a Min value, and with the MaxValueExceeded / MinValueExceeded Property an error text, which automatically appears, when the Value is too high or too low.</value>
-  </data>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>152, 17</value>
-  </metadata>
 </root>

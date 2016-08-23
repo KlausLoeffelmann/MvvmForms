@@ -34,32 +34,37 @@
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rxCollectionViewDemoTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aSyncShowDialogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.AllowFormulaCheckBox = new System.Windows.Forms.CheckBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.nullableTextValue4 = new ActiveDevelop.EntitiesFormsLib.NullableTextValue();
             this.nullableTextValue3 = new ActiveDevelop.EntitiesFormsLib.NullableTextValue();
             this.nullableTextValue2 = new ActiveDevelop.EntitiesFormsLib.NullableTextValue();
             this.nullableTextValue1 = new ActiveDevelop.EntitiesFormsLib.NullableTextValue();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.nullableIntValue1 = new ActiveDevelop.EntitiesFormsLib.NullableIntValue();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.AllowFormulaCheckBox = new System.Windows.Forms.CheckBox();
             this.numValueField = new ActiveDevelop.EntitiesFormsLib.NullableNumValue();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.nullableValueRelationPopup = new ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.nullableDateValue1 = new ActiveDevelop.EntitiesFormsLib.NullableDateValue();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nullableValueRelationPopup)).BeginInit();
+            this.panel5.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -92,7 +97,8 @@
             // testsToolStripMenuItem
             // 
             this.testsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rxCollectionViewDemoTestToolStripMenuItem});
+            this.rxCollectionViewDemoTestToolStripMenuItem,
+            this.aSyncShowDialogToolStripMenuItem});
             this.testsToolStripMenuItem.Name = "testsToolStripMenuItem";
             this.testsToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.testsToolStripMenuItem.Text = "Tests";
@@ -103,6 +109,13 @@
             this.rxCollectionViewDemoTestToolStripMenuItem.Size = new System.Drawing.Size(276, 26);
             this.rxCollectionViewDemoTestToolStripMenuItem.Text = "RxCollectionView Demo/Test";
             this.rxCollectionViewDemoTestToolStripMenuItem.Click += new System.EventHandler(this.rxCollectionViewDemoTestToolStripMenuItem_Click);
+            // 
+            // aSyncShowDialogToolStripMenuItem
+            // 
+            this.aSyncShowDialogToolStripMenuItem.Name = "aSyncShowDialogToolStripMenuItem";
+            this.aSyncShowDialogToolStripMenuItem.Size = new System.Drawing.Size(276, 26);
+            this.aSyncShowDialogToolStripMenuItem.Text = "ASync ShowDialog";
+            this.aSyncShowDialogToolStripMenuItem.Click += new System.EventHandler(this.aSyncShowDialogToolStripMenuItem_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -126,7 +139,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 106F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(750, 737);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.TabIndex = 2;
             // 
             // label3
             // 
@@ -169,62 +182,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(369, 138);
             this.panel1.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.nullableIntValue1);
-            this.panel2.Location = new System.Drawing.Point(378, 147);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(369, 142);
-            this.panel2.TabIndex = 6;
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.AllowFormulaCheckBox);
-            this.panel3.Controls.Add(this.numValueField);
-            this.panel3.Location = new System.Drawing.Point(378, 295);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(369, 176);
-            this.panel3.TabIndex = 7;
-            // 
-            // AllowFormulaCheckBox
-            // 
-            this.AllowFormulaCheckBox.AutoSize = true;
-            this.AllowFormulaCheckBox.Location = new System.Drawing.Point(3, 41);
-            this.AllowFormulaCheckBox.Name = "AllowFormulaCheckBox";
-            this.AllowFormulaCheckBox.Size = new System.Drawing.Size(117, 21);
-            this.AllowFormulaCheckBox.TabIndex = 7;
-            this.AllowFormulaCheckBox.Text = "Allow Formula";
-            this.AllowFormulaCheckBox.UseVisualStyleBackColor = true;
-            this.AllowFormulaCheckBox.CheckedChanged += new System.EventHandler(this.AllowFormulaCheckBox_CheckedChanged);
-            // 
-            // panel4
-            // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.Controls.Add(this.nullableValueRelationPopup);
-            this.panel4.Location = new System.Drawing.Point(378, 477);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(369, 100);
-            this.panel4.TabIndex = 8;
-            // 
-            // panel5
-            // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel5.Controls.Add(this.nullableDateValue1);
-            this.panel5.Location = new System.Drawing.Point(378, 583);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(369, 151);
-            this.panel5.TabIndex = 9;
             // 
             // nullableTextValue4
             // 
@@ -308,6 +265,17 @@
             this.nullableTextValue1.Value = null;
             this.nullableTextValue1.ValueValidationState = null;
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.nullableIntValue1);
+            this.panel2.Location = new System.Drawing.Point(378, 147);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(369, 142);
+            this.panel2.TabIndex = 3;
+            // 
             // nullableIntValue1
             // 
             this.nullableIntValue1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -325,10 +293,33 @@
             this.nullableIntValue1.ObfuscationChar = null;
             this.nullableIntValue1.PermissionReason = null;
             this.nullableIntValue1.Size = new System.Drawing.Size(362, 22);
-            this.nullableIntValue1.TabIndex = 4;
+            this.nullableIntValue1.TabIndex = 0;
             this.nullableIntValue1.UIGuid = new System.Guid("b564b830-a531-45ff-9bcb-3a74bcbae0ea");
             this.nullableIntValue1.Value = null;
             this.nullableIntValue1.ValueValidationState = null;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.AllowFormulaCheckBox);
+            this.panel3.Controls.Add(this.numValueField);
+            this.panel3.Location = new System.Drawing.Point(378, 295);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(369, 176);
+            this.panel3.TabIndex = 5;
+            // 
+            // AllowFormulaCheckBox
+            // 
+            this.AllowFormulaCheckBox.AutoSize = true;
+            this.AllowFormulaCheckBox.Location = new System.Drawing.Point(3, 41);
+            this.AllowFormulaCheckBox.Name = "AllowFormulaCheckBox";
+            this.AllowFormulaCheckBox.Size = new System.Drawing.Size(117, 21);
+            this.AllowFormulaCheckBox.TabIndex = 1;
+            this.AllowFormulaCheckBox.Text = "Allow Formula";
+            this.AllowFormulaCheckBox.UseVisualStyleBackColor = true;
+            this.AllowFormulaCheckBox.CheckedChanged += new System.EventHandler(this.AllowFormulaCheckBox_CheckedChanged);
             // 
             // numValueField
             // 
@@ -354,10 +345,32 @@
             this.numValueField.ObfuscationChar = null;
             this.numValueField.PermissionReason = null;
             this.numValueField.Size = new System.Drawing.Size(362, 22);
-            this.numValueField.TabIndex = 6;
+            this.numValueField.TabIndex = 0;
             this.numValueField.UIGuid = new System.Guid("48a3250e-b5b5-4f1b-9ab7-50c5c3802e5b");
             this.numValueField.Value = null;
             this.numValueField.ValueValidationState = null;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.nullableValueRelationPopup);
+            this.panel4.Location = new System.Drawing.Point(378, 477);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(369, 100);
+            this.panel4.TabIndex = 6;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(89, 61);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(160, 28);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "&Async ShowDialog Test";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.aSyncShowDialogToolStripMenuItem_Click);
             // 
             // nullableValueRelationPopup
             // 
@@ -388,12 +401,24 @@
             this.nullableValueRelationPopup.ValueMember = null;
             this.nullableValueRelationPopup.GetColumnSchema += new ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup.GetColumnSchemaEventHandler(this.nullableValueRelationPopup1_GetColumnSchema);
             // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.Controls.Add(this.nullableDateValue1);
+            this.panel5.Location = new System.Drawing.Point(378, 583);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(369, 151);
+            this.panel5.TabIndex = 7;
+            // 
             // nullableDateValue1
             // 
             this.nullableDateValue1.AssignedManagerComponent = null;
             this.nullableDateValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nullableDateValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
             this.nullableDateValue1.DaysDistanceBetweenLinkedControl = null;
+            this.nullableDateValue1.DisplayFormatString = "MM/dd/yyyy";
             this.nullableDateValue1.ImitateTabByPageKeys = true;
             this.nullableDateValue1.LinkedToNullableDateControl = null;
             this.nullableDateValue1.Location = new System.Drawing.Point(6, 3);
@@ -403,16 +428,34 @@
             this.nullableDateValue1.ObfuscationChar = null;
             this.nullableDateValue1.PermissionReason = null;
             this.nullableDateValue1.Size = new System.Drawing.Size(359, 22);
-            this.nullableDateValue1.TabIndex = 10;
+            this.nullableDateValue1.TabIndex = 0;
             this.nullableDateValue1.UIGuid = new System.Guid("9c8ca551-6d86-4219-8ff7-66eb809e0c5e");
             this.nullableDateValue1.Value = null;
             this.nullableDateValue1.ValueValidationState = null;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 857);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(791, 25);
+            this.statusStrip1.TabIndex = 0;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(27, 20);
+            this.toolStripStatusLabel1.Text = "---";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 882);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -428,8 +471,10 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nullableValueRelationPopup)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -460,6 +505,10 @@
         private ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup nullableValueRelationPopup;
         private System.Windows.Forms.Panel panel5;
         private ActiveDevelop.EntitiesFormsLib.NullableDateValue nullableDateValue1;
+        private System.Windows.Forms.ToolStripMenuItem aSyncShowDialogToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

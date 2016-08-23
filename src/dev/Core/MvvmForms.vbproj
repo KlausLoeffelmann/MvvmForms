@@ -523,6 +523,7 @@
     <Compile Include="Exceptions\MissingViewAttributeException.vb" />
     <Compile Include="Exceptions\ValueAssigningException.vb" />
     <Compile Include="ExtenderMethods\ExtendedTypeReflector.vb" />
+    <Compile Include="ExtenderMethods\FormsExtender.vb" />
     <Compile Include="ExtenderMethods\GroupFunctionalityExtender.vb" />
     <Compile Include="ExtenderMethods\ListOfPointCollectionInitializerExtender.vb" />
     <Compile Include="ExtenderMethods\NullableValueExtender.vb" />
