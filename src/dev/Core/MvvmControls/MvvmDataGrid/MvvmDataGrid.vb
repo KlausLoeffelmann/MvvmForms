@@ -1010,6 +1010,8 @@ Public Class MvvmDataGrid
 
             If Not MyBase.DesignMode AndAlso Settings IsNot Nothing Then
                 Dim settingsKey = _myParent.Name & "." & Me.Name
+                Dim innerGrid = WpfDataGridViewWrapper.InnerDataGridView
+                innerGrid.Items.SortDescriptions.Clear()
 
                 'Schauen ob es schon Settings gibt (für die aktuelle Instanz), wenn nicht dann anlegen
                 If Not Settings.ContainsKey(settingsKey) Then
@@ -1040,6 +1042,10 @@ Public Class MvvmDataGrid
                                             .SortMemberPath = column.SortMemberPath
                                             If Not String.IsNullOrEmpty(column.Width) Then .Width = DirectCast(converter.ConvertFromString(column.Width), DataGridLength)
                                         End With
+
+                                        If Not String.IsNullOrWhiteSpace(column.SortMemberPath) AndAlso column.SortDirection.HasValue Then
+                                            innerGrid.Items.SortDescriptions.Add(New SortDescription(column.SortMemberPath, column.SortDirection.Value))
+                                        End If
 
                                         matchedColumns.Add(column.Name)
                                     End If

@@ -1,10 +1,15 @@
 ﻿Imports System.Text
+Imports ActiveDevelop.EntitiesFormsLib
 
 Public Class MvvmDataGridTest
+
+    Private Shared _settings As New MvvmDataGridSettings()
+
     Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
+        MvvmDataGrid.Settings = _settings
 
         ' Add any initialization after the InitializeComponent() call.
         Me.MvvmManager1.DataContext = New MainViewModel()
