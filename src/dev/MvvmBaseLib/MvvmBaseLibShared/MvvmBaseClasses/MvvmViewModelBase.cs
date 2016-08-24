@@ -129,7 +129,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         /// <param name="modelCollection">Die Auflistung mit den entsprechenden Model-Objekten.</param>
         /// <returns>Liste mit Objekten eines ViewModels aus der Liste der Models.</returns>
         /// <remarks> Diese Methode erstellt eine Liste aus ViewModel-Objekten im MVVM-Pattern auf Basis einer Liste 
-        /// mit Model-Objekten. Dabei verwendet diese Funktion die statische Methode <see cref="FromModel(Of ViewModelType, modelType)(modelType)">FromModel</see>.
+        /// mit Model-Objekten. Dabei verwendet diese Funktion die statische generische Methode FromModel.
         /// Wenn Eigenschaften in der ViewModel-Klasse vorhanden sind, die im Model nicht existieren, werden diese 
         /// Eigenschaften nicht versucht zu kopieren, und es gibt keine Fehlermeldung. Mithilfe des 
         /// <see cref="ModelPropertyNameAttribute">ModelPropertyNameAttribute</see>-Attributes können Sie einen anderen 

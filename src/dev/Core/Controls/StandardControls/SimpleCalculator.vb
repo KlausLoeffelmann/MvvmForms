@@ -128,7 +128,7 @@ Public Class SimpleCalculator
     End Sub
 
     Protected Sub OnSetResult(e As CalculatorSetResultEventArgs)
-        Debug.WriteLine("OnSetResult '{0}', Operator= '{1}', Value = '{2}'", e.Action, e.Operator, e.Value)
+        'Debug.WriteLine("OnSetResult '{0}', Operator= '{1}', Value = '{2}'", e.Action, e.Operator, e.Value)
         RaiseEvent SetResult(Me, e)
     End Sub
 

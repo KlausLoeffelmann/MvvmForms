@@ -48,6 +48,9 @@ Public Class NullableDateValue
     Sub New()
         MyBase.New()
 
+        DisplayFormatString = NullableControlManager.GetInstance.GetDefaultDisplayFormatString(Me, DEFAULT_DATE_FORMAT_STRING)
+        DisplayFormat = NullableControlManager.GetInstance.GetDefaultDisplayFormat(Me, DateTimeFormats.ShortDate)
+
         'Wird das Control das erste Mal aufgeklappt, müssen wir den Calendarinhalt (MonthCalendarEx-Instanz) nicht austauschen.
         'Sonst müssten wir es, da der Anwender beim letzten Mal in der Monats-,Jahres-
         'oder Jahresbereichsanzeige steckengeblieben sein könnte, die beim erneuten Aufklappen
@@ -152,8 +155,35 @@ Public Class NullableDateValue
                 ValueControl.ClosePopup()
             End Sub)
 
-        myDisplayFormatString = DEFAULT_DATE_FORMAT_STRING
-        myDisplayFormat = DateTimeFormats.ShortDate
+        'Wirering up the event which blocks alpha keys.
+        AddHandler Me.TextBoxPart.KeyPress, AddressOf TextBoxPartKeyPressHandler
+
+    End Sub
+
+    'Handles the TextBoxPart KeyPress Event for the ImitateTabByPageKeys Property.
+    Protected Overrides Sub OnTextBoxPartKeyPress(e As KeyEventArgs)
+        If ImitateTabByPageKeys Then
+            If Not ValueControl.IsPopupOpen Then
+                If e.KeyCode = Keys.Next Then
+                    SendKeys.SendWait("{TAB}")
+                    e.SuppressKeyPress = True
+                ElseIf e.KeyCode = Keys.PageUp Then
+                    SendKeys.SendWait("+{TAB}")
+                    e.SuppressKeyPress = True
+                End If
+            End If
+        End If
+    End Sub
+
+    'Handels the TextBoxPartKeyPress event and prevent letters.
+    Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyPressEventArgs)
+        If Char.IsNumber(e.KeyChar) Or
+           Char.IsPunctuation(e.KeyChar) Or
+           Char.IsSeparator(e.KeyChar) Or
+           Char.IsControl(e.KeyChar) Then
+        Else
+            e.Handled = True
+        End If
     End Sub
 
     Protected Overrides Sub InitializeProperties()

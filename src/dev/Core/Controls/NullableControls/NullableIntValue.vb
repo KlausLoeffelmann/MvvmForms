@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Windows.Forms
 
 ''' <summary>
 ''' Allows editing of integer values, which can be retrieved/set over the Value property, 
@@ -92,6 +93,19 @@ Public Class NullableIntValue
                     End Try
                 End If
             End Sub
+    End Sub
+
+    'Handels the TextBoxPartKeyPress event and prevent letters when AllowFormular is false.
+    Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyPressEventArgs)
+        If Not AllowFormular Then
+            If Char.IsNumber(e.KeyChar) Or
+               Char.IsPunctuation(e.KeyChar) Or
+               Char.IsSeparator(e.KeyChar) Or
+               Char.IsControl(e.KeyChar) Then
+            Else
+                e.Handled = True
+            End If
+        End If
     End Sub
 
     Private Sub myReadOnlyChanged(sender As Object, e As EventArgs)

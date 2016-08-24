@@ -86,10 +86,14 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
 
     Protected Const CONTROLDEFAULTWIDTH As Integer = 120
     Protected Const DEFAULT_NULL_VALUE_STRING = "* - - -*"
-    Protected Shared ReadOnly DEFAULT_DATE_FORMAT_STRING As String = CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern
     Protected Const DEFAULT_FOCUS_SELECTION_BEHAVIOUR As FocusSelectionBehaviours = FocusSelectionBehaviours.PreSelectInput
     Protected Const DEFAULT_ON_FOCUS_COLOR As Boolean = True
     Protected Const DEFAULT_BEEP_ON_FAILED_VALIDATION As Boolean = False
+    Protected Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
+
+    Protected Shared ReadOnly DEFAULT_DATE_FORMAT_STRING As String = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern
+
+    Private Const WM_KEYDOWN = &H100
 
     'Shapepoints für den Balloon.
     Private myShapePointTypes As Byte() = {CByte(PathPointType.Start),
@@ -101,6 +105,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
                                            CByte(PathPointType.Line),
                                            CByte(PathPointType.Line Or PathPointType.CloseSubpath)}
     Private myExceptionBalloonDuration As Integer
+    Private myImitateTabByPageKeys As Boolean
 
     Public Sub New()
         MyBase.New()
@@ -109,6 +114,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         SetInitialDefaultBorderstyleOnDemand()
         myValueControl = New ControlType()
         myValueControl.AutoSize = False
+        myValueControl.TabStop = False
 
         InitializeProperties()
 
@@ -123,15 +129,15 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
             SetStyle(ControlStyles.FixedHeight, True)
         End If
 
-        myNullValueString = GetDefaultNullValueString()
-
-        myBeepOnFailedValidation = NullableControlManager.GetInstance.GetDefaultBeepOnFailedValidation(Me, DEFAULT_BEEP_ON_FAILED_VALIDATION)
-        myOnFocusColor = NullableControlManager.GetInstance.GetDefaultOnFocusColor(Me, DEFAULT_ON_FOCUS_COLOR)
-        myFocusColor = NullableControlManager.GetInstance.GetDefaultFocusColor(Me, DEFAULT_FOCUS_COLOR)
-        myErrorColor = NullableControlManager.GetInstance.GetDefaultErrorColor(Me, DEFAULT_ERROR_COLOR)
-        myFormatString = NullableControlManager.GetInstance.GetDefaultFormatString(Me, GetDefaultFormatString)
-        myFocusSelectionBehaviour = NullableControlManager.GetInstance.GetDefaultFocusSelectionBehaviour(Me, DEFAULT_FOCUS_SELECTION_BEHAVIOUR)
+        NullValueString = NullableControlManager.GetInstance.GetDefaultNullValueString(Me, "* - - - *")
+        BeepOnFailedValidation = NullableControlManager.GetInstance.GetDefaultBeepOnFailedValidation(Me, DEFAULT_BEEP_ON_FAILED_VALIDATION)
+        OnFocusColor = NullableControlManager.GetInstance.GetDefaultOnFocusColor(Me, DEFAULT_ON_FOCUS_COLOR)
+        FocusColor = NullableControlManager.GetInstance.GetDefaultFocusColor(Me, DEFAULT_FOCUS_COLOR)
+        ErrorColor = NullableControlManager.GetInstance.GetDefaultErrorColor(Me, DEFAULT_ERROR_COLOR)
+        FormatString = NullableControlManager.GetInstance.GetDefaultFormatString(Me, GetDefaultFormatString)
+        FocusSelectionBehaviour = NullableControlManager.GetInstance.GetDefaultFocusSelectionBehaviour(Me, DEFAULT_FOCUS_SELECTION_BEHAVIOUR)
         ExceptionBalloonDuration = NullableControlManager.GetInstance.GetDefaultExceptionBalloonDuration(Me, 5000)
+        ImitateTabByPageKeys = NullableControlManager.GetInstance.GetDefaultImitateTabByPageKeys(Me, DEFAULT_IMITATE_TAB_BY_PAGE_KEYS)
 
         SetStyle(ControlStyles.ResizeRedraw, True)
         SetStyle(ControlStyles.UseTextForAccessibility, True)
@@ -143,6 +149,9 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         Me.Controls.Add(myValueControl)
 
         AddHandler DirectCast(myValueControl, ITextBoxBasedControl).TextBoxPart.Resize, AddressOf OnTextBoxResize
+
+        'Wirering up the event which blocks alpha keys when no Formula is allowed.
+        AddHandler Me.TextBoxPart.KeyDown, AddressOf TextBoxPartKeyPressHandler
 
         'Verhalten geändert: Hier wurde aus ungeklärten Gründen schon direkt beim Ändern der TextBox das ValueChanging-Ereignis getriggert.
         'Dieser Workflow ist falsch. Wir haben das Verhalten dahin gehend geändert, dass nun die Text-Eigenschaft geändert wird,
@@ -159,9 +168,26 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
                 'Else
                 '    myValueChangedByPropertySetter = False
                 'End If
-        End Sub
+            End Sub
         InitializeValue()
+    End Sub
 
+
+    'Handles the TextBoxPart KeyPress Event for the ImitateTabByPageKeys Property.
+    Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyEventArgs)
+        OnTextBoxPartKeyPress(e)
+    End Sub
+
+    Protected Overridable Sub OnTextBoxPartKeyPress(e As KeyEventArgs)
+        If ImitateTabByPageKeys Then
+            If e.KeyCode = Keys.Next Then
+                SendKeys.SendWait("{TAB}")
+                e.SuppressKeyPress = True
+            ElseIf e.KeyCode = Keys.PageUp Then
+                SendKeys.SendWait("+{TAB}")
+                e.SuppressKeyPress = True
+            End If
+        End If
     End Sub
 
     Protected MustOverride Sub InitializeProperties()
@@ -191,6 +217,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Protected Overridable Function DefaultBorderStyle() As System.Windows.Forms.BorderStyle
         Return System.Windows.Forms.BorderStyle.FixedSingle
     End Function
+
 
 #Region "Layout-and Style-Handling"
 
@@ -480,10 +507,6 @@ SkipToEnd:
             End If
         End If
 
-        If myNullValueColor.HasValue Then
-            Me.TextBoxPart.ForeColor = NullValueColor
-        End If
-
         If Me.AutoValidateOnLeaving Then
             Dim ce As New CancelEventArgs
             myEditedValue = myValueControl.Value.ToString
@@ -494,6 +517,13 @@ SkipToEnd:
             End If
             OnValidated(EventArgs.Empty)
         End If
+
+        If myNullValueColor.HasValue Then
+            If Not Me.Value.HasValue Then
+                Me.TextBoxPart.ForeColor = NullValueColor
+            End If
+        End If
+
     End Sub
 
     Protected Overrides Sub OnValidating(ByVal e As System.ComponentModel.CancelEventArgs)
@@ -754,7 +784,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder Ermittelt die Verhaltensweise des Vorselektierens des Steuerelementtextes, wenn es den Fokus erhält."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property FocusSelectionBehaviour As FocusSelectionBehaviours
@@ -782,7 +812,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob ein Warnton bei einer fehlgeschlagenen Validierung ausgegeben werden soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property BeepOnFailedValidation As Boolean
@@ -806,7 +836,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob das Steuerelement mit FocusColor eingefärbt werden soll, wenn das Steuerelement den Fokus erhält."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property OnFocusColor As Boolean
@@ -830,7 +860,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die Farbe, die das Steuerelement bei einer erlaubten Fehlvalidierung bekommt."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property ErrorColor As Color
@@ -854,7 +884,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die Farbe, die im Bedarfsfall vorselektiert werden soll, wenn das Steuerelement den Fokus erhält."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property FocusColor As Color
@@ -879,7 +909,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob das Steuerelement automatisch validiert werden soll, wenn ein anderes Steuerelement selektiert wird, das aber keinen GotFocus auslöst (Toolbar-Button, z.B.)."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Property AutoValidateOnLeaving As Boolean
@@ -912,7 +942,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt den Wert, den dieses Steuerelement repräsentiert."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(True)>
     Public Property Value() As NullableType?
@@ -1048,7 +1078,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
      Description("Ermittelt den letzten validierten Wert, den dieses Steuerelement repräsentiert; löst keine Neuvalidierung beim Auslesen aus, wenn das Steuerelement den Fokus besitzt."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(False)>
     Public ReadOnly Property LastCommittedValue As NullableType?
@@ -1195,7 +1225,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
      Description("Bestimmt oder ermittelt die Format-Zeichenfolge, die die Formatierung für das Anzeigen des Wertes nach Verlassen des Feldes vorgibt."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(False)>
     Public Overridable Property FormatString() As String Implements INullableValueEditor.FormatString
@@ -1226,7 +1256,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die Zeichenfolge, die beim Verlassen des Steuerelements angezeigt wird, wenn eine Null-Eingabe erfolgte."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property NullValueString() As String Implements INullableValueEditor.NullValueString
@@ -1258,7 +1288,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die Farbe, mit der der Inhalt des Steuerelementes angezeigt werden soll, wenn es den Wert 'null' widerspiegelt."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property NullValueColor As Color
@@ -1461,7 +1491,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder Ermittelt den Datenquellen-Feldnamen des Feldes, mit dem dieses Steuerelement verknüpft werden soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True),
      TypeConverter(GetType(DatafieldNameConverter))>
@@ -1483,7 +1513,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die FormToBusinessClassManager-Komponente, die die Verwaltung dieses NullableValue-Controls übernimmt."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property AssignedManagerComponent As FormToBusinessClassManager Implements INullableValueControl.AssignedManagerControl
@@ -1502,7 +1532,7 @@ SkipToEnd:
     ''' Validierung auch auf jedenfall gesetzt sein, weil anderenfalls eine Ausnahme ausgelöst werden kann.</remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder Ermittelt den ausgeschriebenen/lolkalisierten Namen des Feldes, mit dem dieses Steuerelement verknüpft werden soll."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property DatafieldDescription As String Implements INullableValueDataBinding.DatafieldDescription
@@ -1533,7 +1563,7 @@ SkipToEnd:
     ''' versucht, ein Eingabefeld zu verlassen, das keine Null-Werte akzeptiert, er aber keinen Wert eingegeben hat.</remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder Ermittelt den Text der ausgegeben werden soll, wenn der Anwender versucht ein Feld zu verlassen, dass keine Eingaben enthält."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
     Public Property NullValueMessage As String Implements INullableValueDataBinding.NullValueMessage
@@ -1554,7 +1584,27 @@ SkipToEnd:
     End Sub
 #End Region
 
-#Region "Other Properties"
+#Region "Other Properties (Keyboard, Readonly, Security)"
+
+    ''' <summary>
+    ''' Returns or sets a flag which determines that the use can cycle between entry fields with Page up and Page down rather than Tab and Shift+Tab.
+    ''' </summary>
+    ''' <returns></returns>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Returns or sets if the user can cycle between entry fields with Page up and Page down in addition to Tab and Shift+Tab."),
+     Category("Behavior"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(False)>
+    Public Property ImitateTabByPageKeys As Boolean
+        Get
+            Return myImitateTabByPageKeys
+        End Get
+        Set(value As Boolean)
+            If Not Object.Equals(myImitateTabByPageKeys, value) Then
+                myImitateTabByPageKeys = value
+            End If
+        End Set
+    End Property
 
     ''' <summary>
     ''' Definiert, ob Daten im Steuerelement nur dargestellt (true) oder auch verändert werden können.
@@ -1564,7 +1614,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Definiert, ob Daten im Steuerelement nur dargestellt (true) oder auch verändert werden können."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Overridable Property [ReadOnly] As Boolean
@@ -1592,7 +1642,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt das Zeichen, das bei eingeschalteter Obfuskierung anstelle des wirklichen Inhaltes angezeigt werden sollen."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(Char.MinValue)>
     Overridable Property ObfuscationChar As Char?
@@ -1605,7 +1655,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob es sich bei einem Eingabefeld um ein Key-Feld handelt oder nicht."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Overridable Property IsKeyField As Boolean Implements IKeyFieldProvider.IsKeyField
@@ -1618,7 +1668,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die Dauer in Millisekunden, die ein Baloontip im Falle einer Fehlermeldung angezeigt wird."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(5000)>
     Public Property ExceptionBalloonDuration As Integer Implements INullableValueControl.ExceptionBalloonDuration
@@ -1651,7 +1701,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt die maximale Anzahl an Zeichen/Ziffern, die in dieses Feld eingegeben werden können."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(0)>
     Public Property MaxLength As Integer
@@ -1678,7 +1728,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt, ob bei einem Überlauf in der TextBox der vordere oder der hintere Teiltext angezeigt wird."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Property ReverseTextOverflowBehaviour As Boolean
@@ -1714,7 +1764,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Ermittelt oder bestimmt, wie der Text innerhalb des Steuerelementes ausgerichtet wird."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(HorizontalAlignment.Left)>
     Public Property TextAlign As HorizontalAlignment
@@ -1748,7 +1798,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Infrastruktur. Dient nur zur Designerunterstützung."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(False)>
     Protected ReadOnly Property TextBoxPart As System.Windows.Forms.TextBox Implements ITextBoxBasedControl.TextBoxPart
@@ -1850,7 +1900,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt einen Prioritätsindex, der bestimmt, in welcher Reihenfolge das Steuerelement vom FormsToBusinessClass-Manager verarbeitet wird (Höhere Nummer, frühere Verarbeitung.)"),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(True), DefaultValue(0)>
     Public Property ProcessingPriority As Integer Implements IAssignableFormToBusinessClassManager.ProcessingPriority
@@ -1877,7 +1927,7 @@ SkipToEnd:
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
      Description("Bestimmt oder ermittelt einen Gruppierungsnamen, um eine Möglichkeit zur Verfügung zu stellen, zentral eine Reihe von Steuerelementen zu steuern."),
-     Category("Verhalten"),
+     Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue("Default")>
     Public Property GroupName As String Implements IAssignableFormToBusinessClassManager.GroupName

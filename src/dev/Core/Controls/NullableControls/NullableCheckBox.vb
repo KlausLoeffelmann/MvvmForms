@@ -14,19 +14,35 @@ Public Class NullableCheckBox
     Private myGroupName As String = "Default"
     Private myIsDirty As Boolean
     Private myIsLoading As HistoricalBoolean
-    Dim myValueChangedByPropertySetter As Boolean
+    Private myValueChangedByPropertySetter As Boolean
+    Private myImitateTabByPageKeys As Boolean
 
     Public Event IsDirtyChanged(ByVal sender As Object, ByVal e As IsDirtyChangedEventArgs) Implements INullableValueDataBinding.IsDirtyChanged
     Public Event ValueChanged(ByVal sender As Object, ByVal e As ValueChangedEventArgs) Implements INullableValueDataBinding.ValueChanged
 
     Public Event RequestValidationFailedReaction(ByVal sender As Object, ByVal e As RequestValidationFailedReactionEventArgs) Implements INullableValueControl.RequestValidationFailedReaction
 
+    Private Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
+
     Sub New()
         MyBase.New()
         Me.UIGuid = Guid.NewGuid
-        Me.ExceptionBalloonDuration = 5000
+        ExceptionBalloonDuration = NullableControlManager.GetInstance.GetDefaultExceptionBalloonDuration(Me, 5000)
+        ImitateTabByPageKeys = NullableControlManager.GetInstance.GetDefaultImitateTabByPageKeys(Me, DEFAULT_IMITATE_TAB_BY_PAGE_KEYS)
     End Sub
 
+    Protected Overrides Sub OnKeyDown(e As KeyEventArgs)
+        MyBase.OnKeyDown(e)
+        If ImitateTabByPageKeys Then
+            If e.KeyCode = Keys.Next Then
+                SendKeys.SendWait("{TAB}")
+                e.SuppressKeyPress = True
+            ElseIf e.KeyCode = Keys.PageUp Then
+                SendKeys.SendWait("+{TAB}")
+                e.SuppressKeyPress = True
+            End If
+        End If
+    End Sub
 
     ''' <summary>
     ''' Bestimmt oder Ermittelt den ausgeschriebenen/lolkalisierten Namen des Feldes, mit dem dieses Steuerelement verknüpft werden soll.
@@ -398,4 +414,25 @@ Public Class NullableCheckBox
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
     Public Property IsKeyField As Boolean Implements IKeyFieldProvider.IsKeyField
+
+    ''' <summary>
+    ''' Returns or sets a flag which determines that the use can cycle between entry fields with Page up and Page down rather than Tab and Shift+Tab.
+    ''' </summary>
+    ''' <returns></returns>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Returns or sets if the user can cycle between entry fields with Page up and Page down in addition to Tab and Shift+Tab."),
+     Category("Behavior"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(False)>
+    Public Property ImitateTabByPageKeys As Boolean
+        Get
+            Return myImitateTabByPageKeys
+        End Get
+        Set(value As Boolean)
+            If Not Object.Equals(myImitateTabByPageKeys, value) Then
+                myImitateTabByPageKeys = value
+            End If
+        End Set
+    End Property
+
 End Class

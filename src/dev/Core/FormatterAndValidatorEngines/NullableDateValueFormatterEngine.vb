@@ -11,30 +11,31 @@ Public Class NullableDateValueFormatterEngine
 
     Shared Sub New()
 
-        myCombinedParseFormatStrings = New String() {"ddM", "ddMM", "ddMMyy", "ddMMyyyy", _
-                         "d.M.y", "dd.M.y", "d.MM.y", "d.M.yy", "dd.M.yy", "dd.MM.yy", "d.M.yyyy", _
-                         "dd.M.yyyy", "d.MM.yyyy", "dd.MM.yyyy", "d,M,y", "dd,M,y", "d,MM,y", "d,M,yy", _
-                         "dd,M,yy", "dd,MM,yy", "d,M,yyyy", "dd,M,yyyy", "d,MM,yyyy", "dd,MM,yyyy", _
-                         "dddd, dd.MM.yyyy", _
-                         "dd.MM.yy HH:mm", "dd.MM.yyyy HH:mm", _
-                         "ddMMyy HHmm", "ddMMyyyy HHmm", _
-                         "dd.MM.yy HH:mm:ss", "dd.MM.yyyy HH:mm:ss", _
-                         "HH", "HHmm", "HHmmss", "H.m", "H.mm", "HH.m", "HH.mm", _
-                         "HH.mm.ss", "H:m", "H:mm", "HH:m", "HH:mm", "HH:mm:ss", _
+        If CultureInfo.CurrentCulture.TwoLetterISOLanguageName = "de" Then
+
+            myCombinedParseFormatStrings = New String() {"ddM", "ddMM", "ddMMyy", "ddMMyyyy",
+                         "d.M.y", "dd.M.y", "d.MM.y", "d.M.yy", "dd.M.yy", "dd.MM.yy", "d.M.yyyy",
+                         "dd.M.yyyy", "d.MM.yyyy", "dd.MM.yyyy", "d,M,y", "dd,M,y", "d,MM,y", "d,M,yy",
+                         "dd,M,yy", "dd,MM,yy", "d,M,yyyy", "dd,M,yyyy", "d,MM,yyyy", "dd,MM,yyyy",
+                         "dddd, dd.MM.yyyy",
+                         "dd.MM.yy HH:mm", "dd.MM.yyyy HH:mm",
+                         "ddMMyy HHmm", "ddMMyyyy HHmm",
+                         "dd.MM.yy HH:mm:ss", "dd.MM.yyyy HH:mm:ss",
+                         "HH", "HHmm", "HHmmss", "H.m", "H.mm", "HH.m", "HH.mm",
+                         "HH.mm.ss", "H:m", "H:mm", "HH:m", "HH:mm", "HH:mm:ss",
                          "H,m", "H,mm", "HH,m", "HH,mm", "HH,mm,ss"}
 
-        myDateParseFormatStrings = New String() {"ddM", "ddMM", "ddMMyy", "ddMMyyyy",
+            myDateParseFormatStrings = New String() {"ddM", "ddMM", "ddMMyy", "ddMMyyyy",
                  "dddd, dd.MM.yyyy",
                  "d.M.y", "dd.M.y", "d.MM.y", "d.M.yy", "dd.M.yy", "dd.MM.yy", "d.M.yyyy",
                  "dd.M.yyyy", "d.MM.yyyy", "dd.MM.yyyy", "d,M,y", "dd,M,y", "d,MM,y", "d,M,yy",
-                 "dd,M,yy", "dd,MM,yy", "d,M,yyyy", "dd,M,yyyy", "d,MM,yyyy", "dd,MM,yyyy",
-                 "M/d/yy", "M/d/yyyy", "M/d"}
+                 "dd,M,yy", "dd,MM,yy", "d,M,yyyy", "dd,M,yyyy", "d,MM,yyyy", "dd,MM,yyyy"}
 
-        myTimeParseFormatStrings = New String() {"HH", "HHmm", "HHmmss", "H.m", "H.mm", "HH.m", "HH.mm", _
-                "HH.mm.ss", "H:m", "H:mm", "HH:m", "HH:mm", "HH:mm:ss", _
+            myTimeParseFormatStrings = New String() {"HH", "HHmm", "HHmmss", "H.m", "H.mm", "HH.m", "HH.mm",
+                "HH.mm.ss", "H:m", "H:mm", "HH:m", "HH:mm", "HH:mm:ss",
                 "H,m", "H,mm", "HH,m", "HH,mm", "HH,mm,ss"}
 
-        myDateDisplayFormatStrings = New String() {"HH:mm",
+            myDateDisplayFormatStrings = New String() {"HH:mm",
                                                    "HH:mm:ss",
                                                    "dd.MM.yy",
                                                    "dddd, dd.MM.yyyy",
@@ -42,13 +43,53 @@ Public Class NullableDateValueFormatterEngine
                                                    "dddd, dd.MM.yyyy HH:mm:ss",
                                                    "dddd, \der dd. MMM yyyy"}
 
-        myTimeDisplayFormatStrings = New String() {"HH:mm",
+            myTimeDisplayFormatStrings = New String() {"HH:mm",
                                                    "HH:mm:ss",
                                                    "dd.MM.yy",
                                                    "dd.MM.yyyy",
                                                    "dd.MM.yy HH:mm",
                                                    "dd.MM.yyyy HH:mm:ss",
                                                    "dd.MM.yy HH:mm:ss"}
+        Else
+
+            myCombinedParseFormatStrings = New String() {"ddM", "ddMM", "ddMMyy", "ddMMyyyy",
+                         "M.d.y", "M.dd.y", "MM.d.y", "M.d.yy", "M.dd.yy", "MM.dd.yy", "M.d.yyyy",
+                         "M.dd.yyyy", "MM.d.yyyy", "MM.dd.yyyy", "M/d/y", "M/dd/y", "MM/d/y", "M/d/yy",
+                         "M/dd/yy", "MM/dd/yy", "M/d/yyyy", "M/dd/yyyy", "MM/d/yyyy", "MM/dd/yyyy",
+                         "MM/dd/yy HH:mm", "MM/dd/yyyy HH:mm",
+                         "MMddyy HHmm", "MMddyyyy HHmm",
+                         "MM/dd/yy HH:mm:ss", "MM/dd/yyyy HH:mm:ss",
+                         "HH", "HHmm", "HHmmss", "H.m", "H.mm", "HH.m", "HH.mm",
+                         "HH.mm.ss", "H:m", "H:mm", "HH:m", "HH:mm", "HH:mm:ss",
+                         "H,m", "H,mm", "HH,m", "HH,mm", "HH,mm,ss"}
+
+            myDateParseFormatStrings = New String() {"Mdd", "MMdd", "MMddyy", "MMddyyyy",
+                 "dddd, MM/dd/yyyy",
+                 "M/d/y", "M/dd/y", "MM/d/y", "M/d/yy", "M/dd/yy", "MM/dd/yy", "M/d/yyyy",
+                 "M/dd/yyyy", "MM/d/yyyy", "MM/dd/yyyy", "M.d.y", "M.dd.y", "MM.d.y", "M.d.yy",
+                 "M.dd.yy", "MM.dd.yy", "M.d.yyyy", "M.dd.yyyy"}
+
+            myTimeParseFormatStrings = New String() {"HH", "HHmm", "HHmmss", "H.m", "H.mm", "HH.m", "HH.mm",
+                "HH.mm.ss", "H:m", "H:mm", "HH:m", "HH:mm", "HH:mm:ss",
+                "H,m", "H,mm", "HH,m", "HH,mm", "HH,mm,ss"}
+
+            myDateDisplayFormatStrings = New String() {"HH:mm",
+                                                   "HH:mm:ss",
+                                                   "MM/dd/yy",
+                                                   "dddd, MM/dd/yyyy",
+                                                   "MM/dd/yy - HH:mm",
+                                                   "dddd, MM/dd/yyyy HH:mm:ss"}
+
+            myTimeDisplayFormatStrings = New String() {"HH:mm",
+                                                   "HH:mm:ss",
+                                                   "MM/dd/yy",
+                                                   "MM/dd/yyyy",
+                                                   "MM/dd/yy HH:mm",
+                                                   "MM/dd/yyyy HH:mm:ss",
+                                                   "MM/dd/yy HH:mm:ss"}
+
+        End If
+
 
     End Sub
 

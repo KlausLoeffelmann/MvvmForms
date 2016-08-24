@@ -21,9 +21,12 @@ Public Class NullableNumValue
 
     Private Const DEFAULT_MAX_VALUE_EXCEEDED_MESSAGE As String = "Der eingegebenene Wert überschreitet das Maximum!"
     Private Const DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE As String = "Der eingegebene Wert unterschreitet das Minimum!"
+    Private ReadOnly DEFAULT_CALCULATOR_MODE As CalculatorType = CalculatorType.None
+    Private ReadOnly DEFAULT_CALCULATOR_TRIGGER As CalculatorActivationTrigger = CalculatorActivationTrigger.None
 
     Private ReadOnly DEFAULT_MIN_VALUE As Decimal? = 0
     Private ReadOnly DEFAULT_MAX_VALUE As Decimal? = Nothing
+    Private ReadOnly DEFAULT_ALLOW_FORMULAR As Boolean = True
 
     Private ReadOnly DEFAULT_INCREMENT As Decimal? = 1
 
@@ -36,11 +39,20 @@ Public Class NullableNumValue
         Me.MinValue = NullableControlManager.GetInstance.GetDefaultMinValue(Me, DEFAULT_MIN_VALUE)
         Me.MaxValue = NullableControlManager.GetInstance.GetDefaultMaxValue(Me, DEFAULT_MAX_VALUE)
 
+        'TODO: Do we need to take the relationship between those into account?
+        Me.DropDownCalculatorMode = NullableControlManager.GetInstance.GetDefaultCalculatorMode(Me, DEFAULT_CALCULATOR_MODE)
+        Me.DropDownCalculatorTrigger = NullableControlManager.GetInstance.GetDefaultCalculatorTrigger(Me, DEFAULT_CALCULATOR_TRIGGER)
+        Me.AllowFormular = NullableControlManager.GetInstance.GetDefaultAllowFormular(Me, DEFAULT_ALLOW_FORMULAR)
+
+
         Me.Increment = NullableControlManager.GetInstance.GetDefaultIncrement(Me, DEFAULT_INCREMENT)
         Me.MaxValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMaxValueExceededMessage(Me, DEFAULT_MAX_VALUE_EXCEEDED_MESSAGE)
         Me.MinValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMinValueExceededMessage(Me, DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE)
 
         AddHandler Me.ReadOnlyChanged, AddressOf myReadOnlyChanged
+
+        'Wirering up the event which blocks alpha keys when no Formula is allowed.
+        AddHandler Me.TextBoxPart.KeyPress, AddressOf TextBoxPartKeyPressHandler
 
         AddHandler Me.ValueControl.ButtonAction,
             Sub(sender As Object, e As ButtonActionEventArgs)
@@ -324,7 +336,6 @@ Public Class NullableNumValue
         Increment = NullableControlManager.GetInstance.GetDefaultIncrement(Me, DEFAULT_INCREMENT)
     End Sub
 
-
     ''' <summary>
     ''' Bestimmt oder ermittelt, ob anstelle von Werten auch mathematische, berechbare Ausdrücke eingegeben werden können (Formeln).
     ''' </summary>
@@ -341,8 +352,10 @@ Public Class NullableNumValue
             Return myAllowFormular
         End Get
         Set(ByVal value As Boolean)
-            myAllowFormular = value
-            DirectCast(Me.FormatterEngine, NullableNumValueFormatterEngine).IsFormularAllowed = value
+            If Not Object.Equals(value, myAllowFormular) Then
+                myAllowFormular = value
+                DirectCast(Me.FormatterEngine, NullableNumValueFormatterEngine).IsFormularAllowed = value
+            End If
         End Set
     End Property
 
@@ -472,6 +485,19 @@ Public Class NullableNumValue
         MinValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMinValueExceededMessage(Me, DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE)
     End Sub
 
+    'Handels the TextBoxPartKeyPress event and prevent letters when AllowFormular is false.
+    Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyPressEventArgs)
+        If Not AllowFormular Then
+            If Char.IsNumber(e.KeyChar) Or
+               Char.IsPunctuation(e.KeyChar) Or
+               Char.IsSeparator(e.KeyChar) Or
+               Char.IsControl(e.KeyChar) Then
+            Else
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
     ''' <summary>
     ''' Bestimmt ob und welcher Taschenrechner in dem Control angezeigt werden kann
     ''' </summary>
@@ -497,8 +523,6 @@ Public Class NullableNumValue
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(True), DefaultValue(CalculatorActivationTrigger.None)>
     Public Property DropDownCalculatorTrigger As CalculatorActivationTrigger
-
-
 
     ''' <summary>
     ''' Zeigt den Taschenrechner an oder blendet ihn aus, wenn er bereits angezeigt wird
@@ -585,7 +609,6 @@ Public Class NullableNumValue
         End If
     End Sub
 
-
     Private Sub SetResult(sender As Object, e As CalculatorSetResultEventArgs)
         If e.Action = CalculatorAction.Init OrElse
             e.Action = CalculatorAction.ClearAll OrElse
@@ -596,9 +619,16 @@ Public Class NullableNumValue
             e.Action = CalculatorAction.ToggleSign Then
             Me.TextBoxPart.Text = e.Input
         ElseIf e.Action = CalculatorAction.IntermediaryResult OrElse e.Action = CalculatorAction.FinalResult Then
-            Me.Value = e.Value
+            Dim calcWin As SimpleCalculator = Nothing
+            Try
+                calcWin = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
+                Me.TextBoxPart.Text = CStr(e.Value)
+                calcWin.Tag = e.Value       ' wird beim Close des Popups als Value zurückgeschrieben
+
+            Catch aoor As ArgumentOutOfRangeException
+
+            End Try
             If e.Action = CalculatorAction.FinalResult Then
-                Dim calcWin = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
                 Try
                     RemoveHandler calcWin.SetResult, AddressOf SetResult
                     ToggleCalculator()
@@ -621,6 +651,12 @@ Public Class NullableNumValue
         Dim calcWin = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
         Try
             calcWin.ForceFinalCalculation()
+            If calcWin.Tag IsNot Nothing Then
+                Me.Value = CDec(calcWin.Tag)
+            End If
+        Catch be As MvvmBindingException
+            ' hier ging was schief
+            ' Wert ggf. negativ?
         Finally
             RemoveHandler Me.TextBoxPart.KeyDown, AddressOf ResendAndSupressKeys
             RemoveHandler Me.TextBoxPart.KeyUp, AddressOf SupressKeys
@@ -660,6 +696,14 @@ Public Class NullableNumValue
                  Select titem).FirstOrDefault
         Return x
     End Function
+
+    Protected Overrides Sub Dispose(disposing As Boolean)
+        MyBase.Dispose(disposing)
+        If disposing Then
+            RemoveHandler Me.TextBoxPart.KeyPress, AddressOf TextBoxPartKeyPressHandler
+        End If
+    End Sub
+
 End Class
 
 Public Enum CalculatorType
