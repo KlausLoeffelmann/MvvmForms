@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -43,11 +44,6 @@ namespace MvvmFormsCSharpDemos
             frmView.ShowDialog();
         }
 
-        private void AllowFormulaCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            numValueField.AllowFormular = AllowFormulaCheckBox.Checked;
-        }
-
         private void nullableValueRelationPopup1_GetColumnSchema(object sender, ActiveDevelop.EntitiesFormsLib.GetColumnSchemaEventArgs e)
         {
             var fn = new DataGridViewColumnFieldnames();
@@ -62,10 +58,10 @@ namespace MvvmFormsCSharpDemos
         private async void aSyncShowDialogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var dialog = new TestViewWithFocusableFields();
-            button1.Enabled = false;
+            commandButton1.Enabled = false;
             await Task.WhenAll(LongLastingOperationAsync(),
                                dialog.ShowDialogAsync());
-            button1.Enabled = true;
+            commandButton1.Enabled = true;
 
         }
 
@@ -73,6 +69,18 @@ namespace MvvmFormsCSharpDemos
         {
             await Task.Delay(2000);
             toolStripStatusLabel1.Text = "Long lasting operation done";
+        }
+
+        private void nullableOptionButton1_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            Debug.Print(nullableOptionButton1.Value.Value.ToString());
+        }
+
+        private void nullableCheckBox1_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            if (nullableCheckBox1.Value.HasValue)
+                numValueField.AllowFormular = nullableCheckBox1.Value.Value;
+
         }
     }
 }

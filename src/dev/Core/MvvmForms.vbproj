@@ -364,6 +364,9 @@
     <Compile Include="Controls\Interfaces\IPermissionManageableElements.vb" />
     <Compile Include="Controls\Interfaces\IUpdatableInfoControl.vb" />
     <Compile Include="Controls\Interfaces\IValidatable.vb" />
+    <Compile Include="Controls\NullableControls\NullableOptionButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\NullableControls\NullableDataGridView.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -538,52 +541,52 @@
     <Compile Include="AuxilliaryTypes\StringValue.vb" />
     <Compile Include="FormatterAndValidatorEngines\INullableValueFormatterEngine.vb" />
     <Compile Include="FormatterAndValidatorEngines\NullableStringValueFormatterEngine.vb" />
-    <Compile Include="MvvmControls\BindableTreeView.vb">
+    <Compile Include="Controls\MvvmControls\BindableTreeView.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MvvmControls\CommandButton.vb">
+    <Compile Include="Controls\MvvmControls\CommandButton.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MvvmControls\MvvmDataGrid\ItemsDeletingEventArgs.vb" />
-    <Compile Include="MvvmControls\NullableValueComboBox\ExtendedTextBox.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\ExtDataGrid.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\Column\ColumnType.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\Column\IMvvmColumnTemplateExtender.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\Column\MvvmDataGridColumn.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\Column\CustomMvvmDataGridColumn.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\DataGridSettings.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\Designer\MvvmDataGridDesigner.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\ItemDoubleClickEventArgs.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\ItemsDeletedEventArgs.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\ColumnBindingsUITypeEditor.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\Common\GridColumnCollection.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\Common\MvvmDataGridColumnsCodeDomSerializer.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\MvvmDataGrid.Designer.vb">
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\ItemsDeletingEventArgs.vb" />
+    <Compile Include="Controls\MvvmControls\NullableValueComboBox\ExtendedTextBox.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\ExtDataGrid.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\Column\ColumnType.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\Column\IMvvmColumnTemplateExtender.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\Column\MvvmDataGridColumn.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\Column\CustomMvvmDataGridColumn.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\DataGridSettings.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\Designer\MvvmDataGridDesigner.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\ItemDoubleClickEventArgs.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\ItemsDeletedEventArgs.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\TypeEditor\ColumnBindingsUITypeEditor.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\Common\GridColumnCollection.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\Common\MvvmDataGridColumnsCodeDomSerializer.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\MvvmDataGrid.Designer.vb">
       <DependentUpon>MvvmDataGrid.vb</DependentUpon>
     </Compile>
-    <Compile Include="MvvmControls\MvvmDataGrid\MvvmDataGrid.vb">
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\MvvmDataGrid.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\ColumnsEditor.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\MvvmDataGridCustomColumnTemplateTypeUIEditor.vb" />
-    <Compile Include="MvvmControls\MvvmDataGrid\TypeEditor\MvvmDataGridDataSourceTypeUIEditor.vb">
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\TypeEditor\ColumnsEditor.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\TypeEditor\MvvmDataGridCustomColumnTemplateTypeUIEditor.vb" />
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\TypeEditor\MvvmDataGridDataSourceTypeUIEditor.vb">
       <SubType>form</SubType>
     </Compile>
-    <Compile Include="MvvmControls\MvvmDataGrid\WPFDataGridViewWrapper.xaml.vb">
+    <Compile Include="Controls\MvvmControls\MvvmDataGrid\WPFDataGridViewWrapper.xaml.vb">
       <DependentUpon>WPFDataGridViewWrapper.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MvvmControls\MvvmViewSelectorContainer.vb">
+    <Compile Include="Controls\MvvmControls\MvvmViewSelectorContainer.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MvvmControls\NullableValueComboBox\ComboBoxRichTextBlock.vb" />
-    <Compile Include="MvvmControls\NullableValueComboBox\NullableValueComboBox.Designer.vb">
+    <Compile Include="Controls\MvvmControls\NullableValueComboBox\ComboBoxRichTextBlock.vb" />
+    <Compile Include="Controls\MvvmControls\NullableValueComboBox\NullableValueComboBox.Designer.vb">
       <DependentUpon>NullableValueComboBox.vb</DependentUpon>
     </Compile>
-    <Compile Include="MvvmControls\NullableValueComboBox\NullableValueComboBox.vb">
+    <Compile Include="Controls\MvvmControls\NullableValueComboBox\NullableValueComboBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MvvmControls\NullableValueComboBox\ToggleControl.vb" />
-    <Compile Include="MvvmControls\NullableValueComboBox\WPFComboBoxWrapper.xaml.vb">
+    <Compile Include="Controls\MvvmControls\NullableValueComboBox\ToggleControl.vb" />
+    <Compile Include="Controls\MvvmControls\NullableValueComboBox\WPFComboBoxWrapper.xaml.vb">
       <DependentUpon>WPFComboBoxWrapper.xaml</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -658,13 +661,13 @@
     <EmbeddedResource Include="Controls\TooltipEx\TooltipExContentBase.resx">
       <DependentUpon>TooltipExContentBase.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MvvmControls\BindableTreeView.resx">
+    <EmbeddedResource Include="Controls\MvvmControls\BindableTreeView.resx">
       <DependentUpon>BindableTreeView.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MvvmControls\MvvmDataGrid\MvvmDataGrid.resx">
+    <EmbeddedResource Include="Controls\MvvmControls\MvvmDataGrid\MvvmDataGrid.resx">
       <DependentUpon>MvvmDataGrid.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MvvmControls\NullableValueComboBox\NullableValueComboBox.resx">
+    <EmbeddedResource Include="Controls\MvvmControls\NullableValueComboBox\NullableValueComboBox.resx">
       <DependentUpon>NullableValueComboBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -763,11 +766,11 @@
     <Content Include="Resources\92_cancel_16_sel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MvvmControls\MvvmDataGrid\WPFDataGridViewWrapper.xaml">
+    <Page Include="Controls\MvvmControls\MvvmDataGrid\WPFDataGridViewWrapper.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MvvmControls\NullableValueComboBox\WPFComboBoxWrapper.xaml">
+    <Page Include="Controls\MvvmControls\NullableValueComboBox\WPFComboBoxWrapper.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -12,9 +12,27 @@ Public Class CommandButton
     Inherits Button
 
     Private myCommand As ICommand
+    Private myCommandParameter As Object
+    Private myImitateTabByPageKeys As Boolean
+
+    Private Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
+
 
     ''' <summary>
-    ''' Bindbarer Command vom Typ ICommand 
+    ''' Fired before execution of the actual command.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Public Event BeforeCommandExecution(ByVal sender As Object, ByVal e As EventArgs)
+
+    Sub New()
+        MyBase.New
+        ImitateTabByPageKeys = NullableControlManager.GetInstance.GetDefaultImitateTabByPageKeys(Me, DEFAULT_IMITATE_TAB_BY_PAGE_KEYS)
+    End Sub
+
+    ''' <summary>
+    ''' Bindable Command of Type ICommand 
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
@@ -40,7 +58,41 @@ Public Class CommandButton
         End Set
     End Property
 
-    Private myCommandParameter As Object
+    ''' <summary>
+    ''' Returns or sets if the user can cycle between entry fields with Page up and Page down in addition to Tab and Shift+Tab.
+    ''' </summary>
+    ''' <returns></returns>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Returns or sets if the user can cycle between entry fields with Page up and Page down in addition to Tab and Shift+Tab."),
+     Category("Behavior"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(False)>
+    Public Property ImitateTabByPageKeys As Boolean
+        Get
+            Return myImitateTabByPageKeys
+        End Get
+        Set(value As Boolean)
+            If Not Object.Equals(myImitateTabByPageKeys, value) Then
+                myImitateTabByPageKeys = value
+            End If
+        End Set
+    End Property
+
+
+    Protected Overrides Sub OnKeyDown(e As System.Windows.Forms.KeyEventArgs)
+        MyBase.OnKeyDown(e)
+        If ImitateTabByPageKeys Then
+            If e.KeyCode = Keys.Next Then
+                SendKeys.SendWait("{TAB}")
+                e.SuppressKeyPress = True
+            ElseIf e.KeyCode = Keys.PageUp Then
+                SendKeys.SendWait("+{TAB}")
+                e.SuppressKeyPress = True
+            End If
+        End If
+    End Sub
+
+
     Public Property CommandParameter() As Object
         Get
             Return myCommandParameter
@@ -73,14 +125,6 @@ Public Class CommandButton
             Me.Enabled = myCommand.CanExecute(Nothing)
         End If
     End Sub
-
-    ''' <summary>
-    ''' Wird aufgerufen, vor der Ausführung des Commands
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Public Event BeforeCommandExecution(ByVal sender As Object, ByVal e As EventArgs)
 
     ''' <summary>
     ''' Führt das BeforeCommandExecution-Event aus

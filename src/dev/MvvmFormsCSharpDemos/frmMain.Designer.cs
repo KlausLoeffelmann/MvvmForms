@@ -47,15 +47,18 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.nullableIntValue1 = new ActiveDevelop.EntitiesFormsLib.NullableIntValue();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.AllowFormulaCheckBox = new System.Windows.Forms.CheckBox();
             this.numValueField = new ActiveDevelop.EntitiesFormsLib.NullableNumValue();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.nullableValueRelationPopup = new ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.nullableOptionButton1 = new ActiveDevelop.EntitiesFormsLib.NullableOptionButton();
             this.nullableDateValue1 = new ActiveDevelop.EntitiesFormsLib.NullableDateValue();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.nullableOptionButton2 = new ActiveDevelop.EntitiesFormsLib.NullableOptionButton();
+            this.nullableOptionButton3 = new ActiveDevelop.EntitiesFormsLib.NullableOptionButton();
+            this.nullableCheckBox1 = new ActiveDevelop.EntitiesFormsLib.NullableCheckBox();
+            this.commandButton1 = new ActiveDevelop.EntitiesFormsLib.CommandButton();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -303,23 +306,12 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.AllowFormulaCheckBox);
+            this.panel3.Controls.Add(this.nullableCheckBox1);
             this.panel3.Controls.Add(this.numValueField);
             this.panel3.Location = new System.Drawing.Point(378, 295);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(369, 176);
             this.panel3.TabIndex = 5;
-            // 
-            // AllowFormulaCheckBox
-            // 
-            this.AllowFormulaCheckBox.AutoSize = true;
-            this.AllowFormulaCheckBox.Location = new System.Drawing.Point(3, 41);
-            this.AllowFormulaCheckBox.Name = "AllowFormulaCheckBox";
-            this.AllowFormulaCheckBox.Size = new System.Drawing.Size(117, 21);
-            this.AllowFormulaCheckBox.TabIndex = 1;
-            this.AllowFormulaCheckBox.Text = "Allow Formula";
-            this.AllowFormulaCheckBox.UseVisualStyleBackColor = true;
-            this.AllowFormulaCheckBox.CheckedChanged += new System.EventHandler(this.AllowFormulaCheckBox_CheckedChanged);
             // 
             // numValueField
             // 
@@ -355,22 +347,12 @@
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.commandButton1);
             this.panel4.Controls.Add(this.nullableValueRelationPopup);
             this.panel4.Location = new System.Drawing.Point(378, 477);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(369, 100);
             this.panel4.TabIndex = 6;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(89, 61);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 28);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "&Async ShowDialog Test";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.aSyncShowDialogToolStripMenuItem_Click);
             // 
             // nullableValueRelationPopup
             // 
@@ -406,11 +388,32 @@
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.Controls.Add(this.nullableOptionButton3);
+            this.panel5.Controls.Add(this.nullableOptionButton2);
+            this.panel5.Controls.Add(this.nullableOptionButton1);
             this.panel5.Controls.Add(this.nullableDateValue1);
             this.panel5.Location = new System.Drawing.Point(378, 583);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(369, 151);
             this.panel5.TabIndex = 7;
+            // 
+            // nullableOptionButton1
+            // 
+            this.nullableOptionButton1.AssignedManagerComponent = null;
+            this.nullableOptionButton1.AutoSize = true;
+            this.nullableOptionButton1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
+            this.nullableOptionButton1.ExecuteCallback = null;
+            this.nullableOptionButton1.ImitateTabByPageKeys = true;
+            this.nullableOptionButton1.Location = new System.Drawing.Point(6, 49);
+            this.nullableOptionButton1.Name = "nullableOptionButton1";
+            this.nullableOptionButton1.PermissionReason = null;
+            this.nullableOptionButton1.Size = new System.Drawing.Size(148, 21);
+            this.nullableOptionButton1.TabIndex = 1;
+            this.nullableOptionButton1.Text = "nullableCheckBox1";
+            this.nullableOptionButton1.UIGuid = new System.Guid("960e9e56-2f12-4838-8dfd-4705d38d0451");
+            this.nullableOptionButton1.UseVisualStyleBackColor = true;
+            this.nullableOptionButton1.Value = false;
+            this.nullableOptionButton1.ValueChanged += new ActiveDevelop.EntitiesFormsLib.INullableValueDataBinding.ValueChangedEventHandler(this.nullableOptionButton1_ValueChanged);
             // 
             // nullableDateValue1
             // 
@@ -450,6 +453,70 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(27, 20);
             this.toolStripStatusLabel1.Text = "---";
             // 
+            // nullableOptionButton2
+            // 
+            this.nullableOptionButton2.AssignedManagerComponent = null;
+            this.nullableOptionButton2.AutoSize = true;
+            this.nullableOptionButton2.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
+            this.nullableOptionButton2.ExecuteCallback = null;
+            this.nullableOptionButton2.ImitateTabByPageKeys = true;
+            this.nullableOptionButton2.Location = new System.Drawing.Point(6, 92);
+            this.nullableOptionButton2.Name = "nullableOptionButton2";
+            this.nullableOptionButton2.PermissionReason = null;
+            this.nullableOptionButton2.Size = new System.Drawing.Size(148, 21);
+            this.nullableOptionButton2.TabIndex = 2;
+            this.nullableOptionButton2.Text = "nullableCheckBox1";
+            this.nullableOptionButton2.UIGuid = new System.Guid("960e9e56-2f12-4838-8dfd-4705d38d0451");
+            this.nullableOptionButton2.UseVisualStyleBackColor = true;
+            this.nullableOptionButton2.Value = false;
+            // 
+            // nullableOptionButton3
+            // 
+            this.nullableOptionButton3.AssignedManagerComponent = null;
+            this.nullableOptionButton3.AutoSize = true;
+            this.nullableOptionButton3.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
+            this.nullableOptionButton3.ExecuteCallback = null;
+            this.nullableOptionButton3.ImitateTabByPageKeys = true;
+            this.nullableOptionButton3.Location = new System.Drawing.Point(6, 71);
+            this.nullableOptionButton3.Name = "nullableOptionButton3";
+            this.nullableOptionButton3.PermissionReason = null;
+            this.nullableOptionButton3.Size = new System.Drawing.Size(148, 21);
+            this.nullableOptionButton3.TabIndex = 3;
+            this.nullableOptionButton3.Text = "nullableCheckBox1";
+            this.nullableOptionButton3.UIGuid = new System.Guid("960e9e56-2f12-4838-8dfd-4705d38d0451");
+            this.nullableOptionButton3.UseVisualStyleBackColor = true;
+            this.nullableOptionButton3.Value = false;
+            // 
+            // nullableCheckBox1
+            // 
+            this.nullableCheckBox1.AssignedManagerComponent = null;
+            this.nullableCheckBox1.AutoSize = true;
+            this.nullableCheckBox1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal;
+            this.nullableCheckBox1.ExecuteCallback = null;
+            this.nullableCheckBox1.ImitateTabByPageKeys = true;
+            this.nullableCheckBox1.Location = new System.Drawing.Point(3, 28);
+            this.nullableCheckBox1.Name = "nullableCheckBox1";
+            this.nullableCheckBox1.PermissionReason = null;
+            this.nullableCheckBox1.Size = new System.Drawing.Size(149, 21);
+            this.nullableCheckBox1.TabIndex = 1;
+            this.nullableCheckBox1.Text = "nullableCheckBox1";
+            this.nullableCheckBox1.UIGuid = new System.Guid("a91bb58d-b56c-4ce5-bf7c-24e04413a791");
+            this.nullableCheckBox1.UseVisualStyleBackColor = true;
+            this.nullableCheckBox1.ValueChanged += new ActiveDevelop.EntitiesFormsLib.INullableValueDataBinding.ValueChangedEventHandler(this.nullableCheckBox1_ValueChanged);
+            // 
+            // commandButton1
+            // 
+            this.commandButton1.Command = null;
+            this.commandButton1.CommandParameter = null;
+            this.commandButton1.ImitateTabByPageKeys = true;
+            this.commandButton1.Location = new System.Drawing.Point(101, 61);
+            this.commandButton1.Name = "commandButton1";
+            this.commandButton1.Size = new System.Drawing.Size(153, 34);
+            this.commandButton1.TabIndex = 1;
+            this.commandButton1.Text = "Async Show Dialog";
+            this.commandButton1.UseVisualStyleBackColor = true;
+            this.commandButton1.Click += new System.EventHandler(this.aSyncShowDialogToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -473,6 +540,7 @@
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nullableValueRelationPopup)).EndInit();
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -499,16 +567,19 @@
         private System.Windows.Forms.Panel panel2;
         private ActiveDevelop.EntitiesFormsLib.NullableIntValue nullableIntValue1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.CheckBox AllowFormulaCheckBox;
         private ActiveDevelop.EntitiesFormsLib.NullableNumValue numValueField;
         private System.Windows.Forms.Panel panel4;
         private ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup nullableValueRelationPopup;
         private System.Windows.Forms.Panel panel5;
         private ActiveDevelop.EntitiesFormsLib.NullableDateValue nullableDateValue1;
         private System.Windows.Forms.ToolStripMenuItem aSyncShowDialogToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private ActiveDevelop.EntitiesFormsLib.NullableOptionButton nullableOptionButton1;
+        private ActiveDevelop.EntitiesFormsLib.NullableOptionButton nullableOptionButton3;
+        private ActiveDevelop.EntitiesFormsLib.NullableOptionButton nullableOptionButton2;
+        private ActiveDevelop.EntitiesFormsLib.NullableCheckBox nullableCheckBox1;
+        private ActiveDevelop.EntitiesFormsLib.CommandButton commandButton1;
     }
 }
 

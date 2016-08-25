@@ -2,13 +2,12 @@
 Imports System.ComponentModel
 
 ''' <summary>
-''' CheckBox-Steuerelement, das Null-Werte verarbeitet, eine vereinheitlichende Value-Eigenschaft bietet, 
-''' Funktionen für Rechteverwaltung zur Verfügung stellt und von einer 
-''' <see cref="FormToBusinessClassManager">FormToBusinessClassManager-Komponente</see> verwaltet werden kann.
+''' RadioButton based Control, which can handle null values, provides a Value Property for controlling 
+''' its visual state and additional infrastructure so it is compatible with other Nullable controls.
 ''' </summary>
 ''' <remarks></remarks>
-Public Class NullableCheckBox
-    Inherits CheckBox
+Public Class NullableOptionButton
+    Inherits RadioButton
     Implements INullableValueDataBinding, IPermissionManageableUIControlElement, IPermissionManageableUIContentElement
 
     Private myGroupName As String = "Default"
@@ -116,9 +115,8 @@ Public Class NullableCheckBox
         NullValueMessage = Nothing
     End Sub
 
-    Protected Overrides Sub OnCheckStateChanged(ByVal e As System.EventArgs)
-        MyBase.OnCheckStateChanged(e)
-
+    Protected Overrides Sub OnCheckedChanged(e As EventArgs)
+        MyBase.OnCheckedChanged(e)
         'Wird geladen - keine Change-Ereignisse auslösen!
         If Not IsLoading.Value Then
 
@@ -159,8 +157,6 @@ Public Class NullableCheckBox
         Get
             If Me.Checked Then
                 Return True
-            ElseIf Me.CheckState = System.Windows.Forms.CheckState.Indeterminate Then
-                Return Nothing
             Else
                 Return False
             End If
@@ -168,14 +164,12 @@ Public Class NullableCheckBox
 
         Set(ByVal value As Object)
             'Rausfinden, ob hier überhaupt ein ValueChange stattfindet:
-            If value Is Nothing And Me.Value Is Nothing Then
-                'nichts geändert, und tschüss
-                Return
+            If value Is Nothing Then
+                Throw New NullReferenceException("Value of a NullableOptionButton cannot be null. Curiously enough.")
             End If
 
             If value IsNot Nothing AndAlso Me.Value IsNot Nothing Then
                 If value.Equals(Me.Value) Then
-                    'auch nichts geändert, tschüss
                     Return
                 End If
             End If
@@ -183,19 +177,8 @@ Public Class NullableCheckBox
             'Property-Setter ist die Ursache für den Wertewechsel - deswegen das entsprechende Flag setzen,
             'damit OnCheckState gleich Bescheid weiß.
             myValueChangedByPropertySetter = True
-            If value Is Nothing Then
-                Me.CheckState = System.Windows.Forms.CheckState.Indeterminate
-            Else
-                'Versuch zu casten
-                Dim tmpValue As BooleanEx
-                Try
-                    tmpValue = New BooleanEx(value)
-                Catch ex As Exception
-                    Dim up As New TypeMismatchException("The value property of NullableCheckBox accepts only nullables of type BooleanEx and compatible types.")
-                    Throw up
-                End Try
-                Me.CheckState = If(tmpValue, CheckState.Checked, CheckState.Unchecked)
-            End If
+            'Versuch zu casten
+            Me.Checked = CBool(value)
         End Set
     End Property
 
@@ -210,11 +193,11 @@ Public Class NullableCheckBox
      Category("Verhalten"),
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(True)>
-    Public Property Value As Nullable(Of BooleanEx)
+    Public Property Value As Boolean?
         Get
-            Return New BooleanEx(Me.ValueAsObject)
+            Return CBool(Me.ValueAsObject)
         End Get
-        Set(ByVal value As Nullable(Of BooleanEx))
+        Set(ByVal value As Boolean?)
             Me.ValueAsObject = value
         End Set
     End Property
