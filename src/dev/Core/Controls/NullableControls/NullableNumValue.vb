@@ -652,8 +652,11 @@ Public Class NullableNumValue
         Try
             calcWin.ForceFinalCalculation()
             If calcWin.Tag IsNot Nothing Then
-                Me.Value = CDec(calcWin.Tag)
+                'Me.Value = CDec(calcWin.Tag)
+                Me.TextBoxPart.Text = CDec(calcWin.Tag).ToString(Me.FormatString)
             End If
+
+
         Catch be As MvvmBindingException
             ' hier ging was schief
             ' Wert ggf. negativ?

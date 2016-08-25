@@ -36,10 +36,10 @@ Partial Class MvvmTestFormView
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.BindableTreeView1 = New ActiveDevelop.EntitiesFormsLib.BindableTreeView()
-        Me.MvvmManager1 = New ActiveDevelop.EntitiesFormsLib.MvvmManager(Me.components)
         Me.BindableTreeView2 = New ActiveDevelop.EntitiesFormsLib.BindableTreeView()
-        Me.Button5 = New System.Windows.Forms.Button()
         Me.NullableNumValue1 = New ActiveDevelop.EntitiesFormsLib.NullableNumValue()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.MvvmManager1 = New ActiveDevelop.EntitiesFormsLib.MvvmManager(Me.components)
         CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -160,23 +160,6 @@ Partial Class MvvmTestFormView
         Me.BindableTreeView1.Size = New System.Drawing.Size(126, 195)
         Me.BindableTreeView1.TabIndex = 13
         '
-        'MvvmManager1
-        '
-        Me.MvvmManager1.CancelButton = Nothing
-        Me.MvvmManager1.ContainerControl = Me
-        Me.MvvmManager1.CurrentContextGuid = New System.Guid("861fafc2-3724-48ce-9bcf-d4a6f0dc5f0b")
-        Me.MvvmManager1.DataContext = Nothing
-        Me.MvvmManager1.DataContextType = GetType(EFL_CodedUITestContainer.MainNodeTestViewModel)
-        Me.MvvmManager1.DataSourceType = GetType(EFL_CodedUITestContainer.MainNodeTestViewModel)
-        Me.MvvmManager1.DirtyStateManagerComponent = Nothing
-        Me.MvvmManager1.DynamicEventHandlingList = Nothing
-        Me.MvvmManager1.HostingForm = Me
-        Me.MvvmManager1.HostingUserControl = Nothing
-        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.TreeView2, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("DataSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Personen", GetType(System.Collections.ObjectModel.ObservableCollection(Of EFL_CodedUITestContainer.PersonenViewModelNodeTest))))
-        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.BindableTreeView1, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("DataSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Personen2", GetType(System.Collections.ObjectModel.ObservableCollection(Of EFL_CodedUITestContainer.PersonenViewModelNodeTest))))
-        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.BindableTreeView2, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("DataSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("ViewModelTypes", GetType(System.Collections.ObjectModel.ObservableCollection(Of ActiveDevelop.EntitiesFormsLib.PropertyBindingNodeDefinition))))
-        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.NullableNumValue1, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Value", GetType(System.Nullable(Of Decimal))), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("NumVal", GetType(System.Nullable(Of Decimal))))
-        '
         'BindableTreeView2
         '
         Me.BindableTreeView2.ChildMemberPath = "SubProperties"
@@ -193,6 +176,30 @@ Partial Class MvvmTestFormView
         Me.BindableTreeView2.Size = New System.Drawing.Size(455, 195)
         Me.BindableTreeView2.TabIndex = 14
         '
+        'NullableNumValue1
+        '
+        Me.NullableNumValue1.AssignedManagerComponent = Nothing
+        Me.NullableNumValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NullableNumValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.NullableNumValue1.CurrencySymbolString = Nothing
+        Me.NullableNumValue1.DecimalPlaces = 2
+        Me.NullableNumValue1.DropDownCalculatorMode = ActiveDevelop.EntitiesFormsLib.CalculatorType.Simple
+        Me.NullableNumValue1.DropDownCalculatorTrigger = ActiveDevelop.EntitiesFormsLib.CalculatorActivationTrigger.Strg_R
+        Me.MvvmManager1.SetEventBindings(Me.NullableNumValue1, Nothing)
+        Me.NullableNumValue1.Location = New System.Drawing.Point(604, 277)
+        Me.NullableNumValue1.MaxLength = 32767
+        Me.NullableNumValue1.MaxValue = Nothing
+        Me.NullableNumValue1.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.NullableNumValue1.Name = "NullableNumValue1"
+        Me.NullableNumValue1.NullValueString = "* - - - *"
+        Me.NullableNumValue1.ObfuscationChar = Nothing
+        Me.NullableNumValue1.PermissionReason = Nothing
+        Me.NullableNumValue1.Size = New System.Drawing.Size(120, 20)
+        Me.NullableNumValue1.TabIndex = 16
+        Me.NullableNumValue1.UIGuid = New System.Guid("b80663b5-f9a2-49d4-81b6-4a337d438301")
+        Me.NullableNumValue1.Value = Nothing
+        Me.NullableNumValue1.ValueValidationState = Nothing
+        '
         'Button5
         '
         Me.MvvmManager1.SetEventBindings(Me.Button5, Nothing)
@@ -203,27 +210,22 @@ Partial Class MvvmTestFormView
         Me.Button5.Text = "Button5"
         Me.Button5.UseVisualStyleBackColor = True
         '
-        'NullableNumValue1
+        'MvvmManager1
         '
-        Me.NullableNumValue1.AssignedManagerComponent = Nothing
-        Me.NullableNumValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.NullableNumValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
-        Me.NullableNumValue1.CurrencySymbolString = Nothing
-        Me.NullableNumValue1.DropDownCalculatorMode = ActiveDevelop.EntitiesFormsLib.CalculatorType.Simple
-        Me.NullableNumValue1.DropDownCalculatorTrigger = ActiveDevelop.EntitiesFormsLib.CalculatorActivationTrigger.Strg_R
-        Me.MvvmManager1.SetEventBindings(Me.NullableNumValue1, Nothing)
-        Me.NullableNumValue1.Location = New System.Drawing.Point(604, 277)
-        Me.NullableNumValue1.MaxLength = 32767
-        Me.NullableNumValue1.MaxValue = Nothing
-        Me.NullableNumValue1.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.NullableNumValue1.Name = "NullableNumValue1"
-        Me.NullableNumValue1.ObfuscationChar = Nothing
-        Me.NullableNumValue1.PermissionReason = Nothing
-        Me.NullableNumValue1.Size = New System.Drawing.Size(120, 20)
-        Me.NullableNumValue1.TabIndex = 16
-        Me.NullableNumValue1.UIGuid = New System.Guid("b80663b5-f9a2-49d4-81b6-4a337d438301")
-        Me.NullableNumValue1.Value = Nothing
-        Me.NullableNumValue1.ValueValidationState = Nothing
+        Me.MvvmManager1.CancelButton = Nothing
+        Me.MvvmManager1.ContainerControl = Me
+        Me.MvvmManager1.CurrentContextGuid = New System.Guid("861fafc2-3724-48ce-9bcf-d4a6f0dc5f0b")
+        Me.MvvmManager1.DataContext = Nothing
+        Me.MvvmManager1.DataContextType = GetType(EFL_CodedUITestContainer.MainNodeTestViewModel)
+        Me.MvvmManager1.DataSourceType = GetType(EFL_CodedUITestContainer.MainNodeTestViewModel)
+        Me.MvvmManager1.DirtyStateManagerComponent = Nothing
+        Me.MvvmManager1.DynamicEventHandlingList = Nothing
+        Me.MvvmManager1.HostingForm = Me
+        Me.MvvmManager1.HostingUserControl = Nothing
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.TreeView2, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("DataSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Personen", GetType(System.Collections.ObjectModel.ObservableCollection(Of EFL_CodedUITestContainer.PersonenViewModelNodeTest))))
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.BindableTreeView1, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("DataSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Personen2", GetType(System.Collections.ObjectModel.ObservableCollection(Of EFL_CodedUITestContainer.PersonenViewModelNodeTest))))
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.BindableTreeView2, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("DataSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("ViewModelTypes", GetType(System.Collections.ObjectModel.ObservableCollection(Of ActiveDevelop.EntitiesFormsLib.PropertyBindingNodeDefinition))))
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.NullableNumValue1, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Value", GetType(System.Nullable(Of Decimal))), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("NumVal", GetType(System.Nullable(Of Decimal))))
         '
         'MvvmTestFormView
         '
