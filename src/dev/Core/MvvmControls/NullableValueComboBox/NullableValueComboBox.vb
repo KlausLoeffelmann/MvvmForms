@@ -18,6 +18,7 @@ Public Class NullableValueComboBox
 
     Private _defaultColor As Media.Brush
     Private _focusedColor As Media.Brush
+    Private Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
 
     ''' <summary>
     ''' Wird ausgelöst wenn sich der Wert im Steuerelement geändert hat, um einen einbindenden Formular oder 
@@ -428,6 +429,8 @@ Public Class NullableValueComboBox
 
         WpfComboBoxWrapper1.InnerComboBox.AddHandler(System.Windows.Controls.Primitives.TextBoxBase.TextChangedEvent,
                       New System.Windows.Controls.TextChangedEventHandler(AddressOf InnerComboBox_TextChanged))
+
+        ImitateTabByPageKeys = NullableControlManager.GetInstance.GetDefaultImitateTabByPageKeys(Me, DEFAULT_IMITATE_TAB_BY_PAGE_KEYS)
     End Sub
 
     ''' <summary>

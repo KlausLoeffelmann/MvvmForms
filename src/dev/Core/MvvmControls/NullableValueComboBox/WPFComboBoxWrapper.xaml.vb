@@ -22,11 +22,6 @@ Public Class InnerComboBox
 
     Private part_EditableTextBox As ExtendedTextBox
     Private myImitateTabByPageKeys As Boolean 'Emuliert das Tabben
-    Private Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
-
-    Sub New()
-        ImitateTabByPageKeys = NullableControlManager.GetInstance.GetDefaultImitateTabByPageKeys(Me, DEFAULT_IMITATE_TAB_BY_PAGE_KEYS)
-    End Sub
 
     Public Overrides Sub OnApplyTemplate()
         MyBase.OnApplyTemplate()
