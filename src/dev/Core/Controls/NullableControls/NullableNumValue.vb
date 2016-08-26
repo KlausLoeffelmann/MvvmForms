@@ -18,6 +18,8 @@ Public Class NullableNumValue
     Private myAllowFormular As Boolean
     Private myLeadingZeros As Integer
     Private myCalculatorPopup As ResizablePopup      ' wir halten das Popup des Calculators
+    Private myCalculatorCloseCounter As Integer = 0    ' the Calculator throught the second enter key press
+
 
     Private Const DEFAULT_MAX_VALUE_EXCEEDED_MESSAGE As String = "Der eingegebenene Wert überschreitet das Maximum!"
     Private Const DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE As String = "Der eingegebene Wert unterschreitet das Minimum!"
@@ -539,6 +541,7 @@ Public Class NullableNumValue
             ' das RemoveHandler wird  in der Funktion PopupClosing durchgeführt
             myCalculatorPopup.ClosePopup()
         Else
+            myCalculatorCloseCounter = 0
             Dim val As Decimal = 0
             ' vor dem verdrahten der Events erst mal gucken, ob ein gültiger Wert als input für den Taschenrechner vorhanden ist
             Try
@@ -618,6 +621,7 @@ Public Class NullableNumValue
             e.Action = CalculatorAction.DecimalSeparator OrElse
             e.Action = CalculatorAction.ToggleSign Then
             Me.TextBoxPart.Text = e.Input
+            myCalculatorCloseCounter = 0
         ElseIf e.Action = CalculatorAction.IntermediaryResult OrElse e.Action = CalculatorAction.FinalResult Then
             Dim calcWin As SimpleCalculator = Nothing
             Try
@@ -629,15 +633,20 @@ Public Class NullableNumValue
 
             End Try
             If e.Action = CalculatorAction.FinalResult Then
-                Try
-                    RemoveHandler calcWin.SetResult, AddressOf SetResult
-                    ToggleCalculator()
-                Finally
-                    RemoveHandler calcWin.SetResult, AddressOf SetResult
-                End Try
-                Me.TextBoxPart.SelectionLength = 0
-                Me.TextBoxPart.SelectionStart = Me.TextBoxPart.Text.Length
+                myCalculatorCloseCounter += 1
 
+                If myCalculatorCloseCounter >= 2 Then
+                    Try
+                        RemoveHandler calcWin.SetResult, AddressOf SetResult
+                        ToggleCalculator()
+                    Finally
+                        RemoveHandler calcWin.SetResult, AddressOf SetResult
+                    End Try
+                    Me.TextBoxPart.SelectionLength = 0
+                    Me.TextBoxPart.SelectionStart = Me.TextBoxPart.Text.Length
+                End If
+            Else
+                myCalculatorCloseCounter = 0
             End If
         End If
     End Sub
@@ -683,6 +692,12 @@ Public Class NullableNumValue
     End Sub
 
     Private Sub PopupCloseRequested(sender As Object, e As PopupCloseRequestedEventArgs)
+
+        If e.CloseRequestReason = PopupCloseRequestReasons.KeyboardCommit AndAlso e.KeyCode = Keys.Return AndAlso myCalculatorCloseCounter < 1 Then
+            Dim calcWin = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
+            calcWin.ProcessKeyDown(e.KeyCode)
+            Return
+        End If
         Dim e2 As New PopupClosingEventArgs(PopupClosingReason.Keyboard,
                                                     e.KeyCode)
 
