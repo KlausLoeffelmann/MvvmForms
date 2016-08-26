@@ -37,11 +37,13 @@ Public Class InnerComboBox
     End Sub
 
     Private Sub part_EditableTextBox_PreviewKeyDown(sender As Object, e As KeyEventArgs)
-        If e.Key = Key.Next OrElse e.Key = Key.PageUp Then
-            e.Handled = True
+        If ImitateTabByPageKeys Then
+            If e.Key = Key.Next OrElse e.Key = Key.PageUp Then
+                e.Handled = True
 
-            If e.Key = Key.Next Then Forms.SendKeys.SendWait("{TAB}")
-            If e.Key = Key.PageUp Then Forms.SendKeys.SendWait("+{TAB}")
+                If e.Key = Key.Next Then Forms.SendKeys.SendWait("{TAB}")
+                If e.Key = Key.PageUp Then Forms.SendKeys.SendWait("+{TAB}")
+            End If
         End If
     End Sub
 
@@ -49,7 +51,6 @@ Public Class InnerComboBox
         MyBase.OnDropDownOpened(e)
 
         part_EditableTextBox.ClearSelectedText()
-
     End Sub
 
     ''' <summary>
