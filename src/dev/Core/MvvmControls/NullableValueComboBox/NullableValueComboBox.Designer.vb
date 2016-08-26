@@ -25,7 +25,7 @@ Partial Class NullableValueComboBox
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
-        Me.WpfComboBoxWrapper1 = New WPFComboBoxWrapper()
+        Me.WpfComboBoxWrapper1 = New ActiveDevelop.EntitiesFormsLib.WPFComboBoxWrapper()
         Me.SuspendLayout()
         '
         'ElementHost1
@@ -35,14 +35,16 @@ Partial Class NullableValueComboBox
         Me.ElementHost1.Name = "ElementHost1"
         Me.ElementHost1.Size = New System.Drawing.Size(120, 22)
         Me.ElementHost1.TabIndex = 0
+        Me.ElementHost1.TabStop = False
         Me.ElementHost1.Text = "ElementHost1"
         Me.ElementHost1.Child = Me.WpfComboBoxWrapper1
         '
-        'BindableComboBox
+        'NullableValueComboBox
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.ElementHost1)
+        Me.Name = "NullableValueComboBox"
         Me.Size = New System.Drawing.Size(120, 22)
         Me.ResumeLayout(False)
 

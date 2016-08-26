@@ -68,6 +68,26 @@ Public Class NullableValueComboBox
         DatafieldDescription = Nothing
     End Sub
 
+    ''' <summary>
+    ''' Returns or sets a flag which determines that the use can cycle between entry fields with Page up and Page down rather than Tab and Shift+Tab.
+    ''' </summary>
+    ''' <returns></returns>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Returns or sets if the user can cycle between entry fields with Page up and Page down in addition to Tab and Shift+Tab."),
+     Category("Behavior"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(False)>
+    Public Property ImitateTabByPageKeys As Boolean
+        Get
+            Return WpfComboBoxWrapper1.InnerComboBox.ImitateTabByPageKeys
+        End Get
+        Set(value As Boolean)
+            If Not Object.Equals(WpfComboBoxWrapper1.InnerComboBox.ImitateTabByPageKeys, value) Then
+                WpfComboBoxWrapper1.InnerComboBox.ImitateTabByPageKeys = value
+            End If
+        End Set
+    End Property
+
     Public Property NullValueMessage As String Implements INullableValueDataBinding.NullValueMessage
         Get
             Return String.Empty
