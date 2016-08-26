@@ -18,6 +18,7 @@ Public Class NullableValueComboBox
 
     Private _defaultColor As Media.Brush
     Private _focusedColor As Media.Brush
+    Private Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
 
     ''' <summary>
     ''' Wird ausgelöst wenn sich der Wert im Steuerelement geändert hat, um einen einbindenden Formular oder 
@@ -67,6 +68,26 @@ Public Class NullableValueComboBox
     Public Sub ResetDatafieldDescription()
         DatafieldDescription = Nothing
     End Sub
+
+    ''' <summary>
+    ''' Returns or sets a flag which determines that the use can cycle between entry fields with Page up and Page down rather than Tab and Shift+Tab.
+    ''' </summary>
+    ''' <returns></returns>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Returns or sets if the user can cycle between entry fields with Page up and Page down in addition to Tab and Shift+Tab."),
+     Category("Behavior"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(False)>
+    Public Property ImitateTabByPageKeys As Boolean
+        Get
+            Return WpfComboBoxWrapper1.InnerComboBox.ImitateTabByPageKeys
+        End Get
+        Set(value As Boolean)
+            If Not Object.Equals(WpfComboBoxWrapper1.InnerComboBox.ImitateTabByPageKeys, value) Then
+                WpfComboBoxWrapper1.InnerComboBox.ImitateTabByPageKeys = value
+            End If
+        End Set
+    End Property
 
     Public Property NullValueMessage As String Implements INullableValueDataBinding.NullValueMessage
         Get
@@ -408,6 +429,8 @@ Public Class NullableValueComboBox
 
         WpfComboBoxWrapper1.InnerComboBox.AddHandler(System.Windows.Controls.Primitives.TextBoxBase.TextChangedEvent,
                       New System.Windows.Controls.TextChangedEventHandler(AddressOf InnerComboBox_TextChanged))
+
+        ImitateTabByPageKeys = NullableControlManager.GetInstance.GetDefaultImitateTabByPageKeys(Me, DEFAULT_IMITATE_TAB_BY_PAGE_KEYS)
     End Sub
 
     ''' <summary>
