@@ -94,9 +94,25 @@ Public Class MainNodeTestViewModel
     End Property
     Public Const NumValProperty As String = "NumVal"
 
+    Private _selected As PersonenViewModelNodeTest
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>Bindbare Property</remarks>
+    Public Property SelectedNode As PersonenViewModelNodeTest
+        Get
+            Return _selected
+        End Get
+        Set(ByVal value As PersonenViewModelNodeTest)
+            MyBase.SetProperty(_selected, value)
+        End Set
+    End Property
 End Class
 
 Public Class PersonenViewModelNodeTest
+    Inherits MvvmViewModelBase
     Property Nachname As String = "Mustermann"
 
     Property Anschriften As New ObservableCollection(Of AnschriftenViewModelNodeTest)

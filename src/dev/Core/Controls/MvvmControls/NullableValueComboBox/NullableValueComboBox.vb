@@ -19,6 +19,7 @@ Public Class NullableValueComboBox
     Private _defaultColor As Media.Brush
     Private _focusedColor As Media.Brush
     Private Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
+    Private _isResetting As Boolean = False
 
     Public Sub New()
 
@@ -206,7 +207,11 @@ Public Class NullableValueComboBox
     ''' <remarks>Durch den MvvmManager bindbare View-Property</remarks>
     Public Property SelectedItem As Object Implements INullableValueDataBinding.Value
         Get
-            Return WpfComboBoxWrapper1.InnerComboBox.SelectedItem
+            If _isResetting Then
+                Return PreviousItem
+            Else
+                Return WpfComboBoxWrapper1.InnerComboBox.SelectedItem
+            End If
         End Get
         Set(ByVal value As Object)
             If Not Object.Equals(WpfComboBoxWrapper1.InnerComboBox.SelectedItem, value) Then
@@ -295,6 +300,10 @@ Public Class NullableValueComboBox
             OnSelectedItemChanged(e)
 
         End If
+
+        If ValueNotFoundBehavior = ValueNotFoundBehavior.SelectFirst AndAlso SelectedItem Is Nothing Then
+            PreviousItem = Nothing
+        End If
     End Sub
 
     Private _leaveBehavior As ValueNotFoundBehavior = EntitiesFormsLib.ValueNotFoundBehavior.SelectFirst
@@ -362,7 +371,6 @@ Public Class NullableValueComboBox
 
 
     Protected Overrides Sub OnLeave(e As EventArgs)
-        MyBase.OnLeave(e)
 
         'Nachschauen was passieren soll, wenn ein Wert eingegeben wurde, der nicht vorhanden ist (oder Nothing)
         If (WpfComboBoxWrapper1.InnerComboBox.SelectedItem Is Nothing _
@@ -371,7 +379,7 @@ Public Class NullableValueComboBox
 
             If ValueNotFoundBehavior = ValueNotFoundBehavior.KeepFocus Then
                 'Control darf nicht verlassen werden
-
+                _isResetting = True
                 WpfComboBoxWrapper1.InnerComboBox.Dispatcher.BeginInvoke(DispatcherPriority.Input, New Action(AddressOf ResetFocus))
             ElseIf ValueNotFoundBehavior = ValueNotFoundBehavior.SelectFirst Then
                 'Ersten auswählen
@@ -384,11 +392,13 @@ Public Class NullableValueComboBox
                 End If
             End If
         End If
+        MyBase.OnLeave(e)
 
     End Sub
 
     Private Sub ResetFocus()
         WpfComboBoxWrapper1.InnerComboBox.Focus()
+        _isResetting = False
     End Sub
 
     Private myIsDirty As Boolean

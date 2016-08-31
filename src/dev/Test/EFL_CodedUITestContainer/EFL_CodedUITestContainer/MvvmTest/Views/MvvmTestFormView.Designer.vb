@@ -40,6 +40,10 @@ Partial Class MvvmTestFormView
         Me.NullableNumValue1 = New ActiveDevelop.EntitiesFormsLib.NullableNumValue()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.MvvmManager1 = New ActiveDevelop.EntitiesFormsLib.MvvmManager(Me.components)
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.NullableValueComboBox1 = New ActiveDevelop.EntitiesFormsLib.NullableValueComboBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.ListBox2 = New System.Windows.Forms.ListBox()
         CType(Me.MvvmManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -173,7 +177,7 @@ Partial Class MvvmTestFormView
         Me.BindableTreeView2.Name = "BindableTreeView2"
         Me.BindableTreeView2.SelectedItem = Nothing
         Me.BindableTreeView2.SelectedRootItem = Nothing
-        Me.BindableTreeView2.Size = New System.Drawing.Size(455, 195)
+        Me.BindableTreeView2.Size = New System.Drawing.Size(127, 195)
         Me.BindableTreeView2.TabIndex = 14
         '
         'NullableNumValue1
@@ -225,12 +229,64 @@ Partial Class MvvmTestFormView
         Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.BindableTreeView1, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("DataSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Personen2", GetType(System.Collections.ObjectModel.ObservableCollection(Of EFL_CodedUITestContainer.PersonenViewModelNodeTest))))
         Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.BindableTreeView2, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("DataSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("ViewModelTypes", GetType(System.Collections.ObjectModel.ObservableCollection(Of ActiveDevelop.EntitiesFormsLib.PropertyBindingNodeDefinition))))
         Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.NullableNumValue1, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Value", GetType(System.Nullable(Of Decimal))), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("NumVal", GetType(System.Nullable(Of Decimal))))
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.TextBox4, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("Text", GetType(String)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("SelectedNode.Nachname", GetType(String)))
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.NullableValueComboBox1, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.OneWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.PropertyChangedImmediately), New ActiveDevelop.EntitiesFormsLib.BindingProperty("ItemSource", GetType(System.Collections.IEnumerable)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("Personen", GetType(System.Collections.ObjectModel.ObservableCollection(Of EFL_CodedUITestContainer.PersonenViewModelNodeTest))))
+        Me.MvvmManager1.MvvmBindings.AddPropertyBinding(Me.NullableValueComboBox1, New ActiveDevelop.EntitiesFormsLib.BindingSetting(ActiveDevelop.EntitiesFormsLib.MvvmBindingModes.TwoWay, ActiveDevelop.EntitiesFormsLib.UpdateSourceTriggerSettings.LostFocus), New ActiveDevelop.EntitiesFormsLib.BindingProperty("SelectedItem", GetType(Object)), Nothing, Nothing, New ActiveDevelop.EntitiesFormsLib.BindingProperty("SelectedNode", GetType(EFL_CodedUITestContainer.PersonenViewModelNodeTest)))
+        '
+        'TextBox4
+        '
+        Me.MvvmManager1.SetEventBindings(Me.TextBox4, Nothing)
+        Me.TextBox4.Location = New System.Drawing.Point(641, 470)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox4.TabIndex = 19
+        '
+        'NullableValueComboBox1
+        '
+        Me.NullableValueComboBox1.AssignedManagerControl = Nothing
+        Me.NullableValueComboBox1.DisplayMemberPath = "Nachname"
+        Me.MvvmManager1.SetEventBindings(Me.NullableValueComboBox1, Nothing)
+        Me.NullableValueComboBox1.ExceptionBalloonDuration = 0
+        Me.NullableValueComboBox1.IsKeyField = False
+        Me.NullableValueComboBox1.ItemSource = Nothing
+        Me.NullableValueComboBox1.Location = New System.Drawing.Point(641, 416)
+        Me.NullableValueComboBox1.Name = "NullableValueComboBox1"
+        Me.NullableValueComboBox1.NullValueMessage = ""
+        Me.NullableValueComboBox1.ProcessingPriority = 0
+        Me.NullableValueComboBox1.SelectedForProcessing = False
+        Me.NullableValueComboBox1.SelectedItem = Nothing
+        Me.NullableValueComboBox1.SelectedValue = Nothing
+        Me.NullableValueComboBox1.SelectedValuePath = ""
+        Me.NullableValueComboBox1.Size = New System.Drawing.Size(120, 22)
+        Me.NullableValueComboBox1.TabIndex = 17
+        Me.NullableValueComboBox1.ValueNotFoundBehavior = ActiveDevelop.EntitiesFormsLib.ValueNotFoundBehavior.PreserveInput
+        '
+        'TextBox3
+        '
+        Me.MvvmManager1.SetEventBindings(Me.TextBox3, Nothing)
+        Me.TextBox3.Location = New System.Drawing.Point(641, 444)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox3.TabIndex = 18
+        '
+        'ListBox2
+        '
+        Me.MvvmManager1.SetEventBindings(Me.ListBox2, Nothing)
+        Me.ListBox2.FormattingEnabled = True
+        Me.ListBox2.Location = New System.Drawing.Point(496, 416)
+        Me.ListBox2.Name = "ListBox2"
+        Me.ListBox2.Size = New System.Drawing.Size(120, 95)
+        Me.ListBox2.TabIndex = 20
         '
         'MvvmTestFormView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(843, 592)
+        Me.Controls.Add(Me.ListBox2)
+        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.NullableValueComboBox1)
         Me.Controls.Add(Me.NullableNumValue1)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.BindableTreeView2)
@@ -269,4 +325,8 @@ Partial Class MvvmTestFormView
     Friend WithEvents BindableTreeView2 As BindableTreeView
     Friend WithEvents Button5 As Button
     Friend WithEvents NullableNumValue1 As NullableNumValue
+    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents NullableValueComboBox1 As NullableValueComboBox
+    Friend WithEvents ListBox2 As ListBox
 End Class

@@ -28,7 +28,9 @@ Public Class InnerComboBox
 
         part_EditableTextBox = DirectCast(MyBase.GetTemplateChild("PART_EditableTextBox"), ExtendedTextBox)
 
-        AddHandler part_EditableTextBox.PreviewKeyDown, AddressOf part_EditableTextBox_PreviewKeyDown
+        If part_EditableTextBox IsNot Nothing Then
+            AddHandler part_EditableTextBox.PreviewKeyDown, AddressOf part_EditableTextBox_PreviewKeyDown
+        End If
     End Sub
 
     Private Sub part_EditableTextBox_PreviewKeyDown(sender As Object, e As KeyEventArgs)
@@ -45,7 +47,7 @@ Public Class InnerComboBox
     Protected Overrides Sub OnDropDownOpened(e As EventArgs)
         MyBase.OnDropDownOpened(e)
 
-        part_EditableTextBox.ClearSelectedText()
+        part_EditableTextBox?.ClearSelectedText()
     End Sub
 
     ''' <summary>
@@ -66,7 +68,7 @@ Public Class InnerComboBox
     Protected Overrides Sub OnDropDownClosed(e As EventArgs)
         MyBase.OnDropDownClosed(e)
 
-        part_EditableTextBox.ShowSelectedText()
+        part_EditableTextBox?.ShowSelectedText()
 
     End Sub
 
@@ -74,6 +76,6 @@ Public Class InnerComboBox
     ''' Moves the cursor to the end
     ''' </summary>
     Friend Sub SetCursorToEnd()
-        part_EditableTextBox.SetCursorToEnd()
+        part_EditableTextBox?.SetCursorToEnd()
     End Sub
 End Class
