@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
               xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
                xmlns:local="clr-namespace:ActiveDevelop.EntitiesFormsLib" x:Name="userControl"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" IsTabStop="False"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
 
@@ -373,7 +373,7 @@
         			Grid.ColumnSpan="2"
         			Style="{StaticResource ComboBoxToggleButton}"/>-->
                             <Grid Grid.Column="1">
-                                <local:ToggleButton Width="16" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0" 
+                                <local:ToggleButton IsTabStop="False" Width="16" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0" 
                                     IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
                                     x:Name="customToggleButton" />
                             </Grid>
@@ -529,7 +529,7 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <local:InnerComboBox TextOptions.TextFormattingMode="Display" UseLayoutRounding="True" StaysOpenOnEdit="True" 
+        <local:InnerComboBox IsTabStop="False" TextOptions.TextFormattingMode="Display" UseLayoutRounding="True" StaysOpenOnEdit="True" 
                              ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" 
               x:Name="InnerComboBox" IsEditable="True" Style="{DynamicResource ComboBoxStyle1}"/>
 
