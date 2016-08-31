@@ -20,6 +20,26 @@ Public Class NullableValueComboBox
     Private _focusedColor As Media.Brush
     Private Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
 
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        'Farben
+        _defaultColor = WpfComboBoxWrapper1.InnerComboBox.Background
+        _focusedColor = New SolidColorBrush(Colors.Yellow)
+
+        AddHandler WpfComboBoxWrapper1.InnerComboBox.SelectionChanged, AddressOf InnerComboBox_SelectionChanged
+        AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyDown, AddressOf InnerComboBox_KeyDown
+        AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyUp, AddressOf InnerComboBox_KeyUp
+
+        WpfComboBoxWrapper1.InnerComboBox.AddHandler(System.Windows.Controls.Primitives.TextBoxBase.TextChangedEvent,
+                      New System.Windows.Controls.TextChangedEventHandler(AddressOf InnerComboBox_TextChanged))
+
+        ImitateTabByPageKeys = NullableControlManager.GetInstance.GetDefaultImitateTabByPageKeys(Me, DEFAULT_IMITATE_TAB_BY_PAGE_KEYS)
+    End Sub
+
     ''' <summary>
     ''' Wird ausgelöst wenn sich der Wert im Steuerelement geändert hat, um einen einbindenden Formular oder 
     ''' User Control die Möglichkeit zu geben, den Benutzer zu informieren, dass er Änderungen speichern muss.
@@ -41,41 +61,6 @@ Public Class NullableValueComboBox
     'bei dem dieses Steuerelement den Focus behalten könnte.
     'TODO: Überprüfen, ob es nicht doch Fälle gibt, bei dem der Fokus erzwungener Maßen erhalten bleiben soll.
     Public Event RequestValidationFailedReaction(ByVal sender As Object, ByVal e As RequestValidationFailedReactionEventArgs) Implements INullableValueDataBinding.RequestValidationFailedReaction
-
-    Private Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
-
-    Public Sub New()
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        'Farben
-        _defaultColor = WpfComboBoxWrapper1.InnerComboBox.Background
-        _focusedColor = New SolidColorBrush(Colors.Yellow)
-
-        AddHandler WpfComboBoxWrapper1.InnerComboBox.SelectionChanged, AddressOf InnerComboBox_SelectionChanged
-        AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyDown, AddressOf InnerComboBox_KeyDown
-        AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyUp, AddressOf InnerComboBox_KeyUp
-
-        WpfComboBoxWrapper1.InnerComboBox.AddHandler(System.Windows.Controls.Primitives.TextBoxBase.TextChangedEvent,
-                      New System.Windows.Controls.TextChangedEventHandler(AddressOf InnerComboBox_TextChanged))
-
-        ImitateTabByPageKeys = NullableControlManager.GetInstance.GetDefaultImitateTabByPageKeys(Me, DEFAULT_IMITATE_TAB_BY_PAGE_KEYS)
-    End Sub
-
-    Protected Overrides Sub OnKeyDown(e As Forms.KeyEventArgs)
-        MyBase.OnKeyDown(e)
-        If ImitateTabByPageKeys Then
-            If e.KeyCode = Keys.Next Then
-                SendKeys.SendWait("{TAB}")
-                e.SuppressKeyPress = True
-            ElseIf e.KeyCode = Keys.PageUp Then
-                SendKeys.SendWait("+{TAB}")
-                e.SuppressKeyPress = True
-            End If
-        End If
-    End Sub
 
     ''' <summary>
     ''' Bestimmt oder Ermittelt den ausgeschriebenen/lolkalisierten Namen des Feldes, mit dem dieses Steuerelement verknüpft werden soll.
@@ -447,23 +432,6 @@ Public Class NullableValueComboBox
     End Sub
 
     Private myGroupName As String = NullableControlManager.GetInstance.GetDefaultGroupName(Me, "Default")
-    Private myImitateTabByPageKeys As Boolean
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        'Farben
-        _defaultColor = WpfComboBoxWrapper1.InnerComboBox.Background
-        _focusedColor = New SolidColorBrush(Colors.Yellow)
-
-        AddHandler() WpfComboBoxWrapper1.InnerComboBox.SelectionChanged, AddressOf InnerComboBox_SelectionChanged
-        AddHandler() WpfComboBoxWrapper1.InnerComboBox.KeyDown, AddressOf InnerComboBox_KeyDown
-        AddHandler() WpfComboBoxWrapper1.InnerComboBox.KeyUp, AddressOf InnerComboBox_KeyUp
-
-        WpfComboBoxWrapper1.InnerComboBox.AddHandler(System.Windows.Controls.Primitives.TextBoxBase.TextChangedEvent,
-                      New System.Windows.Controls.TextChangedEventHandler(AddressOf InnerComboBox_TextChanged))
-    End Sub
 
     ''' <summary>
     ''' Bestimmt oder ermittelt einen Gruppierungsnamen, um eine Möglichkeit zur Verfügung zu stellen, zentral eine Reihe von Steuerelementen zu steuern.
@@ -503,27 +471,35 @@ Public Class NullableValueComboBox
 
         WpfComboBoxWrapper1.Focus()
         WpfComboBoxWrapper1.InnerComboBox.Focus()
+
+        'If False Then
+        SelectNextControl(Me, forward, False, False, False)
+        'End If
     End Sub
 
-    ''' <summary>
-    ''' Returns or sets if the user can cycle between entry fields with Page up and Page down in addition to Tab and Shift+Tab.
-    ''' </summary>
-    ''' <returns></returns>
-    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
-     Description("Returns or sets if the user can cycle between entry fields with Page up and Page down in addition to Tab and Shift+Tab."),
-     Category("Behavior"),
-     EditorBrowsable(EditorBrowsableState.Always),
-     Browsable(True), DefaultValue(False)>
-    Public Property ImitateTabByPageKeys As Boolean
-        Get
-            Return myImitateTabByPageKeys
-        End Get
-        Set(value As Boolean)
-            If Not Object.Equals(myImitateTabByPageKeys, value) Then
-                myImitateTabByPageKeys = value
-            End If
-        End Set
-    End Property
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
+        Return MyBase.ProcessCmdKey(msg, keyData)
+    End Function
+
+    Protected Overrides Function ProcessTabKey(forward As Boolean) As Boolean
+        Return MyBase.ProcessTabKey(forward)
+    End Function
+
+    Protected Overrides Sub OnLostFocus(e As EventArgs)
+        MyBase.OnLostFocus(e)
+        _isEntered = False
+    End Sub
+
+    Protected Overrides Sub OnGotFocus(e As EventArgs)
+        MyBase.OnGotFocus(e)
+    End Sub
+
+    Private _isEntered As Boolean = False
+
+    Protected Overrides Sub OnEnter(e As EventArgs)
+        _isEntered = True
+        MyBase.OnEnter(e)
+    End Sub
 
     Public Property AssignedManagerControl As FormToBusinessClassManager Implements IAssignableFormToBusinessClassManager.AssignedManagerControl
 
