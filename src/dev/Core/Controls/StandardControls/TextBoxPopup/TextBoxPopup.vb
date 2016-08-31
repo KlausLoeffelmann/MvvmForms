@@ -37,6 +37,7 @@ Public Class TextBoxPopup
 
         MyBase.SetButtonBehaviour(ButtonBehaviour.Radio)
         Me.FocusSelectionBehaviour = GetDefaultFocusSelectionBehaviour()
+        Me.UndoBehaviour = NullableControlManager.GetInstance.GetDefaultUndoBehaviour(Me, UndoBehaviours.AlwaysUndo)
 
         'Key-Ereignisse aus der TextBox hochbubbeln lassen.
         AddHandler Me.TextBoxPart.KeyPress, Sub(sender As Object, e As KeyPressEventArgs)
@@ -319,11 +320,17 @@ Public Class TextBoxPopup
 
     Protected Overridable Sub DecideUndoCommit(closingReason As PopupClosingEventArgs)
         If (closingReason.PopupCloseReason = PopupClosingReason.Keyboard And closingReason.KeyData = Keys.Escape) OrElse
-    closingReason.PopupCloseReason = PopupClosingReason.PopupOpenerClicked Then
+            closingReason.PopupCloseReason = PopupClosingReason.PopupOpenerClicked OrElse
+            closingReason.PopupCloseReason = PopupClosingReason.AppClicked Then
 #If DEBUG Then
             TraceEx.TraceInformation("TRACING: ClosePopupInternally. Undoing input.")
 #End If
-            Me.Undo()
+            If UndoBehaviour = UndoBehaviours.EscapeUndoOnly And
+                   closingReason.PopupCloseReason = PopupClosingReason.Keyboard And closingReason.KeyData = Keys.Escape Then
+                Me.Undo()
+            ElseIf UndoBehaviour = UndoBehaviours.AlwaysUndo Then
+                Me.Undo()
+            End If
         Else
 #If DEBUG Then
             TraceEx.TraceInformation("TRACING: ClosePopupInternally. Commiting input.")
@@ -417,6 +424,19 @@ Public Class TextBoxPopup
     End Property
 
     ''' <summary>
+    ''' Bestimmt oder ermittelt in welche Scenarien eine nicht-committete Benutzereingabe beim Zuklappen des Popup-Menüs ein Undo-Kandidat ist.
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+     Description("Bestimmt oder ermittelt in welche Scenarien eine nicht-committete Benutzereingabe beim Zuklappen des Popup-Menüs ein Undo-Kandidat ist."),
+     Category("Behavior"),
+     EditorBrowsable(EditorBrowsableState.Always),
+     Browsable(True), DefaultValue(UndoBehaviours.AlwaysUndo)>
+    Public Property UndoBehaviour As UndoBehaviours
+
+    ''' <summary>
     ''' Bestimmt oder Ermittelt die Verhaltensweise des Vorselektierens des Steuerelementtextes, wenn es den Fokus erhält. 
     ''' </summary>
     ''' <value></value>
@@ -494,3 +514,17 @@ Public Class TextBoxPopup
     End Sub
 End Class
 
+''' <summary>
+''' Lists the Undo Behaviour Actions, when the User closes the Popup, but did not commit the value by Enter or Click.
+''' </summary>
+Public Enum UndoBehaviours
+    ''' <summary>
+    ''' Undo is performed, not matter if the uncommited popup has been closed by ESC or by the popup opener buttons.
+    ''' </summary>
+    AlwaysUndo = 0
+
+    ''' <summary>
+    ''' Undo is performed, but only by ESC. When the popup is closed though mouse-click, the entered value remains as it is.
+    ''' </summary>
+    EscapeUndoOnly = 1
+End Enum

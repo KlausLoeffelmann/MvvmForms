@@ -183,6 +183,7 @@ Public Class NullableDateValue
            Char.IsControl(e.KeyChar) Or
            e.KeyChar.Equals("/"c) Or
            e.KeyChar.Equals("."c) Or
+           e.KeyChar.Equals("-"c) Or
            e.KeyChar.Equals(":"c) Or
            e.KeyChar.Equals(" "c) Or
            e.KeyChar.Equals("a") Or
