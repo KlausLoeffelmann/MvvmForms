@@ -189,7 +189,6 @@ Partial Class MainForm
         Me.NullableNumValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
         Me.NullableNumValue1.CurrencySymbolString = Nothing
         Me.NullableNumValue1.DropDownCalculatorMode = ActiveDevelop.EntitiesFormsLib.CalculatorType.Simple
-        Me.NullableNumValue1.DropDownCalculatorTrigger = ActiveDevelop.EntitiesFormsLib.CalculatorActivationTrigger.Strg_R
         Me.NullableNumValue1.Location = New System.Drawing.Point(42, 101)
         Me.NullableNumValue1.Margin = New System.Windows.Forms.Padding(6)
         Me.NullableNumValue1.MaxLength = 32767

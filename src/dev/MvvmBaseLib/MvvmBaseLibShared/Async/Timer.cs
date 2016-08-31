@@ -62,6 +62,10 @@ namespace ActiveDevelop.MvvmBaseLib.Threading
                 }, this.Token);
         }
 
+
+        /// <summary>
+        /// Disposes (and stops) the timer.
+        /// </summary>
         public new void Dispose()
         {
             base.Cancel();

@@ -22,8 +22,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)FormulaEvaluator\Function.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IoCPlatformDependend\IMvvmViewModelNotifyBindingProcess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MathExtension\MathExtension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ChangeTracking.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\Experimental\ChangeTracking.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\Experimental\RxCollectionView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\Experimental\ValidatableBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\Experimental\ValidatableValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\Experimental\WeakPropertyChangedEventManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\CopyPropertiesException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\Extender.cs" />
@@ -32,8 +34,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\MvvmViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\TypeDetector.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ValidatableBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\ValidatableValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeLib\TimeRange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeLib\TimeSpanOverlappingTypes.cs" />
   </ItemGroup>

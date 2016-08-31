@@ -76,10 +76,14 @@ namespace MvvmFormsCSharpDemos
             Debug.Print(nullableOptionButton1.Value.Value.ToString());
         }
 
+        private void ncbAllowFormular_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ncbAllowFormular.Value.HasValue)
+                numValueField.AllowFormular = ncbAllowFormular.Value.Value;
+        }
+
         private void nullableCheckBox1_ValueChanged(object sender, ValueChangedEventArgs e)
         {
-            if (nullableCheckBox1.Value.HasValue)
-                numValueField.AllowFormular = nullableCheckBox1.Value.Value;
 
         }
     }

@@ -184,7 +184,6 @@ Partial Class MvvmTestFormView
         Me.NullableNumValue1.CurrencySymbolString = Nothing
         Me.NullableNumValue1.DecimalPlaces = 2
         Me.NullableNumValue1.DropDownCalculatorMode = ActiveDevelop.EntitiesFormsLib.CalculatorType.Simple
-        Me.NullableNumValue1.DropDownCalculatorTrigger = ActiveDevelop.EntitiesFormsLib.CalculatorActivationTrigger.Strg_R
         Me.MvvmManager1.SetEventBindings(Me.NullableNumValue1, Nothing)
         Me.NullableNumValue1.Location = New System.Drawing.Point(604, 277)
         Me.NullableNumValue1.MaxLength = 32767

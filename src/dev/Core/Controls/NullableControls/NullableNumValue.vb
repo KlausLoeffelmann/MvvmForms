@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Windows.Forms
+Imports ActiveDevelop.EntitiesFormsLib
 
 ''' <summary>
 ''' Allows editing of numerical values (Decimal), which can be retrieved/set over the Value property, 
@@ -33,6 +34,7 @@ Public Class NullableNumValue
     Private myIncrement As Decimal?
     Private myMinValue As Decimal?
     Private myMaxValue As Decimal?
+    Private myDropDownCalculatorTrigger As CalculatorActivationTrigger
 
     Sub New()
         MyBase.New()
@@ -112,17 +114,62 @@ Public Class NullableNumValue
             End Sub
     End Sub
 
-    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
-
-        'Console.WriteLine("keyData= {0}, (Keys.Control And Keys.R) = {1}", keyData, (Keys.Control Or Keys.R))
-        If (DropDownCalculatorTrigger = CalculatorActivationTrigger.Strg_R AndAlso keyData = (Keys.Control Or Keys.R)) OrElse
-            (DropDownCalculatorTrigger = CalculatorActivationTrigger.Cursor_UpOrDown AndAlso (keyData = Keys.Down OrElse keyData = Keys.Up)) Then
-
-            If DropDownCalculatorMode = CalculatorType.Simple Then
-                ToggleCalculator()
-                Return True
+    'Handels the TextBoxPartKeyPress event and prevent letters when AllowFormular is false.
+    Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyPressEventArgs)
+        If Not AllowFormular Then
+            If Char.IsNumber(e.KeyChar) Or
+               Char.IsControl(e.KeyChar) Or
+               e.KeyChar.Equals("-"c) Or
+               e.KeyChar.Equals("e"c) Or
+               e.KeyChar.Equals(","c) Or
+               e.KeyChar.Equals("."c) Then
+            Else
+                e.Handled = True
             End If
         End If
+    End Sub
+
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
+
+        'Necessary, because otherwise those characters would be processed/blocked by this, even if the calculator is open.
+        'This would lead to e.g. * - / + being swallowed rather than performing an actual arithmetic operation.
+        If myCalculatorPopup Is Nothing OrElse Not myCalculatorPopup.IsOpen Then
+
+            Dim toBetriggered As Boolean = False
+
+            toBetriggered = DropDownCalculatorTrigger.HasFlag(CalculatorActivationTrigger.Ctrl_R) And
+                            keyData = (Keys.Control Or Keys.R)
+
+            toBetriggered = toBetriggered Or DropDownCalculatorTrigger.HasFlag(CalculatorActivationTrigger.Cursor_UpOrDown) And
+                            (keyData = Keys.Down Or keyData = Keys.Up)
+
+            toBetriggered = toBetriggered Or DropDownCalculatorTrigger.HasFlag(CalculatorActivationTrigger.F2) And
+                            (keyData = Keys.F2)
+
+            toBetriggered = toBetriggered Or DropDownCalculatorTrigger.HasFlag(CalculatorActivationTrigger.F3) And
+                            (keyData = Keys.F3)
+
+            toBetriggered = toBetriggered Or DropDownCalculatorTrigger.HasFlag(CalculatorActivationTrigger.F5) And
+                            (keyData = Keys.F5)
+
+            toBetriggered = toBetriggered Or DropDownCalculatorTrigger.HasFlag(CalculatorActivationTrigger.F6) And
+                            (keyData = Keys.F6)
+
+            toBetriggered = toBetriggered Or DropDownCalculatorTrigger.HasFlag(CalculatorActivationTrigger.BasicArithmeticKeys) And
+                            (keyData = Keys.Multiply Or keyData = Keys.Divide Or keyData = Keys.Subtract Or keyData = Keys.Add)
+
+            toBetriggered = toBetriggered Or DropDownCalculatorTrigger.HasFlag(CalculatorActivationTrigger.Letter_C) And
+                            (keyData = Keys.C)
+
+
+            If toBetriggered Then
+                If DropDownCalculatorMode = CalculatorType.Simple Then
+                    ToggleCalculator()
+                    Return True
+                End If
+            End If
+        End If
+
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function
 
@@ -485,19 +532,6 @@ Public Class NullableNumValue
         MinValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMinValueExceededMessage(Me, DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE)
     End Sub
 
-    'Handels the TextBoxPartKeyPress event and prevent letters when AllowFormular is false.
-    Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyPressEventArgs)
-        If Not AllowFormular Then
-            If Char.IsNumber(e.KeyChar) Or
-               Char.IsPunctuation(e.KeyChar) Or
-               Char.IsSeparator(e.KeyChar) Or
-               Char.IsControl(e.KeyChar) Then
-            Else
-                e.Handled = True
-            End If
-        End If
-    End Sub
-
     ''' <summary>
     ''' Bestimmt ob und welcher Taschenrechner in dem Control angezeigt werden kann
     ''' </summary>
@@ -523,6 +557,18 @@ Public Class NullableNumValue
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(True), DefaultValue(CalculatorActivationTrigger.None)>
     Public Property DropDownCalculatorTrigger As CalculatorActivationTrigger
+        Get
+            Return myDropDownCalculatorTrigger
+        End Get
+        Set(value As CalculatorActivationTrigger)
+            If Not Object.Equals(value, myDropDownCalculatorTrigger) Then
+                myDropDownCalculatorTrigger = value
+                If myDropDownCalculatorTrigger >= CalculatorActivationTrigger.BasicArithmeticKeys Then
+                    AllowFormular = False
+                End If
+            End If
+        End Set
+    End Property
 
     ''' <summary>
     ''' Zeigt den Taschenrechner an oder blendet ihn aus, wenn er bereits angezeigt wird
@@ -643,12 +689,9 @@ Public Class NullableNumValue
     End Sub
 
     Private Sub PopupClosing(sender As Object, e As PopupClosingEventArgs)
-        'If e.PopupCloseReason = PopupClosingReason.AppFocusChanged OrElse e.PopupCloseReason = PopupClosingReason.AppClicked Then
-        '    ' den Taschenrechner lassen wir offen
-        '    e.Cancel = True
-        '    Return
-        'End If
+
         Dim calcWin = DirectCast(myCalculatorPopup.PopupContentControl, SimpleCalculator)
+
         Try
             calcWin.ForceFinalCalculation()
             If calcWin.Tag IsNot Nothing Then
@@ -709,29 +752,84 @@ Public Class NullableNumValue
 
 End Class
 
+''' <summary>
+''' Controls the type of calculator to be used.
+''' </summary>
 Public Enum CalculatorType
     ''' <summary>
-    ''' Es steht kein Taschenrechner zur Verfügung
+    ''' Calculator is not used.
     ''' </summary>
     None
+
     ''' <summary>
-    ''' Ein einfacher Taschenrechner mit den Grundrechenarten
+    ''' Provides a simple visual calculator with basic arithmetics.
     ''' </summary>
     Simple
 End Enum
 
+''' <summary>
+''' Controls how to activate the calculator.
+''' </summary>
+<Flags>
 Public Enum CalculatorActivationTrigger
     ''' <summary>
-    ''' Keine automatische anzeige des Taschenrechners möglich
+    ''' Calculator cannot be used.
     ''' </summary>
-    None
+    None = 0
+
     ''' <summary>
-    ''' Anzeige des Taschenrechners über den Hotkey Strg-R (Strg C geht ja leider nicht)
+    ''' Calculator can be shown by Ctrl-R
     ''' </summary>
-    Strg_R
+    Ctrl_R = 1
+
     ''' <summary>
-    ''' Anzeige des Taschenrechners über die Cursor Up oder Down-Taste
+    ''' Calculator can be shown by Cursor Up or Down
     ''' </summary>
-    Cursor_UpOrDown
+    Cursor_UpOrDown = 2
+
+    ''' <summary>
+    ''' Calculator can be shown by F2
+    ''' </summary>
+    F2 = 4
+
+    ''' <summary>
+    ''' Calculator can be shown by F3
+    ''' </summary>
+    F3 = 8
+
+    ''' <summary>
+    ''' Calculator can be shown by F5
+    ''' </summary>
+    F5 = 16
+
+    ''' <summary>
+    ''' Calculator can be shown by F5
+    ''' </summary>
+    F6 = 32
+
+    ''' <summary>
+    ''' Calculator can be shown by * / - + = NOTE: This deactivates AllowFormular Property.
+    ''' </summary>
+    BasicArithmeticKeys = 64
+
+    ''' <summary>
+    ''' Calculator can by the Letter C NOTE: This deactivates AllowFormular Property.
+    ''' </summary>
+    Letter_C = 128
+
+    ''' <summary>
+    ''' Calculator can be activated by Cursor up/down or Ctrl+R
+    ''' </summary>
+    Subtle = Ctrl_R Or Cursor_UpOrDown
+
+    ''' <summary>
+    ''' Calculator can be activated by Cursor up/down, Ctrl+R and F2.
+    ''' </summary>
+    Normal = Subtle Or CalculatorActivationTrigger.F2
+
+    ''' <summary>
+    ''' Calculator can be activated by Cursor up/down, Letter C or = + - * /.
+    ''' </summary>
+    Prominent = Cursor_UpOrDown Or Letter_C Or BasicArithmeticKeys
 
 End Enum

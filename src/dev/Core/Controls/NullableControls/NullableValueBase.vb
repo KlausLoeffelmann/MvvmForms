@@ -54,15 +54,15 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Public Event ReverseTextOverflowBehaviourChanged(sender As Object, e As EventArgs)
     Public Event TextAlignChanged(sender As Object, e As EventArgs)
 
-    Private myFormatString As String                            ' Der Format-String, der den String für das Anzeigen des Wertes nach Verlassen des Feldes vorgibt.
-    Private myNullValueString As String                         ' Die Zeichenfolge, die beim Verlieren des Fokus angezeigt wird, wenn eine Null-Eingabe erfolgte.
+    Private myFormatString As String                            ' The format string which sets the string for displaying the value after leaving the field. (Der Format-String, der den String für das Anzeigen des Wertes nach Verlassen des Feldes vorgibt.)
+    Private myNullValueString As String                         ' The string that is displayed on losing focus if a null value results from the input. (Die Zeichenfolge, die beim Verlieren des Fokus angezeigt wird, wenn eine Null-Eingabe erfolgte.)
 
-    Private myValueControl As ControlType                       ' Das Steuerelement, dass die eigentliche Werteeingabe durchführt.
-    Private myValue As Nullable(Of NullableType)                ' Der Wert, den dieses Steuerelement bearbeitet
-    Private myEditedValue As String                             ' Die ursprüngliche Tastatureingabe, die sich aus dem Wert ergibt.
+    Private myValueControl As ControlType                       ' The encapsulated, underlying control that performs the actual value input. (Das gekapselte, zugrunde liegende Steuerelement, das die eigentliche Werteeingabe durchführt.)
+    Private myValue As Nullable(Of NullableType)                ' The current value represented by the value property, which is processed though this control. (Der aktuelle Wert repräsentiert durch die Value-Eigenschaft, der mit diesem Steuerelement bearbeitet wird.)
+    Private myEditedValue As String                             ' The original string keyboard input, from which the value is determined. (Die ursprüngliche String-Tastatureingabe, aus der sich der Wert ergibt.)
 
-    Private myOriginalValue As Nullable(Of NullableType)        ' Der Ausgabgswert für den Rückgängig-Vorgang (typisiert)
-    Private myOriginalEditedValue As String                     ' Der Ausgangswert für den Rückgängig-Vorgang (als Zeichenkette, wie eingegeben)
+    Private myOriginalValue As Nullable(Of NullableType)        ' Der Ursprungsswert für den Rückgängig-Vorgang (typisiert)
+    Private myOriginalEditedValue As String                     ' The initial value for the undo operation (as string, as originally typed by the user) (Der Ursprungswert für den Rückgängig-Vorgang (als Zeichenkette, wie ursprünglich durch den Anwender eingegeben))
     Private myFormatterEngine As INullableValueFormatterEngine  ' Die Formatter-Klasse für den entsprechenden Typ, der in abgeleiteten Versionen dieser Klasse verarbeitet wird.
     Private myIsLoading As HistoricalBoolean                    ' Zeigt an, dass sich diese Klasse gerade im "Lade"-Modus befindet, in der Update-Ereignisse ausgeblockt sind.
     Private myIsDirty As Boolean                                ' Zeigt an, dass sich der Value-Wert seit der letzten (ersten) Zuweisung geändert hat, und ein Datensatz aktualisiert werden muss.
@@ -79,7 +79,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Private myNullValueMessage As String
     Private myBorderstyle As BorderStyle
     Private myIsFocused As Boolean
-    Private myDoesLostFocusPrecedeValidate As Boolean           ' Ermöglicht es Validating herauszufinden, 
+    Private myDoesLostFocusPrecedeValidate As Boolean
 
     Protected ReadOnly DEFAULT_FOCUS_COLOR As Color = Color.Yellow
     Protected ReadOnly DEFAULT_ERROR_COLOR As Color = Color.Red
@@ -95,7 +95,7 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
 
     Private Const WM_KEYDOWN = &H100
 
-    'Shapepoints für den Balloon.
+    'Shapepoints for the balloon tooltip.
     Private myShapePointTypes As Byte() = {CByte(PathPointType.Start),
                                            CByte(PathPointType.Line),
                                            CByte(PathPointType.Line),
@@ -159,16 +159,8 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         AddHandler DirectCast(myValueControl, ITextBoxBasedControl).TextBoxPart.TextChanged,
             Sub(sender As Object, e As EventArgs)
                 Me.Text = DirectCast(myValueControl, ITextBoxBasedControl).TextBoxPart.Text
-                'If mySuppresValueChangedOnTextPartTextChange Then
-                '    mySuppresValueChangedOnTextPartTextChange = False
-                '    Return
-                'End If
-                'If Not myValueChangedByPropertySetter Then
-                '    OnValueChanged(ValueChangedEventArgs.PredefinedWithUser)
-                'Else
-                '    myValueChangedByPropertySetter = False
-                'End If
             End Sub
+
         InitializeValue()
     End Sub
 

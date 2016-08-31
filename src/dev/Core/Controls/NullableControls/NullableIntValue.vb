@@ -99,9 +99,8 @@ Public Class NullableIntValue
     Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyPressEventArgs)
         If Not AllowFormular Then
             If Char.IsNumber(e.KeyChar) Or
-               Char.IsPunctuation(e.KeyChar) Or
-               Char.IsSeparator(e.KeyChar) Or
-               Char.IsControl(e.KeyChar) Then
+               Char.IsControl(e.KeyChar) Or
+               e.KeyChar.Equals("-"c) Then
             Else
                 e.Handled = True
             End If

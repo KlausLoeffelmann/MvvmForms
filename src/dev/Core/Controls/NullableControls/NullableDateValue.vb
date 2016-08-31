@@ -26,9 +26,9 @@ Public Class NullableDateValue
     Private myDisplayFormat As DateTimeFormats
 
     Private Shared mySharedDateFormat As DateTimeFormatInfo =
-                        CultureInfo.CurrentUICulture.DateTimeFormat
+                        CultureInfo.CurrentCulture.DateTimeFormat
 
-    Private Shared myDateTimeFormatStrings As String() = {GetCultureAwareLegacyShortPattern(),
+    Private Shared myDateTimeFormatStrings As String() = {mySharedDateFormat.ShortDatePattern,
                                                           mySharedDateFormat.LongDatePattern,
                                                           mySharedDateFormat.ShortDatePattern,
                                                           mySharedDateFormat.LongDatePattern,
@@ -48,8 +48,10 @@ Public Class NullableDateValue
     Sub New()
         MyBase.New()
 
-        DisplayFormatString = NullableControlManager.GetInstance.GetDefaultDisplayFormatString(Me, DEFAULT_DATE_FORMAT_STRING)
         DisplayFormat = NullableControlManager.GetInstance.GetDefaultDisplayFormat(Me, DateTimeFormats.ShortDate)
+        If DisplayFormat = DateTimeFormats.Custom Then
+            DisplayFormatString = NullableControlManager.GetInstance.GetDefaultDisplayFormatString(Me, DEFAULT_DATE_FORMAT_STRING)
+        End If
 
         'Wird das Control das erste Mal aufgeklappt, müssen wir den Calendarinhalt (MonthCalendarEx-Instanz) nicht austauschen.
         'Sonst müssten wir es, da der Anwender beim letzten Mal in der Monats-,Jahres-
@@ -175,12 +177,21 @@ Public Class NullableDateValue
         End If
     End Sub
 
-    'Handels the TextBoxPartKeyPress event and prevent letters.
+    'Handels the TextBoxPartKeyPress event and prevent letters when AllowFormular is false.
     Private Sub TextBoxPartKeyPressHandler(sender As Object, e As KeyPressEventArgs)
         If Char.IsNumber(e.KeyChar) Or
-           Char.IsPunctuation(e.KeyChar) Or
-           Char.IsSeparator(e.KeyChar) Or
-           Char.IsControl(e.KeyChar) Then
+           Char.IsControl(e.KeyChar) Or
+           e.KeyChar.Equals("/"c) Or
+           e.KeyChar.Equals("."c) Or
+           e.KeyChar.Equals(":"c) Or
+           e.KeyChar.Equals(" "c) Or
+           e.KeyChar.Equals("a") Or
+           e.KeyChar.Equals("p") Or
+           e.KeyChar.Equals("m") Or
+           e.KeyChar.Equals("A") Or
+           e.KeyChar.Equals("P") Or
+           e.KeyChar.Equals("M") Or
+           e.KeyChar.Equals(","c) Then
         Else
             e.Handled = True
         End If
@@ -235,11 +246,17 @@ Public Class NullableDateValue
     End Property
 
     Private Function ShouldSerializeDisplayFormatString() As Boolean
-        Return DisplayFormatString <> DEFAULT_DATE_FORMAT_STRING
+        If DisplayFormat = DateTimeFormats.Custom Then
+            Return DisplayFormatString <> DEFAULT_DATE_FORMAT_STRING
+        Else
+            Return False
+        End If
     End Function
 
     Private Sub ResetDisplayFormatString()
-        DisplayFormatString = DEFAULT_DATE_FORMAT_STRING
+        If DisplayFormat = DateTimeFormats.Custom Then
+            DisplayFormatString = DEFAULT_DATE_FORMAT_STRING
+        End If
     End Sub
 
     <DefaultValue(DateTimeFormats.ShortDate)>
