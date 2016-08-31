@@ -281,6 +281,7 @@
             // 
             // nullableIntValue1
             // 
+            this.nullableIntValue1.AllowFormular = false;
             this.nullableIntValue1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.nullableIntValue1.AssignedManagerComponent = null;
             this.nullableIntValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -411,6 +412,7 @@
             this.nullableValueRelationPopup.Size = new System.Drawing.Size(362, 22);
             this.nullableValueRelationPopup.TabIndex = 0;
             this.nullableValueRelationPopup.UIGuid = new System.Guid("669d0c6b-b374-4018-8dcf-9339438b7561");
+            this.nullableValueRelationPopup.UndoBehaviour = ActiveDevelop.EntitiesFormsLib.UndoBehaviours.EscapeUndoOnly;
             this.nullableValueRelationPopup.ValueMember = null;
             this.nullableValueRelationPopup.GetColumnSchema += new ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup.GetColumnSchemaEventHandler(this.nullableValueRelationPopup1_GetColumnSchema);
             // 

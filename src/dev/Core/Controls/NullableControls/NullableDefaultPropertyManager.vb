@@ -162,6 +162,12 @@ Public NotInheritable Class NullableControlManager
         Return CBool(e.Value)
     End Function
 
+    Function GetDefaultUndoBehaviour(sender As Object, predefinedValue As UndoBehaviours) As UndoBehaviours
+        Dim e As New RequestNullableControlDefaultValueEventArgs(
+            NameOf(TextBoxPopup.UndoBehaviour), predefinedValue)
+        RaiseEvent RequestNullableControlDefaultValue(sender, e)
+        Return CType(e.Value, UndoBehaviours)
+    End Function
 
 End Class
 

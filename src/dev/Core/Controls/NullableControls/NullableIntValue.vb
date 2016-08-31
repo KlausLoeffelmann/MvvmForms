@@ -39,6 +39,9 @@ Public Class NullableIntValue
 
         AddHandler Me.ReadOnlyChanged, AddressOf myReadOnlyChanged
 
+        'Wirering up the event which blocks alpha keys when no Formula is allowed.
+        AddHandler Me.TextBoxPart.KeyPress, AddressOf TextBoxPartKeyPressHandler
+
         AddHandler Me.ValueControl.ButtonAction,
             Sub(sender As Object, e As ButtonActionEventArgs)
                 If Increment.HasValue Then
@@ -102,6 +105,7 @@ Public Class NullableIntValue
                Char.IsControl(e.KeyChar) Or
                e.KeyChar.Equals("-"c) Then
             Else
+                Stop
                 e.Handled = True
             End If
         End If
