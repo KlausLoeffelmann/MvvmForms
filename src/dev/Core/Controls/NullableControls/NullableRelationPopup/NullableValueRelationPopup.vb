@@ -1,22 +1,22 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing
-Imports System.Windows.Forms
-Imports System.Windows.Forms.VisualStyles
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox
-Imports System.Reflection
 Imports System.Runtime.InteropServices
-
 Imports System.Threading
 Imports System.Threading.Tasks
-
+Imports System.Windows.Forms
 Imports ActiveDevelop.EntitiesFormsLib.ObjectAnalyser
 
+#If CompileToGerman Then
 ''' <summary>
-''' Steuerelement zur aufklappbaren Darstellung von Elementen in DataGridView-Listen, das überdies Null-Werte verarbeitet, 
-''' Such- und Auto-Complete-Funktionalitäten sowie eine vereinheitlichende Value-Eigenschaft bietet, 
-''' Funktionen für Rechteverwaltung zur Verfügung stellt und von einer 
-''' <see cref="FormToBusinessClassManager">FormToBusinessClassManager-Komponente</see> verwaltet werden kann.
+''' Steuerelement zur Darstellung vom DataGridViews als ComboBox-Popup, das überdies Null-Werte verarbeitet, 
+''' Such- und Auto-Complete-Funktionalitäten sowie eine vereinheitlichende Value-Eigenschaft bietet. 
 ''' </summary>
+#Else
+''' <summary>
+'''Control for displaying DataGridViews as ComboBox popup, which also handles null values,
+'''provides search and auto-complete functionality and offers a unifying Value property.
+'''</summary>
+#End If
 <ToolboxItem(True)>
 Public Class NullableValueRelationPopup
     Inherits TextBoxPopup
@@ -32,7 +32,7 @@ Public Class NullableValueRelationPopup
     Private Const SCROLLBAROFFSETWIDTH = 3
     Private Const SCROLLBARWIDTH = 17
 
-    'General Infrastructure Fields:
+    'Generic Infrastructure/Flags etc.
     Private myDontRefocus As Boolean
     Private myLastFailedValidationException As ContainsUIMessageException
     Private myBackColorBrush As SolidBrush
@@ -105,7 +105,7 @@ Public Class NullableValueRelationPopup
     Private Const DEFAULT_IMITATE_TAB_BY_PAGE_KEYS = False
 
     ''' <summary>
-    ''' Raised, if ThrowLayoutException is set to false and there was an exception on auto-layouting the BindableDataGrid.
+    ''' Raised if ThrowLayoutException is set to false and there was an exception on auto-layouting the BindableDataGrid.
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
@@ -386,7 +386,7 @@ Public Class NullableValueRelationPopup
     End Sub
 
     Protected Overrides Function DefaultBorderStyle() As BorderStyle
-        Return Borderstyle.FixedSingle
+        Return BorderStyle.FixedSingle
     End Function
 
     Protected Overridable Sub OnUnassignableValueDetected(ByVal e As UnassignableValueDetectedEventArgs)
@@ -1189,7 +1189,9 @@ Public Class NullableValueRelationPopup
     Public Overrides Sub Commit(lateCommit As Boolean)
         MyBase.Commit(lateCommit)
         myTextBoxDeferrer.IgnoreNextTextChange = True
-        HandleSelectedValueChanged(lateCommit)
+        If Not Me.IsDisposed Then
+            HandleSelectedValueChanged(lateCommit)
+        End If
         ResetBindingView()
         myUndoValue = Value
         myTextBoxDeferrer.IgnoreNextTextChange = False

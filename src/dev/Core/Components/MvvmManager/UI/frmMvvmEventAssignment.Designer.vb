@@ -49,10 +49,10 @@ Partial Class frmMvvmEventAssignment
         Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(0, 6)
+        Me.Label4.Location = New System.Drawing.Point(0, 3)
         Me.Label4.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(77, 13)
+        Me.Label4.Size = New System.Drawing.Size(93, 19)
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "Control Event"
         '
@@ -61,10 +61,10 @@ Partial Class frmMvvmEventAssignment
         Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(436, 6)
+        Me.Label5.Location = New System.Drawing.Point(436, 3)
         Me.Label5.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(120, 13)
+        Me.Label5.Size = New System.Drawing.Size(145, 19)
         Me.Label5.TabIndex = 10
         Me.Label5.Text = "View model command"
         '
@@ -73,10 +73,10 @@ Partial Class frmMvvmEventAssignment
         Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(218, 6)
+        Me.Label7.Location = New System.Drawing.Point(218, 3)
         Me.Label7.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(132, 13)
+        Me.Label7.Size = New System.Drawing.Size(160, 19)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Control CanExe Property"
         '
@@ -121,7 +121,8 @@ Partial Class frmMvvmEventAssignment
         '
         Me.nvrControlEvent.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nvrControlEvent.AssignedManagerComponent = Nothing
-        Me.nvrControlEvent.BeepOnFailedValidation = False
+        Me.nvrControlEvent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None
+        Me.nvrControlEvent.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None
         Me.nvrControlEvent.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.nvrControlEvent.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
         Me.nvrControlEvent.DataSource = Nothing
@@ -131,6 +132,7 @@ Partial Class frmMvvmEventAssignment
         Me.nvrControlEvent.IsPopupAutoSize = False
         Me.nvrControlEvent.IsPopupResizable = True
         Me.nvrControlEvent.Location = New System.Drawing.Point(3, 28)
+        Me.nvrControlEvent.MaxLength = 32767
         Me.nvrControlEvent.MinimumPopupSize = New System.Drawing.Size(223, 80)
         Me.nvrControlEvent.MultiSelect = False
         Me.nvrControlEvent.Name = "nvrControlEvent"
@@ -139,19 +141,20 @@ Partial Class frmMvvmEventAssignment
         Me.nvrControlEvent.PreferredVisibleColumnsOnOpen = 2
         Me.nvrControlEvent.PreferredVisibleRowsOnOpen = 10
         Me.nvrControlEvent.Searchable = True
+        Me.nvrControlEvent.SearchColumnBackgroundColor = System.Drawing.Color.Empty
+        Me.nvrControlEvent.SearchColumnHeaderBackgroundColor = System.Drawing.Color.Empty
         Me.nvrControlEvent.SearchColumnHeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.nvrControlEvent.SearchKeywordOrChar = Global.Microsoft.VisualBasic.ChrW(59)
-        Me.nvrControlEvent.Size = New System.Drawing.Size(212, 22)
+        Me.nvrControlEvent.Size = New System.Drawing.Size(212, 26)
         Me.nvrControlEvent.TabIndex = 7
         Me.nvrControlEvent.UIGuid = New System.Guid("7b05d4b5-998f-4216-ae43-12e7bd51942c")
-        Me.nvrControlEvent.Value = Nothing
         Me.nvrControlEvent.ValueMember = Nothing
         '
         'nvrControlCanExecuteProperty
         '
         Me.nvrControlCanExecuteProperty.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nvrControlCanExecuteProperty.AssignedManagerComponent = Nothing
-        Me.nvrControlCanExecuteProperty.BeepOnFailedValidation = False
+        Me.nvrControlCanExecuteProperty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None
+        Me.nvrControlCanExecuteProperty.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None
         Me.nvrControlCanExecuteProperty.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.nvrControlCanExecuteProperty.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
         Me.nvrControlCanExecuteProperty.DataSource = Nothing
@@ -161,6 +164,7 @@ Partial Class frmMvvmEventAssignment
         Me.nvrControlCanExecuteProperty.IsPopupAutoSize = False
         Me.nvrControlCanExecuteProperty.IsPopupResizable = True
         Me.nvrControlCanExecuteProperty.Location = New System.Drawing.Point(221, 28)
+        Me.nvrControlCanExecuteProperty.MaxLength = 32767
         Me.nvrControlCanExecuteProperty.MinimumPopupSize = New System.Drawing.Size(223, 80)
         Me.nvrControlCanExecuteProperty.MultiSelect = False
         Me.nvrControlCanExecuteProperty.Name = "nvrControlCanExecuteProperty"
@@ -169,19 +173,20 @@ Partial Class frmMvvmEventAssignment
         Me.nvrControlCanExecuteProperty.PreferredVisibleColumnsOnOpen = 2
         Me.nvrControlCanExecuteProperty.PreferredVisibleRowsOnOpen = 10
         Me.nvrControlCanExecuteProperty.Searchable = True
+        Me.nvrControlCanExecuteProperty.SearchColumnBackgroundColor = System.Drawing.Color.Empty
+        Me.nvrControlCanExecuteProperty.SearchColumnHeaderBackgroundColor = System.Drawing.Color.Empty
         Me.nvrControlCanExecuteProperty.SearchColumnHeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.nvrControlCanExecuteProperty.SearchKeywordOrChar = Global.Microsoft.VisualBasic.ChrW(59)
-        Me.nvrControlCanExecuteProperty.Size = New System.Drawing.Size(212, 22)
+        Me.nvrControlCanExecuteProperty.Size = New System.Drawing.Size(212, 26)
         Me.nvrControlCanExecuteProperty.TabIndex = 14
         Me.nvrControlCanExecuteProperty.UIGuid = New System.Guid("7b05d4b5-998f-4216-ae43-12e7bd51942c")
-        Me.nvrControlCanExecuteProperty.Value = Nothing
         Me.nvrControlCanExecuteProperty.ValueMember = Nothing
         '
         'nvrViewModelCommand
         '
         Me.nvrViewModelCommand.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nvrViewModelCommand.AssignedManagerComponent = Nothing
-        Me.nvrViewModelCommand.BeepOnFailedValidation = False
+        Me.nvrViewModelCommand.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None
+        Me.nvrViewModelCommand.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None
         Me.nvrViewModelCommand.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.nvrViewModelCommand.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
         Me.nvrViewModelCommand.DataSource = Nothing
@@ -191,6 +196,7 @@ Partial Class frmMvvmEventAssignment
         Me.nvrViewModelCommand.IsPopupAutoSize = False
         Me.nvrViewModelCommand.IsPopupResizable = True
         Me.nvrViewModelCommand.Location = New System.Drawing.Point(439, 28)
+        Me.nvrViewModelCommand.MaxLength = 32767
         Me.nvrViewModelCommand.MinimumPopupSize = New System.Drawing.Size(342, 80)
         Me.nvrViewModelCommand.MultiSelect = False
         Me.nvrViewModelCommand.Name = "nvrViewModelCommand"
@@ -199,12 +205,12 @@ Partial Class frmMvvmEventAssignment
         Me.nvrViewModelCommand.PreferredVisibleColumnsOnOpen = 2
         Me.nvrViewModelCommand.PreferredVisibleRowsOnOpen = 10
         Me.nvrViewModelCommand.Searchable = True
+        Me.nvrViewModelCommand.SearchColumnBackgroundColor = System.Drawing.Color.Empty
+        Me.nvrViewModelCommand.SearchColumnHeaderBackgroundColor = System.Drawing.Color.Empty
         Me.nvrViewModelCommand.SearchColumnHeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.nvrViewModelCommand.SearchKeywordOrChar = Global.Microsoft.VisualBasic.ChrW(59)
-        Me.nvrViewModelCommand.Size = New System.Drawing.Size(214, 22)
+        Me.nvrViewModelCommand.Size = New System.Drawing.Size(214, 26)
         Me.nvrViewModelCommand.TabIndex = 9
         Me.nvrViewModelCommand.UIGuid = New System.Guid("7b05d4b5-998f-4216-ae43-12e7bd51942c")
-        Me.nvrViewModelCommand.Value = Nothing
         Me.nvrViewModelCommand.ValueMember = Nothing
         '
         'TableLayoutPanel2
@@ -232,10 +238,10 @@ Partial Class frmMvvmEventAssignment
         Me.lblCurrentControlType.AutoEllipsis = True
         Me.lblCurrentControlType.AutoSize = True
         Me.lblCurrentControlType.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentControlType.Location = New System.Drawing.Point(10, 45)
+        Me.lblCurrentControlType.Location = New System.Drawing.Point(10, 43)
         Me.lblCurrentControlType.Margin = New System.Windows.Forms.Padding(10, 0, 3, 0)
         Me.lblCurrentControlType.Name = "lblCurrentControlType"
-        Me.lblCurrentControlType.Size = New System.Drawing.Size(101, 17)
+        Me.lblCurrentControlType.Size = New System.Drawing.Size(129, 22)
         Me.lblCurrentControlType.TabIndex = 5
         Me.lblCurrentControlType.Text = "ViewModelType"
         '
@@ -245,10 +251,10 @@ Partial Class frmMvvmEventAssignment
         Me.lblCurrentViewModelFullName.AutoEllipsis = True
         Me.lblCurrentViewModelFullName.AutoSize = True
         Me.lblCurrentViewModelFullName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentViewModelFullName.Location = New System.Drawing.Point(311, 45)
+        Me.lblCurrentViewModelFullName.Location = New System.Drawing.Point(311, 43)
         Me.lblCurrentViewModelFullName.Margin = New System.Windows.Forms.Padding(10, 0, 3, 0)
         Me.lblCurrentViewModelFullName.Name = "lblCurrentViewModelFullName"
-        Me.lblCurrentViewModelFullName.Size = New System.Drawing.Size(51, 17)
+        Me.lblCurrentViewModelFullName.Size = New System.Drawing.Size(67, 22)
         Me.lblCurrentViewModelFullName.TabIndex = 4
         Me.lblCurrentViewModelFullName.Text = "Control"
         '
@@ -258,9 +264,9 @@ Partial Class frmMvvmEventAssignment
         Me.lblCurrentViewModelType.AutoEllipsis = True
         Me.lblCurrentViewModelType.AutoSize = True
         Me.lblCurrentViewModelType.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentViewModelType.Location = New System.Drawing.Point(304, 3)
+        Me.lblCurrentViewModelType.Location = New System.Drawing.Point(304, 0)
         Me.lblCurrentViewModelType.Name = "lblCurrentViewModelType"
-        Me.lblCurrentViewModelType.Size = New System.Drawing.Size(209, 37)
+        Me.lblCurrentViewModelType.Size = New System.Drawing.Size(259, 43)
         Me.lblCurrentViewModelType.TabIndex = 3
         Me.lblCurrentViewModelType.Text = "ViewModelType"
         '
@@ -270,15 +276,15 @@ Partial Class frmMvvmEventAssignment
         Me.lblCurrentControl.AutoEllipsis = True
         Me.lblCurrentControl.AutoSize = True
         Me.lblCurrentControl.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentControl.Location = New System.Drawing.Point(3, 3)
+        Me.lblCurrentControl.Location = New System.Drawing.Point(3, 0)
         Me.lblCurrentControl.Name = "lblCurrentControl"
-        Me.lblCurrentControl.Size = New System.Drawing.Size(106, 37)
+        Me.lblCurrentControl.Size = New System.Drawing.Size(132, 43)
         Me.lblCurrentControl.TabIndex = 2
         Me.lblCurrentControl.Text = "Control"
         '
         'frmMvvmEventAssignment
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(679, 373)
         Me.Controls.Add(Me.TableLayoutPanel2)
