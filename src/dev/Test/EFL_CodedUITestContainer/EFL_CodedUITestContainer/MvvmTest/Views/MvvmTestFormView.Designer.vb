@@ -182,12 +182,14 @@ Partial Class MvvmTestFormView
         '
         'NullableNumValue1
         '
+        Me.NullableNumValue1.AllowFormular = False
         Me.NullableNumValue1.AssignedManagerComponent = Nothing
         Me.NullableNumValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.NullableNumValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
         Me.NullableNumValue1.CurrencySymbolString = Nothing
         Me.NullableNumValue1.DecimalPlaces = 2
         Me.NullableNumValue1.DropDownCalculatorMode = ActiveDevelop.EntitiesFormsLib.CalculatorType.Simple
+        Me.NullableNumValue1.DropDownCalculatorTrigger = ActiveDevelop.EntitiesFormsLib.CalculatorActivationTrigger.Letter_C
         Me.MvvmManager1.SetEventBindings(Me.NullableNumValue1, Nothing)
         Me.NullableNumValue1.Location = New System.Drawing.Point(604, 277)
         Me.NullableNumValue1.MaxLength = 32767
