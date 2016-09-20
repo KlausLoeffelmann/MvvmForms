@@ -34,6 +34,7 @@ Public Class NullableValueComboBox
         AddHandler WpfComboBoxWrapper1.InnerComboBox.SelectionChanged, AddressOf InnerComboBox_SelectionChanged
         AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyDown, AddressOf InnerComboBox_KeyDown
         AddHandler WpfComboBoxWrapper1.InnerComboBox.KeyUp, AddressOf InnerComboBox_KeyUp
+        AddHandler WpfComboBoxWrapper1.InnerComboBox.DropDownOpened, AddressOf InnerComboBox_DropDownOpened
 
         WpfComboBoxWrapper1.InnerComboBox.AddHandler(System.Windows.Controls.Primitives.TextBoxBase.TextChangedEvent,
                       New System.Windows.Controls.TextChangedEventHandler(AddressOf InnerComboBox_TextChanged))
@@ -49,6 +50,13 @@ Public Class NullableValueComboBox
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Public Event IsDirtyChanged(ByVal sender As Object, ByVal e As IsDirtyChangedEventArgs) Implements INullableValueDataBinding.IsDirtyChanged
+
+    ''' <summary>
+    ''' Occurs when the drop-down list of the combo box opens.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Public Event DropDownOpened(ByVal sender As Object, ByVal e As EventArgs)
 
     ''' <summary>
     ''' Wird ausgelöst, nachdem sich der Wert der Value-Eigenschaft geändert hat.
@@ -166,6 +174,14 @@ Public Class NullableValueComboBox
         Dim formsKey = DirectCast(KeyInterop.VirtualKeyFromKey(e.Key), Forms.Keys)
 
         OnKeyDown(New Forms.KeyEventArgs(formsKey))
+    End Sub
+
+    Private Sub InnerComboBox_DropDownOpened(sender As Object, e As EventArgs)
+        OnDropDownOpened(e)
+    End Sub
+
+    Protected Overridable Sub OnDropDownOpened(e As EventArgs)
+        RaiseEvent DropDownOpened(Me, e)
     End Sub
 
     Private _isItemsSourceSetting As Boolean = False
