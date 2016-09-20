@@ -32,4 +32,31 @@
     Private Sub MvvmTestFormView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+
+    Private WithEvents myDumpIsOpen_Timer As New Timer() With {.Interval = 200}
+
+    Private Sub NullableNumValue1_Enter(sender As Object, e As EventArgs) Handles NullableNumValue1.Enter
+        myDumpIsOpen_Timer.Enabled = True
+        NullableNumValue1.Tag = Date.Now
+    End Sub
+
+    Private Sub NullableNumValue1_Leave(sender As Object, e As EventArgs) Handles NullableNumValue1.Leave
+    End Sub
+
+    Private Sub Print_IsOpen(sender As Object, e As EventArgs) Handles myDumpIsOpen_Timer.Tick
+
+        Dim v = CStr(myDumpIsOpen_Timer.Tag)
+        Dim c = NullableNumValue1.IsCalculatorOpen.ToString
+        If c IsNot v Then
+            myDumpIsOpen_Timer.Tag = c
+            Debug.WriteLine($"IsCalculatorOpen hat sich kürzlich verändert von {v} nach {c}")
+        End If
+        If ActiveControl Is NullableNumValue1 Then NullableNumValue1.Tag = Date.Now
+        Dim ld = CDate(NullableNumValue1.Tag)
+        If ld.AddSeconds(10) < Date.Now Then
+            myDumpIsOpen_Timer.Enabled = False
+        End If
+
+    End Sub
 End Class

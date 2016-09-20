@@ -48,7 +48,7 @@ Partial Class DataSourceTypeUIForm
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(85, 34)
         Me.btnCancel.TabIndex = 1
-        Me.btnCancel.Text = "Abbruch"
+        Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'Label2

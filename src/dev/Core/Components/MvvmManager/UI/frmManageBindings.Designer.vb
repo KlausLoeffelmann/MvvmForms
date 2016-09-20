@@ -32,9 +32,9 @@ Partial Class frmManageBindings
         Me.ExpandAllToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.CollapseAllToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ExpandCollapseThisToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.ShowPrintReportButton = New System.Windows.Forms.ToolStripButton()
         Me.SearchToolStripLabel = New System.Windows.Forms.ToolStripLabel()
         Me.FindControlToolStripTextBox = New System.Windows.Forms.ToolStripTextBox()
-        Me.ShowPrintReportButton = New System.Windows.Forms.ToolStripButton()
         CType(Me.MainSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MainSplitContainer.Panel1.SuspendLayout()
         Me.MainSplitContainer.SuspendLayout()
@@ -49,13 +49,14 @@ Partial Class frmManageBindings
         Me.ControlTreeView.ImageIndex = 0
         Me.ControlTreeView.ImageList = Me.ImageList1
         Me.ControlTreeView.Location = New System.Drawing.Point(0, 0)
+        Me.ControlTreeView.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ControlTreeView.Name = "ControlTreeView"
         TreeNode1.Name = "Node0"
         TreeNode1.Text = "Node0"
         Me.ControlTreeView.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1})
         Me.ControlTreeView.SelectedImageIndex = 0
         Me.ControlTreeView.ShowNodeToolTips = True
-        Me.ControlTreeView.Size = New System.Drawing.Size(300, 654)
+        Me.ControlTreeView.Size = New System.Drawing.Size(399, 809)
         Me.ControlTreeView.TabIndex = 0
         '
         'ImageList1
@@ -67,22 +68,25 @@ Partial Class frmManageBindings
         'MainSplitContainer
         '
         Me.MainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.MainSplitContainer.Location = New System.Drawing.Point(0, 25)
+        Me.MainSplitContainer.Location = New System.Drawing.Point(0, 27)
+        Me.MainSplitContainer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MainSplitContainer.Name = "MainSplitContainer"
         '
         'MainSplitContainer.Panel1
         '
         Me.MainSplitContainer.Panel1.Controls.Add(Me.ControlTreeView)
-        Me.MainSplitContainer.Size = New System.Drawing.Size(904, 654)
-        Me.MainSplitContainer.SplitterDistance = 300
+        Me.MainSplitContainer.Size = New System.Drawing.Size(1205, 809)
+        Me.MainSplitContainer.SplitterDistance = 399
+        Me.MainSplitContainer.SplitterWidth = 5
         Me.MainSplitContainer.TabIndex = 1
         '
         'MainToolStrip
         '
+        Me.MainToolStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.MainToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExpandAllToolStripButton, Me.CollapseAllToolStripButton, Me.ExpandCollapseThisToolStripButton, Me.ShowPrintReportButton, Me.SearchToolStripLabel, Me.FindControlToolStripTextBox})
         Me.MainToolStrip.Location = New System.Drawing.Point(0, 0)
         Me.MainToolStrip.Name = "MainToolStrip"
-        Me.MainToolStrip.Size = New System.Drawing.Size(904, 25)
+        Me.MainToolStrip.Size = New System.Drawing.Size(1205, 27)
         Me.MainToolStrip.TabIndex = 2
         Me.MainToolStrip.Text = "ToolStrip1"
         '
@@ -92,7 +96,7 @@ Partial Class frmManageBindings
         Me.ExpandAllToolStripButton.Image = CType(resources.GetObject("ExpandAllToolStripButton.Image"), System.Drawing.Image)
         Me.ExpandAllToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ExpandAllToolStripButton.Name = "ExpandAllToolStripButton"
-        Me.ExpandAllToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.ExpandAllToolStripButton.Size = New System.Drawing.Size(24, 24)
         Me.ExpandAllToolStripButton.Text = "Expand All"
         '
         'CollapseAllToolStripButton
@@ -101,7 +105,7 @@ Partial Class frmManageBindings
         Me.CollapseAllToolStripButton.Image = CType(resources.GetObject("CollapseAllToolStripButton.Image"), System.Drawing.Image)
         Me.CollapseAllToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.CollapseAllToolStripButton.Name = "CollapseAllToolStripButton"
-        Me.CollapseAllToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.CollapseAllToolStripButton.Size = New System.Drawing.Size(24, 24)
         Me.CollapseAllToolStripButton.Text = "ToolStripButton1"
         Me.CollapseAllToolStripButton.ToolTipText = "Collapse All"
         '
@@ -111,22 +115,9 @@ Partial Class frmManageBindings
         Me.ExpandCollapseThisToolStripButton.Image = CType(resources.GetObject("ExpandCollapseThisToolStripButton.Image"), System.Drawing.Image)
         Me.ExpandCollapseThisToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ExpandCollapseThisToolStripButton.Name = "ExpandCollapseThisToolStripButton"
-        Me.ExpandCollapseThisToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.ExpandCollapseThisToolStripButton.Size = New System.Drawing.Size(24, 24)
         Me.ExpandCollapseThisToolStripButton.Text = "ToolStripButton1"
         Me.ExpandCollapseThisToolStripButton.ToolTipText = "Expand/Collapse Node"
-        '
-        'SearchToolStripLabel
-        '
-        Me.SearchToolStripLabel.Name = "SearchToolStripLabel"
-        Me.SearchToolStripLabel.Size = New System.Drawing.Size(73, 22)
-        Me.SearchToolStripLabel.Text = "Find Control"
-        '
-        'FindControlToolStripTextBox
-        '
-        Me.FindControlToolStripTextBox.BackColor = System.Drawing.Color.White
-        Me.FindControlToolStripTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.FindControlToolStripTextBox.Name = "FindControlToolStripTextBox"
-        Me.FindControlToolStripTextBox.Size = New System.Drawing.Size(100, 25)
         '
         'ShowPrintReportButton
         '
@@ -134,19 +125,33 @@ Partial Class frmManageBindings
         Me.ShowPrintReportButton.Image = CType(resources.GetObject("ShowPrintReportButton.Image"), System.Drawing.Image)
         Me.ShowPrintReportButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ShowPrintReportButton.Name = "ShowPrintReportButton"
-        Me.ShowPrintReportButton.Size = New System.Drawing.Size(23, 22)
+        Me.ShowPrintReportButton.Size = New System.Drawing.Size(24, 24)
         Me.ShowPrintReportButton.Text = "ShowPrintReportButton"
+        '
+        'SearchToolStripLabel
+        '
+        Me.SearchToolStripLabel.Name = "SearchToolStripLabel"
+        Me.SearchToolStripLabel.Size = New System.Drawing.Size(90, 24)
+        Me.SearchToolStripLabel.Text = "Find Control"
+        '
+        'FindControlToolStripTextBox
+        '
+        Me.FindControlToolStripTextBox.BackColor = System.Drawing.Color.White
+        Me.FindControlToolStripTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.FindControlToolStripTextBox.Name = "FindControlToolStripTextBox"
+        Me.FindControlToolStripTextBox.Size = New System.Drawing.Size(133, 27)
         '
         'frmManageBindings
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(904, 679)
+        Me.ClientSize = New System.Drawing.Size(1205, 836)
         Me.Controls.Add(Me.MainSplitContainer)
         Me.Controls.Add(Me.MainToolStrip)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmManageBindings"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Zuweisen der ViewModel-Eigenschaften an die View"
+        Me.Text = "Assigning of ViewModel Properties to the View"
         Me.MainSplitContainer.Panel1.ResumeLayout(False)
         CType(Me.MainSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MainSplitContainer.ResumeLayout(False)

@@ -158,7 +158,10 @@ Public Class NullableNumValue
                             (keyData = Keys.F6)
 
             toBetriggered = toBetriggered Or DropDownCalculatorTrigger.HasFlag(CalculatorActivationTrigger.BasicArithmeticKeys) And
-                            (keyData = Keys.Multiply Or keyData = Keys.Divide Or keyData = Keys.Subtract Or keyData = Keys.Add)
+                            (keyData = Keys.Multiply Or keyData = Keys.Divide Or keyData = Keys.Add)
+
+            toBetriggered = toBetriggered Or DropDownCalculatorTrigger.HasFlag(CalculatorActivationTrigger.MinusSign) And
+                            (keyData = Keys.Subtract)
 
             toBetriggered = toBetriggered Or DropDownCalculatorTrigger.HasFlag(CalculatorActivationTrigger.Letter_C) And
                             (keyData = Keys.C)
@@ -607,6 +610,10 @@ Public Class NullableNumValue
                     'Console.WriteLine("Val: {0}" , val)
                 Catch ex As Exception
                     ' scheint doch ein anderes problem zu sein
+                    If BeepOnFailedValidation Then
+                        Beep()
+                    End If
+
                     Debug.WriteLine(ex.Message)
                     Return
                 End Try
@@ -750,6 +757,17 @@ Public Class NullableNumValue
 
     End Sub
 
+
+    ''' <summary>
+    ''' If the calculator is visible/active this property returns true and false otherwise
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property IsCalculatorOpen As Boolean
+        Get
+            Return myCalculatorPopup IsNot Nothing AndAlso myCalculatorPopup.IsOpen
+        End Get
+    End Property
+
     Private Function FindNullableValuePrimalUpDownControl() As UpDownButton
         Dim x = (From item In Me.ValueControl.Controls
                  Let titem = TryCast(item, UpDownButton)
@@ -833,6 +851,11 @@ Public Enum CalculatorActivationTrigger
     Letter_C = 128
 
     ''' <summary>
+    ''' Calculator can be shown by Dash
+    ''' </summary>
+    MinusSign = 256
+
+    ''' <summary>
     ''' Calculator can be activated by Cursor up/down or Ctrl+R
     ''' </summary>
     Subtle = Ctrl_R Or Cursor_UpOrDown
@@ -843,8 +866,13 @@ Public Enum CalculatorActivationTrigger
     Normal = Subtle Or CalculatorActivationTrigger.F2
 
     ''' <summary>
+    ''' Calculator can be activated by Cursor up/down, Letter C or = + * / but NOT the Minus sign, so negative values can be entered.
+    ''' </summary>
+    SemiProminent = Cursor_UpOrDown Or Letter_C Or BasicArithmeticKeys
+
+    ''' <summary>
     ''' Calculator can be activated by Cursor up/down, Letter C or = + - * /.
     ''' </summary>
-    Prominent = Cursor_UpOrDown Or Letter_C Or BasicArithmeticKeys
+    Prominent = Cursor_UpOrDown Or Letter_C Or BasicArithmeticKeys Or CalculatorActivationTrigger.MinusSign
 
 End Enum
