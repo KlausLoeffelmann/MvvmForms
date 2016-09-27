@@ -619,6 +619,10 @@ Public Class MvvmDataGrid
                     Dim gridColumn = column.GetValue(MvvmDataGrid.GridColumnProperty)
 
                     If oldItem Is gridColumn Then
+                        If Not DesignMode Then
+                            DependencyPropertyDescriptor.FromProperty(DataGridColumn.WidthProperty, GetType(DataGridColumn)).RemoveValueChanged(oldItem.WpfColumn, AddressOf DataGridColumn_WidthPropertyChanged)
+                        End If
+
                         Me.WpfDataGridViewWrapper.InnerDataGridView.Columns.Remove(column)
 
                         If Not MyBase.DesignMode AndAlso _mySettings IsNot Nothing Then
@@ -631,6 +635,13 @@ Public Class MvvmDataGrid
                 Next
             Next
         ElseIf e.Action = Specialized.NotifyCollectionChangedAction.Reset Then
+
+            If Not DesignMode Then
+                For Each c In WpfDataGridViewWrapper.InnerDataGridView.Columns
+                    DependencyPropertyDescriptor.FromProperty(DataGridColumn.WidthProperty, GetType(DataGridColumn)).RemoveValueChanged(c, AddressOf DataGridColumn_WidthPropertyChanged)
+                Next
+            End If
+
             'Clear all
             WpfDataGridViewWrapper.InnerDataGridView.Columns.Clear()
 
@@ -723,12 +734,14 @@ Public Class MvvmDataGrid
 
         If Not DesignMode Then
             DependencyPropertyDescriptor.FromProperty(DataGridColumn.WidthProperty,
-                                                                                              GetType(DataGridColumn)).AddValueChanged(newWpfColumn,
-                                                                                                                                       Sub(s, e)
-                                                                                                                                           If _isInitialized Then
-                                                                                                                                               UpdateAllColumnDefs()
-                                                                                                                                           End If
-                                                                                                                                       End Sub)
+                                                                                              GetType(DataGridColumn)).AddValueChanged(newWpfColumn, AddressOf DataGridColumn_WidthPropertyChanged)
+
+        End If
+    End Sub
+
+    Public Sub DataGridColumn_WidthPropertyChanged(sender As Object, e As EventArgs)
+        If _isInitialized Then
+            UpdateAllColumnDefs()
         End If
     End Sub
 
@@ -1363,6 +1376,39 @@ Public Class MvvmDataGrid
             If disposing AndAlso components IsNot Nothing Then
                 components.Dispose()
             End If
+
+            For Each c In Columns.ToList()
+                If Not DesignMode Then
+                    DependencyPropertyDescriptor.FromProperty(DataGridColumn.WidthProperty, GetType(DataGridColumn)).RemoveValueChanged(c.WpfColumn, AddressOf DataGridColumn_WidthPropertyChanged)
+                End If
+
+                Columns.Remove(c)
+            Next
+
+            RemoveHandler Columns.CollectionChanged, AddressOf Columns_CollectionChanged
+            Columns = Nothing
+
+            EnterAction = Nothing
+
+            If Parent IsNot Nothing Then
+                DirectCast(Parent, Integration.ElementHost).Child = Nothing
+                DirectCast(Parent, Integration.ElementHost).Dispose()
+                Parent = Nothing
+            End If
+
+            ItemsSource = Nothing
+
+            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.SelectionChanged, AddressOf InnerDataGridView_SelectionChanged
+            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.MouseDoubleClick, AddressOf InnerDataGridView_MouseDoubleClick
+            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.PreviewKeyDown, AddressOf InnerDataGridView_PreviewKeyDown
+            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ColumnDisplayIndexChanged, AddressOf InnerDataGridView_ColumnDisplayIndexChanged
+            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.Sorted, AddressOf InnerDataGridView_Sorted
+            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.LayoutUpdated, AddressOf InnerDataGridView_LayoutUpdated
+            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.KeyDown, AddressOf InnerDataGridView_KeyDown
+            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ItemsDeleted, AddressOf InnerDataGridView_ItemsDeleted
+            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ItemsDeleting, AddressOf InnerDataGridView_ItemsDeleting
+            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.Sorting, AddressOf InnerDataGridView_Sorting
+
         Finally
             MyBase.Dispose(disposing)
         End Try
