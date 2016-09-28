@@ -142,6 +142,18 @@
     <Compile Include="MvvmTest\Views\CBOTestForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MvvmTest\Views\EmptyMvvmDataGridForm.Designer.vb">
+      <DependentUpon>EmptyMvvmDataGridForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MvvmTest\Views\EmptyMvvmDataGridForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MvvmTest\Views\MvvmDataGridMemoryLeakTest.Designer.vb">
+      <DependentUpon>MvvmDataGridMemoryLeakTest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MvvmTest\Views\MvvmDataGridMemoryLeakTest.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MvvmTest\Views\MvvmTestFormView.Designer.vb">
       <DependentUpon>MvvmTestFormView.vb</DependentUpon>
     </Compile>
@@ -206,6 +218,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MvvmTest\Views\CBOTestForm.resx">
       <DependentUpon>CBOTestForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MvvmTest\Views\EmptyMvvmDataGridForm.resx">
+      <DependentUpon>EmptyMvvmDataGridForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MvvmTest\Views\MvvmDataGridMemoryLeakTest.resx">
+      <DependentUpon>MvvmDataGridMemoryLeakTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MvvmTest\Views\MvvmTestFormView.resx">
       <DependentUpon>MvvmTestFormView.vb</DependentUpon>

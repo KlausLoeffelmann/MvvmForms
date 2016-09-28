@@ -68,4 +68,9 @@ Public Class MainForm
         Dim frm = New NVRPLateBinding()
         frm.ShowDialog()
     End Sub
+
+    Private Sub MVVMGridMemoryLeakToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MVVMGridMemoryLeakToolStripMenuItem.Click
+        Dim frm = New MvvmDataGridMemoryLeakTest
+        frm.ShowDialog()
+    End Sub
 End Class
