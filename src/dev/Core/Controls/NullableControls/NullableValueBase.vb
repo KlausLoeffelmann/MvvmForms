@@ -956,7 +956,7 @@ SkipToEnd:
 
         Set(ByVal value As NullableType?)
 
-            'Alter und neuer Wert nothing, es ändert sich nix.
+            'Old and new value null, nothing changes.
             If Not value.HasValue And Not myValue.HasValue Then
                 Me.IsLoading.Value = True
                 UpdateValue()
@@ -964,9 +964,12 @@ SkipToEnd:
                 Return
             End If
 
-            'Alter und neuer Wert derselbe, es ändert sich nix.
+            'Old and new value the same, nothing changes.
             If value.HasValue And myValue.HasValue Then
-                If value.Value.CompareTo(myValue.Value) = 0 Then
+                'This was CompareTo before. It might be breaking some esotheric scenarios,
+                'but fixes some strange behaviours for String comparison in some non-english European languages
+                'for strings.
+                If value.Value.Equals(myValue.Value) Then
                     Me.IsLoading.Value = True
                     UpdateValue()
                     Me.IsLoading.Value = False
@@ -993,7 +996,13 @@ SkipToEnd:
             ElseIf tmpValueChanged.Value <> 0 Then
                 OnValueChanged(evArgs)
             End If
-            OnInitializeEditedValue()
+            'TODO: CRITICAL CHANGE, PLEASE CHECK!!!
+            'I'm thinking the Edited Value should only be Initialized, when the Value
+            'Property has been set internally, and that can ONLY be the case, when 
+            'the Value Property has been set EXTERNALLY.
+            If Not (myValueChangedInternally Or myForceValueChangeCauseToUser) Then
+                OnInitializeEditedValue()
+            End If
             Me.IsLoading.Value = False
         End Set
     End Property

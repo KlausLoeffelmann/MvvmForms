@@ -17,7 +17,7 @@ Public Class NullableDateValueFormatterEngine
                          "d.M.y", "dd.M.y", "d.MM.y", "d.M.yy", "dd.M.yy", "dd.MM.yy", "d.M.yyyy",
                          "dd.M.yyyy", "d.MM.yyyy", "dd.MM.yyyy", "d,M,y", "dd,M,y", "d,MM,y", "d,M,yy",
                          "dd,M,yy", "dd,MM,yy", "d,M,yyyy", "dd,M,yyyy", "d,MM,yyyy", "dd,MM,yyyy",
-                         "dddd, dd.MM.yyyy",
+                         "dddd, dd.MM.yyyy", CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern,
                          "dd.MM.yy HH:mm", "dd.MM.yyyy HH:mm",
                          "ddMMyy HHmm", "ddMMyyyy HHmm",
                          "dd.MM.yy HH:mm:ss", "dd.MM.yyyy HH:mm:ss",
@@ -29,7 +29,8 @@ Public Class NullableDateValueFormatterEngine
                  "dddd, dd.MM.yyyy",
                  "d.M.y", "dd.M.y", "d.MM.y", "d.M.yy", "dd.M.yy", "dd.MM.yy", "d.M.yyyy",
                  "dd.M.yyyy", "d.MM.yyyy", "dd.MM.yyyy", "d,M,y", "dd,M,y", "d,MM,y", "d,M,yy",
-                 "dd,M,yy", "dd,MM,yy", "d,M,yyyy", "dd,M,yyyy", "d,MM,yyyy", "dd,MM,yyyy"}
+                 "dd,M,yy", "dd,MM,yy", "d,M,yyyy", "dd,M,yyyy", "d,MM,yyyy", "dd,MM,yyyy",
+                 CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern}
 
             myTimeParseFormatStrings = New String() {"HH", "HHmm", "HHmmss", "H.m", "H.mm", "HH.m", "HH.mm",
                 "HH.mm.ss", "H:m", "H:mm", "HH:m", "HH:mm", "HH:mm:ss",
@@ -56,6 +57,7 @@ Public Class NullableDateValueFormatterEngine
                          "M.d.y", "M.dd.y", "MM.d.y", "M.d.yy", "M.dd.yy", "MM.dd.yy", "M.d.yyyy",
                          "M.dd.yyyy", "MM.d.yyyy", "MM.dd.yyyy", "M/d/y", "M/dd/y", "MM/d/y", "M/d/yy",
                          "M/dd/yy", "MM/dd/yy", "M/d/yyyy", "M/dd/yyyy", "MM/d/yyyy", "MM/dd/yyyy",
+                         CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern,
                          "MM/dd/yy HH:mm", "MM/dd/yyyy HH:mm",
                          "MMddyy HHmm", "MMddyyyy HHmm",
                          "MM/dd/yy HH:mm:ss", "MM/dd/yyyy HH:mm:ss",
@@ -67,7 +69,8 @@ Public Class NullableDateValueFormatterEngine
                  "dddd, MM/dd/yyyy",
                  "M/d/y", "M/dd/y", "MM/d/y", "M/d/yy", "M/dd/yy", "MM/dd/yy", "M/d/yyyy",
                  "M/dd/yyyy", "MM/d/yyyy", "MM/dd/yyyy", "M.d.y", "M.dd.y", "MM.d.y", "M.d.yy",
-                 "M.dd.yy", "MM.dd.yy", "M.d.yyyy", "M.dd.yyyy"}
+                 "M.dd.yy", "MM.dd.yy", "M.d.yyyy", "M.dd.yyyy",
+                 CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern}
 
             myTimeParseFormatStrings = New String() {"HH", "HHmm", "HHmmss", "H.m", "H.mm", "HH.m", "HH.mm",
                 "HH.mm.ss", "H:m", "H:mm", "HH:m", "HH:mm", "HH:mm:ss",

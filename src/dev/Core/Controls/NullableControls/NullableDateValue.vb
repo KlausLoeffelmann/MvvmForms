@@ -205,6 +205,10 @@ Public Class NullableDateValue
         Return False
     End Function
 
+    ''' <summary>
+    ''' Gets the DateValue Formatter Engine, which controls string conversion to date and vice versa.
+    ''' </summary>
+    ''' <returns></returns>
     Protected Overrides Function GetDefaultFormatterEngine() As INullableValueFormatterEngine
         Dim retTmp = New NullableDateValueFormatterEngine(Me.Value,
                                                           Me.GetDefaultFormatString,

@@ -24,6 +24,7 @@ namespace MvvmFormsCSharpDemos
         {
             var myDemoContacts = Contact.RandomContacts(10000);
 
+            
             nullableValueRelationPopup.DataSource = myDemoContacts;
             nullableValueRelationPopup.DisplayMember = "\"{0:0000}: {1}, {2}\",{IDContact},{LastName},{FirstName}";
             nullableValueRelationPopup.SearchPattern = "\"{0:0000}: {1}, {2}, {3}\",{IDContact},{LastName},{FirstName},{City}";
@@ -85,6 +86,11 @@ namespace MvvmFormsCSharpDemos
         private void nullableCheckBox1_ValueChanged(object sender, ValueChangedEventArgs e)
         {
 
+        }
+
+        private void setDateValueCommandButton_Click(object sender, EventArgs e)
+        {
+            nullableDateValue1.Value = DateTime.Now.Date;
         }
     }
 }
