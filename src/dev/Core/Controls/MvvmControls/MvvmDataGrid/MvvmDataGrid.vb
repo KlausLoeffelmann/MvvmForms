@@ -1373,6 +1373,7 @@ Public Class MvvmDataGrid
 
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
+
             If disposing AndAlso components IsNot Nothing Then
                 components.Dispose()
             End If
@@ -1396,18 +1397,9 @@ Public Class MvvmDataGrid
                 Columns.Remove(c)
             Next
 
-            Columns = Nothing
-
-            EnterAction = Nothing
-
-            If Parent IsNot Nothing Then
-                DirectCast(Parent, Integration.ElementHost).Child = Nothing
-                DirectCast(Parent, Integration.ElementHost).Dispose()
-                Parent = Nothing
-            End If
-
-            ItemsSource = Nothing
-
+            _columns = Nothing
+            _enterAction = Nothing
+            _collectionView = Nothing
         Finally
             MyBase.Dispose(disposing)
         End Try

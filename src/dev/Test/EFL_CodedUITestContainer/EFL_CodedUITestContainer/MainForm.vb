@@ -28,7 +28,9 @@ Public Class MainForm
     End Sub
 
     Private Sub MVVMGridDemoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MVVMGridDemoToolStripMenuItem.Click
-        Call (New MvvmDataGridTest).ShowDialog()
+        Dim dlg = New MvvmDataGridTest()
+        dlg.ShowDialog()
+        dlg.Dispose()
     End Sub
 
     Private Sub ZoomingTestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ZoomingTestToolStripMenuItem.Click
