@@ -1377,21 +1377,29 @@ Public Class MvvmDataGrid
             If disposing AndAlso components IsNot Nothing Then
                 components.Dispose()
             End If
-            RemoveHandler Columns.CollectionChanged, AddressOf Columns_CollectionChanged
-            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.SelectionChanged, AddressOf InnerDataGridView_SelectionChanged
-            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.MouseDoubleClick, AddressOf InnerDataGridView_MouseDoubleClick
-            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.PreviewKeyDown, AddressOf InnerDataGridView_PreviewKeyDown
-            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ColumnDisplayIndexChanged, AddressOf InnerDataGridView_ColumnDisplayIndexChanged
-            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.Sorted, AddressOf InnerDataGridView_Sorted
-            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.LayoutUpdated, AddressOf InnerDataGridView_LayoutUpdated
-            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.KeyDown, AddressOf InnerDataGridView_KeyDown
-            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ItemsDeleted, AddressOf InnerDataGridView_ItemsDeleted
-            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ItemsDeleting, AddressOf InnerDataGridView_ItemsDeleting
-            RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.Sorting, AddressOf InnerDataGridView_Sorting
+            Try
+                RemoveHandler Columns.CollectionChanged, AddressOf Columns_CollectionChanged
+                RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.SelectionChanged, AddressOf InnerDataGridView_SelectionChanged
+                RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.MouseDoubleClick, AddressOf InnerDataGridView_MouseDoubleClick
+                RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.PreviewKeyDown, AddressOf InnerDataGridView_PreviewKeyDown
+                RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ColumnDisplayIndexChanged, AddressOf InnerDataGridView_ColumnDisplayIndexChanged
+                RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.Sorted, AddressOf InnerDataGridView_Sorted
+                RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.LayoutUpdated, AddressOf InnerDataGridView_LayoutUpdated
+                RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.KeyDown, AddressOf InnerDataGridView_KeyDown
+                RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ItemsDeleted, AddressOf InnerDataGridView_ItemsDeleted
+                RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.ItemsDeleting, AddressOf InnerDataGridView_ItemsDeleting
+                RemoveHandler Me.WpfDataGridViewWrapper.InnerDataGridView.Sorting, AddressOf InnerDataGridView_Sorting
+            Catch
+
+            End Try
 
             For Each c In Columns.ToList()
                 If Not DesignMode Then
-                    DependencyPropertyDescriptor.FromProperty(DataGridColumn.WidthProperty, GetType(DataGridColumn)).RemoveValueChanged(c.WpfColumn, AddressOf DataGridColumn_WidthPropertyChanged)
+                    Try
+                        DependencyPropertyDescriptor.FromProperty(DataGridColumn.WidthProperty, GetType(DataGridColumn)).RemoveValueChanged(c.WpfColumn, AddressOf DataGridColumn_WidthPropertyChanged)
+                    Catch
+
+                    End Try
                 End If
 
                 Columns.Remove(c)
