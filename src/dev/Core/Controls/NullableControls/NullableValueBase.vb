@@ -980,6 +980,8 @@ SkipToEnd:
             Me.IsLoading.Value = True
             Dim e As New ValueChangingEventArgs(Of NullableType?)(value)
             OnValueChanging(e)
+
+            'TODO: Refactor to Boolean, and implement unit tests which monitor new behaviour!
             Dim tmpValueChanged = CompareValue(myValue, e.NewValue)
             myValue = e.NewValue
             UpdateValue()
@@ -1062,13 +1064,17 @@ SkipToEnd:
     End Sub
 
     Public Function CompareValue(ByVal v1 As NullableType?, ByVal v2 As NullableType?) As Integer?
+        'TODO: Refactor to Boolean, and implement unit tests which monitor new behaviour!
         If (Not v1.HasValue) AndAlso (Not v2.HasValue) Then
             Return 0
         End If
         If (Not v1.HasValue) OrElse (Not v2.HasValue) Then
             Return Nothing
         End If
-        Return v1.Value.CompareTo(v2.Value)
+
+        'We need to address the international string comparision, so 
+        'for the time being we use equals insted of CompareTo.
+        Return If(v1.Value.Equals(v2.Value), 0, 1)
     End Function
 
     ''' <summary>
