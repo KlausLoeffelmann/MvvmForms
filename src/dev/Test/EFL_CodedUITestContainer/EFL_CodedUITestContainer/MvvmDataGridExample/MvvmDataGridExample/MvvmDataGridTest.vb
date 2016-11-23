@@ -1,4 +1,5 @@
 ﻿Imports System.Text
+Imports System.Windows.Data
 Imports ActiveDevelop.EntitiesFormsLib
 
 Public Class MvvmDataGridTest
@@ -26,6 +27,16 @@ Public Class MvvmDataGridTest
 
     Private Sub BuchungenDataGrid_ItemsDeleting(sender As Object, e As ActiveDevelop.EntitiesFormsLib.ItemsDeletingEventArgs) Handles BuchungenDataGrid.ItemsDeleting
         e.Cancel = MessageBox.Show("Sollen wirklich die ausgewählten Einträge gelöscht werden?", "Löschen", MessageBoxButtons.YesNo) = DialogResult.No
+    End Sub
+
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        MyBase.OnLoad(e)
+
+        Dim cvs = DirectCast(BuchungenDataGrid.ItemsSource, ListCollectionView)
+
+        cvs.GroupDescriptions.Add(New PropertyGroupDescription(NameOf(Buchung.Kostenart)))
+        cvs.GroupDescriptions.Add(New PropertyGroupDescription(NameOf(Buchung.Wichtig)))
+        cvs.GroupDescriptions.Add(New PropertyGroupDescription(NameOf(Buchung.Betrag)))
     End Sub
 
     Private Sub BuchungenDataGrid_ItemsDeleted(sender As Object, e As ActiveDevelop.EntitiesFormsLib.ItemsDeletedEventArgs) Handles BuchungenDataGrid.ItemsDeleted
