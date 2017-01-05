@@ -1409,6 +1409,10 @@ Public Class MvvmDataGrid
                 End Try
             Next
 
+            If _columns IsNot Nothing Then
+                RemoveHandler _columns.CollectionChanged, AddressOf Columns_CollectionChanged
+            End If
+
             _columns = Nothing
             _enterAction = Nothing
             _collectionView = Nothing
