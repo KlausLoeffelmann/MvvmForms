@@ -1402,7 +1402,11 @@ Public Class MvvmDataGrid
                     End Try
                 End If
 
-                Columns.Remove(c)
+                Try
+                    Columns.Remove(c)
+                Catch ex As Exception
+
+                End Try
             Next
 
             _columns = Nothing
