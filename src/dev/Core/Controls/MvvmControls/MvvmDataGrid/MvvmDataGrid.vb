@@ -1036,9 +1036,11 @@ Public Class MvvmDataGrid
 
                 'Nur wenn Einstelungen gesetzt worden sind:
                 If _mySettings IsNot Nothing Then
+
                     If _mySettings.ColumnDefinitions.Count > 0 Then
                         Dim matchedColumns As New List(Of String)()
                         Dim converter = New DataGridLengthConverter()
+                        Dim fallbackColumns As New List(Of ColumnDefinition)()
 
                         Try
                             _isColumnDisplayIndexUpdating = True
@@ -1049,40 +1051,47 @@ Public Class MvvmDataGrid
 
                                     If column.Name = innerColumn.Name Then
                                         'Die gleiche, abgleichen:
-                                        With innerColumn.WpfColumn
-                                            .DisplayIndex = column.DisplayIndex
-                                            .SortDirection = column.SortDirection
-                                            .SortMemberPath = column.SortMemberPath
-                                            If Not String.IsNullOrEmpty(column.Width) Then .Width = DirectCast(converter.ConvertFromString(column.Width), DataGridLength)
-                                        End With
+                                        fallbackColumns.Add(New ColumnDefinition() With {.DisplayIndex = innerColumn.WpfColumn.DisplayIndex, .SortDirection = innerColumn.WpfColumn.SortDirection,
+                                                            .SortMemberPath = innerColumn.WpfColumn.SortMemberPath, .Width = innerColumn.WpfColumn.Width.ToString(), .Name = innerColumn.Name})
 
-                                        If Not String.IsNullOrWhiteSpace(column.SortMemberPath) AndAlso column.SortDirection.HasValue Then
-                                            innerGrid.Items.SortDescriptions.Add(New SortDescription(column.SortMemberPath, column.SortDirection.Value))
-                                        End If
+                                        LoadColumn(innerGrid, converter, column, innerColumn)
 
                                         matchedColumns.Add(column.Name)
                                     End If
 
                                 Next
                             Next
+
+                            For Each notFoundColumnName In Me.Columns.Select(Function(c) c.Name).Except(matchedColumns).ToList()
+                                Dim notFoundColumn = Me.Columns.Where(Function(wc) wc.Name = notFoundColumnName).Select(Function(iwc) iwc.WpfColumn).Single()
+
+                                'Spalte ist nun neu drin, also auch wieder in Settings speichern:
+                                _mySettings.ColumnDefinitions.Add(New ColumnDefinition() With {.DisplayIndex = notFoundColumn.DisplayIndex, .Name = notFoundColumnName, .Width = notFoundColumn.Width.ToString()})
+                            Next
+
+                            For Each notFoundColumnName In _mySettings.ColumnDefinitions.Select(Function(c) c.Name).Except(matchedColumns).ToList()
+                                Dim notFoundColumn = _mySettings.ColumnDefinitions.Where(Function(cd) cd.Name = notFoundColumnName).Single()
+
+                                'Spalte ist nicht mehr drin, also auch wieder löschen aus Settings:
+                                _mySettings.ColumnDefinitions.Remove(notFoundColumn)
+                            Next
+                        Catch ex As Exception
+                            Trace.TraceError($"An error occurred while loading the {Name} settings: {ex.ToString()}")
+                            matchedColumns.Clear()
+                            _mySettings.ColumnDefinitions.Clear()
+
+                            For Each fallback In fallbackColumns
+                                Dim column = Columns.Where(Function(c) c.Name = fallback.Name).Single()
+
+                                LoadColumn(innerGrid, converter, fallback, column)
+                            Next
+
+                            For Each column In Me.Columns
+                                _mySettings.ColumnDefinitions.Add(New ColumnDefinition() With {.DisplayIndex = column.WpfColumn.DisplayIndex, .Name = column.Name, .Width = column.WpfColumn.Width.ToString()})
+                            Next
                         Finally
                             _isColumnDisplayIndexUpdating = False
                         End Try
-
-
-                        For Each notFoundColumnName In Me.Columns.Select(Function(c) c.Name).Except(matchedColumns).ToList()
-                            Dim notFoundColumn = Me.Columns.Where(Function(wc) wc.Name = notFoundColumnName).Select(Function(iwc) iwc.WpfColumn).Single()
-
-                            'Spalte ist nun neu drin, also auch wieder in Settings speichern:
-                            _mySettings.ColumnDefinitions.Add(New ColumnDefinition() With {.DisplayIndex = notFoundColumn.DisplayIndex, .Name = notFoundColumnName, .Width = notFoundColumn.Width.ToString()})
-                        Next
-
-                        For Each notFoundColumnName In _mySettings.ColumnDefinitions.Select(Function(c) c.Name).Except(matchedColumns).ToList()
-                            Dim notFoundColumn = _mySettings.ColumnDefinitions.Where(Function(cd) cd.Name = notFoundColumnName).Single()
-
-                            'Spalte ist nicht mehr drin, also auch wieder löschen aus Settings:
-                            _mySettings.ColumnDefinitions.Remove(notFoundColumn)
-                        Next
                     Else
                         'und alle Spalten einmal einfügen
                         For Each column In Me.Columns
@@ -1095,6 +1104,26 @@ Public Class MvvmDataGrid
             _isInitialized = True
         ElseIf MyBase.DesignMode Then
             _isInitialized = True
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Load with the datagrid settings the wpf column
+    ''' </summary>
+    ''' <param name="innerGrid"></param>
+    ''' <param name="converter"></param>
+    ''' <param name="column"></param>
+    ''' <param name="innerColumn"></param>
+    Private Shared Sub LoadColumn(innerGrid As ExtDataGrid, converter As DataGridLengthConverter, column As ColumnDefinition, innerColumn As MvvmDataGridColumn)
+        With innerColumn.WpfColumn
+            .DisplayIndex = column.DisplayIndex
+            .SortDirection = column.SortDirection
+            .SortMemberPath = column.SortMemberPath
+            If Not String.IsNullOrEmpty(column.Width) Then .Width = DirectCast(converter.ConvertFromString(column.Width), DataGridLength)
+        End With
+
+        If Not String.IsNullOrWhiteSpace(column.SortMemberPath) AndAlso column.SortDirection.HasValue Then
+            innerGrid.Items.SortDescriptions.Add(New SortDescription(column.SortMemberPath, column.SortDirection.Value))
         End If
     End Sub
 
