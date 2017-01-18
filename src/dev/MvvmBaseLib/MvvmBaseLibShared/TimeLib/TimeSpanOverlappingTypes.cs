@@ -1,5 +1,8 @@
 ﻿namespace ActiveDevelop.MvvmBaseLib
 {
+    /// <summary>
+    /// Overlappung modes for comparing TimeSpans with start and end point.
+    /// </summary>
     public enum TimeSpanOverlappingTypes {
         /// <summary>
         /// Zeitspanne ist nicht definiert, da sie keinen Start- und keinen Endzeitpunkt hat.
@@ -40,10 +43,10 @@
         /// Die Zeitspanne hat keinen Startzeitpunkt und kann nicht auf Überschneidung vergleichen werden.
         /// </summary>
         OpenStart,
-        /// </summary>
 
         /// <summary>
-        // Die Zeitspanne hat keinen Endzeitpunkt und kann nicht auf Überschneidung vergleichen werden.
+        /// Die Zeitspanne hat keinen Endzeitpunkt und kann nicht auf Überschneidung vergleichen werden.
+        /// </summary>
         OpenEnd,
     }
 }

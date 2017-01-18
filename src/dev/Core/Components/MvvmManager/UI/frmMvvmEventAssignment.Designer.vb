@@ -27,21 +27,21 @@ Partial Class frmMvvmEventAssignment
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.EventBindingGrid = New ActiveDevelop.EntitiesFormsLib.ControlBindingGrid()
-        Me.nvrControlEvent = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
-        Me.nvrControlCanExecuteProperty = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
-        Me.nvrViewModelCommand = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.FormToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.lblCurrentControlType = New System.Windows.Forms.Label()
         Me.lblCurrentViewModelFullName = New System.Windows.Forms.Label()
         Me.lblCurrentViewModelType = New System.Windows.Forms.Label()
         Me.lblCurrentControl = New System.Windows.Forms.Label()
+        Me.EventBindingGrid = New ActiveDevelop.EntitiesFormsLib.ControlBindingGrid()
+        Me.nvrControlEvent = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
+        Me.nvrControlCanExecuteProperty = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
+        Me.nvrViewModelCommand = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.TableLayoutPanel1.SuspendLayout()
+        Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.nvrControlEvent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nvrControlCanExecuteProperty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nvrViewModelCommand, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TableLayoutPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label4
@@ -104,6 +104,75 @@ Partial Class frmMvvmEventAssignment
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(656, 261)
         Me.TableLayoutPanel1.TabIndex = 16
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TableLayoutPanel2.ColumnCount = 2
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.lblCurrentControlType, 0, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.lblCurrentViewModelFullName, 0, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.lblCurrentViewModelType, 1, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.lblCurrentControl, 0, 0)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(12, 12)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 2
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(656, 65)
+        Me.TableLayoutPanel2.TabIndex = 18
+        '
+        'lblCurrentControlType
+        '
+        Me.lblCurrentControlType.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblCurrentControlType.AutoEllipsis = True
+        Me.lblCurrentControlType.AutoSize = True
+        Me.lblCurrentControlType.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCurrentControlType.Location = New System.Drawing.Point(10, 43)
+        Me.lblCurrentControlType.Margin = New System.Windows.Forms.Padding(10, 0, 3, 0)
+        Me.lblCurrentControlType.Name = "lblCurrentControlType"
+        Me.lblCurrentControlType.Size = New System.Drawing.Size(129, 22)
+        Me.lblCurrentControlType.TabIndex = 5
+        Me.lblCurrentControlType.Text = "ViewModelType"
+        '
+        'lblCurrentViewModelFullName
+        '
+        Me.lblCurrentViewModelFullName.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblCurrentViewModelFullName.AutoEllipsis = True
+        Me.lblCurrentViewModelFullName.AutoSize = True
+        Me.lblCurrentViewModelFullName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCurrentViewModelFullName.Location = New System.Drawing.Point(311, 43)
+        Me.lblCurrentViewModelFullName.Margin = New System.Windows.Forms.Padding(10, 0, 3, 0)
+        Me.lblCurrentViewModelFullName.Name = "lblCurrentViewModelFullName"
+        Me.lblCurrentViewModelFullName.Size = New System.Drawing.Size(67, 22)
+        Me.lblCurrentViewModelFullName.TabIndex = 4
+        Me.lblCurrentViewModelFullName.Text = "Control"
+        '
+        'lblCurrentViewModelType
+        '
+        Me.lblCurrentViewModelType.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblCurrentViewModelType.AutoEllipsis = True
+        Me.lblCurrentViewModelType.AutoSize = True
+        Me.lblCurrentViewModelType.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCurrentViewModelType.Location = New System.Drawing.Point(304, 0)
+        Me.lblCurrentViewModelType.Name = "lblCurrentViewModelType"
+        Me.lblCurrentViewModelType.Size = New System.Drawing.Size(259, 43)
+        Me.lblCurrentViewModelType.TabIndex = 3
+        Me.lblCurrentViewModelType.Text = "ViewModelType"
+        '
+        'lblCurrentControl
+        '
+        Me.lblCurrentControl.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lblCurrentControl.AutoEllipsis = True
+        Me.lblCurrentControl.AutoSize = True
+        Me.lblCurrentControl.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCurrentControl.Location = New System.Drawing.Point(3, 0)
+        Me.lblCurrentControl.Name = "lblCurrentControl"
+        Me.lblCurrentControl.Size = New System.Drawing.Size(132, 43)
+        Me.lblCurrentControl.TabIndex = 2
+        Me.lblCurrentControl.Text = "Control"
         '
         'EventBindingGrid
         '
@@ -213,75 +282,6 @@ Partial Class frmMvvmEventAssignment
         Me.nvrViewModelCommand.UIGuid = New System.Guid("7b05d4b5-998f-4216-ae43-12e7bd51942c")
         Me.nvrViewModelCommand.ValueMember = Nothing
         '
-        'TableLayoutPanel2
-        '
-        Me.TableLayoutPanel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TableLayoutPanel2.ColumnCount = 2
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.0!))
-        Me.TableLayoutPanel2.Controls.Add(Me.lblCurrentControlType, 0, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.lblCurrentViewModelFullName, 0, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.lblCurrentViewModelType, 1, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.lblCurrentControl, 0, 0)
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(12, 12)
-        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-        Me.TableLayoutPanel2.RowCount = 2
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(656, 65)
-        Me.TableLayoutPanel2.TabIndex = 18
-        '
-        'lblCurrentControlType
-        '
-        Me.lblCurrentControlType.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lblCurrentControlType.AutoEllipsis = True
-        Me.lblCurrentControlType.AutoSize = True
-        Me.lblCurrentControlType.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentControlType.Location = New System.Drawing.Point(10, 43)
-        Me.lblCurrentControlType.Margin = New System.Windows.Forms.Padding(10, 0, 3, 0)
-        Me.lblCurrentControlType.Name = "lblCurrentControlType"
-        Me.lblCurrentControlType.Size = New System.Drawing.Size(129, 22)
-        Me.lblCurrentControlType.TabIndex = 5
-        Me.lblCurrentControlType.Text = "ViewModelType"
-        '
-        'lblCurrentViewModelFullName
-        '
-        Me.lblCurrentViewModelFullName.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lblCurrentViewModelFullName.AutoEllipsis = True
-        Me.lblCurrentViewModelFullName.AutoSize = True
-        Me.lblCurrentViewModelFullName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentViewModelFullName.Location = New System.Drawing.Point(311, 43)
-        Me.lblCurrentViewModelFullName.Margin = New System.Windows.Forms.Padding(10, 0, 3, 0)
-        Me.lblCurrentViewModelFullName.Name = "lblCurrentViewModelFullName"
-        Me.lblCurrentViewModelFullName.Size = New System.Drawing.Size(67, 22)
-        Me.lblCurrentViewModelFullName.TabIndex = 4
-        Me.lblCurrentViewModelFullName.Text = "Control"
-        '
-        'lblCurrentViewModelType
-        '
-        Me.lblCurrentViewModelType.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lblCurrentViewModelType.AutoEllipsis = True
-        Me.lblCurrentViewModelType.AutoSize = True
-        Me.lblCurrentViewModelType.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentViewModelType.Location = New System.Drawing.Point(304, 0)
-        Me.lblCurrentViewModelType.Name = "lblCurrentViewModelType"
-        Me.lblCurrentViewModelType.Size = New System.Drawing.Size(259, 43)
-        Me.lblCurrentViewModelType.TabIndex = 3
-        Me.lblCurrentViewModelType.Text = "ViewModelType"
-        '
-        'lblCurrentControl
-        '
-        Me.lblCurrentControl.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lblCurrentControl.AutoEllipsis = True
-        Me.lblCurrentControl.AutoSize = True
-        Me.lblCurrentControl.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentControl.Location = New System.Drawing.Point(3, 0)
-        Me.lblCurrentControl.Name = "lblCurrentControl"
-        Me.lblCurrentControl.Size = New System.Drawing.Size(132, 43)
-        Me.lblCurrentControl.TabIndex = 2
-        Me.lblCurrentControl.Text = "Control"
-        '
         'frmMvvmEventAssignment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 19.0!)
@@ -294,11 +294,11 @@ Partial Class frmMvvmEventAssignment
         Me.Text = "Mvvm Event Assignment"
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
         CType(Me.nvrControlEvent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nvrControlCanExecuteProperty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nvrViewModelCommand, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TableLayoutPanel2.ResumeLayout(False)
-        Me.TableLayoutPanel2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

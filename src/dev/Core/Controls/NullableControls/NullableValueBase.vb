@@ -7,6 +7,25 @@ Imports System.Runtime.CompilerServices
 Imports System.Drawing.Drawing2D
 Imports System.Globalization
 
+''' <summary>
+''' Implements the basic functionality required by the derived type-safe datatype specific controls, 
+''' such as the <see cref="NullableIntValue">NullableIntValue</see> control 
+''' or the <see cref="NullableDateValue">NullableDateValue</see> control.
+''' </summary>
+''' <typeparam name="NullableType">To make the derived control process only type-safe data, 
+''' the concrete datatype the control is supposed to process (DateTime, Int, Decimal, Custom Structures). 
+''' Must be Value Types.</typeparam>
+''' <typeparam name="ControlType">An underlying control which must derive from <see cref="Control">Control</see>, 
+''' can be instantiated and must implement the Interfaces
+''' <see cref="INullableValuePrimalControl">INullableValuePrimalControl</see> and 
+''' <see cref="ITextBoxBasedControl">ITextBoxBasedControl</see>/> 
+''' </typeparam>
+''' <remarks>
+''' This control holds the whole infrastructure for the type-safe specific controls, which are all TextBox based. The basic idea is, 
+''' that rather than only returning a String from an entry field, which the application has to convert to the specific types like 
+''' Currency, Dates, numeric values, etc. by itself, derived classed take care of the parsing into a specific data type, the formatting 
+''' (so that 3/1/12 automaticallt becomes 03/01/2012 on leaving the entry field), the error handling, and more.
+''' </remarks>
 <Designer("ActiveDevelop.EntitiesFormsLib.TextBoxBasedControlDesigner")>
 Public MustInherit Class NullableValueBase(Of NullableType As {Structure, IComparable},
                                                 ControlType As {Control, New,
@@ -107,6 +126,9 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Private myExceptionBalloonDuration As Integer
     Private myImitateTabByPageKeys As Boolean
 
+    ''' <summary>
+    ''' Creates an instance of this control.
+    ''' </summary>
     Public Sub New()
         MyBase.New()
 
@@ -255,6 +277,10 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         PositionControls()
     End Sub
 
+    ''' <summary>
+    ''' Sets or retrieves the Borderstyle of this control.
+    ''' </summary>
+    ''' <returns></returns>
     Property Borderstyle As BorderStyle
         Set(ByVal value As BorderStyle)
             If (Me.Borderstyle <> value) Then
@@ -769,13 +795,14 @@ SkipToEnd:
     End Function
 
     ''' <summary>
+    ''' Sets or returns a value which determines how the preselection of text in the control is handled when it gets the focus. 
     ''' Bestimmt oder Ermittelt die Verhaltensweise des Vorselektierens des Steuerelementtextes, wenn es den Fokus erhält. 
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
-     Description("Bestimmt oder Ermittelt die Verhaltensweise des Vorselektierens des Steuerelementtextes, wenn es den Fokus erhält."),
+     Description("Sets or retrieves how the preselection of text in the control is handled when it gets the focus. Bestimmt oder Ermittelt die Verhaltensweise des Vorselektierens des Steuerelementtextes, wenn es den Fokus erhält."),
      Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
@@ -797,13 +824,14 @@ SkipToEnd:
     End Sub
 
     ''' <summary>
+    ''' Sets or returns a value which determines if a beep tone should be sounded when a validation fails.
     ''' Bestimmt oder ermittelt, ob ein Warnton bei einer fehlgeschlagenen Validierung ausgegeben werden soll.  
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
-     Description("Bestimmt oder ermittelt, ob ein Warnton bei einer fehlgeschlagenen Validierung ausgegeben werden soll."),
+     Description("Sets or returns a value which determines if a beep tone should be sounded when a validation fails. Bestimmt oder ermittelt, ob ein Warnton bei einer fehlgeschlagenen Validierung ausgegeben werden soll."),
      Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
@@ -821,13 +849,14 @@ SkipToEnd:
     End Function
 
     ''' <summary>
+    ''' Sets or returns a value which determines if the control's background should be colored if it gets the focus. 
     ''' Bestimmt oder ermittelt, ob das Steuerelement mit FocusColor eingefärbt werden soll, wenn das Steuerelement den Fokus erhält. 
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
-     Description("Bestimmt oder ermittelt, ob das Steuerelement mit FocusColor eingefärbt werden soll, wenn das Steuerelement den Fokus erhält."),
+     Description("Sets or returns a value which determines if the control's background should be colored if it gets the focus. Bestimmt oder ermittelt, ob das Steuerelement mit FocusColor eingefärbt werden soll, wenn das Steuerelement den Fokus erhält."),
      Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
@@ -845,13 +874,14 @@ SkipToEnd:
     End Function
 
     ''' <summary>
+    ''' Sets or returns a value which determines the error background color which is applied on a failed validation.
     ''' Bestimmt oder ermittelt die Farbe, die das Steuerelement bei einer erlaubten Fehlvalidierung bekommt. 
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
-     Description("Bestimmt oder ermittelt die Farbe, die das Steuerelement bei einer erlaubten Fehlvalidierung bekommt."),
+     Description("Sets or returns a value which determines the error background color which is applied on a failed validation. Bestimmt oder ermittelt die Farbe, die das Steuerelement bei einer erlaubten Fehlvalidierung bekommt."),
      Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
@@ -869,13 +899,14 @@ SkipToEnd:
     End Function
 
     ''' <summary>
+    ''' Sets or returns a value which determines the background color which is applied when the controls gets the focus.
     ''' Bestimmt oder ermittelt die Farbe, die im Bedarfsfall vorselektiert werden soll, wenn das Steuerelement den Fokus erhält. 
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
-     Description("Bestimmt oder ermittelt die Farbe, die im Bedarfsfall vorselektiert werden soll, wenn das Steuerelement den Fokus erhält."),
+     Description("Sets or returns a value which determines the background color which is applied when the controls gets the focus. Bestimmt oder ermittelt die Farbe, die im Bedarfsfall vorselektiert werden soll, wenn das Steuerelement den Fokus erhält."),
      Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
@@ -893,6 +924,7 @@ SkipToEnd:
     End Function
 
     ''' <summary>
+    ''' Sets or returns a value which determines if this control should be automatically validated, even if a different control which cannot raise GotFocus is selected by the user (e.g. a Toolbar Button). 
     ''' Bestimmt oder ermittelt, ob das Steuerelement automatisch validiert werden soll, 
     ''' wenn ein anderes Steuerelement selektiert wird, das aber keinen GotFocus auslöst (Toolbar-Button, z.B.).
     ''' </summary>
@@ -900,7 +932,7 @@ SkipToEnd:
     ''' <returns></returns>
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
-     Description("Bestimmt oder ermittelt, ob das Steuerelement automatisch validiert werden soll, wenn ein anderes Steuerelement selektiert wird, das aber keinen GotFocus auslöst (Toolbar-Button, z.B.)."),
+     Description("Sets or returns a value which determines if this control should be automatically validated, even if a different control which cannot raise GotFocus is selected by the user (e.g. a Toolbar Button). Bestimmt oder ermittelt, ob das Steuerelement automatisch validiert werden soll, wenn ein anderes Steuerelement selektiert wird, das aber keinen GotFocus auslöst (Toolbar-Button, z.B.)."),
      Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True), DefaultValue(False)>
@@ -927,13 +959,14 @@ SkipToEnd:
     End Function
 
     ''' <summary>
+    ''' Sets or returns the value this (or a derived) control is representing.
     ''' Bestimmt oder ermittelt den Wert, den dieses Steuerelement repräsentiert.
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
-     Description("Bestimmt oder ermittelt den Wert, den dieses Steuerelement repräsentiert."),
+     Description("Sets or returns the value this (or a derived) control is representing. Bestimmt oder ermittelt den Wert, den dieses Steuerelement repräsentiert."),
      Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(True)>
@@ -1078,13 +1111,14 @@ SkipToEnd:
     End Function
 
     ''' <summary>
+    ''' Retrieves the latest validated value this control (or a derived control) has represented. Does not cause a re-validation. 
     ''' Ermittelt den letzten validierten Wert, den dieses Steuerelement repräsentiert; löst keine Neuvalidierung aus, wenn das Steuerelement den Fokus besitzt.
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-     Description("Ermittelt den letzten validierten Wert, den dieses Steuerelement repräsentiert; löst keine Neuvalidierung beim Auslesen aus, wenn das Steuerelement den Fokus besitzt."),
+     Description("Retrieves the latest validated value this control (or a derived control) has represented. Does not cause a re-validation. Ermittelt den letzten validierten Wert, den dieses Steuerelement repräsentiert; löst keine Neuvalidierung beim Auslesen aus, wenn das Steuerelement den Fokus besitzt."),
      Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(False)>
@@ -1095,6 +1129,7 @@ SkipToEnd:
     End Property
 
     ''' <summary>
+    ''' Raises the ValueChanging Event.
     ''' Löst das ValueChanging-Ereignis aus.
     ''' </summary>
     ''' <param name="e">Die Ereignisparameter, die den alten und den neuen Wert enthalten.</param>
@@ -1105,6 +1140,7 @@ SkipToEnd:
     End Sub
 
     ''' <summary>
+    ''' Raises the ValueChanged Event.
     ''' Löst das ValueChanged-Ereignis aus.
     ''' </summary>
     ''' <param name="e">Leere Ereignisparameter.</param>
@@ -1142,7 +1178,8 @@ SkipToEnd:
     End Sub
 
     ''' <summary>
-    ''' Ermittelt, ob die Value-Eigenschaft gegenwärtig Null ist.
+    ''' Retrieves if the control currently represents a 'null' value (Nothing in VB).
+    ''' Ermittelt, ob die Value-Eigenschaft gegenwärtig 'null' (Nothing in VB) ist.
     ''' </summary>
     ''' <returns></returns>
     Public ReadOnly Property IsValueNull As Boolean
@@ -1212,6 +1249,10 @@ SkipToEnd:
 
     Protected MustOverride Function GetDefaultFormatterEngine() As INullableValueFormatterEngine
 
+    ''' <summary>
+    ''' Gets or sets the FormattingEngine in a derived control which controls the formatting of the field's content when the focus got lost (e.g. 1/3/12 --> 01/03/2012).
+    ''' </summary>
+    ''' <returns></returns>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
      EditorBrowsable(EditorBrowsableState.Advanced),
      Browsable(False)>
@@ -1256,13 +1297,14 @@ SkipToEnd:
     End Function
 
     ''' <summary>
-    ''' Bestimmt oder ermittelt die Zeichenfolge, die beim Verlassen des Steuerelements angezeigt wird, wenn eine Null-Eingabe erfolgte.
+    ''' Gets or sets a string which is shown on leaving the control when the control represents null (nothing in VB). This can be used as a placeholder text.
+    ''' Bestimmt oder ermittelt die Zeichenfolge, die beim Verlassen des Steuerelements angezeigt wird, wenn eine Null-Eingabe erfolgte. Kann als placeholder Eigenschaft verwendet werden.
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
-     Description("Bestimmt oder ermittelt die Zeichenfolge, die beim Verlassen des Steuerelements angezeigt wird, wenn eine Null-Eingabe erfolgte."),
+     Description("Gets or sets a string which is shown on leaving the control when the control represents null (nothing in VB). This can be used as a placeholder text. Bestimmt oder ermittelt die Zeichenfolge, die beim Verlassen des Steuerelements angezeigt wird, wenn eine Null-Eingabe erfolgte."),
      Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
@@ -1288,13 +1330,14 @@ SkipToEnd:
     End Function
 
     ''' <summary>
+    ''' Gets or sets the content color which is used for the NullValueString which the control represents 'null' (nothing in VB).
     ''' Bestimmt oder ermittelt die Farbe, mit der der Inhalt des Steuerelementes angezeigt werden soll, wenn es den Wert 'null' widerspiegelt.
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
-     Description("Bestimmt oder ermittelt die Farbe, mit der der Inhalt des Steuerelementes angezeigt werden soll, wenn es den Wert 'null' widerspiegelt."),
+     Description("Gets or sets the content color which is used for the NullValueString which the control represents 'null' (nothing in VB). Bestimmt oder ermittelt die Farbe, mit der der Inhalt des Steuerelementes angezeigt werden soll, wenn es den Wert 'null' widerspiegelt."),
      Category("Behavior"),
      EditorBrowsable(EditorBrowsableState.Always),
      Browsable(True)>
@@ -1394,12 +1437,17 @@ SkipToEnd:
         End If
     End Sub
 
+    ''' <summary>
+    ''' Raises the IsDirty-Event.
+    ''' </summary>
+    ''' <param name="e"></param>
     Protected Overridable Sub OnIsDirtyChanged(ByVal e As IsDirtyChangedEventArgs)
         RaiseEvent IsDirtyChanged(Me, e)
     End Sub
 
     ''' <summary>
-    ''' Ermittelt ob sich der Value-Wert seit der letzten (ersten) Zuweisung geändert hat, und ein Datensatz deswegen aktualisiert werden muss.
+    ''' Retrieves if the Value property has changed since its first assignment, e.g. to show that a record set on the screen, which this field is part of, has to be updated.
+    ''' Ermittelt, ob sich die Value-Eigenschaft seit der letzten (ersten) Zuweisung geändert hat, beispielsweise um anzuzeigen, dass ein Datensatz auf dem Bildschirm, zu dem dieses Feld gehört, aktualisiert werden muss.
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
@@ -1456,6 +1504,7 @@ SkipToEnd:
     End Function
 
     ''' <summary>
+    ''' Resets the IsDirty state. Infrastructure, do not use directly.
     ''' Setzt den Status zurück, dass dieses Feld vom Anwender geändert wurde, und sein Value in der Datenquelle aktualisiert werden sollte.
     ''' </summary>
     ''' <remarks>Diese Methode wird von der Infrastruktur verwendet, und sollte nicht direkt angewendet werden.</remarks>

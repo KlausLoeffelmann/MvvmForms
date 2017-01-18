@@ -101,7 +101,8 @@ Public Class DataSourceTypeUIForm
                                  .Location = assembly.Location,
                                  .Target = assembly.ImageRuntimeVersion,
                                  .Types = (From item In typliste
-                                           Where item.Assembly Is assembly).ToList
+                                           Where item.Assembly Is assembly
+                                           Order By item.Name).ToList
                                  }
 
             DataSourceTreeView.BeginUpdate()
