@@ -23,6 +23,9 @@ Public Class NullableIntValue
     Private ReadOnly DEFAULT_MIN_VALUE As Decimal? = 0
     Private ReadOnly DEFAULT_MAX_VALUE As Decimal? = Nothing
 
+    Private ReadOnly DEFAULT_ALLOW_FORMULAR As Boolean = True
+
+
     Private ReadOnly DEFAULT_INCREMENT As Decimal? = 1
     Dim myIncrement As Integer?
     Dim myMaxValue As Integer?
@@ -36,6 +39,8 @@ Public Class NullableIntValue
         Me.Increment = CInt(NullableControlManager.GetInstance.GetDefaultIncrement(Me, DEFAULT_INCREMENT))
         Me.MaxValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMaxValueExceededMessage(Me, DEFAULT_MAX_VALUE_EXCEEDED_MESSAGE)
         Me.MinValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMinValueExceededMessage(Me, DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE)
+
+        Me.AllowFormular = NullableControlManager.GetInstance.GetDefaultAllowFormular(Me, DEFAULT_ALLOW_FORMULAR)
 
         AddHandler Me.ReadOnlyChanged, AddressOf myReadOnlyChanged
 
@@ -105,7 +110,6 @@ Public Class NullableIntValue
                Char.IsControl(e.KeyChar) Or
                e.KeyChar.Equals("-"c) Then
             Else
-                Stop
                 e.Handled = True
             End If
         End If

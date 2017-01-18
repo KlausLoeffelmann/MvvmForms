@@ -233,7 +233,7 @@ Public Class AnimationFormBase
             Else
                 If Debugger.IsAttached Then
                     'Wieso ist projGuid nothign?
-                    Stop
+                    Debugger.Break()
                 End If
             End If
         End If
