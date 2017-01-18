@@ -46,8 +46,8 @@ Public Class NullableNumValue
         'TODO: Do we need to take the relationship between those into account?
         Me.DropDownCalculatorMode = NullableControlManager.GetInstance.GetDefaultCalculatorMode(Me, DEFAULT_CALCULATOR_MODE)
         Me.DropDownCalculatorTrigger = NullableControlManager.GetInstance.GetDefaultCalculatorTrigger(Me, DEFAULT_CALCULATOR_TRIGGER)
-        Me.AllowFormular = NullableControlManager.GetInstance.GetDefaultAllowFormular(Me, DEFAULT_ALLOW_FORMULAR)
 
+        Me.AllowFormular = NullableControlManager.GetInstance.GetDefaultAllowFormular(Me, DEFAULT_ALLOW_FORMULAR)
 
         Me.Increment = NullableControlManager.GetInstance.GetDefaultIncrement(Me, DEFAULT_INCREMENT)
         Me.MaxValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMaxValueExceededMessage(Me, DEFAULT_MAX_VALUE_EXCEEDED_MESSAGE)

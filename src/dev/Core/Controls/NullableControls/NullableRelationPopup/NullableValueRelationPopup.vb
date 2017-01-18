@@ -645,7 +645,9 @@ Public Class NullableValueRelationPopup
             Try
                 Await myFilterTask.FilterTask
             Catch ex As Exception
-                'Stop
+                If Debugger.IsAttached Then
+                    Debugger.Break()
+                End If
             End Try
         End If
 
