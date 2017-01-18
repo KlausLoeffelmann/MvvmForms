@@ -29,6 +29,7 @@ Public Class MvvmDataGrid
     ''' <remarks></remarks>
     Private _isColumnDisplayIndexUpdating As Boolean
     Private _collectionView As ICollectionView ' Bei eingeschaltener Filterung wird die CollectionView verwendet
+    Private _isGroupingEnabled As Boolean = False
 
     Public Sub New()
 
@@ -539,6 +540,35 @@ Public Class MvvmDataGrid
         End Set
     End Property
 
+    ''' <summary>
+    ''' Gets or sets whether or not grouping is enabled for MvvmDataGrid.
+    ''' </summary>
+    ''' <value>true if grouping is enabled, false otherwise and by default.</value>
+    ''' <returns></returns>
+    ''' <remarks>Durch den MvvmManager bindbare View-Property</remarks>
+    Public Property IsGroupingEnabled As Boolean
+        Get
+            Return _isGroupingEnabled
+        End Get
+        Set(ByVal value As Boolean)
+            If Not Object.Equals(_isGroupingEnabled, value) Then
+                _isGroupingEnabled = value
+                OnIsGroupingEnabledChanged(EventArgs.Empty)
+
+                If _isGroupingEnabled Then
+                    WpfDataGridViewWrapper.EnableGroupStyle()
+                Else
+                    WpfDataGridViewWrapper.DisableGroupStyle()
+                End If
+            End If
+        End Set
+    End Property
+
+    Public Event IsGroupingEnabledChanged As EventHandler
+
+    Protected Overridable Sub OnIsGroupingEnabledChanged(e As EventArgs)
+        RaiseEvent IsGroupingEnabledChanged(Me, e)
+    End Sub
     ''' <summary>
     ''' Wird geworfen wenn Items mittels interner Loeschfunktion vom DataGrid geloescht wurden
     ''' </summary>
