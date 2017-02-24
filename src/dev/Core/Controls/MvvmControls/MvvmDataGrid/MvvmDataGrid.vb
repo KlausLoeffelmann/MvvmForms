@@ -1151,7 +1151,7 @@ Public Class MvvmDataGrid
             .DisplayIndex = column.DisplayIndex
             .SortDirection = column.SortDirection
             .SortMemberPath = column.SortMemberPath
-            If Not String.IsNullOrEmpty(column.Width) Then .Width = DirectCast(converter.ConvertFromString(column.Width), DataGridLength)
+            If Not String.IsNullOrEmpty(column.Width) Then .Width = DirectCast(converter.ConvertFromInvariantString(column.Width), DataGridLength)
         End With
 
         If Not String.IsNullOrWhiteSpace(column.SortMemberPath) AndAlso column.SortDirection.HasValue Then
