@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using System.Xml.Serialization;
 using ActiveDevelop.MvvmBaseLib.Mvvm;
 using Newtonsoft.Json;
+using System.Xml.Serialization;
 
 namespace ActiveDevelop.MvvmBaseLib
 {
