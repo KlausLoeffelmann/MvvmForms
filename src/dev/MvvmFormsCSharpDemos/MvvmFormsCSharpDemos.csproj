@@ -39,7 +39,6 @@
     <Reference Include="ActiveDevelop.MvvmBaseLib">
       <HintPath>..\MvvmBaseLib\MvvmBase\bin\x86\Debug\ActiveDevelop.MvvmBaseLib.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

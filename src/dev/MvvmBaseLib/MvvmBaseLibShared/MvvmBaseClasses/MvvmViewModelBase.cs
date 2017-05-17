@@ -60,7 +60,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         }
 
         // ''' <summary>
-        // ''' Erstellt eine vollständige Kopie (deep clone) dieser Instanz.
+        // ''' Creates a full copy (deep clone) of this instance.
         // ''' </summary>
         // ''' <typeparam name="bbType"></typeparam>
         // ''' <returns></returns>
@@ -69,13 +69,12 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         {
 
             MemoryStream memStream = new MemoryStream();
-            var js = new System.Runtime.Serialization.Json.DataContractJsonSerializer(this.GetType(), TypeDetector.GetTypes(this));
             bbType clonedObject = default(bbType);
 
             //Als JSon in den Speicher serialisieren
             try
             {
-                js.WriteObject(memStream, this);
+                SerializeToStream(memStream);
             }
             catch
             {
@@ -86,7 +85,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
             try
             {
                 memStream.Seek(0, SeekOrigin.Begin);
-                clonedObject = (bbType)js.ReadObject(memStream);
+                clonedObject = (bbType) DeserializeFromStream(memStream);
             }
             catch
             {
@@ -94,6 +93,28 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
             }
 
             return clonedObject;
+        }
+
+        internal static object DeserializeFromStream(Stream stream)
+        {
+            var serializer = new JsonSerializer();
+
+            using (var sr = new StreamReader(stream))
+            using (var jsonTextReader = new JsonTextReader(sr))
+            {
+                return serializer.Deserialize(jsonTextReader);
+            }
+        }
+
+        internal void SerializeToStream(Stream stream)
+        {
+            var serializer = new JsonSerializer();
+
+            using (var sw = new StreamWriter(stream))
+            using (var jsonTextWriter = new JsonTextWriter(sw))
+            {
+                serializer.Serialize(jsonTextWriter,this);
+            }
         }
 
         /// <summary>
@@ -301,9 +322,6 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
 
             //Liste erstellen, mit ViewModel- und Model-PropertyInfo-Objekten
             //Create a list with ViewModel and Model PropertyInfo objects.
-
-            //INSTANT C# WARNING: Every field in a C# anonymous type initializer is immutable:
-            //ORIGINAL LINE: For Each propToPropItem In From propItem In GetType.GetRuntimeProperties Where propItem.GetCustomAttribute(Of ModelPropertyIgnoreAttribute)() Is Nothing Select New With { .ViewModelProperty = propItem, .ModelProperty = model.GetType.GetRuntimeProperty(If(propItem.GetCustomAttribute(Of ModelPropertyNameAttribute)() Is Nothing, propItem.Name, propItem.GetCustomAttribute(Of ModelPropertyNameAttribute).PropertyName))}
             foreach (var propToPropItem in
                 from propItem in GetType().GetRuntimeProperties()
                 where (propItem.GetCustomAttribute<ModelPropertyIgnoreAttribute>() == null)

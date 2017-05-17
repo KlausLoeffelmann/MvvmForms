@@ -1078,17 +1078,9 @@ Public Class MvvmDataGrid
                             For Each column In _mySettings.ColumnDefinitions.OrderBy(Function(c) c.DisplayIndex)
                                 'Hier alle gleichen anpassen
                                 For Each innerColumn In Me.Columns
-
                                     If column.Name = innerColumn.Name Then
-                                        'Die gleiche, abgleichen:
-                                        fallbackColumns.Add(New ColumnDefinition() With {.DisplayIndex = innerColumn.WpfColumn.DisplayIndex, .SortDirection = innerColumn.WpfColumn.SortDirection,
-                                                            .SortMemberPath = innerColumn.WpfColumn.SortMemberPath, .Width = innerColumn.WpfColumn.Width.ToString(), .Name = innerColumn.Name})
-
-                                        LoadColumn(innerGrid, converter, column, innerColumn)
-
                                         matchedColumns.Add(column.Name)
                                     End If
-
                                 Next
                             Next
 
@@ -1099,11 +1091,21 @@ Public Class MvvmDataGrid
                                 _mySettings.ColumnDefinitions.Add(New ColumnDefinition() With {.DisplayIndex = notFoundColumn.DisplayIndex, .Name = notFoundColumnName, .Width = notFoundColumn.Width.ToString()})
                             Next
 
-                            For Each notFoundColumnName In _mySettings.ColumnDefinitions.Select(Function(c) c.Name).Except(matchedColumns).ToList()
-                                Dim notFoundColumn = _mySettings.ColumnDefinitions.Where(Function(cd) cd.Name = notFoundColumnName).Single()
+                            For Each matchedColumn In matchedColumns
+                                Dim innerColumn = Me.Columns.Where(Function(c) c.Name = matchedColumn).Single()
+                                Dim column = _mySettings.ColumnDefinitions.Where(Function(c) c.Name = matchedColumn).Single()
+                                'Die gleiche, abgleichen:
+                                fallbackColumns.Add(New ColumnDefinition() With {.DisplayIndex = innerColumn.WpfColumn.DisplayIndex, .SortDirection = innerColumn.WpfColumn.SortDirection,
+                                                           .SortMemberPath = innerColumn.WpfColumn.SortMemberPath, .Width = innerColumn.WpfColumn.Width.ToString(), .Name = innerColumn.Name})
 
-                                'Spalte ist nicht mehr drin, also auch wieder löschen aus Settings:
-                                _mySettings.ColumnDefinitions.Remove(notFoundColumn)
+                                LoadColumn(innerGrid, converter, column, innerColumn)
+                            Next
+
+                            For Each column In _mySettings.ColumnDefinitions
+                                If Not Me.Columns.Select(Function(c) c.Name).Contains(column.Name) Then
+                                    'Spalte ist nicht mehr drin, also auch wieder löschen aus Settings:
+                                    _mySettings.ColumnDefinitions.Remove(column)
+                                End If
                             Next
                         Catch ex As Exception
                             Trace.TraceError($"An error occurred while loading the {Name} settings: {ex.ToString()}")
@@ -1149,7 +1151,7 @@ Public Class MvvmDataGrid
             .DisplayIndex = column.DisplayIndex
             .SortDirection = column.SortDirection
             .SortMemberPath = column.SortMemberPath
-            If Not String.IsNullOrEmpty(column.Width) Then .Width = DirectCast(converter.ConvertFromString(column.Width), DataGridLength)
+            If Not String.IsNullOrEmpty(column.Width) Then .Width = DirectCast(converter.ConvertFromInvariantString(column.Width), DataGridLength)
         End With
 
         If Not String.IsNullOrWhiteSpace(column.SortMemberPath) AndAlso column.SortDirection.HasValue Then
