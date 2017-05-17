@@ -200,8 +200,8 @@ Public Class BindableTreeView
     ''' Erstellt den Baum anhand der DataSource neu
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub RefreshTree()
-
+    Protected Overridable Sub RefreshTree()
+        SuspendLayout()
         For Each list In _notifyLists.GetLists.ToList()
             System.Windows.WeakEventManager(Of INotifyCollectionChanged, NotifyCollectionChangedEventArgs).RemoveHandler(
                            DirectCast(list, INotifyCollectionChanged), "CollectionChanged", AddressOf DataSource_CollectionChanged)
@@ -218,6 +218,7 @@ Public Class BindableTreeView
             Nodes.Add(node)
             _nodes.Add(item, node)
         Next
+        ResumeLayout()
     End Sub
 
     ''' <summary>
