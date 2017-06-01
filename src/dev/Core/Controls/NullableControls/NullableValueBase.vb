@@ -80,20 +80,20 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Private myValue As Nullable(Of NullableType)                ' The current value represented by the value property, which is processed though this control. (Der aktuelle Wert repräsentiert durch die Value-Eigenschaft, der mit diesem Steuerelement bearbeitet wird.)
     Private myEditedValue As String                             ' The original string keyboard input, from which the value is determined. (Die ursprüngliche String-Tastatureingabe, aus der sich der Wert ergibt.)
 
-    Private myOriginalValue As Nullable(Of NullableType)        ' Der Ursprungsswert für den Rückgängig-Vorgang (typisiert)
+    Private myOriginalValue As Nullable(Of NullableType)        ' The original value for the undo operation (typed) (Der Ursprungsswert für den Rückgängig-Vorgang (typisiert))
     Private myOriginalEditedValue As String                     ' The initial value for the undo operation (as string, as originally typed by the user) (Der Ursprungswert für den Rückgängig-Vorgang (als Zeichenkette, wie ursprünglich durch den Anwender eingegeben))
-    Private myFormatterEngine As INullableValueFormatterEngine  ' Die Formatter-Klasse für den entsprechenden Typ, der in abgeleiteten Versionen dieser Klasse verarbeitet wird.
-    Private myIsLoading As HistoricalBoolean                    ' Zeigt an, dass sich diese Klasse gerade im "Lade"-Modus befindet, in der Update-Ereignisse ausgeblockt sind.
-    Private myIsDirty As Boolean                                ' Zeigt an, dass sich der Value-Wert seit der letzten (ersten) Zuweisung geändert hat, und ein Datensatz aktualisiert werden muss.
-    Private myBeepOnFailedValidation As Boolean                 ' Bestimmt, dass ein Warnton bei einer fehlgeschlagenen Validierung erfolgen soll.
-    Private myFocusColor As Color                               ' Bestimmt die Farbe, die im Bedarfsfall vorselektiert werden soll, wenn das Steuerelement den Fokus erhält.
-    Private myErrorColor As Color                               ' Bestimmt die Farbe, die beim genehmigter Fehlvalidierung dem betroffenen Steuerelement zugewiesen werden soll.
-    Private myNullValueColor As Color?                          ' Bestimmt die Farbe, die im Bedarfsfall ForeColor zugewiesen werden soll, wenn Value Null ist und das Steuerelement NICHT den Focus hat. Standardmäßig ForeColor.
-    Private myOriginalBackcolor As Color                        ' Zwischenspeicher für die Farbe beim Wechsel der Farben durch das Fokussieren.
-    Private myOnFocusColor As Boolean                           ' Bestimmt, *ob* das Steuerelement mit FocusColor eingefärbt werden soll, wenn das Steuerelement den Fokus erhält.
-    Private myFocusSelectionBehaviour As FocusSelectionBehaviours  ' Bestimmt die Verhaltensweise des Vorselektierens des Steuerelementtextes, wenn es den Fokus erhält. 
+    Private myFormatterEngine As INullableValueFormatterEngine  ' The Formatter class for the appropriate type that is processed in derived versions of this class. (Die Formatter-Klasse für den entsprechenden Typ, der in abgeleiteten Versionen dieser Klasse verarbeitet wird.)
+    Private myIsLoading As HistoricalBoolean                    ' Indicates that this class is currently in the "Load" mode, where update events are blocked. (Zeigt an, dass sich diese Klasse gerade im "Lade"-Modus befindet, in der Update-Ereignisse ausgeblockt sind.)
+    Private myIsDirty As Boolean                                ' Indicates that the value has changed since the last (first) assignment, and a record must be updated. (Zeigt an, dass sich der Value-Wert seit der letzten (ersten) Zuweisung geändert hat, und ein Datensatz aktualisiert werden muss.)
+    Private myBeepOnFailedValidation As Boolean                 ' Determines that a warning tone should be issued if the validation is unsuccessful. (Bestimmt, dass ein Warnton bei einer fehlgeschlagenen Validierung erfolgen soll.)
+    Private myFocusColor As Color                               ' Determines the color to be preselected when the control is focused. (Bestimmt die Farbe, die im Bedarfsfall vorselektiert werden soll, wenn das Steuerelement den Fokus erhält.)
+    Private myErrorColor As Color                               ' Specifies the color to be assigned to the affected control when the incorrect validation is approved. (Bestimmt die Farbe, die beim genehmigter Fehlvalidierung dem betroffenen Steuerelement zugewiesen werden soll.)
+    Private myNullValueColor As Color?                          ' Specifies the color to be assigned to ForeColor when the value is Null and the control has NOT the focus. (Bestimmt die Farbe, die im Bedarfsfall ForeColor zugewiesen werden soll, wenn Value Null ist und das Steuerelement NICHT den Focus hat. Standardmäßig ForeColor.)
+    Private myOriginalBackcolor As Color                        ' Cache for color when changing colors by focusing. (Zwischenspeicher für die Farbe beim Wechsel der Farben durch das Fokussieren.)
+    Private myOnFocusColor As Boolean                           ' Determines *whether* the control should be colored with FocusColor when the control receives the focus. (Bestimmt, *ob* das Steuerelement mit FocusColor eingefärbt werden soll, wenn das Steuerelement den Fokus erhält.)
+    Private myFocusSelectionBehaviour As FocusSelectionBehaviours  ' Determines the behavior of preselecting the control text when it receives the focus. (Bestimmt die Verhaltensweise des Vorselektierens des Steuerelementtextes, wenn es den Fokus erhält.)
 
-    Private mySuspendHandleIsDirty As Boolean                   ' Dirty nicht setzen beim Umformatieren des Wertes durch LostFocus/Enter/Leave/GotFocus.
+    Private mySuspendHandleIsDirty As Boolean                   ' Flag to not set Dirty property when reformatting the value by LostFocus/Enter/Leave/GotFocus. (Flag, um Dirty-Eigenschaft nicht zu setzen beim Umformatieren des Wertes durch LostFocus/Enter/Leave/GotFocus.)
     Private myDatafieldDescription As String
     Private myNullValueMessage As String
     Private myBorderstyle As BorderStyle
@@ -175,9 +175,9 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
         'Wirering up the event which blocks alpha keys when no Formula is allowed.
         AddHandler Me.TextBoxPart.KeyDown, AddressOf TextBoxPartKeyPressHandler
 
-        'Verhalten geändert: Hier wurde aus ungeklärten Gründen schon direkt beim Ändern der TextBox das ValueChanging-Ereignis getriggert.
-        'Dieser Workflow ist falsch. Wir haben das Verhalten dahin gehend geändert, dass nun die Text-Eigenschaft geändert wird,
-        'die das TextChanged von Control auslöst. Dadurch kann das bisherige Verhalten emuliert werden.
+        'Behavior changed: The ValueChanging event was triggered directly for changing the TextBox for unexplained reasons.
+        'This workflow is incorrect. We've modified the behavior to change the Text property that Control's TextChanged. 
+        'This can emulate the previous behavior.        
         AddHandler DirectCast(myValueControl, ITextBoxBasedControl).TextBoxPart.TextChanged,
             Sub(sender As Object, e As EventArgs)
                 Me.Text = DirectCast(myValueControl, ITextBoxBasedControl).TextBoxPart.Text
@@ -207,9 +207,18 @@ Public MustInherit Class NullableValueBase(Of NullableType As {Structure, ICompa
     Protected MustOverride Sub InitializeProperties()
 
     ''' <summary>
+    ''' Handles the behavior of setting the border style when the control is instantiated.
+    ''' </summary>
+    ''' <summary lang="de">
     ''' Behandelt das Verhalten des Setzens des Borderstyles beim Instanziieren des Controls.
     ''' </summary>
-    ''' <remarks>Da das Control *vor* dem Aufruf von DefaultSize von Control(Base) 
+    ''' <remarks>Since the Control does not get the opportunity to set the borderstyle 
+    ''' *before* calling DefaultSize from Control (Base) in the base class' constructor, 
+    ''' we have to set BorderStyle when calling DefaultSize AND in the constructor for the first time. 
+    ''' Of course, this should only happen if BorderStyle has never been set initially - 
+    ''' the corresponding flag is used for this. This behavior should, 
+    ''' if at all, only be overwritten with caution.</remarks>
+    ''' <remarks lang="de">Da das Control *vor* dem Aufruf von DefaultSize von Control(Base) 
     ''' keine Gelegenheit im Basiskonstruktor bekommt, den Borderstyle zu setzen, 
     ''' müssen wir beim ersten Aufruf von DefaultSize UND im Konstruktor 
     ''' den Borderstyle setzen. Das darf natürlich nur dann passieren, 
