@@ -1222,6 +1222,10 @@ Public Class MvvmDataGridColumn
                 Dim cds As CodeDomSerializer = DirectCast(dsm.GetSerializer(dsm.PropertyProvider.GetType, GetType(CodeDomSerializer)), CodeDomSerializer)
                 Dim code As CodeExpression = DirectCast(cds.Serialize(dsm, dsm.PropertyProvider), CodeExpression)
 
+                If code Is Nothing Then
+                    Return Nothing
+                End If
+
                 Return New CodeAssignStatement(New CodeVariableReferenceExpression(varName & "." & prop.Name), code)
             End If
 
