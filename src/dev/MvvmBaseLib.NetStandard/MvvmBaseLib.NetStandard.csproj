@@ -7,6 +7,10 @@
     <FileVersion>2.2.0.0</FileVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard1.4\MvvmBaseLib.NetStandard.xml</DocumentationFile>
+  </PropertyGroup>
+
   <Import Project="..\MvvmBaseLib\MvvmBaseLibShared\MvvmBaseLibShared.projitems" Label="Shared" />
 
   <ItemGroup>
