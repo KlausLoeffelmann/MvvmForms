@@ -8,7 +8,9 @@ using ActiveDevelop.MvvmBaseLib.Mvvm;
 namespace ActiveDevelop.MvvmBaseLib
 {
     /// <summary>
-    /// Base class for binding properties having a default value and which are asynchronously retrieving their actual values on requesting their bound properties.
+    /// Base class for binding properties which have a default value 
+    /// and which are asynchronously retrieving their actual values 
+    /// on requesting their bound properties.
     /// </summary>
     /// <typeparam name="t"></typeparam>
     [MvvmSystemElement]
@@ -24,7 +26,8 @@ namespace ActiveDevelop.MvvmBaseLib
 		private bool myHasBeenCalled;
 
         /// <summary>
-        /// Event which is called whenever a property has been set to a new value.
+        /// Event which is called whenever a property has been set to a 
+        /// new value.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 

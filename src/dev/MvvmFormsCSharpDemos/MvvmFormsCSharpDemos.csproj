@@ -120,10 +120,6 @@
       <Project>{048EFA6C-B9FB-441E-9432-1F72B332856C}</Project>
       <Name>MvvmForms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MvvmBaseLib\MvvmBaseLib.NET451\MvvmBaseLib.NET451.csproj">
-      <Project>{9f333c30-bd73-46f2-8716-bf5bdb72b833}</Project>
-      <Name>MvvmBaseLib.NET451</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

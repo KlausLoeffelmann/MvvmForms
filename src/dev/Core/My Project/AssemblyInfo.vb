@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("ActiveDevelop - Windows Forms Class Library for supporting the Mvvm Pattern")>
 <Assembly: AssemblyCompany("ActiveDevelop - (www.activedevelop.de) - Klaus Löffelmann")>
 <Assembly: AssemblyProduct("MvvmForms")>
-<Assembly: AssemblyCopyright("Copyright 2010-2016 © Klaus Löffelmann")>
+<Assembly: AssemblyCopyright("Copyright 2010-2017 © Klaus Löffelmann")>
 <Assembly: AssemblyTrademark("ActiveDevelop")> 
 <Assembly: DebuggerDisplay("{ToString}", Target:=GetType(NullableNumValue))> 
 <Assembly: DebuggerDisplay("{ToString}", Target:=GetType(NullableDateValue))> 
@@ -35,5 +35,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.1.7.0")>
-<Assembly: AssemblyFileVersion("2.1.7.0")>
+<Assembly: AssemblyVersion("2.2.0.0")>
+<Assembly: AssemblyFileVersion("2.2.0.0")>

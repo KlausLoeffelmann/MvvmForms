@@ -7,7 +7,8 @@ using System.Text;
 namespace MvvmBaseLibShared.MvvmBaseClasses.Experimental
 {
     /// <summary>
-    /// Allows to bind the PropertyChangedEvent from any ViewModel implementing INotifyPropertyChanged weak. 
+    /// Allows to bind the PropertyChangedEvent from any ViewModel 
+    /// implementing INotifyPropertyChanged weak. 
     /// The type of the view does not matter.
     /// </summary>
     public class WeakPropertyChangedEventManager
