@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MvvmFormsCSharpDemos</RootNamespace>
     <AssemblyName>MvvmFormsCSharpDemos</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,9 +37,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ActiveDevelop.MvvmBaseLib">
-      <HintPath>..\MvvmBaseLib\MvvmBase\bin\x86\Debug\ActiveDevelop.MvvmBaseLib.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -94,6 +92,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RxCollectionView\frmRxCollectionView.resx">
       <DependentUpon>frmRxCollectionView.cs</DependentUpon>
@@ -119,6 +118,10 @@
     <ProjectReference Include="..\Core\MvvmForms.vbproj">
       <Project>{048EFA6C-B9FB-441E-9432-1F72B332856C}</Project>
       <Name>MvvmForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvvmBaseLib\MvvmBaseLib.NetStandard\MvvmBaseLib.NetStandard.csproj">
+      <Project>{2b224fb2-69b3-4c03-bff7-1d2ad8ecbedd}</Project>
+      <Name>MvvmBaseLib.NetStandard</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

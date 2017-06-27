@@ -11,7 +11,7 @@
     <AssemblyName>ActiveDevelop.EntitiesFormsLib</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>On</OptionStrict>
@@ -773,8 +773,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MvvmBaseLib.NetStandard\MvvmBaseLib.NetStandard.csproj">
-      <Project>{8e6b70e4-007e-442d-819c-0013ba39513a}</Project>
+    <ProjectReference Include="..\MvvmBaseLib\MvvmBaseLib.NetStandard\MvvmBaseLib.NetStandard.csproj">
+      <Project>{2b224fb2-69b3-4c03-bff7-1d2ad8ecbedd}</Project>
       <Name>MvvmBaseLib.NetStandard</Name>
     </ProjectReference>
   </ItemGroup>

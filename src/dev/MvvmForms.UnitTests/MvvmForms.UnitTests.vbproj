@@ -128,8 +128,8 @@
       <Project>{048efa6c-b9fb-441e-9432-1f72b332856c}</Project>
       <Name>MvvmForms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MvvmBaseLib.NetStandard\MvvmBaseLib.NetStandard.csproj">
-      <Project>{8e6b70e4-007e-442d-819c-0013ba39513a}</Project>
+    <ProjectReference Include="..\MvvmBaseLib\MvvmBaseLib.NetStandard\MvvmBaseLib.NetStandard.csproj">
+      <Project>{2b224fb2-69b3-4c03-bff7-1d2ad8ecbedd}</Project>
       <Name>MvvmBaseLib.NetStandard</Name>
     </ProjectReference>
   </ItemGroup>

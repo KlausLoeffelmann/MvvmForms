@@ -11,7 +11,7 @@
     <DocumentationFile>bin\Debug\netstandard1.4\MvvmBaseLib.NetStandard.xml</DocumentationFile>
   </PropertyGroup>
 
-  <Import Project="..\MvvmBaseLib\MvvmBaseLibShared\MvvmBaseLibShared.projitems" Label="Shared" />
+  <Import Project="..\..\MvvmBaseLib\MvvmBaseLibShared\MvvmBaseLibShared.projitems" Label="Shared" />
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
