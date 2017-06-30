@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 
-
 /// <summary>
 /// Kennzeichnet eine Klasse als MVVM-View und damit, 
 /// welches Form/UserControl für ein bestimmtes ViewModel implizit verwendet werden soll.
@@ -23,13 +22,24 @@ public sealed class MvvmViewAttribute : Attribute
         this.ContextGuid = Guid.NewGuid();
     }
 
-    public MvvmViewAttribute(string viewname, string assemblyName)
+    /// <summary>
+    /// Creates a new instance of this class and passed ViewName and AssemblyName.
+    /// </summary>
+    /// <param name="viewName"></param>
+    /// <param name="assemblyName"></param>
+    public MvvmViewAttribute(string viewName, string assemblyName)
     {
-        this.ViewTypeName = viewname;
+        this.ViewTypeName = viewName;
         this.Assemblyname = assemblyName;
         this.ContextGuid = Guid.NewGuid();
     }
 
+    /// <summary>
+    /// Creates a new instance of this class, and passed ViewName, AssemblyName and ContextGuid.
+    /// </summary>
+    /// <param name="viewName"></param>
+    /// <param name="assemblyname"></param>
+    /// <param name="contextGuid"></param>
     public MvvmViewAttribute(string viewName, string assemblyname, string contextGuid)
     {
         this.ViewTypeName = viewName;
@@ -37,7 +47,18 @@ public sealed class MvvmViewAttribute : Attribute
         this.ContextGuid = new Guid(contextGuid);
     }
 
+    /// <summary>
+    /// The ContextGuid.
+    /// </summary>
     public Guid? ContextGuid { get; set; }
+
+    /// <summary>
+    /// The name of the Assembly.
+    /// </summary>
     public string Assemblyname { get; set; }
+
+    /// <summary>
+    /// The name of the View's Type to which these assignment applies.
+    /// </summary>
     public string ViewTypeName { get; set; }
 }

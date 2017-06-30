@@ -16,6 +16,9 @@
 public class MvvmViewModelIncludeAttribute : Attribute
 {
 
+    /// <summary>
+    /// Create an instance of this class.
+    /// </summary>
     public MvvmViewModelIncludeAttribute() : base()
     {
     }
