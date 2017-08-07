@@ -112,63 +112,66 @@ Public Class DataSourceTypeUIForm
                                                         .NodeFont = New Font(Me.Font, FontStyle.Bold)}
 
                 For Each typeItem In assemblyItem.Types
+                    Try
+                        Dim isBusinessClass As Boolean = False
+                        Dim isINotifyPropertyChanged As Boolean = False
+                        Dim isSystemClass As Boolean = False
+                        Dim isBindableBase As Boolean = False
 
-                    Dim isBusinessClass As Boolean = False
-                    Dim isINotifyPropertyChanged As Boolean = False
-                    Dim isSystemClass As Boolean = False
-                    Dim isBindableBase As Boolean = False
-
-                    'If class is marked with the MvvmSystemElementAttribute, we do not list the class.
-                    For Each att In typeItem.GetCustomAttributes(False)
-                        If GetType(MvvmSystemElementAttribute).IsAssignableFrom(att.GetType) Then
-                            isSystemClass = True
-                        End If
-                    Next
-
-                    'We filter out Abstract classes, so BindableBase, MvvmViewModelBase, and all the derived system classes are not listed, here.
-                    If isSystemClass Or typeItem.IsAbstract Then
-                        Continue For
-                    End If
-
-                    For Each att In typeItem.GetCustomAttributes(True)
-                        If GetType(BusinessClassAttribute).IsAssignableFrom(att.GetType) Then
-                            isBusinessClass = True
-                        End If
-                    Next
-
-                    If GetType(INotifyPropertyChanged).IsAssignableFrom(typeItem) Then
-                        isINotifyPropertyChanged = True
-                    End If
-                    If GetType(BindableBase).IsAssignableFrom(typeItem) Then
-                        isBindableBase = True
-                    End If
-
-                    If isBusinessClass Or isINotifyPropertyChanged Then
-                        Dim currentTypeNode = New TreeNode()
-                        currentTypeNode.Text = typeItem.Name
-                        currentTypeNode.ToolTipText = typeItem.FullName
-                        currentTypeNode.Tag = typeItem
-                        If isINotifyPropertyChanged Or isBindableBase Then
-                            If isINotifyPropertyChanged Then
-                                currentTypeNode.NodeFont = New Font(Me.Font, FontStyle.Italic)
+                        'If class is marked with the MvvmSystemElementAttribute, we do not list the class.
+                        For Each att In typeItem.GetCustomAttributes(False)
+                            If GetType(MvvmSystemElementAttribute).IsAssignableFrom(att.GetType) Then
+                                isSystemClass = True
                             End If
+                        Next
 
-                            If isBindableBase Then
-                                currentTypeNode.NodeFont = New Font(Me.Font, FontStyle.Bold)
-                            End If
+                        'We filter out Abstract classes, so BindableBase, MvvmViewModelBase, and all the derived system classes are not listed, here.
+                        If isSystemClass Or typeItem.IsAbstract Then
+                            Continue For
+                        End If
 
-                            If Not assemblyNode.IsExpanded Then
-                                assemblyNode.Expand()
+                        For Each att In typeItem.GetCustomAttributes(True)
+                            If GetType(BusinessClassAttribute).IsAssignableFrom(att.GetType) Then
+                                isBusinessClass = True
+                            End If
+                        Next
+
+                        If GetType(INotifyPropertyChanged).IsAssignableFrom(typeItem) Then
+                            isINotifyPropertyChanged = True
+                        End If
+                        If GetType(BindableBase).IsAssignableFrom(typeItem) Then
+                            isBindableBase = True
+                        End If
+
+                        If isBusinessClass Or isINotifyPropertyChanged Then
+                            Dim currentTypeNode = New TreeNode()
+                            currentTypeNode.Text = typeItem.Name
+                            currentTypeNode.ToolTipText = typeItem.FullName
+                            currentTypeNode.Tag = typeItem
+                            If isINotifyPropertyChanged Or isBindableBase Then
+                                If isINotifyPropertyChanged Then
+                                    currentTypeNode.NodeFont = New Font(Me.Font, FontStyle.Italic)
+                                End If
+
+                                If isBindableBase Then
+                                    currentTypeNode.NodeFont = New Font(Me.Font, FontStyle.Bold)
+                                End If
+
+                                If Not assemblyNode.IsExpanded Then
+                                    assemblyNode.Expand()
+                                End If
+                            End If
+                            assemblyNode.Nodes.Add(currentTypeNode)
+                            If Debugger.IsAttached Then
+                                Debugger.Break()
+                            End If
+                            If typeItem Is Me.DialogResultValue Then
+                                selectedNode = currentTypeNode
                             End If
                         End If
-                        assemblyNode.Nodes.Add(currentTypeNode)
-                        If Debugger.IsAttached Then
-                            Debugger.Break()
-                        End If
-                        If typeItem Is Me.DialogResultValue Then
-                            selectedNode = currentTypeNode
-                        End If
-                    End If
+                    Catch ex As Exception
+                        Debug.WriteLine("Error while inspecting type '{0}': {1}", typeItem.FullName, ex.Message)
+                    End Try
                 Next
                 If assemblyNode.Nodes.Count > 0 Then
                     DataSourceTreeView.Nodes.Add(assemblyNode)
