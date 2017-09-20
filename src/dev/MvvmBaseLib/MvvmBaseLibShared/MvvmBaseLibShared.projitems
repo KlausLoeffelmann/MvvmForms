@@ -34,6 +34,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\MvvmViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\TypeDetector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MvvmBaseClasses\WeakEventManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeLib\TimeRange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeLib\TimeSpanOverlappingTypes.cs" />
   </ItemGroup>
