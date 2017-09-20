@@ -43,8 +43,8 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
             {
                 if (del.Target is EventBinderProxy target)
                 {
-                    //compare sender and target handler!
-                    if (target.Sender == sender && target.OpenInstanceDelegate.GetMethodInfo().Name == eventHandler.GetMethodInfo().Name)
+                    //compare listener and target handler!
+                    if (eventHandler.Target == target.Listener.Target && target.OpenInstanceDelegate.GetMethodInfo().Name == eventHandler.GetMethodInfo().Name)
                     {
                         eventInfo.RemoveEventHandler(sender, del);
                         return;
@@ -61,7 +61,8 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
             /// <summary>
             /// Weak reference to the listener
             /// </summary>
-            private WeakReference _listener;
+            public WeakReference Listener { get; private set; }
+
             private string _eventName;
 
             /// <summary>
@@ -78,7 +79,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
             {
                 EventHandler proxyHandler = EventHandlerProxy;
                 Sender = sender;
-                _listener = new WeakReference(listener);
+                Listener = new WeakReference(listener);
                 _eventName = eventInfo.Name;
                 OpenInstanceDelegate = openInstanceDelegate;
 
@@ -95,9 +96,9 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
             public void EventHandlerProxy(object sender, EventArgs e)
             {
                 //Re-Routing the Event.
-                if (OpenInstanceDelegate != null && _listener.IsAlive)
+                if (OpenInstanceDelegate != null && Listener.IsAlive)
                 {
-                    OpenInstanceDelegate.GetMethodInfo().Invoke(_listener.Target, new object[] { sender, e });
+                    OpenInstanceDelegate.GetMethodInfo().Invoke(Listener.Target, new object[] { sender, e });
                 }
                 else
                 {
