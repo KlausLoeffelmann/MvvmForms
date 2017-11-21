@@ -13,7 +13,7 @@
     <AssemblyName>EFL_CodedUITestContainer</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <SccProjectName>SAK</SccProjectName>
@@ -78,9 +78,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -275,9 +272,9 @@
       <Project>{048efa6c-b9fb-441e-9432-1f72b332856c}</Project>
       <Name>MvvmForms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\MvvmBaseLib\MvvmBaseLib.NET451\MvvmBaseLib.NET451.csproj">
-      <Project>{9f333c30-bd73-46f2-8716-bf5bdb72b833}</Project>
-      <Name>MvvmBaseLib.NET451</Name>
+    <ProjectReference Include="..\..\..\MvvmBaseLib\MvvmBaseLib.NetStandard\MvvmBaseLib.NetStandard.csproj">
+      <Project>{2b224fb2-69b3-4c03-bff7-1d2ad8ecbedd}</Project>
+      <Name>MvvmBaseLib.NetStandard</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

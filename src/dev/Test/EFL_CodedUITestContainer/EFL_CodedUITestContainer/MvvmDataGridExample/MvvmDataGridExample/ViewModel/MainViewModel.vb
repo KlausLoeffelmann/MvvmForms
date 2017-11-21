@@ -22,7 +22,7 @@ Public Class MainViewModel
 
         _buchungen = New ObservableCollection(Of Buchung)()
 
-        For index = 1 To 10
+        For index = 1 To 1000
             _buchungen.Add(New Buchung() With {.Url = "http://umsatzinfo.com/12", .Nummer = 12, .Datum = New Date(2010, 7, 1), .Buchungstext = "Sushi", .Kostenarten = kostenartenLookup, .Ausgaben = 54, .Satz = 19, .Kostenart = bewirtungskosten})
             _buchungen.Add(New Buchung() With {.Url = "http://umsatzinfo.com/13", .Nummer = 13, .Datum = New Date(2010, 7, 2), .Buchungstext = "Sparkasse", .Kostenarten = kostenartenLookup, .Ausgaben = 9.15, .Satz = 0, .Kostenart = sonstigekosten})
             _buchungen.Add(New Buchung() With {.Url = "http://umsatzinfo.com/14", .Nummer = 14, .Datum = New Date(2010, 7, 3), .Buchungstext = "Sparkasse", .Kostenarten = kostenartenLookup, .Ausgaben = -39.26, .Satz = 19, .Kostenart = sonstigekosten})

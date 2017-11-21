@@ -34,9 +34,9 @@ Public Class MvvmDataGridTest
 
         Dim cvs = DirectCast(BuchungenDataGrid.ItemsSource, ListCollectionView)
 
-        cvs.GroupDescriptions.Add(New PropertyGroupDescription(NameOf(Buchung.Kostenart)))
-        cvs.GroupDescriptions.Add(New PropertyGroupDescription(NameOf(Buchung.Wichtig)))
-        cvs.GroupDescriptions.Add(New PropertyGroupDescription(NameOf(Buchung.Betrag)))
+        'cvs.GroupDescriptions.Add(New PropertyGroupDescription(NameOf(Buchung.Kostenart)))
+        'cvs.GroupDescriptions.Add(New PropertyGroupDescription(NameOf(Buchung.Wichtig)))
+        'cvs.GroupDescriptions.Add(New PropertyGroupDescription(NameOf(Buchung.Betrag)))
     End Sub
 
     Private Sub BuchungenDataGrid_ItemsDeleted(sender As Object, e As ActiveDevelop.EntitiesFormsLib.ItemsDeletedEventArgs) Handles BuchungenDataGrid.ItemsDeleted

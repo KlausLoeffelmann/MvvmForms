@@ -482,6 +482,27 @@ Public Class MvvmDataGrid
         End Set
     End Property
 
+    Private _allowMultiColumnFiltering As Boolean = False
+
+    ''' <summary>
+    ''' An- und Ausschalten zum Filtern über mehrere Spalten
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>Gleiche Vorraussetzung am Typ wie DataContextTyp am MvvmManager</remarks>
+    <Category("Filter"),
+    Description("Erlaubt die Filterung über mehrere Spalten.")>
+    Property AllowMultiColumnFiltering As Boolean
+        Get
+            Return _allowMultiColumnFiltering
+        End Get
+        Set(value As Boolean)
+            If _allowMultiColumnFiltering <> value Then
+                _allowMultiColumnFiltering = value
+            End If
+        End Set
+    End Property
+
     Private _customColumnTemplateType As Type
 
     ''' <summary>
@@ -1270,10 +1291,19 @@ Public Class MvvmDataGrid
 
         If column.FilterTextBox.Visibility = Visibility.Visible Then
             column.FilterTextBox.Visibility = Visibility.Collapsed
+            If AllowMultiColumnFiltering Then
+                column.FilterTextBox.Text = ""
+            End If
             column.AddFilterButton()
-            ResetFilter()
+            If AllowMultiColumnFiltering Then
+                FilterColumn("", Nothing)
+            Else
+                ResetFilter()
+            End If
         Else
-            CloseAllFilter()
+            If Not AllowMultiColumnFiltering Then
+                CloseAllFilter()
+            End If
             column.FilterTextBox.Visibility = Visibility.Visible
             column.RemoveFilterButton()
             column.FilterTextBox.Focus()
@@ -1288,7 +1318,11 @@ Public Class MvvmDataGrid
             tb.Visibility = Visibility.Collapsed
             column.AddFilterButton()
             tb.Text = String.Empty
-            ResetFilter()
+            If Not AllowMultiColumnFiltering Then
+                ResetFilter()
+            End If
+        ElseIf allowMultiColumnFiltering Then
+            FilterColumn(Nothing, Nothing)
         End If
     End Sub
 
@@ -1346,52 +1380,59 @@ Public Class MvvmDataGrid
     ''' <param name="column"></param>
     Private Sub FilterColumn(filterString As String, column As MvvmDataGridColumn)
         If _collectionView IsNot Nothing Then
-            If String.IsNullOrWhiteSpace(filterString) Then
-                _collectionView.Filter = Nothing
-            Else
-                Try
-                    _collectionView.Filter = Function(p)
-                                                 Dim suchStr = filterString
-                                                 Dim prop = column.BoundPropertyInfo
-                                                 Dim binding = column.PropertyCellBindings.Where(Function(pb) pb.ControlProperty.PropertyName = "Content").SingleOrDefault()
-
-                                                 If binding IsNot Nothing AndAlso binding.Converter IsNot Nothing AndAlso column.FilterConverterInstance IsNot Nothing Then
-                                                     'mit converter
-
-                                                     Dim val = prop.GetValue(p)
-                                                     Dim convertedValue = column.FilterConverterInstance.Convert(val, GetType(String), binding.ConverterParameter, Globalization.CultureInfo.CurrentCulture)
-
-                                                     If convertedValue IsNot Nothing Then
-                                                         Return FilterColumnValue(suchStr, convertedValue.ToString())
-                                                     Else
-                                                         Return FilterColumnValue(suchStr, Nothing)
-                                                     End If
-                                                 Else
-                                                     If prop.PropertyType = GetType(String) Then
-                                                         Dim val = DirectCast(prop.GetValue(p), String)
-
-                                                         Return FilterColumnValue(suchStr, val)
-                                                     Else
-
-                                                         Dim val = prop.GetValue(p)
-
-                                                         If val IsNot Nothing Then
-                                                             Return FilterColumnValue(suchStr, val.ToString())
-                                                         Else
-                                                             Return FilterColumnValue(suchStr, Nothing)
-                                                         End If
-                                                     End If
+            Try
+                _collectionView.Filter = Function(p)
+                                             Dim isInFilter = True
+                                             For Each c In Columns.Where(Function(x) x.FilterTextBox IsNot Nothing AndAlso Not String.IsNullOrEmpty(x.FilterTextBox.Text))
+                                                 isInFilter = isInFilter And FilterRow(c, p)
+                                                 If Not isInFilter Then
+                                                     Exit For
                                                  End If
-
-                                                 Return False
-                                             End Function
-                Catch ex As InvalidOperationException
-                    Forms.MessageBox.Show(ex.Message, "Fehler beim Filtern", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                             Next
+                                             Return isInFilter
+                                         End Function
+            Catch ex As InvalidOperationException
+                Forms.MessageBox.Show(ex.Message, "Fehler beim Filtern", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     ClearColumn(column)
                 End Try
-            End If
         End If
     End Sub
+
+    Private Function FilterRow(column As MvvmDataGridColumn, p As Object) As Boolean
+        Dim suchStr As String = column.FilterTextBox.Text
+        Dim prop = column.BoundPropertyInfo
+        Dim binding = column.PropertyCellBindings.Where(Function(pb) pb.ControlProperty.PropertyName = "Content").SingleOrDefault()
+
+        If binding IsNot Nothing AndAlso binding.Converter IsNot Nothing AndAlso column.FilterConverterInstance IsNot Nothing Then
+            'mit converter
+
+            Dim val = prop.GetValue(p)
+            Dim convertedValue = column.FilterConverterInstance.Convert(val, GetType(String), binding.ConverterParameter, Globalization.CultureInfo.CurrentCulture)
+
+            If convertedValue IsNot Nothing Then
+                Return FilterColumnValue(suchStr, convertedValue.ToString())
+            Else
+                Return FilterColumnValue(suchStr, Nothing)
+            End If
+        Else
+            If prop.PropertyType = GetType(String) Then
+                Dim val = DirectCast(prop.GetValue(p), String)
+
+                Return FilterColumnValue(suchStr, val)
+            Else
+
+                Dim val = prop.GetValue(p)
+
+                If val IsNot Nothing Then
+                    Return FilterColumnValue(suchStr, val.ToString())
+                Else
+                    Return FilterColumnValue(suchStr, Nothing)
+                End If
+            End If
+        End If
+
+        Return False
+    End Function
 
     ''' <summary>
     ''' Filtert einen Wert in einer Spalte
