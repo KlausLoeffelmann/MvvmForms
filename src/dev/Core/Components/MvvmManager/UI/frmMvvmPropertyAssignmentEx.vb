@@ -102,7 +102,9 @@ Public Class frmMvvmPropertyAssignmentEx
 
         nvrControlProperties.DataSource = myControlProperties
         ViewModelPropertiesTreeView.DataSource = myTreeViewViewModelProperties
-        ViewModelPropertyComboBox.NodesSource = New ObservableCollection(Of PropertyBindingNodeDefinition)(myTreeViewViewModelProperties)
+        If myTreeViewViewModelProperties IsNot Nothing Then
+            ViewModelPropertyComboBox.NodesSource = New ObservableCollection(Of PropertyBindingNodeDefinition)(myTreeViewViewModelProperties)
+        End If
 
         nvrConverters.DataSource = myConverters
 
