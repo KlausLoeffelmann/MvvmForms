@@ -210,6 +210,7 @@ Partial Class MvvmDataGridTest
         '
         'BuchungenDataGrid
         '
+        Me.BuchungenDataGrid.AllowMultiColumnFiltering = False
         Me.BuchungenDataGrid.AutoGenerateColumns = False
         Me.BuchungenDataGrid.CanUserAddRows = False
         Me.BuchungenDataGrid.CanUserDeleteRows = True
@@ -244,7 +245,7 @@ Partial Class MvvmDataGridTest
         Me.BuchungenDataGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BuchungenDataGrid.EnterAction = Nothing
         Me.MvvmManager1.SetEventBindings(Me.BuchungenDataGrid, Nothing)
-        Me.BuchungenDataGrid.FilterCaseSensitive = True
+        Me.BuchungenDataGrid.FilterCaseSensitive = False
         Me.BuchungenDataGrid.GridLinesVisibility = System.Windows.Controls.DataGridGridLinesVisibility.All
         Me.BuchungenDataGrid.HeadersVisibility = CType((System.Windows.Controls.DataGridHeadersVisibility.Column Or System.Windows.Controls.DataGridHeadersVisibility.Row), System.Windows.Controls.DataGridHeadersVisibility)
         Me.BuchungenDataGrid.IsFilteringEnabled = True
