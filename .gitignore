@@ -185,3 +185,5 @@ UpgradeLog*.htm
 FakesAssemblies/
 *.ide
 /src/dev/.vs/CoreTestAndDev/v15
+/src/dev/.vs/MeterReaderMvvmForms/v15/Server/sqlite3/db.lock
+/src/dev/.vs/MvvmCalculator/v15/Server/sqlite3/db.lock

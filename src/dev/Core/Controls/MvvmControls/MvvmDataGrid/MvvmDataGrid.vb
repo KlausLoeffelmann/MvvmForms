@@ -1122,7 +1122,7 @@ Public Class MvvmDataGrid
                                 LoadColumn(innerGrid, converter, column, innerColumn)
                             Next
 
-                            For Each column In _mySettings.ColumnDefinitions
+                            For Each column In _mySettings.ColumnDefinitions.ToArray
                                 If Not Me.Columns.Select(Function(c) c.Name).Contains(column.Name) Then
                                     'Spalte ist nicht mehr drin, also auch wieder löschen aus Settings:
                                     _mySettings.ColumnDefinitions.Remove(column)
