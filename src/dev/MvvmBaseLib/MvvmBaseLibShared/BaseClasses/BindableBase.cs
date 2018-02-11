@@ -106,7 +106,7 @@ namespace ActiveDevelop.MvvmBaseLib
         }
 
         /// <summary>
-        /// Sets or gets, if property changing is current locked. Properties of a derived class - 
+        /// Sets or gets if property changing is current locked. Properties of a derived class - 
         /// when they use SetProperty to updates the value - cannot be written, if this property 
         /// is set to true.
         /// </summary>
@@ -159,7 +159,7 @@ namespace ActiveDevelop.MvvmBaseLib
         }
 
         /// <summary>
-        /// Sets or gets, if PropertyChange-Notification is currently activated.
+        /// Sets or gets if PropertyChange-Notification is currently activated.
         /// </summary>
         /// <value></value>
         /// <returns></returns>

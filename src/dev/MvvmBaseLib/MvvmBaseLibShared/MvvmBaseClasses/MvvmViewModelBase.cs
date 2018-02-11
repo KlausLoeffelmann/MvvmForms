@@ -11,19 +11,30 @@ using System.Xml.Serialization;
 
 namespace ActiveDevelop.MvvmBaseLib.Mvvm
 {
+    /// <summary>
+    /// Abstract class, which is derived in an actual ViewModel. 
+    /// Supports INotifyPropertyChanged, IEditableObject, INotifyDataErrorInfo.
+    /// </summary>
     public abstract class MvvmViewModelBase : BindableBase, IEditableObject, INotifyDataErrorInfo
     {
         private Dictionary<string, string> myErrorDictionary = new Dictionary<string, string>();
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
+        /// <summary>
+        /// Creates a new instance of this class.
+        /// </summary>
         public MvvmViewModelBase() : base()
         { }
 
+        /// <summary>
+        /// Flag, which let's you set the MvvmViewModel based types into debug mode.
+        /// If set, verbose infos are printed into the debug listener when using object cloning functionality.
+        /// </summary>
         static public bool IsDebugMode { get; set; } = false;
 
         /// <summary>
-        /// Wird aufgerufen, wenn das Editieren eines Datensatzes beginnt. Typischerweise beim Editieren in einer Zeile innerhalb eines Grids, wenn die Zeile betreten wurde.
+        /// Called when editing a data set begins. Typically when editing in a line within a grid, if the line was entered.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -32,7 +43,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         public event NotifyBeginEditEventHandler NotifyBeginEdit;
 
         /// <summary>
-        /// Wird aufgerufen, wenn das Editieren eines Datensatzes beendet ist. Typischerweise beim Editieren in einer Zeile innerhalb eines Grids, wenn die Zeile verlassen wurde.
+        /// Called when editing of a data set is finished. Typically when editing in a line within a grid, when the line has been left.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -41,7 +52,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         public event NotifyEndEditEventHandler NotifyEndEdit;
 
         /// <summary>
-        /// Wird aufgerufen, wenn das Editieren eines Datensatzes beendet ist. Typischerweise beim Editieren in einer Zeile innerhalb eines Grids, wenn die Zeile verlassen wurde.
+        /// Called when editing of a data set is finished. Typically when editing in a line within a grid, when the line has been left.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -50,7 +61,7 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         public event NotifyCancelEditEventHandler NotifyCancelEdit;
 
         /// <summary>
-        /// Erstellt eine flache Kopie der Instanz dieser Klasse.
+        /// Creates a shallow copy of the instance of this class.
         /// </summary>
         /// <typeparam name="bbType"></typeparam>
         /// <returns></returns>
@@ -118,21 +129,21 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         }
 
         /// <summary>
-        /// Erstellt eine Instanz dieses Typs auf Basis einer fremden Datenklasse. Angenommen wird hierbei, 
-        /// dass dieser Typ ein ViewModel des MVVM-Patterns bildet, während die fremde Datenklasse das Model bildet, 
-        /// und es die Anforderung gibt, Model und ViewModel zu kopieren.
+        /// Creates an instance of this type based on an external data class. 
+        /// It is assumed that this type forms a ViewModel of the MVVM pattern, while the foreign data class 
+        /// forms the model, and there is a requirement to copy Model and ViewModel.
         /// </summary>
-        /// <typeparam name="ViewModelType">Der Typ (vorzugsweise der Typ der Ableitung dieser Klasse), der als neue ViewModel-Instanz 
-        /// fungieren soll, und die Daten aus der Model-Instanz übernimmt.</typeparam>
-        /// <typeparam name="modelType">Der Typ der Instanz der Model-Daten-Klasse, aus der die Eigenschaftenwerte übernommen werden.</typeparam>
-        /// <param name="model">Die Instanz der Model-Klasse, aus der die Daten übernommen werden.</param>
-        /// <returns>Eine neue Instanz der ViewModel-Klasse.</returns>
-        /// <remarks>Wenn Eigenschaften in der ViewModel-Klasse vorhanden sind, die im Model nicht existieren, werden diese 
-        /// Eigenschaften nicht versucht zu kopieren, und es gibt keine Fehlermeldung. Mithilfe des 
-        /// <see cref="ModelPropertyNameAttribute">ModelPropertyNameAttribute</see>-Attributes können Sie einen anderen 
-        /// Namen für die dem ViewModel entsprechende Eigenschaft im Model bestimmen. Mit des 
-        /// <see cref="ModelPropertyIgnoreAttribute">ModelPropertyIgnoreAttribute</see>-Attributes können Sie bestimmen, dass
-        /// eine Eigenschaft, obwohl sowohl im Model als auch im ViewModel vorhanden, nicht kopiert wird.
+        /// <typeparam name="ViewModelType">The type (preferably the type of derivation of this class), 
+        /// which is to act as the new ViewModel instance, and takes the data from the model instance.</typeparam>
+        /// <typeparam name="modelType">The type of instance of the model data class from which the property values are taken over.</typeparam>
+        /// <param name="model">The instance of the model class from which the data is transferred.</param>
+        /// <returns>A new instance of the ViewModel class.</returns>
+        /// <remarks>If there are properties in the ViewModel class that do not exist in the model, these properties are 
+        /// not copied and there is no error message. 
+        /// Using the <see cref="ModelPropertyNameAttribute">ModelPropertyNameAttribute</see>-Attributes you can 
+        /// specify a different name for the property corresponding to the ViewModel in the model. 
+        /// With the <see cref="ModelPropertyIgnoreAttribute">ModelPropertyIgnoreAttribute</see>-Attributes you can 
+        /// determine that a property is not copied, even though it exists in both the model and the ViewModel.
         /// </remarks>
         public static ViewModelType FromModel<ViewModelType, modelType>(modelType model) where ViewModelType : MvvmViewModelBase, new()
         {
@@ -142,21 +153,19 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         }
 
         /// <summary>
-        /// Erstellt eine Kopie aus Objekten einer Liste eines Models (im MVVM-Pattern), und überträgt die entsprechenden Eigenschaften 
-        /// einer jeden Instanz in Objekte einer Liste eines ViewModels.
+        /// Creates a copy of objects from a list of a model (in the MVVM pattern) and transfers the corresponding properties of each instance to objects in a list of a ViewModel.
         /// </summary>
-        /// <typeparam name="ViewModelType">Der Typ des ViewModels, aus dem die neue Liste bestehen soll.</typeparam>
-        /// <typeparam name="Modeltype">Der Typ des Models, aus dem die vorhandene Liste besteht.</typeparam>
-        /// <param name="modelCollection">Die Auflistung mit den entsprechenden Model-Objekten.</param>
-        /// <returns>Liste mit Objekten eines ViewModels aus der Liste der Models.</returns>
-        /// <remarks> Diese Methode erstellt eine Liste aus ViewModel-Objekten im MVVM-Pattern auf Basis einer Liste 
-        /// mit Model-Objekten. Dabei verwendet diese Funktion die statische generische Methode FromModel.
-        /// Wenn Eigenschaften in der ViewModel-Klasse vorhanden sind, die im Model nicht existieren, werden diese 
-        /// Eigenschaften nicht versucht zu kopieren, und es gibt keine Fehlermeldung. Mithilfe des 
-        /// <see cref="ModelPropertyNameAttribute">ModelPropertyNameAttribute</see>-Attributes können Sie einen anderen 
-        /// Namen für die dem ViewModel entsprechende Eigenschaft im Model bestimmen. Mit des 
-        /// <see cref="ModelPropertyIgnoreAttribute">ModelPropertyIgnoreAttribute</see>-Attributes können Sie bestimmen, dass
-        /// eine Eigenschaft, obwohl sowohl im Model als auch im ViewModel vorhanden, nicht kopiert wird.
+        /// <typeparam name="ViewModelType">The type of the ViewModel the new list should consist of.</typeparam>
+        /// <typeparam name="Modeltype">The type of model that the existing list consists of.</typeparam>
+        /// <param name="modelCollection">The collection with the corresponding model objects.</param>
+        /// <returns>List with objects of a ViewModel from the list of models.</returns>
+        /// <remarks>This method creates a list of ViewModel objects in the MVVM pattern based on a list of model objects. 
+        /// This function uses the static generic method FromModel. If there are properties in the ViewModel class that do 
+        /// not exist in the model, these properties are not copied and there is no error message. 
+        /// Using the <see cref="ModelPropertyNameAttribute">ModelPropertyNameAttribute</see>-Attributes 
+        /// you can specify a different name for the property corresponding to the ViewModel in the model. 
+        /// With the <see cref="ModelPropertyIgnoreAttribute">ModelPropertyIgnoreAttribute</see>-Attributes you 
+        /// can determine that a property is not copied, even though it exists in both the model and the ViewModel.
         /// </remarks>
         public static IEnumerable<ViewModelType> FromModelList<ViewModelType, Modeltype>(IEnumerable<Modeltype> modelCollection) where ViewModelType : MvvmViewModelBase, new()
         {
@@ -166,17 +175,16 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         }
 
         /// <summary>
-        /// Kopiert die Inhalte der Eigenschaften von einer anderen Instanz dieser Klasse in die aktuelle. 
-        /// (Soll insbesondere zur Vereinfachung beim Mvvm-Pattern zur Übernahme von Daten eines Models 
-        /// in ein ViewModel verwendet werden).
+        /// Copies the contents of the properties from another instance of this class to the current one.
+        /// (Should be used in particular to simplify the Mvvm pattern for transferring data from a model to a ViewModel).
         /// </summary>
-        /// <param name="model"></param>
-        /// <remarks>Wenn Eigenschaften in der ViewModel-Klasse vorhanden sind, die im Model nicht existieren, werden diese 
-        /// Eigenschaften nicht versucht zu kopieren, und es gibt keine Fehlermeldung. Mithilfe des 
-        /// <see cref="ModelPropertyNameAttribute">ModelPropertyNameAttribute</see>-Attributes können Sie einen anderen 
-        /// Namen für die dem ViewModel entsprechende Eigenschaft im Model bestimmen. Mit des 
-        /// <see cref="ModelPropertyIgnoreAttribute">ModelPropertyIgnoreAttribute</see>-Attributes können Sie bestimmen, dass
-        /// eine Eigenschaft, obwohl sowohl im Model als auch im ViewModel vorhanden, nicht kopiert wird.
+        /// <param name="model">The instance of the model class from which the data is transferred.</param>
+        /// <remarks>If there are properties in the ViewModel class that do not exist in the model, these properties are 
+        /// not copied and there is no error message. 
+        /// Using the <see cref="ModelPropertyNameAttribute">ModelPropertyNameAttribute</see>-Attributes you can 
+        /// specify a different name for the property corresponding to the ViewModel in the model. 
+        /// With the <see cref="ModelPropertyIgnoreAttribute">ModelPropertyIgnoreAttribute</see>-Attributes you can 
+        /// determine that a property is not copied, even though it exists in both the model and the ViewModel.
         /// </remarks>
         [DebuggerHidden]
         public virtual void CopyPropertiesFrom(object model)
@@ -285,10 +293,17 @@ namespace ActiveDevelop.MvvmBaseLib.Mvvm
         }
 
         /// <summary>
-        /// Kopiert die Inhalte der Eigenschaften von einer anderen Instanz dieser Klasse in die aktuelle.
+        /// Copies the contents of the properties of this class to another instance of the same or a different type.
+        /// (Should be used in particular to simplify the Mvvm pattern for transferring data from a ViewModel to a Model).
         /// </summary>
-        /// <param name="model"></param>
-        /// <remarks></remarks>
+        /// <param name="model">The instance of the model class to which the data is transferred.</param>
+        /// <remarks>If there are properties in the Model class that do not exist in the ViewModel, these properties are 
+        /// not copied and there is no error message. 
+        /// Using the <see cref="ModelPropertyNameAttribute">ModelPropertyNameAttribute</see>-Attributes you can 
+        /// specify a different name for the property corresponding to the ViewModel in the model. 
+        /// With the <see cref="ModelPropertyIgnoreAttribute">ModelPropertyIgnoreAttribute</see>-Attributes you can 
+        /// determine that a property is not copied, even though it exists in both the model and the ViewModel.
+        /// </remarks>
         public virtual void CopyPropertiesTo(object model)
         {
             //Properties holen
