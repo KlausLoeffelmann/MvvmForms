@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+        <id>MvvmForms</id>
+        <version>2.3.3-Beta</version>
+        <title>MvvmForms</title>
+        <authors>ActiveDevelop</authors>
+        <owners>Klaus Loeffelmann</owners>
+        <projectUrl>https://github.com/ActiveDevelop/MvvmForms</projectUrl>
+        <iconUrl>http://www.activedevelop.de/wp-content/themes/activedevelop2015/favicon.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <summary>MvvmForms</summary>        
+        <description>MvvmForms is Dual License. For Open Source Projects under GPL, for evaluation purposes, for personal, non-commercial purpose, for academic purpose it's free. For propriety, commercial projects it is also free, but without any support or guarantees. For a supported version, please contact mvvmforms@activedevelop.de for information how to obtain per-developer licenses with included support options.</description>
+        <releaseNotes>New in V2.3.3 Beta
+* Add filtering for DataContext-Type-Picker</releaseNotes>
+        <copyright>Copyright 2010-2018 by Klaus Loeffelmann, ActiveDevelop.</copyright>
+        <tags>Windows Forms; MVVM; ActiveDevelop</tags>
+        <dependencies>
+            <dependency id="System.Runtime.Serialization.Primitives" version="4.3.0" />
+            <dependency id="MvvmFormsBase" version="2.3.0-Beta" />
+            <dependency id="Microsoft.ReportingServices.ReportViewerControl.Winforms" version="140.1000.523" />
+            <dependency id="Microsoft.SqlServer.Types" version="14.0.314.76" />
+        </dependencies>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="PresentationCore" targetFramework=".NETFramework4.0.0.0" />
+            <frameworkAssembly assemblyName="WindowsBase" targetFramework=".NETFramework4.0.0.0" />
+            <frameworkAssembly assemblyName="PresentationFramework" targetFramework="" />
+        </frameworkAssemblies>
+  </metadata>
+</package>
