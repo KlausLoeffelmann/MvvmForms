@@ -144,6 +144,12 @@
     <Compile Include="MvvmTest\Views\EmptyMvvmDataGridForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MvvmTest\Views\FilteredDataTypePicker.Designer.vb">
+      <DependentUpon>FilteredDataTypePicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MvvmTest\Views\FilteredDataTypePicker.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MvvmTest\Views\MvvmDataGridMemoryLeakTest.Designer.vb">
       <DependentUpon>MvvmDataGridMemoryLeakTest.vb</DependentUpon>
     </Compile>
@@ -217,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MvvmTest\Views\EmptyMvvmDataGridForm.resx">
       <DependentUpon>EmptyMvvmDataGridForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MvvmTest\Views\FilteredDataTypePicker.resx">
+      <DependentUpon>FilteredDataTypePicker.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MvvmTest\Views\MvvmDataGridMemoryLeakTest.resx">
       <DependentUpon>MvvmDataGridMemoryLeakTest.vb</DependentUpon>

@@ -38,10 +38,13 @@ Imports System.ComponentModel.Design
 Imports System.Windows.Forms
 Imports System.Drawing
 Imports ActiveDevelop.MvvmBaseLib
+Imports System.Threading.Tasks
+Imports System.Runtime.CompilerServices
 
 Public Class DataSourceTypeUIForm
 
     Private myDialogResultValue As Type
+    Private _totalAssemblyList As IEnumerable(Of DisplayableAssemblyItem)
 
     Private Class DisplayableAssemblyItem
 
@@ -72,8 +75,7 @@ Public Class DataSourceTypeUIForm
 
     Public Sub InitializeListView(includeGACAssemblies As Boolean)
 
-        Dim selectedNode As TreeNode = Nothing
-        Me.DataSourceTreeView.Nodes.Clear()
+        txtTypeFilter.Value = Nothing
 
         'Header setzen
         If ComponentInstance IsNot Nothing Then
@@ -88,12 +90,12 @@ Public Class DataSourceTypeUIForm
                 typliste.Add(DirectCast(item, System.Type))
             Next
 
-            Dim assemblyList As IEnumerable(Of DisplayableAssemblyItem) = Nothing
+            _totalAssemblyList = Nothing
 
-            assemblyList = From tItem In typliste
-                           Let assembly = tItem.Assembly
-                           Select assembly Distinct
-                           Select New DisplayableAssemblyItem With
+            _totalAssemblyList = From tItem In typliste
+                                 Let assembly = tItem.Assembly
+                                 Select assembly Distinct
+                                 Select New DisplayableAssemblyItem With
                                  {.FullName = assembly.FullName,
                                  .ShortName = assembly.GetName().Name,
                                  .Assembly = assembly,
@@ -105,82 +107,88 @@ Public Class DataSourceTypeUIForm
                                            Order By item.Name).ToList
                                  }
 
-            DataSourceTreeView.BeginUpdate()
-            For Each assemblyItem In assemblyList
-                Dim assemblyNode = New TreeNode() With {.Text = assemblyItem.ShortName,
-                                                        .ToolTipText = assemblyItem.FullName,
-                                                        .NodeFont = New Font(Me.Font, FontStyle.Bold)}
-
-                For Each typeItem In assemblyItem.Types
-                    Try
-                        Dim isBusinessClass As Boolean = False
-                        Dim isINotifyPropertyChanged As Boolean = False
-                        Dim isSystemClass As Boolean = False
-                        Dim isBindableBase As Boolean = False
-
-                        'If class is marked with the MvvmSystemElementAttribute, we do not list the class.
-                        For Each att In typeItem.GetCustomAttributes(False)
-                            If GetType(MvvmSystemElementAttribute).IsAssignableFrom(att.GetType) Then
-                                isSystemClass = True
-                            End If
-                        Next
-
-                        'We filter out Abstract classes, so BindableBase, MvvmViewModelBase, and all the derived system classes are not listed, here.
-                        If isSystemClass Or typeItem.IsAbstract Then
-                            Continue For
-                        End If
-
-                        For Each att In typeItem.GetCustomAttributes(True)
-                            If GetType(BusinessClassAttribute).IsAssignableFrom(att.GetType) Then
-                                isBusinessClass = True
-                            End If
-                        Next
-
-                        If GetType(INotifyPropertyChanged).IsAssignableFrom(typeItem) Then
-                            isINotifyPropertyChanged = True
-                        End If
-                        If GetType(BindableBase).IsAssignableFrom(typeItem) Then
-                            isBindableBase = True
-                        End If
-
-                        If isBusinessClass Or isINotifyPropertyChanged Then
-                            Dim currentTypeNode = New TreeNode()
-                            currentTypeNode.Text = typeItem.Name
-                            currentTypeNode.ToolTipText = typeItem.FullName
-                            currentTypeNode.Tag = typeItem
-                            If isINotifyPropertyChanged Or isBindableBase Then
-                                If isINotifyPropertyChanged Then
-                                    currentTypeNode.NodeFont = New Font(Me.Font, FontStyle.Italic)
-                                End If
-
-                                If isBindableBase Then
-                                    currentTypeNode.NodeFont = New Font(Me.Font, FontStyle.Bold)
-                                End If
-
-                                If Not assemblyNode.IsExpanded Then
-                                    assemblyNode.Expand()
-                                End If
-                            End If
-                            assemblyNode.Nodes.Add(currentTypeNode)
-                            If Debugger.IsAttached Then
-                                Debugger.Break()
-                            End If
-                            If typeItem Is Me.DialogResultValue Then
-                                selectedNode = currentTypeNode
-                            End If
-                        End If
-                    Catch ex As Exception
-                        Debug.WriteLine("Error while inspecting type '{0}': {1}", typeItem.FullName, ex.Message)
-                    End Try
-                Next
-                If assemblyNode.Nodes.Count > 0 Then
-                    DataSourceTreeView.Nodes.Add(assemblyNode)
-                End If
-            Next
-            DataSourceTreeView.SelectedNode = selectedNode
-            DataSourceTreeView.EndUpdate()
+            UpdateTreeView(_totalAssemblyList)
         End If
     End Sub
+
+    Private Function UpdateTreeView(assemblyList As IEnumerable(Of DisplayableAssemblyItem)) As TreeNode
+        Dim selectedNode As TreeNode = Nothing
+
+        DataSourceTreeView.BeginUpdate()
+        Me.DataSourceTreeView.Nodes.Clear()
+
+        For Each assemblyItem In assemblyList
+            Dim assemblyNode = New TreeNode() With {.Text = assemblyItem.ShortName,
+                                                    .ToolTipText = assemblyItem.FullName,
+                                                    .NodeFont = New Font(Me.Font, FontStyle.Bold)}
+
+            For Each typeItem In assemblyItem.Types
+                Try
+                    Dim isBusinessClass As Boolean = False
+                    Dim isINotifyPropertyChanged As Boolean = False
+                    Dim isSystemClass As Boolean = False
+                    Dim isBindableBase As Boolean = False
+
+                    'If class is marked with the MvvmSystemElementAttribute, we do not list the class.
+                    For Each att In typeItem.GetCustomAttributes(False)
+                        If GetType(MvvmSystemElementAttribute).IsAssignableFrom(att.GetType) Then
+                            isSystemClass = True
+                        End If
+                    Next
+
+                    'We filter out Abstract classes, so BindableBase, MvvmViewModelBase, and all the derived system classes are not listed, here.
+                    If isSystemClass Or typeItem.IsAbstract Then
+                        Continue For
+                    End If
+
+                    For Each att In typeItem.GetCustomAttributes(True)
+                        If GetType(BusinessClassAttribute).IsAssignableFrom(att.GetType) Then
+                            isBusinessClass = True
+                        End If
+                    Next
+
+                    If GetType(INotifyPropertyChanged).IsAssignableFrom(typeItem) Then
+                        isINotifyPropertyChanged = True
+                    End If
+                    If GetType(BindableBase).IsAssignableFrom(typeItem) Then
+                        isBindableBase = True
+                    End If
+
+                    If isBusinessClass Or isINotifyPropertyChanged Then
+                        Dim currentTypeNode = New TreeNode()
+                        currentTypeNode.Text = typeItem.Name
+                        currentTypeNode.ToolTipText = typeItem.FullName
+                        currentTypeNode.Tag = typeItem
+                        If isINotifyPropertyChanged Or isBindableBase Then
+                            If isINotifyPropertyChanged Then
+                                currentTypeNode.NodeFont = New Font(Me.Font, FontStyle.Italic)
+                            End If
+
+                            If isBindableBase Then
+                                currentTypeNode.NodeFont = New Font(Me.Font, FontStyle.Bold)
+                            End If
+
+                            If Not assemblyNode.IsExpanded Then
+                                assemblyNode.Expand()
+                            End If
+                        End If
+                        assemblyNode.Nodes.Add(currentTypeNode)
+                        If typeItem Is Me.DialogResultValue Then
+                            selectedNode = currentTypeNode
+                        End If
+                    End If
+                Catch ex As Exception
+                    Debug.WriteLine("Error while inspecting type '{0}': {1}", typeItem.FullName, ex.Message)
+                End Try
+            Next
+            If assemblyNode.Nodes.Count > 0 Then
+                DataSourceTreeView.Nodes.Add(assemblyNode)
+            End If
+        Next
+        DataSourceTreeView.SelectedNode = selectedNode
+        DataSourceTreeView.EndUpdate()
+        Return selectedNode
+    End Function
 
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
@@ -266,6 +274,81 @@ Public Class DataSourceTypeUIForm
             InitializeListView(True)
         Else
             InitializeListView(False)
+        End If
+    End Sub
+
+    Private _oldValue As String = String.Empty
+
+    Private Sub NullableTextValue1_TextChanged(sender As Object, e As EventArgs) Handles txtTypeFilter.TextChanged
+        If txtTypeFilter.Text.Length < 3 Then
+            RevokeFilterTimer()
+        Else
+            RestartFilterTimer()
+        End If
+
+        If _oldValue.Length >= 3 AndAlso txtTypeFilter.Text.Length < 3 Then
+            UpdateTreeView(_totalAssemblyList)
+        End If
+
+        _oldValue = txtTypeFilter.Text
+    End Sub
+
+    Private FilterTimer As Timer
+
+    Private Sub RestartFilterTimer()
+        If FilterTimer Is Nothing Then
+            FilterTimer = New Timer() With {.Enabled = True, .Interval = 300}
+            AddHandler FilterTimer.Tick, AddressOf FilterTimer_Tick
+        Else
+            FilterTimer.Stop()
+            FilterTimer.Start()
+        End If
+    End Sub
+
+    Private Sub RevokeFilterTimer()
+        If FilterTimer IsNot Nothing Then
+            FilterTimer.Stop()
+            RemoveHandler FilterTimer.Tick, AddressOf FilterTimer_Tick
+            FilterTimer = Nothing
+        End If
+    End Sub
+
+    Private Sub FilterTimer_Tick(sender As Object, e As EventArgs)
+        If Debugger.IsAttached Then
+            Debugger.Break()
+        End If
+
+        RevokeFilterTimer()
+        UpdateFilter()
+    End Sub
+
+    Private Sub UpdateFilter()
+        If txtTypeFilter.Value.HasValue Then
+            Dim filteredList = New List(Of DisplayableAssemblyItem)()
+
+            For Each a In _totalAssemblyList.ToList()
+                Dim first = True
+                For Each t In a.Types.ToList()
+                    If (Not checkCaseSensitive.Checked AndAlso t.Name.ToUpper().Contains(txtTypeFilter.Text.ToUpper())) OrElse t.Name.Contains(txtTypeFilter.Text) Then
+                        If first Then
+                            filteredList.Add(a)
+                            a.Types.Clear()
+                            first = False
+                        End If
+                        a.Types.Add(t)
+                    End If
+                Next
+            Next
+
+            UpdateTreeView(filteredList)
+        Else
+            UpdateTreeView(_totalAssemblyList)
+        End If
+    End Sub
+
+    Private Sub checkCaseSensitive_CheckedChanged(sender As Object, e As EventArgs) Handles checkCaseSensitive.CheckedChanged
+        If _totalAssemblyList IsNot Nothing Then
+            UpdateFilter()
         End If
     End Sub
 End Class
