@@ -38,7 +38,7 @@ Partial Class DataSourceTypeUIForm
         Me.btnOK.Location = New System.Drawing.Point(332, 386)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(64, 28)
-        Me.btnOK.TabIndex = 0
+        Me.btnOK.TabIndex = 2
         Me.btnOK.Text = "OK"
         Me.btnOK.UseVisualStyleBackColor = True
         '
@@ -48,7 +48,7 @@ Partial Class DataSourceTypeUIForm
         Me.btnCancel.Location = New System.Drawing.Point(402, 386)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(64, 28)
-        Me.btnCancel.TabIndex = 1
+        Me.btnCancel.TabIndex = 3
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
@@ -67,7 +67,7 @@ Partial Class DataSourceTypeUIForm
         Me.chkGACAssemblies.Location = New System.Drawing.Point(132, 392)
         Me.chkGACAssemblies.Name = "chkGACAssemblies"
         Me.chkGACAssemblies.Size = New System.Drawing.Size(180, 17)
-        Me.chkGACAssemblies.TabIndex = 16
+        Me.chkGACAssemblies.TabIndex = 4
         Me.chkGACAssemblies.Text = "Include GAC/System Assemblies"
         Me.chkGACAssemblies.UseVisualStyleBackColor = True
         '
@@ -81,7 +81,7 @@ Partial Class DataSourceTypeUIForm
         Me.DataSourceTreeView.Margin = New System.Windows.Forms.Padding(2)
         Me.DataSourceTreeView.Name = "DataSourceTreeView"
         Me.DataSourceTreeView.Size = New System.Drawing.Size(334, 331)
-        Me.DataSourceTreeView.TabIndex = 20
+        Me.DataSourceTreeView.TabIndex = 1
         '
         'txtTypeFilter
         '
@@ -95,7 +95,7 @@ Partial Class DataSourceTypeUIForm
         Me.txtTypeFilter.ObfuscationChar = Nothing
         Me.txtTypeFilter.PermissionReason = Nothing
         Me.txtTypeFilter.Size = New System.Drawing.Size(199, 20)
-        Me.txtTypeFilter.TabIndex = 21
+        Me.txtTypeFilter.TabIndex = 0
         Me.txtTypeFilter.UIGuid = New System.Guid("2f627d9e-4d57-429e-a55d-67400f69a7d7")
         Me.txtTypeFilter.Value = Nothing
         Me.txtTypeFilter.ValueValidationState = Nothing
@@ -115,7 +115,7 @@ Partial Class DataSourceTypeUIForm
         Me.checkCaseSensitive.Location = New System.Drawing.Point(373, 19)
         Me.checkCaseSensitive.Name = "checkCaseSensitive"
         Me.checkCaseSensitive.Size = New System.Drawing.Size(96, 17)
-        Me.checkCaseSensitive.TabIndex = 23
+        Me.checkCaseSensitive.TabIndex = 5
         Me.checkCaseSensitive.Text = "Case Sensitive"
         Me.checkCaseSensitive.UseVisualStyleBackColor = True
         '
