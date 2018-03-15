@@ -623,7 +623,7 @@ Public Class MvvmDataGridColumn
     End Sub
 
 
-    Private _width As Nullable(Of Double) = -1
+    Private _width As Double? = 1
     ''' <summary>
     ''' Spaltenbreite
     ''' </summary>
@@ -631,11 +631,11 @@ Public Class MvvmDataGridColumn
     ''' <returns></returns>
     ''' <remarks>Durch den MvvmManager bindbare View-Property</remarks>
     <Category("Column")>
-    Public Property Width As Nullable(Of Double)
+    Public Property Width As Double?
         Get
             Return _width
         End Get
-        Set(ByVal value As Nullable(Of Double))
+        Set(ByVal value As Double?)
             If Not Object.Equals(_width, value) Then
                 _width = value
                 OnWidthChanged(EventArgs.Empty)
