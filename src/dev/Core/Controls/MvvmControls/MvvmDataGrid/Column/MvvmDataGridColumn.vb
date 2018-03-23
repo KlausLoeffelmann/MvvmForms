@@ -425,7 +425,13 @@ Public Class MvvmDataGridColumn
             dataGridColumn.HeaderStyle.Setters.Add(New Setter(DataGridColumnHeader.PaddingProperty, New Thickness(Me.ColumnHeaderPadding.Left, Me.ColumnHeaderPadding.Top, Me.ColumnHeaderPadding.Right, Me.ColumnHeaderPadding.Bottom)))
         End If
 
+        'Width
+        If Me.Width.HasValue Then
+            dataGridColumn.Width = New DataGridLength(Me.Width.Value, Me.WidthLengthUnitType)
+        End If
 
+        'Visibility
+        dataGridColumn.Visibility = Visibility
     End Sub
 
     ''' <summary>
@@ -496,15 +502,6 @@ Public Class MvvmDataGridColumn
         'HorizontalAlignment
         dataGridBoundColumn.ElementStyle.Setters.Add(New Setter(Controls.Control.HorizontalAlignmentProperty, Me.HorizontalAlignment))
         dataGridBoundColumn.EditingElementStyle.Setters.Add(New Setter(Controls.Control.HorizontalAlignmentProperty, Me.HorizontalAlignment))
-
-
-        'Width
-        If Me.Width.HasValue Then
-            dataGridBoundColumn.Width = New DataGridLength(Me.Width.Value, Me.WidthLengthUnitType)
-        End If
-
-        'Visibility
-        dataGridBoundColumn.Visibility = Me.Visibility
 
     End Sub
 

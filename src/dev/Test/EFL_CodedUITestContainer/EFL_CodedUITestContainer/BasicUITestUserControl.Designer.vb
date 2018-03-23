@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class BasicUITestUserControl
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,11 +20,13 @@ Partial Class BasicUITestUserControl
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BasicUITestUserControl))
         Me.NullableTextBoxCaption = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.TestConfigurationPropertiesButton = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.SingleResult4 = New System.Windows.Forms.Label()
@@ -44,14 +46,7 @@ Partial Class BasicUITestUserControl
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.NullableValueRelationPopupInput = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
-        Me.ftbcmMain = New ActiveDevelop.EntitiesFormsLib.FormToBusinessClassManager()
         Me.SetNullableTextValuePropertiesButton = New System.Windows.Forms.Button()
-        Me.NullableMultilineTextValueInput = New ActiveDevelop.EntitiesFormsLib.NullableMultilineTextValue()
-        Me.NullableTextValueInput = New ActiveDevelop.EntitiesFormsLib.NullableTextValue()
-        Me.NullableNumValueInput = New ActiveDevelop.EntitiesFormsLib.NullableNumValue()
-        Me.NullableDateValueInput = New ActiveDevelop.EntitiesFormsLib.NullableDateValue()
-        Me.NullableIntValueInput = New ActiveDevelop.EntitiesFormsLib.NullableIntValue()
         Me.MainTab = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.ClearTestResultButton = New System.Windows.Forms.Button()
@@ -61,20 +56,28 @@ Partial Class BasicUITestUserControl
         Me.StatusStripMain = New System.Windows.Forms.StatusStrip()
         Me.IsDirtyToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ResetEventCounterToolStripDropDownButton = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.nvrPreserveInputTest = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
+        Me.ftbcmMain = New ActiveDevelop.EntitiesFormsLib.FormToBusinessClassManager()
+        Me.NullableValueRelationPopupInput = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
+        Me.NullableMultilineTextValueInput = New ActiveDevelop.EntitiesFormsLib.NullableMultilineTextValue()
+        Me.NullableTextValueInput = New ActiveDevelop.EntitiesFormsLib.NullableTextValue()
+        Me.NullableNumValueInput = New ActiveDevelop.EntitiesFormsLib.NullableNumValue()
+        Me.NullableDateValueInput = New ActiveDevelop.EntitiesFormsLib.NullableDateValue()
+        Me.NullableIntValueInput = New ActiveDevelop.EntitiesFormsLib.NullableIntValue()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.NullableDateValue1 = New ActiveDevelop.EntitiesFormsLib.NullableDateValue()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
-        CType(Me.NullableValueRelationPopupInput, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ftbcmMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MainTab.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.StatusStripMain.SuspendLayout()
         CType(Me.nvrPreserveInputTest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ftbcmMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NullableValueRelationPopupInput, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'NullableTextBoxCaption
@@ -97,6 +100,7 @@ Partial Class BasicUITestUserControl
         'SplitContainer1.Panel1
         '
         Me.SplitContainer1.Panel1.AutoScroll = True
+        Me.SplitContainer1.Panel1.Controls.Add(Me.GroupBox1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.Button2)
         Me.SplitContainer1.Panel1.Controls.Add(Me.Label7)
         Me.SplitContainer1.Panel1.Controls.Add(Me.nvrPreserveInputTest)
@@ -125,7 +129,6 @@ Partial Class BasicUITestUserControl
         Me.SplitContainer1.Panel1.Controls.Add(Me.NullableMultilineTextValueInput)
         Me.SplitContainer1.Panel1.Controls.Add(Me.NullableTextValueInput)
         Me.SplitContainer1.Panel1.Controls.Add(Me.NullableNumValueInput)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.NullableDateValueInput)
         Me.SplitContainer1.Panel1.Controls.Add(Me.NullableIntValueInput)
         '
         'SplitContainer1.Panel2
@@ -134,6 +137,25 @@ Partial Class BasicUITestUserControl
         Me.SplitContainer1.Size = New System.Drawing.Size(810, 435)
         Me.SplitContainer1.SplitterDistance = 506
         Me.SplitContainer1.TabIndex = 0
+        '
+        'Button2
+        '
+        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button2.Location = New System.Drawing.Point(439, 211)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(50, 23)
+        Me.Button2.TabIndex = 31
+        Me.Button2.Text = "Prop's"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(15, 212)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(126, 13)
+        Me.Label7.TabIndex = 29
+        Me.Label7.Text = "Nullable - (PreserveInput)"
         '
         'TestConfigurationPropertiesButton
         '
@@ -323,47 +345,6 @@ Partial Class BasicUITestUserControl
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Nullable - MultilineText - Box:"
         '
-        'NullableValueRelationPopupInput
-        '
-        Me.NullableValueRelationPopupInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.NullableValueRelationPopupInput.AssignedManagerComponent = Me.ftbcmMain
-        Me.NullableValueRelationPopupInput.AutoResizeColumnsOnOpen = False
-        Me.NullableValueRelationPopupInput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None
-        Me.NullableValueRelationPopupInput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None
-        Me.NullableValueRelationPopupInput.BeepOnFailedValidation = False
-        Me.NullableValueRelationPopupInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.NullableValueRelationPopupInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
-        Me.NullableValueRelationPopupInput.DataSource = Nothing
-        Me.NullableValueRelationPopupInput.DisplayMember = Nothing
-        Me.NullableValueRelationPopupInput.HasAddButton = True
-        Me.NullableValueRelationPopupInput.HideButtons = False
-        Me.NullableValueRelationPopupInput.IsPopupAutoSize = False
-        Me.NullableValueRelationPopupInput.IsPopupResizable = True
-        Me.NullableValueRelationPopupInput.Location = New System.Drawing.Point(162, 186)
-        Me.NullableValueRelationPopupInput.MinimumPopupSize = New System.Drawing.Size(267, 80)
-        Me.NullableValueRelationPopupInput.MultiSelect = False
-        Me.NullableValueRelationPopupInput.Name = "NullableValueRelationPopupInput"
-        Me.NullableValueRelationPopupInput.NullValueString = "* - - - *"
-        Me.NullableValueRelationPopupInput.PermissionReason = Nothing
-        Me.NullableValueRelationPopupInput.Searchable = True
-        Me.NullableValueRelationPopupInput.SearchColumnHeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NullableValueRelationPopupInput.SearchKeywordOrChar = Global.Microsoft.VisualBasic.ChrW(59)
-        Me.NullableValueRelationPopupInput.Size = New System.Drawing.Size(267, 20)
-        Me.NullableValueRelationPopupInput.TabIndex = 16
-        Me.NullableValueRelationPopupInput.UIGuid = New System.Guid("bbac7d92-bf33-49e8-baf0-3e960048745c")
-        Me.NullableValueRelationPopupInput.Value = Nothing
-        Me.NullableValueRelationPopupInput.ValueMember = Nothing
-        '
-        'ftbcmMain
-        '
-        Me.ftbcmMain.CancelButton = Nothing
-        Me.ftbcmMain.ContainerControl = Me
-        Me.ftbcmMain.DataSourceType = Nothing
-        Me.ftbcmMain.DynamicEventHandlingList = Nothing
-        Me.ftbcmMain.HostingForm = Nothing
-        Me.ftbcmMain.HostingUserControl = Me
-        '
         'SetNullableTextValuePropertiesButton
         '
         Me.SetNullableTextValuePropertiesButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -373,103 +354,6 @@ Partial Class BasicUITestUserControl
         Me.SetNullableTextValuePropertiesButton.TabIndex = 2
         Me.SetNullableTextValuePropertiesButton.Text = "Prop's"
         Me.SetNullableTextValuePropertiesButton.UseVisualStyleBackColor = True
-        '
-        'NullableMultilineTextValueInput
-        '
-        Me.NullableMultilineTextValueInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.NullableMultilineTextValueInput.AssignedManagerComponent = Me.ftbcmMain
-        Me.NullableMultilineTextValueInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.NullableMultilineTextValueInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
-        Me.NullableMultilineTextValueInput.Location = New System.Drawing.Point(162, 43)
-        Me.NullableMultilineTextValueInput.MaxLength = 32767
-        Me.NullableMultilineTextValueInput.Name = "NullableMultilineTextValueInput"
-        Me.NullableMultilineTextValueInput.ObfuscationChar = Nothing
-        Me.NullableMultilineTextValueInput.PermissionReason = Nothing
-        Me.NullableMultilineTextValueInput.Size = New System.Drawing.Size(267, 59)
-        Me.NullableMultilineTextValueInput.TabIndex = 4
-        Me.NullableMultilineTextValueInput.UIGuid = New System.Guid("e4768cc4-c3d7-44ca-b8d9-df9994acaf1d")
-        Me.NullableMultilineTextValueInput.Value = Nothing
-        Me.NullableMultilineTextValueInput.ValueValidationState = Nothing
-        '
-        'NullableTextValueInput
-        '
-        Me.NullableTextValueInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.NullableTextValueInput.AssignedManagerComponent = Me.ftbcmMain
-        Me.NullableTextValueInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.NullableTextValueInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
-        Me.NullableTextValueInput.Location = New System.Drawing.Point(162, 12)
-        Me.NullableTextValueInput.MaxLength = 32767
-        Me.NullableTextValueInput.Name = "NullableTextValueInput"
-        Me.NullableTextValueInput.ObfuscationChar = Nothing
-        Me.NullableTextValueInput.PermissionReason = Nothing
-        Me.NullableTextValueInput.Size = New System.Drawing.Size(267, 20)
-        Me.NullableTextValueInput.TabIndex = 1
-        Me.NullableTextValueInput.UIGuid = New System.Guid("924325d4-e5ec-4bee-b59f-321464d410e5")
-        Me.NullableTextValueInput.Value = Nothing
-        Me.NullableTextValueInput.ValueValidationState = Nothing
-        '
-        'NullableNumValueInput
-        '
-        Me.NullableNumValueInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.NullableNumValueInput.AssignedManagerComponent = Me.ftbcmMain
-        Me.NullableNumValueInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.NullableNumValueInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
-        Me.NullableNumValueInput.CurrencySymbolString = Nothing
-        Me.NullableNumValueInput.Location = New System.Drawing.Point(162, 134)
-        Me.NullableNumValueInput.MaxLength = 32767
-        Me.NullableNumValueInput.MaxValue = Nothing
-        Me.NullableNumValueInput.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.NullableNumValueInput.Name = "NullableNumValueInput"
-        Me.NullableNumValueInput.ObfuscationChar = Nothing
-        Me.NullableNumValueInput.PermissionReason = Nothing
-        Me.NullableNumValueInput.Size = New System.Drawing.Size(267, 20)
-        Me.NullableNumValueInput.TabIndex = 10
-        Me.NullableNumValueInput.UIGuid = New System.Guid("42bc45f4-cd10-4d30-b4b8-2bbe6e62f113")
-        Me.NullableNumValueInput.Value = Nothing
-        Me.NullableNumValueInput.ValueValidationState = Nothing
-        '
-        'NullableDateValueInput
-        '
-        Me.NullableDateValueInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.NullableDateValueInput.AssignedManagerComponent = Me.ftbcmMain
-        Me.NullableDateValueInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.NullableDateValueInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
-        Me.NullableDateValueInput.DaysDistanceBetweenLinkedControl = Nothing
-        Me.NullableDateValueInput.LinkedToNullableDateControl = Nothing
-        Me.NullableDateValueInput.Location = New System.Drawing.Point(162, 160)
-        Me.NullableDateValueInput.MaxLength = 32767
-        Me.NullableDateValueInput.Name = "NullableDateValueInput"
-        Me.NullableDateValueInput.ObfuscationChar = Nothing
-        Me.NullableDateValueInput.PermissionReason = Nothing
-        Me.NullableDateValueInput.Size = New System.Drawing.Size(267, 20)
-        Me.NullableDateValueInput.TabIndex = 13
-        Me.NullableDateValueInput.UIGuid = New System.Guid("78321b4d-7cac-41a5-ae31-6b2c7f39719c")
-        Me.NullableDateValueInput.Value = Nothing
-        Me.NullableDateValueInput.ValueValidationState = Nothing
-        '
-        'NullableIntValueInput
-        '
-        Me.NullableIntValueInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.NullableIntValueInput.AssignedManagerComponent = Me.ftbcmMain
-        Me.NullableIntValueInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.NullableIntValueInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
-        Me.NullableIntValueInput.Location = New System.Drawing.Point(162, 108)
-        Me.NullableIntValueInput.MaxLength = 32767
-        Me.NullableIntValueInput.MaxValue = Nothing
-        Me.NullableIntValueInput.MinValue = 0
-        Me.NullableIntValueInput.Name = "NullableIntValueInput"
-        Me.NullableIntValueInput.ObfuscationChar = Nothing
-        Me.NullableIntValueInput.PermissionReason = Nothing
-        Me.NullableIntValueInput.Size = New System.Drawing.Size(267, 20)
-        Me.NullableIntValueInput.TabIndex = 7
-        Me.NullableIntValueInput.UIGuid = New System.Guid("2576c8b7-270f-40e8-aa07-1a1cf3f5dd62")
-        Me.NullableIntValueInput.Value = Nothing
-        Me.NullableIntValueInput.ValueValidationState = Nothing
         '
         'MainTab
         '
@@ -565,25 +449,6 @@ Partial Class BasicUITestUserControl
         Me.ResetEventCounterToolStripDropDownButton.Size = New System.Drawing.Size(111, 22)
         Me.ResetEventCounterToolStripDropDownButton.Text = "ResetEventCounter"
         '
-        'Button2
-        '
-        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button2.Location = New System.Drawing.Point(439, 211)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(50, 23)
-        Me.Button2.TabIndex = 31
-        Me.Button2.Text = "Prop's"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(15, 212)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(126, 13)
-        Me.Label7.TabIndex = 29
-        Me.Label7.Text = "Nullable - (PreserveInput)"
-        '
         'nvrPreserveInputTest
         '
         Me.nvrPreserveInputTest.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -592,7 +457,6 @@ Partial Class BasicUITestUserControl
         Me.nvrPreserveInputTest.AutoResizeColumnsOnOpen = False
         Me.nvrPreserveInputTest.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None
         Me.nvrPreserveInputTest.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None
-        Me.nvrPreserveInputTest.BeepOnFailedValidation = False
         Me.nvrPreserveInputTest.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.nvrPreserveInputTest.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
         Me.nvrPreserveInputTest.DataSource = Nothing
@@ -602,6 +466,7 @@ Partial Class BasicUITestUserControl
         Me.nvrPreserveInputTest.IsPopupAutoSize = False
         Me.nvrPreserveInputTest.IsPopupResizable = True
         Me.nvrPreserveInputTest.Location = New System.Drawing.Point(162, 212)
+        Me.nvrPreserveInputTest.MaxLength = 32767
         Me.nvrPreserveInputTest.MinimumPopupSize = New System.Drawing.Size(267, 80)
         Me.nvrPreserveInputTest.MultiSelect = False
         Me.nvrPreserveInputTest.Name = "nvrPreserveInputTest"
@@ -609,13 +474,194 @@ Partial Class BasicUITestUserControl
         Me.nvrPreserveInputTest.PermissionReason = Nothing
         Me.nvrPreserveInputTest.PreserveInput = True
         Me.nvrPreserveInputTest.Searchable = True
+        Me.nvrPreserveInputTest.SearchColumnBackgroundColor = System.Drawing.Color.Empty
+        Me.nvrPreserveInputTest.SearchColumnHeaderBackgroundColor = System.Drawing.Color.Empty
         Me.nvrPreserveInputTest.SearchColumnHeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nvrPreserveInputTest.SearchKeywordOrChar = Global.Microsoft.VisualBasic.ChrW(59)
         Me.nvrPreserveInputTest.Size = New System.Drawing.Size(267, 20)
         Me.nvrPreserveInputTest.TabIndex = 30
         Me.nvrPreserveInputTest.UIGuid = New System.Guid("bbac7d92-bf33-49e8-baf0-3e960048745c")
-        Me.nvrPreserveInputTest.Value = Nothing
         Me.nvrPreserveInputTest.ValueMember = Nothing
+        '
+        'ftbcmMain
+        '
+        Me.ftbcmMain.CancelButton = Nothing
+        Me.ftbcmMain.ContainerControl = Me
+        Me.ftbcmMain.DataSourceType = Nothing
+        Me.ftbcmMain.DynamicEventHandlingList = Nothing
+        Me.ftbcmMain.HostingForm = Nothing
+        Me.ftbcmMain.HostingUserControl = Me
+        '
+        'NullableValueRelationPopupInput
+        '
+        Me.NullableValueRelationPopupInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.NullableValueRelationPopupInput.AssignedManagerComponent = Me.ftbcmMain
+        Me.NullableValueRelationPopupInput.AutoResizeColumnsOnOpen = False
+        Me.NullableValueRelationPopupInput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None
+        Me.NullableValueRelationPopupInput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None
+        Me.NullableValueRelationPopupInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NullableValueRelationPopupInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.NullableValueRelationPopupInput.DataSource = Nothing
+        Me.NullableValueRelationPopupInput.DisplayMember = Nothing
+        Me.NullableValueRelationPopupInput.HasAddButton = True
+        Me.NullableValueRelationPopupInput.HideButtons = False
+        Me.NullableValueRelationPopupInput.ImitateTabByPageKeys = True
+        Me.NullableValueRelationPopupInput.IsPopupAutoSize = False
+        Me.NullableValueRelationPopupInput.IsPopupResizable = True
+        Me.NullableValueRelationPopupInput.Location = New System.Drawing.Point(162, 186)
+        Me.NullableValueRelationPopupInput.MaxLength = 32767
+        Me.NullableValueRelationPopupInput.MinimumPopupSize = New System.Drawing.Size(267, 80)
+        Me.NullableValueRelationPopupInput.MultiSelect = False
+        Me.NullableValueRelationPopupInput.Name = "NullableValueRelationPopupInput"
+        Me.NullableValueRelationPopupInput.NullValueString = "* - - - *"
+        Me.NullableValueRelationPopupInput.PermissionReason = Nothing
+        Me.NullableValueRelationPopupInput.Searchable = True
+        Me.NullableValueRelationPopupInput.SearchColumnBackgroundColor = System.Drawing.Color.Empty
+        Me.NullableValueRelationPopupInput.SearchColumnHeaderBackgroundColor = System.Drawing.Color.Empty
+        Me.NullableValueRelationPopupInput.SearchColumnHeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NullableValueRelationPopupInput.Size = New System.Drawing.Size(267, 20)
+        Me.NullableValueRelationPopupInput.TabIndex = 16
+        Me.NullableValueRelationPopupInput.UIGuid = New System.Guid("bbac7d92-bf33-49e8-baf0-3e960048745c")
+        Me.NullableValueRelationPopupInput.ValueMember = Nothing
+        '
+        'NullableMultilineTextValueInput
+        '
+        Me.NullableMultilineTextValueInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.NullableMultilineTextValueInput.AssignedManagerComponent = Me.ftbcmMain
+        Me.NullableMultilineTextValueInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NullableMultilineTextValueInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.NullableMultilineTextValueInput.Location = New System.Drawing.Point(162, 43)
+        Me.NullableMultilineTextValueInput.MaxLength = 32767
+        Me.NullableMultilineTextValueInput.Name = "NullableMultilineTextValueInput"
+        Me.NullableMultilineTextValueInput.NullValueString = "* - - - *"
+        Me.NullableMultilineTextValueInput.ObfuscationChar = Nothing
+        Me.NullableMultilineTextValueInput.PermissionReason = Nothing
+        Me.NullableMultilineTextValueInput.Size = New System.Drawing.Size(267, 59)
+        Me.NullableMultilineTextValueInput.TabIndex = 4
+        Me.NullableMultilineTextValueInput.UIGuid = New System.Guid("e4768cc4-c3d7-44ca-b8d9-df9994acaf1d")
+        Me.NullableMultilineTextValueInput.Value = Nothing
+        Me.NullableMultilineTextValueInput.ValueValidationState = Nothing
+        '
+        'NullableTextValueInput
+        '
+        Me.NullableTextValueInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.NullableTextValueInput.AssignedManagerComponent = Me.ftbcmMain
+        Me.NullableTextValueInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NullableTextValueInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.NullableTextValueInput.Location = New System.Drawing.Point(162, 12)
+        Me.NullableTextValueInput.MaxLength = 32767
+        Me.NullableTextValueInput.Name = "NullableTextValueInput"
+        Me.NullableTextValueInput.NullValueString = "* - - - *"
+        Me.NullableTextValueInput.ObfuscationChar = Nothing
+        Me.NullableTextValueInput.PermissionReason = Nothing
+        Me.NullableTextValueInput.Size = New System.Drawing.Size(267, 20)
+        Me.NullableTextValueInput.TabIndex = 1
+        Me.NullableTextValueInput.UIGuid = New System.Guid("924325d4-e5ec-4bee-b59f-321464d410e5")
+        Me.NullableTextValueInput.Value = Nothing
+        Me.NullableTextValueInput.ValueValidationState = Nothing
+        '
+        'NullableNumValueInput
+        '
+        Me.NullableNumValueInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.NullableNumValueInput.AssignedManagerComponent = Me.ftbcmMain
+        Me.NullableNumValueInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NullableNumValueInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.NullableNumValueInput.CurrencySymbolString = Nothing
+        Me.NullableNumValueInput.ImitateTabByPageKeys = True
+        Me.NullableNumValueInput.Location = New System.Drawing.Point(162, 134)
+        Me.NullableNumValueInput.MaxLength = 32767
+        Me.NullableNumValueInput.MaxValue = Nothing
+        Me.NullableNumValueInput.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.NullableNumValueInput.Name = "NullableNumValueInput"
+        Me.NullableNumValueInput.NullValueString = "* - - - *"
+        Me.NullableNumValueInput.ObfuscationChar = Nothing
+        Me.NullableNumValueInput.PermissionReason = Nothing
+        Me.NullableNumValueInput.Size = New System.Drawing.Size(267, 20)
+        Me.NullableNumValueInput.TabIndex = 10
+        Me.NullableNumValueInput.UIGuid = New System.Guid("42bc45f4-cd10-4d30-b4b8-2bbe6e62f113")
+        Me.NullableNumValueInput.Value = Nothing
+        Me.NullableNumValueInput.ValueValidationState = Nothing
+        '
+        'NullableDateValueInput
+        '
+        Me.NullableDateValueInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.NullableDateValueInput.AssignedManagerComponent = Me.ftbcmMain
+        Me.NullableDateValueInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NullableDateValueInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.NullableDateValueInput.DaysDistanceBetweenLinkedControl = Nothing
+        Me.NullableDateValueInput.ImitateTabByPageKeys = True
+        Me.NullableDateValueInput.LinkedToNullableDateControl = Nothing
+        Me.NullableDateValueInput.Location = New System.Drawing.Point(27, 30)
+        Me.NullableDateValueInput.MaxLength = 32767
+        Me.NullableDateValueInput.Name = "NullableDateValueInput"
+        Me.NullableDateValueInput.NullValueString = "* - - - *"
+        Me.NullableDateValueInput.ObfuscationChar = Nothing
+        Me.NullableDateValueInput.PermissionReason = Nothing
+        Me.NullableDateValueInput.Size = New System.Drawing.Size(166, 20)
+        Me.NullableDateValueInput.TabIndex = 13
+        Me.NullableDateValueInput.UIGuid = New System.Guid("78321b4d-7cac-41a5-ae31-6b2c7f39719c")
+        Me.NullableDateValueInput.Value = Nothing
+        Me.NullableDateValueInput.ValueValidationState = Nothing
+        '
+        'NullableIntValueInput
+        '
+        Me.NullableIntValueInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.NullableIntValueInput.AssignedManagerComponent = Me.ftbcmMain
+        Me.NullableIntValueInput.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NullableIntValueInput.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.NullableIntValueInput.ImitateTabByPageKeys = True
+        Me.NullableIntValueInput.Location = New System.Drawing.Point(162, 108)
+        Me.NullableIntValueInput.MaxLength = 32767
+        Me.NullableIntValueInput.MaxValue = Nothing
+        Me.NullableIntValueInput.MinValue = 0
+        Me.NullableIntValueInput.Name = "NullableIntValueInput"
+        Me.NullableIntValueInput.NullValueString = "* - - - *"
+        Me.NullableIntValueInput.ObfuscationChar = Nothing
+        Me.NullableIntValueInput.PermissionReason = Nothing
+        Me.NullableIntValueInput.Size = New System.Drawing.Size(267, 20)
+        Me.NullableIntValueInput.TabIndex = 7
+        Me.NullableIntValueInput.UIGuid = New System.Guid("2576c8b7-270f-40e8-aa07-1a1cf3f5dd62")
+        Me.NullableIntValueInput.Value = Nothing
+        Me.NullableIntValueInput.ValueValidationState = Nothing
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.NullableDateValue1)
+        Me.GroupBox1.Controls.Add(Me.NullableDateValueInput)
+        Me.GroupBox1.Location = New System.Drawing.Point(162, 81)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(267, 100)
+        Me.GroupBox1.TabIndex = 13
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "GroupBox1"
+        '
+        'NullableDateValue1
+        '
+        Me.NullableDateValue1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.NullableDateValue1.AssignedManagerComponent = Me.ftbcmMain
+        Me.NullableDateValue1.Borderstyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.NullableDateValue1.ContentPresentPermission = ActiveDevelop.EntitiesFormsLib.ContentPresentPermissions.Normal
+        Me.NullableDateValue1.DaysDistanceBetweenLinkedControl = Nothing
+        Me.NullableDateValue1.Enabled = False
+        Me.NullableDateValue1.ImitateTabByPageKeys = True
+        Me.NullableDateValue1.LinkedToNullableDateControl = Nothing
+        Me.NullableDateValue1.Location = New System.Drawing.Point(27, 56)
+        Me.NullableDateValue1.MaxLength = 32767
+        Me.NullableDateValue1.Name = "NullableDateValue1"
+        Me.NullableDateValue1.NullValueString = "* - - - *"
+        Me.NullableDateValue1.ObfuscationChar = Nothing
+        Me.NullableDateValue1.PermissionReason = Nothing
+        Me.NullableDateValue1.Size = New System.Drawing.Size(166, 20)
+        Me.NullableDateValue1.TabIndex = 14
+        Me.NullableDateValue1.UIGuid = New System.Guid("78321b4d-7cac-41a5-ae31-6b2c7f39719c")
+        Me.NullableDateValue1.Value = Nothing
+        Me.NullableDateValue1.ValueValidationState = Nothing
         '
         'BasicUITestUserControl
         '
@@ -630,8 +676,6 @@ Partial Class BasicUITestUserControl
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
-        CType(Me.NullableValueRelationPopupInput, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ftbcmMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MainTab.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
@@ -639,6 +683,9 @@ Partial Class BasicUITestUserControl
         Me.StatusStripMain.ResumeLayout(False)
         Me.StatusStripMain.PerformLayout()
         CType(Me.nvrPreserveInputTest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ftbcmMain, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NullableValueRelationPopupInput, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -684,5 +731,6 @@ Partial Class BasicUITestUserControl
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents nvrPreserveInputTest As ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup
-
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents NullableDateValue1 As ActiveDevelop.EntitiesFormsLib.NullableDateValue
 End Class

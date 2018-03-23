@@ -12,7 +12,7 @@
         <summary>MvvmForms</summary>        
         <description>MvvmForms is Dual License. For Open Source Projects under GPL, for evaluation purposes, for personal, non-commercial purpose, for academic purpose it's free. For propriety, commercial projects it is also free, but without any support or guarantees. For a supported version, please contact mvvmforms@activedevelop.de for information how to obtain per-developer licenses with included support options.</description>
         <releaseNotes>New in V2.3.4 Beta
-* Change default column width to 1</releaseNotes>
+* Fixed columnwidth in MvvmDataGrid. If you are use that, please check the settings (Width and WidthLengthUnitType)</releaseNotes>
         <copyright>Copyright 2010-2018 by Klaus Loeffelmann, ActiveDevelop.</copyright>
         <tags>Windows Forms; MVVM; ActiveDevelop</tags>
         <dependencies>
