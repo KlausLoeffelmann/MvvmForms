@@ -38,11 +38,16 @@ Public Class ColumnBindingsUITypeEditor
                 End If
             End If
 
-            Dim frmTemp = New frmMvvmPropertyAssignmentEx
+#If FB_BINDING Then
+            Dim frmTemp = New frmMvvmPropertyAssignmentEx()
+#Else
+
+            Dim frmTemp = New frmMvvmPropertyAssignmentRev()
+#End If
 
             frmTemp.ControlToBind = selectedColumn
-            frmTemp.DesignTimeAssemblyLoader = DirectCast(provider.GetService(GetType(IDesignTimeAssemblyLoader)), IDesignTimeAssemblyLoader)
-            frmTemp.ReferenceService = DirectCast(provider.GetService(GetType(IReferenceService)), IReferenceService)
+            'frmTemp.DesignTimeAssemblyLoader = DirectCast(provider.GetService(GetType(IDesignTimeAssemblyLoader)), IDesignTimeAssemblyLoader)
+            'frmTemp.ReferenceService = DirectCast(provider.GetService(GetType(IReferenceService)), IReferenceService)
             frmTemp.TypeDiscoveryService = provider.GetService(Of ITypeDiscoveryService)()
 
             frmTemp.MvvmManager = selectedColumn

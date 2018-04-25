@@ -1,0 +1,52 @@
+﻿<UserControl x:Name="userControl" x:Class="ucBindingSetting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ActiveDevelop.EntitiesFormsLib"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+     <Grid Margin="5,2,5,2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Column="0" Header="Binding Mode">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <RadioButton Grid.Row="0" Grid.Column="0" Name="rbTwoWay" >Two way</RadioButton>
+                <RadioButton Grid.Row="1" Grid.Column="0" Name="rbOneWay" >One way</RadioButton>
+                <RadioButton Grid.Row="2" Grid.Column="0" Name="rbOneTime" >One time</RadioButton>
+                <RadioButton Grid.Row="3" Grid.Column="0" Name="rbOneWayToSource" >
+                    <TextBlock>One way to <LineBreak/>source</TextBlock>
+                </RadioButton>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Column="1" Header="Update Source Trigger">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <RadioButton Grid.Row="0" Name="rbLostFocus" >Lost focus</RadioButton>
+                <RadioButton Grid.Row="1" Name="rbExplicit" >Explicit</RadioButton>
+                <RadioButton Grid.Row="2" Grid.RowSpan="2" Name="rbImmediate" >
+                    <TextBlock>property changed<LineBreak/>immediately</TextBlock>
+                </RadioButton>
+            </Grid>
+        </GroupBox>
+
+
+    </Grid>
+
+</UserControl>

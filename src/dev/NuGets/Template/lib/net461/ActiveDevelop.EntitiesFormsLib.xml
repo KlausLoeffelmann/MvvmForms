@@ -704,6 +704,9 @@ ActiveDevelop.EntitiesFormsLib
  Used to show an entry in the Converter Combo Box in the PropertyBindings Dialog.
  </summary>
 </member>
+<member name="P:ActiveDevelop.EntitiesFormsLib.frmMvvmPropertyAssignmentRev.ControlToBind">
+ Hier wird das Control gespeichert, welches von diesem Formular als Bindungselement verwendet wird.
+</member>
 <member name="P:ActiveDevelop.EntitiesFormsLib.frmMvvmPropertyAssignmentEx.ControlToBind">
  Hier wird das Control gespeichert, welches von diesem Formular als Bindungselement verwendet wird.
 </member>
@@ -6683,6 +6686,36 @@ InitializeComponent
  <param name="mvvmManager"></param>
  <returns></returns>
  <remarks></remarks>
+</member>
+<member name="T:ActiveDevelop.EntitiesFormsLib.XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+<summary>
+GeneratedInternalTypeHelper
+</summary>
+</member>
+<member name="M:ActiveDevelop.EntitiesFormsLib.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+<summary>
+CreateInstance
+</summary>
+</member>
+<member name="M:ActiveDevelop.EntitiesFormsLib.XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+<summary>
+GetPropertyValue
+</summary>
+</member>
+<member name="M:ActiveDevelop.EntitiesFormsLib.XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+<summary>
+SetPropertyValue
+</summary>
+</member>
+<member name="M:ActiveDevelop.EntitiesFormsLib.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+<summary>
+CreateDelegate
+</summary>
+</member>
+<member name="M:ActiveDevelop.EntitiesFormsLib.XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+<summary>
+AddEventHandler
+</summary>
 </member>
 </members>
 </doc>

@@ -2,7 +2,7 @@
 <package >
   <metadata>
         <id>MvvmForms</id>
-        <version>2.3.3-Beta</version>
+        <version>2.3.4-OnlyDebugging</version>
         <title>MvvmForms</title>
         <authors>ActiveDevelop</authors>
         <owners>Klaus Loeffelmann</owners>
@@ -11,7 +11,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <summary>MvvmForms</summary>        
         <description>MvvmForms is Dual License. For Open Source Projects under GPL, for evaluation purposes, for personal, non-commercial purpose, for academic purpose it's free. For propriety, commercial projects it is also free, but without any support or guarantees. For a supported version, please contact mvvmforms@activedevelop.de for information how to obtain per-developer licenses with included support options.</description>
-        <releaseNotes>New in V2.3.3 Beta
+        <releaseNotes>New in V2.3.4 Only Debugging
 * Add filtering for DataContext-Type-Picker</releaseNotes>
         <copyright>Copyright 2010-2018 by Klaus Loeffelmann, ActiveDevelop.</copyright>
         <tags>Windows Forms; MVVM; ActiveDevelop</tags>

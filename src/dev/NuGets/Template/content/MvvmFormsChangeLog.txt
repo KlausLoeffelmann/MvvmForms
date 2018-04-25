@@ -2,6 +2,12 @@
  
  Find complete info on GitHub: https://github.com/ActiveDevelop/MvvmForms
  Find an introduction video to MvvmForms on YouTube: https://www.youtube.com/watch?v=1R_81Np5New
+ ===================================
+ CHANGELOG
+ NEW IN 2.3.4 OnlyDebugging
+===================================
+* Test vom ElementHost in VS
+ 
 ===================================
  CHANGELOG
  NEW IN 2.3.2 Beta - 2017-11-21

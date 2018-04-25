@@ -33,6 +33,7 @@
 
 Imports System.ComponentModel.Design.Serialization
 Imports System.Windows.Data
+Imports ActiveDevelop.MvvmBaseLib.Mvvm
 
 #Disable Warning
 <Serializable, DesignerSerializer(GetType(PropertyBindingsCodeDomSerializer),
@@ -79,6 +80,7 @@ End Class
 
 <Serializable>
 Public Class PropertyBindingItem
+    Inherits MvvmViewModelBase
 
     Private myConverterInstance As IValueConverter
 
@@ -86,7 +88,24 @@ Public Class PropertyBindingItem
     Public Property Converter As Type
     Public Property ConverterParameter As String
     Public Property BindingSetting As BindingSetting
+
+    Private _ViewModelProperty As BindingProperty
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>Bindbare Property</remarks>
     Public Property ViewModelProperty As BindingProperty
+        Get
+            Return _ViewModelProperty
+        End Get
+        Set(ByVal value As BindingProperty)
+            MyBase.SetProperty(_ViewModelProperty, value)
+        End Set
+    End Property
+
+
     Public Property IsDirty As Boolean
     Friend Property UpdatingViewmodelInProgress As Boolean
     Friend Property UpdatingControlInProgress As Boolean

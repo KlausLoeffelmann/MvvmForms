@@ -1,4 +1,5 @@
 ﻿Imports System.Threading
+Imports ActiveDevelop.EntitiesFormsLib
 
 Public Class MainForm
 
@@ -74,5 +75,11 @@ Public Class MainForm
     Private Sub MVVMGridMemoryLeakToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MVVMGridMemoryLeakToolStripMenuItem.Click
         Dim frm = New MvvmDataGridMemoryLeakTest
         frm.ShowDialog()
+    End Sub
+
+    Private Sub PropertyBindingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PropertyBindingsToolStripMenuItem.Click
+        Dim frm As New frmMvvmPropertyAssignmentRev
+
+        frm.ShowDialogWithTestdata(GetType(MainNodeTestViewModel))
     End Sub
 End Class

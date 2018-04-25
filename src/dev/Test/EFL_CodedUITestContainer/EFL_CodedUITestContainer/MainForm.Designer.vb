@@ -42,6 +42,7 @@ Partial Class MainForm
         Me.NullableNumValue1 = New ActiveDevelop.EntitiesFormsLib.NullableNumValue()
         Me.NullableValueRelationPopup2 = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
         Me.NullableValueRelationPopup1 = New ActiveDevelop.EntitiesFormsLib.NullableValueRelationPopup()
+        Me.PropertyBindingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MVVMGridMemoryLeakToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MainMenuStrip.SuspendLayout()
         CType(Me.NullableValueRelationPopup2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,7 +75,7 @@ Partial Class MainForm
         '
         'TestToolStripMenuItem
         '
-        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RunBasicUITestToolStripMenuItem, Me.MVVMGridDemoToolStripMenuItem, Me.ZoomingTestToolStripMenuItem, Me.CBOToolStripMenuItem, Me.TreeViewToolStripMenuItem, Me.NVRPLateBindingToolStripMenuItem, Me.MVVMGridMemoryLeakToolStripMenuItem})
+        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RunBasicUITestToolStripMenuItem, Me.MVVMGridDemoToolStripMenuItem, Me.ZoomingTestToolStripMenuItem, Me.CBOToolStripMenuItem, Me.TreeViewToolStripMenuItem, Me.NVRPLateBindingToolStripMenuItem, Me.MVVMGridMemoryLeakToolStripMenuItem, Me.PropertyBindingsToolStripMenuItem})
         Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
         Me.TestToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
         Me.TestToolStripMenuItem.Text = "&Test"
@@ -271,6 +272,12 @@ Partial Class MainForm
         Me.MVVMGridMemoryLeakToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
         Me.MVVMGridMemoryLeakToolStripMenuItem.Text = "MVVM Grid Memory Leak"
         '
+        'PropertyBindingsToolStripMenuItem
+        '
+        Me.PropertyBindingsToolStripMenuItem.Name = "PropertyBindingsToolStripMenuItem"
+        Me.PropertyBindingsToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.PropertyBindingsToolStripMenuItem.Text = "PropertyBindings"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -316,4 +323,5 @@ Partial Class MainForm
     Friend WithEvents TreeViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NVRPLateBindingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MVVMGridMemoryLeakToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PropertyBindingsToolStripMenuItem As ToolStripMenuItem
 End Class

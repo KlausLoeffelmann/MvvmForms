@@ -61,15 +61,17 @@ Public Class PropertyBindingsUITypeEditor
             End If
 
             Dim controlToBind = TryCast(context.Instance, Control)
+#If FB_BINDING Then
             Dim frmTemp = New frmMvvmPropertyAssignmentEx()
+#Else
 
+            Dim frmTemp = New frmMvvmPropertyAssignmentRev()
+#End If
             frmTemp.ControlToBind = controlToBind
 
             Dim host = TryCast(controlToBind.Site.GetService(GetType(IDesignerHost)), IDesignerHost)
             Dim cDesigner = host.GetDesigner(controlToBind)
             frmTemp.DesignerHost = host
-            frmTemp.DesignTimeAssemblyLoader = DirectCast(provider.GetService(GetType(IDesignTimeAssemblyLoader)), IDesignTimeAssemblyLoader)
-            frmTemp.ReferenceService = DirectCast(provider.GetService(GetType(IReferenceService)), IReferenceService)
             frmTemp.TypeDiscoveryService = provider.GetService(Of ITypeDiscoveryService)()
             'Um den MVVM-Manager zu finden, iterieren wir jetzt durch alle Items des Containers
             If controlToBind.Container IsNot Nothing Then
