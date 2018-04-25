@@ -4,9 +4,9 @@
  Find an introduction video to MvvmForms on YouTube: https://www.youtube.com/watch?v=1R_81Np5New
  ===================================
  CHANGELOG
- NEW IN 2.3.4 OnlyDebugging
+ NEW IN 2.3.5 Beta - 2018-04-25
 ===================================
-* Test vom ElementHost in VS
+* Added a new UI for databinding
  
 ===================================
  CHANGELOG

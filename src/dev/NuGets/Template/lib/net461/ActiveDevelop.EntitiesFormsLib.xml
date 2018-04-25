@@ -659,6 +659,55 @@ ActiveDevelop.EntitiesFormsLib
  </summary>
  <remarks></remarks>
 </member>
+<member name="T:ActiveDevelop.EntitiesFormsLib.ucBindingSetting">
+<summary>
+ucBindingSetting
+</summary>
+</member>
+<member name="M:ActiveDevelop.EntitiesFormsLib.ucBindingSetting.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:ActiveDevelop.EntitiesFormsLib.ucBindingTreeview">
+<summary>
+ucBindingTreeview
+</summary>
+</member>
+<member name="F:ActiveDevelop.EntitiesFormsLib.ucBindingTreeview.PropertyBindingsProperty">
+ <summary>
+ Schluessel zur PropertyBindings-DependencyProperty
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:ActiveDevelop.EntitiesFormsLib.ucBindingTreeview.PropertyBindings">
+ <summary>
+ 
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks>(Dependency Property)</remarks>
+</member>
+<member name="P:ActiveDevelop.EntitiesFormsLib.ucBindingTreeview.PropertyBindingsInternal">
+ <summary>
+ this Member also contains the new-Row which PropertyBindings doesn't have
+ </summary>
+</member>
+<member name="M:ActiveDevelop.EntitiesFormsLib.ucBindingTreeview.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
+<member name="T:ActiveDevelop.EntitiesFormsLib.ucPropertySelector">
+<summary>
+ucPropertySelector
+</summary>
+</member>
+<member name="M:ActiveDevelop.EntitiesFormsLib.ucPropertySelector.InitializeComponent">
+<summary>
+InitializeComponent
+</summary>
+</member>
 <member name="T:ActiveDevelop.EntitiesFormsLib.StringValueToStringConverter">
  <summary>
  Er - we need this internally to go from string to StringValue and vice versa because of a design decision 
@@ -690,6 +739,14 @@ ActiveDevelop.EntitiesFormsLib
  <para>Sollte in diesem Fall AdressDaten null sein (Nothing in VB), wird standardmäßig keine Exception ausgelöst. 
  Das kann geändert werden, indem die globale Variable SupressException auf False gesetzt wird (beispielsweise zu Debugging-Zwecken).</para>
  </remarks>
+</member>
+<member name="P:ActiveDevelop.EntitiesFormsLib.PropertyBindingItem.ViewModelProperty">
+ <summary>
+ 
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks>Bindbare Property</remarks>
 </member>
 <member name="T:ActiveDevelop.EntitiesFormsLib.BindingSettingPopup">
  <summary>
