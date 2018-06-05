@@ -109,6 +109,46 @@ Public Class MainNodeTestViewModel
             MyBase.SetProperty(_selected, value)
         End Set
     End Property
+
+    Private _title As String
+    Public Property Title As String
+        Get
+            Return _title
+        End Get
+        Set(ByVal value As String)
+            MyBase.SetProperty(_title, value)
+        End Set
+    End Property
+
+
+    Private _changeable As Boolean
+    Public Property Changeable As Boolean
+        Get
+            Return _changeable
+        End Get
+        Set(ByVal value As Boolean)
+            MyBase.SetProperty(_changeable, value)
+        End Set
+    End Property
+
+    Private _AShortVal As Short
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>Bindbare Property</remarks>
+    Public Property AShortVal As Short
+        Get
+            Return _AShortVal
+        End Get
+        Set(ByVal value As Short)
+            MyBase.SetProperty(_AShortVal, value)
+        End Set
+    End Property
+
+
+
 End Class
 
 Public Class PersonenViewModelNodeTest

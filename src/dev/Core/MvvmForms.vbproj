@@ -60,7 +60,7 @@
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
-    <DefineConstants>CompileToGerman=False</DefineConstants>
+    <DefineConstants>CompileToGerman=False,xFB_BINDING</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -264,6 +264,15 @@
     <Compile Include="Components\MvvmManager\ClassesAndStructures\IWinFormsMvvmView.vb" />
     <Compile Include="Components\MvvmManager\ClassesAndStructures\MvvmBindingItem.vb" />
     <Compile Include="Components\MvvmManager\ClassesAndStructures\ViewToViewmodelAssignments.vb" />
+    <Compile Include="Components\MvvmManager\Controls\ucBindingSetting.xaml.vb">
+      <DependentUpon>ucBindingSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MvvmManager\Controls\ucBindingTreeview.xaml.vb">
+      <DependentUpon>ucBindingTreeview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MvvmManager\Controls\ucPropertySelector.xaml.vb">
+      <DependentUpon>ucPropertySelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\MvvmManager\DefaultConverters\BooleanToBooleanExConverter.vb" />
     <Compile Include="Components\MvvmManager\DefaultConverters\ShortToIntConverter.vb" />
     <Compile Include="Components\MvvmManager\DefaultConverters\StringValueToStringConverter.vb" />
@@ -310,6 +319,12 @@
       <DependentUpon>frmMvvmEventAssignment.vb</DependentUpon>
     </Compile>
     <Compile Include="Components\MvvmManager\UI\frmMvvmEventAssignment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\MvvmManager\UI\frmMvvmPropertyAssignmentRev.Designer.vb">
+      <DependentUpon>frmMvvmPropertyAssignmentRev.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MvvmManager\UI\frmMvvmPropertyAssignmentRev.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Components\MvvmManager\UI\frmMvvmPropertyAssignmentEx.Designer.vb">
@@ -654,6 +669,9 @@
     <EmbeddedResource Include="Components\MvvmManager\UI\frmMvvmEventAssignment.resx">
       <DependentUpon>frmMvvmEventAssignment.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\MvvmManager\UI\frmMvvmPropertyAssignmentRev.resx">
+      <DependentUpon>frmMvvmPropertyAssignmentRev.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\MvvmManager\UI\frmMvvmPropertyAssignmentEx.resx">
       <DependentUpon>frmMvvmPropertyAssignmentEx.vb</DependentUpon>
     </EmbeddedResource>
@@ -767,6 +785,18 @@
     <Content Include="Resources\92_cancel_16_sel.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Components\MvvmManager\Controls\ucBindingSetting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\MvvmManager\Controls\ucBindingTreeview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\MvvmManager\Controls\ucPropertySelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\MvvmControls\MvvmDataGrid\WPFDataGridViewWrapper.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
