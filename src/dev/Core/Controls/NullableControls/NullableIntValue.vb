@@ -36,7 +36,7 @@ Public Class NullableIntValue
         Me.MinValue = CType(NullableControlManager.GetInstance.GetDefaultMinValue(Me, DEFAULT_MIN_VALUE), Integer?)
         Me.MaxValue = CType(NullableControlManager.GetInstance.GetDefaultMaxValue(Me, DEFAULT_MAX_VALUE), Integer?)
 
-        Me.Increment = CInt(NullableControlManager.GetInstance.GetDefaultIncrement(Me, DEFAULT_INCREMENT))
+        Me.Increment = CType(NullableControlManager.GetInstance.GetDefaultIncrement(Me, DEFAULT_INCREMENT), Integer?)
         Me.MaxValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMaxValueExceededMessage(Me, DEFAULT_MAX_VALUE_EXCEEDED_MESSAGE)
         Me.MinValueExceededMessage = NullableControlManager.GetInstance.GetDefaultMinValueExceededMessage(Me, DEFAULT_MIN_VALUE_EXCEEDED_MESSAGE)
 
