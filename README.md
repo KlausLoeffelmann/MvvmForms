@@ -43,10 +43,10 @@ Yes, with no limitations. A third of our current projects are in CSharp, the res
 
 Yes, for open source projects. For propriety, commercial projects, it's not entirely free, but also almost as good as free. Our primary goal is to find new opportunities to help with our 25+ year expertise in designing LOB Applications, and especially to show a way for our customers to migrate their software from being a big, monolithic Win32-Software to a modern approach without risk, where they can go forward with cloud computing, Windows 10, Mobile Apps, and all that without redoing everything from scratch.
 
-So, if you want us to help you with your existing Application by doing workshops, helping with designing a new architecture, finding a feasible migration concept, introducing Scrum to your team, or providing human resources for a limited period of time for the purpose of the modernisation process, we bring MvvmForms along. Then it's free for you, because you're our customer. If you, however, do not want us, but you want the toolset, just talk to us, and we figure out the best support model for you: mvvmforms@activedevelop.de.
+So, if you want us to help you with your existing Application by doing workshops, helping with designing a new architecture, finding a feasible migration concept, introducing Scrum to your team, or providing human resources for a limited period of time for the purpose of the modernisation process, we bring MvvmForms along. Then it's free for you, because you're our customer. Go ahead and use it: You got an implicit licence for any commercial use, if you are or have been our customer at one point. If you, however, do not want us, but you want the toolset, just talk to us, and we figure out the best support model for you: mvvmforms@activedevelop.de.
 
 If you're maintaining an open source project under GPL, and you want to use it. Go ahead: Fork it, change it modify it, and sell it along with your Open Source App. That's Open Source! As long your Application which links to it, or uses classes which derive from MvvmForms is also GPL - that is perfectly OK. But, if you're managing a propriety, close source solution, and you want to use (link to, derive from) MvvmForms, you have to obtain one license per active developer.
 
 ## Can I contribute?
 
-Yes, but not yet. We do not have the infrastructure in place, so we cannot provide you yet with a valid Contributor Agreement, but we're working on it. If you're in a hurry, again, just talk to us, and we'll find a way to get you started.
+Yes. Just create Pull Requests.
