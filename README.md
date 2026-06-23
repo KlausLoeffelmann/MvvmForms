@@ -9,7 +9,9 @@ tags: "MVVM; Windows Forms"
 
 # MvvmForms ReadMeFirst!
 
-Welcome to ActiveDevelop's MvvmForms Library Project. MvvmForm's purpose is to provide XAML ViewModel compatible support for Windows Forms Visual Basic and CSharp Projects and Solutions including a full-blown WinForms Designer support. MvvmForms is Open Source (GPL), but Dual License. For more Information about MvvmForms licensing read the License section below.
+Welcome to ActiveDevelop's MvvmForms Library Project. At the time is was developed, MvvmForm's purpose was (and technically still is) to provide XAML ViewModel compatible support for Windows Forms Visual Basic and CSharp Projects and Solutions including a full-blown WinForms Designer support. MvvmForms is Open Source (MIT).
+
+Note: We never ported MvvmForms to .NET (Core, .NET 3.1+) - so, it's only available for NetFx. Also note, that this repo is no longer actively maintained, but feel free to port it and use it in any shape and form you like.
 
 ## Why Mvvm for WinForms? Does it make sense? Why not using WPF/XAML to begin with?
 
